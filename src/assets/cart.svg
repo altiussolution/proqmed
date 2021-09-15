@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="21.782" viewBox="0 0 24 21.782">
+  <g id="online-shopping-cart" transform="translate(0 -21.231)">
+    <g id="Group_1" data-name="Group 1" transform="translate(0 21.231)">
+      <path id="Path_2" data-name="Path 2" d="M.888,23.007H3.433L7.059,36.118a.888.888,0,0,0,.858.651H19.06a.89.89,0,0,0,.814-.533l4.055-9.323a.9.9,0,0,0-.074-.843.881.881,0,0,0-.74-.4H10.8a.888.888,0,1,0,0,1.776h10.95l-3.285,7.547H8.583L4.957,21.882a.888.888,0,0,0-.858-.651H.888a.888.888,0,0,0,0,1.776Z" transform="translate(0 -21.231)" fill="#fff"/>
+      <path id="Path_3" data-name="Path 3" d="M98.912,365.257a2.012,2.012,0,1,0-2.012-2.013A2.015,2.015,0,0,0,98.912,365.257Z" transform="translate(-91.839 -343.475)" fill="#fff"/>
+      <path id="Path_4" data-name="Path 4" d="M339.931,365.174h.148a2.081,2.081,0,1,0-.148,0Z" transform="translate(-320.28 -343.392)" fill="#fff"/>
+    </g>
+  </g>
+</svg>
