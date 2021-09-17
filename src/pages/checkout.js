@@ -39,7 +39,7 @@ const CheckOut = () => {
         getUserAddress();  
         const fetchRegion = async () => {
             const res = await fetch(
-                `${process.env.GATSBY_CART_URL}regions`
+                `${process.env.GATSBY_CART_URL_STARCARE}regions`
             );
 
             const json = await res.json();

@@ -30,7 +30,7 @@ const MyQuotes = ({ setcartCount }) => {
         try {
             axios({
                 method: "get",
-                url: `${process.env.GATSBY_CART_URL}admin/addtoquotelist/${localStorage.customer_id}`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}admin/addtoquotelist/${localStorage.customer_id}`,
                 headers: {
                     'Authorization': `Bearer ${localStorage.userToken}`
                 },
@@ -63,7 +63,7 @@ const MyQuotes = ({ setcartCount }) => {
             try {
                 axios({
                     method: "post",
-                    url: `${process.env.GATSBY_CART_URL}admin/deletequote`,
+                    url: `${process.env.GATSBY_CART_URL_STARCARE}admin/deletequote`,
                     headers: {
                         'Authorization': `Bearer ${localStorage.userToken}`
                     },
@@ -103,7 +103,7 @@ const MyQuotes = ({ setcartCount }) => {
         try {
             axios({
                 method: 'post',
-                url: `${process.env.GATSBY_CART_URL}admin/editquoteconversation`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}admin/editquoteconversation`,
                 data: quoteData,
             })
                 .then(function (response) {
@@ -124,7 +124,7 @@ const MyQuotes = ({ setcartCount }) => {
         try {
             axios({
                 method: "get",
-                url: `${process.env.GATSBY_CART_URL}admin/quotesconversations/${id}`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}admin/quotesconversations/${id}`,
                 headers: {
                     'Authorization': `Bearer ${localStorage.userToken}`
                 },

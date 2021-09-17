@@ -47,7 +47,7 @@ const Orders = () => {
         try{  
             axios({
                 method : "post",
-                url: `${process.env.GATSBY_CART_URL}ordercancel/${order_id}`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}ordercancel/${order_id}`,
                 headers : {
                     'Authorization' : `Bearer ${jwt}`
                 },

@@ -126,7 +126,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
 
       axios({
         method: "get",
-        url: `${process.env.GATSBY_CART_URL}admin/tierprice/${proDescription.items.id}`,
+        url: `${process.env.GATSBY_CART_URL_STARCARE}admin/tierprice/${proDescription.items.id}`,
         //${proDescription.items.id}
       }).then((res) => {
         setTierProduct(res.data)

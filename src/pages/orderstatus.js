@@ -29,7 +29,7 @@ const Invoice = ({ location }) => {
         try {
             axios({
                 method: "get",
-                url: ` ${process.env.GATSBY_CART_URL}admin/orderstatus/${location.state.order_id}`
+                url: ` ${process.env.GATSBY_CART_URL_STARCARE}admin/orderstatus/${location.state.order_id}`
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
                     console.log(res.data)
