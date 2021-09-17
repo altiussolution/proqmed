@@ -41,7 +41,7 @@ const Footer = () => {
         try {
             axios({
               method: 'post',
-              url: `${process.env.GATSBY_API_BASE_URL}newsletters/${email}`
+              url: `${process.env.GATSBY_CART_URL_STARCARE}newsletters/${email}`
             }).then((res) => {
               if (res.statusText === "OK" && res.status == 200) {
                 toast.success(res.data)

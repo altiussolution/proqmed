@@ -157,7 +157,7 @@ const MyQuotes = ({ setcartCount }) => {
             try {
                 axios({
                     method: 'post',
-                    url: `${process.env.GATSBY_API_BASE_URL}carts/mine/items`,
+                    url: `${process.env.GATSBY_API_BASE_URL_STARCARE}carts/mine/items`,
                     data: cartItem,
                     headers: {
                         'Authorization': `Bearer ${jwt}`

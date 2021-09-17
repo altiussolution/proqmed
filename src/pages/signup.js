@@ -30,7 +30,7 @@ const SignUp = () => {
 
       axios({
         method: 'post',
-        url: `${process.env.GATSBY_CART_URL}registration/`,
+        url: `${process.env.GATSBY_CART_URL_STARCARE}registration/`,
         data: customerData,
       })
         .then(function (response) {

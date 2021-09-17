@@ -8,7 +8,7 @@ const getCartDetails = async () => {
  
     const res = await axios({  
        method : 'get',
-       url : `${process.env.GATSBY_API_BASE_URL}carts/mine/items`,
+       url : `${process.env.GATSBY_CART_URL_STARCARE}carts/mine/items`,
        headers : {
               'Authorization' : `Bearer ${jwt}`
             }  

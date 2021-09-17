@@ -16,7 +16,7 @@ const ChangePassword = () => {
         try{
             axios({
                 method : "put",
-                url: `${process.env.GATSBY_CART_URL}customers/me/password`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}customers/me/password`,
                 headers : {
                 'Authorization' : `Bearer ${jwt}`
                 },  

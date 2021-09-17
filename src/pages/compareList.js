@@ -21,7 +21,7 @@ const CompareList = () => {
         try {
             axios({
                 method: "get",
-                url: `${process.env.GATSBY_CART_URL}admin/getcompared/${localStorage.customer_id}`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}admin/getcompared/${localStorage.customer_id}`,
                 headers: {
                     'Authorization': `Bearer ${localStorage.userToken}`
                 },
@@ -57,7 +57,7 @@ const CompareList = () => {
             try {
                 axios({
                     method: "post",
-                    url: `${process.env.GATSBY_CART_URL}admin/removecompared/${localStorage.customer_id}`,
+                    url: `${process.env.GATSBY_CART_URL_STARCARE}admin/removecompared/${localStorage.customer_id}`,
                     headers: {
                         'Authorization': `Bearer ${localStorage.userToken}`
                     },

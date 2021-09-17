@@ -37,7 +37,7 @@ const SignIn = (props) => {
     try {
       axios({
         method: 'post',
-        url: `${process.env.GATSBY_CART_URL}customerlogin/id`,
+        url: `${process.env.GATSBY_CART_URL_STARCARE}customerlogin/id`,
         data: userLoginData,
        
       })
@@ -80,7 +80,7 @@ const SignIn = (props) => {
       try {
         axios({
           method: 'post',
-          url: `${process.env.GATSBY_CART_URL}carts/mine`,
+          url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine`,
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -112,7 +112,7 @@ const SignIn = (props) => {
     try {
         axios({
             method: "get",
-            url: `${process.env.GATSBY_CART_URL}admin/getwishlist/${localStorage.customer_id}`,
+            url: `${process.env.GATSBY_CART_URL_STARCARE}admin/getwishlist/${localStorage.customer_id}`,
             headers: {
                 'Authorization': `Bearer ${localStorage.userToken}`
             },

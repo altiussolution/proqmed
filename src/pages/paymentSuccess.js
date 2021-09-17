@@ -19,7 +19,7 @@ const PaymentSuccess = () => {
             {    
               axios({
                 method : 'post',
-                url: `${process.env.GATSBY_CART_URL}carts/mine`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine`,
                 headers : {
                     'Authorization' : `Bearer ${token}`
                 }

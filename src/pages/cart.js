@@ -106,7 +106,7 @@ const Cart = () => {
         try {
             axios({
                 method: "put",
-                url: `${process.env.GATSBY_CART_URL}carts/mine/items/${item.item_id}`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine/items/${item.item_id}`,
                 headers: {
                     'Authorization': `Bearer ${jwt}`
                 },

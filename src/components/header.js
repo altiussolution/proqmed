@@ -59,7 +59,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
     if (jwt) {
       axios({
         method: 'post',
-        url: `${process.env.GATSBY_CART_URL}customerprofile/${email}`,
+        url: `${process.env.GATSBY_CART_URL_STARCARE}customerprofile/${email}`,
       }).then((res) => {
         if (res.statusText === "OK" && res.status == 200) {
           setProfile(res.data[0]);
@@ -223,7 +223,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
       try {
         axios({
           method: 'post',
-          url: `${process.env.GATSBY_CART_URL}bulkorder/`,
+          url: `${process.env.GATSBY_CART_URL_STARCARE}bulkorder/`,
           headers: {
             'Authorization': `Bearer ${jwt}`
           },

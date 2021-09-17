@@ -56,7 +56,7 @@ const CheckOut = () => {
         try {
             axios({
                 method: "get",
-                url: `${process.env.GATSBY_CART_URL}customeraddress/${localStorage.getItem('email')}`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}customeraddress/${localStorage.getItem('email')}`,
                 headers: {
                     'Authorization': `Bearer ${jwt}`
                 },
@@ -202,7 +202,7 @@ const CheckOut = () => {
         try {
             axios({
                 method: "put",
-                url: `${process.env.GATSBY_CART_URL}customers/me`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}customers/me`,
                 headers: {
                     'Authorization': `Bearer ${jwt}`
                 },
@@ -248,7 +248,7 @@ const CheckOut = () => {
             try {
                 axios({
                     method: "post",
-                    url: `${process.env.GATSBY_API_BASE_URL}carts/mine/shipping-information`,
+                    url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine/shipping-information`,
                     headers: {
                         'Authorization': `Bearer ${jwt}`
                     },
@@ -392,7 +392,7 @@ const CheckOut = () => {
             try {
                 axios({
                     method: "post",
-                    url: `${process.env.GATSBY_API_BASE_URL}carts/mine/payment-information`,
+                    url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine/payment-information`,
                     headers: {
                         'Authorization': `Bearer ${jwt}`
                     },

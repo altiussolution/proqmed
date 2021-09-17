@@ -25,7 +25,7 @@ const Contact = () => {
           try{
             axios({
               method: 'post',
-              url: `${process.env.GATSBY_CART_URL}contactform`,
+              url: `${process.env.GATSBY_CART_URL_STARCARE}contactform`,
               data: ContactDetail,
               })
               .then(function (response) {
