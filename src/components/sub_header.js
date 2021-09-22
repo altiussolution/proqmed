@@ -21,7 +21,7 @@ const SubHeader = ({ allCategory }) => {
   useEffect(() => {
     const fetchPopular = async () => {
       const res = await fetch(
-        `${process.env.GATSBY_CART_URL}admin/mostpopular/2`
+        `${process.env.GATSBY_CART_URL_STARCARE}admin/mostpopular/15`
       );
       const json = await res.json();
       await setPopularProducts(json);

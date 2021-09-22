@@ -21,7 +21,7 @@ let categories,
   return new Promise(async (resolve, reject) => {
     try {
       const { data } = await axios(
-          "https://safety.altiussolution.com/rest/V1/altius/categories?rootCategoryId=48"
+          "http://35.154.13.190/Starcare/rest/V1/altius/categories?rootCategoryId=13"
       );  
       categories = data;
       // console.log("data", data)   
@@ -40,7 +40,7 @@ let categories,
             },
           };
           subCategories.push(child_data);
-          if (child_data.product_count > 5) createNode(categoryNode);
+          if (child_data.product_count > 1) createNode(categoryNode);
           resolve();
           
         }
@@ -59,7 +59,7 @@ exports.createPages = ({ actions: { createPage } }) => {
 };
 
 const createSubCategory = (data, createPage, hierarchy) => {
-  if (data.product_count <= 5 && data.children_data.length && data.level === 2)
+  if (data.product_count <= 1 && data.children_data.length && data.level === 2)
     return;
   createPage({
     path: getCategoryURL(data),

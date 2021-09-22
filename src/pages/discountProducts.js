@@ -15,7 +15,7 @@ const DiscountProducts = ({ location }) => {
         const discountProduct = async () => {
             await axios({
                 method: "get",
-                url: `${process.env.GATSBY_NODE_URL}data/categories/discountproducts.json`
+                url: `${process.env.GATSBY_CART_URL_STARCARE}data/categories/discountproducts.json`
             }).then((res) => {
                 const item = res.data
                 setDiscountProduct(item);

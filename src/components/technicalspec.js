@@ -33,7 +33,7 @@ const Technicalspec = ({ specification, attachment }) => {
     try {
       axios({
         method: 'get',
-        url: `${process.env.GATSBY_CART_URL}admin/reviewandrating/${specification.items.id}`,
+        url: `${process.env.GATSBY_CART_URL_STARCARE}admin/reviewandrating/${specification.items.id}`,
         headers: {
           'Authorization': `Bearer ${jwt}`
         }
@@ -85,7 +85,7 @@ const Technicalspec = ({ specification, attachment }) => {
     try {
       axios({
         method: 'post',
-        url: `${process.env.GATSBY_CART_URL}admin/addreviews`,
+        url: `${process.env.GATSBY_CART_URL_STARCARE}admin/addreviews`,
         data: reviewData,
       })
         .then(function (response) {

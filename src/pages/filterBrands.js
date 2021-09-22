@@ -12,7 +12,7 @@ const FilterBrands = props => {
         const productBrand = async () => {
             await axios({
                 method: "get",
-                url: `${process.env.GATSBY_CART_URL}admin/brandlist/`
+                url: `${process.env.GATSBY_CART_URL_STARCARE}admin/brandlist/`
             }).then((res) => {
                 const item = res.data
                 setProductBrand(item);

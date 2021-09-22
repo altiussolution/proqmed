@@ -10,7 +10,7 @@ const Mostpopular = () => {
     useEffect(() => {
       const fetchPopular = async () => {
         const res = await fetch(
-          `${process.env.GATSBY_CART_URL}admin/mostpopular/2`
+          `${process.env.GATSBY_CART_URL_STARCARE}admin/mostpopular/15`
         );
         //   console.error('here string')
         const json = await res.json();

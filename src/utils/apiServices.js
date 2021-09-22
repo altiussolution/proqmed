@@ -5,7 +5,7 @@ const searchServices = async (value) => {
     try
       {
           const res = await axios(
-            `${process.env.GATSBY_NODE_URL}search/${value}`
+            `${process.env.GATSBY_NODE_URL_STARCARE}searchproduct/${value}`
           );
 
           let productList = [];

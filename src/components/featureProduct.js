@@ -34,7 +34,7 @@ const FeatureProduct = () => {
 
         const fetchFeature = async () => {
             const res = await fetch(
-                `${process.env.GATSBY_API_BASE_URL}featureproducts/2`
+                `${process.env.GATSBY_CART_URL_STARCARE}featureproducts/2`
             );
             const json = await res.json();
             await setFeatureProducts(json);

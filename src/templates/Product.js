@@ -44,12 +44,12 @@ const Product = props  => {
         setLoading(true);   
         try {  
           const res = await axios.get(
-            `${process.env.GATSBY_NODE_URL}data/singleproduct/${id}.json`
+            `${process.env.GATSBY_NODE_URL_STARCARE}data/singleproduct/${id}.json`
           );
           const data = convertToObject(res.data);
           setProduct(data);
           await axios.get(
-            `${process.env.GATSBY_CART_URL}admin/productattachments/${id}`).then((data)=>{
+            `${process.env.GATSBY_CART_URL_STARCARE}admin/productattachments/${id}`).then((data)=>{
               let response_data = data.data
               setattachment(response_data)
           }) 

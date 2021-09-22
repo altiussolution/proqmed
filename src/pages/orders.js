@@ -70,7 +70,7 @@ const Orders = () => {
         try {
             axios({
                 method: "post",
-                url: `${process.env.GATSBY_CART_URL}admin/reorder/${id}`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}admin/reorder/${id}`,
                 headers: {
                     'Authorization': `Bearer ${jwt}`
                 },

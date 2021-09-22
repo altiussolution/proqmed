@@ -15,7 +15,7 @@ useEffect(() => {
         const customerDiscount = async() => {
             await axios({
                 method: "get",
-                url : `${process.env.GATSBY_CART_URL}admin/customerdiscountproducts/${localStorage.customer_id}`
+                url : `${process.env.GATSBY_CART_URL_STARCARE}admin/customerdiscountproducts/${localStorage.customer_id}`
             }).then((res) => {
                 let item = res.data;           
                 item.filter(obj => {

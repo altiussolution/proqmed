@@ -245,7 +245,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
     let data;
     try {
       axios.get(
-        `${process.env.GATSBY_CART_URL}admin/pincodecheck/${id}`
+        `${process.env.GATSBY_CART_URL_STARCARE}admin/pincodecheck/${id}`
       ).then(async (res) => {
         await res.data.map((pin) => {
           if (event == pin.pincode) {

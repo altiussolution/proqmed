@@ -20,7 +20,7 @@ const product = ()=>{
     setLoader(true);      
     axios({
         method : "get",
-        url: `${process.env.GATSBY_NODE_URL}data/brandedproducts/${location.state.brand_id}.json`
+        url: `${process.env.GATSBY_CART_URL_STARCARE}data/brandedproducts/${location.state.brand_id}.json`
         }).then(async (res) => {
             //    await axios.get(
             //    `${process.env.GATSBY_NODE_URL}data/brandedproducts/${location.state.brand_id}.json`

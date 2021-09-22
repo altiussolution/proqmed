@@ -21,7 +21,7 @@ const Search = props => {
         const fetchSearch = async () => {
             try{   
                 const res = await axios(
-                  `${process.env.GATSBY_NODE_URL}search/${searchTerm}`
+                  `${process.env.GATSBY_NODE_URL_STARCARE}searchproduct/${searchTerm}`
                 );
       
                 let productList = [];               
