@@ -39,7 +39,7 @@ const Cart = () => {
         try {
             axios({
                 method: 'get',
-                url: `${process.env.GATSBY_API_BASE_URL}carts/mine/totals`,
+                url: `${process.env.GATSBY_API_BASE_URL_STARCARE}carts/mine/totals`,
                 headers: {
                     'Authorization': `Bearer ${jwt}`
                 }

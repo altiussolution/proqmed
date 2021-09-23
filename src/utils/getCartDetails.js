@@ -13,6 +13,7 @@ const getCartDetails = async () => {
               'Authorization' : `Bearer ${jwt}`
             }  
      }).then((res) => {
+       console.log("res", res)
        return res;
      }).catch((err) =>{
        alert('error occured')
@@ -23,6 +24,7 @@ const getCartDetails = async () => {
   try {   
     const data =res.data;
     cartData = data.data;
+    console.log("cartData", cartData)
     return cartData;
   } catch (err) {
     console.error(err)
