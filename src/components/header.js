@@ -163,7 +163,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
         orders[i]['mes'] = " ";
         setCartBtn(false);
         axios.get( 
-          `${process.env.GATSBY_CART_URL}admin/minmaxqtybulk/${orders[i]['sku']}`
+          `${process.env.GATSBY_CART_URL_STARCARE}admin/minmaxqtybulk/${orders[i]['sku']}`
         ).then(async (data) => {
           if(data.status == 200){
             await setMin(Math.round(data.data[0].min_sale_qty));

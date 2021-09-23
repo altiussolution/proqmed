@@ -25,7 +25,7 @@ const Invoice = ({location}) => {
             axios({
                 method: "get",
                 // url: ` ${process.env.GATSBY_CART_URL}admin/invoice/128`,
-                url: ` ${process.env.GATSBY_CART_URL}admin/invoice/${location.state.order_id}`,
+                url: ` ${process.env.GATSBY_CART_URL_STARCARE}admin/invoice/${location.state.order_id}`,
 
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {                   
@@ -48,7 +48,7 @@ const Invoice = ({location}) => {
 
     const handleClick = (entity_id) =>{
         const res = axios.get(
-        `${process.env.GATSBY_CART_URL}admin/pdfinvoice/95`
+        `${process.env.GATSBY_CART_URL_STARCARE}admin/pdfinvoice/${entity_id}`
         // `${process.env.GATSBY_CART_URL}admin/pdfinvoice/${entity_id}`
 
         ).then((data)=>{

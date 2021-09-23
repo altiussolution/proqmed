@@ -10,7 +10,7 @@ const TrendingProducts = () => {
   useEffect(() => {
     const fetchTrending = async () => {
       const res = await fetch(
-        `${process.env.GATSBY_CART_URL}admin/trendingproducts` 
+        `${process.env.GATSBY_CART_URL_STARCARE}admin/trendingproducts` 
       );
       const json = await res.json();
       await setTrendingProducts(json);

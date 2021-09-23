@@ -137,7 +137,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
 
     axios({
       method: "get",
-      url: `${process.env.GATSBY_CART_URL}admin/priceaddtocartenabledisable/${localStorage.customer_id}
+      url: `${process.env.GATSBY_CART_URL_STARCARE}admin/priceaddtocartenabledisable/${localStorage.customer_id}
       `,
     }).then((res) => {
       let cart_price = res.data
@@ -154,7 +154,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
     });
 
     const res = axios.get(
-      `${process.env.GATSBY_CART_URL}admin/minmaxquantity/${proDescription.items.id}`
+      `${process.env.GATSBY_CART_URL_STARCARE}admin/minmaxquantity/${proDescription.items.id}`
     ).then((data) => {
       setMin(Math.round(data.data[0].min_sale_qty));
       setMax(Math.round(data.data[0].max_sale_qty));

@@ -86,7 +86,7 @@ const Products = ({ pageContext, location }) => {
           if (checkLogin()) {
             axios({
               method: "get",
-              url: `${process.env.B2B_API_BASE_URL}compulsorylogincustomer/${localStorage.customer_id}`,
+              url: `${process.env.GATSBY_CART_URL_STARCARE}admin/compulsorylogincustomer/${localStorage.customer_id}`,
             }).then((res) => {
               setcategoryUrl(res.data)
               productList.map(product => {

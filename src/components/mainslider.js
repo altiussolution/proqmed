@@ -48,7 +48,7 @@ const Mainslider = () =>{
         const splash = async () => {
           await axios({
            method : "get",
-           url: `${process.env.GATSBY_CART_URL}admin/bannersliders/`
+           url: `${process.env.GATSBY_CART_URL_STARCARE}admin/bannersliders/`
            }).then((res) => {
            const item = res.data
            setSplash(item);
@@ -59,7 +59,7 @@ const Mainslider = () =>{
         splash();
            axios({
            method : "get",
-           url: `${process.env.GATSBY_CART_URL}admin/sidebanner/`
+           url: `${process.env.GATSBY_CART_URL_STARCARE}admin/sidebanner/`
            }).then((res) => {
             setTopRight(res.data);
             setLoader(false);       

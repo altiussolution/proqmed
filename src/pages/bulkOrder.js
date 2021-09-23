@@ -32,7 +32,7 @@ const BulkOrder = () => {
             SetPlaceBtn(true)
         }else{
             axios.get( 
-                `${process.env.GATSBY_CART_URL}admin/minmaxqtybulk/${orders[itLength]['sku']}`
+                `${process.env.GATSBY_CART_URL_STARCARE}admin/minmaxqtybulk/${orders[itLength]['sku']}`
               ).then(async (data) => {
                 if(data.status == 200){
                   let min = Math.round(data.data[0].min_sale_qty);

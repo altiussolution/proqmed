@@ -22,7 +22,7 @@ const Orders = () => {
         try{
             axios({
                 method : "get",
-                url: `${process.env.GATSBY_CART_URL}orderlistcustomer/${localStorage.email}`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}orderlistcustomer/${localStorage.email}`,
             }).then((res) => {
                 if(res.statusText === "OK" && res.status == 200){
                     let orderArray = [];

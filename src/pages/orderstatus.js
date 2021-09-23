@@ -53,7 +53,7 @@ const Invoice = ({ location }) => {
         try {
             axios({
                 method: "get",
-                url: ` ${process.env.GATSBY_CART_URL}admin/invoice/${location.state.order_id}`,
+                url: ` ${process.env.GATSBY_CART_URL_STARCARE}admin/invoice/${location.state.order_id}`,
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
                     console.log(res.data)
@@ -76,7 +76,7 @@ const Invoice = ({ location }) => {
 
     const handleClick = (invoice_id) => {
         const res = axios.get(
-            `${process.env.GATSBY_CART_URL}admin/pdfinvoice/${location.state.order_id}`,
+            `${process.env.GATSBY_CART_URL_STARCARE}admin/pdfinvoice/${location.state.order_id}`,
         ).then((data) => {
             let response_data = data.data
             if(response_data.length != 0){

@@ -6,7 +6,7 @@ const PdfDownLoad = () => {
 const [attach_data, setattachment] = useState(null);
     const handleClick = () =>{
         const res = axios.get(
-        `${process.env.GATSBY_CART_URL}admin/pdfinvoice/95`).then((data)=>{
+        `${process.env.GATSBY_CART_URL_STARCARE}admin/pdfinvoice/95`).then((data)=>{
           let response_data = data.data
           setattachment(response_data)
       })   

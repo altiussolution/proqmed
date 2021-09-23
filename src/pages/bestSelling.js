@@ -16,7 +16,7 @@ const BestsellingProduts = ({ location }) => {
         const bestsellingProduts = async () => {
             await axios({
                 method: "get",
-                url: `${process.env.GATSBY_CART_URL}admin/bestsellingproducts/`
+                url: `${process.env.GATSBY_CART_URL_STARCARE}admin/bestsellingproducts/`
             }).then((res) => {
                 const item = res.data
                 setBestsellingProduts(item);
