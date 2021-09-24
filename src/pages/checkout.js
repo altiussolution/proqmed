@@ -208,7 +208,9 @@ const CheckOut = () => {
                 },
                 data: userAddVal
             }).then((response) => {
+                console.log("Add Address", response)
                 if (response.statusText === "OK" && response.status == 200) {
+                    
                     getUserAddress()
                     setLoader(false);
                     setShow(false)

@@ -137,7 +137,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
 
     axios({
       method: "get",
-      url: `${process.env.GATSBY_CART_URL_STARCARE}admin/priceaddtocartenabledisable/${localStorage.customer_id}
+      url: `${process.env.GATSBY_CART_URL}admin/priceaddtocartenabledisable/${localStorage.customer_id}
       `,
     }).then((res) => {
       let cart_price = res.data

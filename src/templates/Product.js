@@ -90,7 +90,7 @@ const Product = props  => {
   const relatedproducts = async () =>{
     await axios({
       method : "get",
-      url: `${process.env.GATSBY_NODE_URL}data/categories/relatedproducts/${id}.json`
+      url: `${process.env.GATSBY_NODE_URL_STARCARE}data/categories/relatedproducts/${id}.json`
       }).then((res) => { 
       const item = res.data
       setProductdata(item);

@@ -58,7 +58,7 @@ const deleteCart = (id) => {
   try{
     axios({  
         method : 'delete',
-        url : `${process.env.GATSBY_CART_URL}carts/mine/items/${id}`,
+        url : `${process.env.GATSBY_CART_URL_STARCARE}carts/mine/items/${id}`,
         headers : {
           'Authorization' : `Bearer ${jwt}`
         }  
@@ -82,7 +82,7 @@ const viewCartItems = () => {
   try{
     axios({  
         method : 'get',
-        url : `${process.env.GATSBY_CART_URL}mycartitems/${email}`,
+        url : `${process.env.GATSBY_CART_URL_STARCARE}mycartitems/${email}`,
         headers : {
                'Authorization' : `Bearer ${jwt}`
              }  
