@@ -137,7 +137,7 @@ const wishListCount = async () => {
     try{   
       axios({
         method: 'get',
-        url: `${process.env.GATSBY_CART_URL}wishlistcount/${localStorage.email}`,
+        url: `${process.env.GATSBY_CART_URL_STARCARE}wishlistcount/${localStorage.email}`,
       }).then((res)=>{
         if(res.statusText === "OK" && res.status == 200){
         localStorage.setItem('wishCount',res.data)   

@@ -161,7 +161,7 @@ const CheckOut = () => {
                 "firstname": userAddresses.firstname.trim(),
                 "lastname": userAddresses.lastname.trim(),
                 "company": userAddresses.company.trim(),
-                "street": [userAddresses.street_1.trim(), userAddresses.street_2.trim(), userAddresses.street_3.trim()],
+                "street": [userAddresses.street_1.trim()],
                 "city": userAddresses.user_city.trim(),
                 "region_id": JSON.parse(userAddresses.user_state).value,
                 "region": JSON.parse(userAddresses.user_state).title,
@@ -177,7 +177,7 @@ const CheckOut = () => {
                     "firstname": userAddresses.firstname.trim(),
                     "lastname": userAddresses.lastname.trim(),
                     "company": userAddresses.company.trim(),
-                    "street": [userAddresses.street_1.trim(), userAddresses.street_2.trim(), userAddresses.street_3.trim()],
+                    "street": [userAddresses.street_1.trim()],
                     "city": userAddresses.user_city.trim(),
                     "region_id": JSON.parse(userAddresses.user_state).value,
                     "region": JSON.parse(userAddresses.user_state).title,
@@ -242,7 +242,7 @@ const CheckOut = () => {
                 "addressInformation": {
                     "billingAddress": shippingAddress[selAddIndex],
                     "shippingAddress": shippingAddress[selAddIndex],
-                    "shippingCarrierCode": "flatrate",
+                    "shippingCarrierCode": "flatrateone",
                     "shippingMethodCode": "flatrate"
                 }
             }
@@ -434,7 +434,7 @@ const CheckOut = () => {
             try {
                 axios({
                     method: "get",
-                    url: `${process.env.GATSBY_CART_URL}addressdelete/${id}`,
+                    url: `${process.env.GATSBY_CART_URL_STARCARE}addressdelete/${id}`,
                     headers: {
                         'Authorization': `Bearer ${jwt}`
                     }
@@ -626,19 +626,19 @@ const CheckOut = () => {
                                                                         </div>
 
 
-                                                                        <div className="form-group">
+                                                                        {/* <div className="form-group">
                                                                             <input className="form-control" name="street_2" id="street_2" placeholder="Line 2" type="text" ref={register({
-                                                                                required: true
+                                                                                
                                                                             })} defaultValue={(addressEdit ? shippingAddress[selAddIndex]['street'][0].split('\n')[1] : "")} />
                                                                             {errors.street_2 && errors.street_2.type === 'required' && <span className="error_label">Line 2 is required</span>}
-                                                                        </div>
+                                                                        </div> */}
 
-                                                                        <div className="form-group">
+                                                                        {/* <div className="form-group">
                                                                             <input className="form-control" name="street_3" id="street_3" placeholder="Line 3" type="text" ref={register({
-                                                                                required: true
+                                                                                
                                                                             })} defaultValue={(addressEdit ? shippingAddress[selAddIndex]['street'][0].split('\n')[2] : "")} />
                                                                             {errors.street_3 && errors.street_3.type === 'required' && <span className="error_label">Line 3 is required</span>}
-                                                                        </div>
+                                                                        </div> */}
 
                                                                         <div className="form-group">
                                                                             <label>City <span className="error_label">*</span></label>

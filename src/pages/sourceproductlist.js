@@ -21,7 +21,7 @@ const SourceProduct = () => {
         try{
             axios({
                 method : "get",
-                url: `${process.env.B2B_API_BASE_URL}sourceproductlist/${code}`,
+                url: `${process.env.B2B_API_BASE_URL_STARCARE}sourceproductlist/${code}`,
             }).then((res) => {
                 if(res.statusText === "OK" && res.status == 200){
                   sourceProduct(res.data)

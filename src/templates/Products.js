@@ -199,7 +199,7 @@ const Products = ({ pageContext, location }) => {
     try {
       axios({
           method: 'get',
-          url: `${process.env.GATSBY_CART_URL}admin/${selecturl}/${id}`,
+          url: `${process.env.GATSBY_CART_URL_STARCARE}admin/${selecturl}/${id}`,
       }).then((res) => {
           if (res.statusText === "OK" && res.status == 200) {
             for(let response of res.data[0]){
