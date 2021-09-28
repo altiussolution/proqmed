@@ -190,14 +190,14 @@ const Technicalspec = ({ specification, attachment }) => {
                             <td><span>{reviews.summary_of_review}</span></td>
                             <td className="detail_size"><span>{reviews.detail}</span></td>
                             <td>
-                              {/* <StarRatings
-                                rating={Math.round(reviews.review_percentage/20)}
+                              <StarRatings
+                                rating={Math.random(reviews.review_percentage/20)}
                                 numberOfStars={5}
                                 name='rating'
                                 starDimension="15px"
                                 starSpacing="0px"
                                 starRatedColor="rgb(242 187 22)"
-                              /> */}
+                              />
                             </td>
                             <td><span>{new Date(reviews.created_at).toLocaleString()}</span></td>
                           </tr>

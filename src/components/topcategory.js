@@ -29,6 +29,7 @@ const Topcategory = ({categories}) => {
                 </div>
                         <img className="img-fluid" src={`${item.node.image}`} onError={e => (e.target.src = ImageNotFound)}/>
                 </div>
+                {/* {console.log("imagezz", item.node.image)} */}
                 <h3>{item.node.name}</h3>
                 </div>
                 
