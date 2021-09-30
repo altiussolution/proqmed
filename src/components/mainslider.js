@@ -78,8 +78,8 @@ const Renderproduct = () => {
             
               <div className="row">
           <div className="col-lg-12 col-left banner_top">
-          <Link to={data.button_link} > <img src={banner_01} alt={"banner"} className="img-fluid"/> </Link> 
-              
+          {/* <Link to={data.button_link} > <img src={banner_01} alt={"banner"} className="img-fluid"/> </Link>  */}
+              <img src="../../assets/star.png" />
         </div>
         </div>
              ))}

@@ -57,6 +57,8 @@ const Footer = () => {
     }
 
     return (
+
+        
     <div>
         <div className="benefits"> 
                 <div className="container">
@@ -92,7 +94,7 @@ const Footer = () => {
             <div className="container">
 
                 <div className="row">
-                    <div className="col-md-2 about-unifi">
+                    <div className="col-md-3 about-unifi">
                         <img src={logo} alt="brand" />
                         <h2>10,234,777</h2>
                         <span>Total product sold</span>
@@ -104,7 +106,7 @@ const Footer = () => {
                             </li>
                             
                             <li>
-                                <Link to="/aboutUs">About Unifi-i</Link>
+                                <Link to="/aboutUs">About Star</Link>
                             </li>
                             <li>
                                 <Link to="/contact">Contact Us</Link>
@@ -146,7 +148,7 @@ const Footer = () => {
                             </li>
                         </ul>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-5">
                         <ul className="newsletter">
                             <li>
                                 <b>Newsletter</b>
@@ -164,8 +166,8 @@ const Footer = () => {
                                 </form>
                             </li>
                         </ul>
-                    </div>
-                    <div className="col-md-3">
+
+                        <div className="pt2">
                     
                     
                         <ul className="newsletter">
@@ -177,6 +179,8 @@ const Footer = () => {
                         </ul>
                         
                     </div>
+                    </div>
+                    
                 </div>
                 <div className="bottom_footer row">
                     <div className="col-md-6">

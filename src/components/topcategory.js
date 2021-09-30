@@ -13,7 +13,7 @@ const Topcategory = ({categories}) => {
         }
 
         return list.map((el, index) => (
-          <div key={index} className="col-lg-3 col-md-3 col-xs-12 shop-by-department">
+          <div key={index} className="col-lg-4 col-md-3 col-xs-12 shop-by-department">
             {el.map(item => (
               <div key={item.node.id} className="p-1 block hover:bg-gray-200" >
                 <div className="card">                  

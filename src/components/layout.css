@@ -37,7 +37,7 @@ a:hover {
 }
 
 .section_title {
-  font-size: 35px;
+  font-size: 25px;
     color: #4d4d4d;
     font-weight: 400;
     text-align: left;
@@ -52,14 +52,18 @@ a:hover {
 
 .section_title a {
   font-size: 15px;
-  font-weight: 700;
+    color: #fff;
+    font-weight: 400;
+    background: #0162a2;
+    padding: 10px 30px;
+    border-radius: 5px
 }
 nav.upper_header.navbar.navbar-expand.navbar-light {
     padding: 0;
     /* background-color: #fff; */
     /* background-color: #524f4f;
     border-bottom: 1px solid #e5e5e5; */
-    background-color: #8e8e8e;
+    background-color: #0162a2;
     border-bottom: 1px solid #616161;
 }
 
@@ -78,7 +82,7 @@ nav.upper_header.navbar.navbar-expand.navbar-light {
 nav.middlenavbar {
     /* background-color: #ffffff;
     padding: 1rem 0; */
-    background-color: #767676;
+    background-color: hsl(204deg 100% 95%);
     padding: 15px 0;
     box-shadow:0 5px 10px 0 rgb(50 50 50 / 6%)
 }
@@ -110,7 +114,7 @@ nav.upper_header .nav-link {
     display: flex;
     align-items: center;
     /* color: #737373!important; */
-    color: #ffffff!important;
+    color: #727272!important;
 }
 .navbar-light .navbar-nav .nav-link img {
   width: 16px;
@@ -139,7 +143,7 @@ input.form-control.search {
   border: none;
   /* border-radius: 3px; */
   margin-left: -4px;
-  background: #e7ab3c;
+  background: #0162a2;
   color: #fff;
   padding: 0px 20px;
   border-top-right-radius: 3px!important;
@@ -147,7 +151,7 @@ input.form-control.search {
 }
 nav.upper_header .navbar-nav .nav-link {
     margin-right: 30px;
-    color: #696868;
+    color: #fff !important;
     font-size: 14px;
 }
 nav.upper_header .navbar-nav .nav-link:hover {
@@ -155,7 +159,7 @@ nav.upper_header .navbar-nav .nav-link:hover {
 }
 nav.upper_header .dropdown a {
     font-size: 14px;
-    color: #fff;
+    color: hsl(191deg 70% 88%);
     padding: 8px 0 5px;
 }
 
@@ -346,6 +350,7 @@ border:1px solid #ececec;
 .feature_section .card {
   border: 1px solid #ebebeb;
   margin: 0px -1px;
+  background: #eee;
   /* padding: 10px; */
   height: 100%;
   text-align: center;
@@ -560,7 +565,7 @@ section.benefits {
 }
 
 .main-footer {
-    background-color: #18181A;
+    background-color: hsl(227deg 29% 13%);
     padding: 60px 0 30px;
 }
 
@@ -573,7 +578,7 @@ section.main-footer ul {
 
 section.main-footer ul li b {
     color: #e4e4e4;
-    /* margin-bottom: 12px; */
+    margin-bottom: 12px;
          -webkit-display: block;
      -moz-display: block;
      -ms-display: block;
@@ -602,6 +607,7 @@ section.main-footer ul li a {
 
 .newsletter Form {
     margin-top: 10px;
+    display: flex;
 }
 
 .newsletter li {
@@ -698,13 +704,13 @@ section.main-footer ul li a {
 
 
 .col-md-3.about-unifi h2 {
-    color: #949494;
+    color: #000000;
     font-weight: 400;
     margin-top: 13px;
 }
 
 .col-md-3.about-unifi span {
-    color: #949494;
+  color: #000000;
 }
 .popular_section{
   /* background: #f9f9f9; */
@@ -855,8 +861,8 @@ section.main-footer ul li a {
 }
 
 .benefits {
-  background: #444444;
-  padding: 20px;
+  background: hsl(192deg 24% 96%);
+  padding: 40px 0px;
 }
 .info-block-content {
   display: -webkit-box;
@@ -876,9 +882,9 @@ section.main-footer ul li a {
 }
 .info-block-title {
   
-  font-weight: 400;
-  font-size: 24px;
-  color: rgba(230, 230, 230, 1);
+  font-weight: 600;
+    font-size: 24px;
+    color: rgb(0 0 0);
        -webkit-display: block;
      -moz-display: block;
      -ms-display: block;
@@ -2262,6 +2268,7 @@ height: 100vh;
 .logo a img{
   /* width: 100px;
   height: 50px; */
+      width: 65%;
   object-fit: contain;
   object-position: center;
   margin: 0;
@@ -2351,7 +2358,7 @@ margin-top: 20px;
   right: -10px;
   padding: 5px 7px;
   border-radius: 50%;
-  background-color: #e7ab3c;
+  background-color: #0162a2;
   color: #fff;
   transform: translate(15%, 15%);
   display: inline-block;
@@ -2863,11 +2870,11 @@ margin-bottom: 10px;
   margin: 0px;
   padding: 14px 0px;
   /* border: 1px solid rgb(226, 219, 219); */
-    border: 1px solid rgb(255 255 255);
+  border: 2px solid rgb(1 98 162);
   border-radius: 0px;
   text-align: center;
   width: 120px;
-  color: #fff;
+  color: #0162a2;
   border-radius: 3px;
 }
 .bulkorder .dropbtn:after {
@@ -2901,13 +2908,13 @@ margin-bottom: 10px;
   width: 25%;
 }
 .bulkorder .dropdown-content .add_btn{
-  background: #e7ab3c!important;
+  background: #0162a2!important;
   color: #fff;
   margin: 0;
   margin-top: 10px;
   width: 100%;
   line-height: 30px;
-  border: 1px solid #d49828!important;
+  border: 1px solid #0162a2!important;
 }
 
 .bulkorder .dropdown-content .add_btn:hover{
@@ -2915,13 +2922,14 @@ margin-bottom: 10px;
 }
 .bulkorder .dropdown-content {
   display: none;
-  position: absolute;
-  background-color:#fff;
-  min-width:300px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 16px 0px;
-  z-index: 999;
-  padding: 20px;
-  right: 0;
+    position: absolute;
+    background-color: #fff;
+    min-width: 300px;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 20%) 0px 8px 16px 0px;
+    z-index: 999;
+    padding: 20px;
+    right: 0;
 }
 
 .item_entry .form-group {
@@ -2944,13 +2952,16 @@ margin-bottom: 10px;
   border-bottom: 1px solid #e4e4e4;
   padding-bottom: 5px;
   margin-bottom: 15px;
+  color: rgb(0, 0, 0);
 }
 .bulkorder .dropdown-content a:hover {background-color: #ddd; color: #000;}
 
 .bulkorder .dropdown:hover .dropdown-content {display: block;}
 
-.bulkorder .dropdown:hover .dropbtn {background-color: rgb(187, 140, 52); outline: none;}
-
+.bulkorder .dropdown:hover .dropbtn {
+  background-color: hsl(191deg 71% 88%);
+  outline: none;
+}
 
 .toast_msg .fade.toast.show {
     position: absolute;
@@ -2983,7 +2994,7 @@ margin-bottom: 10px;
   padding-top: 30px;
 }
 .bulkorder .dropdown:hover button {
-  color: #fff;
+  color: #000;
 }
 .shipping_address_items .action_sec {
   text-align: end;
@@ -3047,6 +3058,7 @@ button:focus, .btn:focus, .middlenavbar a.nav-link:focus, .btn.submit_btn:focus,
 .feature_section .card p.product_title {
   color: #232323;
   white-space: normal;
+  margin-top: 20px !important;
   text-overflow: initial;
   text-align: center;
   margin: 0;
@@ -3463,6 +3475,7 @@ ul.sub_menus a:before {
   background: transparent;
   display: block;
   width: 100%;
+  color: #000;
   padding: 5px 10px;
   clear: both;
   font-weight: 400;
@@ -3493,12 +3506,14 @@ ul.sub_menus a:before {
 
 .all_categories_list .btn {
   width: 170px;
-  border: unset;
-  text-transform: uppercase;
-  background: #e7ab3c;
-  text-align: left;
-  padding: 15px 20px;
-  margin-right: 15px;
+    border: unset;
+    text-transform: uppercase;
+    background: hsl(204deg 99% 32%);
+    text-align: left;
+    padding: 15px 20px;
+    margin-right: 15px;
+    color: #ffffff;
+
 }
 
 .all_categories_list .dropdown-content a {
@@ -3518,9 +3533,11 @@ ul.sub_menus a:before {
   border: 1px solid rgb(235, 235, 235);
   position: absolute;
   top: 100%;
+  border-radius: 5px;
+  padding: 10px;
   left: 0px;
   max-width: 1000px;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 3.76px 0.24px;
+  box-shadow: rgb(0 0 0 / 5%) 0px 0px 3.76px 0.24px;
   width: 1000px;
 }
 
@@ -3888,7 +3905,6 @@ width: 24%;
   margin-left: 0px!important;
 }
 .btn-newl {
-  margin-top: 10px;
   background-color: #e7ab2c!important;
   border: 1px solid #e7ab2c!important;
 }
@@ -4047,7 +4063,8 @@ section.inner_banner_section {
 .addtocart{
   width: 100%;
 padding: 10px;
-background: #2f2f2f;
+background: #0162a2;
+    border-radius: 5px;
 color: #fff;
 font-size: 20px;
 border: 0;
@@ -4058,4 +4075,33 @@ margin-top: 20px;
 }
 .banner_top_left{
   padding-left: 0px!important;
+}
+
+
+/* /////////////////////////           New styles                    ///////////////////////////////// */
+
+.col-md-3.about-unifi {
+  background: hsl(200deg 10% 88%);
+  border-radius: 10px;
+  text-align: center;
+  padding: 20px;
+}
+
+.newsletter Form .input-group{
+  display: none;
+}
+
+.col-md-3.about-unifi img {
+  margin-top: 20px;
+  width: 40%;
+}
+
+.btn-success {
+  color: #000 !important;
+  background-color: #a8e8ca !important;
+}
+
+ul.newsletter .form-control{
+  width: 80%;
+    margin-right: 10px;
 }
