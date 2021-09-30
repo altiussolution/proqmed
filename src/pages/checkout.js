@@ -363,7 +363,7 @@ const CheckOut = () => {
                     data: cardPay
                 }).then((res) => {
 
-                    if (res.statusText === "Created" && res.status == 200) {
+                    if (res.statusText === "Created" && res.status == 201) {
                         consfirmShipping()
                     }
 
@@ -386,7 +386,7 @@ const CheckOut = () => {
             setLoader(true);
             let payDetails = {
                 "paymentMethod": {
-                    "method": 'paygate'
+                    "method": 'checkmo'
                 },
                 "billingAddress": shippingAddress[selAddIndex].address
             }
