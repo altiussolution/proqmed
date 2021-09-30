@@ -131,7 +131,7 @@ return (
   {Renderproduct()}  
   {loader ? (<div>
                 {/* <PageLoader /> */}
-                
+                {/* <PageLoader /> */}
             </div>) : <span></span>}
   
   </section>
