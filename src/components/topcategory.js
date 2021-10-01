@@ -2,6 +2,8 @@ import { Link } from "gatsby"
 import React from "react"
 import { getCategoryURL } from "../utils/url";
 import ImageNotFound from "./../assets/not-found.png"
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 const Topcategory = ({categories}) => {
     const renderCategories = () => {
@@ -40,23 +42,51 @@ const Topcategory = ({categories}) => {
       };
 
     return (
-    <section className="category_section">
-    <div className="container">
+//     <section className="category_section">
+//     <div className="container">
         
-        <div className="row">
-        <h2 className="section_title">
-        <span>Shop by Department </span>
-        <span><Link to="/mainCategory" >+ View all Categories</Link></span>
-        </h2>
-          <div className="row">
+//         <div className="row">
+//         <h2 className="section_title">
+//         <span>Shop by Department </span>
+//         <span><Link to="/mainCategory" >+ View all Categories</Link></span>
+//         </h2>
+//           <div className="row">
         
-            {renderCategories()}
-        </div>
+//             {renderCategories()}
+//         </div>
+//     </div>
+//     </div>
+// </section>
+<section className="category_section">
+<div className="container">
+<h2 className="section_title">
+<span>Our Products</span>
+</h2>
+<Tabs>
+    <TabList>
+      <Tab>Gloves & Medical Kit</Tab>
+      <Tab>Cold Chain Equipment & Medical Disposable</Tab>
+      <Tab>Surgical Instruments & Anaesthesia Equipment's</Tab>
+    </TabList>
+
+    <TabPanel>
+    <div className="row">
+    {renderCategories().slice(0, 1)}
     </div>
-    </div>
-</section>
+    </TabPanel>
+    <TabPanel>
+    {renderCategories().slice(1, 2)}
+    </TabPanel>
+    <TabPanel>
+    {renderCategories().slice(2, 3)}
+    </TabPanel>
+  </Tabs>
+  </div>
+  </section>
+
 
     )
+
 }
 
 export default Topcategory     

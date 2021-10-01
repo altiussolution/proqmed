@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import { Link } from "gatsby";
 import PageLoader from "./loaders/pageLoader"
 import { checkLogin } from "./../services/headerServices";
-import banner_01 from './../assets/banner_001.jpg';
+import banner_01 from './../assets/banner_001.png';
 import banner_sml_01 from './../assets/banner_sml_01.jpg';
 import banner_sml_02 from './../assets/banner_sml_02.jpg';
 
@@ -78,8 +78,8 @@ const Renderproduct = () => {
             
               <div className="row">
           <div className="col-lg-12 col-left banner_top">
-          {/* <Link to={data.button_link} > <img src={banner_01} alt={"banner"} className="img-fluid"/> </Link>  */}
-              <img src="../../assets/star.png" />
+          <Link to={data.button_link} > <img src={data.banner_image} alt={"banner"} className="img-fluid"/> </Link> 
+              {/* <img src="../../assets/star.png" /> */}
         </div>
         </div>
              ))}
