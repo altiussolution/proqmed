@@ -3161,7 +3161,7 @@ position: relative;
 }
 .slick-prev:before, .slick-next:before {
   font-size: 30px!important;
-  color: #edb806!important;
+  color: #0685ed!important;
   z-index: 99;
 }
 .main_slider .slick-dots {

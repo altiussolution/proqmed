@@ -2,7 +2,17 @@
 import React, { useState, useEffect } from "react";
 import StarRatings from 'react-star-ratings';
 import { getProductURL } from './../utils/url';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { Link } from "gatsby";
+const banner_slide = {
+  autoplay: false,
+  speed: 1000,
+  slidesToShow:3,
+  slidesToScroll: 3,
+  infinite: true
+}
 const TrendingProducts = () => {
 
     const [trendingProducts, setTrendingProducts] = useState(null);
@@ -20,12 +30,13 @@ const TrendingProducts = () => {
 
   const renderProducts = () => {
     if (trendingProducts) {
-      return <div className="row">
-        <div className="col-4 single_trending">
+      return   <Slider {...banner_slide}> 
+      
+{/* <div className="col-4 single_trending"> */}
         {
-          trendingProducts.slice(0 ,1).map((data, index) => (
+          trendingProducts.map((data, index) => (
             <div key={`${data.name}_${index}`} className="">
-              <div className="" >
+              {/* <div className="" > */}
               <Link to={getProductURL(data)}>
                 <div className="card">
 
@@ -55,12 +66,12 @@ const TrendingProducts = () => {
 
                 </div>
                 </Link>
-              </div>
+              {/* </div> */}
             </div>
           ))
         }
-        </div>
-        <div className="col-8">
+        {/* </div> */}
+        {/* <div className="col-8">
           <div className="row">
         {
           trendingProducts.slice(1 ,7).map((data, index) => (
@@ -82,13 +93,16 @@ const TrendingProducts = () => {
           ))
         }
         </div>
-        </div>
-      </div>
+        </div> */}
+        
+    
+     </Slider> 
     }
   }
 
 
   return (
+    
     <section className="popular_section trending_products">
       <div className="container">
         <div className="row">
@@ -97,16 +111,21 @@ const TrendingProducts = () => {
               <span><Link to="/trendingProducts">+ View all Products</Link></span>
             </h2>
             </div>
- 
+           
             <div className="row">
+            
             <div className="col-lg-12 col" >
+           
               {renderProducts()}
+              
+             
             </div>
+           
             </div>
-
+           
       </div>
     </section>
-
+   
   )
 
 }
