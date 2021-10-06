@@ -59,7 +59,7 @@ const Topcategory = ({categories}) => {
 // </section>
 <section className="category_section">
 <div className="container">
-<h2 className="section_title">
+<h2 className="section_title text-center">
 <span>Our Products</span>
 </h2>
 <Tabs>

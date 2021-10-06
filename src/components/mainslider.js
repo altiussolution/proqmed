@@ -77,22 +77,19 @@ const Renderproduct = () => {
              {splash.map((data) => ( 
             
               <div className="row">
-          <div className="col-lg-12 col-left banner_top">
+          <div className="col-lg-8 col-left banner_top">
           <Link to={data.button_link} > <img src={data.banner_image} alt={"banner"} className="img-fluid"/> </Link> 
               {/* <img src="../../assets/star.png" /> */}
         </div>
-        </div>
-             ))}
-        {/* </Slider> */}
-    
-        <div className="col-lg-12 banner_top_left">
+
+        <div className="col-lg-4 banner_top_left">
              {topRight.map((data) => {
       return <>
       <div className="row">
         {/* <div className="col-lg-6 banner_top_left"> */}
           {/* {checkLogin() ? */}
             <Link to={data.button_link} >
-            <img src={data.banner_image} alt={"banner"} className="img-fluid" />
+            <img src={data.banner_image} alt={"banner"} className="img-fluid he" />
             </Link> 
             {/* :  */}
             {/* <Link to={data.button_link}>
@@ -108,6 +105,11 @@ const Renderproduct = () => {
            </>
              })}
        </div>
+        </div>
+             ))}
+        {/* </Slider> */}
+    
+       
         {/* </div> */}
         {/* banner small */}
         {/* <div className="row">
