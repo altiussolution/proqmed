@@ -60,7 +60,7 @@ const Footer = () => {
 
         
     <div>
-        <div className="benefits"> 
+        {/* <div className="benefits"> 
                 <div className="container">
                     <div className="row"> 
                         <div className="col-md-3">
@@ -71,7 +71,7 @@ const Footer = () => {
                         </div>
                         <div className="col-md-3">
                             <div className="banefit_content">
-                                <img className="w-100" src={safety} alt={"bannerthree"}/>
+                                <img className="widthsep" src={safety} alt={"bannerthree"}/>
                                 <div className="info-block-content"><div className="info-block-title">Free Returns</div><div className="info-block-text">Hassle free returns</div></div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div> 
-                </div>
+                </div> */}
         <section className="main-footer">
             <div className="container">
 

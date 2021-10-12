@@ -9,6 +9,7 @@ import axios from "axios";
 import {getWLCount, wishListCount,viewCartItems,getCartCount } from '../utils/apiServices'
 import Slider from "react-slick";
 import { navigate } from "gatsby";
+import Glov from "./../assets/glov.png"
 
 const banner_slide = {
   autoplay: false,
@@ -215,14 +216,17 @@ const FeatureProduct = () => {
             <div className="container">
             
             <div className="row">
-            <h2 className="section_title">
+            {/* <h2 className="section_title">
                     <span>Featured Products</span>
                     <span><Link to="/featuredProducts">+ View all Products</Link></span>
-                    </h2>
+                    </h2> */}
+
+
               
-                <h2 className="section_title">
-                    </h2>
-                {renderProducts()}
+               
+                {/* {renderProducts()} */}
+
+                
                 
             </div>
             </div>

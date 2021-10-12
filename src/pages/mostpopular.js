@@ -65,20 +65,23 @@ const Mostpopular = () => {
 
     return (
         <Layout>
-              <section className="popular_section">
+              {/* <section className="popular_section">
       <div className="container">
         <div className="row">
           <div>
             <h2 className="section_title">
-              <span>Most Popular</span>
+              <span>Best Selling Products</span>
+              <p>Contrary to popular belief, Lorem Ipsum is not simply random text</p>
             </h2>
+
+            
             <div className="col-lg-12">
               {renderProducts()}
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </section> */}
         </Layout>
     )
 }   

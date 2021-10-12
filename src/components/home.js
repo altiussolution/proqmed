@@ -35,9 +35,10 @@ const Home = ({ children, categories }) => {
   return (   
   <>
   <Mainslider />
-  <FeatureProduct />
+  {/* <FeatureProduct /> */}
   <Offerbottom />
-  <Topcategory categories={data.allCategory.edges}/>    
+  <Topcategory categories={data.allCategory.edges}/>   
+  <FeatureProduct /> 
   <Mostpopular /> 
   <Brands />
   <TrendingProducts /> 

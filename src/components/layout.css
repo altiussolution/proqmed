@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ovo&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap');
 html {
   overflow: auto;
   height: auto;
@@ -12,7 +12,8 @@ html {
 
 body {
   /* font-family: 'roboto', sans-serif!important; */
-  font-family: 'Roboto Condensed', sans-serif!important;
+  /* font-family: 'Roboto Condensed', sans-serif!important; */
+  font-family: 'Poppins', sans-serif !important;
   /* font-family: 'Ovo', serif; */
   margin: 0;
   padding: 0;
@@ -82,8 +83,9 @@ nav.upper_header.navbar.navbar-expand.navbar-light {
 nav.middlenavbar {
     /* background-color: #ffffff;
     padding: 1rem 0; */
-    background-color: hsl(204deg 100% 95%);
+    background-color: hsl(0deg 0% 100%);
     padding: 15px 0;
+    border-bottom: 1px solid #ddd;
     box-shadow:0 5px 10px 0 rgb(50 50 50 / 6%)
 }
 
@@ -92,6 +94,10 @@ nav.middlenavbar {
     text-align: center;
     width: 100%;
     background-color: #f2bb16;
+}
+
+.cart_top {
+  width: auto !important;
 }
 
 .category_section .card.link h3 {
@@ -862,6 +868,7 @@ section.main-footer ul li a {
 .benefits {
   background: hsl(192deg 24% 96%);
   padding: 40px 0px;
+  margin-top: 30px;
 }
 .info-block-content {
   display: -webkit-box;
@@ -881,8 +888,8 @@ section.main-footer ul li a {
 }
 .info-block-title {
   
-  font-weight: 600;
-    font-size: 24px;
+  font-weight: 700;
+    font-size: 20px;
     color: rgb(0 0 0);
        -webkit-display: block;
      -moz-display: block;
@@ -891,7 +898,7 @@ section.main-footer ul li a {
      display: block;
 }
 .info-block-text {
-  font-size: 20px;
+  font-size: 16px;
   color:rgb(154 154 154);
   font-weight: 400;
   line-height: .8;
@@ -2872,8 +2879,8 @@ margin-bottom: 10px;
   margin-left: 20px;
 }
 .bulkorder .dropbtn {
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 500;
   margin: 0px;
   padding: 14px 0px;
   /* border: 1px solid rgb(226, 219, 219); */
@@ -4129,7 +4136,7 @@ img.img-fluid.he {
 .react-tabs__tab-list {
   border-bottom: 1px solid #aaa;
   text-align: center;
-  margin: 50px 0px !important;
+  margin: 30px 0px !important;
   padding: 0;
 }
 
@@ -4138,11 +4145,11 @@ h2.section_title.text-center {
 }
 
 li#react-tabs-0 {
-  border-right: 2px solid rgb(102, 102, 102) !important;
+  border-right: 3px solid rgb(223 223 223) !important;
 }
 
 li#react-tabs-2 {
-  border-right: 2px solid rgb(102, 102, 102) !important;
+  border-right: 3px solid rgb(223 223 223) !important;
 }
 
 .react-tabs__tab--selected {
@@ -4150,4 +4157,173 @@ li#react-tabs-2 {
   border-color: transparent !important;
   color: black;
   border-radius: 0 !important;
+}
+
+h2.section_title.text-center span {
+  font-size: 40px;
+  font-weight: 600;
+  color:#000;
+}
+h2.section_title.text-center {
+  justify-content: center;
+  flex-direction: column;
+}
+
+h2.section_title.text-center p {
+  opacity: 70%;
+  font-size: 14px;
+}
+
+.react-tabs__tab:focus {
+  box-shadow: none !important;
+  border-color: none;
+  outline: none;
+}
+
+.col-lg-3.border {
+  padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0 !important;
+    margin-right: 10px !important;
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.col-lg-3.border h4 {
+  font-size: 16px;
+  background: #0162a2;
+  border-radius: 3px;
+  padding: 10px;
+  width: fit-content;
+  color: #fff;
+  position: absolute;
+}
+
+.col-lg-3.border h3 {
+  font-size: 20px;
+  margin-top: 15px;
+  color: #000 !important;
+}
+
+.col-lg-3.border h6.pricegreen span {
+  font-size: 12px !important;
+  text-decoration: line-through;
+    font-style: italic;
+}
+
+.col-lg-3.border h6.pricegreen{
+  color: #0A9A73;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.button_sec {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button_sec button.btn.btn-success {
+  background: #0A9A73 !important;
+  border: none;
+  padding: 10px 35px;
+  color: #fff !important;
+}
+
+.button_sec button.btn.btn-default {
+  padding: 10px 35px;
+  border: 2px solid #ddd;
+}
+
+.image_wrappertab .row {
+  flex-wrap: unset !important;
+  margin-right: 0px !important;
+}
+
+.hotoffer_banner {
+  background: #F2F6F7;
+  margin: 30px 0px;
+}
+
+img.HF_BImg {
+  width: 60%;
+}
+
+.hotoffer_banner .col-lg-6.text-center{
+  padding-top: 55px;
+}
+
+.hotoffer_banner .col-lg-6.padding_se {
+  padding: 50px 0px;
+}
+
+.hotoffer_banner .col-lg-6.padding_se h6 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #0A9A73;
+}
+
+.hotoffer_banner .col-lg-6.padding_se h2 {
+  width: 50%;
+  margin: 20px 0px;
+}
+
+.hotoffer_banner .col-lg-6.padding_se p {
+  font-size: 18px;
+  margin: 30px 0;
+  font-weight: 400;
+}
+
+.hotoffer_banner .col-lg-6.padding_se .bg_white h1 {
+  background: #fff;
+  width: fit-content;
+  font-size: 30px;
+  padding: 15px 20px;
+}
+
+.hotoffer_banner .col-lg-6.padding_se .timer {
+  display: flex;
+}
+
+.hotoffer_banner .col-lg-6.padding_se .bg_white{
+  text-align: center;
+  margin-right: 20px;
+}
+
+.hotoffer_banner .col-lg-6.padding_se p.sep {
+  font-size: 16px !important;
+  margin: 0 !important;
+}
+
+.col-lg-6.padding_se .button_sec button.btn.btn-primary {
+  padding: 10px 40px;
+  background: #0162A1;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.col-lg-6.padding_se .button_sec {
+  margin-top: 30px;
+  justify-content: left;
+  align-items: baseline;
+}
+
+.col-lg-6.padding_se .button_sec a {
+  color: #0162A1;
+  text-decoration: underline;
+  font-size: 20px;
+}
+
+.benefits .banefit_content img {
+    margin-right: 15px;
+    width: 50px !important;
+    height: 43px;
+}
+
+h2.section_title {
+  flex-direction: column;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+  color: #000;
 }

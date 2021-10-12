@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import StarRatings from 'react-star-ratings';
 import { getProductURL } from './../utils/url';
 import { Link } from "gatsby";
+import Glov from "./../assets/glov.png"
 
 const Mostpopular = () => {
 
@@ -60,15 +61,51 @@ const Mostpopular = () => {
     <section className="popular_section">
       <div className="container">
         <div className="row">
-      <h2 className="section_title">
+      {/* <h2 className="section_title">
               <span>Most Popular</span>
               <span><Link to="/mostpopular">+ View all Products</Link></span>
-            </h2>
+            </h2> */}
+            <h2 className="section_title text-center">
+<span>Featured Products</span>
+
+</h2>
             
-            
-              {renderProducts()}
+              {/* {renderProducts()} */}
+
+              {/* <div className="row"> */}
+                <div className="col-lg-4 border flx">
+                  
+                  <img className="w-100" src={Glov} alt={"banner"}/> 
+
+                  <div className="banner_sep">
+                  <StarRatings
+                                        // rating={Math.round(data.ratings_summary)}
+                                        numberOfStars={5}
+                                        name='rating'
+                                        starDimension="20px"
+                                        starSpacing="5px"
+                                        starRatedColor="rgb(242 187 22)"
+                                    />
+
+                                    <h3> Stethescope </h3>
+                                    <h6 className="pricegreen"> $32.00 <span>($42.00)</span> </h6>
+
+                                    
+                                    </div>
+                                    <div className="button_sec">
+                                    <button type="button" class="btn btn-success">Buy Now</button>
+                                    <button type="button" class="btn btn-default">Add to cart</button>
+                                    </div>
+                </div>
+                
+                
+                
+               
+                
+                
               </div>
-      </div>
+              </div>
+      {/* </div> */}
     </section>
 
   )
