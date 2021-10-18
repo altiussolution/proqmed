@@ -333,9 +333,8 @@ border:1px solid #ececec;
 
 
 .popular_section .card {
-    border: 1px solid #e2e2e2;
-    /* margin-right: 15px; */
-    padding: 15px;
+  padding: 10px !important;
+    margin-right: 15px;
     height: 100%;
     text-align: left;
     display: flex;
@@ -948,10 +947,10 @@ section.main-footer ul li a {
 }
 
 .popular_section .card span.price {
-  color: #0162A2;
+  color: #0A9A73;
   font-weight: 600;
-  margin-bottom: 10px;
   font-size: 18px;
+  margin-bottom: 10px;
   margin-right: 5px;
 }
 .section_title {
@@ -4205,13 +4204,15 @@ h2.section_title.text-center p {
   color: #000 !important;
 }
 
-.col-lg-3.border h6.pricegreen span {
+span.off_txt_lft {
   font-size: 12px !important;
   text-decoration: line-through;
     font-style: italic;
+    color: #0A9A73;
+
 }
 
-.col-lg-3.border h6.pricegreen{
+span.pricegreen{
   color: #0A9A73;
   font-weight: 600;
   font-size: 18px;
@@ -4238,6 +4239,7 @@ h2.section_title.text-center p {
 .image_wrappertab .row {
   flex-wrap: unset !important;
   margin-right: 0px !important;
+  padding: 20px;
 }
 
 .hotoffer_banner {
@@ -4321,9 +4323,55 @@ img.HF_BImg {
 }
 
 h2.section_title {
-  flex-direction: column;
+  /* flex-direction: column; */
   text-align: center;
   font-size: 40px;
   font-weight: 600;
   color: #000;
+}
+
+.react-tabs__tab {
+  
+  font-size: 18px;
+  font-weight: 500;
+
+  }
+
+  section.category_section .col-lg-12.border ul {
+    display: flex;
+    flex-wrap: wrap;
+       
+}
+
+section.category_section .col-lg-12.border ul li {
+  margin-top: 10px !important;
+}
+
+section.category_section .col-lg-12.border h3 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+section.category_section .col-lg-12.border ul li a {
+    margin-right: 20px;
+    color: #000;
+    font-size: 12px;
+    background: #c9eef6;
+    padding: 10px !important;
+    border-radius: 10px;
+}
+
+section.category_section .col-lg-12.border {
+  border: none !important;
+  background: #fff;
+  padding: 10px !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.slick-slider {
+  position: unset !important;
+}
+
+section.category_section .image_wrappertab {
+  display: flex;
 }

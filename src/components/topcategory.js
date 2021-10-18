@@ -26,7 +26,7 @@ const Topcategory = ({categories}) => {
           <div key={index} className="image_wrappertab">
             {el.map(item => (
               <div key={item.node.id} className="row" >
-                <div className="col-lg-3 border">                  
+                <div className="col-lg-12 border">                  
                 {/* <div className="image_wrapper">
                 <div className="card_overlay"> */}
                 <ul>
