@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import React from "react"
 import { getCategoryURL } from "../utils/url";
-import ImageNotFound from "./../assets/not-found.png"
+import ImageNotFound from "./../assets/allimg.jpg"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Steth from "./../assets/steth.png"
@@ -23,12 +23,12 @@ const Topcategory = ({categories}) => {
 
          
 
-          <div key={index} className="wrapper_flx shop-by-department">
-            {/* {el.map(item => (
-              <div key={item.node.id} className="p-1 block hover:bg-gray-200" >
-                <div className="card">                  
-                <div className="image_wrapper">
-                <div className="card_overlay">
+          <div key={index} className="image_wrappertab">
+            {el.map(item => (
+              <div key={item.node.id} className="row" >
+                <div className="col-lg-3 border">                  
+                {/* <div className="image_wrapper">
+                <div className="card_overlay"> */}
                 <ul>
                   {   
                     item.node.grand_child.map((e,index)=>(
@@ -36,23 +36,54 @@ const Topcategory = ({categories}) => {
                     ))
                   }
                 </ul>
-                </div>
+                {/* </div> */}
+                        {/* <img className="w-100" src={`${item.node.image}`} onError={e => (e.target.src = ImageNotFound)}/> */}
                         <img className="img-fluid" src={`${item.node.image}`} onError={e => (e.target.src = ImageNotFound)}/>
-                </div>
+                {/* </div> */}
                 
+                {/* <StarRatings
+                                        // rating={Math.round(data.ratings_summary)}
+                                        numberOfStars={5}
+                                        name='rating'
+                                        starDimension="20px"
+                                        starSpacing="5px"
+                                        starRatedColor="rgb(242 187 22)"
+                                    /> */}
+
                 <h3>{item.node.name}</h3>
                 </div>
                 
               </div>
-            ))} */}
-
-            <div className="image_wrappertab">
+            ))}
+{/* Alagapan */}
+            {/* <div className="image_wrappertab">
               <div className="row">
                 <div className="col-lg-3 border">
                   <h4> NEW </h4>
+                  <img className="w-100" src={`${item.node.image}`} alt={"banner"}/>
                   <img className="w-100" src={Steth} alt={"banner"}/> 
                   <StarRatings
-                                        // rating={Math.round(data.ratings_summary)}
+                  
+                                        numberOfStars={5}
+                                        name='rating'
+                                        starDimension="20px"
+                                        starSpacing="5px"
+                                        starRatedColor="rgb(242 187 22)"
+                                    />
+
+                                    <h3>{item.node.name}</h3>
+                                    <h6 className="pricegreen"> $32.00 <span>($42.00)</span> </h6>
+
+                                    <div className="button_sec">
+                                    <button type="button" class="btn btn-success">Buy Now</button>
+                                    <button type="button" class="btn btn-default">Add to cart</button>
+                                    </div>
+                </div>
+                <div className="col-lg-3 border">
+                  <h4> NEW </h4>
+                  <img className="w-100" src={Steth} alt={"banner"}/> 
+                  <StarRatings
+                  
                                         numberOfStars={5}
                                         name='rating'
                                         starDimension="20px"
@@ -72,7 +103,7 @@ const Topcategory = ({categories}) => {
                   <h4> NEW </h4>
                   <img className="w-100" src={Steth} alt={"banner"}/> 
                   <StarRatings
-                                        // rating={Math.round(data.ratings_summary)}
+                  
                                         numberOfStars={5}
                                         name='rating'
                                         starDimension="20px"
@@ -92,27 +123,7 @@ const Topcategory = ({categories}) => {
                   <h4> NEW </h4>
                   <img className="w-100" src={Steth} alt={"banner"}/> 
                   <StarRatings
-                                        // rating={Math.round(data.ratings_summary)}
-                                        numberOfStars={5}
-                                        name='rating'
-                                        starDimension="20px"
-                                        starSpacing="5px"
-                                        starRatedColor="rgb(242 187 22)"
-                                    />
-
-                                    <h3> Stethescope </h3>
-                                    <h6 className="pricegreen"> $32.00 <span>($42.00)</span> </h6>
-
-                                    <div className="button_sec">
-                                    <button type="button" class="btn btn-success">Buy Now</button>
-                                    <button type="button" class="btn btn-default">Add to cart</button>
-                                    </div>
-                </div>
-                <div className="col-lg-3 border">
-                  <h4> NEW </h4>
-                  <img className="w-100" src={Steth} alt={"banner"}/> 
-                  <StarRatings
-                                        // rating={Math.round(data.ratings_summary)}
+                  
                                         numberOfStars={5}
                                         name='rating'
                                         starDimension="20px"
@@ -131,7 +142,7 @@ const Topcategory = ({categories}) => {
                 
                 
               </div>
-            </div>
+            </div> */}
           </div>
 
         
@@ -185,6 +196,10 @@ const Topcategory = ({categories}) => {
   </Tabs>
   </div>
   </section>
+
+  {/* Dev Code */}
+
+
   <div className="hotoffer_banner">
 <div className="row">
   <div className="col-lg-6 text-center">
@@ -223,7 +238,7 @@ const Topcategory = ({categories}) => {
 </div>
   </div>
 
-  <div className="container image_wrappertab">
+  {/* <div className="container image_wrappertab">
   <h2 className="section_title text-center">
 <span>Best Selling Products</span>
 <p>Contrary to popular belief, Lorem Ipsum is not simply random text</p>
@@ -399,7 +414,7 @@ const Topcategory = ({categories}) => {
                 
                 
               </div>
-            </div>
+            </div> */}
   </div>
 
 
