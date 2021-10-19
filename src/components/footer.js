@@ -94,12 +94,12 @@ const Footer = () => {
             <div className="container">
 
                 <div className="row">
-                    <div className="col-md-3 about-unifi">
+                    <div className="col-lg-3 col-md-12 col-sm-12 about-unifi">
                         <img src={logo} alt="brand" />
                         <h2>10,234,777</h2>
                         <span>Total product sold</span>
                     </div>
-                    <div className="col-md-2">
+                    <div className="col-lg-2 col-md-12 col-sm-12">
                         <ul>
                             <li>
                                 <b>Support</b>
@@ -126,7 +126,7 @@ const Footer = () => {
                                </li> */}
                         </ul>
                     </div>
-                    <div className="col-md-2">
+                    <div className="col-lg-2 col-md-12 col-sm-12">
                         <ul>
                             <li>
                                 <b>My Account</b>
@@ -148,7 +148,7 @@ const Footer = () => {
                             </li>
                         </ul>
                     </div>
-                    <div className="col-md-5">
+                    <div className="col-lg-5 col-md-12 col-sm-12">
                         <ul className="newsletter">
                             <li>
                                 <b>Newsletter</b>

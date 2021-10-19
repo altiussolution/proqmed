@@ -126,25 +126,25 @@ const Renderproduct = () => {
                     <div className="row"> 
                         <div className="col-md-3">
                             <div className="banefit_content">
-                                <img className="w-100" src={delivery} alt={"banner"}/>  
+                                <img className="wh" src={delivery} alt={"banner"}/>  
                                 <div className="info-block-content"><div className="info-block-title">Free Shipping</div><div className="info-block-text">Free delivery over $100</div></div>
                             </div>
                         </div>
                         <div className="col-md-3">
                             <div className="banefit_content">
-                                <img className="wh" src={safety} alt={"bannerthree"}/>
+                                <img className="wh1" src={safety} alt={"bannerthree"}/>
                                 <div className="info-block-content"><div className="info-block-title">Free Returns</div><div className="info-block-text">Hassle free returns</div></div>
                             </div>
                         </div>
                         <div className="col-md-3">
                             <div className="banefit_content">
-                                <img className="w-100" src={secure} alt={"banner"}/>
+                                <img className="wh" src={secure} alt={"banner"}/>
                                 <div className="info-block-content"><div className="info-block-title">Secure Shopping</div><div className="info-block-text">Best security features</div></div>
                             </div>
                         </div>
                         <div className="col-md-3">
                             <div className="banefit_content">
-                                <img className="w-100" src={secure} alt={"banner"}/>
+                                <img className="wh" src={secure} alt={"banner"}/>
                                 <div className="info-block-content"><div className="info-block-title">Unlimited Blocks</div><div className="info-block-text">Any content, any page</div></div>
                             </div>
                         </div>
