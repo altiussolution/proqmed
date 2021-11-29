@@ -11,7 +11,17 @@ const banner_slide = {
   speed: 1000,
   slidesToShow:3,
   slidesToScroll: 3,
-  infinite: true
+  infinite: true,
+  responsive: [
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    },
+
+  ]
 }
 const TrendingProducts = () => {
 

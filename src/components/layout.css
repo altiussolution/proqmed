@@ -1761,6 +1761,69 @@ ul.newsletter .form-control {
   body .nav-tabs .nav-item.show body .nav-link, body .nav-tabs .nav-link {
     font-size: 16px;
 }
+
+.react-tabs__tab {
+
+  position: unset !important;
+}
+
+h2.section_title {
+  flex-direction: column !important;
+}
+
+::-webkit-scrollbar {
+  height: 7px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0162a2;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
+
+.mobile_header button {
+    border: unset;
+    background: unset;
+    font-size: 38px;
+    position: absolute;
+    right: 10%;
+}
+
+.sidenav {
+    
+    width: auto !important;
+}
+.mobile_header svg {
+  fill: #c43939;
+  color: #000;
+}
+.sidenav_menus ul a, .my_accounts ul li a {
+  
+  text-align: left;
+}
+
+.col-lg-6.padding_se .button_sec {
+    margin-top: 30px;
+    display: block !important;
+}
+
+.image_wrappertab .row {
+  flex-wrap: wrap !important;
+  margin-right: 0px !important;
+  padding: 20px;
+  margin-left: 0 !important;
+}
+
+
+.col-lg-6.padding_se .button_sec a {
+  color: #0162A1;
+  text-decoration: underline;
+  font-size: 16px;
+}
   .page-title {
     font-size: 24px;
   }
@@ -2059,6 +2122,55 @@ nav.bulkorder, .middlenavbar a.nav-link,.bottom_header, .upper_header .d-flex.my
 
 .navbar-expand .navbar-nav {
   flex-direction: column !important;
+}
+
+
+body .cart_top {
+  width: auto !important;
+  display: flex;
+  align-items: center;
+  background: #ddd;
+  border-radius: 5px;
+  border: navajowhite;
+  justify-content: center;
+}
+
+span.logo.navbar-brand {
+  
+  margin-right: 0 !important;
+  
+}
+
+.col-lg-4.banner_top_left {
+  display: flex;
+  flex-direction: column;
+}
+
+li#react-tabs-0 {
+  border-bottom: 3px solid rgb(223 223 223) !important;
+  border-right: 0 !important; 
+}
+
+li#react-tabs-2 {
+  border-bottom: 3px solid rgb(223 223 223) !important;
+  border-right: 0 !important; 
+}
+
+section.category_section .image_wrappertab {
+  display: flex;
+  flex-direction: column;
+}
+
+.col-lg-6.padding_se .button_sec button.btn.btn-primary {
+  padding: 10px 40px;
+  background: #0162A1;
+  font-size: 20px;
+  margin-right: 0px;
+}
+
+.user_accounts_links {
+  margin-left: 10px;
+  display: none;
 }
 
 }
@@ -3326,7 +3438,7 @@ position: relative;
   transition: 0.5s;
   padding-top: 60px;
   width: 280px;
-  background: #333;
+  background: #d3ebfb;
   z-index: 9999;
   padding: 0 0 30px 0;
 }
@@ -3336,23 +3448,22 @@ position: relative;
 .sidenav a:hover {
   color: #f1f1f1;
 }
-.sidenav_menus ul a,
-.my_accounts ul li a {
+.sidenav_menus ul a, .my_accounts ul li a {
   font-size: 16px;
+  font-weight: 500;
   padding: 10px 30px;
-  color: #cec9c9!important;
+  color: #0162a2!important;
   display: block;
 }
-.sidebar_links{
+.sidebar_links {
   padding: 15px;
-  border-top: 1px solid #585858;
-  border-bottom: 1px solid #585858;
-  color: #cec9c9!important;
+  background: #0162a2;
+  color: #ffffff!important;
 }
 .sidebar_links p {
   padding: 0;
   margin: 0;
-  color: #cec9c9!important;
+  color: #fff!important;
   font-size: 16px;
   text-align: center;
 }
@@ -3390,7 +3501,7 @@ position: relative;
   margin: 0;
 }
 .my_accounts .sidebar_links {
-  background: #4e4e4e;
+  background: #0162a2;
 }
 .btn_ic_botm {
   border: unset;
@@ -3424,7 +3535,7 @@ ul.sub_menus {
   margin-left: 10px;
 }
 ul.sub_menus a {
-  color: #777676!important;
+  color: #000!important;
   width: 280px;
   word-break: break-word;
   white-space: nowrap;
@@ -4111,6 +4222,9 @@ width: 24%;
   position: relative;
 }
 
+.row{
+  display: flex !important;
+}
 .popular_section.trending_products .card .image_wrapper {
   margin: 0 auto; 
 }
@@ -4334,7 +4448,7 @@ span.pricegreen{
 }
 
 .image_wrappertab .row {
-  flex-wrap: unset !important;
+  flex-wrap: unset ;
   margin-right: 0px !important;
   padding: 20px;
 }
