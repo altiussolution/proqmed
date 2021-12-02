@@ -1,9 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ovo&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 html {
   overflow: auto;
   height: auto;
@@ -141,19 +136,23 @@ input.form-control.search {
   padding: 5px 10px;
   height: 50px;
   border: 1px solid #ebebeb;
-  border-radius: 50px;
+  border-radius: 10px;
   box-shadow: rgb(0 0 0 / 6%) 0px 5px 15px 0px;
 }
 .search_submit{
-  height: 50px;
+  height: 33px;
   line-height: 7px;
   border: none;
-  margin-left: -84px;
-  background: #0162a2;
+  margin-left: -48px;
   border-radius: 50px !important;
   color: #fff;
   padding: 0px 20px;
+  background-image: url(../assets/zoom_icon.svg);
+  background-repeat: no-repeat;
+  background-color: #fff;
+  margin-top: 9px;
 }
+
 nav.upper_header .navbar-nav .nav-link {
     margin-right: 30px;
     color: #fff !important;
@@ -1010,7 +1009,7 @@ p.product_amt {
 /* Card Page Styles */
 .main_title h1 {
   color: #694e1e;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 24px;
   border-width: 0;
   border-bottom-width: 1px;
@@ -2488,9 +2487,7 @@ height: 100vh;
 }
 
 .logo a img{
-  /* width: 100px;
-  height: 50px; */
-      width: 65%;
+  width:auto;
   object-fit: contain;
   object-position: center;
   margin: 0;
@@ -2978,7 +2975,7 @@ figure.itm_list {
 
 .contactus_page .right_side h3 {
   font-weight: 500;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
 }
 
@@ -3040,7 +3037,6 @@ margin-right: 20px;
 }
 .bulkOrder_page .bulk_order_form .bulk_box_bg h3{
   font-weight: 500;
-  font-family: 'Roboto Condensed', sans-serif;
   font-size: 20px;
 }
 .bulkOrder_page .bulk_order_form .bulk_box_bg p{
@@ -3087,17 +3083,19 @@ margin-bottom: 10px;
   margin-left: 20px;
 }
 .bulkorder .dropbtn {
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 500;
   margin: 0px;
-  padding: 14px 0px;
+  padding: 0px 0px;
   /* border: 1px solid rgb(226, 219, 219); */
   border: 2px solid rgb(1 98 162);
   border-radius: 0px;
-  text-align: center;
+  text-align: left;
   width: 120px;
   color: #0162a2;
   border-radius: 3px;
+  line-height: 20px;
+  margin-left: 15px;
 }
 .bulkorder .dropbtn:after {
   display: inline-block;
@@ -3726,21 +3724,22 @@ ul.sub_menus a:before {
 .all_categories_list .dropbtn:after {
   position: absolute;
   right: 30px;
-  top: 45%;
+  top: 64%;
 }
 
 .all_categories_list .btn {
-  width: 170px;
-    border: unset;
-    text-transform: uppercase;
-    background: hsl(204deg 99% 32%);
-    text-align: left;
-    padding: 15px 20px;
-    margin-right: 15px;
-    color: #ffffff;
-
+  width: 158px;
+  border: unset;
+  text-align: left;
+  padding: 0px 20px;
+  margin-right: 15px;
+  color: #707070;
+  line-height: 20px;
 }
-
+.bulkorder .dropbtn span{
+  display: block;
+  font-size: 12px;
+}
 .all_categories_list .dropdown-content a {
   margin: 0;
   background: transparent;
@@ -4599,4 +4598,36 @@ section.category_section .image_wrappertab {
 .modal-content {
  
   width: max-content !important;
+}
+.cart_ic{
+  background: #e7e7e7;
+  border-radius: 50%;
+  width: 40px;
+  height: 39px;
+  padding: 10px;
+  position: relative;
+  margin-left: 15px;
+}
+.cart_ic img{
+  width: 100%;
+}
+.cart_ic span{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: -5px;
+  background: #abbfff;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 20px;
+  color: #fff;
+  font-size: 12px;
+  right: -4px;
+}
+.menu_top {
+  width: 100%;
+  display: flex;
+}
+.menu_main {
+  width: 100%;
 }

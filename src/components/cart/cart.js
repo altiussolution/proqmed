@@ -23,15 +23,16 @@ return (
           <Navbar id="basic-navbar-nav" className="cart-top-holder">
             <Nav className="mr-auto">
               <ul className="cart_top">
-              { <li>
+              {/* { <li>
               <Link to="/wishlist" data-toggle="tooltip" title="Wishlist"><span>{isLoged ?  getWLCount(isLoged) : 0 }</span><img src={wishlistTop}/></Link>                
-              </li>}
+              </li>} */}
               { <li>
               <Link to="/cart" data-toggle="tooltip" title="Cart"><span>{isLoged ? getCartCount(isLoged) : 0}</span><img src={cart}/></Link>                
               </li>}
               <li>
                 {isLoged && <a className="price_top">${parseFloat(cartTotal()).toFixed(2)}</a> }               
               </li>
+
             </ul>
             </Nav>     
         </Navbar>

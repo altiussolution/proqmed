@@ -1,7 +1,7 @@
 import { Link, navigate, useStaticQuery, graphql } from "gatsby"
 import PropTypes, { element } from "prop-types"
 import React, { useState, useEffect } from "react";
-import logo from './../assets/logo-bottom.png';
+import logo from './../assets/logo.png';
 import Cart from './../components/cart/cart';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { checkLogin, logout } from "./../services/headerServices";
@@ -19,6 +19,7 @@ import { IoMenuOutline, IoCloseSharp } from "react-icons/io5";
 import closeSearch from './../assets/close.png';
 import classNames from 'classnames';
 import './layout.css';
+import cart from './../assets/ic_cart_top.png';
 
 const Header = ({ siteTitle, cartCount, allCategory }) => {
 
@@ -308,42 +309,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
     <header>
       {/* <div className="d-none d-md-none d-lg-block"> */}
       <div>
-        <Navbar className="upper_header">
-          <div className="container">   
-            <Nav className="mr-auto">
-              <Nav.Link className="p-0" href="mailto:ishwarya@altiussolution.com" > <IoMailOutline />ishwarya@altiussolution.com</Nav.Link>
-              {<Nav.Link className="p-0" href="#home"><IoCallOutline />+1-947-800-8844</Nav.Link>}
-            </Nav>
-            <div className="user_accounts_links"><Link to="/">Home</Link></div> &nbsp;
-            <div className="user_top"><span >{isuserlogged ? `Welcome! ${user_name}` : <div></div>}</span></div>
-
-            <Navbar className="bulkorder my_account">
-              <div className="user_accounts_links">
-                {!isuserlogged && <Link to="/signup">Register</Link>}
-                {!isuserlogged && <Link to="/signin">Login</Link>}
-              </div>
-              <div className="dropdown">
-                <a className="btn dropbtn">My Account</a>
-                <div className="dropdown-content">
-                  <ul>
-                    {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
-
-                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
-                    <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
-                    <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
-                    <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
-                    <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
-                    {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
-                    {isuserlogged && <li onClick={getProfile}>My Profile</li>}
-                    {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
-                  </ul>
-
-                </div>
-
-              </div>
-            </Navbar>
-          </div>
-        </Navbar>
+        
         <Navbar className="middlenavbar" expand="lg">
           <div className="container">
             <Navbar.Brand className="logo">
@@ -357,9 +323,11 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
                 }
               </div>
             </Navbar.Brand>
+            <div className="menu_main">
+            <div className="menu_top">
             <Navbar className="bulkorder all_categories_list">
               <div className="dropdown">
-                <a className="btn dropbtn">All Categories</a>
+                <a className="btn dropbtn"><span>All Categories</span>Department</a>
                 <div className="dropdown-content">
                   <ul className="categories_dropdown">
                     {renderCategories('dropdown')}
@@ -377,7 +345,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
               />
               <input
                 type="submit"
-                value="Search"
+                value=""
                 className=" search_submit px-6 py-3 cursor-pointer"
               />
 
@@ -388,13 +356,60 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
               /> :<></>
             }
             </form>
-            
+            <Navbar className="bulkorder my_account">
+           
+              <div className="dropdown">
+                <a className="btn dropbtn"><span>Hello, signin</span>My Account</a>
+                <div className="dropdown-content">
+                  <ul>
+                    {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
+                    <li>{!isuserlogged && <Link to="/signup">Register</Link>}
+                {!isuserlogged && <Link to="/signin">Login</Link>}</li>
+                    
+                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
+                    <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
+                    <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
+                    <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
+                    <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
+                    {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
+                    {isuserlogged && <li onClick={getProfile}>My Profile</li>}
+                    {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
+                  </ul>
+
+                </div>
+
+              </div>
+            </Navbar>
+            <Navbar className="bulkorder my_account">
+            <div className="cart_ic"><span>0</span><img src={cart}/></div>
+              <div className="dropdown">
+                
+              
+                <a className="btn dropbtn"><span>My Cart</span>$0.00</a>
+                <div className="dropdown-content">
+                  <ul>
+                   <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
+                    <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
+                    <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
+                    <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
+                    <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
+                    {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
+                    {isuserlogged && <li onClick={getProfile}>My Profile</li>}
+                    {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
+                  </ul>
+
+                </div>
+
+              </div>
+            </Navbar>
             <div className={`${activeClass ? "sampleDropDown" : "d-none"}`}>
               {sampleVar()}
               {searchList()}
             </div>
-            <Cart cartCount={cartCount} />
-            <Navbar className="bulkorder">
+            </div>
+            
+            {/* <Cart cartCount={cartCount} /> */}
+            {/* <Navbar className="bulkorder">
               <div className="dropdown">
                 <button className="btn dropbtn">Bulk Order</button>
                 <div className="dropdown-content">
@@ -416,10 +431,12 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
                   <Nav.Link onClick={() => { navigateOnclick('/bulkOrder') }}>Add More Items</Nav.Link>
                 </div>
               </div>
-            </Navbar>
+            </Navbar> */}
+            <div className="menu_botm">asdasdsa</div>
+          </div>
           </div>
         </Navbar>
-
+            
       </div>
 
 
