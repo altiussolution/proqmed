@@ -385,7 +385,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
               <div className="dropdown">
                 
               
-                <a className="btn dropbtn"><span>My Cart</span>$0.00</a>
+                <a className="btn dropbtn carttop"><span>My Cart</span>$0.00</a>
                 <div className="dropdown-content">
                   <ul>
                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
@@ -432,7 +432,19 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
                 </div>
               </div>
             </Navbar> */}
-            <div className="menu_botm">asdasdsa</div>
+            <div className="menu_botm">
+              <ul>
+                  <li><a href="#">My Cart</a></li>
+                  <li><a href="#">My Orders</a></li>
+                  <li><a href="#">My Wishlist</a></li>
+                  <li><a href="#">Compare List</a></li>
+                  <li><a href="#">Change Password</a></li>                  
+              </ul>
+              <ul className="contact_top">
+                  <li>For Sales & Support <a href="#">(+91)1234-5670</a></li>
+                  <li><a href="#">support@proqmed.com</a></li>            
+              </ul>
+            </div>
           </div>
           </div>
         </Navbar>

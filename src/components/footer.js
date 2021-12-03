@@ -60,7 +60,7 @@ const Footer = () => {
 
         
     <div>
-        {/* <div className="benefits"> 
+        <div className="benefits"> 
                 <div className="container">
                     <div className="row"> 
                         <div className="col-md-3">
@@ -89,7 +89,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div> 
-                </div> */}
+                </div>
         <section className="main-footer">
             <div className="container">
 
