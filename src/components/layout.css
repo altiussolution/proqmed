@@ -125,9 +125,12 @@ nav.upper_header .nav-link {
   margin-right: 5px;
 }
 input.form-control.search {
-    background-color:#e6e6e6;
+    background-color:#fff;
     border: 0;
     color: #2d2d2d;
+    padding: 30px 20px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
 }
 
 .search {
@@ -332,13 +335,16 @@ border:1px solid #ececec;
 
 
 .popular_section .card {
-  padding: 10px !important;
-    margin-right: 15px;
+  border: 1px solid #ebebeb;
+  padding: 20px !important;
+    margin: 15px;
     height: 100%;
     text-align: left;
     display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  border-radius: 20px;
 }
 .feature_section {
   background: #F3F3F3;
@@ -486,7 +492,7 @@ border:1px solid #ececec;
 .popular_section.trending_products .card .image_wrapper {
   overflow: hidden;
   position: relative;
-  width: 180px;
+  width: 440px;
   text-align: center;
   margin-right: 20px;
   height: 180px;
@@ -575,7 +581,7 @@ section.benefits {
 }
 
 .main-footer {
-    background-color: hsl(227deg 29% 13%);
+    background-color: #1C67A8;
     padding: 60px 0 30px;
 }
 
@@ -713,14 +719,17 @@ section.main-footer ul li a {
 }
 
 
-.col-lg-3.col-md-12.col-sm-12.about-unifi h2 {
+.col-lg-3.col-md-12.col-sm-12.about_ftr h2 {
     color: #000000;
     font-weight: 400;
     margin-top: 13px;
 }
 
-.col-lg-3.col-md-12.col-sm-12.about-unifi span {
+.col-lg-3.col-md-12.col-sm-12.about_ftr span {
   color: #000000;
+}
+.about_ftr p{
+  width: 80%;
 }
 .popular_section{
   /* background: #f9f9f9; */
@@ -871,8 +880,8 @@ section.main-footer ul li a {
 }
 
 .benefits {
-  background: hsl(192deg 24% 96%);
-  padding: 40px 0px;
+  background: #EEEEEE;
+  padding: 30px 0px;
   margin-top: 30px;
 }
 .info-block-content {
@@ -890,10 +899,12 @@ section.main-footer ul li a {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  margin-left: 15px;
+  margin-bottom: 6px;
 }
 .info-block-title {
   
-  font-weight: 700;
+  font-weight: 500;
     font-size: 20px;
     color: rgb(0 0 0);
        -webkit-display: block;
@@ -901,9 +912,10 @@ section.main-footer ul li a {
      -ms-display: block;
      -o-display: block;
      display: block;
+     margin-bottom: 8px;
 }
 .info-block-text {
-  font-size: 16px;
+  font-size: 15px;
   color:rgb(154 154 154);
   font-weight: 400;
   line-height: .8;
@@ -4216,11 +4228,11 @@ width: 24%;
 .popular_section.trending_products .single_trending .card{
   display: block!important;
 }
-.popular_section.trending_products .card{
+/* .popular_section.trending_products .card{
   display: block!important;
   flex-direction: unset!important;
   
-}
+} */
 .clear{
   clear: both;
   width: 100%;
@@ -4337,8 +4349,9 @@ margin-top: 5px;
 }
 
 ul.newsletter .form-control{
-  width: 80%;
-    margin-right: 10px;
+  width: 100%;
+    /* margin-right: 10px; */
+    margin-right: -6px;
 }
 
 img.img-fluid.he {
@@ -4705,4 +4718,121 @@ section.category_section .image_wrappertab {
 
 .feature_section .card {
   border-radius: 1.25rem!important;
+}
+.brands_home{
+  border-radius: 20px;
+  overflow: hidden;
+}
+.brands_home li{
+  display: inline-block;
+  width: 33.33%;
+}
+.brands_home li img{
+  width: 100%;
+}
+.ic_benefits{
+  width: 59px;
+  height: 59px;
+  background: #fff;
+  display: block;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 74px;
+  padding: 15px;
+}
+.free_shipping{
+  background-color: #1C67A8; /* defines the background color of the image */
+  mask: url(../assets/delivery.svg) no-repeat center / contain;
+  -webkit-mask: url(../assets/delivery.svg) no-repeat center / contain;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.free_returns{
+  background-color: #1C67A8; /* defines the background color of the image */
+  mask: url(../assets/return.svg) no-repeat center / contain;
+  -webkit-mask: url(../assets/return.svg) no-repeat center / contain;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.secure_payment{
+  background-color: #1C67A8; /* defines the background color of the image */
+  mask: url(../assets/lock.svg) no-repeat center / contain;
+  -webkit-mask: url(../assets/lock.svg) no-repeat center / contain;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.support{
+  background-color: #1C67A8; /* defines the background color of the image */
+  mask: url(../assets/phone-call.svg) no-repeat center / contain;
+  -webkit-mask: url(../assets/phone-call.svg) no-repeat center / contain;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+section.main-footer h2{
+  color: #ffffff;
+  margin-bottom: 12px;
+  -webkit-display: block;
+  -moz-display: block;
+  -ms-display: block;
+  -o-display: block;
+  display: block;
+  font-size: 30px;
+  font-weight: 700;
+}
+section.main-footer p{
+  color: #ffffff;
+}
+.newsletter_btn {
+  border: 0px solid #000!important;
+  border-radius: 20px!important;
+  line-height: 48px!important;
+  border-top-right-radius: 12px!important;
+  border-bottom-right-radius: 12px!important;
+  border-top-left-radius: 0px!important;
+  border-bottom-left-radius: 0px!important;
+  color: #fff!important;
+  font-weight: 700!important;
+  width: 40%;
+  background: #88D9F2!important;
+
+}
+.newsletter_holder{
+  border-bottom: 1px solid #85AACB;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+}
+
+.social_ic{
+  width: 59px;
+  height: 59px;
+  background: #fff;
+  display: block;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 74px;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+.free_shipping{
+  background-color: #1C67A8; /* defines the background color of the image */
+  mask: url(../assets/delivery.svg) no-repeat center / contain;
+  -webkit-mask: url(../assets/delivery.svg) no-repeat center / contain;
+  display: block;
+  width: 100%;
+  height: 100%;
+  mask-position: 0px 5px;
+  
+}
+.social_ic:hover{
+  padding: 12px;
+
+}
+.social_ic:hover .free_shipping{
+  background-color: red; /* defines the background color of the image */
+
+  
 }

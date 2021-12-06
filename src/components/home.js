@@ -35,15 +35,13 @@ const Home = ({ children, categories }) => {
  
   return (   
   <>
-  <Mainslider />
-  <Deals />
+  <Mainslider />  
   <FeatureProduct />
   <Offerbottom />
-  <Topcategory categories={data.allCategory.edges}/>   
-  <FeatureProduct /> 
-  <Mostpopular /> 
-  <Brands />
+  {/* <Topcategory categories={data.allCategory.edges}/>  */}
+  <Deals />  
   <TrendingProducts /> 
+  <Brands />
   
   </>
   )

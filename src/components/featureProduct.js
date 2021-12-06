@@ -17,8 +17,8 @@ import cart from './../assets/ic_cart_top.png';
 const feature_slide = {
   autoplay: false,
   speed: 1000,
-  slidesToShow:5,
-  slidesToScroll: 1,
+  slidesToShow:3,
+  slidesToScroll: 3,
   infinite: true,
   responsive: [
     {

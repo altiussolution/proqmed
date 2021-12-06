@@ -9,7 +9,7 @@ import instagram from './../assets/instagram.png';
 import Linkedin from './../assets/linkedin.png';
 import twitter from './../assets/twitter.png';
 import payment from './../assets/payment.png';
-import logo from './../assets/logo-bottom.png';
+import logo from './../assets/logo_white.png';
 import delivery from './../assets/delivery.png';
 import safety from './../assets/safety.png';
 import secure from './../assets/secure.png';
@@ -65,26 +65,38 @@ const Footer = () => {
                     <div className="row"> 
                         <div className="col-md-3">
                             <div className="banefit_content">
-                                <img className="w-100" src={delivery} alt={"banner"}/>  
-                                <div className="info-block-content"><div className="info-block-title">Free Shipping</div><div className="info-block-text">Free delivery over $100</div></div>
+                                <span className="ic_benefits">
+                                    <i className="free_shipping"></i>
+                                </span>
+                                <div className="info-block-content"><div className="info-block-title">Free Shipping</div>
+                                <div className="info-block-text">On all orders over $49.00</div></div>
                             </div>
                         </div>
                         <div className="col-md-3">
                             <div className="banefit_content">
-                                <img className="widthsep" src={safety} alt={"bannerthree"}/>
-                                <div className="info-block-content"><div className="info-block-title">Free Returns</div><div className="info-block-text">Hassle free returns</div></div>
+                            <span className="ic_benefits">
+                                    <i className="free_returns"></i>
+                                </span>
+                                <div className="info-block-content"><div className="info-block-title">15 days returns</div>
+                                <div className="info-block-text">Moneyback guarantee</div></div>
                             </div>
                         </div>
                         <div className="col-md-3">
                             <div className="banefit_content">
-                                <img className="w-100" src={secure} alt={"banner"}/>
-                                <div className="info-block-content"><div className="info-block-title">Secure Shopping</div><div className="info-block-text">Best security features</div></div>
+                            <span className="ic_benefits">
+                                    <i className="secure_payment"></i>
+                                </span>
+                                <div className="info-block-content"><div className="info-block-title">Secure payment</div>
+                                <div className="info-block-text">Protected by Paypal</div></div>
                             </div>
                         </div>
                         <div className="col-md-3">
                             <div className="banefit_content">
-                                <img className="w-100" src={secure} alt={"banner"}/>
-                                <div className="info-block-content"><div className="info-block-title">Unlimited Blocks</div><div className="info-block-text">Any content, any page</div></div>
+                            <span className="ic_benefits">
+                                    <i className="support"></i>
+                                </span>
+                                <div className="info-block-content"><div className="info-block-title">24/7 Support</div>
+                                <div className="info-block-text">Live Support</div></div>
                             </div>
                         </div>
                     </div>
@@ -92,12 +104,35 @@ const Footer = () => {
                 </div>
         <section className="main-footer">
             <div className="container">
+                <div className="row newsletter_holder">
+                <div className="col-lg-6  col-md-12 col-sm-12">
+                <h2>Get Our Updates Always Fast</h2>
+                <p>10% off your next order when you sign up + be the first to know about new products and special offers.</p>
 
-                <div className="row">
-                    <div className="col-lg-3 col-md-12 col-sm-12 about-unifi">
+                    </div>
+                    <div className="col-lg-6 col-md-12 col-sm-12">
+                        <ul className="newsletter">
+                            <li>
+                                <form className="w-100 newsletter">
+                                <input type="text" className="form-control search" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"onChange={e => { handleChange(e)}}></input>
+                                <span className="btn btn-success newsletter_btn" onClick={() => { sendNewsLetter()}}>Subscribe Now</span>
+                                    <div className="input-group">
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="row ">
+                    <div className="col-lg-5 col-md-12 col-sm-12 about_ftr">
                         <img src={logo} alt="brand" />
+                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut</p>
                         <h2>10,234,777</h2>
                         <span>Total product sold</span>
+                        <ul>
+  <li className="social_ic"><a href="#"><i className="free_shipping" aria-hidden="true"></i></a></li>
+</ul>
                     </div>
                     <div className="col-lg-2 col-md-12 col-sm-12">
                         <ul>
@@ -148,38 +183,29 @@ const Footer = () => {
                             </li>
                         </ul>
                     </div>
-                    <div className="col-lg-5 col-md-12 col-sm-12">
-                        <ul className="newsletter">
+                    <div className="col-lg-2 col-md-12 col-sm-12">
+                        <ul>
                             <li>
-                                <b>Newsletter</b>
-                                
+                                <b>My Account</b>
                             </li>
                             <li>
-                                Register now to get updates on promotions and coupons
-                               </li>
+                                <Link to="/cart">My Cart</Link>
+                            </li>
+                            {isLoged && <li>
+                                <Link to="/orders">My Orders</Link>
+                            </li>}
                             <li>
-                                <form className="w-100 newsletter">
-                                <input type="text" className="form-control search" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"onChange={e => { handleChange(e)}}></input>
-                                <span className="btn btn-success btn-newl" onClick={() => { sendNewsLetter()}}>Submit</span>
-                                    <div className="input-group">
-                                    </div>
-                                </form>
+                                <Link to="/wishlist">My Wishlist</Link>
+                            </li>
+                            {isLoged &&<li>
+                                <Link to="/compareList">Compare List</Link>
+                            </li>}
+                            <li>
+                                <Link to="/sourceproductlist">Find Product Store</Link>
                             </li>
                         </ul>
-
-                        <div className="pt2">
-                    
-                    
-                        <ul className="newsletter">
-                            <li>
-                                <b>Shop with Confidence</b>
-                                <img src={payment} />
-                            </li>
-                            
-                        </ul>
-                        
                     </div>
-                    </div>
+                    
                     
                 </div>
                 <div className="bottom_footer row">

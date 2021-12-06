@@ -9,7 +9,7 @@ import { Link } from "gatsby";
 const banner_slide = {
   autoplay: false,
   speed: 1000,
-  slidesToShow:3,
+  slidesToShow:2,
   slidesToScroll: 3,
   infinite: true,
   responsive: [
@@ -54,26 +54,40 @@ const TrendingProducts = () => {
                     <img src={data.image} />
 
                   </div>
-
-                  <h5 className="prod-title">{data.name}</h5>
+                  
+                  
                   <div className="img_content">
+                  <h5 className="prod-title">{data.name}</h5>
                     
 
-                    <StarRatings
-                      rating={Math.round(data.rating)}
-                      numberOfStars={5}
-                      name='rating'
-                      starDimension="15px"
-                      starSpacing="0px"
-                      starRatedColor="rgb(242 187 22)"
-                    />
+                    
+                  
 
-                    <div>
-                      <span className="price">$ {Math.round(data.price)}</span>
-                      <span className="off_txt_lft">$000</span>
-                    </div>
-                  </div>
-
+                  <div className="price_holder">
+                                <div className="price_left">                                  
+                                    <div className="product_amt">
+                                    <span className="new_price">$000</span>
+                                        <span className="price">${Math.round(data.price)}</span>
+                                        
+                                    </div>
+                                    <div className="rating_front">
+                                    <StarRatings
+                                        rating={Math.round(data.rating)}
+                                        numberOfStars={5}
+                                        name='rating'
+                                        starDimension="20px"
+                                        starSpacing="0px"
+                                        starRatedColor="rgb(242 187 22)"
+                                    />
+                                    
+                                    </div>
+                                </div>
+                                   <div className="price_right"> 
+                                   
+                                  <button className="addtocart" ><span class="cart_svg"></span></button>
+                                  </div>
+                                </div>
+                                </div>
                 </div>
                 </Link>
               {/* </div> */}
