@@ -5,7 +5,7 @@ import ImageNotFound from "./../assets/allimg.jpg"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Steth from "./../assets/steth.png"
-import Doc from "./../assets/doc.png"
+import Doc from "./../assets/hot_deals.png"
 import Glove from "./../assets/glove.png"
 import StarRatings from 'react-star-ratings';
 
@@ -201,11 +201,17 @@ const Topcategory = ({categories}) => {
 
 
   <div className="hotoffer_banner">
+    <div className="container">
 <div className="row">
-  <div className="col-lg-6 text-center">
+  <div className="col-lg-4 text-center">
+  <h2 className="section_title">
+                    <span>Featured Products</span>
+                   
+                    </h2>
+
   <img className="HF_BImg" src={Doc} alt={"banner"}/> 
   </div>
-  <div className="col-lg-6 padding_se">
+  <div className="col-lg-8 padding_se">
     <h6> Todays Hot Offer</h6>
     <h2>Buy all your medicines @ 50% Offer</h2>
 
@@ -235,6 +241,7 @@ const Topcategory = ({categories}) => {
     <a href="#">Deal of the day</a>
     </div>
   </div>
+</div>
 </div>
   </div>
 

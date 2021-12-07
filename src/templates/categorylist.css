@@ -1207,7 +1207,7 @@ td.amount {
 }
 
 span.price {
-    color: #0162A2;
+    color: #444444;
 }
 
 td.col.price {
@@ -1360,4 +1360,12 @@ padding-left: 100px;
 
 .col-lg-12.banner_top_left {
   display: flex;
+}
+.cart_svg{
+  background-color: #fff; /* defines the background color of the image */
+  mask: url(../assets/cart.svg) no-repeat center / contain;
+  -webkit-mask: url(../assets/cart.svg) no-repeat center / contain;
+  display: block;
+  width: 24px;
+  height: 24px;
 }

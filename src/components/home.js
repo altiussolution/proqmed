@@ -4,6 +4,7 @@ import Offerbottom from "./offerbottom"
 import Topcategory from "./topcategory"
 import Mostpopular from "./mostpopular"
 import Brands from "./brands"
+import Deals from "./deals"
 import FeatureProduct from "./featureProduct"
 import { useStaticQuery, graphql } from "gatsby";
 import "../templates/categorylist.css"
@@ -34,14 +35,13 @@ const Home = ({ children, categories }) => {
  
   return (   
   <>
-  <Mainslider />
-  {/* <FeatureProduct /> */}
+  <Mainslider />  
+  <FeatureProduct />
   <Offerbottom />
-  <Topcategory categories={data.allCategory.edges}/>   
-  <FeatureProduct /> 
-  <Mostpopular /> 
-  <Brands />
+  {/* <Topcategory categories={data.allCategory.edges}/>  */}
+  <Deals />  
   <TrendingProducts /> 
+  <Brands />
   
   </>
   )

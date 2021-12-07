@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react"
 import axios from "axios";
 import { Link } from "gatsby"
+import ad1 from "./../assets/ad1.jpg"
 
 const Offerbottom = () => {
   const [splash, setSplash] = useState(null);
@@ -29,7 +30,7 @@ const Renderproduct = () => {
         {splash.map((data) => (
         (
       <div className="col-lg-6 col-md-6 col-xs-12">
-          <Link to={data.button_link} ><img src={data.banner_image} alt={"banner"} /></Link> 
+          <Link to={data.button_link} ><img src={ad1} alt={"banner"} /></Link> 
           </div>
            )))}
 </>
@@ -39,8 +40,19 @@ const Renderproduct = () => {
 return(
   <section className = "add-banner upper-space" >
   <div className = "container" >
+    <div className="row">
+    <div className="col-lg-12 col" >
+  <h2 className="section_title">
+                    <span>Featured Products</span>
+                    <span><Link to="/featuredProducts">+ View all Products</Link></span>
+                    </h2>
+                    </div>
+                    </div>
   <div className="row">
-    {Renderproduct()}
+  
+  <div className="col-lg-6 col-md-6 col-xs-12"><img src={ad1} alt={"banner"} /></div>
+  <div className="col-lg-6 col-md-6 col-xs-12"><img src={ad1} alt={"banner"} /></div>
+    {/* {Renderproduct()} */}
     </div>
   </div>
      </section>

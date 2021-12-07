@@ -8,15 +8,28 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import {getWLCount, wishListCount,viewCartItems,getCartCount } from '../utils/apiServices'
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { navigate } from "gatsby";
 import Glov from "./../assets/glov.png"
+import cart from './../assets/ic_cart_top.png';
 
-const banner_slide = {
+const feature_slide = {
   autoplay: false,
   speed: 1000,
-  slidesToShow: 6,
-  slidesToScroll: 1,
-  infinite: true
+  slidesToShow:3,
+  slidesToScroll: 3,
+  infinite: true,
+  responsive: [
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    },
+
+  ]
 }
 
 const FeatureProduct = () => {
@@ -168,11 +181,11 @@ const FeatureProduct = () => {
       const renderProducts = () => {    
         if (featureProducts) { 
 
-            return  <div className="row">  
+            return  <Slider {...feature_slide}>  
             
                 {       
-                    featureProducts.slice(0, 4).map((data,index) => (
-                        <div className="col-lg-3 col-md-3 col-xs-12 col" key={`${data.name}_${index}`}>
+                    featureProducts.map((data,index) => (
+                        <div key={`${data.name}_${index}`}>
                             <div className="card">    
                             <div className="wishComp">
                                     <ul>
@@ -181,9 +194,19 @@ const FeatureProduct = () => {
                                 </div>
                                 <div className="image_wrapper">
                                     <Link to={getProductURL(data)}><img src={data.image} /></Link>
-                                </div>                                
-                                <Link to={getProductURL(data)}><p className="product_title">{data.name}</p></Link>
-                                <div>
+                                </div>
+                                <div className="description_list">                               
+                                <Link to={getProductURL(data)}>{data.name}</Link>
+                                </div> 
+                                
+                                <div className="price_holder">
+                                <div className="price_left">                                  
+                                    <div className="product_amt">
+                                    <span className="new_price">$000</span>
+                                        <span className="price">${Math.round(data.price)}</span>
+                                        
+                                    </div>
+                                    <div className="rating_front">
                                     <StarRatings
                                         rating={Math.round(data.ratings_summary)}
                                         numberOfStars={5}
@@ -192,13 +215,13 @@ const FeatureProduct = () => {
                                         starSpacing="0px"
                                         starRatedColor="rgb(242 187 22)"
                                     />
-                                </div>
-                                <div>
-                                    <div className="product_amt">
-                                        <span className="price">${Math.round(data.price)}</span>
-                                        <span className="new_price">$000</span>
+                                    
                                     </div>
-                                  <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}>Add to Cart</button>
+                                </div>
+                                   <div className="price_right"> 
+                                   
+                                  <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
+                                  </div>
                                 </div>
                             </div>
 
@@ -206,8 +229,8 @@ const FeatureProduct = () => {
                     ))
                 }
             
-            </div>
-            // </Slider>
+            
+            </Slider>
         }
     }
     return (
@@ -216,19 +239,22 @@ const FeatureProduct = () => {
             <div className="container">
             
             <div className="row">
-            {/* <h2 className="section_title">
+            <div className="col-lg-12 col" >
+            <h2 className="section_title">
                     <span>Featured Products</span>
                     <span><Link to="/featuredProducts">+ View all Products</Link></span>
-                    </h2> */}
+                    </h2>
+                    </div>
+                    </div>
 
-
-              
-               
-                {/* {renderProducts()} */}
-
+                    <div className="row">            
+                    <div className="col-lg-12 col" >               
+                      {renderProducts()}
+                    </div>
+                    </div>
                 
                 
-            </div>
+            
             </div>
             <ToastContainer
                 position="bottom-right"

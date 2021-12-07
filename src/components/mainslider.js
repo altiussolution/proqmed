@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import { Link } from "gatsby";
 import PageLoader from "./loaders/pageLoader"
 import { checkLogin } from "./../services/headerServices";
-import banner_01 from './../assets/banner_001.png';
+import banner_01 from './../assets/banner1.jpg';
 import banner_sml_01 from './../assets/banner_sml_01.jpg';
 import banner_sml_02 from './../assets/banner_sml_02.jpg';
 import delivery from './../assets/delivery.png';
@@ -74,83 +74,11 @@ const Mainslider = () =>{
 const Renderproduct = () => {    
     if (splash) { 
         return <>
-    <div className="container">
-    
-         {/* <Slider {...banner_slide}> */}
-             {splash.map((data) => ( 
-            
-              <div className="row">
-          <div className="col-lg-8 col-left banner_top">
-          <Link to={data.button_link} > <img src={data.banner_image} alt={"banner"} className="img-fluid"/> </Link> 
-              {/* <img src="../../assets/star.png" /> */}
-        </div>
+    <div className="banner_top">
+    <img src={banner_01} /> 
+    </div>
 
-        <div className="col-lg-4 banner_top_left">
-             {topRight.map((data) => {
-      return <>
-      <div className="row">
-        {/* <div className="col-lg-6 banner_top_left"> */}
-          {/* {checkLogin() ? */}
-            <Link to={data.button_link} >
-            <img src={data.banner_image} alt={"banner"} className="img-fluid he" />
-            </Link> 
-            {/* :  */}
-            {/* <Link to={data.button_link}>
-            <img src={data.banner_image} alt={"banner"} className="img-fluid"/>
-            </Link> */}
-          {/* } */}
-        {/* { <Link to={data.button_link} >
-          <img src={data.banner_image} alt={"banner"} onClick={() => custBaseDis(data.button_link)}/>
-          </Link>  }
-          { <Link to={data.button_link} onClick={() => custBaseDiscount()}> </Link> } */}
-          {/* </div>  */}
-          </div>    
-           </>
-             })}
-       </div>
-        </div>
-             ))}
-        {/* </Slider> */}
-    
-       
-        {/* </div> */}
-        {/* banner small */}
-        {/* <div className="row">
-    <div className="col-lg-6 banner_top_left"><img src={banner_sml_01} alt={"banner"}  className="img-fluid"/></div>
-    <div className="col-lg-6 col-right"><img src={banner_sml_02} alt={"banner"}  className="img-fluid"/></div>
-    </div> */}
-        </div>
-
-        <div className="benefits"> 
-                <div className="container">
-                    <div className="row"> 
-                        <div className="col-md-3">
-                            <div className="banefit_content">
-                                <img className="wh" src={delivery} alt={"banner"}/>  
-                                <div className="info-block-content"><div className="info-block-title">Free Shipping</div><div className="info-block-text">Free delivery over $100</div></div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="banefit_content">
-                                <img className="wh1" src={safety} alt={"bannerthree"}/>
-                                <div className="info-block-content"><div className="info-block-title">Free Returns</div><div className="info-block-text">Hassle free returns</div></div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="banefit_content">
-                                <img className="wh" src={secure} alt={"banner"}/>
-                                <div className="info-block-content"><div className="info-block-title">Secure Shopping</div><div className="info-block-text">Best security features</div></div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="banefit_content">
-                                <img className="wh" src={secure} alt={"banner"}/>
-                                <div className="info-block-content"><div className="info-block-title">Unlimited Blocks</div><div className="info-block-text">Any content, any page</div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-                </div>
+        
 
 
         
