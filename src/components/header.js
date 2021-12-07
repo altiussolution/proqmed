@@ -40,8 +40,8 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
   const [mobileShow, setMobileShow] = useState(false);
   const [value, setValue] = useState();
   const [cartCnt, setCartCnt] = useState(cartCount)
-  
-
+  const [state, setpic] = useState("");
+  const [profilepic,setProfilepic] = useState({});
   const [min, setMin] = useState("");
   const [max, setMax] = useState("");
   const [addCartBtn, setCartBtn] = useState(false)
@@ -70,7 +70,60 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
       })
     }
   }
+  const onFileChange = (event) => {
+    setpic(event.target.files[0].name);
+    console.log(setpic)
+  };
 
+  const onFileUpload = () => {
+    // const formData = new FormData()
+    // formData.append(
+    //   state.selectedFile,
+    // );
+    let profiledata = {   
+      "data": {
+          "customer_email": email,
+          "image": state,
+          "title": user_name
+      }
+  }
+    if (jwt) {
+      axios({
+        method: 'post',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/upload/`,
+        headers: {
+          'Authorization': `Bearer ${jwt}`
+      },
+      data: profiledata
+      }).then((res) => {
+        if (res.status == 200) {
+          toast.success('Profile picture uploaded')
+        }
+      }).catch((err) => {
+        console.error(err);
+      })
+    }
+  };
+
+  const getProfilepic = () => {
+    if (jwt) {
+      axios({
+        method: 'get',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/list/${email}`,
+        headers: {
+          'Authorization': `Bearer ${jwt}`
+      }
+      }).then((res) => {
+        if (res.status == 200) {
+          setProfilepic(res.data[0]);
+          getProfile();
+          setShow(true);
+        }
+      }).catch((err) => {
+        console.error(err);
+      })
+    }
+  }
   const onSubmit = event => {
     event.preventDefault();
     if (search.trim().length) {
@@ -334,7 +387,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
                     <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
-                    {isuserlogged && <li onClick={getProfile}>My Profile</li>}
+                    {isuserlogged && <li onClick={getProfilepic}>My Profile</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                   </ul>
 
@@ -437,7 +490,11 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
         <Modal.Body>
           <div className="profile_sec">
             <div className="profile_pic">
-              <img src={img1} />
+              <img src={profilepic.logo} />
+              <input type="file" onChange={onFileChange}/>
+              <button onClick={onFileUpload}>
+                  Upload!
+                </button>
             </div>
 
             <Table>
