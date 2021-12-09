@@ -10,36 +10,53 @@ import banner_sml_02 from './../assets/banner_sml_02.jpg';
 import delivery from './../assets/delivery.png';
 import safety from './../assets/safety.png';
 import secure from './../assets/secure.png';
-
-const banner_slide = {
-    dots: true,
-    infinite: true,
-    speed: 1000,
-    fadeIn: false,
-    autoplay: true,
-    pauseOnHover: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1000,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
+import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css'
+// const banner_slide = {
+//     dots: true,
+//     infinite: true,
+//     speed: 1000,
+//     fadeIn: false,
+//     autoplay: true,
+//     pauseOnHover: true,
+//     slidesToShow: 1,
+//     slidesToScroll: 1,
+//     responsive: [
+//       {
+//         breakpoint: 1000,
+//         settings: {
+//           slidesToShow: 1,
+//           slidesToScroll: 1,
+//           infinite: true,
+//           dots: true,
+//         },
+//       },
+//     {
+//       breakpoint: 600,
+//       settings: {
+//         slidesToShow: 1,
+//         slidesToScroll: 1,
+//       },
+//     },
+//   ],
+// };  
+const feature_slide = {
+  autoplay: false,
+  speed: 1000,
+  slidesToShow:1,
+  slidesToScroll: 1,
+  infinite: true,
+  responsive: [
     {
       breakpoint: 600,
       settings: {
         slidesToShow: 1,
-        slidesToScroll: 1,
-      },
+        slidesToScroll: 1
+      }
     },
-  ],
-};  
 
+  ]
+}
 const Mainslider = () =>{
     const [splash, setSplash] = useState(null);
     const [loader, setLoader] = useState(false);
@@ -71,12 +88,12 @@ const Mainslider = () =>{
     }, []);
 
 
-const Renderproduct = () => {    
-    if (splash) { 
-        return <>
-    <div className="banner_top">
-    <img src={banner_01} /> 
-    </div>
+// const Renderproduct = () => {    
+//     if (splash) { 
+//         return <>
+//     <div className="banner_top">
+//     <img src={banner_01} /> 
+//     </div>
 
         
 
@@ -84,9 +101,53 @@ const Renderproduct = () => {
         
       
 
-</>
-    }
+// </>
+//     }
     
+// }
+const Renderproduct = () => {    
+  if (splash) { 
+      return <Slide>
+  <div className="container">
+  
+       
+           {splash.map((data) => ( 
+          
+            <div className="row">
+        <div className="col-lg-12 col-left banner_top">
+        <Link to={data.button_link} > <img src={banner_01} alt={"banner"} className="img-fluid"/> </Link> 
+        
+      </div>
+      </div>
+           ))}
+     
+  
+      {/* <div className="col-lg-12 banner_top_left">
+           {topRight.map((data) => {
+    return <Slider {...feature_slide}>
+    <div className="row">
+     
+          <Link to={data.button_link} >
+          <img src={data.banner_image} alt={"banner"} className="img-fluid" />
+          </Link> 
+       
+        </div>    
+         </Slider>
+           })}
+     </div> */}
+      {/* </div> */}
+      {/* banner small */}
+      {/* <div className="row">
+  <div className="col-lg-6 banner_top_left"><img src={banner_sml_01} alt={"banner"}  className="img-fluid"/></div>
+  <div className="col-lg-6 col-right"><img src={banner_sml_02} alt={"banner"}  className="img-fluid"/></div>
+  </div> */}
+      </div>
+      
+    
+
+</Slide>
+  }
+  
 }
 
 
