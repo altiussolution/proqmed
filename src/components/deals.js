@@ -37,14 +37,14 @@ const Deals = () => {
 <div className="row">
   <div className="col-lg-4 text-center">
   <h2 className="section_title">
-                    <span>Featured Products</span>
+                    <span>Hot Deals</span>
                    
                     </h2>
 
   <img className="HF_BImg" src={Doc} alt={"banner"}/> 
   </div>
   <div className="col-lg-8 padding_se">
-  <h2 className="section_title"><span>Featured Products</span></h2>
+  <h2 className="section_title"><span>Deal of the Day</span></h2>
   sadasdasd
   </div>
 </div>
