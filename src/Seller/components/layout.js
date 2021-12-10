@@ -5,7 +5,14 @@ import Footer from "./footer" ;
 import "./layout.css";
 
 
-const Layout = ({ children, cartCount }) => {}
+const Layout = ({ children, cartCount }) => {
+ return(
+  <>
+  <Header/>
+<Footer/>
+</>
+ )
+}
 
 
 

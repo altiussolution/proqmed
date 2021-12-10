@@ -20,6 +20,7 @@ import closeSearch from './../assets/close.png';
 import classNames from 'classnames';
 import './layout.css';
 import cart from './../assets/ic_cart_top.png';
+import Home from '../pages/sellerhome';
 
 const Header = ({ siteTitle, cartCount, allCategory }) => {
 
@@ -487,11 +488,12 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
             </Navbar> */}
             <div className="menu_botm">
               <ul>
-                  <li><a href="#">My Cart</a></li>
-                  <li><a href="#">My Orders</a></li>
-                  <li><a href="#">My Wishlist</a></li>
-                  <li><a href="#">Compare List</a></li>
-                  <li><a href="#">Change Password</a></li>                  
+                  <li onClick={() => { navigateOnclick('/cart') }}><a>My Cart</a></li>
+                  <li onClick={() => { navigateOnclick('/orders') }}><a>My Orders</a></li>
+                  <li onClick={() => { navigateOnclick('/wishlist') }}><a >My Wishlist</a></li>
+                  <li onClick={() => { navigateOnclick('/compareList') }}><a >Compare List</a></li>
+                  <li onClick={() => { navigateOnclick('/changePassword') }}><a >Change Password</a></li>
+                  <li><Link to="/sellerhome">Sell on Proqmed</Link></li>                  
               </ul>
               <ul className="contact_top">
                   <li>For Sales & Support <a href="#">(+91)1234-5670</a></li>
