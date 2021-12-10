@@ -2,6 +2,7 @@ import React,{useState,useEffect} from "react"
 import axios from "axios";
 import { Link } from "gatsby"
 import ad1 from "./../assets/ad1.jpg"
+import ad2 from "./../assets/ad2.png"
 
 const Offerbottom = () => {
   const [splash, setSplash] = useState(null);
@@ -51,7 +52,7 @@ return(
   <div className="row">
   
   <div className="col-lg-6 col-md-6 col-xs-12"><img src={ad1} alt={"banner"} /></div>
-  <div className="col-lg-6 col-md-6 col-xs-12"><img src={ad1} alt={"banner"} /></div>
+  <div className="col-lg-6 col-md-6 col-xs-12"><img src={ad2} alt={"banner"} /></div>
     {/* {Renderproduct()} */}
     </div>
   </div>

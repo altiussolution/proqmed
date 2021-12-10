@@ -37,11 +37,11 @@ a:hover {
     color: #4d4d4d;
     font-weight: 400;
     text-align: left;
-    margin:0 140px 20px 0px;
+    margin:0 0px 30px 0px;
     padding: 0;
     display: flex;
     justify-content: space-between;
-    /* width: 100%; */
+    width: 100%;
   
 }
 
@@ -354,7 +354,7 @@ border:1px solid #ececec;
   /* padding: 0 0px!important;
   margin-left: -1px;
   margin-top: -1px; */
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 .feature_section .card {
   border: 1px solid #ebebeb;
@@ -590,23 +590,25 @@ section.main-footer ul {
     padding-left: 0;
     flex-wrap: wrap;
     align-items: center;
+    margin-top: 40px;
 }
 
 section.main-footer ul li b {
-    color: #e4e4e4;
+    color: #fff;
     margin-bottom: 12px;
          -webkit-display: block;
      -moz-display: block;
      -ms-display: block;
      -o-display: block;
      display: block;
+     font-size: 22px;
 }
 
 section.main-footer ul li a {
     text-decoration: none;
     font-size: 16px;
     line-height: 30px;
-    color: #BFBFBF;
+    color: #e9e9e9;
 }
 
 .newsletter .input-group-text {
@@ -647,13 +649,12 @@ section.main-footer ul li a {
 .bottom_footer ul,
 .bottom_footer p {
     margin: 0;
-    color: #BFBFBF;
+    color: #686868;
 }
 
 .bottom_footer {
-    padding: 25px 0 0;
-    margin-top: 25px;
-    border-top: 0.2px solid #383838;
+    padding: 20px 0;
+    
 }
 
 .bottom_footer p {
@@ -672,7 +673,7 @@ section.main-footer ul li a {
 
 .bottom_footer ul li a,
 .bottom_footer p {
-    font-size: 12px!important;
+    font-size: 16px!important;
 }
 .middlenavbar a.nav-link {
   font-size: 14px;
@@ -882,7 +883,7 @@ section.main-footer ul li a {
 .benefits {
   background: #EEEEEE;
   padding: 30px 0px;
-  margin-top: 30px;
+  
 }
 .info-block-content {
   display: -webkit-box;
@@ -4473,8 +4474,8 @@ span.pricegreen{
 }
 
 .hotoffer_banner {
-  background: #F2F6F7;
-  margin: 30px 0px;
+  background: #F3F3F3;
+  padding: 60px 0px;
 }
 
 /* img.HF_BImg {
@@ -4780,8 +4781,8 @@ section.main-footer h2{
   -ms-display: block;
   -o-display: block;
   display: block;
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 400;
 }
 section.main-footer p{
   color: #ffffff;
@@ -4835,4 +4836,54 @@ section.main-footer p{
   background-color: red; /* defines the background color of the image */
 
   
+}
+/* -------------------social icons------------------- */
+
+.social_media li{
+  display: inline-block;
+  background: #fff;
+  margin-right: 10px;
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  border-radius: 50px;
+  position: relative;
+}
+.ic_fb{
+  background-color: #1C67A8; /* defines the background color of the image */
+  mask: url(../assets/fb.svg) no-repeat center / contain;
+  -webkit-mask: url(../assets/fb.svg) no-repeat center / contain;
+  display: block;
+  width: 100%;
+  height: 100%; 
+}
+.ic_twitter{
+  background-color: #1C67A8; /* defines the background color of the image */
+  mask: url(../assets/twitter.svg) no-repeat center / contain;
+  -webkit-mask: url(../assets/twitter.svg) no-repeat center / contain;
+  display: block;
+  width: 100%;
+  height: 100%; 
+}
+.ic_insta{
+  background-color: #1C67A8; /* defines the background color of the image */
+  mask: url(../assets/instagram.svg) no-repeat center / contain;
+  -webkit-mask: url(../assets/instagram.svg) no-repeat center / contain;
+  display: block;
+  width: 100%;
+  height: 100%; 
+}
+.phone_footer{
+  background-color: #fff; /* defines the background color of the image */
+  mask: url(../assets/phone-call.svg) no-repeat center / contain;
+  -webkit-mask: url(../assets/phone-call.svg) no-repeat center / contain;
+  display:inline-block;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+.bottom_footer_inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

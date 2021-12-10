@@ -10,6 +10,7 @@ import Linkedin from './../assets/linkedin.png';
 import twitter from './../assets/twitter.png';
 import payment from './../assets/payment.png';
 import logo from './../assets/logo_white.png';
+import paypal from './../assets/paypal.png';
 import delivery from './../assets/delivery.png';
 import safety from './../assets/safety.png';
 import secure from './../assets/secure.png';
@@ -128,11 +129,13 @@ const Footer = () => {
                     <div className="col-lg-5 col-md-12 col-sm-12 about_ftr">
                         <img src={logo} alt="brand" />
                         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut</p>
-                        <h2>10,234,777</h2>
-                        <span>Total product sold</span>
-                        <ul>
-  <li className="social_ic"><a href="#"><i className="free_shipping" aria-hidden="true"></i></a></li>
-</ul>
+                        
+                        <ul className="social_media">
+                            <li><i className="ic_fb"></i><span></span></li>
+                            <li><i className="ic_twitter"></i><span></span></li>
+                            <li><i className="ic_insta"></i><span></span></li>
+                        </ul>
+                        <h2><i className="phone_footer"></i>(+91)1234-5670</h2>
                     </div>
                     <div className="col-lg-2 col-md-12 col-sm-12">
                         <ul>
@@ -141,10 +144,16 @@ const Footer = () => {
                             </li>
                             
                             <li>
-                                <Link to="/aboutUs">About Star</Link>
+                                <Link to="/aboutUs">About</Link>
                             </li>
                             <li>
                                 <Link to="/contact">Contact Us</Link>
+                            </li>
+                            <li>
+                                <Link to="/contact">FAQ</Link>
+                            </li>
+                            <li>
+                                <Link to="/contact">Support</Link>
                             </li>
                             <li>
                                 <Link to="/privacyPolicy">Privacy Policy </Link>
@@ -164,22 +173,28 @@ const Footer = () => {
                     <div className="col-lg-2 col-md-12 col-sm-12">
                         <ul>
                             <li>
-                                <b>My Account</b>
+                                <b>Categories</b>
                             </li>
                             <li>
-                                <Link to="/cart">My Cart</Link>
+                                <Link to="/cart">Face masks</Link>
                             </li>
-                            {isLoged && <li>
-                                <Link to="/orders">My Orders</Link>
-                            </li>}
                             <li>
-                                <Link to="/wishlist">My Wishlist</Link>
+                                <Link to="/orders">PPE Kit</Link>
                             </li>
-                            {isLoged &&<li>
-                                <Link to="/compareList">Compare List</Link>
-                            </li>}
                             <li>
-                                <Link to="/sourceproductlist">Find Product Store</Link>
+                                <Link to="/wishlist">Safety suits</Link>
+                            </li>
+                            <li>
+                                <Link to="/compareList">Eye protector</Link>
+                            </li>
+                            <li>
+                                <Link to="/sourceproductlist">Disposable</Link>
+                            </li>
+                            <li>
+                                <Link to="/compareList">Eye protector</Link>
+                            </li>
+                            <li>
+                                <Link to="/sourceproductlist">Disposable</Link>
                             </li>
                         </ul>
                     </div>
@@ -189,17 +204,23 @@ const Footer = () => {
                                 <b>My Account</b>
                             </li>
                             <li>
-                                <Link to="/cart">My Cart</Link>
+                                <Link to="/cart">My Account</Link>
                             </li>
-                            {isLoged && <li>
-                                <Link to="/orders">My Orders</Link>
-                            </li>}
                             <li>
-                                <Link to="/wishlist">My Wishlist</Link>
+                                <Link to="/orders">Shipping Info</Link>
                             </li>
-                            {isLoged &&<li>
+                            <li>
+                                <Link to="/wishlist">Returns</Link>
+                            </li>
+                            <li>
                                 <Link to="/compareList">Compare List</Link>
-                            </li>}
+                            </li>
+                            <li>
+                                <Link to="/sourceproductlist">Wishlist</Link>
+                            </li>
+                            <li>
+                                <Link to="/sourceproductlist">Track Orders</Link>
+                            </li>
                             <li>
                                 <Link to="/sourceproductlist">Find Product Store</Link>
                             </li>
@@ -208,40 +229,22 @@ const Footer = () => {
                     
                     
                 </div>
-                <div className="bottom_footer row">
-                    <div className="col-md-6">
-                        
-                        <p>© 2019 Unifi-i. Trademarks and brands are the property of their respective owners.</p>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="d-flex justify-content-end">
-                        <ul className="d-flex ml-5 smedia">
-                                    <li>
-
-                                    <img src={google} alt="google plus" />
-
-                                </li>
-                                <li>
-                                    <img src={facebook} alt="google plus" />
-                                </li>
-                                <li>
-                                    <img src={Linkedin} alt="google plus" />
-                                </li>
-                                <li>
-                                    <img src={instagram} alt="google plus" />
-                                </li>
-                                <li>
-                                    <img src={twitter} alt="google plus" />
-                                </li>
-                                <li>
-                                    <img src={pintrest} alt="google plus" />
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </section>
+        <section className="bottom_footer">
+            <div className="container">
+        <div className="bottom_footer_inner">
+                    <div>
+                        
+                        <p>© 2021 Proqmed. Trademarks and brands are the property of their respective owners.</p>
+                    </div>
+                    <div>
+                        <img src={paypal}></img>
+                    </div>
+                  </div>
+                </div>
+                </section>
         <ToastContainer
         position="bottom-right"
         autoClose={5000}
