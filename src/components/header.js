@@ -434,11 +434,11 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
             </Navbar> */}
             <div className="menu_botm">
               <ul>
-                  <li><a href="#">My Cart</a></li>
-                  <li><a href="#">My Orders</a></li>
-                  <li><a href="#">My Wishlist</a></li>
-                  <li><a href="#">Compare List</a></li>
-                  <li><a href="#">Change Password</a></li>                  
+                  <li><a onClick={() => { navigateOnclick('/cart') }}>My Cart</a></li>
+                  <li><a onClick={() => { navigateOnclick('/orders') }}>My Orders</a></li>
+                  <li><a onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</a></li>
+                  <li><a onClick={() => { navigateOnclick('/compareList') }}>Compare List</a></li>
+                  <li><a onClick={() => { navigateOnclick('/changePassword') }}>Change Password</a></li>                  
               </ul>
               <ul className="contact_top">
                   <li>For Sales & Support <a href="#">(+91)1234-5670</a></li>
