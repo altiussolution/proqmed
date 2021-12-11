@@ -8,7 +8,7 @@ import 'react-tabs/style/react-tabs.css';
 import Steth from "./../assets/steth.png"
 import Doc from "./../assets/hot_deals.png"
 import Glove from "./../assets/glove.png"
-
+import {getProductURL} from './../utils/url';
 
 
 const feature_slide = {
@@ -31,7 +31,53 @@ const feature_slide = {
 
 
 const Deals = () => {
+  const [dealProducts, setDealsofday] = useState(null);
+  const [customerId, setCustomerId] = useState("");
+  const [jwt, setJwt] = useState("");
+  const [quote_id, setQuoteId] = useState("");
+
+  useEffect(() => {
+    setCustomerId(localStorage.customer_id)
+    setJwt(localStorage.userToken)
+    setQuoteId(localStorage.cartId)
+
+    const fetchFeature = async () => {
+        const res = await fetch(
+            `${process.env.GATSBY_CART_URL_STARCARE}category/dealsofthedays/38`
+        );
+        const json = await res.json();
+        await setDealsofday(json);
+         
+    };
+    fetchFeature();
   
+}, []);
+
+
+const renderDeals = ()=>{
+  if (dealProducts) { 
+    return  <>
+{
+    dealProducts.map((data,index)=>(
+<div key={`${data.sub_category}_${index}`}>
+  
+    <div>
+      
+    </div>
+  ))
+<div className="card">
+<div className="image_wrapper">
+<Link to={getProductURL(data)}><img src={data.image}/></Link>
+</div>
+</div>
+</div>
+    ))
+
+  }
+    </>
+}
+}
+
     return ( <div className="hotoffer_banner">
     <div className="container">
 <div className="row">

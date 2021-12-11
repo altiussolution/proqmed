@@ -20,7 +20,7 @@ import closeSearch from './../assets/close.png';
 import classNames from 'classnames';
 import './layout.css';
 import cart from './../assets/ic_cart_top.png';
-import Home from '../pages/sellerhome';
+import Home from '../pages/Se/sellerhome';
 
 const Header = ({ siteTitle, cartCount, allCategory }) => {
 
@@ -493,7 +493,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
                   <li onClick={() => { navigateOnclick('/wishlist') }}><a >My Wishlist</a></li>
                   <li onClick={() => { navigateOnclick('/compareList') }}><a >Compare List</a></li>
                   <li onClick={() => { navigateOnclick('/changePassword') }}><a >Change Password</a></li>
-                  <li><Link to="/sellerhome">Sell on Proqmed</Link></li>                  
+                  <li><Link to="/Se/sellerhome">Sell on Proqmed</Link></li>                  
               </ul>
               <ul className="contact_top">
                   <li>For Sales & Support <a href="#">(+91)1234-5670</a></li>
