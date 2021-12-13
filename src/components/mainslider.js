@@ -43,14 +43,14 @@ import 'react-slideshow-image/dist/styles.css'
 const feature_slide = {
   autoplay: false,
   speed: 1000,
-  slidesToShow:1,
-  slidesToScroll: 1,
+  slidesToShow:2,
+  slidesToScroll: 2,
   infinite: true,
   responsive: [
     {
       breakpoint: 600,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 2,
         slidesToScroll: 1
       }
     },
