@@ -489,11 +489,11 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
             </Navbar> */}
             <div className="menu_botm">
               <ul>
-                  <li onClick={() => { navigateOnclick('/cart') }}><a>My Cart</a></li>
-                  <li onClick={() => { navigateOnclick('/orders') }}><a>My Orders</a></li>
-                  <li onClick={() => { navigateOnclick('/wishlist') }}><a >My Wishlist</a></li>
-                  <li onClick={() => { navigateOnclick('/compareList') }}><a >Compare List</a></li>
-                  <li onClick={() => { navigateOnclick('/changePassword') }}><a >Change Password</a></li>
+                  <li onClick={() => { navigateOnclick('/') }}><a>Home</a></li>
+                  <li onClick={() => { navigateOnclick('/orders') }}><a>Shop</a></li>
+                  <li onClick={() => { navigateOnclick('/wishlist') }}><a >About</a></li>
+                  <li onClick={() => { navigateOnclick('/compareList') }}><a >Contact</a></li>
+                  <li onClick={() => { navigateOnclick('/changePassword') }}><a >Order Tracking</a></li>
                   <li onClick={() => { navigateOnclick('/Se/sellerhome') }}><a>Sell on Proqmed</a></li>                  
               </ul>
               <ul className="contact_top">
