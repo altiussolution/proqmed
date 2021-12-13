@@ -1,5 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby";
+import Header from '../../Seller/components/header';
+import Footer from '../../Seller/components/footer';
+
 const Home = ({ children, categories }) => {
  const data = useStaticQuery(graphql`
  query {
@@ -26,6 +29,9 @@ const Home = ({ children, categories }) => {
 
  return (   
  <>
+
+  <Header/>
+<Footer/>
 
 
 

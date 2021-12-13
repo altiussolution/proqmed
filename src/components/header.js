@@ -20,6 +20,7 @@ import closeSearch from './../assets/close.png';
 import classNames from 'classnames';
 import './layout.css';
 import cart from './../assets/ic_cart_top.png';
+import Home from '../pages/Se/sellerhome';
 
 const Header = ({ siteTitle, cartCount, allCategory }) => {
 
@@ -412,13 +413,11 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
             <Navbar className="bulkorder my_account">
            
               <div className="dropdown">
-                <a className="btn dropbtn"><span>Hello, signin</span>My Account</a>
+                <a className="btn dropbtn"><span>{isuserlogged ? `Welcome! ${user_name}` : <div>Hello,SignIn</div>}</span>My Account</a>
                 <div className="dropdown-content">
                   <ul>
-                    {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
-                    <li>{!isuserlogged && <Link to="/signup">Register</Link>}
-                {!isuserlogged && <Link to="/signin">Login</Link>}</li>
-                    
+                    {!isuserlogged && <li><Link to="/signup">Register</Link>
+                    <Link to="/signin">Login</Link></li>}
                     <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
                     <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
@@ -427,6 +426,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <li onClick={getProfile}>My Profile</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
+                    {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
                   </ul>
 
                 </div>
@@ -434,11 +434,13 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
               </div>
             </Navbar>
             <Navbar className="bulkorder my_account">
-            <div className="cart_ic"><span>0</span><img src={cart}/></div>
+            <div><Cart cartCount={cartCount} />
+            {/* <img src={cart}/> */}
+            </div>
               <div className="dropdown">
                 
               
-                <a className="btn dropbtn carttop"><span>My Cart</span>$0.00</a>
+                {/* <a className="btn dropbtn carttop"><span>My Cart</span>$0.00</a> */}
                 <div className="dropdown-content">
                   <ul>
                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
@@ -487,11 +489,12 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
             </Navbar> */}
             <div className="menu_botm">
               <ul>
-                  <li><a onClick={() => { navigateOnclick('/cart') }}>My Cart</a></li>
-                  <li><a onClick={() => { navigateOnclick('/orders') }}>My Orders</a></li>
-                  <li><a onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</a></li>
-                  <li><a onClick={() => { navigateOnclick('/compareList') }}>Compare List</a></li>
-                  <li><a onClick={() => { navigateOnclick('/changePassword') }}>Change Password</a></li>                  
+                  <li onClick={() => { navigateOnclick('/cart') }}><a>My Cart</a></li>
+                  <li onClick={() => { navigateOnclick('/orders') }}><a>My Orders</a></li>
+                  <li onClick={() => { navigateOnclick('/wishlist') }}><a >My Wishlist</a></li>
+                  <li onClick={() => { navigateOnclick('/compareList') }}><a >Compare List</a></li>
+                  <li onClick={() => { navigateOnclick('/changePassword') }}><a >Change Password</a></li>
+                  <li onClick={() => { navigateOnclick('/Se/sellerhome') }}><a>Sell on Proqmed</a></li>                  
               </ul>
               <ul className="contact_top">
                   <li>For Sales & Support <a href="#">(+91)1234-5670</a></li>
