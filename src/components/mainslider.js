@@ -107,7 +107,7 @@ const Mainslider = () =>{
 // }
 const Renderproduct = () => {    
   if (splash) { 
-      return <Slide>
+      return <Slide {...feature_slide}>
   <div className="container">
   
        
