@@ -19,7 +19,7 @@ const Brands = props => {
             }).then((res) => {
                 const item = res.data
                 setProductBrand(item);
-
+console.log(item)
             })
         }
         productBrand();
