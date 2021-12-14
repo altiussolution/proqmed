@@ -58,20 +58,25 @@ const renderDeals = ()=>{
     return  <>
 {
     dealProducts.map((data,index)=>(
-<div key={`${data.sub_category}_${index}`}>
-  <div className="card">
+
+  <div className="card" key={`${data.sub_category}_${index}`}>
       <Link to={getCategoryURL(data.sub_category)}>{data.sub_category.name}</Link>
+      <ul>
       {data.sub_category.sub_category_sub.map((value,index)=>(
- <><div className="image_wrapper">
+        
+ <><li>
+ <div className="image_wrapper">
           <Link to={getProductURL(value)}><img src={value.image} /></Link>
         </div><div className="description_list">
             <Link to={getProductURL(value)}>{value.name}</Link>
-          </div></> 
+          </div>
+          </li>
+          </> 
 ))}
-     
+ </ul>
 
 </div>
-</div>
+
     ))
 
   }
@@ -93,8 +98,9 @@ const renderDeals = ()=>{
   <h2 className="section_title"><span>Deal of the Day</span>
   <span><Link to="/dealProducts">+ View all Products</Link></span>
   </h2>
+  <div className="dod_inner">
   {renderDeals()}
-  
+  </div>
   </div>
 </div>
 </div>
