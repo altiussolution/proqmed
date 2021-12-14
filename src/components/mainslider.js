@@ -42,16 +42,20 @@ import 'react-slideshow-image/dist/styles.css'
 // };  
 const feature_slide = {
   autoplay: false,
-  speed: 1000,
-  slidesToShow:2,
-  slidesToScroll: 2,
+  speed: 3000,
+  slidesToShow:1,
+  slidesToScroll: 1,
   infinite: true,
+  indicators:true,
   responsive: [
     {
       breakpoint: 600,
       settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: false,
+        indicators: true,
+        speed: 3000
       }
     },
 
@@ -108,17 +112,17 @@ const Mainslider = () =>{
 const Renderproduct = () => {    
   if (splash) { 
       return <Slide {...feature_slide}>
-  <div className="container">
+
   
        
            {splash.map((data) => ( 
           
-            <div className="row">
-        <div className="col-lg-12 col-left banner_top">
+           
+        <div className="banner_top">
         <Link to={data.button_link} > <img src={banner_01} alt={"banner"} className="img-fluid"/> </Link> 
         
       </div>
-      </div>
+      
            ))}
      
   
@@ -141,7 +145,7 @@ const Renderproduct = () => {
   <div className="col-lg-6 banner_top_left"><img src={banner_sml_01} alt={"banner"}  className="img-fluid"/></div>
   <div className="col-lg-6 col-right"><img src={banner_sml_02} alt={"banner"}  className="img-fluid"/></div>
   </div> */}
-      </div>
+      
       
     
 
