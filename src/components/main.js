@@ -4,11 +4,11 @@ import { navigate } from "gatsby"
 import Slider from "react-slick";
 
 const banner_slide = {
-    dots: true,
-    infinite: true,
+    dots: false,
+    infinite: false,
     speed: 1000,
     fadeIn: false,
-    autoplay: true,
+    autoplay: false,
     pauseOnHover: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -20,6 +20,7 @@ const banner_slide = {
           slidesToScroll: 1,
           infinite: true,
           dots: true,
+          autoplay: false
         },
       },
     {
@@ -27,6 +28,7 @@ const banner_slide = {
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
+        autoplay: false
       },
     },
   ],

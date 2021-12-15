@@ -17,7 +17,7 @@ import cart from './../assets/ic_cart_top.png';
 const feature_slide = {
   autoplay: false,
   speed: 1000,
-  slidesToShow:3,
+  slidesToShow:5,
   slidesToScroll: 3,
   infinite: true,
   responsive: [
@@ -240,7 +240,7 @@ const FeatureProduct = () => {
             
             <div className="row">
             <div className="col-lg-12 col" >
-            <h2 className="section_title">
+            <h2 className="section_title if_has_nav">
                     <span>Featured Products</span>
                     <span><Link to="/featuredProducts">+ View all Products</Link></span>
                     </h2>
