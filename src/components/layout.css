@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 html {
-  overflow: auto;
+  /* overflow: auto; */
   height: auto;
   scroll-behavior: smooth;
 }
@@ -13,7 +13,7 @@ body {
   /* font-family: 'Ovo', serif; */
   margin: 0;
   padding: 0;
-  overflow-x:hidden;
+  /* overflow-x:hidden; */
 
 }
 
@@ -941,6 +941,8 @@ section.main-footer ul li a {
   font-weight: 400;
   /* padding-bottom: 10px; */
   letter-spacing: -1px;
+  display: flex;
+  justify-content: space-between;
 }
 .page-title span:after {
   width: 100px;
@@ -2276,7 +2278,7 @@ section.category_section .image_wrappertab {
 }
 
 .thumbnail {
-  padding:0px 5px;
+  padding:15px;
   font-size: 13px;
   color: #c1c1c1;
 }
@@ -2655,7 +2657,7 @@ margin-right: 20px;
   background: #fff;
 }
 .content_wrapper{
-  background: #fdfdfd;
+  background: #F3F3F3;
   /* min-height: 600px; */
 }
 .action.btn_next {
@@ -4990,4 +4992,29 @@ section.main-footer p{
 }
 .dod_inner ul li img{
   width: 100%;
+}
+
+.tools_items {
+  display: flex;
+  margin-top: 15px;
+}
+.tools {
+    display: flex;
+    margin: 0 10px 0 0;
+}
+.tools span{
+  font-size: 14px;
+  margin: 10px 10px 0 0;
+}
+.title_view{
+  display: flex;
+}
+.tools .form-control {
+border: 1px solid #ffffff;
+border-radius: 10px;
+font-size: 13px;
+}
+.slider_Product {
+  position: sticky;
+  top: 40px;
 }

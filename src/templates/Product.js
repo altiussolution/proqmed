@@ -170,8 +170,7 @@ return (
           <div class="full-desc-tabs">
           <Technicalspec specification = {product} attachment={attach_data}/>
           </div>
-        </div>
-        
+        </div>        
       </div>
     </div>
     </section> 
