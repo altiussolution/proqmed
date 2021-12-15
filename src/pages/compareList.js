@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import isImageUrl  from 'is-image-url';
 
 const CompareList = () => {
-    const [compareList, setCompareList] = useState([]);
+    const [compareLists, setCompareList] = useState([]);
     const [compareAttr, setcompareAttr] = useState([]);
     const [loader, setLoader] = useState(false);
     useEffect(() => {
@@ -100,12 +100,12 @@ const CompareList = () => {
                                     <div className="compareList_details table-responsive">
                                         <table className="table compareList_table">
                                         <tbody>
-                                            {compareList.length == 0 ? <div>No items </div> :
+                                            {compareLists.length == 0 ? <div>No items </div> :
                                                  compareAttr.map((tle,ind)=>(
                                                     <tr>
                                                         <th>{tle}</th>
                                                         {
-                                                            compareList.map((item,index)=>(
+                                                            compareLists.map((item,index)=>(
                                                                 <td className="compare_product">
                                                                     {isImageUrl(item[tle]) ? <img src={item[tle]}/> : <p className={`${tle === 'price' && 'price'}`}>{tle === 'price' ?`$${parseFloat(item[tle]).toFixed(2)}` : item[tle]}</p>}
                                                                     {tle == 'image' &&
