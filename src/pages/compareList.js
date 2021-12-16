@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import isImageUrl  from 'is-image-url';
 
 const CompareList = () => {
-    const [compareList, setCompareList] = useState([]);
+    const [compareLists, setCompareList] = useState([]);
     const [compareAttr, setcompareAttr] = useState([]);
     const [loader, setLoader] = useState(false);
     
@@ -29,6 +29,7 @@ const CompareList = () => {
                 },
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
+                    console.log(res.data)
                     res.data.map((data,ind)=>{
                         Object.entries(data.attributes).map(([val, key])=>{
                             Object.entries(key).map(([key, val],i)=>{
@@ -109,12 +110,12 @@ const CompareList = () => {
                                         <tbody>
                                             
                                             {/* {compareList.length == 0 ?  <div></div>: */}
-                                                 {compareList ?
+                                                 {compareLists ?
                                                  compareAttr.map((tle,ind)=>(
                                                     <tr>
                                                         <th>{tle}</th>
                                                         {
-                                                            compareList.map((item,index)=>(
+                                                            compareLists.map((item,index)=>(
                                                                 <td className="compare_product">
                                                                     {isImageUrl(item[tle]) ? <img src={item[tle]}/> : <p className={`${tle === 'price' && 'price'}`}>{tle === 'price' ?`$${parseFloat(item[tle]).toFixed(2)}` : item[tle]}</p>}
                                                                     {tle == 'image' &&

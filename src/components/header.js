@@ -64,6 +64,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
         url: `${process.env.GATSBY_CART_URL_STARCARE}customerprofile/${email}`,
       }).then((res) => {
         if (res.statusText === "OK" && res.status == 200) {
+          console.log(res,"profile")
           setProfile(res.data[0]);
           setShow(true);
         }

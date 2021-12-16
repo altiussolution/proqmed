@@ -123,7 +123,7 @@ html {
     width: 100%;
   }
   .content_wrapper {
-    padding:60px 0;
+    padding:30px 0;
   }
   .content_wrapper .category_sidebar .accordion .card {
     border-radius: 0;
@@ -313,6 +313,7 @@ html {
     border-radius: 10px;
     padding: 0;
     background: #fff;
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 5px -1px, rgb(0 0 0 / 6%) 0px 3px 1px -1px;
 
   }
   /* .category_container .cat_scroll #products .product_item:nth-child(3n) {
@@ -999,7 +1000,7 @@ section.breadcrums ul li a::after {
   width: 100%!important;
 }
 .CC_prod_disc{
-  text-align: center;
+  text-align: left;
 }
 .product_detail_action {
   display: flex;
@@ -1102,10 +1103,14 @@ section.breadcrums ul li a::after {
   display: flex!important;
 }
 .title_view button {
-  background: none;
-  border: 0;
-  font-size: 18px;
-  margin: 0px 5px;
+  background-color: #ffffff;
+    border: 0;
+    font-size: 18px;
+    margin: 0px 3px;
+    width: 40px;
+    height: 38px;
+    /* display: inline-block; */
+    border-radius: 10px;
 }
 .similar_sec{
   margin-top: 30px;

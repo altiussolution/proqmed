@@ -120,6 +120,7 @@ export default function CategoryCard({ data: product, dataClass }) {
          {<Link to={getProductURL(product.items)} state={product}> {product.items.name.slice(0,45)}... </Link>}
           </p>
         </div>
+        <div className="price_holder">
         <div className="CC_prod_disc">
         {product.items.rating ?
           <StarRatings
@@ -135,6 +136,11 @@ export default function CategoryCard({ data: product, dataClass }) {
          <div className="product_amt">
                     <span className="price">${Math.round(product.items.price)}</span>
                 </div>
+                </div>
+                <div className="price_right"> 
+                                   
+                                  <button className="addtocart" ><span class="cart_svg"></span></button>
+                                  </div>
                 </div>
                 </div>
                 <div className="cart-btns">
