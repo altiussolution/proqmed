@@ -22,6 +22,7 @@ const properties = {
 
 const Deals = () => {
   const [dealProducts, setDealsofday] = useState([]);
+  const [hotProducts, setHotsofday] = useState([]);
   const [customerId, setCustomerId] = useState("");
   const [jwt, setJwt] = useState("");
   const [quote_id, setQuoteId] = useState("");
@@ -39,10 +40,35 @@ const Deals = () => {
         await setDealsofday(json);
          console.log(json)
     };
+    const fetchHot = async () => {
+      const res = await fetch(
+          `${process.env.GATSBY_CART_URL_STARCARE}category/hotdeals/50`
+      );
+      const json = await res.json();
+      await setHotsofday(json);
+       console.log(json)
+  };
     fetchFeature();
-  
+    fetchHot();
 }, []);
 
+
+const renderHots =()=>{
+  if(hotProducts){
+    return (
+<div className="col-lg-4 text-center">
+  <h2 className="section_title">
+                    <span>Hot Deals</span>
+                    </h2>
+                    {
+    hotProducts.map((data,index)=>(
+      <Link to="/hotDeals">
+  <img className="HF_BImg" src={data.category_image} alt={"banner"}/></Link> )) }
+  </div>
+    )
+
+  }
+}
 
 const renderDeals = ()=>{
   if (dealProducts) { 
@@ -77,13 +103,7 @@ const renderDeals = ()=>{
     return ( <div className="hotoffer_banner">
     <div className="container">
 <div className="row">
-  <div className="col-lg-4 text-center">
-  <h2 className="section_title">
-                    <span>Hot Deals</span>
-                    </h2>
-
-  <img className="HF_BImg" src={Doc} alt={"banner"}/> 
-  </div>
+{renderHots()}
   <div className="col-lg-8 padding_se">
   <h2 className="section_title"><span>Deal of the Day</span>
   <span><Link to="/dealProducts">+ View all Products</Link></span>
