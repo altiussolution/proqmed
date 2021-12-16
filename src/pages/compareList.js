@@ -29,6 +29,7 @@ const CompareList = () => {
                 },
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
+                    console.log(res.data)
                     res.data.map((data,ind)=>{
                         Object.entries(data.attributes).map(([val, key])=>{
                             Object.entries(key).map(([key, val],i)=>{
@@ -102,7 +103,8 @@ const CompareList = () => {
                                     <div className="compareList_details table-responsive">
                                         <table className="table compareList_table">
                                         <tbody>
-                                            {compareLists.length == 0 ?  <div></div>:
+                                            {
+                                            compareLists?.length == 0 ?  <td>No items found</td>:
                                                  compareAttr.map((tle,ind)=>(
                                                     <tr>
                                                         <th>{tle}</th>
