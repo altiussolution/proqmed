@@ -8,25 +8,16 @@ import Steth from "./../assets/steth.png"
 import Doc from "./../assets/hot_deals.png"
 import Glove from "./../assets/glove.png"
 import { getProductURL, getCategoryURL } from "./../utils/url";
+import { Slide } from 'react-slideshow-image';
 
 
-const feature_slide = {
-  autoplay: false,
-  speed: 1000,
-  slidesToShow:5,
+const properties = {
+  duration: 3000,
+  slidesToShow: 1,
   slidesToScroll: 1,
-  infinite: true,
-  responsive: [
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    },
-
-  ]
-}
+  autoplay: false,
+  indicators: true,
+};
 
 
 const Deals = () => {
@@ -57,12 +48,11 @@ const renderDeals = ()=>{
   if (dealProducts) { 
     return  <>
 {
-    dealProducts.map((data,index)=>(
-
+    dealProducts.slice(0 ,2).map((data,index)=>(
   <div className="card" key={`${data.sub_category}_${index}`}>
       <Link to={getCategoryURL(data.sub_category)}>{data.sub_category.name}</Link>
       <ul>
-      {data.sub_category.sub_category_sub.map((value,index)=>(
+      {data.sub_category.sub_category_sub.slice(0,4).map((value,index)=>(
         
  <><li>
  <div className="image_wrapper">

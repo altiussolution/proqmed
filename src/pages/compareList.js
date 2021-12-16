@@ -43,6 +43,7 @@ const CompareList = () => {
                     })
                     setCompareList(res.data)         
                     setLoader(false);
+                    console.log(attributesVal)
                 }
             }).catch((err) => {    
                 console.error(err)
@@ -98,11 +99,17 @@ const CompareList = () => {
                                     <div className="main_title">
                                         <h1>My <span>CompareList</span></h1>
                                     </div>
-                              
+                                   
+                                            {/* {localStorage.getItem('sampleVal')} */}
+                                           
+                                            
+                                            
                                     <div className="compareList_details table-responsive">
                                         <table className="table compareList_table">
                                         <tbody>
-                                            {compareList.length == 0 ?  <div></div>:
+                                            
+                                            {/* {compareList.length == 0 ?  <div></div>: */}
+                                                 {compareList ?
                                                  compareAttr.map((tle,ind)=>(
                                                     <tr>
                                                         <th>{tle}</th>
@@ -120,9 +127,11 @@ const CompareList = () => {
                                                             ))
                                                         }
                                                     </tr>
-                                                ))
+                                                )) : <div></div>
+                                                }
 
-                                            }
+
+                                           
                                         </tbody>
                                         </table>
                                     </div>
@@ -142,7 +151,7 @@ const CompareList = () => {
                         />
                     </main>)
                 }
-
+ 
             </Layout>
         </>
     )
