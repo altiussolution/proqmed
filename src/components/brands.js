@@ -33,11 +33,11 @@ console.log(item)
                 {    productBrand ?
                     (productBrand.slice(0, 18).map((data, index) => (
 
-                        <div className="brand_item">
-                            <div className="products" key={index}>
+                       
+                            <li key={index}>
                                 <Link to="/brandedProducts/" state={{ brand_id: data.brand_id }} ><img className="product_img" src={data.image} /></Link>
-                            </div>
-                        </div>
+                            </li>
+                       
 
                     ))) : <div></div>
 
