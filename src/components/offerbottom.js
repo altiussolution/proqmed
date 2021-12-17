@@ -44,7 +44,7 @@ return(
     <div className="row">
     <div className="col-lg-12 col" >
   <h2 className="section_title">
-                    <span>Featured Products</span>
+                    <span>As Seen On</span>
                     <span><Link to="/featuredProducts">+ View all Products</Link></span>
                     </h2>
                     </div>

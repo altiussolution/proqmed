@@ -5018,3 +5018,29 @@ font-size: 13px;
   position: sticky;
   top: 40px;
 }
+
+/* ------------------- seller styles -------------------  */
+
+.se_sidebar{
+  min-height: calc(100vh - 64px);
+  background: #181824;
+  font-family: Nunito,sans-serif;
+  font-weight: 600;
+  padding: 0;
+  width: 258px;
+  z-index: 11;
+}
+.se_page-body-wrapper{
+  display: flex;
+  flex-direction: row;
+  padding-left: 0!important;
+  padding-right: 0!important;
+}
+.se_main-panel {
+  -webkit-transition: width .25s ease,margin .25s ease;
+  transition: width .25s ease,margin .25s ease;
+  width: calc(100% - 258px);
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+}
