@@ -198,7 +198,7 @@ const Cart = () => {
                             <div className="content_wrapper">
                                 <div className="container">
                                     <div className="main_title">
-                                        <h1>My <span>Cart</span></h1>
+                                        <h1>My <span>Cart ({cartItems?.length})</span></h1>
                                     </div>
                                     <div className="row">
                                         <div className="col-lg-9 col-md-9 col-xs-12 no_data">
@@ -207,7 +207,8 @@ const Cart = () => {
                                         </div>
                                         <div className="col-lg-3 col-md-3 col-xs-12">
                                             <div className="side_sec">
-                                                <h3>Summary</h3>
+                                                {/* <h3>Summary</h3> */}
+                                                <h3>Cart Totals</h3>
                                                 <h6>Estimate Shipping and Tax</h6>
                                                 {checkoutDetails()}
                                                 <button className="btn btn_brown" type="button" onClick={() => navigate('/checkout')} disabled={cartItems?.length == 0}>Proceed to Checkout</button>

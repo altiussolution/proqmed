@@ -8,29 +8,21 @@ import Steth from "./../assets/steth.png"
 import Doc from "./../assets/hot_deals.png"
 import Glove from "./../assets/glove.png"
 import { getProductURL, getCategoryURL } from "./../utils/url";
+import { Slide } from 'react-slideshow-image';
 
 
-const feature_slide = {
-  autoplay: false,
-  speed: 1000,
-  slidesToShow:5,
+const properties = {
+  duration: 3000,
+  slidesToShow: 1,
   slidesToScroll: 1,
-  infinite: true,
-  responsive: [
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    },
-
-  ]
-}
+  autoplay: false,
+  indicators: true,
+};
 
 
 const Deals = () => {
   const [dealProducts, setDealsofday] = useState([]);
+  const [hotProducts, setHotsofday] = useState([]);
   const [customerId, setCustomerId] = useState("");
   const [jwt, setJwt] = useState("");
   const [quote_id, setQuoteId] = useState("");
@@ -48,21 +40,45 @@ const Deals = () => {
         await setDealsofday(json);
          console.log(json)
     };
+    const fetchHot = async () => {
+      const res = await fetch(
+          `${process.env.GATSBY_CART_URL_STARCARE}category/hotdeals/50`
+      );
+      const json = await res.json();
+      await setHotsofday(json);
+       console.log(json)
+  };
     fetchFeature();
-  
+    fetchHot();
 }, []);
 
+
+const renderHots =()=>{
+  if(hotProducts){
+    return (
+<div className="col-lg-4 text-center">
+  <h2 className="section_title">
+                    <span>Hot Deals</span>
+                    </h2>
+                    {
+    hotProducts.map((data,index)=>(
+      <Link to="/hotDeals">
+  <img className="HF_BImg" src={data.category_image} alt={"banner"}/></Link> )) }
+  </div>
+    )
+
+  }
+}
 
 const renderDeals = ()=>{
   if (dealProducts) { 
     return  <>
 {
-    dealProducts.map((data,index)=>(
-
+    dealProducts.slice(0 ,2).map((data,index)=>(
   <div className="card" key={`${data.sub_category}_${index}`}>
       <Link to={getCategoryURL(data.sub_category)}>{data.sub_category.name}</Link>
       <ul>
-      {data.sub_category.sub_category_sub.map((value,index)=>(
+      {data.sub_category.sub_category_sub.slice(0,4).map((value,index)=>(
         
  <><li>
  <div className="image_wrapper">
@@ -87,13 +103,7 @@ const renderDeals = ()=>{
     return ( <div className="hotoffer_banner">
     <div className="container">
 <div className="row">
-  <div className="col-lg-4 text-center">
-  <h2 className="section_title">
-                    <span>Hot Deals</span>
-                    </h2>
-
-  <img className="HF_BImg" src={Doc} alt={"banner"}/> 
-  </div>
+{renderHots()}
   <div className="col-lg-8 padding_se">
   <h2 className="section_title"><span>Deal of the Day</span>
   <span><Link to="/dealProducts">+ View all Products</Link></span>

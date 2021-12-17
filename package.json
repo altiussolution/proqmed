@@ -25,6 +25,7 @@
     "gatsby-source-filesystem": "^2.3.31",
     "gatsby-transformer-sharp": "^2.5.16",
     "group-array": "^1.0.0",
+    "image-to-base64": "^2.2.0",
     "is-image-url": "^1.1.8",
     "jquery": "^3.5.1",
     "prop-types": "^15.7.2",
