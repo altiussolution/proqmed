@@ -155,7 +155,7 @@ const Wishlist = () => {
                             <div className="content_wrapper">
                                 <div className="container">
                                     <div className="main_title">
-                                        <h1>My <span>Wishlist</span></h1>
+                                        <h1>My Wishlist <span>(5)</span></h1>
                                     </div>
 
 
@@ -166,7 +166,9 @@ const Wishlist = () => {
                                             <h4>No items in Wishlist</h4>
                                         </div> :
                                             <div className="col-lg-12 col-md-12 col-xs-12">
-
+<div className="col-lg-9 col-md-12 col-xs-12">
+    
+    
                                                 {
                                                     wishList.map((item, index) => (
                                                         <div key={item.sku} className="product_item">
@@ -183,16 +185,26 @@ const Wishlist = () => {
                                                                 <div className="qty_price">
                                                                     <h6>${parseFloat(item.price).toFixed(2)}</h6>
                                                                 </div>
-                                                            </div>
-                                                            <div className="user_actions">
+
+                                                                <div className="user_actions">
                                                                 {/* <button className="btn_gray btn" onClick={() => navigate('/checkout')} >Buy Now</button> */}
                                                                 <button className="btn_gray btn" onClick={() => addtoCartItem(item.sku, item.id)}>Add to cart</button>
                                                                 <button className="btn btn_remove" type="button" onClick={() => removeWishList(item.id, 'remove')}>Remove</button>
                                                             </div>
+                                                            </div>
+                                                            
                                                         </div>
                                                     ))
                                                 }
+                                                </div>
+
+                                                <div className="col-lg-3 col-md-12 col-xs-12">
+                                                    sample
+
+                                                </div>
                                             </div>
+
+                                            
                                         }
                                     </div>
                                 </div>
