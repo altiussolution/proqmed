@@ -21,7 +21,7 @@ import classNames from 'classnames';
 import './layout.css';
 import cart from './../assets/ic_cart_top.png';
 import Home from '../pages/Se/sellerhome';
-
+// import imageToBase64 from 'image-to-base64/browser';
 const Header = ({ siteTitle, cartCount, allCategory }) => {
 
   const [isuserlogged, setIsLogged] = useState(false);
@@ -64,6 +64,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
         url: `${process.env.GATSBY_CART_URL_STARCARE}customerprofile/${email}`,
       }).then((res) => {
         if (res.statusText === "OK" && res.status == 200) {
+          console.log(res,"profile")
           setProfile(res.data[0]);
           setShow(true);
         }
@@ -73,8 +74,24 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
     }
   }
   const onFileChange = (event) => {
-    setpic(event.target.files[0].name);
-    console.log(setpic)
+    // imageToBase64(event.target.files[0].name) // Path to the image
+    // .then(
+    //     (response) => {
+          // console.log(response)
+            // state(response);
+            // const res = response
+            // setpic(res);
+            // console.log(setpic)
+             // "cGF0aC90by9maWxlLmpwZw=="
+    //     }
+    // )
+    // .catch(
+    //     (error) => {
+    //         console.log(error); // Logs an error if there was one
+    //     }
+    // )
+    // setpic(event.target.files[0].name);
+    // console.log(setpic)
   };
 
   const onFileUpload = () => {
@@ -424,7 +441,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
                     <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
-                    {isuserlogged && <li onClick={getProfile}>My Profile</li>}
+                    {isuserlogged && <li onClick={getProfilepic}>My Profile</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                     {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
                   </ul>
@@ -490,10 +507,10 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
             <div className="menu_botm">
               <ul>
                   <li onClick={() => { navigateOnclick('/') }}><a>Home</a></li>
-                  <li onClick={() => { navigateOnclick('/orders') }}><a>Shop</a></li>
-                  <li onClick={() => { navigateOnclick('/wishlist') }}><a >About</a></li>
-                  <li onClick={() => { navigateOnclick('/compareList') }}><a >Contact</a></li>
-                  <li onClick={() => { navigateOnclick('/changePassword') }}><a >Order Tracking</a></li>
+                  <li onClick={() => { navigateOnclick('/mainCategory') }}><a>Shop</a></li>
+                  <li onClick={() => { navigateOnclick('/aboutUs') }}><a >About</a></li>
+                  <li onClick={() => { navigateOnclick('/contact') }}><a >Contact</a></li>
+                  <li onClick={() => { navigateOnclick('/tracking') }}><a >Order Tracking</a></li>
                   <li onClick={() => { navigateOnclick('/Se/sellerhome') }}><a>Sell on Proqmed</a></li>                  
               </ul>
               <ul className="contact_top">
@@ -522,7 +539,8 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
         <Modal.Body>
           <div className="profile_sec">
             <div className="profile_pic">
-              <img src={profilepic.logo} />
+            {profilepic.logo ? <img src={`data:image/png;base64,${profilepic.logo}`}/>: ''}
+              {/* <img src={profilepic.logo} /> */}
               <input type="file" onChange={onFileChange}/>
               <button onClick={onFileUpload}>
                   Upload!
