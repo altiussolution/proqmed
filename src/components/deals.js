@@ -54,7 +54,7 @@ const Deals = () => {
 
 
 const renderHots =()=>{
-  if(hotProducts){
+  if(hotProducts.length ==0){
     return (
 <div className="col-lg-4 text-center">
   <h2 className="section_title">
@@ -67,6 +67,15 @@ const renderHots =()=>{
   </div>
     )
 
+  }else {
+    return (
+      <div className="col-lg-4 text-center">
+        <h2 className="section_title">
+                          <span>Hot Deals</span>
+                          </h2>
+          <div>No Products found</div>
+        </div>
+          )
   }
 }
 

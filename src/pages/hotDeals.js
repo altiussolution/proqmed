@@ -125,21 +125,21 @@ const renderProducts = () => {
                      {data.products.map((value,index)=>(  
                       <><div className="wishComp">
                        <ul>
-                        <li><a onClick={() => addToList(2, value.Id)}><FaRegHeart /></a></li>
+                        <li><a onClick={() => addToList(2, value.id)}><FaRegHeart /></a></li>
                        </ul>
                       </div><div className="image_wrapper">
                         <div className="actn_btn_holder">
                          <ul>
-                          <li className="icn"><a onClick={() => addtoCartItems(value.Sku, value.Id)}><BiShoppingBag /></a></li>
+                          <li className="icn"><a onClick={() => addtoCartItems(value.sku, value.id)}><BiShoppingBag /></a></li>
                           {/* <li>{<Link className="btn" to={getProductURL(value)}
                            state={value}>View Detail</Link>}</li> */}
-                          <li className="icn"><a onClick={() => addToList(1, value.Id)}><IoIosGitCompare /></a></li>
+                          <li className="icn"><a onClick={() => addToList(1, value.id)}><IoIosGitCompare /></a></li>
                          </ul>
                         </div>
-                        <img src={value.Image} />
+                        <img src={value.image} />
 
                        </div>
-                       <p className="product_title">{value.Name}</p>
+                       <p className="product_title">{value.name}</p>
                        </>   
                       ))} 
                      
@@ -176,6 +176,10 @@ const renderProducts = () => {
   </Layout>
 )
 }
+
+
+
+
 export default Hotproducts;
 
 
