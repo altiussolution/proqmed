@@ -375,9 +375,11 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
       </div>
   }
   
+  
+
   return (
 
-    <header>
+    <header className="header-section">
       {/* <div className="d-none d-md-none d-lg-block"> */}
       <div>
         

@@ -5282,3 +5282,9 @@ button.btn.btn.outline {
 .dod_inner .slick-prev, .dod_inner .slick-next {
   top: 24px!important;
 }
+header{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+

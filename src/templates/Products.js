@@ -287,7 +287,7 @@ const Products = ({ pageContext, location }) => {
                     <div className="category_container">
                     
                       <div className="cat_scroll">
-                        <div className="container_">
+                        <div className="container">
                           <div id="products" className="row list-group">
 
                             {renderProducts()}

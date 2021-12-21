@@ -70,10 +70,10 @@ const Featuredproducts = () => {
 
     const renderProducts = () => {    
         if (featureProducts) { 
-            return <div>   
+            return <div id="products_fp" className="row">   
                 {       
                     featureProducts.map((data,index) => (
-                        <div className="item" key={`${data.name}_${index}`}>
+                        <div className="item product_item sample" key={`${data.name}_${index}`}>
                             <div className="card">    
                             <div className="wishComp">
                                     <ul>
@@ -121,7 +121,33 @@ const Featuredproducts = () => {
     
     return (
         <Layout>
-            <div>{renderProducts()}</div>
+          <div className="content_wrapper">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+                <h1 className="page-title">
+                    <div>
+                    <span>Featured Products</span>
+                  <div className="breadcrumbs_sec" >
+                    adasd
+                  </div>
+                  </div>
+                  </h1>
+                  <div className="category_container">
+                    
+                      <div className="cat_scroll">
+                        <div className="container">
+                          
+                  {renderProducts()}
+                  
+                  </div>
+                  </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
         </Layout>
     )
 }  
