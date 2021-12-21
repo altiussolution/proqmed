@@ -155,7 +155,8 @@ const Wishlist = () => {
                             <div className="content_wrapper">
                                 <div className="container">
                                     <div className="main_title">
-                                        <h1>My Wishlist <span>(5)</span></h1>
+                                        {/* <h1>My Wishlist <span>(5)</span></h1> */}
+                                        <h1>My Wishlist<span> ({wishList.length})</span></h1>
                                     </div>
 
 
@@ -189,7 +190,7 @@ const Wishlist = () => {
                                                                 <div className="user_actions">
                                                                 {/* <button className="btn_gray btn" onClick={() => navigate('/checkout')} >Buy Now</button> */}
                                                                 <button className="btn_gray btn" onClick={() => addtoCartItem(item.sku, item.id)}>Add to cart</button>
-                                                                <button className="btn btn_remove" type="button" onClick={() => removeWishList(item.id, 'remove')}>Remove</button>
+                                                                <button className="btn btn_remove" type="button" onClick={() => removeWishList(item.id, 'remove')}>Delete</button>
                                                             </div>
                                                             </div>
                                                             

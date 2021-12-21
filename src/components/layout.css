@@ -4312,6 +4312,9 @@ section.inner_banner_section {
   margin-top: 5px;
   width: 46px;
 }
+.banner_top{
+  /* margin-bottom: 20px; */
+}
 
 .banner_top_left{
   padding-left: 0px!important;

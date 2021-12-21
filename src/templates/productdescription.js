@@ -156,6 +156,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
     const res = axios.get(
       `${process.env.GATSBY_CART_URL_STARCARE}admin/minmaxquantity/${proDescription.items.id}`
     ).then((data) => {
+      console.log(data.data[0])
       setMin(Math.round(data.data[0].min_sale_qty));
       setMax(Math.round(data.data[0].max_sale_qty));
     })
@@ -532,7 +533,9 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         }
                       </div>
                       <div className="button_sec">
-                        <button onClick={() => addItemToCart(cartItem)} className="btn_gray btn" disabled={isButton}>
+                        <button onClick={() => addItemToCart(cartItem)} className="btn_gray btn"
+                        //  disabled={isButton}
+                         >
                           Add To Cart
               </button>
                         <button onClick={() => quotePopupOpen()} className="btn_gray btn ml-1">
@@ -571,12 +574,12 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         }
                       </div>
                     }
-                    <div>
+                    {/* <div>
                       <div className="input-group mb-3 mt-2">
                         <input type="tel" id="pincode" name="postcode" placeholder="Zip/Postal Code " onChange={handleChange1} maxLength="6" className="form-control" />
                         <button onClick={() => pinCodeChecker(document.getElementById('pincode').value, proDescription.items.id)} className="input-group-text" disabled={Istrue}>Zip/Postal Code</button>
                       </div>
-                    </div>
+                    </div> */}
                     <ToastContainer
                       position="bottom-right"
                       autoClose={5000}
