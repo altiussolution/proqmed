@@ -54,8 +54,16 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
     setJwt(localStorage.userToken);
     setEmail(localStorage.email);
     setName(localStorage.getItem('user_name'))
+    window.addEventListener('scroll', isSticky);
+    return () => {
+        window.removeEventListener('scroll', isSticky);
+    };
   }, [])
-
+const isSticky = (e) => {
+                    const header = document.querySelector('.header-section');
+                    const scrollTop = window.scrollY;
+                    scrollTop >= 250 ? header.classList.add('is-sticky') : header.classList.remove('is-sticky');
+                };
 
   const getProfile = () => {
     if (jwt) {
@@ -444,6 +452,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
                     <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <li onClick={getProfilepic}>My Profile</li>}
+                    {isuserlogged && <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                     {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
                   </ul>
