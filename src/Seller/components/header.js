@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar } from 'react-bootstrap';
 import logo from '../../assets/logo.png';
 import { Link } from "gatsby"
-import Menu from "./sidebar";
+// import Menu from "./sidebar";
 
 // const Header = ({ siteTitle, cartCount, allCategory }) => {
   class Header extends React.Component {
@@ -20,7 +20,7 @@ render() {
 <Navbar>
 
 
-        <Menu/>
+        {/* <Menu/> */}
 <Navbar.Brand className="logo">
               <Link to="/">
                 <img src={logo}></img>

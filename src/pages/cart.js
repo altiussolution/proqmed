@@ -7,6 +7,9 @@ import PageLoader from "../components/loaders/pageLoader";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AiTwotoneDelete } from "react-icons/ai";
+import { AiTwotoneHeart } from "react-icons/ai";
+
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([])
@@ -132,7 +135,7 @@ const Cart = () => {
         return <div>
             {
                 cartItems.map((cart, index) => (
-                    <div className="product_item" key={cart.product_id}>
+                    <div className="product_item cart" key={cart.product_id}>
                         <div className="product_img">
                             <img src={cart.image} />
                         </div>
@@ -154,15 +157,25 @@ const Cart = () => {
                                 <h6>${parseFloat(cart.price).toFixed(2)}</h6>
                             </div>
 
+                            
+
                         </div>
-                        <div className="user_actions">
+
+                        <div className="casualities">
+                                <a href="#"> <AiTwotoneDelete /></a>
+                                <button className="btn btn heart" type="button"><AiTwotoneHeart /></button>
+                            </div>
+                        {/* <div className="user_actions">
                             <button className="btn btn_gray" type="button" onClick={() => { updateCart(cart) }}>Update</button>
                             <button className="btn btn_remove" type="button" onClick={() => { resetCart(cart.item_id) }}>Remove</button>
-                        </div>
+                        </div> */}
                     </div>
+                    
+                    
                 ))
             }
         </div>
+        
 
     }
 
@@ -197,14 +210,23 @@ const Cart = () => {
                         <div className="App">
                             <div className="content_wrapper">
                                 <div className="container">
-                                    <div className="main_title">
-                                        <h1>My <span>Cart ({cartItems?.length})</span></h1>
-                                    </div>
+                                   
                                     <div className="row">
                                         <div className="col-lg-9 col-md-9 col-xs-12 no_data">
+
+
+                                        <div className="main_title left">
+                                        <h1>My Cart <span>(5)</span>  </h1>
+                                    </div>
+
                                             {/* {localStorage.getItem('sampleVal')} */}
                                             {cartItems?.length == 0 ? (<h1>No Item found</h1>) : showCartItems()}
+
+                                            
                                         </div>
+                                       
+
+                                        
                                         <div className="col-lg-3 col-md-3 col-xs-12">
                                             <div className="side_sec">
                                                 {/* <h3>Summary</h3> */}
@@ -214,6 +236,13 @@ const Cart = () => {
                                                 <button className="btn btn_brown" type="button" onClick={() => navigate('/checkout')} disabled={cartItems?.length == 0}>Proceed to Checkout</button>
                                                 <button className="btn btn-default" type="button" onClick={() => navigate('/')}>Continue to Shopping</button>
                                             </div>
+                                        </div>
+
+                                        <div className="col-lg-9 col-md-9 col-xs-12">
+                                        <div className="casualities bottom">
+                                <a href="#"> Continue Shopping  </a>
+                                <button className="btn btn update" type="button"> Update Cart  </button>
+                            </div>
                                         </div>
                                     </div>
                                 </div>
