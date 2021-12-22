@@ -520,11 +520,11 @@ list-style: none;
     -o-display: flex;
      display: flex;
     align-items: center;
-        -webkit-justify-content: space-between;
+        /* -webkit-justify-content: space-between;
     -moz-justify-content: space-between;
     -ms-justify-content: space-between;
     -o-justify-content: space-between;
-      justify-content: space-between;
+      justify-content: space-between; */
   }
   .product_view .product_details .product_note .prd_note {
        -webkit-display: flex;
@@ -537,13 +537,19 @@ list-style: none;
   .product_view .product_details .product_note .prd_note p {
     margin: 0;
     font-size: 16px;
+    font-weight: 300;
     color: #afaeae;
     text-transform: uppercase;
-    margin-right: 30px;
+    margin-right: 10px;
   }
+
+  .prd_note a {
+    color: #afaeae;
+    font-weight: 300;
+}
   .product_view .product_details .product_note .prd_note p span {
     font-size: 16px;
-    color: #333;
+    color: #afaeae;
     padding-left: 5px;
   }
   .product_view .product_details .product_note .prd_note .colon {
@@ -552,8 +558,12 @@ list-style: none;
     padding: 0 10px;
   }
   .product_view .product_details .product_note i {
-    color: #97b433;
+    color: #ffffff;
     font-size: 14px;
+    background: rgb(1,170,103);
+    padding: 5px 10px;
+    border-radius: 3px;
+    
   }
   .product_view .product_details .product_qty {
     border-bottom: 2px dotted #ccc;
@@ -564,7 +574,7 @@ list-style: none;
     -o-display: flex;
      display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
   }
   .product_view .product_details .product_qty p {
     margin: 0;
@@ -1004,15 +1014,14 @@ section.breadcrums ul li a::after {
 }
 .product_detail_action {
   display: flex;
-  flex-direction: column;
-  margin-left: 20px;
+  margin-left: 0;
   font-size: 13px;
   line-height: 24px;
-  text-align: right;
 }
 .qty_inner{
   display: flex;
   align-items: center;
+  margin-right: 30px;
 }
 .react-slider__ul li.active img {
   border: 2px solid #e7ab3c!important;

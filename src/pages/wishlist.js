@@ -156,10 +156,8 @@ const Wishlist = () => {
                             <div className="content_wrapper">
                                 <div className="container">
                                     <div className="main_title">
-
-                                        <h1>My Wishlist <span>(5)</span></h1>
-
-                                        
+                                        {/* <h1>My Wishlist <span>(5)</span></h1> */}
+                                        <h1>My Wishlist<span> ({wishList.length})</span></h1>
                                     </div>
 
 
@@ -169,10 +167,9 @@ const Wishlist = () => {
                                             <img src={empty_cart} alt={"Empty Cart"} />
                                             <h4>No items in Wishlist</h4>
                                         </div> :
-                                            <div className="col-lg-12 col-md-12 col-xs-12">
-<div className="col-lg-9 col-md-12 col-xs-12">
-    
-    
+                                            <div className="col-lg-12 col-md-12 col-xs-12">                                        
+ 
+    <div className="fo-bg-white">
                                                 {
                                                     wishList.map((item, index) => (
                                                         <div key={item.sku} className="product_item">
@@ -206,22 +203,22 @@ const Wishlist = () => {
                                                                     <h6>${parseFloat(item.price).toFixed(2)}</h6>
                                                                 </div>
 
-                                                                <div className="user_actions">
+                                                                
+                                                            </div>
+                                                            <div className="user_actions">
+                                                                    <p>Item added 26 November</p>
                                                                 {/* <button className="btn_gray btn" onClick={() => navigate('/checkout')} >Buy Now</button> */}
                                                                 <button className="btn_gray btn" onClick={() => addtoCartItem(item.sku, item.id)}>Add to cart</button>
-                                                                <button className="btn btn_remove" type="button" onClick={() => removeWishList(item.id, 'remove')}>Delete</button>
-                                                            </div>
+                                                                <button className="btn btn_outline" type="button" onClick={() => removeWishList(item.id, 'remove')}>Delete</button>
                                                             </div>
                                                             
                                                         </div>
                                                     ))
                                                 }
                                                 </div>
+                                                
 
-                                                <div className="col-lg-3 col-md-12 col-xs-12">
-                                                    sample
-
-                                                </div>
+                                                
                                             </div>
 
                                             
