@@ -258,26 +258,27 @@ return (
             <PageLoader />
           </div>
         ) :
-    <section>
+        <div>
+     <section>
     <div className="categorylistpage"> 
-      <div className="container">
+       <div className="container">
         <div className="product_view">  
           <div className="row upper-space">
-            <Productdescription proDescription = {product} setcartCount={cartValue.bind(this)} setWishListCnt={wistlistsValue.bind(this)}/>
-            <div className="technical_sec">
-            </div>
-          <div className="suma">
-            </div>
-          </div>
-          <div class="full-desc-tabs">
-          <Technicalspec specification = {product} attachment={attach_data}/>
-          </div>
-        </div>        
+             <Productdescription proDescription = {product} setcartCount={cartValue.bind(this)} setWishListCnt={wistlistsValue.bind(this)}/>
+             <div className="technical_sec">
+             </div>
+           <div className="suma">
+             </div>
+           </div>
+           <div class="full-desc-tabs">
+           <Technicalspec specification = {product} attachment={attach_data}/>
+           </div>
+         </div>        
       </div>
-    </div>
-    </section> 
+     </div>
+     </section> 
   
-} 
+
 {sellerprod.length == 0? <span></span>:
   <section className="page_content inner_page">
                     <div className="container boxed-content">
@@ -365,6 +366,8 @@ return (
     pauseOnHover
 />
 </section>
+}
+</div>
 }
 </Layout>
   
