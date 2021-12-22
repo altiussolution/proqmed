@@ -8,7 +8,7 @@ import { wishListCount, addToCart, viewCartItems, getCartCount, getWLCount } fro
 import empty_cart from './../assets/empty.png';
 import { navigate } from "gatsby";
 import { checkLogin } from "./../services/headerServices";
-
+import StarRatings from 'react-star-ratings';
 
 const Wishlist = () => {
 
@@ -45,6 +45,7 @@ const Wishlist = () => {
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
                     setWishList(res.data)
+                    console.log(res.data)
                     wishListCount();
                     wistlistsValue();
                     setLoader(false);
@@ -180,9 +181,25 @@ const Wishlist = () => {
                                                             </div>
                                                             <div className="product_desc">
                                                                 <h3>{item.name}</h3>
+                                                                <span>{item.created_at}</span>
                                                                 <ul>
                                                                     <li>
                                                                         <p>SKU <span>{item.sku}</span></p>
+                                                                    </li>
+                                                                    <li>
+                                                                        <p>
+                                                                            {/* <StarRatings
+                      numberOfStars={5}
+                      name='value_rating'
+                      rating={item.rating_percentage}
+                      starDimension="25px"
+                      starSpacing="1px"
+                      starRatedColor="rgb(242 187 22)"
+                      starHoverColor="rgb(242 187 22)"
+                      isSelectable={true}
+                    /> */}
+                    <span>{item.review_count}</span>
+                                                                             </p>
                                                                     </li>
                                                                 </ul>
                                                                 <div className="qty_price">
