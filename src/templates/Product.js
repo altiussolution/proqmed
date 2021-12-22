@@ -40,6 +40,7 @@ const Product = props  => {
   const [productdata, setProductdata] = useState([]);
   const [cartCount, setcartCount] = useState(null);
   const [attach_data, setattachment] = useState(null);
+  const [sellerprod, setothersellers] = useState(null);
   const [jwt, setJwt] = useState("");
   const id = props.slug.split("-").slice(-1)[0]; 
   const [data, setData] = useState([  
@@ -70,7 +71,12 @@ const Product = props  => {
             `${process.env.GATSBY_CART_URL_STARCARE}admin/productattachments/${id}`).then((data)=>{
               let response_data = data.data
               setattachment(response_data)
-          }) 
+          })
+          await axios.get(
+            `${process.env.GATSBY_CART_URL_STARCARE}compare/sellerproducts/current_product_id/${id}`).then((data)=>{
+              let response_data = data.data
+              setothersellers(response_data)
+          })  
           setLoading(false);
           if(data){
             setData([  
@@ -272,6 +278,60 @@ return (
     </section> 
   
 } 
+{sellerprod.length == 0? <span></span>:
+  <section className="page_content inner_page">
+                    <div className="container boxed-content">
+                        <div className="sec_block">
+                            <div className="row page_title_sec">
+                                <h3 className="text-capitalize">More sellers selling this product</h3>
+                            </div>
+                            <div className="row compare_section cart_page">
+                                <table className="table compareList_table">
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Seller Name</th>
+                                            <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    {
+                                        sellerprod.map((quote, index) => (
+                                            <tbody key={index}>
+
+                                                <tr>
+
+                                                    <td>
+                                                        <img src={quote.product_image}></img>
+                                                    </td>
+                                                    <td>
+                                                        <span>{quote.seller}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span>{quote.product_name}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span>{quote.price}</span>
+                                                    </td>
+                                                    <td className="action_sec">
+                                                        <span>
+                                                            <button className="action action_btn btn btn_gray" onClick={() => addtoCartItems(1,1)}>Add to Cart
+                              </button>
+                                                            
+                                                        </span>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        ))
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+}
 {productdata.length == 0? <span></span>:
 <section className="feature_section">
 <div className="container">

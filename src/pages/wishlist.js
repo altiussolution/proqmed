@@ -166,10 +166,9 @@ const Wishlist = () => {
                                             <img src={empty_cart} alt={"Empty Cart"} />
                                             <h4>No items in Wishlist</h4>
                                         </div> :
-                                            <div className="col-lg-12 col-md-12 col-xs-12">
-<div className="col-lg-9 col-md-12 col-xs-12">
-    
-    
+                                            <div className="col-lg-12 col-md-12 col-xs-12">                                        
+ 
+    <div className="fo-bg-white">
                                                 {
                                                     wishList.map((item, index) => (
                                                         <div key={item.sku} className="product_item">
@@ -198,11 +197,9 @@ const Wishlist = () => {
                                                     ))
                                                 }
                                                 </div>
+                                                
 
-                                                <div className="col-lg-3 col-md-12 col-xs-12">
-                                                    sample
-
-                                                </div>
+                                                
                                             </div>
 
                                             

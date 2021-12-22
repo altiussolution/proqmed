@@ -21,7 +21,7 @@ import classNames from 'classnames';
 import './layout.css';
 import cart from './../assets/ic_cart_top.png';
 import Home from '../pages/Se/sellerhome';
-import imageToBase64 from 'image-to-base64/browser';
+// import imageToBase64 from 'image-to-base64/browser';
 const Header = ({ siteTitle, cartCount, allCategory }) => {
 
   const [isuserlogged, setIsLogged] = useState(false);
@@ -54,8 +54,16 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
     setJwt(localStorage.userToken);
     setEmail(localStorage.email);
     setName(localStorage.getItem('user_name'))
+    window.addEventListener('scroll', isSticky);
+    return () => {
+        window.removeEventListener('scroll', isSticky);
+    };
   }, [])
-
+const isSticky = (e) => {
+                    const header = document.querySelector('.header-section');
+                    const scrollTop = window.scrollY;
+                    scrollTop >= 250 ? header.classList.add('is-sticky') : header.classList.remove('is-sticky');
+                };
 
   const getProfile = () => {
     if (jwt) {
@@ -74,22 +82,22 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
     }
   }
   const onFileChange = (event) => {
-    imageToBase64(event.target.files[0].name) // Path to the image
-    .then(
-        (response) => {
+    // imageToBase64(event.target.files[0].name) // Path to the image
+    // .then(
+    //     (response) => {
           // console.log(response)
             // state(response);
-            const res = response
-            setpic(res);
-            console.log(setpic)
+            // const res = response
+            // setpic(res);
+            // console.log(setpic)
              // "cGF0aC90by9maWxlLmpwZw=="
-        }
-    )
-    .catch(
-        (error) => {
-            console.log(error); // Logs an error if there was one
-        }
-    )
+    //     }
+    // )
+    // .catch(
+    //     (error) => {
+    //         console.log(error); // Logs an error if there was one
+    //     }
+    // )
     // setpic(event.target.files[0].name);
     // console.log(setpic)
   };
@@ -375,9 +383,11 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
       </div>
   }
   
+  
+
   return (
 
-    <header>
+    <header className="header-section">
       {/* <div className="d-none d-md-none d-lg-block"> */}
       <div>
         
@@ -442,6 +452,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
                     <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <li onClick={getProfilepic}>My Profile</li>}
+                    {isuserlogged && <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                     {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
                   </ul>

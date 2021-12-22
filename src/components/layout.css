@@ -16,7 +16,18 @@ body {
   /* overflow-x:hidden; */
 
 }
-
+.is-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 2px 24px 0 rgb(0 0 0 / 15%);
+    background-color: #ffffff !important;
+    animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
 .container {
     max-width: 1280px!important;
 }
@@ -1212,7 +1223,7 @@ button.btn.btn_whislist {
   box-shadow: unset;
 }
 .side_sec .btn_brown{
-  background: #694e1e;
+  background: #f3a42c;
   color: #fff;
   margin: 0;
   margin-top: 10px;
@@ -4244,6 +4255,7 @@ width: 24%;
 }
 .whishlist_page .product_item .product_img {
   padding: 0px!important;
+  width: 20%;
 }
 
 .page_content.inner_page .main_title {
@@ -5111,7 +5123,7 @@ font-size: 13px;
 }
 
 .button_sec button.btn.btn.green {
-  background: #00aa67;
+  background: #f3a42c;
   color: #fff;
   margin-right: 15px;
 }
@@ -5198,7 +5210,7 @@ button.btn.btn.outline {
   font-size: 30px;
   margin: 0;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: gi;
   white-space: nowrap;
   width: 260px;
 }
@@ -5284,4 +5296,65 @@ button.btn.btn.outline {
 }
 .dod_inner .slick-prev, .dod_inner .slick-next {
   top: 24px!important;
+}
+header{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.fo-bg-white .product_item {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 3px 8px;
+  width: 47%;
+  margin-right: 25px;
+}
+
+
+.fo-bg-white {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fo-bg-white .product_desc ul {
+    margin-bottom: 10px;
+}
+
+.fo-bg-white .user_actions {
+  position: unset !important;
+}
+
+.fo-bg-white button.btn_gray.btn {
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+.fo-bg-white .user_actions .btn.btn_remove, .btn_next{
+  background-color: #F3A42C;
+  color: #fff;
+}
+
+.modal-dialog {
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  margin: 50px auto;
+}
+
+.profile_modal .profile_pic {
+  background: #f3f3f3;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.profile_pic button {
+  background-color: #F3A42C;
+  color: #fff;
+  outline: none;
+  border: none;
+  padding: 5px 30px;
+  border-radius: 5px;
 }
