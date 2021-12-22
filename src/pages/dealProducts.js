@@ -117,29 +117,54 @@ const addtoCartItems = (sku, id) => {
 }
 const renderProducts = () => {    
  if (dealProducts) { 
-     return <div>   
+     return <div className="row products_fp">   
          {       
              dealProducts.map((data,index) => (
-                 <div className="item" key={`${data.sub_category}_${index}`}>
-                     <div className="card"> 
+                 <div className="item product_item sample" key={`${data.sub_category}_${index}`}>
+                      
                      {data.sub_category.sub_category_sub.map((value,index)=>(  
-                      <><div className="wishComp">
+                      <><div className="card">
+                      <div className="wishComp">
                        <ul>
                         <li><a onClick={() => addToList(2, value.id)}><FaRegHeart /></a></li>
                        </ul>
                       </div><div className="image_wrapper">
-                        <div className="actn_btn_holder">
+                        {/* <div className="actn_btn_holder">
                          <ul>
                           <li className="icn"><a onClick={() => addtoCartItems(value.sku, value.id)}><BiShoppingBag /></a></li>
                           <li>{<Link className="btn" to={getProductURL(value)}
                            state={value}>View Detail</Link>}</li>
                           <li className="icn"><a onClick={() => addToList(1, value.id)}><IoIosGitCompare /></a></li>
                          </ul>
-                        </div>
+                        </div> */}
                         <img src={value.image} />
 
                        </div>
                        <p className="product_title">{value.name}</p>
+                       <div className="price_holder">
+                                <div className="price_left">                                  
+                                    <div className="product_amt">
+                                    <span className="new_price">$000</span>
+                                        <span className="price">asdasdas</span>
+                                        
+                                    </div>
+                                    <div className="rating_front">
+                                    {/* <StarRatings
+                                        rating={Math.round(data.ratings_summary)}
+                                        numberOfStars={5}
+                                        name='rating'
+                                        starDimension="20px"
+                                        starSpacing="0px"
+                                        starRatedColor="rgb(242 187 22)"
+                                    /> */}
+                                    
+                                    </div>
+                                </div>
+                                  <div className="price_right">                                   
+                                  <button className="addtocart"><span class="cart_svg"></span></button>
+                                  </div>
+                                </div>
+                                </div>
                        </>   
                       ))} 
                      
@@ -162,7 +187,7 @@ const renderProducts = () => {
                              </div>
 
                          </div> */}
-                     </div>
+                     
 
                  </div>
              ))
@@ -172,7 +197,33 @@ const renderProducts = () => {
 }
  return (
   <Layout>
-      <div>{renderProducts()}</div>
+      <div className="content_wrapper">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+                <h1 className="page-title">
+                    <div>
+                    <span>Deal Products</span>
+                  <div className="breadcrumbs_sec" >
+                    adasd
+                  </div>
+                  </div>
+                  </h1>
+                  <div className="category_container">
+                    
+                      <div className="cat_scroll">
+                        <div className="container">
+                          
+                  {renderProducts()}
+                  
+                  </div>
+                  </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
   </Layout>
 )
 }
