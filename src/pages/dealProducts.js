@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { navigate } from "gatsby";
 import {getWLCount, wishListCount,viewCartItems,getCartCount } from '../utils/apiServices'
+import { data } from "jquery";
 
 
 const Dealproducts = () => {
@@ -21,6 +22,7 @@ const Dealproducts = () => {
  const [qty, setQty] = useState(1);
  const [isButton, setButton] = useState(false);
  const [cartCnt, setCartCnt] = useState(getCartCount())
+ const [sub,setsubproducts] = useState(null);
  useEffect(() => {
      setCustomerId(localStorage.customer_id)
      setJwt(localStorage.userToken)
@@ -31,10 +33,15 @@ const Dealproducts = () => {
          );
          const json = await res.json();
          await setDealProducts(json);
-          
+         {json.map((data,index)=>(
+          setsubproducts(data.sub_category.sub_category_sub)
+        ))}
      };
      fetchFeature();
+    
+     
  }, []);
+ 
  const addToList = (type,id) => {
   // type 1 = wishlist
   // type 2 = comparelist
@@ -116,17 +123,17 @@ const addtoCartItems = (sku, id) => {
  }
 }
 const renderProducts = () => {    
- if (dealProducts) { 
+ if (sub) { 
      return <div className="row products_fp">   
          {       
-             dealProducts.map((data,index) => (
-                 <div className="item product_item sample" key={`${data.sub_category}_${index}`}>
+             sub.map((data,index) => (
+                 <div className="item product_item sample">
                       
-                     {data.sub_category.sub_category_sub.map((value,index)=>(  
+                     {/* {data.sub_category.sub_category_sub.map((value,index)=>(   */}
                       <><div className="card">
                       <div className="wishComp">
                        <ul>
-                        <li><a onClick={() => addToList(2, value.id)}><FaRegHeart /></a></li>
+                        <li><a onClick={() => addToList(2, data.id)}><FaRegHeart /></a></li>
                        </ul>
                       </div><div className="image_wrapper">
                         {/* <div className="actn_btn_holder">
@@ -137,10 +144,10 @@ const renderProducts = () => {
                           <li className="icn"><a onClick={() => addToList(1, value.id)}><IoIosGitCompare /></a></li>
                          </ul>
                         </div> */}
-                        <img src={value.image} />
+                        <img src={data.image} />
 
                        </div>
-                       <p className="product_title">{value.name}</p>
+                       <p className="product_title">{data.name}</p>
                        <div className="price_holder">
                                 <div className="price_left">                                  
                                     <div className="product_amt">
@@ -166,7 +173,7 @@ const renderProducts = () => {
                                 </div>
                                 </div>
                        </>   
-                      ))} 
+                       {/* ))}  */}
                      
                                                      
                          
