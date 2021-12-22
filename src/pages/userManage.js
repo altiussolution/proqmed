@@ -312,7 +312,7 @@ const onSubmitQuoteadd = quoteDetails => {
         />
                                     {errors.status && errors.status.type === 'required' && <span className="error">Status is required</span>}
                                 </div>
-                                <button type="submit" className="btn_link theme_btn_blue w-100">Submit</button>
+                                <button type="submit" className="btn_link theme_btn_blue w-100">Update</button>
                             </form>
 
                   
