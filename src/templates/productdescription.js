@@ -442,21 +442,25 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         numberOfStars={5}
                         name='rating'
                         starDimension="20px"
-                        starSpacing="0px"
+                        starSpacing="3px"
                         starRatedColor="rgb(242 187 22)"
-                      /> : <p className="no_review"> No Reviews Yet</p>
+                      /> : 
+                      
+                      <p className="no_review"> No Reviews Yet</p>
                     }
+
+
                     <div className="brand mt-2">
 
                     </div>
                     <div className="rating_field">
 
                       <div className="star-rating">
-                        <span className="fa fa-star-ofa far fa-star" data-rating="1"></span>
-                        <span className="fas fa-star" data-rating="2"></span>
-                        <span className="far fa-star" data-rating="3"></span>
-                        <span className="far fa-star" data-rating="4"></span>
-                        <span className="far fa-star" data-rating="5"></span>
+                        <span className="fa fa-star" data-rating="1"></span>
+                        <span className="fa fa-star" data-rating="2"></span>
+                        <span className="fa fa-star" data-rating="3"></span>
+                        <span className="fa fa-star" data-rating="4"></span>
+                        <span className="fa fa-star" data-rating="5"></span>
                         <input type="hidden" name="whatever1" className="rating-value" value="2.56" />
                       </div>
                       <span className="rating_text">
@@ -478,7 +482,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         }
                       </div>
                       <div>
-                        <i className="fas fa-check-circle"> In Stock</i>
+                        <i className="fa fa-check-circle"> In Stock</i>
                       </div>
                     </div>
                     {tierAmt.length != 0 ? (
@@ -536,22 +540,57 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         <button onClick={() => addItemToCart(cartItem)} className="btn_gray btn"
                         //  disabled={isButton}
                          >
-                          Add To Cart
+                          <span class="cart_svg"></span> Add To Cart   
               </button>
-                        <button onClick={() => quotePopupOpen()} className="btn_gray btn ml-1">
-                          Request for a Quote
+              <button className="btn_gray heart">     <a onClick={() => addToList(2)} >
+                            <FaRegHeart />
+              </a>
               </button>
-                        <div className="product_detail_action">
-                          <a onClick={() => addToList(2)} >
-                            <FaRegHeart /> Add to Wishlist
+                        
+                      </div>
+
+                      
+                    </div>
+
+                    <div className="overview">
+                      <h3>Overview</h3>
+                      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+                      <a href="#">Read More</a>
+
+                      <p>Seller: <span>ProQmed Ltd</span></p>
+
+
+                    </div>
+
+                    <div className="delivery-section">
+                      
+                      <div className="input-sec">
+                      <p>Delivery</p>
+                      <form>
+  <label>
+    
+    <input type="text" placeholder="enter code" />
+    <a href="#">Check</a>
+  </label>
+ 
+</form>
+                        
+                      </div>
+                      <p className="red">currently out of stock in this area</p>
+                    </div>
+
+
+                    <div className="product_detail_action">
+                          
+
+              <a onClick={() => quotePopupOpen()} >
+              <span className="fa fa-comments"></span>   Request for a Quote
               </a>
 
                           <a onClick={() => addToList(1)} >
                             <IoIosGitCompare /> Add to Compare
               </a>
                         </div>
-                      </div>
-                    </div>
                     <div>
 
                       {config.length > 0 && <p><span className="color_type">Colour: </span>{colour}</p>}

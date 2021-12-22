@@ -186,11 +186,13 @@ const Wishlist = () => {
                                                                     <h6>${parseFloat(item.price).toFixed(2)}</h6>
                                                                 </div>
 
-                                                                <div className="user_actions">
+                                                                
+                                                            </div>
+                                                            <div className="user_actions">
+                                                                    <p>Item added 26 November</p>
                                                                 {/* <button className="btn_gray btn" onClick={() => navigate('/checkout')} >Buy Now</button> */}
                                                                 <button className="btn_gray btn" onClick={() => addtoCartItem(item.sku, item.id)}>Add to cart</button>
-                                                                <button className="btn btn_remove" type="button" onClick={() => removeWishList(item.id, 'remove')}>Delete</button>
-                                                            </div>
+                                                                <button className="btn btn_outline" type="button" onClick={() => removeWishList(item.id, 'remove')}>Delete</button>
                                                             </div>
                                                             
                                                         </div>

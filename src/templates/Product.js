@@ -15,6 +15,8 @@ import PageLoader from "../components/loaders/pageLoader";
 import { navigate } from "gatsby";
 import StarRatings from 'react-star-ratings';
 import { ToastContainer, toast } from 'react-toastify';
+
+import sellers from './../assets/glove-seller.png';
 const banner_slide = {
   autoplay: false,
   speed: 1000,
@@ -272,6 +274,73 @@ return (
            </div>
            <div class="full-desc-tabs">
            <Technicalspec specification = {product} attachment={attach_data}/>
+           </div>
+
+           <div className="More-Sellers">
+           <h2 className="section_title">
+                    <span>More sellers selling this product </span>
+                    
+                    </h2>
+
+                    <table class="table table-borderless">
+  <thead>
+    <tr>
+      <th>Product Image</th>
+      <th>Sellers Information</th>
+      <th>Product Name</th>
+      <th>Price </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th> 
+        <div className="image-sec">
+        <img src={sellers}></img></div> </th>
+      <td>Sudhakar</td>
+      <td>Nesba Care Nitrile examination gloves 50 Pcs</td>
+      <td>$100.00</td>
+      <td><button className="action action_btn btn btn_gray"> <span className="fa fa-shopping-cart"></span> Add to Cart  </button></td>
+    </tr>
+    <tr>
+      <th> 
+        <div className="image-sec">
+        <img src={sellers}></img></div> </th>
+      <td>Sudhakar</td>
+      <td>Nesba Care Nitrile examination gloves 50 Pcs</td>
+      <td>$100.00</td>
+      <td><button className="action action_btn btn btn_gray"> <span className="fa fa-shopping-cart"></span> Add to Cart  </button></td>
+    </tr>
+    <tr>
+      <th> 
+        <div className="image-sec">
+        <img src={sellers}></img></div> </th>
+      <td>Sudhakar</td>
+      <td>Nesba Care Nitrile examination gloves 50 Pcs</td>
+      <td>$100.00</td>
+      <td><button className="action action_btn btn btn_gray"> <span className="fa fa-shopping-cart"></span> Add to Cart  </button></td>
+    </tr>
+    <tr>
+      <th> 
+        <div className="image-sec">
+        <img src={sellers}></img></div> </th>
+      <td>Sudhakar</td>
+      <td>Nesba Care Nitrile examination gloves 50 Pcs</td>
+      <td>$100.00</td>
+      <td><button className="action action_btn btn btn_gray"> <span className="fa fa-shopping-cart"></span> Add to Cart  </button></td>
+    </tr>
+    <tr>
+      <th> 
+        <div className="image-sec">
+        <img src={sellers}></img></div> </th>
+      <td>Sudhakar</td>
+      <td>Nesba Care Nitrile examination gloves 50 Pcs</td>
+      <td>$100.00</td>
+      <td><button className="action action_btn btn btn_gray"> <span className="fa fa-shopping-cart"></span> Add to Cart  </button></td>
+    </tr>
+    
+  </tbody>
+</table>
            </div>
          </div>        
       </div>
