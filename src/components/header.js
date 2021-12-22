@@ -62,7 +62,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
 const isSticky = (e) => {
                     const header = document.querySelector('.header-section');
                     const scrollTop = window.scrollY;
-                    scrollTop >= 250 ? header.classList.add('is-sticky') : header.classList.remove('is-sticky');
+                    scrollTop >= 100 ? header.classList.add('is-sticky') : header.classList.remove('is-sticky');
                 };
 
   const getProfile = () => {
