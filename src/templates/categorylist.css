@@ -941,7 +941,20 @@ section.breadcrums ul li a::after {
   position: sticky;
   top:10px;
   overflow-y: scroll;
+  background: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
   /* height: 100vh; */
+}
+
+.clear_all_link {
+  border-radius: 5px;
+  margin-right: 0;
+}
+
+.heading {
+  
+  font-weight: 500;
 }
 .category_sidebar .card-header a {
      -webkit-display: flex;

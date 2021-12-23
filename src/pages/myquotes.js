@@ -189,10 +189,10 @@ const MyQuotes = ({ setcartCount }) => {
                 <section className="page_content inner_page">
                     <div className="container boxed-content">
                         <div className="sec_block">
-                            <div className="row page_title_sec">
+                            <div className=" page_title_sec">
                                 <h3 className="text-capitalize">My Quotes</h3>
                             </div>
-                            <div className="row compare_section cart_page">
+                            <div className=" compare_section cart_page">
                                 <table className="table compareList_table">
                                     <thead>
                                         <tr>
