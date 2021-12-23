@@ -375,6 +375,12 @@ border:1px solid #ececec;
   -moz-box-shadow:    3px 3px 5px 2px #ccc;   */
    
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 5px -1px, rgb(0 0 0 / 6%) 0px 3px 1px -1px;
+  transition: .5s;
+  
+}
+.feature_section .card:hover {
+   
+  box-shadow: rgb(0 0 0 / 10%) 0px 6px 7px -1px, rgb(0 0 0 / 6%) 0px 5px 1px -1px;
   
 }
 .popular_section .card:hover {
@@ -4754,10 +4760,10 @@ section.category_section .image_wrappertab {
   color: #444444;
   display: flex;
   line-height: 18px;
-  height: 60px;
+  height: 26px;
   overflow: hidden;
   align-items: center;
-  line-height: 21px;
+  line-height: 26px;
   justify-content: center;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -5143,7 +5149,8 @@ section.main-footer p{
   background: #fff;
   border-radius: 10px;
   margin-bottom: 10px;
-  box-shadow: rgb(0 0 0 / 10%) 0px 3px 8px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 5px -1px, rgb(0 0 0 / 6%) 0px 3px 1px -1px;
+  border: 1px solid #ebebeb;
 }
 
 .order_product thead{
@@ -5369,6 +5376,12 @@ header{
 .wishComp svg{
   color: #fff;
   margin: 4px 5px 0 0;
+}
+/* .trending_products .section_title{
+  margin: 0 0px 10px 0px!important;
+} */
+.title_link a{
+  color: #313131;
 }
 
 .fo-bg-white .product_item {
