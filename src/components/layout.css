@@ -14,6 +14,7 @@ body {
   margin: 0;
   padding: 0;
   /* overflow-x:hidden; */
+  background-color: #f3f3f3!important;
 
 }
 .is-sticky {
@@ -376,6 +377,10 @@ border:1px solid #ececec;
    
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 5px -1px, rgb(0 0 0 / 6%) 0px 3px 1px -1px;
   transition: .5s;
+  
+}
+.feature_section .card:last-child {
+  margin-right: 0px!important;
   
 }
 .feature_section .card:hover {
@@ -2971,6 +2976,7 @@ ul.totals li span {
 }
 .all_categories_list figure.itm_list {
   margin-bottom: 10px;
+  border-left: 1px solid #d6d6d6;
 }
 figure.itm_list {
   margin: 0;
@@ -3936,7 +3942,7 @@ body .all_categories_list .itm_list_holder a.itm_list_title {
   color: #0162A2;     
 }
 .tab-content{
-  background: #f5f5f5;
+  background: #ffffff;
   padding:5px 20px;
 }
 .help_txt a{
@@ -5072,6 +5078,7 @@ font-size: 13px;
 .slider_Product {
   position: sticky;
   top: 40px;
+  background: #fff;
 }
 
 /* Alaghappan Styles 17/12/2021//////////////////////////////////////////////////////////////////// */
@@ -5625,4 +5632,31 @@ span.cart_count{
 }
 .cart_img_holder .cart_svg{
   background-color: #000;
+}
+.table {
+  background: #fff;
+}
+.feature_section .col{
+  padding: 0!important;
+}
+.dropdown:after{
+  content: ''; 
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: opacity .15s ease-in-out;
+  opacity: 0;
+  visibility:hidden;
+  background-color: rgba(0,0,0,.2);
+  pointer-events: none;
+}
+.dropdown:hover .nav-link{
+position:relative;
+z-index:12;
+}
+.dropdown:hover:after{
+z-index:10; opacity:1; 
+visibility:visible;
+position: fixed;
 }

@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-
+import $ from 'jquery';
 import Layout from "../components/layout"
 import Home from '../components/home.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
