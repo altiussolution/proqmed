@@ -1262,10 +1262,11 @@ button.btn.btn_whislist {
 
 .Changepwd_form .form-group {
   margin-right: 20px;
+  width: 31.3%;
 }
 .Changepwd_form .form-control {
   font-size: 14px;
-  width: 250px;
+  width: -webkit-fill-available;
 }
 
 .Changepwd_form span {
@@ -1275,7 +1276,6 @@ button.btn.btn_whislist {
 
 .inline_form{
   border-bottom: 2px dashed #e4e4e4;
-  padding-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -2326,9 +2326,9 @@ input:focus {
   text-decoration: line-through;
 }
 .price{
-  font-size: 16px;
-  font-weight: 300;
-  color: #0162A2;
+  font-size: 20px;
+    font-weight: 500;
+    color: #0162A2 !important;
 }
 .product_view img {
   position: sticky;
@@ -2913,7 +2913,6 @@ ul.totals li span {
   color: #fff;
 }
 .cart_top li{
-  display: inline-block;
   float:left;
   margin-right:20px;
   position: relative;
@@ -5071,9 +5070,11 @@ section.main-footer p{
   display: flex;
 }
 .tools .form-control {
-border: 1px solid #ffffff;
-border-radius: 10px;
-font-size: 13px;
+  border-radius: 10px;
+  height: 40px;
+  font-size: 13px;
+  box-shadow: none !important;
+  border: none;
 }
 .slider_Product {
   position: sticky;
@@ -5659,4 +5660,56 @@ z-index:12;
 z-index:10; opacity:1; 
 visibility:visible;
 position: fixed;
+}
+
+.compareList_details.table-responsive {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+form.Changepwd_form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+form.Changepwd_form button.btn.btn_gray {
+  margin-right: 0;
+}
+
+.page_title_sec.fo-flx {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.page_title_sec.fo-flx button.btn.btn_gray {
+  margin-right: 0;
+}
+
+table.table.compareList_table {
+  text-align: center;
+}
+
+table.table.compareList_table button.btn.btn_gray {
+  margin-right: 10px;
+}
+
+.compare_section.cart_page.user .table.compareList_table td {
+  padding: 10px !important;
+  vertical-align: baseline;
+}
+
+.compare_section.cart_page.user table.table.compareList_table tbody:nth-child(odd){
+  background-color: #F9F9F9;
+}
+
+a.btn.outline-1 {
+  display: none;
+}
+
+.item.product_item.list_view a.btn.outline-1{
+  display: block !important;
 }

@@ -98,7 +98,7 @@ const CompareList = () => {
                             <div className="content_wrapper">
                                 <div className="container">
                                     <div className="main_title">
-                                        <h1>My <span>CompareList</span></h1>
+                                        <h1>My CompareList <span>(5)</span></h1>
                                     </div>
                                    
                                             {/* {localStorage.getItem('sampleVal')} */}
