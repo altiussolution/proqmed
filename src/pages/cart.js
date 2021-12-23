@@ -211,13 +211,16 @@ const Cart = () => {
                             <div className="content_wrapper">
                                 <div className="container">
                                    
+                                    <div className="main_title left">
+                                        <h1>My Cart<span> ({cartItems?.length})</span></h1>
+                                    </div>
                                     <div className="row">
                                         <div className="col-lg-9 col-md-9 col-xs-12 no_data">
 
 
-                                        <div className="main_title left">
+                                        {/* <div className="main_title left">
                                         <h1>My Cart <span>(5)</span>  </h1>
-                                    </div>
+                                    </div> */}
 
                                             {/* {localStorage.getItem('sampleVal')} */}
                                             {cartItems?.length == 0 ? (<h1>No Item found</h1>) : showCartItems()}
@@ -234,7 +237,7 @@ const Cart = () => {
                                                 <h6>Estimate Shipping and Tax</h6>
                                                 {checkoutDetails()}
                                                 <button className="btn btn_brown" type="button" onClick={() => navigate('/checkout')} disabled={cartItems?.length == 0}>Proceed to Checkout</button>
-                                                <button className="btn btn-default" type="button" onClick={() => navigate('/')}>Continue to Shopping</button>
+                                                {/* <button className="btn btn-default" type="button" onClick={() => navigate('/')}>Continue to Shopping</button> */}
                                             </div>
                                         </div>
 

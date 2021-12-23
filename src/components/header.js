@@ -461,13 +461,13 @@ const isSticky = (e) => {
               </div>
             </Navbar>
             <Navbar className="bulkorder my_account">
-            <div><Cart cartCount={cartCount} />
-            {/* <img src={cart}/> */}
-            </div>
+            {/* <div>dasdasdsa<Cart cartCount={cartCount} />
+             <img src={cart}/> 
+            </div> */}
               <div className="dropdown">
                 
               
-                {/* <a className="btn dropbtn carttop"><span>My Cart</span>$0.00</a> */}
+                <a className="btn dropbtn carttop"><Cart cartCount={cartCount} /></a>
                 <div className="dropdown-content">
                   <ul>
                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
