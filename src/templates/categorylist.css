@@ -1055,8 +1055,83 @@ section.breadcrums ul li a::after {
 }
 .product_item.list_view .thumbnail{
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+    align-items: center;
+}
+
+.product_item.list_view .thumbnail .caption p.product_text a {
+  font-size: 22px;
+}
+
+.product_item.list_view .thumbnail .price {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 15px 0;
+  color: #0162A2 !IMPORTANT;
+}
+
+.product_item.list_view button.btn_gray.btn {
+  background: #e7ab3c !important;
+  display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
+  padding: 10px 20px;
+  align-items: center;
+  margin-right: 0;
+}
+
+.product_item.list_view .price_holder{
+  display: block;
+
+}
+
+.item.product_item.grid_view a.btn.outline-1 {
+  display: none;
+}
+
+.item.product_item.grid_view .price_holder {
+  display: flex;
+}
+
+.product_item.list_view .price_right{
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.product_item.list_view .price_right a.other{
+  margin-right: 15px;
+  text-decoration: none;
+  color: #000;
+  opacity: 70%;
+}
+
+.product_item.list_view a.btn.outline-1 {
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  margin-left: 15px;
+}
+
+.item.product_item.list_view .cart-btns {
+  position: absolute;
+  top: 10%;
+  display: none !important;
+  right: 5%;
+  transition: 0.5s ease;
+}
+
+.item.product_item.list_view .cart-btns a.other {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #1075b7;
+}
+
+.item.product_item.list_view:hover .cart-btns{
+  display: block  !important;
+}
+
+.item.product_item.list_view .product_img {
+  width: 20% !IMPORTANT;
 }
 .product_item.list_view .thumbnail .product_img {
   width: 20%;
@@ -1065,7 +1140,7 @@ section.breadcrums ul li a::after {
   height:auto!important;
 }
 .product_item.list_view .desc_holder {
-  width:50%!important;
+  width:80%!important;
   text-align: left;
 }
 .category_container .cat_scroll #products .product_item.list_view .caption .product_text {
@@ -1110,6 +1185,7 @@ section.breadcrums ul li a::after {
 } 
 .list_view .cart-btns{
   display: flex!important;
+  width: 20%;
 }
 .title_view button {
   background-color: #ffffff;

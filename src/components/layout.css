@@ -5051,9 +5051,11 @@ section.main-footer p{
   display: flex;
 }
 .tools .form-control {
-border: 1px solid #ffffff;
-border-radius: 10px;
-font-size: 13px;
+  border-radius: 10px;
+  height: 40px;
+  font-size: 13px;
+  box-shadow: none !important;
+  border: none;
 }
 .slider_Product {
   position: sticky;

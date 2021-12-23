@@ -140,13 +140,14 @@ export default function CategoryCard({ data: product, dataClass }) {
                 <div className="price_right"> 
                                    
                                   <button className="addtocart" ><span class="cart_svg"></span></button>
+                                  { <Link  to={getProductURL(product.items)} state={product} className="btn outline-1">View Detail</Link> }
                                   </div>
                 </div>
                 </div>
                 <div className="cart-btns">
-                <a className="other" onClick={() => addToList(2)}><FaRegHeart /> Add to Wishlist</a>
-                  <a className="other" onClick={() => addToList(1)}><IoIosGitCompare/> Add to Compare</a>
-                { <Link  to={getProductURL(product.items)} state={product} className="btn view">View Detail</Link> }
+                <a className="other" onClick={() => addToList(2)}><FaRegHeart /> </a>
+                  <a className="other" onClick={() => addToList(1)}><IoIosGitCompare/> </a>
+                
                   
                   
                 </div>
