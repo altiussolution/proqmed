@@ -23,7 +23,7 @@ body {
     width: 100%;
     z-index: 999;
     box-shadow: 0 2px 24px 0 rgb(0 0 0 / 15%);
-    background-color: #ffffff !important;
+    background-color: #f3f3f3 !important;
     animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
     padding-top: 0px;
     padding-bottom: 0px;
@@ -4079,8 +4079,15 @@ width: 23.4%;
 
 .brandedpro_item {
   width: 25%;
-  border: 1px solid #e4e4e4;
- padding: 16px;
+    border: 1px solid #ebebeb;
+    background: #fff;
+    margin: 10px;
+    height: 100%;
+    text-align: left;
+    padding: 20px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 5px -1px, rgb(0 0 0 / 6%) 0px 3px 1px -1px;
+    transition: .5s;
+    border-radius: 1.5rem;
 }
 
 .brandedpro_item .product_img {
@@ -4731,7 +4738,8 @@ section.category_section .image_wrappertab {
   border-right: 0px solid #000;
 }
 .bulkorder .dropbtn.carttop{
-  width: 80px!important;
+  /* width: 80px!important; */
+  display: flex;
 }
 .menu_botm ul.contact_top li a:hover{
   text-decoration: underline!important;
@@ -5591,4 +5599,32 @@ p.red {
   margin-left: 9.5%;
   margin-top: -10px;
   font-weight: 300;
+}
+span.cart_count{
+  display: inherit;
+  position: absolute;
+  background: #0f75b7;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  color: #fff;
+  border-radius: 50%;
+  left: 40px;
+  top: -6px;
+}
+.cart_text {
+  margin-left: 10px;
+}
+
+.cart_img_holder {
+  background: #e5e5e5;
+  padding: 10px;
+  border-radius: 50%;
+}
+.bulkorder .dropbtn.carttop:after {
+  margin-top: 27px;
+}
+.cart_img_holder .cart_svg{
+  background-color: #000;
 }

@@ -20,22 +20,26 @@ const CartCount = (data) => {
 
 return (  
     <>
-          <Navbar id="basic-navbar-nav" className="cart-top-holder">
-            <Nav className="mr-auto">
-              <ul className="cart_top">
+          
+              
               {/* { <li>
               <Link to="/wishlist" data-toggle="tooltip" title="Wishlist"><span>{isLoged ?  getWLCount(isLoged) : 0 }</span><img src={wishlistTop}/></Link>                
               </li>} */}
-              { <li>
-              <Link to="/cart" data-toggle="tooltip" title="Cart"><span>{isLoged ? getCartCount(isLoged) : 0}</span><img src={cart}/></Link>                
-              </li>}
-              <li>
-                {isLoged && <a className="price_top">${parseFloat(cartTotal()).toFixed(2)}</a> }               
-              </li>
+              
+              {
+                
+              <Link to="/cart" data-toggle="tooltip" title="Cart"><span className="cart_count">{isLoged ? getCartCount(isLoged) : 0}</span>
+              <div className="cart_img_holder"> <span className="cart_svg"> </span></div>
+              </Link>                
+             }
+             <div className="cart_text">
+              <span>My Cart</span>
+                {isLoged &&  parseFloat(cartTotal()).toFixed(2)  }               
+                </div>
 
-            </ul>
-            </Nav>     
-        </Navbar>
+            
+               
+        
     </>  
 )
 }   
