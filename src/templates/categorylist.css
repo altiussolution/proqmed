@@ -940,7 +940,7 @@ section.breadcrums ul li a::after {
 .category_sidebar {
   position: sticky;
   top:10px;
-  overflow-y: scroll;
+  overflow-y: unset;
   background: #fff;
     padding: 10px 20px;
     border-radius: 10px;

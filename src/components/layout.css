@@ -4621,10 +4621,10 @@ button.btn_link.theme_btn_blue.w-100 {
 h2.section_title {
   
   text-align: center;
-  border-left: 6px solid #e22792;
-    padding-left: 10px;
+  border-left: 2px solid #e22792;
+    padding-left: 12px;
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 400;
   color: #575757;
   
 }
@@ -5712,4 +5712,74 @@ a.btn.outline-1 {
 
 .item.product_item.list_view a.btn.outline-1{
   display: block !important;
+}
+
+.img-wrapper-as-seen {
+  /* background-image: url(../assets/seen-1.png); */
+  height: 313px;
+  background-repeat: no-repeat;
+  width: 100%;
+;
+}
+.img-wrapper-as-seen p {
+  font-size: 27px;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.img-wrapper-as-seen h1 {
+  font-size: 55px;
+  color: #fff;
+  width: 40%;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.img-wrapper-as-seen button.btn.btn.update {
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px 25px;
+  color: #019FE0;
+  font-size: 18px;
+}
+
+.wrapper-content {
+  position: absolute;
+  top: 15%;
+  left: 10%;
+}
+
+
+.img-wrapper-as-seen a img {
+  border-radius: 20px;
+}
+
+.af-tr-banner{
+background-image: url(../assets/length-bn.png);
+height: 246px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 10px 30px;
+    margin-top: 30px;
+}
+
+.af-tr-banner button.btn.btn.update {
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px 25px;
+  color: #019FE0;
+  font-size: 18px;
+}
+
+.af-tr-banner h1{
+  font-size: 37px;
+  width: 40%;
+  color: #fff;
+  font-weight: 300;
+  margin-top: 35px;
+}
+
+.flex.justify-between.items-center.filter_sidenav {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e7e7e7;
 }
