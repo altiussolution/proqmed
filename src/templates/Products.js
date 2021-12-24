@@ -252,7 +252,7 @@ const Products = ({ pageContext, location }) => {
                       )}
                     </div>
                   </div>
-                  <div className="col-lg-9 col-md-8 col-xs-12 fo-bg-white">
+                  <div className="col-lg-9 col-md-8 col-xs-12 ">
                   <h1 className="page-title">
                     <div>
                     <span>{pageContext.name}</span>

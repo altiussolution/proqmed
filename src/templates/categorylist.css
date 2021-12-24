@@ -538,18 +538,18 @@ list-style: none;
     margin: 0;
     font-size: 16px;
     font-weight: 300;
-    color: #afaeae;
+    color: #000;
     text-transform: uppercase;
     margin-right: 10px;
   }
 
   .prd_note a {
-    color: #afaeae;
+    color: #000;
     font-weight: 300;
 }
   .product_view .product_details .product_note .prd_note p span {
     font-size: 16px;
-    color: #afaeae;
+    color: #000;
     padding-left: 5px;
   }
   .product_view .product_details .product_note .prd_note .colon {
@@ -560,14 +560,15 @@ list-style: none;
   .product_view .product_details .product_note i {
     color: #ffffff;
     font-size: 14px;
-    background: rgb(1,170,103);
-    padding: 5px 10px;
-    border-radius: 3px;
+    background: hsl(141deg 60% 56%);
+    font-family: 'Poppins';
+    padding: 5px;
+    border-radius: 7px;
     
   }
   .product_view .product_details .product_qty {
-    border-bottom: 2px dotted #ccc;
-    border-top: 2px dotted #ccc;
+    /* border-bottom: 2px dotted #ccc;
+    border-top: 2px dotted #ccc; */
        -webkit-display: flex;
     -moz-display: flex;
     -ms-display: flex;
@@ -941,7 +942,7 @@ section.breadcrums ul li a::after {
   position: sticky;
   top:10px;
   overflow-y: unset;
-  background: #fff;
+  background: hsl(0deg 0% 98%);
     padding: 10px 20px;
     border-radius: 10px;
   /* height: 100vh; */

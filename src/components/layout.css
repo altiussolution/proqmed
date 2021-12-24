@@ -5546,9 +5546,11 @@ button.btn_gray.btn.ml-1{
 }
 
 .product_qty .button_sec button.btn.btn_gray {
-  padding: 10px 20px;
+  padding: 15px 20px;
   margin-right: 10px;
   display: flex;
+  border-radius: 10px;
+  align-items: center;
 }
 
 .product_qty .button_sec button.btn.btn_gray span {
@@ -5558,10 +5560,10 @@ button.btn_gray.btn.ml-1{
 
 .button_sec button.btn_gray.heart {
   font-size: 23px !important;
-    padding: 7px 15px;
+    padding: 11px 20px;
     border: none;
     background-color: hsl(340deg 100% 75%)!important;
-    border-radius: 5px;
+    border-radius: 10px;
   color: #fff;
   
 }
