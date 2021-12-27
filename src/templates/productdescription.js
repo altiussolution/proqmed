@@ -482,9 +482,23 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         }
                       </div>
                       <div>
-                        <i className="fa fa-check-circle"> In Stock</i>
+                        <i> In Stock</i>
                       </div>
                     </div>
+
+<div className="price-name-strike">
+                    {isShow == 1 ? <span></span> :
+                          (proDescription.items.config_options ?
+                            change_price.map((val, index) => (
+                              <span className="price" key={index}>${Math.round(val.price)}</span>
+                            )) :
+                            <span className="price">${Math.round(proDescription.items.price)}</span>
+                          )
+                        }
+
+                        <span><strike>$ 4</strike></span>
+</div>
+
                     {tierAmt.length != 0 ? (
                       <table className="table compareList_table">
                         <thead>
@@ -527,14 +541,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         <div className="qty_price">
                           <input type="number" value={qty} onChange={event => { handleChange(event) }} />
                         </div>
-                        {isShow == 1 ? <span></span> :
-                          (proDescription.items.config_options ?
-                            change_price.map((val, index) => (
-                              <span className="price" key={index}>${Math.round(val.price)}</span>
-                            )) :
-                            <span className="price">${Math.round(proDescription.items.price)}</span>
-                          )
-                        }
+                       
                       </div>
                       <div className="button_sec">
                         <button onClick={() => addItemToCart(cartItem)} className="btn_gray btn"

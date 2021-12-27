@@ -32,8 +32,17 @@ const Renderproduct = () => {
         {splash.slice(0 ,2).map((data) => (
         (
       <div className="col-lg-6 col-md-6 col-xs-12">
-          <Link to={data.category_url} ><img src={data.category_image} alt={"banner"} /></Link> 
+          {/* <Link to={data.category_url} ><img src={data.category_image} alt={"banner"} /></Link>  */}
+          <div className="img-wrapper-as-seen">
+          <div className="wrapper-content">
+            <p>Medical Research</p>
+            <h1>Health Matters</h1>
+            <button className="btn btn update" type="button">Read More </button>
+            </div>
+            <Link to={data.category_url} ><img src={data.category_image} alt={"banner"} /></Link> 
           </div>
+          </div>
+          
            )))}
 </>
     }

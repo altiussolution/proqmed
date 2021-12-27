@@ -204,12 +204,12 @@ const onSubmitQuoteadd = quoteDetails => {
                 <section className="page_content inner_page">
                     <div className="container boxed-content">
                         <div className="sec_block">
-                            <div className="row page_title_sec">
+                            <div className=" page_title_sec fo-flx">
                                 <h3 className="text-capitalize">User Management</h3>
-                                <button className="action action_btn btn btn_gray" onClick={() => addQuote()}>Add
+                                <button className="action action_btn btn btn_gray" onClick={() => addQuote()}>+ Add 
                               </button>
                             </div>
-                            <div className="row compare_section cart_page">
+                            <div className=" compare_section cart_page user">
                                 <table className="table compareList_table">
                                     <thead>
                                         <tr>

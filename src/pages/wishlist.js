@@ -178,27 +178,11 @@ const Wishlist = () => {
                                                             </div>
                                                             <div className="product_desc">
                                                                 <h3>{item.name}</h3>
+                                                                <div className="to-flx">
                                                                 <span>{item.created_at}</span>
-                                                                <ul>
-                                                                    <li>
-                                                                        <p>SKU <span>{item.sku}</span></p>
-                                                                    </li>
-                                                                    <li>
-                                                                        <p>
-                                                                            {/* <StarRatings
-                      numberOfStars={5}
-                      name='value_rating'
-                      rating={item.rating_percentage}
-                      starDimension="25px"
-                      starSpacing="1px"
-                      starRatedColor="rgb(242 187 22)"
-                      starHoverColor="rgb(242 187 22)"
-                      isSelectable={true}
-                    /> */}
-                    <span>{item.review_count}</span>
-                                                                             </p>
-                                                                    </li>
-                                                                </ul>
+                                                                <p>SKU: <span>{item.sku}</span></p>
+                                                                <span>{item.review_count}</span>
+                                                                </div>
                                                                 <div className="qty_price">
                                                                     <h6>${parseFloat(item.price).toFixed(2)}</h6>
                                                                 </div>

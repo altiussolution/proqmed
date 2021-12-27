@@ -17,19 +17,15 @@ import StarRatings from 'react-star-ratings';
 import { ToastContainer, toast } from 'react-toastify';
 
 import sellers from './../assets/glove-seller.png';
-const banner_slide = {
+const similar_product = {
   autoplay: false,
   speed: 1000,
-  slidesToShow:1,
+  slidesToShow:2,
   slidesToScroll: 1,
   infinite: true,
   responsive: [
     {
       breakpoint: 600,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
     },
 
   ]
@@ -168,7 +164,7 @@ const Product = props  => {
     if (productdata) { 
       console.log("productdata")
       console.log(productdata)
-        return <Slider {...banner_slide}> 
+        return <Slider {...similar_product}> 
         {      
               productdata.map((data,index) => (  
                   <div key={`${index}_key`} className="item similar-item">
@@ -415,7 +411,7 @@ return (
         </div>
 
         <div className="row">            
-        <div className="col-lg-12 col" >               
+        <div className="col" >               
           {Renderproduct()}
         </div>
         </div>

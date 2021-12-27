@@ -150,12 +150,22 @@ const renderDeals = ()=>{
   </div>
   </div>
 </div>
+
+<div className="af-tr-banner">
+        <h1>Buying Medical Devices 
+Online Should Be Easy</h1>
+<button className="btn btn update" type="button">Read More </button>
+      </div>
 </div>
+
+
   </div>
 
 
 
     )
+
+    
 
 }
 

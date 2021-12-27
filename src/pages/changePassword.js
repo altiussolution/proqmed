@@ -45,7 +45,7 @@ const ChangePassword = () => {
                         <div className="content_wrapper">
                             <div className="container">
                                 <div className="main_title">
-                                    <h1>Change <span>Password</span></h1>
+                                    <h1>Change Password</h1>
                                 </div>
                                 <div className="row">
                                     <div className="col-lg-12 col-md-12 col-xs-12">
