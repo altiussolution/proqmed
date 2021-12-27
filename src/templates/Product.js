@@ -277,7 +277,7 @@ return (
                     <span>More sellers selling this product </span>
                     
                     </h2>
-
+<div className="fo-scroll">
                     <table class="table table-borderless">
   <thead>
     <tr>
@@ -337,6 +337,7 @@ return (
     
   </tbody>
 </table>
+</div>
            </div>
          </div>        
       </div>

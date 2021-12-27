@@ -496,7 +496,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                           )
                         }
 
-                        <span><strike>$ 4</strike></span>
+                        <span><strike>$ 40</strike></span>
 </div>
 
                     {tierAmt.length != 0 ? (
