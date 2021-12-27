@@ -31,7 +31,7 @@ const Renderproduct = () => {
         return <>
         {splash.slice(0 ,2).map((data) => (
         (
-      <div className="col-lg-6 col-md-6 col-xs-12">
+      <div className="col-lg-6 col-md-12 col-xs-12">
           {/* <Link to={data.category_url} ><img src={data.category_image} alt={"banner"} /></Link>  */}
           <div className="img-wrapper-as-seen">
           <div className="wrapper-content">
