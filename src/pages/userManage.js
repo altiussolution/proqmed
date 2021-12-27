@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
+import { useStaticQuery } from "gatsby";
 import axios from "axios";
 import Switch from "react-switch";
 import PageLoader from "../components/loaders/pageLoader";
@@ -28,9 +29,34 @@ const UserManage = () => {
  const handleCloseQuoteforadd = () => setShowQuoteadd(false);
  const [quoteConversations, setQuotesConversations] = useState([])
  const [perms, savedperms] = useState([])
+ const [allinall,alcats] = useState([]);
+ const data = useStaticQuery(graphql`
+ {
+   allCategory {
+     edges {
+       node {
+         id
+         name
+         grand_child {
+           id
+           is_active
+           name
+         }
+       }
+     }
+   }
+   site {
+     siteMetadata {
+       title
+     }
+   }
+ }
+`)
  useEffect(() => {
      setCustomerId(localStorage.customer_id)
     getQuotes();
+    rendercategory();
+    console.log(data)
  }, []);
 
  const getQuotes = async () => {
@@ -44,6 +70,15 @@ const UserManage = () => {
     setLoader(false)
 };
 
+const rendercategory = () =>{
+    const list = [];
+    let allCategory = data.allCategory.edges;
+      list.push(allCategory);
+    list.map((el,index)=>(
+    alcats(el)
+))
+}
+
  const editQuote = (quote) => {
     // setIndex(index);
     setQuotePopupedit(true)
@@ -51,12 +86,14 @@ const UserManage = () => {
     getConversation(quote['subuser_id'])
     setQuoteForm(quote)
 }
+
 const addQuote = () => {
     // setIndex(index);
     setQuotePopupadd(true)
     handleShowQuoteforadd(true)
     getConversation()
 }
+
 const getConversation = (id) => {
     try {
         axios({
@@ -164,7 +201,7 @@ const onSubmitQuoteadd = quoteDetails => {
             "firstname": quoteDetails['firstname'],
             "lastname": quoteDetails['lastname'],
             "email": quoteDetails['email'],
-            "parent_customer_id": customerId,
+            "parent_customer_id": 39,
             "password": quoteDetails['password'],
             "allowedpermissions": quoteDetails['permission'],
             "categorypermissions": quoteDetails['catpermission'],
@@ -297,21 +334,21 @@ const onSubmitQuoteadd = quoteDetails => {
                                     <label htmlFor="password">Password</label>
                                     <input className="form-control" name="rolename" ref={register({
                                         required: true 
-                                    })} defaultValue={(quoteForm['password'])}>
+                                    })} defaultValue={(quoteForm['subuser_password'])}>
                                     </input>
                                     {errors.password && errors.password.type === 'required' && <span className="error">Password is required</span>}
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="permission">Permissions</label>
-                                    {/* <input className="form-control" name="rolename" ref={register({
+                                    <input className="form-control" name="rolename" ref={register({
                                         required: true 
                                     })} defaultValue={(quoteForm['allowed_permissions'])}>
-                                    </input> */}
-                                    <Multiselect
+                                    </input>
+                                    {/* <Multiselect
                                     options={(quoteForm['allowed_permissions'])}
                                     selectedValues={(quoteForm['allowed_permissions'])}
                                     displayValue="allowed_permissions"
-                                     />
+                                     /> */}
                                     {errors.permission && errors.permission.type === 'required' && <span className="error">Permissions are required</span>}
                                 </div>
                                 <div className="form-group">
@@ -384,25 +421,15 @@ const onSubmitQuoteadd = quoteDetails => {
                                     {errors.password && errors.password.type === 'required' && <span className="error">Last Name is required</span>}
                                 </div>
                                 <div className="form-group">
-                                    {/* <label htmlFor="permission">Permissions</label> */}
-                                    {/* <select className="form-control" name="permission"  ref={register({
+                                    <label htmlFor="permission">Permissions</label>
+                                    <select className="form-control" name="permission"  ref={register({
                                         required: true 
                                     })}>
                                         {quoteConversations.map((conv, index) => (
                                           <option value={conv}>{conv}</option>
                                        ))}
-                                       </select> */}
-                                       <Dropdown>
-                  <Dropdown.Toggle variant='Secondary' id="dropdown-basic" >
-                  Permission
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu multiple>
-                  {quoteConversations.map((item,index)=>{
-                      return <Dropdown.Item key={index} >{item}</Dropdown.Item>
-                    }) 
-                    } 
-                  </Dropdown.Menu>
-                  </Dropdown> 
+                                       </select>
+                                      
                                        {/* <Select
                                        isMulti
                                     options={perms}
@@ -413,10 +440,13 @@ const onSubmitQuoteadd = quoteDetails => {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="catpermission">Category Permissions</label>
-                                    <textarea className="form-control" name="catpermission" placeholder="Select category" ref={register({
-                                        required: true
+                                     <select className="form-control" name="catpermission"  ref={register({
+                                        required: true 
                                     })}>
-                                    </textarea>
+                                        {allinall.map((conv, index) => (
+                                          <option value={conv.node.id}>{conv.node.name}</option>
+                                       ))}
+                                       </select>
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
                                 </div>
                                 <div className="form-group">
@@ -430,25 +460,6 @@ const onSubmitQuoteadd = quoteDetails => {
                                 </div>
                                 <button type="submit" className="btn_link theme_btn_blue w-100">Add</button>
                             </form>
-                        
-                        {/* <Tab eventKey="conv" title="Conversations">
-                            {quoteConversations.length > 0 &&
-                                <div>
-                                    <div className="row page_title_sec">
-                                        <h3>Conversations</h3>
-                                    </div>
-                                    {
-                                        quoteConversations.map((conv, index) => (
-                                            <div key={index}>
-                                                <p>{conv['created_at']} - {conv['sender']}</p>
-                                                <p>{conv['conversation']}</p>
-                                            </div>
-                                        ))
-                                    }
-
-                                </div>
-                            }
-                        </Tab> */}
                 </Modal.Body>
                 <Modal.Footer>
 
