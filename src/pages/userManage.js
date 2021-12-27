@@ -6,6 +6,9 @@ import PageLoader from "../components/loaders/pageLoader";
 import Modal from 'react-bootstrap/Modal'
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
+import Dropdown from 'react-bootstrap/Dropdown'
+import Multiselect from 'multiselect-react-dropdown';
+import Select from 'react-select';
 const UserManage = () => {
  const [field, setField] = useState([]);
  const [quoteedit, setQuotePopupedit] = useState(false);
@@ -18,11 +21,13 @@ const UserManage = () => {
  const [subusers, setSubusers] = useState([]);
  const [customerId, setCustomerId] = useState("");
  const [loader, setLoader] = useState(false);
+ const [subcat,SubCate] = useState([]);
  const handleCloseQuote = () => setShowQuote(false);
  const handleShowQuote = () => setShowQuote(true);
  const handleShowQuoteforadd = () => setShowQuoteadd(true);
  const handleCloseQuoteforadd = () => setShowQuoteadd(false);
  const [quoteConversations, setQuotesConversations] = useState([])
+ const [perms, savedperms] = useState([])
  useEffect(() => {
      setCustomerId(localStorage.customer_id)
     getQuotes();
@@ -35,7 +40,7 @@ const UserManage = () => {
     );
     const json = await res.json();
     await setSubusers(json);
-    console.log(setSubusers) 
+    console.log(json) 
     setLoader(false)
 };
 
@@ -61,10 +66,13 @@ const getConversation = (id) => {
             if (res.statusText === "OK" && res.status == 200) {
                 console.error(res)
                 setQuotesConversations(res.data)
+                funn(res.data);
                 // {
                 //     quoteConversations.map((conv, index) => (
-                //         setQuotesConversations(conv)
+                //         savedperms(conv)
+                        
                 //     ))}
+                // console.log(perms)    
             }
 
         }).catch((err) => {
@@ -74,7 +82,10 @@ const getConversation = (id) => {
         console.error(err)
     }
 }
-
+const funn = (data) => {
+    console.log(data)
+savedperms(data)
+}
 const removeQuote = (id) => {
     if (window.confirm("Delete the subuser?")) {
         try {
@@ -100,6 +111,8 @@ const removeQuote = (id) => {
 }
 
 const onSubmitQuote = quoteDetails => {
+const cat = [];
+cat.push(quoteDetails['catpermission'])
     let quoteData = [
         {
             "subuser_id": quoteForm['subuser_id'],
@@ -109,8 +122,8 @@ const onSubmitQuote = quoteDetails => {
             "email": quoteDetails['email'],
             "password": quoteForm['password'],
             "allowedpermissions": quoteForm['allowed_permissions'],
-            "categorypermissions": quoteDetails['catpermission'],
-            "status" : quoteForm['subuser_status']
+            "categorypermissions": cat,
+            "status" : statys
 
         }
     ]
@@ -139,7 +152,8 @@ const handleChange = nextChecked => {
     
   };
   const handleChange1 = nextChecked => {
-    quoteForm['subuser_status'](nextChecked);
+      console.log(nextChecked)
+     statusIn(nextChecked);
     
   };
 const onSubmitQuoteadd = quoteDetails => {
@@ -222,7 +236,7 @@ const onSubmitQuoteadd = quoteDetails => {
                                                         <span>{quote.role_name}</span>
                                                     </td>
                                                     <td>
-                                                        <span>{quote.subuser_status}</span>
+                                                        <span>{quote.subuser_status == false ? "DisApproved" : "Approved"}</span>
                                                     </td>
                                                     <td className="action_sec">
                                                         <span>
@@ -289,10 +303,15 @@ const onSubmitQuoteadd = quoteDetails => {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="permission">Permissions</label>
-                                    <input className="form-control" name="rolename" ref={register({
+                                    {/* <input className="form-control" name="rolename" ref={register({
                                         required: true 
                                     })} defaultValue={(quoteForm['allowed_permissions'])}>
-                                    </input>
+                                    </input> */}
+                                    <Multiselect
+                                    options={(quoteForm['allowed_permissions'])}
+                                    selectedValues={(quoteForm['allowed_permissions'])}
+                                    displayValue="allowed_permissions"
+                                     />
                                     {errors.permission && errors.permission.type === 'required' && <span className="error">Permissions are required</span>}
                                 </div>
                                 <div className="form-group">
@@ -365,14 +384,30 @@ const onSubmitQuoteadd = quoteDetails => {
                                     {errors.password && errors.password.type === 'required' && <span className="error">Last Name is required</span>}
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="permission">Permissions</label>
-                                    <select className="form-control" name="permission" placeholder="Select permissions" ref={register({
+                                    {/* <label htmlFor="permission">Permissions</label> */}
+                                    {/* <select className="form-control" name="permission"  ref={register({
                                         required: true 
                                     })}>
                                         {quoteConversations.map((conv, index) => (
-                                        <option value={conv}>{conv}</option>
+                                          <option value={conv}>{conv}</option>
                                        ))}
-                                       </select>
+                                       </select> */}
+                                       <Dropdown>
+                  <Dropdown.Toggle variant='Secondary' id="dropdown-basic" >
+                  Permission
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu multiple>
+                  {quoteConversations.map((item,index)=>{
+                      return <Dropdown.Item key={index} >{item}</Dropdown.Item>
+                    }) 
+                    } 
+                  </Dropdown.Menu>
+                  </Dropdown> 
+                                       {/* <Select
+                                       isMulti
+                                    options={perms}
+                                    value={perms}
+                                     />  */}
                                     {errors.permission && errors.permission.type === 'required' && <span className="error">Permission is required</span>}
                                     
                                 </div>

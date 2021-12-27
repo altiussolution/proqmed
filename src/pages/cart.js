@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiTwotoneDelete } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
-
+import { AiOutlineCloudUpload } from "react-icons/ai";
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([])
@@ -162,13 +162,14 @@ const Cart = () => {
                         </div>
 
                         <div className="casualities">
-                                <a href="#"> <AiTwotoneDelete /></a>
+                                <a onClick={() => { resetCart(cart.item_id) }}> <AiTwotoneDelete /></a>
+                                <button className="btn btn heart" type="button" onClick={() => { updateCart(cart) }}><AiOutlineCloudUpload /></button>
                                 <button className="btn btn heart" type="button"><AiTwotoneHeart /></button>
                             </div>
-                        {/* <div className="user_actions">
-                            <button className="btn btn_gray" type="button" onClick={() => { updateCart(cart) }}>Update</button>
-                            <button className="btn btn_remove" type="button" onClick={() => { resetCart(cart.item_id) }}>Remove</button>
-                        </div> */}
+                        <div className="user_actions">
+                            {/* <button className="btn btn_gray" type="button" onClick={() => { updateCart(cart) }}>Update</button>
+                            <button className="btn btn_remove" type="button" onClick={() => { resetCart(cart.item_id) }}>Remove</button> */}
+                        </div>
                     </div>
                     
                     
@@ -243,7 +244,7 @@ const Cart = () => {
 
                                         <div className="col-lg-9 col-md-9 col-xs-12">
                                         <div className="casualities bottom">
-                                <a href="#"> Continue Shopping  </a>
+                                <a onClick={() => navigate('/')}> Continue Shopping  </a>
                                 <button className="btn btn update" type="button"> Update Cart  </button>
                             </div>
                                         </div>
