@@ -516,6 +516,7 @@ list-style: none;
   .product_view .product_details .product_note {
        -webkit-display: flex;
     -moz-display: flex;
+    margin-bottom: 10px;
     -ms-display: flex;
     -o-display: flex;
      display: flex;
@@ -560,9 +561,10 @@ list-style: none;
   .product_view .product_details .product_note i {
     color: #ffffff;
     font-size: 14px;
+    font-style: initial;
     background: hsl(141deg 60% 56%);
     font-family: 'Poppins';
-    padding: 5px;
+    padding: 2px 5px;
     border-radius: 7px;
     
   }

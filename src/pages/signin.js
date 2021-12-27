@@ -43,7 +43,7 @@ const SignIn = (props) => {
       })
       
         .then(function (response) {
-
+         console.log(response)
           if (response.statusText === "OK" && response.status == 200 ) {
             if(response.data[0]['approve_account'] === "approved"){
             if (typeof (response.data[0]['token']) === 'string') {

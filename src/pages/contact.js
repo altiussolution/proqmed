@@ -58,7 +58,7 @@ const Contact = () => {
                     <div className="content_wrapper">
                         <div className="container">
                             <div className="main_title">
-                                <h1>Contact <span>Us</span></h1>
+                                <h1>Contact Us</h1>
                             </div>
                             <div className="row">
                                 <div className="col-lg-9 col-md-8 col-xs-12 left_side">
