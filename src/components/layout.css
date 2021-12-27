@@ -5077,7 +5077,7 @@ section.main-footer p{
   border: none;
 }
 .slider_Product {
-  position: sticky;
+  /* position: sticky; */
   top: 40px;
   background: #fff;
 }
