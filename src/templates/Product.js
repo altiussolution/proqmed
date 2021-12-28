@@ -16,7 +16,7 @@ import { navigate } from "gatsby";
 import StarRatings from 'react-star-ratings';
 import { ToastContainer, toast } from 'react-toastify';
 
-import sellers from './../assets/glove-seller.PNG';
+import sellers from "./../assets/glove-seller.png";
 const similar_product = {
   autoplay: false,
   speed: 1000,
