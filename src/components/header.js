@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import logo from './../assets/logo.png';
 import Cart from './../components/cart/cart';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { checkLogin, logout } from "./../services/headerServices";
+import { checkLogin, logout, checkUser } from "./../services/headerServices";
 import { searchServices, getCartCount, viewCartItems } from "./../utils/apiServices";
 import axios from "axios";
 import { getProductURL, getCategoryURL } from "./../utils/url";
@@ -25,6 +25,7 @@ import imageToBase64 from 'image-to-base64/browser';
 const Header = ({ siteTitle, cartCount, allCategory }) => {
 
   const [isuserlogged, setIsLogged] = useState(false);
+  const [iswhatuser, setisUser] = useState(false);
   const [search, setSearch] = useState("");
   const [activeClass, setActiveClass] = useState(false);
   const [searchResponse, setSearchRes] = useState([]);
@@ -50,6 +51,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
 
   useEffect(() => {
     setIsLogged(checkLogin());
+    setisUser(checkUser());
     setQuoteId(localStorage.cartId);
     setJwt(localStorage.userToken);
     setEmail(localStorage.email);
@@ -451,7 +453,7 @@ const isSticky = (e) => {
                     <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>}
-                    {isuserlogged && <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}
+                    {iswhatuser &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                     {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
                   </ul>
@@ -467,7 +469,7 @@ const isSticky = (e) => {
               <div className="dropdown">
                 
               
-                <a className="btn dropbtn carttop"><Cart cartCount={cartCount} /></a>
+                <a className="btn dropbtn carttop"><Cart cartCount={cartCount ? cartCount : "$0.00"} /></a>
                 <div className="dropdown-content">
                   <ul>
                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
