@@ -450,10 +450,10 @@ const isSticky = (e) => {
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
                     <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
-                    <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
+                    {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>}
-                    {iswhatuser &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}
+                    {!localStorage.permissions &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                     {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
                   </ul>
@@ -476,7 +476,7 @@ const isSticky = (e) => {
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
                     <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
-                    <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
+                    {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <li onClick={getProfile}>My Profile</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}

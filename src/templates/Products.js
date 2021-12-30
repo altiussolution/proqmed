@@ -62,8 +62,20 @@ const Products = ({ pageContext, location }) => {
   const [viewClass, setViewClass] = useState('sample');
   const [activepage, setActivepage] = useState(1);
   const [cat_url, setcategoryUrl] = useState([]);
-
+  const [p,per] = useState(false);
+  const [pcar,percart] = useState(false);
+  const [outp,outper] = useState(false);
+  const [outpcar,outpercart] = useState(false);
   useEffect(() => {
+    if(localStorage.permissions){
+      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
+      let addcar=localStorage.permissions.includes("Can Add To Cart")
+      per(addwis)
+      percart(addcar)
+  }else if(!localStorage.permissions){
+    outper(true)
+    outpercart(true)
+  }
     let ignore = false;
     // await checkUrl() 
     const fetchProducts = async (id) => {

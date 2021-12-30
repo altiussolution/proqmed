@@ -41,6 +41,12 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
   const [colour, setColour] = useState();
   const [change_price, setchange_Price] = useState([]);
   const [Istrue, setDisable] = useState(false)
+  const [p,per] = useState(false);
+    const [pcar,percart] = useState(false);
+    const [pcom,percomp] = useState(false);
+    const [outp,outper] = useState(false);
+    const [outpcar,outpercart] = useState(false);
+    const [outpcom,outpercomp] = useState(false);
   const [data, setData] = useState([
     {
       image: (ImageNotFound),
@@ -55,6 +61,18 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
     setQuoteId(localStorage.cartId);
+    if(localStorage.permissions){
+      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
+      let addcar=localStorage.permissions.includes("Can Add To Cart")
+      let addcom=localStorage.permissions.includes("Can Add To Compare")
+      per(addwis)
+      percart(addcar)
+      percomp(addcom)
+  }else if(!localStorage.permissions){
+    outper(true)
+    outpercart(true)
+    outpercomp(true)
+  }
     if (proDescription.items.config_options) {
       setcartItem({
         "cartItem": {
@@ -544,15 +562,24 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                        
                       </div>
                       <div className="button_sec">
-                        <button onClick={() => addItemToCart(cartItem)} className="btn_gray btn"
+                        {pcar && <button onClick={() => addItemToCart(cartItem)} className="btn_gray btn"
                         //  disabled={isButton}
                          >
                           <span class="cart_svg"></span> Add To Cart   
-              </button>
-              <button className="btn_gray heart">     <a onClick={() => addToList(2)} >
+              </button>}
+              {outpcar && <button onClick={() => addItemToCart(cartItem)} className="btn_gray btn"
+                        //  disabled={isButton}
+                         >
+                          <span class="cart_svg"></span> Add To Cart   
+              </button>}
+              {p &&<button className="btn_gray heart">     <a onClick={() => addToList(2)} >
                             <FaRegHeart />
               </a>
-              </button>
+              </button>}
+              {outp && <button className="btn_gray heart">     <a onClick={() => addToList(2)} >
+                            <FaRegHeart />
+              </a>
+              </button>}
                         
                       </div>
 
@@ -594,9 +621,12 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
               <span className="fa fa-comments"></span>   Request for a Quote
               </a>
 
-                          <a onClick={() => addToList(1)} >
+                         {pcom && <a onClick={() => addToList(1)} >
                             <IoIosGitCompare /> Add to Compare
-              </a>
+              </a>}
+              {outpcom && <a onClick={() => addToList(1)} >
+                            <IoIosGitCompare /> Add to Compare
+              </a>}
                         </div>
                     <div>
 
