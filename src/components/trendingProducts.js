@@ -26,8 +26,16 @@ const banner_slide = {
 const TrendingProducts = () => {
 
     const [trendingProducts, setTrendingProducts] = useState(null);
-
+    const [pcar,percart] = useState(false);
+    const [outpcar,outpercart] = useState(false);
   useEffect(() => {
+    if(localStorage.permissions){
+      let addcar=localStorage.permissions.includes("Can Add To Cart")
+      percart(addcar)
+  }else if(!localStorage.permissions){
+    
+    outpercart(true)
+  }
     const fetchTrending = async () => {
       const res = await fetch(
         `${process.env.GATSBY_CART_URL_STARCARE}admin/trendingproducts` 
@@ -84,10 +92,14 @@ const TrendingProducts = () => {
                                     
                                     </div>
                                 </div>
-                                   <div className="price_right"> 
+                                   {pcar && <div className="price_right"> 
                                    
                                   <button className="addtocart" ><span class="cart_svg"></span></button>
-                                  </div>
+                                  </div>}
+                                  {outpcar && <div className="price_right"> 
+                                   
+                                   <button className="addtocart" ><span class="cart_svg"></span></button>
+                                   </div>}
                                 </div>
                                 </div>
                 </div>

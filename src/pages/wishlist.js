@@ -19,8 +19,11 @@ const Wishlist = () => {
     const [isButton, setButton] = useState(false);
     const [cartCnt, setCartCnt] = useState(getCartCount())
     const [wishListCnt, setWishListCnt] = useState(getWLCount());
-
+    const [permit,permission] = useState([]);
+    const [p,per] = useState(false);
+    const [nop,noper] = useState(false);
     useEffect(() => {
+       
         getWishList()
         setQuoteId(localStorage.cartId)
 
@@ -44,6 +47,14 @@ const Wishlist = () => {
                 },
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
+                    if(localStorage.permissions){
+                        let viewwis=localStorage.permissions.includes("Can View Wishlist")
+                        per(viewwis)
+                    }
+                    else if(!localStorage.permissions){
+                        noper(true)
+                    }
+                   
                     setWishList(res.data)
                     console.log(res.data)
                     wishListCount();
@@ -142,7 +153,7 @@ const Wishlist = () => {
             navigate("/signin")
         }
     }
-
+    if(p==true || nop==true){
     return (
         <>
             <Layout>
@@ -227,6 +238,13 @@ const Wishlist = () => {
             </Layout>
         </>
     )
+            }else {
+                return (
+                 <div>
+                     <span>Access Denied</span>
+                 </div>   
+                )
+            }
 }
 
 

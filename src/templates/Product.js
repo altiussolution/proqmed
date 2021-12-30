@@ -15,8 +15,6 @@ import PageLoader from "../components/loaders/pageLoader";
 import { navigate } from "gatsby";
 import StarRatings from 'react-star-ratings';
 import { ToastContainer, toast } from 'react-toastify';
-
-import sellers from "./../assets/glove-seller.png";
 const similar_product = {
   autoplay: false,
   speed: 1000,
@@ -41,6 +39,7 @@ const Product = props  => {
   const [sellerprod, setothersellers] = useState(null);
   const [jwt, setJwt] = useState("");
   const id = props.slug.split("-").slice(-1)[0]; 
+  
   const [data, setData] = useState([  
     {
       image:(ImageNotFound),
@@ -52,11 +51,23 @@ const Product = props  => {
     const [qty, setQty] = useState(1);
     const [wishListCnt, setWishListCnt] = useState(getWLCount());
     const [loading, setLoading] = useState(true);
-
+    const [p,per] = useState(false);
+    const [pcar,percart] = useState(false);
+    const [outp,outper] = useState(false);
+    const [outpcar,outpercart] = useState(false);
     useEffect(() => {
       setCustomerId(localStorage.customer_id)
       setJwt(localStorage.userToken)
       setQuoteId(localStorage.cartId)
+      if(localStorage.permissions){
+        let addwis=localStorage.permissions.includes("Can Add To Wishlist")
+        let addcar=localStorage.permissions.includes("Can Add To Cart")
+        per(addwis)
+        percart(addcar)
+    }else if(!localStorage.permissions){
+      outper(true)
+      outpercart(true)
+    }
       const fetchData = async () => {
         setLoading(true);   
         try {  
@@ -64,6 +75,7 @@ const Product = props  => {
             `${process.env.GATSBY_NODE_URL_STARCARE}data/singleproduct/${id}.json`
           );
           const data = convertToObject(res.data);
+          console.log(data)
           setProduct(data);
           await axios.get(
             `${process.env.GATSBY_CART_URL_STARCARE}admin/productattachments/${id}`).then((data)=>{
@@ -201,7 +213,9 @@ const Product = props  => {
                        </div>
                           <div className="price_right"> 
                           
-                         <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
+                         {pcar && <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>}
+                         {outpcar && <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>}
+
                          </div>
                        </div>
                        </div>
@@ -288,54 +302,25 @@ return (
       <th></th>
     </tr>
   </thead>
+  {
+  sellerprod.map((quote, index) => (
   <tbody>
     <tr>
       <th> 
         <div className="image-sec">
-        <img src={sellers}></img></div> </th>
-      <td>Sudhakar</td>
-      <td>Nesba Care Nitrile examination gloves 50 Pcs</td>
-      <td>$100.00</td>
-      <td><button className="action action_btn btn btn_gray"> <span className="fa fa-shopping-cart"></span> Add to Cart  </button></td>
-    </tr>
-    <tr>
-      <th> 
-        <div className="image-sec">
-        <img src={sellers}></img></div> </th>
-      <td>Sudhakar</td>
-      <td>Nesba Care Nitrile examination gloves 50 Pcs</td>
-      <td>$100.00</td>
-      <td><button className="action action_btn btn btn_gray"> <span className="fa fa-shopping-cart"></span> Add to Cart  </button></td>
-    </tr>
-    <tr>
-      <th> 
-        <div className="image-sec">
-        <img src={sellers}></img></div> </th>
-      <td>Sudhakar</td>
-      <td>Nesba Care Nitrile examination gloves 50 Pcs</td>
-      <td>$100.00</td>
-      <td><button className="action action_btn btn btn_gray"> <span className="fa fa-shopping-cart"></span> Add to Cart  </button></td>
-    </tr>
-    <tr>
-      <th> 
-        <div className="image-sec">
-        <img src={sellers}></img></div> </th>
-      <td>Sudhakar</td>
-      <td>Nesba Care Nitrile examination gloves 50 Pcs</td>
-      <td>$100.00</td>
-      <td><button className="action action_btn btn btn_gray"> <span className="fa fa-shopping-cart"></span> Add to Cart  </button></td>
-    </tr>
-    <tr>
-      <th> 
-        <div className="image-sec">
-        <img src={sellers}></img></div> </th>
-      <td>Sudhakar</td>
-      <td>Nesba Care Nitrile examination gloves 50 Pcs</td>
-      <td>$100.00</td>
-      <td><button className="action action_btn btn btn_gray"> <span className="fa fa-shopping-cart"></span> Add to Cart  </button></td>
+        <img src={quote.product_image}></img></div> </th>
+      <td>{quote.seller}</td>
+      <td>{quote.product_name}</td>
+      <td>{quote.price}</td>
+      <td>{pcar && <button className="action action_btn btn btn_gray" onClick={() => addtoCartItems(1,1)}> <span className="fa fa-shopping-cart"></span> Add to Cart  </button>}
+      {outpcar && <button className="action action_btn btn btn_gray" onClick={() => addtoCartItems(1,1)}> <span className="fa fa-shopping-cart"></span> Add to Cart  </button>}
+      </td>
     </tr>
     
+    
   </tbody>
+       ))
+      }
 </table>
 </div>
            </div>
@@ -345,60 +330,7 @@ return (
      </section> 
   
 
-{sellerprod.length == 0? <span></span>:
-  <section className="page_content inner_page">
-                    <div className="container boxed-content">
-                        <div className="sec_block">
-                            <div className="row page_title_sec">
-                                <h3 className="text-capitalize">More sellers selling this product</h3>
-                            </div>
-                            <div className="row compare_section cart_page">
-                                <table className="table compareList_table">
-                                    <thead>
-                                        <tr>
-                                            <th>Image</th>
-                                            <th>Seller Name</th>
-                                            <th>Product Name</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    {
-                                        sellerprod.map((quote, index) => (
-                                            <tbody key={index}>
 
-                                                <tr>
-
-                                                    <td>
-                                                        <img src={quote.product_image}></img>
-                                                    </td>
-                                                    <td>
-                                                        <span>{quote.seller}</span>
-                                                    </td>
-                                                    <td>
-                                                        <span>{quote.product_name}</span>
-                                                    </td>
-                                                    <td>
-                                                        <span>{quote.price}</span>
-                                                    </td>
-                                                    <td className="action_sec">
-                                                        <span>
-                                                            <button className="action action_btn btn btn_gray" onClick={() => addtoCartItems(1,1)}>Add to Cart
-                              </button>
-                                                            
-                                                        </span>
-                                                    </td>
-
-                                                </tr>
-                                            </tbody>
-                                        ))
-                                    }
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-}
 {productdata.length == 0? <span></span>:
 <section className="feature_section">
 <div className="container">

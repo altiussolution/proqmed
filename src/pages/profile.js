@@ -13,11 +13,22 @@ const Profile = () => {
     const [profile, setProfile] = useState({});
     const [show, setShow] = useState(false);
     const [state, setpic] = useState("");
+    const [p,per] = useState(false);
+    const [outp,outper] = useState(false);
   const [profilepic,setProfilepic] = useState({});
     useEffect(() => {
         setIsLogged(checkLogin());
         setJwt(localStorage.userToken);
         setEmail(localStorage.email);
+        if(localStorage.permissions){
+          let addwis=localStorage.permissions.includes("Can Edit Profile")
+         
+          per(addwis)
+        
+      }else if(!localStorage.permissions){
+        outper(true)
+        
+      }
         setName(localStorage.getItem('user_name'))
         
           axios({
@@ -127,9 +138,12 @@ const Profile = () => {
               <button onClick={onFileUpload} className="action action_btn btn btn_gray">
                   Upload!
                 </button>
-                <button onClick={() => { navigateOnclick('/changePassword') }} className="action action_btn btn btn_gray">
+                {p && <button onClick={() => { navigateOnclick('/changePassword') }} className="action action_btn btn btn_gray">
                   Change Password
-                </button>
+                </button>}
+                {outp && <button onClick={() => { navigateOnclick('/changePassword') }} className="action action_btn btn btn_gray">
+                  Change Password
+                </button>}
             </div>
 
             <Table>

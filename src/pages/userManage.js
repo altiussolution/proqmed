@@ -149,7 +149,9 @@ const removeQuote = (id) => {
 
 const onSubmitQuote = quoteDetails => {
 const cat = [];
+const per = [];
 cat.push(quoteDetails['catpermission'])
+per.push(quoteDetails['allowed_permissions'])
     let quoteData = [
         {
             "subuser_id": quoteForm['subuser_id'],
@@ -157,8 +159,8 @@ cat.push(quoteDetails['catpermission'])
             "firstname": quoteDetails['firstname'],
             "lastname": quoteDetails['lastname'],
             "email": quoteDetails['email'],
-            "password": quoteForm['password'],
-            "allowedpermissions": quoteForm['allowed_permissions'],
+            "password": quoteDetails['password'],
+            "allowedpermissions": per,
             "categorypermissions": cat,
             "status" : statys
 
@@ -332,7 +334,7 @@ const onSubmitQuoteadd = quoteDetails => {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="password">Password</label>
-                                    <input className="form-control" name="rolename" ref={register({
+                                    <input className="form-control" name="password" ref={register({
                                         required: true 
                                     })} defaultValue={(quoteForm['subuser_password'])}>
                                     </input>
@@ -340,7 +342,7 @@ const onSubmitQuoteadd = quoteDetails => {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="permission">Permissions</label>
-                                    <input className="form-control" name="rolename" ref={register({
+                                    <input className="form-control" name="allowed_permissions" ref={register({
                                         required: true 
                                     })} defaultValue={(quoteForm['allowed_permissions'])}>
                                     </input>

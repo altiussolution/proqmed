@@ -20,7 +20,6 @@ import closeSearch from './../assets/close.png';
 import classNames from 'classnames';
 import './layout.css';
 import cart from './../assets/ic_cart_top.png';
-import Home from '../pages/Se/sellerhome';
 import imageToBase64 from 'image-to-base64/browser';
 const Header = ({ siteTitle, cartCount, allCategory }) => {
 
@@ -450,7 +449,7 @@ const isSticky = (e) => {
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
                     <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
-                    <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
+                    {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>}
                     {iswhatuser &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}
@@ -476,7 +475,7 @@ const isSticky = (e) => {
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
                     <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
-                    <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
+                    {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <li onClick={getProfile}>My Profile</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
@@ -523,7 +522,7 @@ const isSticky = (e) => {
                   <li onClick={() => { navigateOnclick('/aboutUs') }}><a >About</a></li>
                   <li onClick={() => { navigateOnclick('/contact') }}><a >Contact</a></li>
                   <li onClick={() => { navigateOnclick('/tracking') }}><a >Order Tracking</a></li>
-                  <li onClick={() => { navigateOnclick('/Se/sellerhome') }}><a>Sell on Proqmed</a></li>                  
+                  <li onClick={() => { navigateOnclick('/') }}><a>Sell on Proqmed</a></li>                 
               </ul>
               <ul className="contact_top">
                   <li>For Sales & Support <a href="#">(+91)1234-5670</a></li>

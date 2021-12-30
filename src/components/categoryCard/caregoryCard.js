@@ -18,11 +18,23 @@ export default function CategoryCard({ data: product, dataClass }) {
   const [quote_id, setQuoteId] = useState("");
   const [qty, setQty] = useState(1);
   const [cartCnt, setCartCnt] = useState(getCartCount())
-
+  const [p,per] = useState(false);
+  const [pcar,percart] = useState(false);
+  const [outp,outper] = useState(false);
+  const [outpcar,outpercart] = useState(false);
   useEffect(() => {
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken)
     setQuoteId(localStorage.cartId)
+    if(localStorage.permissions){
+      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
+      let addcar=localStorage.permissions.includes("Can Add To Cart")
+      per(addwis)
+      percart(addcar)
+  }else if(!localStorage.permissions){
+    outper(true)
+    outpercart(true)
+  }
   },[])
 
   const addToList = (type) => {
@@ -139,7 +151,8 @@ export default function CategoryCard({ data: product, dataClass }) {
                 </div>
                 <div className="price_right"> 
                                    
-                                  <button className="addtocart" ><span class="cart_svg"></span></button>
+                                  {pcar && <button className="addtocart" ><span class="cart_svg"></span></button>}
+                                  {outpcar && <button className="addtocart" ><span class="cart_svg"></span></button>}
                                   { <Link  to={getProductURL(product.items)} state={product} className="btn outline-1">View Detail</Link> }
                                   </div>
                 </div>

@@ -40,12 +40,23 @@ const FeatureProduct = () => {
     const [qty, setQty] = useState(1);
     const [isButton, setButton] = useState(false);
     const [cartCnt, setCartCnt] = useState(getCartCount())
-
+    const [p,per] = useState(false);
+    const [pcar,percart] = useState(false);
+    const [outp,outper] = useState(false);
+    const [outpcar,outpercart] = useState(false);
     useEffect(() => {
         setCustomerId(localStorage.customer_id)
         setJwt(localStorage.userToken)
         setQuoteId(localStorage.cartId)
-
+        if(localStorage.permissions){
+          let addwis=localStorage.permissions.includes("Can Add To Wishlist")
+          let addcar=localStorage.permissions.includes("Can Add To Cart")
+          per(addwis)
+          percart(addcar)
+      }else if(!localStorage.permissions){
+        outper(true)
+        outpercart(true)
+      }
         const fetchFeature = async () => {
             const res = await fetch(
                 `${process.env.GATSBY_CART_URL_STARCARE}featureproducts/2`
@@ -187,11 +198,16 @@ const FeatureProduct = () => {
                     featureProducts.map((data,index) => (
                         <div key={`${data.name}_${index}`}>
                             <div className="card">    
-                            <div className="wishComp">
+                            {p && <div className="wishComp">
                                     <ul>
                                       <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
                                     </ul>
-                                </div>
+                                </div>}
+                                {outp && <div className="wishComp">
+                                    <ul>
+                                      <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
+                                    </ul>
+                                </div>}
                                 <div className="image_wrapper">
                                     <Link to={getProductURL(data)}><img src={data.image} /></Link>
                                 </div>
@@ -220,9 +236,12 @@ const FeatureProduct = () => {
                                     
                                     </div>
                                 </div>
-                                  <div className="price_right">                                   
+                                  {pcar && <div className="price_right">                                   
                                   <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
-                                  </div>
+                                  </div>}
+                                  {outpcar && <div className="price_right">                                   
+                                  <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
+                                  </div>}
                                 </div>
                             </div>
 
