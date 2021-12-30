@@ -61,6 +61,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
     setQuoteId(localStorage.cartId);
+    console.log(proDescription)
     if(localStorage.permissions){
       let addwis=localStorage.permissions.includes("Can Add To Wishlist")
       let addcar=localStorage.permissions.includes("Can Add To Cart")
@@ -589,7 +590,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                     <div className="overview">
                       <h3>Overview</h3>
                       <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-                      <a href="#">Read More</a>
+                      <a>Read More</a>
 
                       <p>Seller: <span>ProQmed Ltd</span></p>
 
@@ -603,14 +604,14 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                       <form>
   <label>
     
-    <input type="text" placeholder="enter code" />
-    <a href="#">Check</a>
+    <input type="tel" id="pincode" name="postcode" placeholder="Zip/Postal Code " onChange={handleChange1} maxLength="6" className="form-control" />
+    <button onClick={() => pinCodeChecker(document.getElementById('pincode').value, proDescription.items.id)} className="input-group-text" disabled={Istrue}>Check</button>
   </label>
  
 </form>
                         
                       </div>
-                      <p className="red">currently out of stock in this area</p>
+                      {/* <p className="red">currently out of stock in this area</p> */}
                     </div>
 
 

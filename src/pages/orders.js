@@ -15,6 +15,8 @@ const Orders = () => {
     const [permit,perMission] = useState([]);
     const [p,per] = useState(false);
     const [re,reodr]= useState(false);
+    const [outp,outper] = useState(false);
+    const [outre,outreodr]= useState(false);
     useEffect(() => {
         setJwt(localStorage.userToken);
         if(localStorage.permissions){
@@ -44,6 +46,9 @@ const Orders = () => {
                         let reorder = localStorage.permissions.includes("Can View Individual Orders Or Reorder")
                         per(orderhis)
                         reodr(reorder)
+                    }else if(!localStorage.permissions){
+                        outper(true)
+                        outreodr(true)
                     }
                    
                 }
@@ -108,7 +113,7 @@ const Orders = () => {
     }
 
     const orderDetails = () => {
-        if(p==true){
+        if(p==true || outp==true){
             return<div className="col-lg-12 col-md-12 col-xs-12 ">
             
              
@@ -152,6 +157,7 @@ const Orders = () => {
                                             
                                             <div className="button_sec">
                                             {re && <button className="btn btn green" type="button" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
+                                            {outre && <button className="btn btn green" type="button" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
                                             <Link className="btn btn_gray" to="/orderstatus" state={{ order_id: orders.order_id }} >OrderStatus</Link>
                                             {orders.status !== 'canceled' && <button className="btn btn outline" type="button" onClick={()=> cancelOrder(orders.order_id)}>Cancel Order</button>}
                                                 

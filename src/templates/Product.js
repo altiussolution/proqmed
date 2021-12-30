@@ -75,6 +75,7 @@ const Product = props  => {
             `${process.env.GATSBY_NODE_URL_STARCARE}data/singleproduct/${id}.json`
           );
           const data = convertToObject(res.data);
+          console.log(data)
           setProduct(data);
           await axios.get(
             `${process.env.GATSBY_CART_URL_STARCARE}admin/productattachments/${id}`).then((data)=>{
