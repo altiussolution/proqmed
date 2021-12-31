@@ -8,7 +8,7 @@ import { wishListCount, addToCart, viewCartItems, getCartCount, getWLCount } fro
 import empty_cart from './../assets/empty.png';
 import { navigate } from "gatsby";
 import { checkLogin } from "./../services/headerServices";
-
+import StarRatings from 'react-star-ratings';
 
 const Wishlist = () => {
 
@@ -19,8 +19,11 @@ const Wishlist = () => {
     const [isButton, setButton] = useState(false);
     const [cartCnt, setCartCnt] = useState(getCartCount())
     const [wishListCnt, setWishListCnt] = useState(getWLCount());
-
+    const [permit,permission] = useState([]);
+    const [p,per] = useState(false);
+    const [nop,noper] = useState(false);
     useEffect(() => {
+       
         getWishList()
         setQuoteId(localStorage.cartId)
 
@@ -44,7 +47,16 @@ const Wishlist = () => {
                 },
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
+                    if(localStorage.permissions){
+                        let viewwis=localStorage.permissions.includes("Can View Wishlist")
+                        per(viewwis)
+                    }
+                    else if(!localStorage.permissions){
+                        noper(true)
+                    }
+                   
                     setWishList(res.data)
+                    console.log(res.data)
                     wishListCount();
                     wistlistsValue();
                     setLoader(false);
@@ -141,7 +153,7 @@ const Wishlist = () => {
             navigate("/signin")
         }
     }
-
+    if(p==true || nop==true){
     return (
         <>
             <Layout>
@@ -155,7 +167,8 @@ const Wishlist = () => {
                             <div className="content_wrapper">
                                 <div className="container">
                                     <div className="main_title">
-                                        <h1>My <span>Wishlist</span></h1>
+                                        {/* <h1>My Wishlist <span>(5)</span></h1> */}
+                                        <h1>My Wishlist<span> ({wishList.length})</span></h1>
                                     </div>
 
 
@@ -165,8 +178,9 @@ const Wishlist = () => {
                                             <img src={empty_cart} alt={"Empty Cart"} />
                                             <h4>No items in Wishlist</h4>
                                         </div> :
-                                            <div className="col-lg-12 col-md-12 col-xs-12">
-
+                                            <div className="col-lg-12 col-md-12 col-xs-12">                                        
+ 
+    <div className="fo-bg-white">
                                                 {
                                                     wishList.map((item, index) => (
                                                         <div key={item.sku} className="product_item">
@@ -175,24 +189,34 @@ const Wishlist = () => {
                                                             </div>
                                                             <div className="product_desc">
                                                                 <h3>{item.name}</h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <p>SKU <span>{item.sku}</span></p>
-                                                                    </li>
-                                                                </ul>
+                                                                <div className="to-flx">
+                                                                <span>{item.created_at}</span>
+                                                                <p>SKU: <span>{item.sku}</span></p>
+                                                                <span>{item.review_count}</span>
+                                                                </div>
                                                                 <div className="qty_price">
                                                                     <h6>${parseFloat(item.price).toFixed(2)}</h6>
                                                                 </div>
+
+                                                                
                                                             </div>
                                                             <div className="user_actions">
+                                                                    <p>Item added 26 November</p>
                                                                 {/* <button className="btn_gray btn" onClick={() => navigate('/checkout')} >Buy Now</button> */}
                                                                 <button className="btn_gray btn" onClick={() => addtoCartItem(item.sku, item.id)}>Add to cart</button>
-                                                                <button className="btn btn_remove" type="button" onClick={() => removeWishList(item.id, 'remove')}>Remove</button>
+                                                                <button className="btn btn_outline" type="button" onClick={() => removeWishList(item.id, 'remove')}>Delete</button>
                                                             </div>
+                                                            
                                                         </div>
                                                     ))
                                                 }
+                                                </div>
+                                                
+
+                                                
                                             </div>
+
+                                            
                                         }
                                     </div>
                                 </div>
@@ -214,6 +238,13 @@ const Wishlist = () => {
             </Layout>
         </>
     )
+            }else {
+                return (
+                 <div>
+                     <span>Access Denied</span>
+                 </div>   
+                )
+            }
 }
 
 

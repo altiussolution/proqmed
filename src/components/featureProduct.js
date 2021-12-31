@@ -17,7 +17,7 @@ import cart from './../assets/ic_cart_top.png';
 const feature_slide = {
   autoplay: false,
   speed: 1000,
-  slidesToShow:3,
+  slidesToShow:5,
   slidesToScroll: 3,
   infinite: true,
   responsive: [
@@ -40,12 +40,55 @@ const FeatureProduct = () => {
     const [qty, setQty] = useState(1);
     const [isButton, setButton] = useState(false);
     const [cartCnt, setCartCnt] = useState(getCartCount())
-
+    const [p,per] = useState(false);
+    const [pcar,percart] = useState(false);
+    const [outp,outper] = useState(false);
+    const [outpcar,outpercart] = useState(false);
     useEffect(() => {
         setCustomerId(localStorage.customer_id)
         setJwt(localStorage.userToken)
-        setQuoteId(localStorage.cartId)
+        const jwt = localStorage.getItem('userToken')
+        if(jwt){
+          try
+          {    
+            axios({
+              method : 'post',
+              url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine`,
+              headers : {
+                  'Authorization' : `Bearer ${jwt}`
+              }
+            })
+            .then((response) => {
+              if(response.statusText === "OK" && response.status == 200)
+              {
+                console.log(response.data)
+                  localStorage.setItem('cartId',response.data);
+                  setQuoteId(localStorage.cartId)
 
+                  //viewCartItems()
+                //  localStorage.removeItem('cartData', []);
+              }
+            }) 
+            .catch((error) => {
+              console.error(error,'error')
+            })
+          }catch(err){
+            console.error(err);
+            toast.error('something went wrong')
+          }
+        }else{
+            navigate("/signin")
+        }
+       // setQuoteId(localStorage.cartId)
+        if(localStorage.permissions){
+          let addwis=localStorage.permissions.includes("Can Add To Wishlist")
+          let addcar=localStorage.permissions.includes("Can Add To Cart")
+          per(addwis)
+          percart(addcar)
+      }else if(!localStorage.permissions){
+        outper(true)
+        outpercart(true)
+      }
         const fetchFeature = async () => {
             const res = await fetch(
                 `${process.env.GATSBY_CART_URL_STARCARE}featureproducts/2`
@@ -187,11 +230,16 @@ const FeatureProduct = () => {
                     featureProducts.map((data,index) => (
                         <div key={`${data.name}_${index}`}>
                             <div className="card">    
-                            <div className="wishComp">
+                            {p && <div className="wishComp">
                                     <ul>
                                       <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
                                     </ul>
-                                </div>
+                                </div>}
+                                {outp && <div className="wishComp">
+                                    <ul>
+                                      <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
+                                    </ul>
+                                </div>}
                                 <div className="image_wrapper">
                                     <Link to={getProductURL(data)}><img src={data.image} /></Link>
                                 </div>
@@ -214,14 +262,18 @@ const FeatureProduct = () => {
                                         starDimension="20px"
                                         starSpacing="0px"
                                         starRatedColor="rgb(242 187 22)"
+                                        svgIconViewBox="0 0 32 32"
+                                        svgIconPath="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798zM16 23.547l-6.983 3.671 1.334-7.776-5.65-5.507 7.808-1.134 3.492-7.075 3.492 7.075 7.807 1.134-5.65 5.507 1.334 7.776-6.983-3.671z"
                                     />
                                     
                                     </div>
                                 </div>
-                                   <div className="price_right"> 
-                                   
+                                  {pcar && <div className="price_right">                                   
                                   <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
-                                  </div>
+                                  </div>}
+                                  {outpcar && <div className="price_right">                                   
+                                  <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
+                                  </div>}
                                 </div>
                             </div>
 
@@ -240,7 +292,7 @@ const FeatureProduct = () => {
             
             <div className="row">
             <div className="col-lg-12 col" >
-            <h2 className="section_title">
+            <h2 className="section_title if_has_nav">
                     <span>Featured Products</span>
                     <span><Link to="/featuredProducts">+ View all Products</Link></span>
                     </h2>

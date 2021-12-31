@@ -8,12 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import isImageUrl  from 'is-image-url';
 
 const CompareList = () => {
-    const [compareList, setCompareList] = useState([]);
+    const [compareLists, setCompareList] = useState([]);
     const [compareAttr, setcompareAttr] = useState([]);
     const [loader, setLoader] = useState(false);
+    
     useEffect(() => {
         setLoader(true);
         getCompareList()
+        
     }, [])
 
     const getCompareList = () => {
@@ -27,6 +29,7 @@ const CompareList = () => {
                 },
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
+                    console.log(res.data)
                     res.data.map((data,ind)=>{
                         Object.entries(data.attributes).map(([val, key])=>{
                             Object.entries(key).map(([key, val],i)=>{
@@ -41,6 +44,7 @@ const CompareList = () => {
                     })
                     setCompareList(res.data)         
                     setLoader(false);
+                    console.log(attributesVal)
                 }
             }).catch((err) => {    
                 console.error(err)
@@ -94,18 +98,24 @@ const CompareList = () => {
                             <div className="content_wrapper">
                                 <div className="container">
                                     <div className="main_title">
-                                        <h1>My <span>CompareList</span></h1>
+                                        <h1>My CompareList <span>(5)</span></h1>
                                     </div>
-
+                                   
+                                            {/* {localStorage.getItem('sampleVal')} */}
+                                           
+                                            
+                                            
                                     <div className="compareList_details table-responsive">
                                         <table className="table compareList_table">
                                         <tbody>
-                                            {compareList.length == 0 ? <div>No items </div> :
+                                            
+                                            {/* {compareList.length == 0 ?  <div></div>: */}
+                                                 {compareLists ?
                                                  compareAttr.map((tle,ind)=>(
                                                     <tr>
                                                         <th>{tle}</th>
                                                         {
-                                                            compareList.map((item,index)=>(
+                                                            compareLists.map((item,index)=>(
                                                                 <td className="compare_product">
                                                                     {isImageUrl(item[tle]) ? <img src={item[tle]}/> : <p className={`${tle === 'price' && 'price'}`}>{tle === 'price' ?`$${parseFloat(item[tle]).toFixed(2)}` : item[tle]}</p>}
                                                                     {tle == 'image' &&
@@ -118,9 +128,11 @@ const CompareList = () => {
                                                             ))
                                                         }
                                                     </tr>
-                                                ))
+                                                )) : <div></div>
+                                                }
 
-                                            }
+
+                                           
                                         </tbody>
                                         </table>
                                     </div>
@@ -140,7 +152,7 @@ const CompareList = () => {
                         />
                     </main>)
                 }
-
+ 
             </Layout>
         </>
     )

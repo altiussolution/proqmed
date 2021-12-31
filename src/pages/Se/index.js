@@ -1,16 +1,16 @@
 import React from "react"
 import { Link } from "gatsby"
-import $ from 'jquery';
-import Layout from "../components/layout"
-import Home from '../components/home.js'
+
+
+import Home from './sellerhome';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const IndexPage = ({data}) =>{
   return (
-    <Layout>
+  
     <Home /> 
-    </Layout>
+ 
     
   )
 }

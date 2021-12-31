@@ -62,8 +62,20 @@ const Products = ({ pageContext, location }) => {
   const [viewClass, setViewClass] = useState('sample');
   const [activepage, setActivepage] = useState(1);
   const [cat_url, setcategoryUrl] = useState([]);
-
+  const [p,per] = useState(false);
+  const [pcar,percart] = useState(false);
+  const [outp,outper] = useState(false);
+  const [outpcar,outpercart] = useState(false);
   useEffect(() => {
+    if(localStorage.permissions){
+      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
+      let addcar=localStorage.permissions.includes("Can Add To Cart")
+      per(addwis)
+      percart(addcar)
+  }else if(!localStorage.permissions){
+    outper(true)
+    outpercart(true)
+  }
     let ignore = false;
     // await checkUrl() 
     const fetchProducts = async (id) => {
@@ -234,11 +246,7 @@ const Products = ({ pageContext, location }) => {
             <div className="content_wrapper">
 
               <div className="container">
-                <h1 className="page-title"><span>{pageContext.name}</span>
-                  <div className="breadcrumbs_sec" >
-                    <Hamburger pageContext={pageContext} />
-                  </div>
-                </h1>
+                
 
   
 
@@ -256,37 +264,15 @@ const Products = ({ pageContext, location }) => {
                       )}
                     </div>
                   </div>
-                  <div className="col-lg-9 col-md-8 col-xs-12">
-                    <div className="category_container">
-                    {products && products.length > 0 && (
-                      <div className="card">
-                        <div className="tools_items">
-                          <div className="tools">
-                            <span>
-                              Show:
-                    </span>
-                            <div className="option">
-                              <select className="form-control" id="show_option1" onChange={showSelected}>
-                              <option>Showing Products  {products.length}</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
-                                <option value="35">35</option>
-                                <option value="40">40</option>
-                                <option value="45">45</option>
-                                <option value="50">50</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div className="tools">
-                            <p className="category-product-count">Showing 01 - 20 of {products.length}</p>
-                          </div>
-                        </div>
-
-                        <div className="tools_items">
+                  <div className="col-lg-9 col-md-8 col-xs-12 ">
+                  <h1 className="page-title">
+                    <div>
+                    <span>{pageContext.name}</span>
+                  <div className="breadcrumbs_sec" >
+                    <Hamburger pageContext={pageContext} />
+                  </div>
+                  </div>
+                  <div className="tools_items">
                           <div className="tools">
                             <span>
                               Sort by:
@@ -303,16 +289,17 @@ const Products = ({ pageContext, location }) => {
                             </div>
                           </div>
                           <div className="tools">
-                            <span className="title_view">
+                            <div className="title_view">
                               <button className="view-list" id="list" data-toggle="tooltip" data-placement="top" title="List" onClick={() => setViewClass('list_view')}><IoList /></button>
                               <button className="view-grid  active" id="grid" data-toggle="tooltip" data-placement="top" title="Grid" onClick={() => setViewClass('grid_view')}><IoGridOutline /></button>
-                            </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )}
+                </h1>
+                    <div className="category_container">
+                    
                       <div className="cat_scroll">
-                        <div className="container_">
+                        <div className="container">
                           <div id="products" className="row list-group">
 
                             {renderProducts()}
@@ -339,6 +326,37 @@ const Products = ({ pageContext, location }) => {
                     
                         </div>
                       </div>
+                      {products && products.length > 0 && (
+                      <div className="card">
+                        <div className="tools_items">
+                          <div className="tools">
+                            <span>
+                              Show:
+                    </span>
+                            <div className="option">
+                              <select className="form-control" id="show_option1" onChange={showSelected}>
+                              <option>{products.length}</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="35">35</option>
+                                <option value="40">40</option>
+                                <option value="45">45</option>
+                                <option value="50">50</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div className="tools">
+                            <p className="category-product-count">Showing 01 - 20 of {products.length}</p>
+                          </div>
+                        </div>
+
+                        
+                      </div>
+                    )}
                     </div>
                   </div>
                 </div>

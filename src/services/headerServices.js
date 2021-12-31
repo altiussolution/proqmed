@@ -7,6 +7,15 @@ const checkLogin = () => {
         return false  
     }
 }
+const checkUser = () => {
+    const whatuser = (typeof(!localStorage.getItem('permissions')) ? undefined : localStorage.getItem('permissions'))
+    console.log(whatuser)
+    if(whatuser === undefined){
+        return true;
+    }else{
+        return false
+    }
+}
 
 const logout = (val) => {
     if(val === 'logOut'){
@@ -16,6 +25,7 @@ const logout = (val) => {
 
 module.exports = {
     checkLogin,
-    logout
+    logout,
+    checkUser
 };
   

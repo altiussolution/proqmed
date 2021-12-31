@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import logo from './../assets/logo.png';
 import Cart from './../components/cart/cart';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { checkLogin, logout } from "./../services/headerServices";
+import { checkLogin, logout, checkUser } from "./../services/headerServices";
 import { searchServices, getCartCount, viewCartItems } from "./../utils/apiServices";
 import axios from "axios";
 import { getProductURL, getCategoryURL } from "./../utils/url";
@@ -20,10 +20,12 @@ import closeSearch from './../assets/close.png';
 import classNames from 'classnames';
 import './layout.css';
 import cart from './../assets/ic_cart_top.png';
-
+import Home from '../pages/Se/sellerhome';
+import imageToBase64 from 'image-to-base64/browser';
 const Header = ({ siteTitle, cartCount, allCategory }) => {
 
   const [isuserlogged, setIsLogged] = useState(false);
+  const [iswhatuser, setisUser] = useState(false);
   const [search, setSearch] = useState("");
   const [activeClass, setActiveClass] = useState(false);
   const [searchResponse, setSearchRes] = useState([]);
@@ -41,20 +43,29 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
   const [mobileShow, setMobileShow] = useState(false);
   const [value, setValue] = useState();
   const [cartCnt, setCartCnt] = useState(cartCount)
-  
-
+  const [state, setpic] = useState("");
+  const [profilepic,setProfilepic] = useState({});
   const [min, setMin] = useState("");
   const [max, setMax] = useState("");
   const [addCartBtn, setCartBtn] = useState(false)
 
   useEffect(() => {
     setIsLogged(checkLogin());
+    setisUser(checkUser());
     setQuoteId(localStorage.cartId);
     setJwt(localStorage.userToken);
     setEmail(localStorage.email);
     setName(localStorage.getItem('user_name'))
+    window.addEventListener('scroll', isSticky);
+    return () => {
+        window.removeEventListener('scroll', isSticky);
+    };
   }, [])
-
+const isSticky = (e) => {
+                    const header = document.querySelector('.header-section');
+                    const scrollTop = window.scrollY;
+                    scrollTop >= 100 ? header.classList.add('is-sticky') : header.classList.remove('is-sticky');
+                };
 
   const getProfile = () => {
     if (jwt) {
@@ -63,6 +74,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
         url: `${process.env.GATSBY_CART_URL_STARCARE}customerprofile/${email}`,
       }).then((res) => {
         if (res.statusText === "OK" && res.status == 200) {
+          console.log(res,"profile")
           setProfile(res.data[0]);
           setShow(true);
         }
@@ -71,7 +83,75 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
       })
     }
   }
+  const onFileChange = (event) => {
+    imageToBase64(event.target.files[0].name) // Path to the image
+    .then(
+        (response) => {
+          console.log(response)
+            state(response);
+            const res = response
+            setpic(res);
+            console.log(setpic)
+        }
+    )
+    .catch(
+        (error) => {
+            console.log(error); // Logs an error if there was one
+        }
+    )
+    setpic(event.target.files[0].name);
+    console.log(setpic)
+  };
 
+  const onFileUpload = () => {
+    // const formData = new FormData()
+    // formData.append(
+    //   state.selectedFile,
+    // );
+    let profiledata = {   
+      "data": {
+          "customer_email": email,
+          "image": state,
+          "title": user_name
+      }
+  }
+    if (jwt) {
+      axios({
+        method: 'post',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/upload/`,
+        headers: {
+          'Authorization': `Bearer ${jwt}`
+      },
+      data: profiledata
+      }).then((res) => {
+        if (res.status == 200) {
+          toast.success('Profile picture uploaded')
+        }
+      }).catch((err) => {
+        console.error(err);
+      })
+    }
+  };
+
+  const getProfilepic = () => {
+    if (jwt) {
+      axios({
+        method: 'get',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/list/${email}`,
+        headers: {
+          'Authorization': `Bearer ${jwt}`
+      }
+      }).then((res) => {
+        if (res.status == 200) {
+          setProfilepic(res.data[0]);
+          getProfile();
+          setShow(true);
+        }
+      }).catch((err) => {
+        console.error(err);
+      })
+    }
+  }
   const onSubmit = event => {
     event.preventDefault();
     if (search.trim().length) {
@@ -304,9 +384,11 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
       </div>
   }
   
+  
+
   return (
 
-    <header>
+    <header className="header-section">
       {/* <div className="d-none d-md-none d-lg-block"> */}
       <div>
         
@@ -359,21 +441,21 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
             <Navbar className="bulkorder my_account">
            
               <div className="dropdown">
-                <a className="btn dropbtn"><span>Hello, signin</span>My Account</a>
+                <a className="btn dropbtn"><span>{isuserlogged ? `Welcome! ${user_name}` : <div>Hello,SignIn</div>}</span>My Account</a>
                 <div className="dropdown-content">
                   <ul>
-                    {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
-                    <li>{!isuserlogged && <Link to="/signup">Register</Link>}
-                {!isuserlogged && <Link to="/signin">Login</Link>}</li>
-                    
+                    {!isuserlogged && <li><Link to="/signup">Register</Link>
+                    <Link to="/signin">Login</Link></li>}
                     <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
                     <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
-                    <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
+                    {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
-                    {isuserlogged && <li onClick={getProfile}>My Profile</li>}
+                    {isuserlogged && <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>}
+                    {!localStorage.permissions &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
+                    {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
                   </ul>
 
                 </div>
@@ -381,18 +463,20 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
               </div>
             </Navbar>
             <Navbar className="bulkorder my_account">
-            <div className="cart_ic"><span>0</span><img src={cart}/></div>
+            {/* <div>dasdasdsa<Cart cartCount={cartCount} />
+             <img src={cart}/> 
+            </div> */}
               <div className="dropdown">
                 
               
-                <a className="btn dropbtn carttop"><span>My Cart</span>$0.00</a>
+                <a className="btn dropbtn carttop"><Cart cartCount={cartCount ? cartCount : "$0.00"} /></a>
                 <div className="dropdown-content">
                   <ul>
                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
                     <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
-                    <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
+                    {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <li onClick={getProfile}>My Profile</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
@@ -434,11 +518,12 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
             </Navbar> */}
             <div className="menu_botm">
               <ul>
-                  <li><a href="#">My Cart</a></li>
-                  <li><a href="#">My Orders</a></li>
-                  <li><a href="#">My Wishlist</a></li>
-                  <li><a href="#">Compare List</a></li>
-                  <li><a href="#">Change Password</a></li>                  
+                  <li onClick={() => { navigateOnclick('/') }}><a>Home</a></li>
+                  <li onClick={() => { navigateOnclick('/mainCategory') }}><a>Shop</a></li>
+                  <li onClick={() => { navigateOnclick('/aboutUs') }}><a >About</a></li>
+                  <li onClick={() => { navigateOnclick('/contact') }}><a >Contact</a></li>
+                  <li onClick={() => { navigateOnclick('/tracking') }}><a >Order Tracking</a></li>
+                  <li onClick={() => { navigateOnclick('/Se/sellerhome') }}><a>Sell on Proqmed</a></li>                  
               </ul>
               <ul className="contact_top">
                   <li>For Sales & Support <a href="#">(+91)1234-5670</a></li>
@@ -466,7 +551,12 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
         <Modal.Body>
           <div className="profile_sec">
             <div className="profile_pic">
-              <img src={img1} />
+            {profilepic.logo ? <img src={`data:image/png;base64,${profilepic.logo}`}/>: ''}
+              {/* <img src={profilepic.logo} /> */}
+              <input type="file" onChange={onFileChange}/>
+              <button onClick={onFileUpload}>
+                  Upload!
+                </button>
             </div>
 
             <Table>

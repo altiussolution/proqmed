@@ -18,11 +18,23 @@ export default function CategoryCard({ data: product, dataClass }) {
   const [quote_id, setQuoteId] = useState("");
   const [qty, setQty] = useState(1);
   const [cartCnt, setCartCnt] = useState(getCartCount())
-
+  const [p,per] = useState(false);
+  const [pcar,percart] = useState(false);
+  const [outp,outper] = useState(false);
+  const [outpcar,outpercart] = useState(false);
   useEffect(() => {
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken)
     setQuoteId(localStorage.cartId)
+    if(localStorage.permissions){
+      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
+      let addcar=localStorage.permissions.includes("Can Add To Cart")
+      per(addwis)
+      percart(addcar)
+  }else if(!localStorage.permissions){
+    outper(true)
+    outpercart(true)
+  }
   },[])
 
   const addToList = (type) => {
@@ -120,6 +132,7 @@ export default function CategoryCard({ data: product, dataClass }) {
          {<Link to={getProductURL(product.items)} state={product}> {product.items.name.slice(0,45)}... </Link>}
           </p>
         </div>
+        <div className="price_holder">
         <div className="CC_prod_disc">
         {product.items.rating ?
           <StarRatings
@@ -136,11 +149,18 @@ export default function CategoryCard({ data: product, dataClass }) {
                     <span className="price">${Math.round(product.items.price)}</span>
                 </div>
                 </div>
+                <div className="price_right"> 
+                                   
+                                  {pcar && <button className="addtocart" ><span class="cart_svg"></span></button>}
+                                  {outpcar && <button className="addtocart" ><span class="cart_svg"></span></button>}
+                                  { <Link  to={getProductURL(product.items)} state={product} className="btn outline-1">View Detail</Link> }
+                                  </div>
+                </div>
                 </div>
                 <div className="cart-btns">
-                <a className="other" onClick={() => addToList(2)}><FaRegHeart /> Add to Wishlist</a>
-                  <a className="other" onClick={() => addToList(1)}><IoIosGitCompare/> Add to Compare</a>
-                { <Link  to={getProductURL(product.items)} state={product} className="btn view">View Detail</Link> }
+                <a className="other" onClick={() => addToList(2)}><FaRegHeart /> </a>
+                  <a className="other" onClick={() => addToList(1)}><IoIosGitCompare/> </a>
+                
                   
                   
                 </div>

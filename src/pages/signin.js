@@ -43,10 +43,13 @@ const SignIn = (props) => {
       })
       
         .then(function (response) {
-
+         console.log(response)
           if (response.statusText === "OK" && response.status == 200 ) {
             if(response.data[0]['approve_account'] === "approved"){
             if (typeof (response.data[0]['token']) === 'string') {
+              if(response.data[0]['allowed_permissions']){
+                localStorage.setItem('permissions', response.data[0]['allowed_permissions']);
+              }
               localStorage.setItem('userToken', response.data[0]['token']);
               localStorage.setItem('email', response.data[0]['email']);
               localStorage.setItem('customer_id', response.data[0]['customer_id']);

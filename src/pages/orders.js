@@ -12,9 +12,16 @@ const Orders = () => {
 
     const [orders, setOrders] = useState([]);
     const [jwt,setJwt] = useState("")
-
+    const [permit,perMission] = useState([]);
+    const [p,per] = useState(false);
+    const [re,reodr]= useState(false);
     useEffect(() => {
         setJwt(localStorage.userToken);
+        if(localStorage.permissions){
+            perMission(localStorage.permissions);
+        }
+        
+        console.log(permit)
         setOrderDetails()
     }, [])
 
@@ -32,6 +39,13 @@ const Orders = () => {
                         }
                     }
                     setOrders(orderArray);
+                    if(localStorage.permissions){
+                        let orderhis=localStorage.permissions.includes("Can View Order History")
+                        let reorder = localStorage.permissions.includes("Can View Individual Orders Or Reorder")
+                        per(orderhis)
+                        reodr(reorder)
+                    }
+                   
                 }
                 
             }).catch((err) => {  
@@ -94,18 +108,28 @@ const Orders = () => {
     }
 
     const orderDetails = () => {
-        return  <div className="col-lg-12 col-md-12 col-xs-12">
+        if(p==true){
+            return<div className="col-lg-12 col-md-12 col-xs-12 ">
+            
              
             {orders.length == 0 ? 
-            (<div className="col-lg-9 col-md-9 col-xs-12 no_data">
-            <h1>No Item found</h1></div>) :
+            (<div className="col-lg-9 col-md-9 col-xs-12 no_data ">
+                
+            <h1>No Item found</h1>
+            
+            </div>) :
+            
                 orders.map((items,index) => (
+
+                    
                     <div key={index} className="order_product">
                             {
                                 items.map((orders,ind) =>{
                                     return (ind == 0 ? 
+                                        
                                     <div className="product_status" key={`${ind}_table`}>
-                                        <table cellSpacing="2" cellPadding="4">
+                                        <div className="common">
+                                        <table  cellSpacing="2" cellPadding="4">
                                             <thead>   
                                                 <tr>
                                                     <th>Ordered Placed</th>
@@ -121,15 +145,18 @@ const Orders = () => {
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        </div>
                                         <div className="order_note">
                                             <p>Order Des : <span> {orders.shipping_description} </span></p>
                                             <p>Payment Method : <span> {orders.payment_method} </span></p>
                                             
                                             <div className="button_sec">
-                                            {orders.status !== 'canceled' && <button className="btn btn_gray" type="button" onClick={()=> cancelOrder(orders.order_id)}>Cancel Order</button>}
-                                                <button className="btn btn_gray mt-1" type="button" onClick={() => reorder(orders.order_id)}>ReOrder</button>
+                                            {re && <button className="btn btn green" type="button" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
+                                            <Link className="btn btn_gray" to="/orderstatus" state={{ order_id: orders.order_id }} >OrderStatus</Link>
+                                            {orders.status !== 'canceled' && <button className="btn btn outline" type="button" onClick={()=> cancelOrder(orders.order_id)}>Cancel Order</button>}
+                                                
                                             
-                                       <Link className="btn btn_gray" to="/orderstatus" state={{ order_id: orders.order_id }} >OrderStatus</Link>
+                                       
                                      </div>
                                          </div>
                                     </div> 
@@ -152,6 +179,7 @@ const Orders = () => {
                                                 </ul>  
                                                
                                             </div>
+                                            
                                     </div>)
                                 })
                             }
@@ -159,6 +187,8 @@ const Orders = () => {
                 ))
             }
         </div>
+        }
+        
     }
 
     return (
@@ -169,7 +199,7 @@ const Orders = () => {
                         <div className="content_wrapper">
                             <div className="container">
                                 <div className="main_title">
-                                    <h1>My <span>Orders</span></h1>
+                                    <h1>My Orders <span>(5)</span></h1>
                                 </div>
                                 <div className="row">
                                     {orderDetails()}

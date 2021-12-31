@@ -41,6 +41,12 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
   const [colour, setColour] = useState();
   const [change_price, setchange_Price] = useState([]);
   const [Istrue, setDisable] = useState(false)
+  const [p,per] = useState(false);
+    const [pcar,percart] = useState(false);
+    const [pcom,percomp] = useState(false);
+    const [outp,outper] = useState(false);
+    const [outpcar,outpercart] = useState(false);
+    const [outpcom,outpercomp] = useState(false);
   const [data, setData] = useState([
     {
       image: (ImageNotFound),
@@ -55,6 +61,18 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
     setQuoteId(localStorage.cartId);
+    if(localStorage.permissions){
+      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
+      let addcar=localStorage.permissions.includes("Can Add To Cart")
+      let addcom=localStorage.permissions.includes("Can Add To Compare")
+      per(addwis)
+      percart(addcar)
+      percomp(addcom)
+  }else if(!localStorage.permissions){
+    outper(true)
+    outpercart(true)
+    outpercomp(true)
+  }
     if (proDescription.items.config_options) {
       setcartItem({
         "cartItem": {
@@ -156,6 +174,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
     const res = axios.get(
       `${process.env.GATSBY_CART_URL_STARCARE}admin/minmaxquantity/${proDescription.items.id}`
     ).then((data) => {
+      console.log(data.data[0])
       setMin(Math.round(data.data[0].min_sale_qty));
       setMax(Math.round(data.data[0].max_sale_qty));
     })
@@ -441,21 +460,25 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         numberOfStars={5}
                         name='rating'
                         starDimension="20px"
-                        starSpacing="0px"
+                        starSpacing="3px"
                         starRatedColor="rgb(242 187 22)"
-                      /> : <p className="no_review"> No Reviews Yet</p>
+                      /> : 
+                      
+                      <p className="no_review"> No Reviews Yet</p>
                     }
+
+
                     <div className="brand mt-2">
 
                     </div>
                     <div className="rating_field">
 
                       <div className="star-rating">
-                        <span className="fa fa-star-ofa far fa-star" data-rating="1"></span>
-                        <span className="fas fa-star" data-rating="2"></span>
-                        <span className="far fa-star" data-rating="3"></span>
-                        <span className="far fa-star" data-rating="4"></span>
-                        <span className="far fa-star" data-rating="5"></span>
+                        <span className="fa fa-star" data-rating="1"></span>
+                        <span className="fa fa-star" data-rating="2"></span>
+                        <span className="fa fa-star" data-rating="3"></span>
+                        <span className="fa fa-star" data-rating="4"></span>
+                        <span className="fa fa-star" data-rating="5"></span>
                         <input type="hidden" name="whatever1" className="rating-value" value="2.56" />
                       </div>
                       <span className="rating_text">
@@ -477,9 +500,23 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         }
                       </div>
                       <div>
-                        <i className="fas fa-check-circle"> In Stock</i>
+                        <i> In Stock</i>
                       </div>
                     </div>
+
+<div className="price-name-strike">
+                    {isShow == 1 ? <span></span> :
+                          (proDescription.items.config_options ?
+                            change_price.map((val, index) => (
+                              <span className="price" key={index}>${Math.round(val.price)}</span>
+                            )) :
+                            <span className="price">${Math.round(proDescription.items.price)}</span>
+                          )
+                        }
+
+                        <span><strike>$ 40</strike></span>
+</div>
+
                     {tierAmt.length != 0 ? (
                       <table className="table compareList_table">
                         <thead>
@@ -522,33 +559,75 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         <div className="qty_price">
                           <input type="number" value={qty} onChange={event => { handleChange(event) }} />
                         </div>
-                        {isShow == 1 ? <span></span> :
-                          (proDescription.items.config_options ?
-                            change_price.map((val, index) => (
-                              <span className="price" key={index}>${Math.round(val.price)}</span>
-                            )) :
-                            <span className="price">${Math.round(proDescription.items.price)}</span>
-                          )
-                        }
+                       
                       </div>
                       <div className="button_sec">
-                        <button onClick={() => addItemToCart(cartItem)} className="btn_gray btn" disabled={isButton}>
-                          Add To Cart
-              </button>
-                        <button onClick={() => quotePopupOpen()} className="btn_gray btn ml-1">
-                          Request for a Quote
-              </button>
-                        <div className="product_detail_action">
-                          <a onClick={() => addToList(2)} >
-                            <FaRegHeart /> Add to Wishlist
+                        {pcar && <button onClick={() => addItemToCart(cartItem)} className="btn_gray btn"
+                        //  disabled={isButton}
+                         >
+                          <span class="cart_svg"></span> Add To Cart   
+              </button>}
+              {outpcar && <button onClick={() => addItemToCart(cartItem)} className="btn_gray btn"
+                        //  disabled={isButton}
+                         >
+                          <span class="cart_svg"></span> Add To Cart   
+              </button>}
+              {p &&<button className="btn_gray heart">     <a onClick={() => addToList(2)} >
+                            <FaRegHeart />
+              </a>
+              </button>}
+              {outp && <button className="btn_gray heart">     <a onClick={() => addToList(2)} >
+                            <FaRegHeart />
+              </a>
+              </button>}
+                        
+                      </div>
+
+                      
+                    </div>
+
+                    <div className="overview">
+                      <h3>Overview</h3>
+                      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+                      <a href="#">Read More</a>
+
+                      <p>Seller: <span>ProQmed Ltd</span></p>
+
+
+                    </div>
+
+                    <div className="delivery-section">
+                      
+                      <div className="input-sec">
+                      <p>Delivery</p>
+                      <form>
+  <label>
+    
+    <input type="text" placeholder="enter code" />
+    <a href="#">Check</a>
+  </label>
+ 
+</form>
+                        
+                      </div>
+                      <p className="red">currently out of stock in this area</p>
+                    </div>
+
+
+                    <div className="product_detail_action">
+                          
+
+              <a onClick={() => quotePopupOpen()} >
+              <span className="fa fa-comments"></span>   Request for a Quote
               </a>
 
-                          <a onClick={() => addToList(1)} >
+                         {pcom && <a onClick={() => addToList(1)} >
                             <IoIosGitCompare /> Add to Compare
-              </a>
+              </a>}
+              {outpcom && <a onClick={() => addToList(1)} >
+                            <IoIosGitCompare /> Add to Compare
+              </a>}
                         </div>
-                      </div>
-                    </div>
                     <div>
 
                       {config.length > 0 && <p><span className="color_type">Colour: </span>{colour}</p>}
@@ -571,12 +650,12 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         }
                       </div>
                     }
-                    <div>
+                    {/* <div>
                       <div className="input-group mb-3 mt-2">
                         <input type="tel" id="pincode" name="postcode" placeholder="Zip/Postal Code " onChange={handleChange1} maxLength="6" className="form-control" />
                         <button onClick={() => pinCodeChecker(document.getElementById('pincode').value, proDescription.items.id)} className="input-group-text" disabled={Istrue}>Zip/Postal Code</button>
                       </div>
-                    </div>
+                    </div> */}
                     <ToastContainer
                       position="bottom-right"
                       autoClose={5000}
