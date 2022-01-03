@@ -31,7 +31,10 @@ const CheckOut = () => {
     const [loader, setLoader] = useState(false);
     const [addressEdit, setaddressEdit] = useState(false);
     const [uEmail, setUEmail] = useState();
-    
+    const [co,coun]= useState(null);
+    const [sta,stat]= useState(null);
+    const [countrs,countres]=useState(false);
+    const [statys,stateys]=useState(false);
     useEffect(() => {
         setJwt(localStorage.userToken);
         setUEmail(localStorage.email)
@@ -458,8 +461,13 @@ const CheckOut = () => {
         }
     }
 
-    const editAddress = (index) => {
+    const editAddress = (add,index) => {
         setIndex(index);
+        console.log(add)
+        countres(true)
+        stateys(true)
+        coun(add['country_id'])
+        stat(add['region'])
         setShow(true);
         setaddressEdit(true);
     }
@@ -482,7 +490,7 @@ const CheckOut = () => {
 
                         <div className="action_sec">
                             <button className="action action_btn btn btn_gray" onClick={() => {deleteAddress(add.entity_id); setaddressEdit(false)}} disabled={index !== selAddIndex}>Delete</button>
-                            <button className="action action_btn btn btn_gray ml-1" onClick={() => {editAddress(index); setaddressEdit(true)}}  disabled={index !== selAddIndex}>Edit</button>
+                            <button className="action action_btn btn btn_gray ml-1" onClick={() => {editAddress(add,index); setaddressEdit(true)}}  disabled={index !== selAddIndex}>Edit</button>
                         </div>
 
                     </div>
@@ -493,6 +501,8 @@ const CheckOut = () => {
     }
 
     const parseSelected = (event) => {
+        countres(false)
+        stateys(false)
         setState([])
         const valueToParse = event.target.value;
         const itemSelected = JSON.parse(valueToParse);
@@ -586,7 +596,8 @@ const CheckOut = () => {
                                                                             <label htmlFor="countryId">Country <span className="error_label">*</span></label>
                                                                             <select className="form-control" id="countryId" name="countryId" ref={register({
                                                                                 required: true
-                                                                            })} onChange={parseSelected}>
+                                                                            })} onChange={parseSelected} value="India">
+                                                                                {/* {countrs && <option value={co} selected>{co}</option>} */}
                                                                                 {
                                                                                     region.map(regionName => (
                                                                                         <option key={regionName.value} value={JSON.stringify(regionName)} >{regionName.label}</option>
@@ -605,7 +616,8 @@ const CheckOut = () => {
                                                                                 <select className="form-control" id="user_state" name="user_state"
                                                                                     ref={register({
                                                                                         required: true
-                                                                                    })}>
+                                                                                    })} defaultValue={(addressEdit ? shippingAddress[selAddIndex]['region_id'] : "")}>
+                                                                                        {/* {statys && <option value={sta} selected>{sta}</option>} */}
                                                                                     {
                                                                                         state.map(stateVal => (
                                                                                             <option key={stateVal.value} value={JSON.stringify(stateVal)} >{stateVal.label}</option>

@@ -4,8 +4,10 @@ import axios from "axios";
 import { checkLogin } from "./../services/headerServices";
 import { navigate} from "gatsby"
 import Table from 'react-bootstrap/Table';
+import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 const Profile = () => {
+  const { register, handleSubmit, errors } = useForm();
     const [jwt, setJwt] = useState("")
     const [isuserlogged, setIsLogged] = useState(false);
     const [email, setEmail] = useState("");
@@ -15,7 +17,10 @@ const Profile = () => {
     const [state, setpic] = useState("");
     const [p,per] = useState(false);
     const [outp,outper] = useState(false);
+    const [aftimg,afterimage]= useState(false);
   const [profilepic,setProfilepic] = useState({});
+  const [showname,Naming]= useState(false);
+  const [showmail,Emailing]= useState(false);
     useEffect(() => {
         setIsLogged(checkLogin());
         setJwt(localStorage.userToken);
@@ -83,9 +88,11 @@ const Profile = () => {
           }).then((res) => {
             if (res.status == 200) {
               toast.success('Profile picture uploaded')
+              afterimage(false);
             }
           }).catch((err) => {
             console.error(err);
+            afterimage(false);
           })
         }
       };
@@ -96,11 +103,80 @@ const Profile = () => {
           navigate('/signin')
         }
       }
+const editingName = (value) =>{
+  Naming(true)
+}
+const Namesubmit = Nameval =>{
+  let data = {
+    "data": {
+      "customer_email":localStorage.email,
+      "first_name":Nameval['firstname'],
+      "last_name":Nameval['lastname']
+    }
+  }
+  try {
+    axios({
+        method: 'post',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}customer/updatename`,
+        data: data,
+    })
+        .then(function (response) {
+            toast.success('Name Updated Successfully')
+            Naming(false)
+        })
+        .catch(function (response) {
+            toast.error('An error occured please contact admin')
+            Naming(false)
+        });
 
+} catch (err) {
+    console.error(`An error occured ${err}`)
+    Naming(false)
+}
+}
+
+const editingEmail = (value) =>{
+  Emailing(true)
+}
+
+const Emailsubmit = emailss => {
+  let data = {
+    "data": {
+      "customer_email":localStorage.email,
+      "new_email":emailss['email'],
+    }
+  }
+  try {
+    axios({
+        method: 'post',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}customer/updateemail`,
+        data: data,
+    })
+        .then(function (response) {
+            toast.success('Email Updated Successfully')
+            Emailing(false)
+        })
+        .catch(function (response) {
+            toast.error('An error occured please contact admin')
+            Emailing(false)
+        });
+
+} catch (err) {
+    console.error(`An error occured ${err}`)
+    Emailing(false)
+}
+}
+const editingGender = (value) =>{
+
+}
+const editingNumber = (value) =>{
+
+}
       const uploadImage = async (e) => {
         const file = e.target.files[0];
         const base64 = await convertBase64(file);
         setpic(base64);
+        afterimage(true);
         console.log(base64)
       };
     
@@ -135,9 +211,9 @@ const Profile = () => {
                             <div className="profile_pic">
             {profilepic.logo ? <img src={profilepic.logo}/>: <div></div>}
               <input type="file" onChange={(e) => {uploadImage(e);}}/>
-              <button onClick={onFileUpload} className="action action_btn btn btn_gray">
+              {aftimg && <button onClick={onFileUpload} className="action action_btn btn btn_gray">
                   Upload!
-                </button>
+                </button>}
                 {p && <button onClick={() => { navigateOnclick('/changePassword') }} className="action action_btn btn btn_gray">
                   Change Password
                 </button>}
@@ -149,21 +225,53 @@ const Profile = () => {
             <Table>
               <tbody>
                 <tr>
-                  <th>Firstname</th>
+                  <th>Name</th>
                   <td>:</td>
-                  <td>{jwt && profile.firstname}</td>
-                </tr>
-
-                <tr>
-                  <th>Lastname</th>
-                  <td>:</td>
-                  <td>{jwt && profile.lastname}</td>
+                  {!showname && <td>{jwt && profile.firstname}{jwt && profile.lastname}
+                  
+                  </td>}
+                  {showname && <td><form onSubmit={handleSubmit(Namesubmit)}>
+                  <label htmlFor="firstname">Name</label>
+                  <input type="text"  name="firstname" maxLength="20" className="form-control" ref={register({
+                              required: true})} />
+                               <input type="text"  name="lastname" maxLength="20" className="form-control" ref={register({
+                              required: true})} />
+                  <button type="submit">Save</button>
+                  </form></td>}
+                  
+                  {!showname && <td><button onClick={editingName}>Edit</button></td>}
                 </tr>
 
                 <tr>
                   <th>Email</th>
                   <td>:</td>
-                  <td>{jwt && profile.email}</td>
+                  {!showmail && <td>{jwt && profile.email}
+                 
+                  </td>}
+                  {showmail && <td><form onSubmit={handleSubmit(Emailsubmit)}>
+                  <label htmlFor="email">Email</label>
+                  <input type="text"  name="email" maxLength="20" className="form-control" ref={register({
+                              required: true})} />
+                  <button type="submit">Save</button>
+                  </form></td>}
+                  
+                  {!showmail && <td><button onClick={editingEmail}>Edit</button></td>}
+                </tr>
+                <tr>
+                  <th>Gender</th>
+                  <td>:</td>
+                  {<td>{jwt && profile.gender}
+                  
+                  </td>}
+                  {/* <button onClick={editingGender}>Edit</button> */}
+                </tr>
+                <tr>
+                  <th>Mobile Number</th>
+                  <td>:</td>
+                  {<td>{jwt && profile.telephone}
+                  
+                  </td>}
+                  {/* <button onClick={editingNumber}>Edit</button> */}
                 </tr>
               </tbody>
             </Table>

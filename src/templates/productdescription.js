@@ -261,18 +261,19 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
     }
   }
 
-  const pinCodeChecker = (event, id) => {
+  const pinCodeChecker = pinCode => {
+    console.log(pinCode)
     let data;
     try {
       axios.get(
-        `${process.env.GATSBY_CART_URL_STARCARE}admin/pincodecheck/${id}`
+        `${process.env.GATSBY_CART_URL_STARCARE}admin/pincodecheck/${proDescription.items.id}`
       ).then(async (res) => {
         await res.data.map((pin) => {
-          if (event == pin.pincode) {
+          if (pinCode == pin.pincode) {
             data = pin.pincode
           }
         })
-        await verifycode(event, data)
+        await verifycode(pinCode, data)
       })
 
     } catch (err) {
@@ -601,11 +602,11 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                       
                       <div className="input-sec">
                       <p>Delivery</p>
-                      <form>
+                      <form onSubmit={handleSubmit(pinCodeChecker)}>
   <label>
     
     <input type="tel" id="pincode" name="postcode" placeholder="Zip/Postal Code " onChange={handleChange1} maxLength="6" className="form-control" />
-    <button onClick={() => pinCodeChecker(document.getElementById('pincode').value, proDescription.items.id)} className="input-group-text" disabled={Istrue}>Check</button>
+    <button  type="submit"  className="input-group-text" disabled={Istrue}>Check</button>
   </label>
  
 </form>

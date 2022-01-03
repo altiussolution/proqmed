@@ -3,6 +3,7 @@ import axios from "axios";
 import { getProductURL } from "../utils/url";
 import { Link } from "gatsby";
 import Layout from '../components/layout';
+import { FaRegHeart } from 'react-icons/fa';
 import PageLoader from "../components/loaders/pageLoader";
 
 const BrandedProducts = ({ location }) =>{
@@ -47,6 +48,11 @@ const Renderproduct = () => {
                     (productBrand.map((data, index) => (
                         <div className="brandedpro_item" key={index}>
                             <div className="products">
+                            <div className="wishComp">
+                                    <ul>
+                                   <li><a ><FaRegHeart /></a></li>
+                                    </ul>
+                                </div>
                                 {/* <img className="product_img" src={data.brand_image} /> */}
                                 <Link to={getProductURL(data)} ><img className="product_img" src={data.image} alt="" /></Link>
                                 {/* <img className="product_img" src={data.image} alt="" /> */}
@@ -57,6 +63,9 @@ const Renderproduct = () => {
                                 <div className="product_btm">
                                     <h3 className="product_price">${Math.floor(data.price)}<sup className="price_decimal"></sup></h3>                             
                                 </div>
+                                <div className="price_right">                                   
+                                  <button className="addtocart"><span class="cart_svg"></span></button>
+                                  </div>
                             </div>
                         </div>
                     ))) : <div></div>

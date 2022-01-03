@@ -461,14 +461,14 @@ const isSticky = (e) => {
 
               </div>
             </Navbar>
-            <Navbar className="bulkorder my_account">
+            {isuserlogged && <Navbar className="bulkorder my_account">
             {/* <div>dasdasdsa<Cart cartCount={cartCount} />
              <img src={cart}/> 
             </div> */}
               <div className="dropdown">
                 
               
-                <a className="btn dropbtn carttop"><Cart cartCount={cartCount ? cartCount : "$0.00"} /></a>
+                <a className="btn dropbtn carttop"><Cart cartCount={cartCount} /></a>
                 <div className="dropdown-content">
                   <ul>
                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
@@ -477,14 +477,14 @@ const isSticky = (e) => {
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
                     {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
-                    {isuserlogged && <li onClick={getProfile}>My Profile</li>}
+                    {isuserlogged && <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                   </ul>
 
                 </div>
 
               </div>
-            </Navbar>
+            </Navbar>}
             <div className={`${activeClass ? "sampleDropDown" : "d-none"}`}>
               {sampleVar()}
               {searchList()}

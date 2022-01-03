@@ -275,7 +275,7 @@ const onSubmitQuoteadd = quoteDetails => {
                                                         <span>{quote.role_name}</span>
                                                     </td>
                                                     <td>
-                                                        <span>{quote.subuser_status == false ? "DisApproved" : "Approved"}</span>
+                                                        <span>{quote.subuser_status == false ? "In-Active" : "Active"}</span>
                                                     </td>
                                                     <td className="action_sec">
                                                         <span>
