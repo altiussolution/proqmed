@@ -552,6 +552,7 @@ const isSticky = (e) => {
             <div className="profile_pic">
             {profilepic.logo ? <img src={`data:image/png;base64,${profilepic.logo}`}/>: ''}
               {/* <img src={profilepic.logo} /> */}
+              <div className="fo-center"></div>
               <input type="file" onChange={onFileChange}/>
               <button onClick={onFileUpload}>
                   Upload!

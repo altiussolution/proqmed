@@ -264,12 +264,16 @@ const Numbersubmit = num => {
                     <div className="content_wrapper">
                         <div className="container">
                             <div className="main_title">
-                                <h1>My <span>Profile</span></h1>
+                                <h1>My Profile</h1>
                             </div>
-                            <div className="col-lg-9 col-md-9 col-xs-12 no_data ">
+                            <div className="col-lg-12 col-md-9 col-xs-12 no_data fo-flx ">
+                              <div className="content-wrap"> 
                             <div className="profile_pic">
             {profilepic.logo ? <img src={profilepic.logo}/>: <div></div>}
+
+            <div className="fo-center">
               <input type="file" onChange={(e) => {uploadImage(e);}}/>
+              </div>
               {aftimg && <button onClick={onFileUpload} className="action action_btn btn btn_gray">
                   Upload!
                 </button>}
@@ -280,7 +284,7 @@ const Numbersubmit = num => {
                   Change Password
                 </button>}
             </div>
-
+            <div className="fo-scroll">
             <Table>
               <tbody>
                 <tr>
@@ -295,10 +299,10 @@ const Numbersubmit = num => {
                               required: true})} />
                   <input type="text"  name="lastname" maxLength="20" className="form-control" ref={register({
                               required: true})} />
-                  <button type="submit">Save</button>
+                  <button className="profile-sv" type="submit">Save</button>
                   </form></td>}
                   
-                  {!showname && <td><button onClick={editingName}>Edit</button></td>}
+                  {!showname && <td><button className="profile-bt" onClick={editingName}><span className="fa fa-pencil-square-o"></span> Edit</button></td>}
                 </tr>
 
                 <tr>
@@ -311,10 +315,10 @@ const Numbersubmit = num => {
                   <label htmlFor="email">Email</label>
                   <input type="text"  name="email" maxLength="50" className="form-control" ref={register({
                               required: true})} />
-                  <button type="submit">Save</button>
+                  <button className="profile-sv" type="submit">Save</button>
                   </form></td>}
                   
-                  {!showmail && <td><button onClick={editingEmail}>Edit</button></td>}
+                  {!showmail && <td><button className="profile-bt" onClick={editingEmail}><span className="fa fa-pencil-square-o"></span> Edit</button></td>}
                 </tr>
                 {/*<tr>
                   <th>Gender</th>
@@ -341,13 +345,14 @@ const Numbersubmit = num => {
                   <label htmlFor="number">Mobile Number</label>
                   <input type="text"  name="number" maxLength="10" className="form-control" ref={register({
                               required: true})} />
-                  <button type="submit">Save</button>
+                  <button className="profile-sv" type="submit">Save</button>
                   </form></td>}
-                  
-                  {!shownumber && <td><button onClick={editingNumber}>Edit</button></td>}
+                  {!shownumber && <td><button className="profile-bt" onClick={editingNumber}><span className="fa fa-pencil-square-o"></span> Edit</button></td>}
                 </tr>
               </tbody>
             </Table>
+            </div>
+            </div>
                             </div>
                         </div>
                     </div>

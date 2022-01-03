@@ -1628,9 +1628,24 @@ img.img-fluid.he {
 
 @media only screen and (max-width:768px) {
 
+  .profile_pic {
+    width: auto !important;
+    border: none !important;
+  }
+
+  .content-wrap {
+    flex-direction: column;
+  }
+
+  .content-wrap table.table {
+    margin-left: 0px !important;
+
+  }
+
   .af-tr-banner h1 {
     font-size: 22px !important;
   }
+
 
   .hotdeals {
     margin-bottom: 40px;
@@ -1898,6 +1913,10 @@ ul.newsletter .form-control {
 }
 }
 @media only screen and (max-width:600px) {
+
+  .content-wrap table.table{
+    margin-top: 20px;
+  }
   .section_title{
     flex-direction: column;
   }
@@ -6158,12 +6177,12 @@ main.contactus_page .container {
 
 /* Track Order */
 
-.track-order {
+/* .track-order {
   background: #fff;
   padding: 20px;
   border-radius: 5px;
   box-shadow: rgb(50 50 93 / 15%) 0px 6px 12px -2px, rgb(0 0 0 / 10%) 0px 3px 7px -3px;
-}
+} */
 
 .track input {
   width: -webkit-fill-available;
@@ -6218,12 +6237,29 @@ main.contactus_page .container {
 
 .tr-header h4 {
   font-size: 16px;
+  margin-bottom: 0;
 }
 
 .tr-bottom {
   height: 130px;
-  border-top: 1px solid #ddd;
-  padding-top: 30px;
+    position: relative;
+    border-top: 1px solid #ddd;
+    padding-top: 30px;
+    z-index: 1;
+}
+
+.fo-bg-white.ng p.price {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.fo-bg-white.ng .info p{
+  margin-bottom: 0;
+}
+
+.track-order button.btn_gray.btn {
+    margin-top: 15px;
+    width: -webkit-fill-available;
 }
 
 /* Progress bar */
@@ -6274,7 +6310,8 @@ ul.progressbar li span {
 }
 
 .fo-bg-white.ng {
-  background: none;
+  box-shadow: 0 2px 10px 0 rgb(0 0 0 / 10%);
+  background-color: none !important;
 }
 
 .progressbar li:first-child::after{
@@ -6292,4 +6329,55 @@ ul.progressbar li span {
 
 .progressbar li.active + li::after{
   background:rgb(26, 119, 3);
+}
+
+.profile_pic img {
+  width: 50%;
+  border-radius: 10px;
+}
+
+.content-wrap {
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px 0 rgb(0 0 0 / 10%);
+}
+
+.profile_pic {
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-right: 1px solid #ddd;
+}
+
+.content-wrap table.table {
+  margin-left: 30px;
+  margin-bottom: 0;
+}
+
+button.profile-bt {
+  background: #e5e5e5;
+  border: none;
+  padding: 5px 15px;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-top: 3px;
+}
+
+button.profile-sv {
+  background: #0162a2;
+  padding: 5px 20px;
+  margin-top: 10px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+.profile_pic button.btn.btn_gray {
+  margin-top: 15px;
+  margin-right: 0;
+  padding: 5px 20px;
 }

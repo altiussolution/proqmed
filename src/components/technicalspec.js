@@ -26,7 +26,7 @@ const Technicalspec = ({ specification, attachment }) => {
   useEffect(() => {
     setjwt(localStorage.userToken)
     getReview();
-
+console.log(specification)
   }, []);
 
   const getReview = async () => {
@@ -154,7 +154,7 @@ const Technicalspec = ({ specification, attachment }) => {
               </Tab>
 
               <Tab eventKey="spec" title="Full Description">
-                <div className="mt-4 liBullet" dangerouslySetInnerHTML={{ __html: specification.items.desc }} />
+                <div className="mt-4 liBullet" dangerouslySetInnerHTML={{ __html: specification.items.description }} />
 
                 {/* </Tab>  */}
 
