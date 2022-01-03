@@ -678,7 +678,7 @@ list-style: none;
     width: 100%;
     border: 1px solid #e6e9ec;
   }
-  tr:nth-child(even) {background-color: #fbfbfb;}
+  tr:nth-child(even) {background-color: #f7f7f7;}
   .technical_sec table td {
     font-size: 14px;
      color: #3e3e3e;

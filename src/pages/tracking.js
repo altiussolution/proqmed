@@ -47,7 +47,7 @@ const Tracking =  () => {
                         <div className="content_wrapper">
                             <div className="container">
                                 <div className="main_title">
-                                    <h1>Track <span>Order</span></h1>
+                                    <h1>Track Order</h1>
                                 </div>
                                 {/* <div className="row">
                                     <div className="col-lg-12 col-md-12 col-xs-12">
@@ -75,7 +75,7 @@ const Tracking =  () => {
               <div className="col-lg-3 col-md-12 col-sm-12">
               <form onSubmit={handleSubmit(onSubmit)} className="Changepwd_form" autoComplete="off">
                   <div className="track-order">                      
-                      <h4> <span><i className="fa fa-truck" aria-hidden="true"></i></span> Track Order</h4>
+                      {/* <h4> <span><i className="fa fa-truck" aria-hidden="true"></i></span> Track Order</h4> */}
                       <div className="track">                      
                         <input className="form-control" id="orderid" name="orderid" type="text" 
                         placeholder="Enter Order Id" onChange={(event) => setorder(event.target.value)} 
@@ -84,7 +84,7 @@ const Tracking =  () => {
                                })}/> 
                       {errors.orderid && errors.orderid.type === 'required' && <span>Please Enter Order Id</span>}                        
                       </div>
-                      <button type="submit" className="btn btn-danger">Track Order</button>                    
+                      <button type="submit" className="btn_gray btn">Track Order</button>                    
                   </div>   
                   </form>
               </div>      
