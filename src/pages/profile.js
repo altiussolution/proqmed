@@ -174,7 +174,7 @@ const editingNumber = (value) =>{
 }
       const uploadImage = async (e) => {
         const file = e.target.files[0];
-        setDisabled(false);
+        // setDisabled(false);
         const base64 = await convertBase64(file);
         setpic(base64);
         afterimage(true);

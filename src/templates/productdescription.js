@@ -466,14 +466,14 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         starRatedColor="rgb(242 187 22)"
                       /> : 
                       
-                      <p className="no_review"> No Reviews Yet</p>
+                      <p className="no_review">{proDescription.items.number_of_review}</p>
                     }
 
 
                     <div className="brand mt-2">
 
                     </div>
-                    <div className="rating_field">
+                    {/* <div className="rating_field">
 
                       <div className="star-rating">
                         <span className="fa fa-star" data-rating="1"></span>
@@ -486,12 +486,12 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                       <span className="rating_text">
                       </span>
 
-                    </div>
+                    </div> */}
                     <div className="product_note py-2">
 
                       <div className="prd_note">
                         <p>
-                          Brand: <a href="">{proDescription.Brand}</a>
+                          Brand: <a href="/filterBrands">{proDescription.Brand}</a>
                         </p>
 
                         {proDescription.items.config_options ?
@@ -502,7 +502,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         }
                       </div>
                       <div>
-                        <i> In Stock</i>
+                        <i>{proDescription.items.is_in_stock == 1 ? "IN STOCK" : "OUT OF STOCK"}</i>
                       </div>
                     </div>
 
@@ -512,11 +512,11 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                             change_price.map((val, index) => (
                               <span className="price" key={index}>${Math.round(val.price)}</span>
                             )) :
-                            <span className="price">${Math.round(proDescription.items.price)}</span>
+                            <span className="price">${Math.round(proDescription.items.original_price)}</span>
                           )
                         }
 
-                        <span><strike>$ 40</strike></span>
+                        <span><strike>${Math.round(proDescription.items.strike_price)}</strike></span>
 </div>
 
                     {tierAmt.length != 0 ? (
@@ -590,10 +590,10 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
 
                     <div className="overview">
                       <h3>Overview</h3>
-                      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-                      <a>Read More</a>
+                      <p>{proDescription.items.overview}</p>
+                      {/* <a>Read More</a> */}
 
-                      <p>Seller: <span>ProQmed Ltd</span></p>
+                      <p>Seller: <span>{proDescription.items.seller_name}</span></p>
 
 
                     </div>
