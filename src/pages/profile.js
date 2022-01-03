@@ -226,7 +226,7 @@ const editingNumber = (value) =>{
                   Change Password
                 </button>}
             </div>
-            
+            <div className="fo-scroll">
             <Table>
               <tbody>
                 <tr>
@@ -282,6 +282,7 @@ const editingNumber = (value) =>{
                 </tr>
               </tbody>
             </Table>
+            </div>
             </div>
                             </div>
                         </div>

@@ -1628,9 +1628,24 @@ img.img-fluid.he {
 
 @media only screen and (max-width:768px) {
 
+  .profile_pic {
+    width: auto !important;
+    border: none !important;
+  }
+
+  .content-wrap {
+    flex-direction: column;
+  }
+
+  .content-wrap table.table {
+    margin-left: 0px !important;
+
+  }
+
   .af-tr-banner h1 {
     font-size: 22px !important;
   }
+
 
   .hotdeals {
     margin-bottom: 40px;
@@ -1898,6 +1913,10 @@ ul.newsletter .form-control {
 }
 }
 @media only screen and (max-width:600px) {
+
+  .content-wrap table.table{
+    margin-top: 20px;
+  }
   .section_title{
     flex-direction: column;
   }
