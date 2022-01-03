@@ -21,6 +21,9 @@ const Profile = () => {
   const [profilepic,setProfilepic] = useState({});
   const [showname,Naming]= useState(false);
   const [showmail,Emailing]= useState(false);
+  const [showgender,Gendering]= useState(false);
+  const [shownumber,Numbering]= useState(false);
+
     useEffect(() => {
         setIsLogged(checkLogin());
         setJwt(localStorage.userToken);
@@ -117,7 +120,7 @@ const Namesubmit = Nameval =>{
   try {
     axios({
         method: 'post',
-        url: `${process.env.GATSBY_CART_URL_STARCARE}customer/updatename`,
+        url: `${process.env.GATSBY_CART_URL_STARCARE}customer/update_name`,
         data: data,
     })
         .then(function (response) {
@@ -149,7 +152,7 @@ const Emailsubmit = emailss => {
   try {
     axios({
         method: 'post',
-        url: `${process.env.GATSBY_CART_URL_STARCARE}customer/updateemail`,
+        url: `${process.env.GATSBY_CART_URL_STARCARE}customer/update_email`,
         data: data,
     })
         .then(function (response) {
@@ -166,15 +169,70 @@ const Emailsubmit = emailss => {
     Emailing(false)
 }
 }
-const editingGender = (value) =>{
+// const editingGender = (value) =>{
+//   Gendering(true)
+// }
+// const Gendersubmit = gen => {
+//   let data = {
+//     "data": {
+//       "customer_email":localStorage.email,
+//       "gender":gen['gender'],
+//     }
+//   }
+//   try {
+//     axios({
+//         method: 'post',
+//         url: `${process.env.GATSBY_CART_URL_STARCARE}customer/update_gender`,
+//         data: data,
+//     })
+//         .then(function (response) {
+//             toast.success('Gender Updated Successfully')
+//             Gendering(false)
+//         })
+//         .catch(function (response) {
+//             toast.error('An error occured please contact admin')
+//             Gendering(false)
+//         });
+
+// } catch (err) {
+//     console.error(`An error occured ${err}`)
+//     Gendering(false)
+// }
+// }
+const editingNumber = (value) =>{
+  Numbering(true)
 
 }
-const editingNumber = (value) =>{
+const Numbersubmit = num => {
+  let data = {
+    "data": {
+      "customer_email":localStorage.email,
+      "telephone":num['number'],
+    }
+  }
+  try {
+    axios({
+        method: 'post',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}customer/update_phone`,
+        data: data,
+    })
+        .then(function (response) {
+            toast.success('Mobile Number Updated Successfully')
+            Numbering(false)
+        })
+        .catch(function (response) {
+            toast.error('An error occured please contact admin')
+            Numbering(false)
+        });
 
+} catch (err) {
+    console.error(`An error occured ${err}`)
+    Numbering(false)
+}
 }
       const uploadImage = async (e) => {
         const file = e.target.files[0];
-        setDisabled(false);
+       // setDisabled(false);
         const base64 = await convertBase64(file);
         setpic(base64);
         afterimage(true);
@@ -235,7 +293,7 @@ const editingNumber = (value) =>{
                   <label htmlFor="firstname">Name</label>
                   <input type="text"  name="firstname" maxLength="20" className="form-control" ref={register({
                               required: true})} />
-                               <input type="text"  name="lastname" maxLength="20" className="form-control" ref={register({
+                  <input type="text"  name="lastname" maxLength="20" className="form-control" ref={register({
                               required: true})} />
                   <button type="submit">Save</button>
                   </form></td>}
@@ -251,28 +309,42 @@ const editingNumber = (value) =>{
                   </td>}
                   {showmail && <td><form onSubmit={handleSubmit(Emailsubmit)}>
                   <label htmlFor="email">Email</label>
-                  <input type="text"  name="email" maxLength="20" className="form-control" ref={register({
+                  <input type="text"  name="email" maxLength="50" className="form-control" ref={register({
                               required: true})} />
                   <button type="submit">Save</button>
                   </form></td>}
                   
                   {!showmail && <td><button onClick={editingEmail}>Edit</button></td>}
                 </tr>
-                <tr>
+                {/*<tr>
                   <th>Gender</th>
                   <td>:</td>
-                  {<td>{jwt && profile.gender}
-                  
+                  {!showgender && <td>{jwt && profile.gender}
+                 
                   </td>}
-                  {/* <button onClick={editingGender}>Edit</button> */}
-                </tr>
+                  {showgender && <td><form onSubmit={handleSubmit(Gendersubmit)}>
+                  <label htmlFor="gender">Gender</label>
+                  <input type="text"  name="gender" maxLength="20" className="form-control" ref={register({
+                              required: true})} />
+                  <button type="submit">Save</button>
+                  </form></td>}
+                  
+                  {!showgender && <td><button onClick={editingGender}>Edit</button></td>}
+                  </tr>*/}
                 <tr>
                   <th>Mobile Number</th>
                   <td>:</td>
-                  {<td>{jwt && profile.telephone}
-                  
+                  {!shownumber && <td>{jwt && profile.contact_number}
+                 
                   </td>}
-                  {/* <button onClick={editingNumber}>Edit</button> */}
+                  {shownumber && <td><form onSubmit={handleSubmit(Numbersubmit)}>
+                  <label htmlFor="number">Mobile Number</label>
+                  <input type="text"  name="number" maxLength="10" className="form-control" ref={register({
+                              required: true})} />
+                  <button type="submit">Save</button>
+                  </form></td>}
+                  
+                  {!shownumber && <td><button onClick={editingNumber}>Edit</button></td>}
                 </tr>
               </tbody>
             </Table>
