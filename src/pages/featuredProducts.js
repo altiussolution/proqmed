@@ -143,14 +143,15 @@ const Featuredproducts = () => {
             <div className="container">
               <div className="row">
                 <div className="col-md-12">
-                <h1 className="page-title">
-                    <div>
+                <div className="main_title left">
+                    <h1>
+                      Our 
                     <span>Featured Products</span>
-                  <div className="breadcrumbs_sec" >
+                  {/* <div className="breadcrumbs_sec" >
                     adasd
-                  </div>
-                  </div>
+                  </div> */}
                   </h1>
+                  </div>
                   <div className="category_container">
                     
                       <div className="cat_scroll">

@@ -9,6 +9,7 @@ const checkLogin = () => {
 }
 const checkUser = () => {
     const whatuser = (typeof(!localStorage.getItem('permissions')) ? undefined : localStorage.getItem('permissions'))
+    console.log(whatuser)
     if(whatuser === undefined){
         return true;
     }else{
