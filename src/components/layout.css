@@ -1461,6 +1461,9 @@ a.save_link:hover, a.close_link:hover {
 
 
 @media only screen and (max-width:1024px) {
+  .content-wrap table.table {
+    margin-left: 20px !important;
+  }
   .menu_botm {
     height: auto !important;
   }
@@ -1913,6 +1916,13 @@ ul.newsletter .form-control {
 }
 }
 @media only screen and (max-width:600px) {
+
+  .hotoffer_banner {
+    padding: 20px 0 !important;
+  }
+
+  .popular_section {
+    padding: 20px !important;}
 
   .content-wrap table.table{
     margin-top: 20px;
@@ -6353,8 +6363,13 @@ ul.progressbar li span {
   border-right: 1px solid #ddd;
 }
 
+.profile_pic input[type="file"] {
+  width: 230px;
+  margin-top: 20px;
+}
+
 .content-wrap table.table {
-  margin-left: 30px;
+  margin-left: 10px;
   margin-bottom: 0;
 }
 
@@ -6381,3 +6396,8 @@ button.profile-sv {
   margin-right: 0;
   padding: 5px 20px;
 }
+
+.fo-scroll {
+  width: 90%;
+}
+
