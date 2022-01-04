@@ -91,7 +91,7 @@ const FeatureProduct = () => {
       }
         const fetchFeature = async () => {
             const res = await fetch(
-                `${process.env.GATSBY_CART_URL_STARCARE}featureproducts/2`
+                `${process.env.GATSBY_CART_URL_STARCARE}featureproducts/${localStorage.customer_id}`
             );
             const json = await res.json();
             await setFeatureProducts(json);
