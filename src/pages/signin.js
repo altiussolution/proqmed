@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import sign_bg from './../assets/bg.jpg';
 import PageLoader from "../components/loaders/pageLoader";
+import { checkUser } from "./../services/headerServices";
 
 const SignIn = (props) => {
 
@@ -55,6 +56,7 @@ const SignIn = (props) => {
               localStorage.setItem('user_name', response.data[0]['name'])
               createCart(response.data[0]['token']);
               getWishList();
+              checkUser();
             } else {
               setLoader(false);
               toast.error(response.data[0]['token']['message']);
