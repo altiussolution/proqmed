@@ -29,7 +29,7 @@ const Featuredproducts = () => {
       }
         const fetchFeature = async () => {
             const res = await fetch(
-                `${process.env.GATSBY_CART_URL_STARCARE}featureproducts/2`
+                `${process.env.GATSBY_CART_URL_STARCARE}featureproducts/${localStorage.customer_id}`
             );
             const json = await res.json();
             await setFeatureProducts(json);
@@ -96,7 +96,10 @@ const Featuredproducts = () => {
                                       <li className="icn"><a onClick={() => addToList(1,data.id)}><IoIosGitCompare/></a></li>
                                     </ul>                                
                                 </div> */}
-                                    <img src={data.image} />
+                                 <Link to={getProductURL(data)}>
+                                 <img src={data.image} />
+                                 </Link>
+                                    
 
                                 </div>                                
                                 <p className="product_title">{data.name}</p>

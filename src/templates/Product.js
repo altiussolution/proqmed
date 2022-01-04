@@ -113,13 +113,14 @@ const Product = props  => {
             `${process.env.GATSBY_CART_URL_STARCARE}admin/productattachments/${id}`).then((data)=>{
               let response_data = data.data
               setattachment(response_data)
+              setLoading(false);
           })
           await axios.get(
             `${process.env.GATSBY_CART_URL_STARCARE}compare/sellerproducts/current_product_id/${id}`).then((data)=>{
               let response_data = data.data
               setothersellers(response_data)
           })  
-          setLoading(false);
+          
           if(data){
             setData([  
             {
@@ -139,7 +140,7 @@ const Product = props  => {
           relatedproducts();
         } catch (err) {
           console.error(err);
-          setNotFound(true);
+          // setNotFound(true);
         }
       }
       
@@ -318,7 +319,7 @@ return (
            <Technicalspec specification = {product} attachment={attach_data}/>
            </div>
 
-           <div className="More-Sellers">
+           {/* <div className="More-Sellers">
            <h2 className="section_title">
                     <span>More sellers selling this product </span>
                     
@@ -355,7 +356,7 @@ return (
       }
 </table>
 </div>
-           </div>
+           </div> */}
          </div>        
       </div>
      </div>
