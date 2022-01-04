@@ -82,7 +82,7 @@ const SignUp = () => {
                     <img src={logo} />
                   </Link>
                 </div>
-                <h1>Sign up</h1>
+                <h1>Create Account</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="login_form">
                  {/* pattern: /^(?!\s)(?!.*\s$)[a-zA-Z0-9\s()-]+$/ // pattern for first and last white space restriction*/}
                   <input className="form-control" name="firstname" placeholder="First name *"  type="text" ref={register({ 
@@ -109,7 +109,7 @@ const SignUp = () => {
                     pattern: /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
                   })} />
                   {errors.password && errors.password.type === 'required' && <span className="error">Password field is required</span>}
-                  {errors.password && errors.password.type === 'minLength' && <span className="error">Password must contain 8 digits</span>}
+                  {errors.password && errors.password.type === 'minLength' && <span className="error">Passwords must be at least 6 characters</span>}
                   {errors.password && errors.password.type === 'pattern' && <span className="error">Password must contain 8 charactor along with 1 number and alphanumeric</span>}
                   <div className="my-3">
                     <input className="btn btn_gray submit_btn" type="submit" />

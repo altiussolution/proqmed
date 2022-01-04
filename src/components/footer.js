@@ -159,7 +159,7 @@ const Footer = () => {
                         <ul className="newsletter">
                             <li>
                                 <form className="w-100 newsletter">
-                                <input type="text" className="form-control search" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"onChange={e => { handleChange(e)}}></input>
+                                <input type="text" className="form-control search" placeholder="Enter Your Email" aria-label="Recipient's username" aria-describedby="basic-addon2"onChange={e => { handleChange(e)}}></input>
                                 <span className="btn btn-success newsletter_btn" onClick={() => { sendNewsLetter()}}>Subscribe Now</span>
                                     <div className="input-group">
                                     </div>
@@ -184,7 +184,7 @@ const Footer = () => {
                     <div className="col-lg-2 col-md-12 col-sm-12">
                         <ul>
                             <li>
-                                <b>Support</b>
+                                <b>Quick links</b>
                             </li>
                             <li>
                                 <Link to="/aboutUs">About</Link>
