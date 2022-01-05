@@ -184,7 +184,7 @@ const Footer = () => {
                     <div className="col-lg-2 col-md-12 col-sm-12">
                         <ul>
                             <li>
-                                <b>Quick Links</b>
+                                <b>Quick links</b>
                             </li>
                             <li>
                                 <Link to="/aboutUs">About</Link>

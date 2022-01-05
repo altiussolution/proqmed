@@ -23,10 +23,20 @@ const BrandedProducts = ({ location }) =>{
     const [outpcar,outpercart] = useState(false); 
     const [cartCount, setcartCount] = useState(null);
     const [customerId, setCustomerId] = useState("");
+    const [p,per] = useState(false);
 
     useEffect(() => {
         product()
         setCustomerId(localStorage.customer_id)
+        if(localStorage.permissions){
+          let addwis=localStorage.permissions.includes("Can Add To Wishlist")
+          let addcar=localStorage.permissions.includes("Can Add To Cart")
+          per(addwis)
+          percart(addcar)
+      }else if(!localStorage.permissions){
+        outper(true)
+        outpercart(true)
+      }
         setJwt(localStorage.userToken)
       const jwt = localStorage.getItem('userToken')
       if(jwt){
@@ -176,11 +186,16 @@ const Renderproduct = () => {
                     (productBrand.map((data, index) => (
                         <div className="brandedpro_item" key={index}>
                             <div className="products">
-                            <div className="wishComp">
-                                    <ul>
-                                   <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
-                                    </ul>
-                                </div>
+                            {p && <div className="wishComp">
+                       <ul>
+                        <li><a onClick={() => addToList(2, data.id)}><FaRegHeart /></a></li>
+                       </ul>
+                      </div>}
+                      {outp && <div className="wishComp">
+                       <ul>
+                        <li><a onClick={() => addToList(2, data.id)}><FaRegHeart /></a></li>
+                       </ul>
+                      </div>}
                                 {/* <img className="product_img" src={data.brand_image} /> */}
                                 <Link to={getProductURL(data)} ><img className="product_img" src={data.image} alt="" /></Link>
                                 {/* <img className="product_img" src={data.image} alt="" /> */}
@@ -189,12 +204,13 @@ const Renderproduct = () => {
                                 </h4>
                                 <p className="product_number"><span>Model:{data.sku}</span></p>
                                 <div className="product_btm">
-                                    <h3 className="product_price">${Math.floor(data.price)}<sup className="price_decimal"></sup></h3>                             
-                                </div>
-                                <div className="price_right">                                   
+                                    <h3 className="product_price">${Math.floor(data.price)}<sup className="price_decimal"></sup></h3>  
+                                    <div className="price_right">                                   
                                  <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
                                 {/*outpcar && <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>*/}                                  </div>
-                            </div>
+                            </div>                           
+                                </div>
+                               
                         </div>
                     ))) : <div></div>
                 }

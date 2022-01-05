@@ -121,7 +121,7 @@ const SignUp = () => {
                   })} />
                   <button className="btn btn heart" type="button" onClick={togglePasswordVisiblity2}><AiTwotoneDelete /></button>
                   {errors.password && errors.password.type === 'required' && <span className="error">Password field is required</span>}
-                  {errors.password && errors.password.type === 'minLength' && <span className="error">Password must contain 8 digits</span>}
+                  {errors.password && errors.password.type === 'minLength' && <span className="error">Passwords must be at least 6 characters</span>}
                   {errors.password && errors.password.type === 'pattern' && <span className="error">Password must contain 8 charactor along with 1 number and alphanumeric</span>}
                   <input className="form-control" name="conpassword" placeholder="Confirm Password *" type={passwordShown ? "text" : "password"} ref={register({
                     required: true,
