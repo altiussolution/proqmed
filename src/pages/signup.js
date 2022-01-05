@@ -138,7 +138,7 @@ const SignUp = () => {
 
                 </form>
                 <p className="user_link">
-                  By continueing,you agree to Proqmed's <Link to="/termsConditions" className="ml-2">Terms of use and Privacy policy</Link>
+                  By continuing,you agree to Proqmed's <Link to="/termsConditions" className="ml-2">Terms of use and Privacy policy</Link>
                 </p>
                 <p className="user_link">
                   Already have an account? <Link to="/signin" className="ml-2">Sign in</Link>

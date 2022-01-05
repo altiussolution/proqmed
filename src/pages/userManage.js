@@ -81,6 +81,7 @@ const rendercategory = () =>{
 
  const editQuote = (quote) => {
     // setIndex(index);
+    console.log(quote['allowed_permissions'])
     setQuotePopupedit(true)
     handleShowQuote(true)
     getConversation(quote['subuser_id'])
@@ -426,9 +427,10 @@ const onSubmitQuoteadd = quoteDetails => {
                                     <label htmlFor="permission">Permissions</label>
                                     <select className="form-control" name="permission"  ref={register({
                                         required: true 
-                                    })}>
+                                    })} multiple>
                                         {quoteConversations.map((conv, index) => (
                                           <option value={conv}>{conv}</option>
+                                        // <input value={conv} type="checkbox"/>
                                        ))}
                                        </select>
                                       
