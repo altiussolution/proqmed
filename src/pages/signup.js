@@ -133,7 +133,7 @@ const SignUp = () => {
                   {errors.conpassword && errors.conpassword.type === 'minLength' && <span className="error">Confirm Password must contain 8 digits</span>}
                   {errors.conpassword && errors.conpassword.type === 'pattern' && <span className="error">Confirm Password must contain 8 charactor along with 1 number and alphanumeric</span>}
                   <div className="my-3">
-                    <input className="btn btn_gray submit_btn" type="submit" />
+                    <input className="btn btn_gray submit_btn" type="submit" value="Create"/>
                   </div>
 
                 </form>
