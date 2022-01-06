@@ -182,7 +182,7 @@ const wistlistsValue = () => {
                   {errors.password && errors.password.type === 'pattern' && <span>Password must contain 8 charactor along with 1 number and alphanumeric</span>}
 
                   <div className="my-3">
-                    <input className="btn btn_gray submit_btn" type="submit" disabled={isButton} />
+                    <input className="btn btn_gray submit_btn" type="submit" value="Sign-In" disabled={isButton} />
                   </div>
 
                 </form>
