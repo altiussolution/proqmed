@@ -29,7 +29,9 @@ const UserManage = () => {
  const handleCloseQuoteforadd = () => setShowQuoteadd(false);
  const [quoteConversations, setQuotesConversations] = useState([])
  const [perms, savedperms] = useState([])
- const [allinall,alcats] = useState([]);
+ const [clip,categoryda] = useState([]);
+ const [names, setNames] = useState([]);
+ const [catie, setCats] = useState([]);
  const data = useStaticQuery(graphql`
  {
    allCategory {
@@ -54,8 +56,9 @@ const UserManage = () => {
 `)
  useEffect(() => {
      setCustomerId(localStorage.customer_id)
+     rendercategory();
     getQuotes();
-    rendercategory();
+    
     console.log(data)
  }, []);
 
@@ -72,15 +75,22 @@ const UserManage = () => {
 
 const rendercategory = () =>{
     const list = [];
+    const lis = [];
+    const lott = [];
     let allCategory = data.allCategory.edges;
       list.push(allCategory);
     list.map((el,index)=>(
-    alcats(el)
+         lis.push(el)
 ))
+for(let i=0 ;i < lis[0].length;i++){
+    lott.push(lis[0][i].node)
+}
+categoryda(lott)
 }
 
  const editQuote = (quote) => {
     // setIndex(index);
+    
     console.log(quote['allowed_permissions'])
     setQuotePopupedit(true)
     handleShowQuote(true)
@@ -90,6 +100,7 @@ const rendercategory = () =>{
 
 const addQuote = () => {
     // setIndex(index);
+    console.log(clip)
     setQuotePopupadd(true)
     handleShowQuoteforadd(true)
     getConversation()
@@ -196,8 +207,23 @@ const handleChange = nextChecked => {
      statusIn(nextChecked);
     
   };
+  let onSelectNames = name => {
+    setNames(name);
+  };
+
+  let onRemoveNames = name => {
+    setNames(name);
+  };
+  let onSelectCats = name => {
+    setCats(name);
+  };
+
+  let onRemoveCats = name => {
+    setCats(name);
+  };
 const onSubmitQuoteadd = quoteDetails => {
     let quoteData = [
+    
         
         {
             "role_name": quoteDetails['rolename'],
@@ -206,8 +232,8 @@ const onSubmitQuoteadd = quoteDetails => {
             "email": quoteDetails['email'],
             "parent_customer_id": 39,
             "password": quoteDetails['password'],
-            "allowedpermissions": quoteDetails['permission'],
-            "categorypermissions": quoteDetails['catpermission'],
+            "allowedpermissions": names,
+            "categorypermissions": catie,
             "status" : statys
         }
     ]
@@ -343,23 +369,22 @@ const onSubmitQuoteadd = quoteDetails => {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="permission">Permissions</label>
-                                    <input className="form-control" name="allowed_permissions" ref={register({
-                                        required: true 
-                                    })} defaultValue={(quoteForm['allowed_permissions'])}>
-                                    </input>
-                                    {/* <Multiselect
-                                    options={(quoteForm['allowed_permissions'])}
-                                    selectedValues={(quoteForm['allowed_permissions'])}
-                                    displayValue="allowed_permissions"
-                                     /> */}
+                                    
+                                    <Multiselect
+                                    options={quoteConversations}
+                                    selectedValues={quoteForm['allowed_permissions']}
+                                    isObject={false}
+                                     /> 
                                     {errors.permission && errors.permission.type === 'required' && <span className="error">Permissions are required</span>}
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="catpermission">Category Permissions</label>
-                                    <input className="form-control" name="catpermission" ref={register({
-                                        required: true 
-                                    })} defaultValue={(quoteForm['category_permissions'])}>
-                                    </input>
+                                
+                                    <Multiselect
+                                    options={clip}
+                                    selectedValues={quoteForm['category_permissions']}
+                                    isObject={false}
+                                     /> 
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category Permissions are required</span>}
                                 </div>
                                 <div className="form-group">
@@ -425,32 +450,36 @@ const onSubmitQuoteadd = quoteDetails => {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="permission">Permissions</label>
-                                    <select className="form-control" name="permission"  ref={register({
-                                        required: true 
-                                    })} multiple>
-                                        {quoteConversations.map((conv, index) => (
-                                          <option value={conv}>{conv}</option>
-                                        // <input value={conv} type="checkbox"/>
-                                       ))}
-                                       </select>
+                                   
+
+                                        
+                                       
+                                            <Multiselect
+                                            options={quoteConversations}
+                                            isObject={false} 
+                                            showCheckbox={true}
+                                            onSelect={onSelectNames} 
+                                            onRemove={onRemoveNames}
+                                            name="permission"
+                                            />
                                       
-                                       {/* <Select
-                                       isMulti
-                                    options={perms}
-                                    value={perms}
-                                     />  */}
+                            
+                                     
                                     {errors.permission && errors.permission.type === 'required' && <span className="error">Permission is required</span>}
                                     
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="catpermission">Category Permissions</label>
-                                     <select className="form-control" name="catpermission"  ref={register({
-                                        required: true 
-                                    })}>
-                                        {allinall.map((conv, index) => (
-                                          <option value={conv.node.id}>{conv.node.name}</option>
-                                       ))}
-                                       </select>
+                                     
+                                       <Multiselect
+                                       options={clip}
+                                       displayValue="name"
+                                       value="id"
+                                       onSelect={onSelectCats} 
+                                       onRemove={onRemoveCats}
+                                       showCheckbox={true} 
+                                       name="catpermission"
+                                       />
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
                                 </div>
                                 <div className="form-group">
