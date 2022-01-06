@@ -10,6 +10,8 @@ const Tracking =  () => {
     const [track, settrack] = useState([]);
     const [order, setorder] = useState([]);
     const {register, handleSubmit, errors } = useForm();
+    const [aftimg,afterseller]= useState(false);
+    const [status,setstatus]= useState(false);
 
     useEffect(() => {
       setjwt(localStorage.userToken);
@@ -25,10 +27,13 @@ const Tracking =  () => {
         }).then((res) => {
           if (res.statusText === "OK" && res.status == 200) {
               settrack(res.data[0]);
+              setstatus(res.data[0].order_status);
               console.log(res.data[0])
-              
-          }else{
-            toast.error('Enter Valid Order Id')
+              if (res.data[0].seller != null) {
+                afterseller(true);
+              }else{
+                afterseller(false);
+              }   
           }
         }).catch((err) => {
           console.error(err);
@@ -38,7 +43,20 @@ const Tracking =  () => {
       }    
   }
 
+  const MyIComponent = () => {
+//    console.log(track.order_status)
 
+    if (track.order_status == "complete") {
+          return( <ul className="progressbar"> <li className="active">Ordered <span>{track.order_created_date}</span></li>
+          <li className="active">Out For Delivery <span>{track.order_updated_date}</span></li>
+          <li className="active">Delivered<span>{track.order_shipped_date}</span></li></ul>)
+      } else if (track.order_status == "pending") {
+        return( <ul className="progressbar"> <li className="active">Ordered <span>{track.order_created_date}</span></li>
+       <li className="active">Pending<span>{track.order_updated_date}</span></li></ul>)
+      }  
+      return( <ul className="progressbar"> <li className="active">Ordered <span>{track.order_created_date}</span></li>
+</ul>  ) 
+ }
       return (
         
 <Layout>
@@ -78,7 +96,7 @@ const Tracking =  () => {
                       {/* <h4> <span><i className="fa fa-truck" aria-hidden="true"></i></span> Track Order</h4> */}
                       <div className="track">                      
                         <input className="form-control" id="orderid" name="orderid" type="text" 
-                        placeholder="Enter Order Id" onChange={(event) => setorder(event.target.value)} 
+                        placeholder="Enter Order Id" maxLength="9" onChange={(event) => setorder(event.target.value)} 
                         ref={register({    
                                           required: true,
                                })}/> 
@@ -96,7 +114,7 @@ const Tracking =  () => {
                       </div>
 
                       <div className="customer-name">
-                        <h4>Customer Name: <span>{track.seller}</span></h4>
+                        <h4>Customer Name: <span>{track.customer_name}</span></h4>
                       </div>
                     </div>
 
@@ -110,17 +128,14 @@ const Tracking =  () => {
                         <p className="price">{track.order_total}</p>
                       </div>
                       
-                      <div className="info-type">
+                     { aftimg && <div className="info-type">
                         <p>seller</p>
                         <h6>{track.seller}</h6>              
-                      </div>
+                      </div>}
                     </div>
                     <div className="tr-bottom">
-                      <ul className="progressbar">
-                        <li className="active">Ordered <span>{track.order_created_date}</span></li>
-                        <li >Out For Delivery <span>{track.order_shipped_date}</span></li>
-                        <li>Delivered<span>{track.order_updated_date}</span></li>
-                      </ul>
+                        {MyIComponent()}
+                      
                     </div>
                 </div>                    
           </div>

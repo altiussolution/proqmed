@@ -121,7 +121,7 @@ const SignUp = () => {
                   })} />
                   <button className="btn btn heart" type="button" onClick={togglePasswordVisiblity2}><AiTwotoneDelete /></button>
                   {errors.password && errors.password.type === 'required' && <span className="error">Password field is required</span>}
-                  {errors.password && errors.password.type === 'minLength' && <span className="error">Password must contain 8 digits</span>}
+                  {errors.password && errors.password.type === 'minLength' && <span className="error">Passwords must be at least 6 characters</span>}
                   {errors.password && errors.password.type === 'pattern' && <span className="error">Password must contain 8 charactor along with 1 number and alphanumeric</span>}
                   <input className="form-control" name="conpassword" placeholder="Confirm Password *" type={passwordShown ? "text" : "password"} ref={register({
                     required: true,
@@ -133,12 +133,12 @@ const SignUp = () => {
                   {errors.conpassword && errors.conpassword.type === 'minLength' && <span className="error">Confirm Password must contain 8 digits</span>}
                   {errors.conpassword && errors.conpassword.type === 'pattern' && <span className="error">Confirm Password must contain 8 charactor along with 1 number and alphanumeric</span>}
                   <div className="my-3">
-                    <input className="btn btn_gray submit_btn" type="submit" />
+                    <input className="btn btn_gray submit_btn" type="submit" value="Create"/>
                   </div>
 
                 </form>
                 <p className="user_link">
-                  By continueing,you agree to Proqmed's <Link to="/termsConditions" className="ml-2">Terms of use and Privacy policy</Link>
+                  By continuing,you agree to Proqmed's <Link to="/termsConditions" className="ml-2">Terms of use and Privacy policy</Link>
                 </p>
                 <p className="user_link">
                   Already have an account? <Link to="/signin" className="ml-2">Sign in</Link>
