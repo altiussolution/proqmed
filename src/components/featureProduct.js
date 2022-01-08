@@ -64,9 +64,6 @@ const FeatureProduct = () => {
                 console.log(response.data)
                   localStorage.setItem('cartId',response.data);
                   setQuoteId(localStorage.cartId)
-
-                  //viewCartItems()
-                //  localStorage.removeItem('cartData', []);
               }
             }) 
             .catch((error) => {
@@ -95,7 +92,6 @@ const FeatureProduct = () => {
             );
             const json = await res.json();
             await setFeatureProducts(json);
-             
         };
         fetchFeature();
     }, []);
@@ -220,7 +216,7 @@ const FeatureProduct = () => {
           navigate("/signin")
       }
   }
-
+ 
       const renderProducts = () => {    
         if (featureProducts) { 
 
@@ -229,7 +225,7 @@ const FeatureProduct = () => {
                 {       
                     featureProducts.map((data,index) => (
                         <div key={`${data.name}_${index}`}>
-                            <div className="card">    
+                            <div className="card">   
                             {p && <div className="wishComp">
                                     <ul>
                                       <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
@@ -241,6 +237,7 @@ const FeatureProduct = () => {
                                     </ul>
                                 </div>}
                                 <div className="image_wrapper">
+                               {data.offer_percentage != 0 && <div className="price_off">Updo {data.offer_percentage}% off</div>}
                                     <Link to={getProductURL(data)}><img src={data.image} /></Link>
                                 </div>
                                 <div className="description_list">                               
@@ -250,8 +247,8 @@ const FeatureProduct = () => {
                                 <div className="price_holder">
                                 <div className="price_left">                                  
                                     <div className="product_amt">
-                                    <span className="new_price">$000</span>
-                                        <span className="price">${Math.round(data.price)}</span>
+                                     { data.strike_price != null && <span className="new_price">${Math.round(data.strike_price)}</span>}
+                                        <span className="price">${Math.round(data.original_price)}</span>
                                         
                                     </div>
                                     <div className="rating_front">

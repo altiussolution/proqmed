@@ -167,7 +167,7 @@ const renderProducts = () => {
                         <img src={data.image} />
 
                        </div>
-                       <p className="product_title">{data.name}</p>
+                       <div className="product_title">{data.name}</div>
                        <div className="price_holder">
                                 <div className="price_left">                                  
                                     <div className="product_amt">
