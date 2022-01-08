@@ -68,7 +68,7 @@ const TrendingProducts = () => {
         toast.error('something went wrong')
       }
     }else{
-        navigate("/signin")
+        
     }
     if(localStorage.permissions){
       let addcar=localStorage.permissions.includes("Can Add To Cart")

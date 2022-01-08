@@ -46,13 +46,14 @@ const Dealproducts = () => {
          );
          const json = await res.json();
          await setDealProducts(json);
+         console.log(json)
          {json.map((data,index)=>(
           setsubproducts(data.sub_category.sub_category_sub)
         ))}
      };
      fetchFeature();
     
-     
+     console.log(sub)
  }, []);
  
  const addToList = (type,id) => {
@@ -170,8 +171,8 @@ const renderProducts = () => {
                        <div className="price_holder">
                                 <div className="price_left">                                  
                                     <div className="product_amt">
-                                    <span className="new_price">$000</span>
-                                        <span className="price">asdasdas</span>
+                                    <span className="new_price">{data.strike_price}</span>
+                                        <span className="price">{data.orginal_price}</span>
                                         
                                     </div>
                                     <div className="rating_front">
@@ -234,7 +235,7 @@ const renderProducts = () => {
                     <div>
                     <span>Deal Products</span>
                   <div className="breadcrumbs_sec" >
-                    adasd
+                  
                   </div>
                   </div>
                   </h1>

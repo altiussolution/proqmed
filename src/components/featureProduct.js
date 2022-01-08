@@ -77,7 +77,7 @@ const FeatureProduct = () => {
             toast.error('something went wrong')
           }
         }else{
-            navigate("/signin")
+            
         }
        // setQuoteId(localStorage.cartId)
         if(localStorage.permissions){
