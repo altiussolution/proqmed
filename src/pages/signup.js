@@ -76,7 +76,7 @@ const SignUp = () => {
             </div>
 
             <div className="col-lg-6 col-md-6 col-xs-12 right_side">
-              <div className="box_content">
+              <div className="box_content fo-signup">
                 <div className="logo mb-3">
                   <Link to="/">
                     <img src={logo} />
@@ -107,7 +107,7 @@ const SignUp = () => {
                     required: true,
                     minLength: 8,
                     pattern: /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
-                  })} />
+                  })} /> <span><i className="fa fa-eye" aria-hidden="true"></i></span>
                   {errors.password && errors.password.type === 'required' && <span className="error">Password field is required</span>}
                   {errors.password && errors.password.type === 'minLength' && <span className="error">Password must contain 8 digits</span>}
                   {errors.password && errors.password.type === 'pattern' && <span className="error">Password must contain 8 charactor along with 1 number and alphanumeric</span>}

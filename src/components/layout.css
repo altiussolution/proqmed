@@ -6401,3 +6401,11 @@ button.profile-sv {
   width: 90%;
 }
 
+.box_content.fo-signup form.login_form i.fa.fa-eye {
+  position: absolute;
+  right: 22%;
+  bottom: 22%;
+  color: #000;
+  opacity: 70%;
+}
+
