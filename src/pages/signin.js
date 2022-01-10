@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import sign_bg from './../assets/bg.jpg';
 import PageLoader from "../components/loaders/pageLoader";
-
+import { checkUser } from "./../services/headerServices";
 
 const SignIn = (props) => {
 
@@ -56,6 +56,7 @@ const SignIn = (props) => {
               localStorage.setItem('user_name', response.data[0]['name'])
               createCart(response.data[0]['token']);
               getWishList();
+              checkUser();
             } else {
               setLoader(false);
               toast.error(response.data[0]['token']['message']);
@@ -162,7 +163,7 @@ const wistlistsValue = () => {
                   </Link>
                 </div>
 
-                <h1>Log in</h1>
+                <h1>Sign-In</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="login_form">
 
                   <input className="form-control" name="username" placeholder="Email *" type="text" ref={register({
@@ -177,10 +178,11 @@ const wistlistsValue = () => {
                     pattern: /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
                   })} />
                   {errors.password && errors.password.type === 'required' && <span>Password field is required</span>}
-                  {errors.password && errors.password.type === 'minLength' && <span>Password must contain 8 digits</span>}
+                  {errors.password && errors.password.type === 'minLength' && <span>Passwords must be at least 6 characters</span>}
                   {errors.password && errors.password.type === 'pattern' && <span>Password must contain 8 charactor along with 1 number and alphanumeric</span>}
+
                   <div className="my-3">
-                    <input className="btn btn_gray submit_btn" type="submit" disabled={isButton} />
+                    <input className="btn btn_gray submit_btn" type="submit" value="Sign-In" disabled={isButton} />
                   </div>
 
                 </form>
@@ -189,8 +191,8 @@ const wistlistsValue = () => {
                   <Link to="/changePassword">Forgot Password?</Link>
                 </p> */}
 
-                <p className="user_link">New User?
-              <Link to="/signup" className="ml-2">Sign up</Link>
+                <p className="user_link">New to ProQmed? 
+              <Link to="/signup" className="ml-2">Start here</Link>
                 </p>
               </div>
             </div>

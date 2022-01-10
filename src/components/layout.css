@@ -425,15 +425,20 @@ border:1px solid #ececec;
   }
 .product_item .wishComp{
   position: absolute;
-  width: 100px;
-  height: 20px;
+  width: 34px;
+  padding: 7px;
+  line-height: 0px;
+  height: 37px;
   opacity: 0;
-  margin-top:0;
+  top: 0;
+  z-index: 99;
+  background: #ff7ba8;
+  border-radius: 50%;
+  margin-top: 0;
   transition: all .3s ease-in-out;
-  right:10px;
+  right: -21px;
   z-index: 99;
   font-size: 20px;
-  color: #000;
   margin-right: 20px;
   }
 .feature_section .card:hover .wishComp,
@@ -4047,6 +4052,7 @@ ul.sub_menus a:before {
 /* Signin Page Links styles */
 .user_link {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 20px 0;
@@ -4580,14 +4586,15 @@ width: 23.4%;
   width: 60px;
     height: 60px;
     padding: 10px;
+    top: -1px;
     position: absolute;
     background: #01aa67;
     border-radius: 50%;
     color: #fff;
     white-space: break-spaces;
-    line-height: 15px;
+    line-height: 19px;
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
 }
 .productFilters h6{
   margin-bottom: 0;
@@ -6409,3 +6416,11 @@ button.profile-sv {
   opacity: 70%;
 }
 
+.dod_inner .image_wrapper img {
+  height: 130px;
+}
+
+form.login_form button.btn.btn.heart {
+  float: right;
+  margin-top: -36px;
+}

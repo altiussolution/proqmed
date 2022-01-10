@@ -444,15 +444,17 @@ const isSticky = (e) => {
                 <div className="dropdown-content">
                   <ul>
                     {!isuserlogged && <li><Link to="/signup">Register</Link>
-                    <Link to="/signin">Login</Link></li>}
-                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
+                    <Link to="/signin">Login</Link>
+                    <Link to="/">Sell on Proqmed</Link>
+                    </li>}
+                    {isuserlogged && <div><li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
                     <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
-                    <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
+                    <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li></div>}
                     {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>}
-                    {iswhatuser &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}
+                    {isuserlogged && <div>{iswhatuser &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}</div>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                     {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
                   </ul>
@@ -465,23 +467,21 @@ const isSticky = (e) => {
             {/* <div>dasdasdsa<Cart cartCount={cartCount} />
              <img src={cart}/> 
             </div> */}
-              <div className="dropdown">
+              <div >
                 
               
                 <a className="btn dropbtn carttop"><Cart cartCount={cartCount} /></a>
-                <div className="dropdown-content">
+                {/* <div className="dropdown-content">
                   <ul>
                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
                     <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
-                    {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
-                    {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                   </ul>
 
-                </div>
+                </div> */}
 
               </div>
             </Navbar>}

@@ -47,6 +47,7 @@ export default function Filter({
   const [filters, dispatch] = useReducer(filterReducer, {}); // {'Brand':['VERTO','GRAPHITE']}
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [parsing, setParsing] = useState(true);
+  const displayFilters = {};
   const parsedQuery = queryString.parse(location.search.slice(8), {
     arrayFormat: "index",
   });  
@@ -80,7 +81,6 @@ export default function Filter({
       // temporary fix by meenu not efficient
     }
     // Create displayFilters from Products listing
-    const displayFilters = {};
     products.forEach(el => {
       const product = convertToObject(el.flat());
       for (let prop in product) {
@@ -88,10 +88,13 @@ export default function Filter({
           displayFilters[prop] = displayFilters[prop]
             ? displayFilters[prop].add(product[prop])
             : new Set([product[prop]]);
+            console.log(displayFilters[prop])
+
         }
       }
     }); 
     setFiltersToDisplay(displayFilters);
+    console.log("oi",displayFilters)
   }, [products]);
 
   const filter = async () => {
