@@ -522,7 +522,7 @@ const isSticky = (e) => {
                   <li onClick={() => { navigateOnclick('/aboutUs') }}><a >About</a></li>
                   <li onClick={() => { navigateOnclick('/contact') }}><a >Contact</a></li>
                   <li onClick={() => { navigateOnclick('/tracking') }}><a >Order Tracking</a></li>
-                  <li onClick={() => { navigateOnclick('/') }}><a>Sell on Proqmed</a></li>                 
+                  <li onClick={() => { navigateOnclick('/myAddress') }}><a>My Address</a></li>                 
               </ul>
               <ul className="contact_top">
                   <li>For Sales & Support <a href="#">(+91)1234-5670</a></li>

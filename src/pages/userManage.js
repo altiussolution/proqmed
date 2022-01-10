@@ -166,40 +166,40 @@ const removeQuote = (id) => {
 }
 
 const onSubmitQuote = quoteDetails => {
-    console.log(quoteForm)
-    // let quoteData = [
-    //     {
-    //         "subuser_id": quoteForm['subuser_id'],
-    //         "role_name": quoteForm['role_name'],
-    //         "firstname": quoteDetails['firstname'],
-    //         "lastname": quoteDetails['lastname'],
-    //         "email": quoteDetails['email'],
-    //         "password": quoteDetails['password'],
-    //         "allowedpermissions": names,
-    //         "categorypermissions": catie,
-    //         "status" : statys
+    
+    let quoteData = [
+        {
+            "subuser_id": quoteForm['subuser_id'],
+            "role_name": quoteForm['role_name'],
+            "firstname": quoteDetails['firstname'],
+            "lastname": quoteDetails['lastname'],
+            "email": quoteDetails['email'],
+            "password": quoteDetails['password'],
+            "allowedpermissions": names,
+            "categorypermissions": catie,
+            "status" : statys
 
-    //     }
-    // ]
+        }
+    ]
 
-    // try {
-    //     axios({
-    //         method: 'put',
-    //         url: `${process.env.GATSBY_CART_URL_STARCARE}subuser/subuserupdate`,
-    //         data: quoteData,
-    //     })
-    //         .then(function (response) {
-    //             toast.success('SubUser Updated sucessfully')
-    //             handleCloseQuote();
-    //             getQuotes();
-    //         })
-    //         .catch(function (response) {
-    //             toast.error('An error occured please contact admin')
-    //         });
+    try {
+        axios({
+            method: 'put',
+            url: `${process.env.GATSBY_CART_URL_STARCARE}subuser/subuserupdate`,
+            data: quoteData,
+        })
+            .then(function (response) {
+                toast.success('SubUser Updated sucessfully')
+                handleCloseQuote();
+                getQuotes();
+            })
+            .catch(function (response) {
+                toast.error('An error occured please contact admin')
+            });
 
-    // } catch (err) {
-    //     console.error(`An error occured ${err}`)
-    // }
+    } catch (err) {
+        console.error(`An error occured ${err}`)
+    }
 };
 const handleChange = nextChecked => {
     statusIn(nextChecked);
