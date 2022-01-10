@@ -6525,6 +6525,56 @@ button.btn.btn-danger.square {
     width: 30%;
 }
 /* My Profile css ends ////////////////////////////////////////////////////////////////*/
+/* Cart Css Starts  ////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+table.table.table-striped tr th {
+  white-space: nowrap;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+  vertical-align: middle !important;
+  border:none !important;
+}
+
+table.table.table-striped button.btn {
+  outline: none !important;
+  box-shadow: rgb(50 50 93 / 15%) 0px 6px 12px -2px, rgb(0 0 0 / 10%) 0px 3px 7px -3px !important;
+  border-radius: 50px;
+  border: none;
+  color: #891c05;
+  margin-top: 10px;
+}
+
+.cart-utilities {
+  display: flex;
+  justify-content: space-between;
+}
+
+button.btn.btn-primary{
+  background-color: #FFBEBE;
+  color:#000;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+
+.cart-details-sec {
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: rgb(50 50 93 / 15%) 0px 6px 12px -2px, rgb(0 0 0 / 10%) 0px 3px 7px -3px;
+}
+
+tr.fo-border {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.green{
+color: #53D34B;
+}
+
+/* Cart Css ends  ////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
 
