@@ -306,10 +306,11 @@ const onSubmitQuoteadd = quoteDetails => {
                                                     </td>
                                                     <td className="action_sec">
                                                         <span>
-                                                            <button className="action action_btn btn btn_gray" onClick={() => editQuote(quote)}>Edit
-                              </button>
-                                                            <button type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.subuser_id)}> Delete
-                              </button>
+                                                            <a onClick={() => editQuote(quote)}><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </a>
+                                                            <a onClick={() => removeQuote(quote.subuser_id)}> <i class="fa fa-trash-o" aria-hidden="true"></i>
+
+                              </a>
                                                         </span>
                                                     </td>
 

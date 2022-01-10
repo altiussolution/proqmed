@@ -234,10 +234,10 @@ const MyQuotes = ({ setcartCount }) => {
                                                     </td>
                                                     <td className="action_sec">
                                                         <span>
-                                                            <button className="action action_btn btn btn_gray" onClick={() => editQuote(quote)}>Edit
-                              </button>
-                                                            <button type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.entity_id)}> Delete
-                              </button>
+                                                            <a className="action action_btn btn btn_gray" onClick={() => editQuote(quote)}> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </a>
+                                                            <a type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.entity_id)}> <i class="fa fa-trash-o" aria-hidden="true"></i>
+                              </a>
                                                         </span>
                                                     </td>
 

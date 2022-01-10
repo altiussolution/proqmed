@@ -5082,6 +5082,7 @@ section.category_section .image_wrappertab {
   line-height: 13px;
   padding: 0 13px;
   margin: 0;
+  cursor: pointer;
   display: inline-block;
   color:#6B6B6B;
 }
@@ -5928,8 +5929,13 @@ button.btn_gray.btn.ml-1{
   
 }
 
+.input-sec form label {
+  display: flex;
+}
+
 .input-sec {
   display: flex;
+  align-items: center;
 }
 
 .input-sec p {
