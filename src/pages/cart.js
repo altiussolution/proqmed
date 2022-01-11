@@ -84,7 +84,7 @@ let price;
 // cartItems[index].subtotal==event.target.value*cartItems[index].price
 
         } else {
-            event.target.value
+            //event.target.value
             setupdCart(event.target.value)
             console.log(event.target.value)
 
