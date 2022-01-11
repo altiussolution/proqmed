@@ -178,8 +178,8 @@ const deleteAddress = (id) => {
                                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-ellipsis-v fa-2x" aria-hidden="true"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                      <li><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></li>
-                                      <li><a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                                      <li><Link to="/Address" state={add}><a><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></Link></li>
+                                      <li><a><i class="fa fa-trash-o" aria-hidden="true"></i>
                                         Delete</a></li>
                                       
                                     </ul>

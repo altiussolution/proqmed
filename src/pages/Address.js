@@ -11,10 +11,14 @@ const Address = ({location}) => {
  const [loader, setLoader] = useState(false);
  const [profilepic,setProfilepic] = useState({});
  const [region, setRegion] = useState([]);
+ const [edit, editdata] = useState([]);
 useEffect(() => {
  setJwt(localStorage.userToken);
  setUEmail(localStorage.email)
-console.log(location)
+ if(location.state['city']){
+    editdata(location.state)
+ }
+
  const fetchRegion = async () => {
      const res = await fetch(
          `${process.env.GATSBY_CART_URL_STARCARE}regions`
@@ -160,20 +164,20 @@ return (
                                   <div>
                                   <input type="text" className="form-control" placeholder="Name" name="name" id="name" ref={register({
                                                                                 required: true
-                                                                            })}/>
+                                                                            })} defaultValue={(edit ? edit['firstname'] : "")}/>
                                          {errors.firstname && errors.name.type === 'required' && <span className="error_label">Name is required</span>}</div>     
                                          <div>                            
                                   <input type="text" className="form-control" placeholder="Pincode" name="postcode" id="postcode" onChange={handleChange} ref={register({
                                                                                 required: true,
                                                                             })} 
-                                                                            maxLength="6"/>
+                                                                            maxLength="6" defaultValue={(edit ? edit['postcode'] : "")}/>
                                                {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Postcode required</span>}
                                                                             {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Postcode</span>}                              
                                                                             </div>  
                                                                             <div>
                                                                             <input className="form-control" name="user_city" id="user_city" placeholder="City" type="text" ref={register({
                                                                                 required: true
-                                                                            })}  />
+                                                                            })}  defaultValue={(edit ? edit['city'] : "")}/>
                                                                             {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
                                  <div><input type="text" className="form-control" placeholder="Landmark (Optional)" maxLength="20"/></div> 
                               </div>
@@ -184,7 +188,7 @@ return (
                                                                             maxLength="10"
                                                                             ref={register({
                                                                                 required: true,
-                                                                            })} />
+                                                                            })} defaultValue={(edit ? edit['telephone'] : "")}/>
                                                                             {errors.telephone && errors.telephone.type === 'required' && <span className="error_label">Phone required</span>}
                                                                             {errors.telephone && errors.telephone.type === 'minLength' && <span className="error_label">Enter Valid Phone Number</span>}</div>
                                   <div> <input type="text" className="form-control" placeholder="Locality" name="locality" id="locality"  ref={register({
@@ -192,7 +196,7 @@ return (
                                                                             })} maxLength="20"/></div>
                                   <div>  <input type="text" className="form-control" placeholder="State/Province" name="user_state" id="user_state"  ref={register({
                                                                                 required: true,
-                                                                            })} maxLength="20"/>
+                                                                            })} maxLength="20" defaultValue={(edit ? edit['region'] : "")}/>
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div>
                                   <div>  <input type="text" className="form-control" placeholder="Alternate Phone (Optional)" name="altertelephone" id="altertelephone" onChange={handleChange} maxLength="10"/></div>
@@ -201,7 +205,7 @@ return (
                               <div class="col-lg-12 col-md-12 col-sm-12">
                               <input className="form-control" name="street_1" id="street_1" placeholder="Address" type="text" ref={register({
                                                                                 required: true
-                                                                            })} />
+                                                                            })} defaultValue={(edit ? edit['street'] : "")}/>
                                                                             {errors.street_1 && errors.street_1.type === 'required' && <span className="error_label">Address required</span>}
                               </div>
                           </div>
