@@ -49,6 +49,7 @@ const Cart = () => {
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
                     setCheckout(res.data.total_segments)
+                    
                 }
             }).catch((err) => {
                 console.error(err);
@@ -75,22 +76,20 @@ const Cart = () => {
         }
     }
 
-    const handleChange = (event,index) => {
-console.log(cartItems[index])
-let price;
+    const handleChange = (event) => {
         if (event.target.value <= 0) {
-            event.target.value=1
-            setupdCart(event.target.value)
-// cartItems[index].subtotal==event.target.value*cartItems[index].price
-
+            event.target.value = 1;
+            setupdCart(event.target.value);
+            
+           
         } else {
-            //event.target.value
             setupdCart(event.target.value)
-            console.log(event.target.value)
-
+            
+            
         }
 
     }
+
 
     const updateCart = (item) => {
         let updateItem;
@@ -124,7 +123,8 @@ let price;
             }).then((response) => {
                 if (response.statusText === "OK" && response.status == 200) {
                     fetchCheckTotal()
-                    viewCartItems()
+                    viewCartItems1()
+                    
                     toast.success("Updated sucessfully")
                 }
             }).catch((err) => {
@@ -136,7 +136,34 @@ let price;
             console.error(err)
         }
     }
-
+    const viewCartItems1 = () => {
+        const jwt = localStorage.getItem('userToken');
+        const email = localStorage.email;
+        try{
+          axios({  
+              method : 'get',
+              url : `${process.env.GATSBY_CART_URL_STARCARE}mycartitems/${email}`,
+              headers : {
+                     'Authorization' : `Bearer ${jwt}`
+                   }  
+            }).then((res) => {
+              if(res.statusText === "OK" && res.status == 200){
+                  const data = JSON.stringify(res.data)
+                  localStorage.setItem('cartData' , JSON.stringify(res.data))
+                  setCartItems(JSON.parse(data));
+              }
+      
+              return res;
+              
+            }).catch((err) =>{
+              alert('error occured')
+              console.error(err)
+            })
+          
+        }catch(err){
+            console.error(err)
+        }
+      }
 
     const showCartItems = () => {
 
@@ -161,9 +188,9 @@ let price;
                       <td><img src={cart.image} /></td>
                       <td><p>{cart.product_name}</p></td>
                       <td>${parseFloat(cart.price).toFixed(2)}</td>
-                      <td><input type="number" name="qty" defaultValue={cart.qty}  onChange={e => { handleChange(e,index) }} /></td>
+                      <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart) }}/></td>
                         {/*<td><p class="green">In Stock</p></td>*/}
-                        <td><strong>$ {cart.qty*cart.price}</strong></td>
+                        <td><p>$ {cart.qty*cart.price}</p></td>
                        
                             <td> <div className="casualities">
                                 <a onClick={() => { resetCart(cart.item_id) }}> <AiTwotoneDelete /></a>
@@ -199,6 +226,8 @@ let price;
         </div>
 
     }
+
+
 
 
     return (
@@ -269,6 +298,7 @@ let price;
             </Layout>
         </>
     )
+            
 }
 
 export default Cart
