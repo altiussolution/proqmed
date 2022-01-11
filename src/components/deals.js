@@ -134,10 +134,10 @@ const renderDeals = ()=>{
               <h1>Mask & Gloves</h1>
               <h2>during pandemic</h2>
               </div>
-              <button type="button" class="btn_proceed"></button>
+              <Link to="/hotDeals"><button type="button" class="btn_proceed"></button></Link>
               </div>
               <div className="img-gradient">
-              <img src={maskgirl}></img>
+              <Link to="/hotDeals"><img src={maskgirl}></img></Link>
               </div>
             </div>
           </div>

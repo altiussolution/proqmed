@@ -6,6 +6,8 @@ import { navigate} from "gatsby"
 import Table from 'react-bootstrap/Table';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
+import { logout } from "./../services/headerServices";
+
 const Profile = () => {
   const { register, handleSubmit, errors } = useForm();
     const [jwt, setJwt] = useState("")
@@ -23,6 +25,7 @@ const Profile = () => {
   const [showmail,Emailing]= useState(false);
   const [showgender,Gendering]= useState(false);
   const [shownumber,Numbering]= useState(false);
+  const [value, setValue] = useState();
 
     useEffect(() => {
         setIsLogged(checkLogin());
@@ -255,111 +258,142 @@ const Numbersubmit = num => {
           };
         });
       };
+
+
+
+  const logout = () => {
+    setIsLogged(false)
+    localStorage.clear();
+    setValue({})
+    navigate('/')  
+
+  }
     return (
         <Layout>
 
-
-            <main className="profile_page">
-                <div className="App">
-                    <div className="content_wrapper">
-                        <div className="container">
-                            <div className="main_title">
-                                <h1>My Profile</h1>
-                            </div>
-                            <div className="col-lg-12 col-md-9 col-xs-12 no_data fo-flx ">
-                              <div className="content-wrap"> 
-                            <div className="profile_pic">
-            {profilepic.logo ? <img src={profilepic.logo}/>: <div></div>}
-
+<div class="container-fluid grey">
+<div class="container padd">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="profile-sec">
+              <div className="fo-deflx">
+              {profilepic.logo ? <img src={profilepic.logo}/>: <div></div>}
             <div className="fo-center">
               <input type="file" onChange={(e) => {uploadImage(e);}}/>
               </div>
               {aftimg && <button onClick={onFileUpload} className="action action_btn btn btn_gray">
                   Upload!
                 </button>}
-                {p && <button onClick={() => { navigateOnclick('/changePassword') }} className="action action_btn btn btn_gray">
-                  Change Password
-                </button>}
-                {outp && <button onClick={() => { navigateOnclick('/changePassword') }} className="action action_btn btn btn_gray">
-                  Change Password
-                </button>}
+              </div>
+            
+                  <div class="name">
+                    <span>Hello</span>
+                    <p>{jwt && profile.firstname}</p>
+                </div>
             </div>
-            <div className="fo-scroll">
-            <Table>
-              <tbody>
-                <tr>
-                  <th>Name</th>
-                  <td>:</td>
-                  {!showname && <td>{jwt && profile.firstname}{jwt && profile.lastname}
-                  
-                  </td>}
-                  {showname && <td><form onSubmit={handleSubmit(Namesubmit)}>
-                  <label htmlFor="firstname">Name</label>
-                  <input type="text"  name="firstname" maxLength="20" className="form-control" ref={register({
-                              required: true})} />
-                  <input type="text"  name="lastname" maxLength="20" className="form-control" ref={register({
-                              required: true})} />
-                  <button className="profile-sv" type="submit">Save</button>
-                  </form></td>}
-                  
-                  {!showname && <td><button className="profile-bt" onClick={editingName}><span className="fa fa-pencil-square-o"></span> Edit</button></td>}
-                </tr>
+         
 
-                <tr>
-                  <th>Email</th>
-                  <td>:</td>
-                  {!showmail && <td>{jwt && profile.email}
-                 
-                  </td>}
-                  {showmail && <td><form onSubmit={handleSubmit(Emailsubmit)}>
-                  <label htmlFor="email">Email</label>
-                  <input type="text"  name="email" maxLength="50" className="form-control" ref={register({
-                              required: true})} />
-                  <button className="profile-sv" type="submit">Save</button>
-                  </form></td>}
-                  
-                  {!showmail && <td><button className="profile-bt" onClick={editingEmail}><span className="fa fa-pencil-square-o"></span> Edit</button></td>}
-                </tr>
-                {/*<tr>
-                  <th>Gender</th>
-                  <td>:</td>
-                  {!showgender && <td>{jwt && profile.gender}
-                 
-                  </td>}
-                  {showgender && <td><form onSubmit={handleSubmit(Gendersubmit)}>
-                  <label htmlFor="gender">Gender</label>
-                  <input type="text"  name="gender" maxLength="20" className="form-control" ref={register({
-                              required: true})} />
-                  <button type="submit">Save</button>
-                  </form></td>}
-                  
-                  {!showgender && <td><button onClick={editingGender}>Edit</button></td>}
-                  </tr>*/}
-                <tr>
-                  <th>Mobile Number</th>
-                  <td>:</td>
-                  {!shownumber && <td>{jwt && profile.contact_number}
-                 
-                  </td>}
-                  {shownumber && <td><form onSubmit={handleSubmit(Numbersubmit)}>
-                  <label htmlFor="number">Mobile Number</label>
-                  <input type="text"  name="number" maxLength="10" className="form-control" ref={register({
-                              required: true})} />
-                  <button className="profile-sv" type="submit">Save</button>
-                  </form></td>}
-                  {!shownumber && <td><button className="profile-bt" onClick={editingNumber}><span className="fa fa-pencil-square-o"></span> Edit</button></td>}
-                </tr>
-              </tbody>
-            </Table>
+            <div class="profile-sec details">
+                <h4><span><img src="images/orders.png" alt="" /></span><a onClick={() => { navigateOnclick('/orders') }}>MY ORDERS</a> </h4>
+                <h4><span><img src="images/account.png" alt=""/></span><a href="#"> ACCOUNT SETTINGS</a></h4>
+                <ul>
+                    <li onClick={() => { navigateOnclick('/profile') }}><a>Profile Information</a></li>
+                    <li><a>Manage Addresses</a></li>
+                    <li><a href="#">My reviews</a></li>
+                </ul>
+              {isuserlogged && <h4><span><img src="images/logout.png" alt=""/></span><a onClick={() => { logout() }}>LOGOUT</a></h4>}
             </div>
-            </div>
-                            </div>
+        </div>
+<div class="col-lg-8 col-md-12 col-sm-12 ">
+            <div class="fo-bg-white">
+                <div class="top">
+                    <div class="header">
+                    <h2 class="heading">My Profile </h2>
+                </div>
+               
+                </div>
+
+                <div class="my-profile">
+                    <div class="form-1">
+                        <div class="head-label">
+                            <h4>Personal Information</h4>
+                            {!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}>Edit</i></span>}
+
                         </div>
+                       
+                       {!showname && <div class="form-content">
+                            <input type="text" value={jwt && profile.firstname} disabled/>
+                            <input type="text" value={jwt && profile.lastname} disabled/>
+                        </div>}
+                        {showname && <form onSubmit={handleSubmit(Namesubmit)}>
+                        <div class="form-content">
+                            <input type="text" placeholder="First Name" name="firstname" maxLength="20"ref={register({
+                              required: true})} />
+                            <input type="text" placeholder="Last Name" name="lastname" maxLength="20" ref={register({
+                              required: true})} />
+                            <button type="submit" class="btn btn-danger square">SAVE</button>
+                        </div></form>}
+                    </div>
+
+
+                    <div class="form-1">
+                        <div class="head-label">
+                            <h4>Email Address</h4>
+                            {!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}>Edit</i></span>}
+                            <span>
+                            {p && <a onClick={() => { navigateOnclick('/changePassword') }} >
+                  Change Password
+                </a>}
+                {outp && <a onClick={() => { navigateOnclick('/changePassword') }} >
+                  Change Password
+                </a>}
+                </span>    
+                        </div>
+
+                        {!showmail && <div class="form-content">
+                            <input type="text" value={jwt && profile.email} disabled/>
+                            </div>}
+                         
+                        {showmail && <form onSubmit={handleSubmit(Emailsubmit)}>
+                           <div class="form-content">
+                            <input type="text" placeholder="Email Address" name="email" maxLength="50" ref={register({
+                              required: true})} />
+                            
+                            <button type="submit" class="btn btn-danger square">SAVE</button>
+                        </div></form>}
+                    </div>
+
+                    <div class="form-1">
+                        <div class="head-label">
+                            <h4>Mobile Number</h4>
+                            {!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}>Edit</i></span>}
+                            
+                        </div>
+                        {!shownumber &&  <div class="form-content">
+                            <input type="text" value={jwt && profile.contact_number} disabled/>
+                         </div>}
+                        {shownumber &&  <form onSubmit={handleSubmit(Numbersubmit)}><div class="form-content">
+                            <input type="text" placeholder="Number" name="number" maxLength="10" ref={register({
+                              required: true})} />
+                            
+                            <button type="submit" class="btn btn-danger square">SAVE</button>
+                        </div></form>}
                     </div>
                 </div>
-            </main>
 
-        </Layout>
+                
+          </div>    
+          
+    </div>
+
+</div>
+</div>
+</div>
+
+
+</Layout>
+  
+
     )
 }
 

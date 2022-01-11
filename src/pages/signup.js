@@ -116,22 +116,22 @@ const SignUp = () => {
                   {errors.email && errors.email.type === 'pattern' && <span className="error">Valid email required</span>}
                   <input className="form-control" name="password" placeholder="Password *" type={passwordShown2 ? "text" : "password"} ref={register({
                     required: true,
-                    minLength: 8,
+                    minLength: 6,
                     pattern: /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
                   })} />
                   <button className="btn btn heart" type="button" onClick={togglePasswordVisiblity2}><AiTwotoneDelete /></button>
                   {errors.password && errors.password.type === 'required' && <span className="error">Password field is required</span>}
-                  {errors.password && errors.password.type === 'minLength' && <span className="error">Passwords must be at least 6 characters</span>}
-                  {errors.password && errors.password.type === 'pattern' && <span className="error">Password must contain 8 charactor along with 1 number and alphanumeric</span>}
+                  {errors.password && errors.password.type === 'minLength' && <span className="error">Passwords must contain 6 characters</span>}
+                  {errors.password && errors.password.type === 'pattern' && <span className="error">Password must contain 6 charactors along with 1 number and alphanumeric</span>}
                   <input className="form-control" name="conpassword" placeholder="Confirm Password *" type={passwordShown ? "text" : "password"} ref={register({
                     required: true,
-                    minLength: 8,
+                    minLength: 6,
                     pattern: /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
                   })} />
                   <button className="btn btn heart" type="button" onClick={togglePasswordVisiblity}><AiTwotoneDelete /></button>
                   {errors.conpassword && errors.conpassword.type === 'required' && <span className="error">Confirm Password field is required</span>}
-                  {errors.conpassword && errors.conpassword.type === 'minLength' && <span className="error">Confirm Password must contain 8 digits</span>}
-                  {errors.conpassword && errors.conpassword.type === 'pattern' && <span className="error">Confirm Password must contain 8 charactor along with 1 number and alphanumeric</span>}
+                  {errors.conpassword && errors.conpassword.type === 'minLength' && <span className="error">Confirm Password must contain 6 digits</span>}
+                  {errors.conpassword && errors.conpassword.type === 'pattern' && <span className="error">Confirm Password must contain 6 charactors along with 1 number and alphanumeric</span>}
                   <div className="my-3">
                     <input className="btn btn_gray submit_btn" type="submit" value="Create"/>
                   </div>

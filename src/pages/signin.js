@@ -174,12 +174,9 @@ const wistlistsValue = () => {
                   {errors.username && errors.username.type === 'pattern' && <span>Valid email required</span>}
                   <input className="form-control" name="password" placeholder="Password *" type="password" ref={register({
                     required: true,
-                    minLength: 8,
-                    pattern: /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
+      
                   })} />
                   {errors.password && errors.password.type === 'required' && <span>Password field is required</span>}
-                  {errors.password && errors.password.type === 'minLength' && <span>Passwords must be at least 6 characters</span>}
-                  {errors.password && errors.password.type === 'pattern' && <span>Password must contain 8 charactor along with 1 number and alphanumeric</span>}
 
                   <div className="my-3">
                     <input className="btn btn_gray submit_btn" type="submit" value="Sign-In" disabled={isButton} />

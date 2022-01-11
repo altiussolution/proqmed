@@ -20,6 +20,7 @@ const UserManage = () => {
  const [showQuoteadd, setShowQuoteadd] = useState(true);
  const [statys, statusIn] = useState(false);
  const [subusers, setSubusers] = useState([]);
+ const [nousers, nosubs] = useState("");
  const [customerId, setCustomerId] = useState("");
  const [loader, setLoader] = useState(false);
  const [subcat,SubCate] = useState([]);
@@ -68,9 +69,13 @@ const UserManage = () => {
         `${process.env.GATSBY_CART_URL_STARCARE}subuser/subuserlist/parent_customer_id/39`
     );
     const json = await res.json();
-    await setSubusers(json);
-    console.log(json) 
-    setLoader(false)
+    if(json=="Subusers not available for this customer"){
+        setLoader(false)
+        await nosubs(json);
+    }else {
+        await setSubusers(json);
+        setLoader(false)
+    }
 };
 
 const rendercategory = () =>{
@@ -91,11 +96,12 @@ categoryda(lott)
  const editQuote = (quote) => {
     // setIndex(index);
     
-    console.log(quote['allowed_permissions'])
+    
     setQuotePopupedit(true)
     handleShowQuote(true)
     getConversation(quote['subuser_id'])
     setQuoteForm(quote)
+    console.log(quote)
 }
 
 const addQuote = () => {
@@ -160,43 +166,40 @@ const removeQuote = (id) => {
 }
 
 const onSubmitQuote = quoteDetails => {
-const cat = [];
-const per = [];
-cat.push(quoteDetails['catpermission'])
-per.push(quoteDetails['allowed_permissions'])
-    let quoteData = [
-        {
-            "subuser_id": quoteForm['subuser_id'],
-            "role_name": quoteForm['role_name'],
-            "firstname": quoteDetails['firstname'],
-            "lastname": quoteDetails['lastname'],
-            "email": quoteDetails['email'],
-            "password": quoteDetails['password'],
-            "allowedpermissions": per,
-            "categorypermissions": cat,
-            "status" : statys
+    console.log(quoteForm)
+    // let quoteData = [
+    //     {
+    //         "subuser_id": quoteForm['subuser_id'],
+    //         "role_name": quoteForm['role_name'],
+    //         "firstname": quoteDetails['firstname'],
+    //         "lastname": quoteDetails['lastname'],
+    //         "email": quoteDetails['email'],
+    //         "password": quoteDetails['password'],
+    //         "allowedpermissions": names,
+    //         "categorypermissions": catie,
+    //         "status" : statys
 
-        }
-    ]
+    //     }
+    // ]
 
-    try {
-        axios({
-            method: 'put',
-            url: `${process.env.GATSBY_CART_URL_STARCARE}subuser/subuserupdate`,
-            data: quoteData,
-        })
-            .then(function (response) {
-                toast.success('SubUser Updated sucessfully')
-                handleCloseQuote();
-                getQuotes();
-            })
-            .catch(function (response) {
-                toast.error('An error occured please contact admin')
-            });
+    // try {
+    //     axios({
+    //         method: 'put',
+    //         url: `${process.env.GATSBY_CART_URL_STARCARE}subuser/subuserupdate`,
+    //         data: quoteData,
+    //     })
+    //         .then(function (response) {
+    //             toast.success('SubUser Updated sucessfully')
+    //             handleCloseQuote();
+    //             getQuotes();
+    //         })
+    //         .catch(function (response) {
+    //             toast.error('An error occured please contact admin')
+    //         });
 
-    } catch (err) {
-        console.error(`An error occured ${err}`)
-    }
+    // } catch (err) {
+    //     console.error(`An error occured ${err}`)
+    // }
 };
 const handleChange = nextChecked => {
     statusIn(nextChecked);
@@ -222,6 +225,7 @@ const handleChange = nextChecked => {
     setCats(name);
   };
 const onSubmitQuoteadd = quoteDetails => {
+    
     let quoteData = [
     
         
@@ -276,7 +280,8 @@ const onSubmitQuoteadd = quoteDetails => {
                               </button>
                             </div>
                             <div className=" compare_section cart_page user">
-                                <table className="table compareList_table">
+            
+                               {subusers.length!=0 ? <table className="table compareList_table">
                                     <thead>
                                         <tr>
                                             <th>S.no</th>
@@ -318,7 +323,7 @@ const onSubmitQuoteadd = quoteDetails => {
                                             </tbody>
                                         ))
                                     }
-                                </table>
+                                </table> : "SubUsers not available"}
                             </div>
                         </div>
                     </div>
@@ -375,6 +380,9 @@ const onSubmitQuoteadd = quoteDetails => {
                                     options={quoteConversations}
                                     selectedValues={quoteForm['allowed_permissions']}
                                     isObject={false}
+                                    showCheckbox={true}
+                                    onSelect={onSelectNames} 
+                                    onRemove={onRemoveNames}
                                      /> 
                                     {errors.permission && errors.permission.type === 'required' && <span className="error">Permissions are required</span>}
                                 </div>
@@ -383,8 +391,11 @@ const onSubmitQuoteadd = quoteDetails => {
                                 
                                     <Multiselect
                                     options={clip}
+                                    showCheckbox={true}
+                                    displayValue="name"
+                                    onSelect={onSelectCats} 
+                                    onRemove={onRemoveCats}
                                     selectedValues={quoteForm['category_permissions']}
-                                    isObject={false}
                                      /> 
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category Permissions are required</span>}
                                 </div>

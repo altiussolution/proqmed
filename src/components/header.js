@@ -443,9 +443,9 @@ const isSticky = (e) => {
                 <a className="btn dropbtn"><span>{isuserlogged ? `Welcome! ${user_name}` : <div>Hello,SignIn</div>}</span>My Account</a>
                 <div className="dropdown-content">
                   <ul>
-                    {!isuserlogged && <li><Link to="/signup">Register</Link>
-                    <Link to="/signin">Login</Link>
-                    <Link to="/">Sell on Proqmed</Link>
+                    {!isuserlogged && <li><Link to="/signin">Sign-In</Link>
+                    <a><Link to="/signup">New to ProQmed?</Link>Start here</a>
+                    <a><Link to="/"></Link>Sell on ProQmed</a>
                     </li>}
                     {isuserlogged && <div><li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
@@ -470,7 +470,7 @@ const isSticky = (e) => {
               <div >
                 
               
-                <a className="btn dropbtn carttop"><Cart cartCount={cartCount} /></a>
+                <Link to="/cart"><a className="btn dropbtn carttop"><Cart cartCount={cartCount} /></a></Link>
                 {/* <div className="dropdown-content">
                   <ul>
                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>

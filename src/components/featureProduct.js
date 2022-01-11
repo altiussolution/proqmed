@@ -64,9 +64,6 @@ const FeatureProduct = () => {
                 console.log(response.data)
                   localStorage.setItem('cartId',response.data);
                   setQuoteId(localStorage.cartId)
-
-                  //viewCartItems()
-                //  localStorage.removeItem('cartData', []);
               }
             }) 
             .catch((error) => {
@@ -77,7 +74,7 @@ const FeatureProduct = () => {
             toast.error('something went wrong')
           }
         }else{
-            navigate("/signin")
+            
         }
        // setQuoteId(localStorage.cartId)
         if(localStorage.permissions){
@@ -95,7 +92,6 @@ const FeatureProduct = () => {
             );
             const json = await res.json();
             await setFeatureProducts(json);
-             
         };
         fetchFeature();
     }, []);
@@ -220,7 +216,7 @@ const FeatureProduct = () => {
           navigate("/signin")
       }
   }
-
+ 
       const renderProducts = () => {    
         if (featureProducts) { 
 
@@ -229,7 +225,7 @@ const FeatureProduct = () => {
                 {       
                     featureProducts.map((data,index) => (
                         <div key={`${data.name}_${index}`}>
-                            <div className="card">    
+                            <div className="card">   
                             {p && <div className="wishComp">
                                     <ul>
                                       <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
@@ -241,6 +237,7 @@ const FeatureProduct = () => {
                                     </ul>
                                 </div>}
                                 <div className="image_wrapper">
+                               {data.offer_percentage != 0 && <div className="price_off">Updo {data.offer_percentage}% off</div>}
                                     <Link to={getProductURL(data)}><img src={data.image} /></Link>
                                 </div>
                                 <div className="description_list">                               
@@ -250,8 +247,8 @@ const FeatureProduct = () => {
                                 <div className="price_holder">
                                 <div className="price_left">                                  
                                     <div className="product_amt">
-                                    <span className="new_price">$000</span>
-                                        <span className="price">${Math.round(data.price)}</span>
+                                     { data.strike_price != null && <span className="new_price">${Math.round(data.strike_price)}</span>}
+                                        <span className="price">${Math.round(data.original_price)}</span>
                                         
                                     </div>
                                     <div className="rating_front">
@@ -261,7 +258,7 @@ const FeatureProduct = () => {
                                         name='rating'
                                         starDimension="20px"
                                         starSpacing="0px"
-                                        starRatedColor="rgb(242 187 22)"
+                                        starRatedColor="rgb(0 0 0)"
                                         svgIconViewBox="0 0 32 32"
                                         svgIconPath="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798zM16 23.547l-6.983 3.671 1.334-7.776-5.65-5.507 7.808-1.134 3.492-7.075 3.492 7.075 7.807 1.134-5.65 5.507 1.334 7.776-6.983-3.671z"
                                     />

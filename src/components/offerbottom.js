@@ -37,7 +37,7 @@ const Renderproduct = () => {
           <div className="wrapper-content">
             <p>Medical Research</p>
             <h1>Health Matters</h1>
-            <button className="btn btn update" type="button">Read More </button>
+            <Link to={getProductURL(data.sub_category)} ><button className="btn btn update" type="button">Read More </button></Link>
             </div>
             <Link to={getProductURL(data.sub_category)} ><img src={data.category_image} alt={"banner"} /></Link> 
           </div>

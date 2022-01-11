@@ -605,9 +605,10 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                       <form onSubmit={handleSubmit(pinCodeChecker)}>
   <label>
     
-    <input type="tel" id="pincode" name="postcode" placeholder="Zip/Postal Code " onChange={handleChange1} maxLength="6" className="form-control" />
+    <input type="tel" id="pincode" name="postcode" placeholder="Zip/Postal Code " onChange={handleChange1} maxLength="6" className="form-control" required="true"/>
+    {errors.postcode && errors.postcode.type === 'required' && <span>Zip/Postal Code is required</span>}
     <button  type="submit"  className="input-group-text" disabled={Istrue}>Check</button>
-  </label>
+  </label> 
  
 </form>
                         

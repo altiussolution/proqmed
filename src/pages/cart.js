@@ -10,7 +10,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AiTwotoneDelete } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-
 const Cart = () => {
     const [cartItems, setCartItems] = useState([])
     const [loader, setLoader] = useState(false);
@@ -132,51 +131,44 @@ const Cart = () => {
 
 
     const showCartItems = () => {
-        return <div>
-            {
-                cartItems.map((cart, index) => (
-                    <div className="product_item cart" key={cart.product_id}>
-                        <div className="product_img">
-                            <img src={cart.image} />
-                        </div>
-                        <div className="product_desc">
-                            <h3>{cart.product_name}</h3>
-                            <ul>
-                                <li>
-                                    <p>SKU <span>{cart.sku}</span></p>
-                                </li>
-                                <li>
-                                    <p>Manufacturer <span>{cart.product_type} </span></p>
-                                </li>
-                                <li>
-                                    <p>Mf.Part No <span>-</span></p>
-                                </li>
-                            </ul>
-                            <div className="qty_price">
-                                <p>Qty:<input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart) }} /></p>
-                                <h6>${parseFloat(cart.price).toFixed(2)}</h6>
-                            </div>
-
-                            
-
-                        </div>
-
-                        <div className="casualities">
+        return (
+            <div>
+              <table class="table table-striped">
+              <thead>
+                <tr>
+                <th>Product</th> 
+                 <th>Name</th>                       
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Status</th>
+                  <th>Sub-Total</th>
+                  <th></th>
+                </tr>
+                </thead>
+                {cartItems.map((cart, index)  => {
+                  return (
+                    <tbody>
+                    <tr key={cart.product_id}>
+                      <td><img src={cart.image} /></td>
+                      <td><p>{cart.product_name}</p></td>
+                      <td>${parseFloat(cart.price).toFixed(2)}</td>
+                      <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart) }} /></td>
+                        <td><p class="green">In Stock</p></td>
+                        <td><strong>${parseFloat(cart.price).toFixed(2) * cart.qty}</strong></td>
+                       
+                            <td> <div className="casualities">
                                 <a onClick={() => { resetCart(cart.item_id) }}> <AiTwotoneDelete /></a>
                                 <button className="btn btn heart" type="button" onClick={() => { updateCart(cart) }}><AiOutlineCloudUpload /></button>
                                 <button className="btn btn heart" type="button"><AiTwotoneHeart /></button>
-                            </div>
-                        <div className="user_actions">
-                            {/* <button className="btn btn_gray" type="button" onClick={() => { updateCart(cart) }}>Update</button>
-                            <button className="btn btn_remove" type="button" onClick={() => { resetCart(cart.item_id) }}>Remove</button> */}
-                        </div>
-                    </div>
-                    
-                    
-                ))
-            }
-        </div>
-        
+                            </div></td>
+                    </tr>
+                    </tbody>
+                  )
+                })}
+              </table>
+            </div>
+          );
+       
 
     }
 
@@ -245,7 +237,7 @@ const Cart = () => {
                                         <div className="col-lg-9 col-md-9 col-xs-12">
                                         <div className="casualities bottom">
                                 <a onClick={() => navigate('/')}> Continue Shopping  </a>
-                                <button className="btn btn update" type="button"> Update Cart  </button>
+                                {/*<button className="btn btn update" type="button"> Update Cart  </button>*/}
                             </div>
                                         </div>
                                     </div>
