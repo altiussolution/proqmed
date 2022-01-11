@@ -16,26 +16,27 @@ const Cart = () => {
     const [checkOut, setCheckout] = useState([]);
     const [updCart, setupdCart] = useState("");
     const [jwt, setjwt] = useState();
+    const [subtotal, setsubtotal] = useState("");
 
     useEffect(() => {
         setjwt(localStorage.userToken)
         // if (checkLogin()) {
             if (!checkLogin()) {
-                navigate('/signin')
-              } else {
-                  if(localStorage.getItem('cartData')){
-                    let parseCart = JSON.parse(localStorage.getItem('cartData'));
-                    if (parseCart) {
-                        setCartItems(JSON.parse(localStorage.getItem('cartData')));
-                        if(localStorage.getItem('userToken')){
-                            fetchCheckTotal();
-                        }
-                       
+            navigate('/signin')
+          } else {
+              if(localStorage.getItem('cartData')){
+                let parseCart = JSON.parse(localStorage.getItem('cartData'));
+                if (parseCart) {
+                    setCartItems(JSON.parse(localStorage.getItem('cartData')));
+                    if(localStorage.getItem('userToken')){
+                        fetchCheckTotal();
                     }
-                  }
-        }
+                   
+                }
+              }
+    }
     }, [])
-
+   
     const fetchCheckTotal = async () => {
         const jwt = localStorage.getItem('userToken')
         try {
@@ -74,12 +75,19 @@ const Cart = () => {
         }
     }
 
-    const handleChange = (event) => {
+    const handleChange = (event,index) => {
+console.log(cartItems[index])
+let price;
         if (event.target.value <= 0) {
-            event.target.value = 1;
-            setupdCart(event.target.value);
-        } else {
+            event.target.value=1
             setupdCart(event.target.value)
+// cartItems[index].subtotal==event.target.value*cartItems[index].price
+
+        } else {
+            event.target.value
+            setupdCart(event.target.value)
+            console.log(event.target.value)
+
         }
 
     }
@@ -131,6 +139,7 @@ const Cart = () => {
 
 
     const showCartItems = () => {
+
         return (
             <div>
               <table class="table table-striped">
@@ -140,7 +149,7 @@ const Cart = () => {
                  <th>Name</th>                       
                   <th>Price</th>
                   <th>Quantity</th>
-                  <th>Status</th>
+                  {/*<th>Status</th>*/}
                   <th>Sub-Total</th>
                   <th></th>
                 </tr>
@@ -152,9 +161,9 @@ const Cart = () => {
                       <td><img src={cart.image} /></td>
                       <td><p>{cart.product_name}</p></td>
                       <td>${parseFloat(cart.price).toFixed(2)}</td>
-                      <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart) }} /></td>
-                        <td><p class="green">In Stock</p></td>
-                        <td><strong>${parseFloat(cart.price).toFixed(2) * cart.qty}</strong></td>
+                      <td><input type="number" name="qty" defaultValue={cart.qty}  onChange={e => { handleChange(e,index) }} /></td>
+                        {/*<td><p class="green">In Stock</p></td>*/}
+                        <td><strong>$ {cart.qty*cart.price}</strong></td>
                        
                             <td> <div className="casualities">
                                 <a onClick={() => { resetCart(cart.item_id) }}> <AiTwotoneDelete /></a>
