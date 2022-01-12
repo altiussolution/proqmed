@@ -16,26 +16,27 @@ const Cart = () => {
     const [checkOut, setCheckout] = useState([]);
     const [updCart, setupdCart] = useState("");
     const [jwt, setjwt] = useState();
+    const [subtotal, setsubtotal] = useState("");
 
     useEffect(() => {
         setjwt(localStorage.userToken)
         // if (checkLogin()) {
             if (!checkLogin()) {
-                navigate('/signin')
-              } else {
-                  if(localStorage.getItem('cartData')){
-                    let parseCart = JSON.parse(localStorage.getItem('cartData'));
-                    if (parseCart) {
-                        setCartItems(JSON.parse(localStorage.getItem('cartData')));
-                        if(localStorage.getItem('userToken')){
-                            fetchCheckTotal();
-                        }
-                       
+            navigate('/signin')
+          } else {
+              if(localStorage.getItem('cartData')){
+                let parseCart = JSON.parse(localStorage.getItem('cartData'));
+                if (parseCart) {
+                    setCartItems(JSON.parse(localStorage.getItem('cartData')));
+                    if(localStorage.getItem('userToken')){
+                        fetchCheckTotal();
                     }
-                  }
-        }
+                   
+                }
+              }
+    }
     }, [])
-
+   
     const fetchCheckTotal = async () => {
         const jwt = localStorage.getItem('userToken')
         try {
@@ -48,6 +49,7 @@ const Cart = () => {
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
                     setCheckout(res.data.total_segments)
+                    
                 }
             }).catch((err) => {
                 console.error(err);
@@ -78,11 +80,16 @@ const Cart = () => {
         if (event.target.value <= 0) {
             event.target.value = 1;
             setupdCart(event.target.value);
+            
+           
         } else {
             setupdCart(event.target.value)
+            
+            
         }
 
     }
+
 
     const updateCart = (item) => {
         let updateItem;
@@ -116,7 +123,8 @@ const Cart = () => {
             }).then((response) => {
                 if (response.statusText === "OK" && response.status == 200) {
                     fetchCheckTotal()
-                    viewCartItems()
+                    viewCartItems1()
+                    
                     toast.success("Updated sucessfully")
                 }
             }).catch((err) => {
@@ -128,9 +136,37 @@ const Cart = () => {
             console.error(err)
         }
     }
-
+    const viewCartItems1 = () => {
+        const jwt = localStorage.getItem('userToken');
+        const email = localStorage.email;
+        try{
+          axios({  
+              method : 'get',
+              url : `${process.env.GATSBY_CART_URL_STARCARE}mycartitems/${email}`,
+              headers : {
+                     'Authorization' : `Bearer ${jwt}`
+                   }  
+            }).then((res) => {
+              if(res.statusText === "OK" && res.status == 200){
+                  const data = JSON.stringify(res.data)
+                  localStorage.setItem('cartData' , JSON.stringify(res.data))
+                  setCartItems(JSON.parse(data));
+              }
+      
+              return res;
+              
+            }).catch((err) =>{
+              alert('error occured')
+              console.error(err)
+            })
+          
+        }catch(err){
+            console.error(err)
+        }
+      }
 
     const showCartItems = () => {
+
         return (
             <div>
               <table class="table table-striped">
@@ -140,7 +176,7 @@ const Cart = () => {
                  <th>Name</th>                       
                   <th>Price</th>
                   <th>Quantity</th>
-                  <th>Status</th>
+                  {/*<th>Status</th>*/}
                   <th>Sub-Total</th>
                   <th></th>
                 </tr>
@@ -152,9 +188,9 @@ const Cart = () => {
                       <td><img src={cart.image} /></td>
                       <td><p>{cart.product_name}</p></td>
                       <td>${parseFloat(cart.price).toFixed(2)}</td>
-                      <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart) }} /></td>
-                        <td><p class="green">In Stock</p></td>
-                        <td><strong>${parseFloat(cart.price).toFixed(2) * cart.qty}</strong></td>
+                      <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart) }}/></td>
+                        {/*<td><p class="green">In Stock</p></td>*/}
+                        <td><p>$ {cart.qty*cart.price}</p></td>
                        
                             <td> <div className="casualities">
                                 <a onClick={() => { resetCart(cart.item_id) }}> <AiTwotoneDelete /></a>
@@ -190,6 +226,8 @@ const Cart = () => {
         </div>
 
     }
+
+
 
 
     return (
@@ -260,6 +298,7 @@ const Cart = () => {
             </Layout>
         </>
     )
+            
 }
 
 export default Cart
