@@ -22,6 +22,7 @@ const MyQuotes = ({ setcartCount }) => {
     const [quoteForm, setQuoteForm ] = useState();
 
     useEffect(() => {
+        getConversation(quote['entity_id'])
         getQuotes();
     }, [])
 
@@ -51,45 +52,9 @@ const MyQuotes = ({ setcartCount }) => {
         }
     }
 
-    const navigateOnclick = (quote) => {
-        // setIndex(index);
-        setQuoteForm(quote)
-        getConversation(quote['entity_id'])
-        navigate(quote)
-         
-        // setQuotePopup(true)
-        // handleShowQuote(true)
-    }
 
-    const removeQuote = (id) => {
-        if (window.confirm("Delete the item?")) {
-            try {
-                axios({
-                    method: "post",
-                    url: `${process.env.GATSBY_CART_URL_STARCARE}admin/deletequote`,
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.userToken}`
-                    },
-                    data: {
-                        "data": {
-                            "quote_id": id,
-                            "customer_id": localStorage.customer_id,
-                        }
-                    }
-                }).then((res) => {
-                    if (res.statusText === "OK" && res.status == 200) {
-                        toast.success("Quote Deleted Successfully");
-                        getQuotes();
-                    }
-                }).catch((err) => {
-                    console.error(err)
-                })
-            } catch (err) {
-                console.error(err)
-            }
-        }
 
-    }
+ 
 
     const onSubmitQuote = quoteDetails => {
         let quoteData = {
@@ -185,76 +150,8 @@ const MyQuotes = ({ setcartCount }) => {
         <Layout>
             <section className="inner_banner_section">
             </section>
-            {loader ?
-                (<div className="mx-auto">
-                    <PageLoader />
-                </div>) :
-                <section className="page_content inner_page">
-                    <div className="container boxed-content">
-                        <div className="sec_block">
-                            <div className=" page_title_sec">
-                                <h3 className="text-capitalize">My Quotes</h3>
-                            </div>
-                            <div className=" compare_section cart_page">
-                                <table className="table compareList_table">
-                                    <thead>
-                                        <tr>
-                                            <th>Quote Id</th>
-                                            <th>Product Name</th>
-                                            <th>Quantity</th>
-                                            <th>Quote Price</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    {
-                                        quotes.map((quote, index) => (
-                                            <tbody key={index}>
-
-                                                <tr>
-
-                                                    <td>
-                                                        <span>{quote.entity_id}</span>
-                                                    </td>
-                                                    <td>
-                                                        <span>{quote.product_name}</span>
-                                                    </td>
-                                                    <td>
-                                                        <span>{quote.quote_qty}</span>
-                                                    </td>
-                                                    <td>
-                                                        <span>
-                                                            $ {parseFloat(quote.quote_price).toFixed(2)}
-                                                        </span>
-                                                    </td>
-                                                    <td> {quote.status === 'Approved' ?
-                                                        <button className="btn_gray btn" onClick={() => addItemToCart(quote)}>
-                                                            Add To Cart
-                                                        </button>
-                                                        : <span>{quote.status}</span>
-                                                    }
-
-                                                    </td>
-                                                    <td className="action_sec">
-                                                        <span>
-                                                            <button className="action action_btn btn btn_gray"  onClick={() => { navigateOnclick('/myquotesedit') }}>Edit
-                              </button>
-                                                            <button type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.entity_id)}> Delete
-                              </button>
-                                                        </span>
-                                                    </td>
-
-                                                </tr>
-                                            </tbody>
-                                        ))
-                                    }
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            }
-            {quote ? <Modal show={showQuote} onHide={handleCloseQuote} animation={false}>
+            
+            <Modal >
                 <Modal.Header closeButton>
                     <Modal.Title>Update Quote Details</Modal.Title>
                 </Modal.Header>
@@ -314,8 +211,7 @@ const MyQuotes = ({ setcartCount }) => {
                 <Modal.Footer>
 
                 </Modal.Footer>
-            </Modal> : <div></div>
-            }
+            </Modal> 
         </Layout >
     )
 
