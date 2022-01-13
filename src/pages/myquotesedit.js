@@ -9,20 +9,27 @@ import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import { Link, navigate, useStaticQuery, graphql } from "gatsby"
 
-const MyQuotes = ({ setcartCount }) => {
+const MyQuotesEdit = ({location} ) => {
 
     const [quotes, setQuotes] = useState([])
-    const [quote, setQuotePopup] = useState(false);
+   // const [quote, setQuotePopup] = useState(false);
     const { register, handleSubmit, errors } = useForm();
     const [showQuote, setShowQuote] = useState(true);
     const handleCloseQuote = () => setShowQuote(false);
     const handleShowQuote = () => setShowQuote(true);
     const [quoteConversations, setQuotesConversations] = useState([])
     const [loader, setLoader] = useState(false);
-    const [quoteForm, setQuoteForm ] = useState();
+    const [quoteForm, setQuoteForm ] = useState([]);
+    const [edit, editdata] = useState([]);
 
     useEffect(() => {
-        getConversation(quote['entity_id'])
+console.log(location.state)
+        if(location.state){
+            setQuoteForm(location.state)
+            console.log("oi",setQuoteForm)
+            console.log(quoteForm["entity_id"])
+
+         }
         getQuotes();
     }, [])
 
@@ -111,51 +118,13 @@ const MyQuotes = ({ setcartCount }) => {
     }
 
 
-    const addItemToCart = cartDetails => {
-        let cartItem = {
-            "cartItem":
-            {
-                "sku": cartDetails['product_id'],
-                "qty": cartDetails['quote_qty'],
-                "quote_id": localStorage.cartId
-            }
-        }
-        const jwt = localStorage.getItem('userToken')
-        if (cartItem) {
-            try {
-                axios({
-                    method: 'post',
-                    url: `${process.env.GATSBY_API_BASE_URL_STARCARE}carts/mine/items`,
-                    data: cartItem,
-                    headers: {
-                        'Authorization': `Bearer ${jwt}`
-                    }
-                }).then((res) => {
-                    if (res.statusText === "OK" && res.status == 200) {
-                        toast.success('succesfully added to cart');
-                        setcartCount();
-                    }
-                }).catch((err) => {
-                    console.error(err);
-                    toast.error('Failed to add cart')
-                })
-            } catch (err) {
-                console.error(err)
-            }
-        }
-    }
-
-
     return (
         <Layout>
             <section className="inner_banner_section">
             </section>
-            
-            <Modal >
-                <Modal.Header closeButton>
-                    <Modal.Title>Update Quote Details</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+         
+                    <h6>Update Quote Details</h6>
+                
                     <Tabs defaultActiveKey="detail" id="uncontrolled-tab-example">
                         <Tab eventKey="detail" title="Quote Details">
 
@@ -174,7 +143,7 @@ const MyQuotes = ({ setcartCount }) => {
                                     <label htmlFor="price_per_item">Quoted Price </label>
                                     <input className="form-control" type="number" name="price_per_item" placeholder="Price Per Item" ref={register({
                                         required: true
-                                    })} defaultValue={parseFloat(quoteForm['quote_price']).toFixed(2)} readOnly={true} />
+                                    })} defaultValue={(quoteForm['quote_price'])} readOnly={true} />
                                     {errors.price_per_item && errors.price_per_item.type === 'required' && <span className="error">Price is required</span>}
                                 </div>
                                 <div className="form-group">
@@ -206,16 +175,12 @@ const MyQuotes = ({ setcartCount }) => {
                                 </div>
                             }
                         </Tab>
-                    </Tabs>
-                </Modal.Body>
-                <Modal.Footer>
-
-                </Modal.Footer>
-            </Modal> 
+                        </Tabs>
+             
         </Layout >
     )
 
 
 }
 
-export default MyQuotes
+export default MyQuotesEdit

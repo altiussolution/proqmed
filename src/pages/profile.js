@@ -7,6 +7,10 @@ import Table from 'react-bootstrap/Table';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import { logout } from "./../services/headerServices";
+import { account} from "./../assets/account.png"
+import { logoutt} from "./../assets/logout.png"
+import { orders} from "./../assets/orders.png"
+import Modal from 'react-bootstrap/Modal';
 
 const Profile = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -26,7 +30,10 @@ const Profile = () => {
   const [showgender,Gendering]= useState(false);
   const [shownumber,Numbering]= useState(false);
   const [value, setValue] = useState();
-
+  const [showQuote, setShowQuote] = useState(true);
+  const [quote, setQuotePopup] = useState(false);
+  const handleCloseQuote = () => setShowQuote(false);
+  const handleShowQuote = () => setShowQuote(true);
     useEffect(() => {
         setIsLogged(checkLogin());
         setJwt(localStorage.userToken);
@@ -260,7 +267,40 @@ const Numbersubmit = num => {
       };
 
 
-
+      const onSubmit = userCredential => {
+        try{
+            axios({
+                method : "put",
+                url: `${process.env.GATSBY_CART_URL_STARCARE}customers/me/password`,
+                headers : {
+                'Authorization' : `Bearer ${jwt}`
+                },  
+                data : userCredential
+            }).then((response) => {
+                
+                if(response.statusText === "OK" && response.status == 200){
+                    toast.success('Password changed sucessfully');
+                    handleCloseQuote()
+                   // localStorage.clear();
+                    //navigate('/profile')
+                }
+            }).catch((err)=>{
+                console.log(err);
+                toast.error('An error occured, make sure your current password entered correctly');
+            })                        
+        }
+        catch(err) {
+            console.error(err)
+        }
+    }
+    const quotePopupOpen = () => {
+      if (!checkLogin()) {
+        navigate('/signin')
+      } else {
+        setQuotePopup(true)
+        handleShowQuote(true)
+      }
+    }
   const logout = () => {
     setIsLogged(false)
     localStorage.clear();
@@ -294,14 +334,14 @@ const Numbersubmit = num => {
          
 
             <div class="profile-sec details">
-                <h4><span><img src="images/orders.png" alt="" /></span><a onClick={() => { navigateOnclick('/orders') }}>MY ORDERS</a> </h4>
-                <h4><span><img src="images/account.png" alt=""/></span><a href="#"> ACCOUNT SETTINGS</a></h4>
+                <h4><span><img src={orders}/></span><a onClick={() => { navigateOnclick('/orders') }}>MY ORDERS</a> </h4>
+                <h4><span><img src={account}/></span><a href="#"> ACCOUNT SETTINGS</a></h4>
                 <ul>
                     <li onClick={() => { navigateOnclick('/profile') }}><a>Profile Information</a></li>
                     <li><a>Manage Addresses</a></li>
                     <li><a href="#">My reviews</a></li>
                 </ul>
-              {isuserlogged && <h4><span><img src="images/logout.png" alt=""/></span><a onClick={() => { logout() }}>LOGOUT</a></h4>}
+              {isuserlogged && <h4><span><img src={logoutt}/></span><a onClick={() => { logout() }}>LOGOUT</a></h4>}
             </div>
         </div>
 <div class="col-lg-8 col-md-12 col-sm-12 ">
@@ -341,11 +381,67 @@ const Numbersubmit = num => {
                             <h4>Email Address</h4>
                             {!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}>Edit</i></span>}
                             <span>
-                            {p && <a onClick={() => { navigateOnclick('/changePassword') }} >
+                            {/*p && <a onClick={() => { navigateOnclick('/changePassword') }} >
                   Change Password
-                </a>}
-                {outp && <a onClick={() => { navigateOnclick('/changePassword') }} >
+                            </a>*/}
+                {outp && <a onClick={() => quotePopupOpen()}  >
                   Change Password
+                  {quote ? <Modal show={showQuote} onHide={handleCloseQuote} animation={false}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Change Password</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <div className="row">
+                                        <div className="col-lg-12 col-md-12 col-xs-12">
+                                            <form onSubmit={handleSubmit(onSubmit)} className="Changepwd_form" autoComplete="off">
+                                                <div className="inline_form">
+                                                <div className="form-group">
+                                                    <label>Enter Old Password</label>
+                                                    <input type="password" className="form-control" 
+                                                    id="currentPassword" name="currentPassword"  ref={register({    
+                                                        required: true,
+                                                        minLength : 8 ,
+                                                        pattern : /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
+                                                       })}/> 
+                                                    {errors.currentPassword && errors.currentPassword.type === 'required' && <span>Current Password field is required</span>}
+                                                    {errors.currentPassword && errors.currentPassword.type === 'minLength' && <span>Current  Password must contain 8 digits</span>}
+                                                    {errors.currentPassword && errors.currentPassword.type === 'pattern' && <span>Current  Password must contain 8 charactor along with 1 number and alphanumeric</span>}
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Enter New Password</label>
+                                                    <input type="password" className="form-control" 
+                                                    id="newPassword" name="newPassword"  ref={register({    
+                                                        required: true,
+                                                        minLength : 8 ,
+                                                        pattern : /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
+                                                       })}/> 
+                                                    {errors.newPassword && errors.newPassword.type === 'required' && <span>New Password field is required</span>}
+                                                    {errors.newPassword && errors.newPassword.type === 'minLength' && <span>New  Password must contain 8 digits</span>}
+                                                    {errors.newPassword && errors.newPassword.type === 'pattern' && <span>New  Password must contain 8 charactor along with 1 number and alphanumeric</span>}
+                                                </div>  
+    
+                                                <div className="form-group">
+                                                    <label>Enter Confirm Password</label>
+                                                    <input type="password" className="form-control" 
+                                                    id="confirmPassword" name="confirmPassword"  ref={register({    
+                                                        required: true,
+                                                        minLength : 8 ,
+                                                        pattern : /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
+                                                       })}/> 
+                                                    {errors.confirmPassword && errors.confirmPassword.type === 'required' && <span>Confirm Password field is required</span>}
+                                                    {errors.confirmPassword && errors.confirmPassword.type === 'minLength' && <span>Confirm  Password must contain 8 digits</span>}
+                                                    {errors.confirmPassword && errors.confirmPassword.type === 'pattern' && <span>Confirm  Password must contain 8 charactor along with 1 number and alphanumeric</span>}
+                                                </div> 
+                                                </div>
+                                                <div className="form_btn">
+                                                <button className="btn btn_gray" type="submit">Change Password</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                </Modal.Body>
+               </Modal>: <div></div>
+                }
                 </a>}
                 </span>    
                         </div>
@@ -355,7 +451,7 @@ const Numbersubmit = num => {
                             </div>}
                          
                         {showmail && <form onSubmit={handleSubmit(Emailsubmit)}>
-                           <div class="form-content">
+                           <div class="form-content"> 
                             <input type="text" placeholder="Email Address" name="email" maxLength="50" ref={register({
                               required: true})} />
                             
