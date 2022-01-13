@@ -6,10 +6,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import {  navigate } from "gatsby";
 import 'react-toastify/dist/ReactToastify.css';   
 import { Link } from "gatsby";
-
+import { TablePagination } from '@mui/material';
 
 const Orders = () => {
-
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [orders, setOrders] = useState([]);
     const [jwt,setJwt] = useState("")
     const [permit,perMission] = useState([]);
@@ -61,7 +62,14 @@ const Orders = () => {
             console.error(err)
         }    
     }
-
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+      };
+    
+      const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+      };
     const cancelOrder = (order_id) => {
         try{  
             axios({
@@ -114,7 +122,8 @@ const Orders = () => {
 
     const orderDetails = () => {
         if(p==true || outp==true){
-            return<div className="col-lg-12 col-md-12 col-xs-12 ">
+            return ( 
+            <div >
             
              
             {orders.length == 0 ? 
@@ -124,88 +133,120 @@ const Orders = () => {
             
             </div>) :
             
-                orders.map((items,index) => (
-
+         
+            <div class="col-lg-9 col-md-12 col-sm-12 ">
+            <div class="fo-bg-white">
+                <div class="top">
+                    <div class="header">
+                    <h2 class="heading">My Orders <span>({orders.length})</span></h2>
                     
-                    <div key={index} className="order_product">
-                            {
+                </div>
+                <div class="grid-right">
+                    <div class="search">
+                        <input type="text" placeholder="search"/>
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                </div>
+                </div>
+                <div>
+                {orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((items,index) => (
+                <div class="order-details" key={index}>
+                      {
                                 items.map((orders,ind) =>{
                                     return (ind == 0 ? 
-                                        
-                                    <div className="product_status" key={`${ind}_table`}>
-                                        <div className="common">
-                                        <table  cellSpacing="2" cellPadding="4">
-                                            <thead>   
-                                                <tr>
-                                                    <th>Ordered Placed</th>
-                                                    <th>Status</th>
-                                                    <th>Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>{new Date(orders.created_at).toLocaleString()}</td>
-                                                    <td>{orders.status}</td>
-                                                    <td>${orders.grand_total}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        </div>
-                                        <div className="order_note">
-                                            <p>Order Des : <span> {orders.shipping_description} </span></p>
-                                            <p>Payment Method : <span> {orders.payment_method} </span></p>
-                                            
-                                            <div className="button_sec">
-                                            {re && <button className="btn btn green" type="button" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
-                                            {outre && <button className="btn btn green" type="button" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
-                                            <Link className="btn btn_gray" to="/orderstatus" state={{ order_id: orders.order_id }} >OrderStatus</Link>
+                    <div class="row" key={`${ind}_table`}>
+                        <div class="col-lg-3 col-md-12 col-sm-12">
+                            <div class="or-left">
+                                <p>Order ID</p>
+                                <p>Customer Name</p>
+                                <p>Price</p>
+                                <p>Status</p>
+                                <p>Payment method</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="or-left">
+                                <p>: {orders.orders_id}</p>
+                                <p>: {orders.shipping_description}</p>
+                                <p>:${orders.grand_total}</p>
+                                <p>: {orders.status}</p>
+                                <p>: {orders.payment_method}</p>
+                                <span class="functions"><p><i class="fa fa-calendar-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleString()}</p><p><i class="fa fa-clock-o" aria-hidden="true"></i> 12.30 PM</p></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-12 col-sm-12">
+                            <div class="buttons-or">
+                        {re && <button type="button" class="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
+                                            {outre && <button type="button" class="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
+                                            <Link className="btn btn_gray" to="/orderstatus" state={{ order_id: orders.order_id }} ><button type="button" class="btn btn-primary "> View Order</button></Link>
                                             {orders.status !== 'canceled' && <button className="btn btn outline" type="button" onClick={()=> cancelOrder(orders.order_id)}>Cancel Order</button>}
-                                                
-                                            
-                                       
-                                     </div>
-                                         </div>
-                                    </div> 
-                                    : <div key={`${ind}_product`}  className="product_item"> 
-                                            <div className="product_img">
-                                                <img src={orders.image} />
-                                            </div>
-                                            <div className="product_desc">
-                                                <h3>{orders.peoduct_name}</h3>
-                                                <ul>
-                                                    <li>
-                                                        <p>SKU <span>{orders.sku}</span></p>
-                                                    </li>
-                                                    <li>
-                                                        <p>Qty <span>{orders.qty} </span></p>
-                                                    </li>
-                                                    <li>
-                                                        <p>Product Id <span>{orders.product_id}</span></p>
-                                                    </li>
-                                                </ul>  
-                                               
-                                            </div>
-                                            
-                                    </div>)
-                                })
-                            }
+                        <a href="#"><i class="fa fa-sticky-note" aria-hidden="true"></i>Invoice</a>
+                            </div>
+                        </div>
                     </div>
-                ))
+                    : <div key={`${ind}_product`}  className="product_item"> 
+                    <div className="product_img">
+                        <img src={orders.image} />
+                    </div>
+                    <div className="product_desc">
+                        <h3>{orders.peoduct_name}</h3>
+                        <ul>
+                            <li>
+                                <p>SKU <span>{orders.sku}</span></p>
+                            </li>
+                            <li>
+                                <p>Qty <span>{orders.qty} </span></p>
+                            </li>
+                            <li>
+                                <p>Product Id <span>{orders.product_id}</span></p>
+                            </li>
+                        </ul>  
+                       
+                    </div>
+                    
+            </div>
+                    ) 
+                })
             }
+                </div>
+  ))
+}</div>
+                
+
+                  
+          </div>      
+         
+          <div class="bottom-paginatino">
+          <TablePagination
+  component="div"
+  rowsPerPageOptions={[5, 10, 25]}
+  page={page}
+  count={orders.length}
+  onPageChange={handleChangePage}
+  rowsPerPage={rowsPerPage}
+  onRowsPerPageChange={handleChangeRowsPerPage}
+/>
+          </div>
+    </div> }
         </div>
-        }
+            )
         
     }
 
+            };
+
+
+            
     return (
         <>
             <Layout>
-                <main className="order_page">
+                {/* <main className="order_page">
                     <div className="App">
                         <div className="content_wrapper">
                             <div className="container">
                                 <div className="main_title">
-                                    <h1>My Orders <span>(5)</span></h1>
+                                    <h1>My Orders <span>({orders.length})</span></h1>
                                 </div>
                                 <div className="row">
                                     {orderDetails()}
@@ -224,13 +265,66 @@ const Orders = () => {
                         draggable
                         pauseOnHover
                     />
-                </main>
+                    <TablePagination
+  component="div"
+  rowsPerPageOptions={[5, 10, 25]}
+  page={page}
+  count={orders.length}
+  onPageChange={handleChangePage}
+  rowsPerPage={rowsPerPage}
+  onRowsPerPageChange={handleChangeRowsPerPage}
+/>
+                </main> */}
+ <div class="container-fluid grey">
+<div class="container">
+    <div class="row"><div class="col-lg-3 col-md-12 col-sm-12">
+        <div class="cart-details-sec">
+            <div class="top">
+            <div class="header">
+                <h2 class="heading">Filters </h2>
+            </div>
+        </div>
+        <div class="filters">
+            <h6>Order Status</h6>
+
+            <ul>
+                <li><a href="#"> <span><div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something"  />
+                    
+                  </div></span> On the way</a></li>
+                <li><a href="#"><span><div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something"  />
+                    
+                  </div></span> Delivered</a></li>
+                <li><a href="#"> <span><div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something"  />
+                    
+                  </div></span>Cancelled</a></li>
+                
+            </ul>
+        </div>
+            
+        </div>
+      
+       
+        
+     
+        
+    </div>
+
+       
+    
+
+        
+</div>
+{orderDetails()}   
+</div>
+</div>
 
 
             </Layout>
         </>
     )
-
 }
 
 export default Orders;
