@@ -6509,6 +6509,7 @@ h2.heading{
 .profile-sec.details h4 a {
   color: #707070;
   font-weight: 500;
+  font-size: 18px;
 }
 
 .profile-sec.details ul li a {
@@ -6618,3 +6619,15 @@ color: #53D34B;
   padding: 40px 0;
 }
 
+.container.padd h4 {
+  font-size: 18px !important;
+}
+
+.address-form .fo-bg-slice input {
+  height: 55px;
+  margin: 12px 0px;
+}
+
+.buttons {
+  text-align: right;
+}

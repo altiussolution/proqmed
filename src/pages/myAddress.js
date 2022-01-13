@@ -132,11 +132,13 @@ const deleteAddress = (id) => {
  return (
   <Layout>
   <div class="container-fluid grey">
-<div class="container">
+<div class="container padd">
     <div class="row">
         <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="profile-sec">
+            <div className="fo-deflx">
             {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}
+            </div>
                 <div class="name">
                     <span>Hello,</span>
                     <p>{localStorage.user_name}</p>
