@@ -8,6 +8,7 @@ import Brands from "../components/brands";
 import FeatureProduct from "../components/featureProduct";
 
 
+
 export default function Category(props) {
 
   const { pageContext } = props;
