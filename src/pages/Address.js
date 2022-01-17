@@ -122,11 +122,13 @@ shippingAddress.push(
 return (
   <Layout>
   <div class="container-fluid grey">
-  <div class="container">
+  <div class="container padd">
       <div class="row">
           <div class="col-lg-4 col-md-12 col-sm-12">
               <div class="profile-sec">
+              <div className="fo-deflx">
                   <img src="images/sample.png" alt=""/>
+                  </div>
                   <div class="name">
                       <span>Hello</span>
                       <p>{localStorage.user_name}</p>
@@ -211,20 +213,20 @@ return (
                           </div>
                           <h6> Address Type</h6>
                           <div class="billing-stat">
-                              <div class="form-check">
+                              <div class="form-check disc">
                                   <input class="form-check-input" type="checkbox" id="billing" name="billing" />
                                   <p class="form-check-label">Billing </p>
                                 </div>
   
-                                <div class="form-check">
+                                <div class="form-check disc">
                                   <input class="form-check-input" type="checkbox" id="shipping" name="shipping"/>
                                   <p class="form-check-label">Shipping </p>
                                 </div>
                               
                           </div>
                           <div class="buttons">                            
-                              <button class="btn btn-danger" type="submit">SAVE</button>
-                              <Link to="/myAddress"><button type="button" class="btn btn-danger border" >CANCEL</button></Link>
+                              <button class="btn btn-danger square" type="submit">SAVE</button>
+                              <Link to="/myAddress"><button type="button" class="btn btn" >CANCEL</button></Link>
                           </div>
                       </div>
                       </form>

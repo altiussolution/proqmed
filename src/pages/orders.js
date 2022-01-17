@@ -253,8 +253,24 @@ if(array.length>0){
     const orderDetails = () => {
         if(p==true || outp==true){
             return ( 
+
             <div >
              <div class="top">
+            
+            
+             <>
+            {orders.length == 0 ? 
+            (<div className="col-lg-9 col-md-9 col-xs-12 no_data ">
+                
+            <h1>No Item found</h1>
+            
+            </div>) :
+            
+         
+            <div class="col-lg-9 col-md-12 col-sm-12 ">
+            <div class="fo-bg-white">
+                <div class="top">
+
                     <div class="header">
                     <h2 class="heading">My Orders <span>({orders.length})</span></h2>
                     
@@ -364,7 +380,7 @@ if(array.length>0){
 />
           </div>
     </div> }
-        </div>
+    </>
             )
         
     }
@@ -411,8 +427,9 @@ if(array.length>0){
 />
                 </main> */}
  <div class="container-fluid grey">
-<div class="container">
-    <div class="row"><div class="col-lg-3 col-md-12 col-sm-12">
+<div class="container padd">
+    <div class="row">
+        <div class="col-lg-3 col-md-12 col-sm-12">
         <div class="cart-details-sec">
             <div class="top">
             <div class="header">
@@ -447,12 +464,12 @@ if(array.length>0){
         
     </div>
 
-       
+    {orderDetails()}      
     
 
         
 </div>
-{orderDetails()}   
+
 </div>
 </div>
 

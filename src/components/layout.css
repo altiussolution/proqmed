@@ -425,15 +425,20 @@ border:1px solid #ececec;
   }
 .product_item .wishComp{
   position: absolute;
-  width: 100px;
-  height: 20px;
+  width: 34px;
+  padding: 7px;
+  line-height: 0px;
+  height: 37px;
   opacity: 0;
-  margin-top:0;
+  top: 0;
+  z-index: 99;
+  background: #ff7ba8;
+  border-radius: 50%;
+  margin-top: 0;
   transition: all .3s ease-in-out;
-  right:10px;
+  right: -21px;
   z-index: 99;
   font-size: 20px;
-  color: #000;
   margin-right: 20px;
   }
 .feature_section .card:hover .wishComp,
@@ -3628,7 +3633,7 @@ button:focus, .btn:focus, .middlenavbar a.nav-link:focus, .btn.submit_btn:focus,
 }
 .category_sidebar .productFilters h6{
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 500;
   margin-bottom: 5px;
 }
 
@@ -3697,7 +3702,17 @@ button:focus, .btn:focus, .middlenavbar a.nav-link:focus, .btn.submit_btn:focus,
 .productFilters .text-sm.items-center {
   display: flex;
   align-items: center;
+  margin-top: 10px;
   margin-bottom: 0px;
+}
+
+.billing-stat p.form-check-label {
+  margin-left: 20px;
+}
+
+.billing-stat input {
+  height: 20px !important;
+  margin: 0 !important;
 }
 
 /* .productFilters label {
@@ -4047,6 +4062,7 @@ ul.sub_menus a:before {
 /* Signin Page Links styles */
 .user_link {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 20px 0;
@@ -4580,14 +4596,15 @@ width: 23.4%;
   width: 60px;
     height: 60px;
     padding: 10px;
+    top: -1px;
     position: absolute;
     background: #01aa67;
     border-radius: 50%;
     color: #fff;
     white-space: break-spaces;
-    line-height: 15px;
+    line-height: 19px;
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
 }
 .productFilters h6{
   margin-bottom: 0;
@@ -5075,6 +5092,7 @@ section.category_section .image_wrappertab {
   line-height: 13px;
   padding: 0 13px;
   margin: 0;
+  cursor: pointer;
   display: inline-block;
   color:#6B6B6B;
 }
@@ -5760,7 +5778,8 @@ header{
 .fo-bg-white {
   background: #fff;
   border-radius: 10px;
-  padding: 20px !important;
+  padding: 30px !important;
+  box-shadow: rgb(50 50 93 / 15%) 0px 6px 12px -2px, rgb(0 0 0 / 10%) 0px 3px 7px -3px;
 }
 
 .product_item:last-child {
@@ -5921,8 +5940,13 @@ button.btn_gray.btn.ml-1{
   
 }
 
+.input-sec form label {
+  display: flex;
+}
+
 .input-sec {
   display: flex;
+  align-items: center;
 }
 
 .input-sec p {
@@ -6046,9 +6070,9 @@ form.Changepwd_form button.btn.btn_gray {
   margin-right: 0;
 }
 
-table.table.compareList_table {
+/* table.table.compareList_table {
   text-align: center;
-}
+} */
 
 table.table.compareList_table button.btn.btn_gray {
   margin-right: 10px;
@@ -6401,6 +6425,22 @@ button.profile-sv {
   width: 90%;
 }
 
+.box_content.fo-signup form.login_form i.fa.fa-eye {
+  position: absolute;
+  right: 22%;
+  bottom: 22%;
+  color: #000;
+  opacity: 70%;
+}
+
+.dod_inner .image_wrapper img {
+  height: 130px;
+}
+
+form.login_form button.btn.btn.heart {
+  float: right;
+  margin-top: -36px;
+}
 
 
 /* My profile css starts////////////////////////////////////////////////////////////////// */
@@ -6409,6 +6449,8 @@ button.btn.btn-danger.square {
     border-radius: 0;
     padding: 13px 30px;
     font-weight: 600;
+    background-color: #1C67A8;
+    border: none;
 }
 
 .form-content input {
@@ -6426,8 +6468,12 @@ button.btn.btn-danger.square {
     margin-bottom: 10px;
 }
 
+h2.heading{
+  margin-bottom: 20px;
+}
 .head-label h4{
     margin-right: 10px;
+    font-size: 16px;
 }
 
 .head-label span {
@@ -6444,8 +6490,8 @@ button.btn.btn-danger.square {
  .profile-sec {
   display: flex;
   background: #fff;
-  border-radius: 5px;
-  padding: 20px;
+  border-radius: 10px;
+    padding: 30px;
   align-items: center;
   box-shadow: rgb(50 50 93 / 15%) 0px 6px 12px -2px, rgb(0 0 0 / 10%) 0px 3px 7px -3px;
 }
@@ -6473,6 +6519,7 @@ button.btn.btn-danger.square {
 .profile-sec.details h4 a {
   color: #707070;
   font-weight: 500;
+  font-size: 18px;
 }
 
 .profile-sec.details ul li a {
@@ -6484,7 +6531,7 @@ button.btn.btn-danger.square {
 
 .profile-sec.details ul li a:hover {
 
-  color: #891c05;
+  color: #1C67A8;
   font-weight: 600;
   transition: 0.4s ease;
   opacity: 100% !important;
@@ -6504,6 +6551,7 @@ button.btn.btn-danger.square {
 .profile-sec.details h4 a{
   text-decoration: none;
   margin-top: 2px;
+  cursor: pointer;
 }
 
 .profile-sec.details i.fa.fa-angle-right {
@@ -6517,7 +6565,7 @@ button.btn.btn-danger.square {
 }
 .fo-deflx img {
   width: 100%;
-  height: 100px;
+  height: 105px;
   border-radius: 50%;
 }
 
@@ -6541,7 +6589,7 @@ table.table.table-striped button.btn {
   box-shadow: rgb(50 50 93 / 15%) 0px 6px 12px -2px, rgb(0 0 0 / 10%) 0px 3px 7px -3px !important;
   border-radius: 50px;
   border: none;
-  color: #891c05;
+  color: #1C67A8;
   margin-top: 10px;
 }
 
@@ -6577,5 +6625,57 @@ color: #53D34B;
 /* Cart Css ends  ////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
+.container.padd {
+  padding: 40px 0;
+}
 
+.container.padd h4 {
+  font-size: 18px !important;
+}
 
+.address-form .fo-bg-slice input {
+  height: 55px;
+  margin: 12px 0px;
+}
+
+.buttons {
+  text-align: right;
+}
+
+span.inp_val {
+  font-size: 14px;
+}
+
+.fo-bg-white .top .right {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 20px;
+}
+
+.fo-bg-white .top .right .search {
+  border: 1px solid #ddd;
+  height: 40px;
+  width: 33%;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.fo-bg-white .top .right .search input {
+    border: 0;
+}
+
+.fo-bg-white .top .right button.btn.btn-danger {
+background: #0162a2;
+padding: 9px 20px;
+color: #fff;
+border: none;
+border-radius: 5px;
+}
+
+.table-striped tbody tr:nth-of-type(odd){
+  background: none !important;
+}
+
+.table-striped tbody tr:nth-of-type(even){
+background-color: rgb(252, 252, 252);
+}

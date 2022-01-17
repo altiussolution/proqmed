@@ -61,7 +61,7 @@ html {
   }
   .btn_gray:hover {
     color: #fff;
-    background-color: #a07528!important;
+    /* background-color: #a07528!important; */
   }
 
   .star-rating {
