@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
-import { useStaticQuery } from "gatsby";
+import { navigate, useStaticQuery, Link } from "gatsby";
 import axios from "axios";
+import { TablePagination } from '@mui/material';
 import Switch from "react-switch";
 import PageLoader from "../components/loaders/pageLoader";
 import Modal from 'react-bootstrap/Modal'
@@ -11,6 +12,8 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import Multiselect from 'multiselect-react-dropdown';
 import Select from 'react-select';
 const UserManage = () => {
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
  const [field, setField] = useState([]);
  const [quoteedit, setQuotePopupedit] = useState(false);
  const [quoteadd, setQuotePopupadd] = useState(false);
@@ -77,7 +80,14 @@ const UserManage = () => {
         setLoader(false)
     }
 };
+const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 const rendercategory = () =>{
     const list = [];
     const lis = [];
@@ -105,11 +115,11 @@ categoryda(lott)
 }
 
 const addQuote = () => {
-    // setIndex(index);
-    console.log(clip)
-    setQuotePopupadd(true)
-    handleShowQuoteforadd(true)
-    getConversation()
+    navigate('/manageUser')
+    // console.log(clip)
+    // setQuotePopupadd(true)
+    // handleShowQuoteforadd(true)
+    // getConversation()
 }
 
 const getConversation = (id) => {
@@ -265,7 +275,7 @@ const onSubmitQuoteadd = quoteDetails => {
 
  return (
   <Layout>
-            <section className="inner_banner_section">
+            {/* <section className="inner_banner_section">
             </section>
             {loader ?
                 (<div className="mx-auto">
@@ -316,6 +326,10 @@ const onSubmitQuoteadd = quoteDetails => {
                                                             <a onClick={() => removeQuote(quote.subuser_id)}> <i class="fa fa-trash-o" aria-hidden="true"></i>
 
                               </a>
+                                                            <Link to="/manageUser" state={quote}><button className="action action_btn btn btn_gray">Edit
+                              </button></Link>
+                                                            <button type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.subuser_id)}> Delete
+                              </button>
                                                         </span>
                                                     </td>
 
@@ -328,189 +342,93 @@ const onSubmitQuoteadd = quoteDetails => {
                         </div>
                     </div>
                 </section>
-            }
-            {quoteedit ? <Modal show={showQuote} onHide={handleCloseQuote} animation={false}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Update SubUser Details</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <form onSubmit={handleSubmit(onSubmitQuote)} action="" className="header_signin_form">
-                                <div className="form-group">
-                                    <label htmlFor="firstname">First Name</label>
-                                    <input className="form-control" name="firstname"  type="text" ref={register({
-                                        required: true
-                                    })} defaultValue={(quoteForm['subuser_firstname'])}/>
-                                    {errors.firstname && errors.firstname.type === 'required' && <span className="error">First Name is required</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="lastname">Last Name</label>
-                                    <input className="form-control" type="text" name="lastname"  ref={register({
-                                        required: true
-                                    })} defaultValue={(quoteForm['subuser_lastname'])}/>
-                                    {errors.lastname && errors.lastname.type === 'required' && <span className="error">Last Name is required</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="email">Email </label>
-                                    <input className="form-control" name="email" ref={register({
-                                        required: true 
-                                    })} defaultValue={(quoteForm['subuser_email'])}>
-                                    </input>
-                                    {errors.email && errors.email.type === 'required' && <span className="error">Email is required</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="rolename">Role Name </label>
-                                    <input className="form-control" name="rolename" ref={register({
-                                        required: true 
-                                    })} defaultValue={(quoteForm['role_name'])}>
-                                    </input>
-                                    {errors.rolename && errors.rolename.type === 'required' && <span className="error">Role Name is required</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="password">Password</label>
-                                    <input className="form-control" name="password" ref={register({
-                                        required: true 
-                                    })} defaultValue={(quoteForm['subuser_password'])}>
-                                    </input>
-                                    {errors.password && errors.password.type === 'required' && <span className="error">Password is required</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="permission">Permissions</label>
-                                    
-                                    <Multiselect
-                                    options={quoteConversations}
-                                    selectedValues={quoteForm['allowed_permissions']}
-                                    isObject={false}
-                                    showCheckbox={true}
-                                    onSelect={onSelectNames} 
-                                    onRemove={onRemoveNames}
-                                     /> 
-                                    {errors.permission && errors.permission.type === 'required' && <span className="error">Permissions are required</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="catpermission">Category Permissions</label>
-                                
-                                    <Multiselect
-                                    options={clip}
-                                    showCheckbox={true}
-                                    displayValue="name"
-                                    onSelect={onSelectCats} 
-                                    onRemove={onRemoveCats}
-                                    selectedValues={quoteForm['category_permissions']}
-                                     /> 
-                                    {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category Permissions are required</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="status">Status</label>
-                                     <Switch
-          onChange={handleChange1}
-          checked={quoteForm['subuser_status']} name="status"
-          className="react-switch"
-        />
-                                    {errors.status && errors.status.type === 'required' && <span className="error">Status is required</span>}
-                                </div>
-                                <button type="submit" className="btn_link theme_btn_blue w-100">Update</button>
-                            </form>
+            } */}
+           <div class="container-fluid grey">
+<div class="container padd">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="profile-sec">
+                <img src="images/sample.png" alt=""/>
+                <div class="name">
+                    <span>Hello</span>
+                    <p>{localStorage.user_name}</p>
+                </div>
+            </div>
 
-                  
-                </Modal.Body>
-                <Modal.Footer>
+            <div class="profile-sec details">
+                <h4><span><img src="images/orders.png" alt=""/></span><a href="/orders">MY ORDERS</a> </h4>
+                <h4><span><img src="images/account.png" alt=""/></span><a > ACCOUNT SETTINGS</a></h4>
+                <ul>
+                    <li><a href="/profile">Profile Information</a></li>
+                    <li><a href="/myAddress">Manage Addresses</a></li>
+                   
+                </ul>
+                <h4><span><img src="images/users.png" alt=""/></span><a href="#"> USER MANAGEMENT</a></h4>
+                <h4><span><img src="images/logout.png" alt=""/></span><a href="#">LOGOUT</a></h4>
+            </div>
+        </div>
 
-                </Modal.Footer>
-            </Modal> : <div></div>
-            }
-             {quoteadd ? <Modal show={showQuoteadd} onHide={handleCloseQuoteforadd} animation={false}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Add SubUser Details</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+        <div class="col-lg-8 col-md-12 col-sm-12 ">
+            <div class="fo-bg-white">
+                <div class="top">
+                    <div class="header">
+                    <h2 class="heading">User Management  </h2>
+                </div>
+
+               
+               
+                </div>
+
+                <div class="user-content">
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>S.No</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        {
+                        subusers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((quote, index) => (
+                        <tbody key={index}>
+                         <tr>
+                            <td>{index + 1}</td>
+                            <td>{quote.subuser_firstname}</td>
+                            <td>{quote.role_name}</td>
+                            <td class="green">{quote.subuser_status == false ? "In-Active" : "Active"}</td>
+                            <td> <Link to="/manageUser" state={quote}><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></Link> <span onClick={() => removeQuote(quote.subuser_id)}><i class="fa fa-trash-o" aria-hidden="true"></i></span> </td>
+                         </tr>
+
+                        
+                        </tbody>
+                         ))
+                        }
+                      </table>
+                </div>
+
                 
-                            <form onSubmit={handleSubmit(onSubmitQuoteadd)} action="" className="header_signin_form">
-                                <div className="form-group">
-                                    <label htmlFor="firstname">First Name</label>
-                                    <input className="form-control" name="firstname"  type="text" ref={register({
-                                        required: true
-                                    })} />
-                                    {errors.firstname && errors.firstname.type === 'required' && <span className="error">First Name is required</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="lastname">Last Name</label>
-                                    <input className="form-control" type="text" name="lastname"  ref={register({
-                                        required: true
-                                    })} />
-                                    {errors.lastname && errors.lastname.type === 'required' && <span className="error">Last Name is required</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="email">Email</label>
-                                    <input className="form-control" type="text" name="email"  ref={register({
-                                        required: true
-                                    })} />
-                                    {errors.email && errors.email.type === 'required' && <span className="error">Email is required</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="rolename">Role Name </label>
-                                    <input className="form-control" type="text" name="rolename"  ref={register({
-                                        required: true
-                                    })} />
-                                    {errors.rolename && errors.rolename.type === 'required' && <span className="error">Role Name is required</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="password">Password</label>
-                                    <input className="form-control" type="text" name="password"  ref={register({
-                                        required: true
-                                    })} />
-                                    {errors.password && errors.password.type === 'required' && <span className="error">Last Name is required</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="permission">Permissions</label>
-                                   
 
-                                        
-                                       
-                                            <Multiselect
-                                            options={quoteConversations}
-                                            isObject={false} 
-                                            showCheckbox={true}
-                                            onSelect={onSelectNames} 
-                                            onRemove={onRemoveNames}
-                                            name="permission"
-                                            />
-                                      
-                            
-                                     
-                                    {errors.permission && errors.permission.type === 'required' && <span className="error">Permission is required</span>}
-                                    
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="catpermission">Category Permissions</label>
-                                     
-                                       <Multiselect
-                                       options={clip}
-                                       displayValue="name"
-                                       value="id"
-                                       onSelect={onSelectCats} 
-                                       onRemove={onRemoveCats}
-                                       showCheckbox={true} 
-                                       name="catpermission"
-                                       />
-                                    {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="status">Status</label>
-                                     <Switch
-          onChange={handleChange}
-          checked={statys} name="status"
-          className="react-switch"
-        />
-                                    {errors.status && errors.status.type === 'required' && <span className="error">Status is required</span>}
-                                </div>
-                                <button type="submit" className="btn_link theme_btn_blue w-100">Add</button>
-                            </form>
-                </Modal.Body>
-                <Modal.Footer>
-
-                </Modal.Footer>
-            </Modal> : <div></div>
-            }
+                
+          </div>  
+          <div class="bottom-paginatino">
+          <TablePagination
+  component="div"
+  rowsPerPageOptions={[4, 8, 12,16,20,24]}
+  page={page}
+  count={subusers.length}
+  onPageChange={handleChangePage}
+  rowsPerPage={rowsPerPage}
+  onRowsPerPageChange={handleChangeRowsPerPage}
+/>
+          </div>  
+          
+    </div>
+</div>
+</div>
+</div>
+           
         </Layout >
 )
 }

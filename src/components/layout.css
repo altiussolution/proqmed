@@ -3633,7 +3633,7 @@ button:focus, .btn:focus, .middlenavbar a.nav-link:focus, .btn.submit_btn:focus,
 }
 .category_sidebar .productFilters h6{
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 500;
   margin-bottom: 5px;
 }
 
@@ -3702,7 +3702,17 @@ button:focus, .btn:focus, .middlenavbar a.nav-link:focus, .btn.submit_btn:focus,
 .productFilters .text-sm.items-center {
   display: flex;
   align-items: center;
+  margin-top: 10px;
   margin-bottom: 0px;
+}
+
+.billing-stat p.form-check-label {
+  margin-left: 20px;
+}
+
+.billing-stat input {
+  height: 20px !important;
+  margin: 0 !important;
 }
 
 /* .productFilters label {
@@ -6060,9 +6070,9 @@ form.Changepwd_form button.btn.btn_gray {
   margin-right: 0;
 }
 
-table.table.compareList_table {
+/* table.table.compareList_table {
   text-align: center;
-}
+} */
 
 table.table.compareList_table button.btn.btn_gray {
   margin-right: 10px;
@@ -6630,4 +6640,42 @@ color: #53D34B;
 
 .buttons {
   text-align: right;
+}
+
+span.inp_val {
+  font-size: 14px;
+}
+
+.fo-bg-white .top .right {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 20px;
+}
+
+.fo-bg-white .top .right .search {
+  border: 1px solid #ddd;
+  height: 40px;
+  width: 33%;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.fo-bg-white .top .right .search input {
+    border: 0;
+}
+
+.fo-bg-white .top .right button.btn.btn-danger {
+background: #0162a2;
+padding: 9px 20px;
+color: #fff;
+border: none;
+border-radius: 5px;
+}
+
+.table-striped tbody tr:nth-of-type(odd){
+  background: none !important;
+}
+
+.table-striped tbody tr:nth-of-type(even){
+background-color: rgb(252, 252, 252);
 }
