@@ -14,10 +14,12 @@ const Orders = () => {
     const [orders, setOrders] = useState([]);
     const [jwt,setJwt] = useState("")
     const [permit,perMission] = useState([]);
+    const [fildata,Filter] = useState([]);
     const [p,per] = useState(false);
     const [re,reodr]= useState(false);
     const [outp,outper] = useState(false);
     const [outre,outreodr]= useState(false);
+    const array=[]
     useEffect(() => {
         setJwt(localStorage.userToken);
         if(localStorage.permissions){
@@ -115,14 +117,145 @@ const Orders = () => {
             console.error(err)
         }
     }
+const filtercall = (data) =>{
+    try {
+        axios({
+            method: 'post',
+            url: `${process.env.GATSBY_CART_URL_STARCARE}customer/ordersfilter`,
+            data: data,
+        })
+            .then(function (response) {
+                setOrders(response.data)
+            })
+            .catch(function (response) {
+                
+            });
 
+    } catch (err) {
+        console.error(`An error occured ${err}`)
+    }   
+}
     const orderstatus = () => {
         navigate('/orderstatus');
     }
+    const filterData =(val,datas)=> {
+        if(val.target.checked){
+            array.push(datas)
+            let data = {
+                "data":{
+                        "order_status":array,
+                        "email":localStorage.email
+                    }
+                }
+               filtercall(data);
+            }else if(!val.target.checked) {
+                var carIndex = array.indexOf(datas);
+                array.splice(carIndex, 1);
+                let data = {
+                    "data":{
+                            "order_status":array,
+                            "email":localStorage.email
+                        }
+                    }
+            if(array.length>0){
+                filtercall(data);
+            }else {
+                setOrderDetails();
+            }
+            }
+    }
 
+
+const filterData1 = (val,datas)=>{
+if(val.target.checked){
+array.push(datas)
+let data = {
+    "data":{
+            "order_status":array,
+            "email":localStorage.email
+        }
+    }
+   filtercall(data);
+}else if(!val.target.checked) {
+    var carIndex = array.indexOf(datas);
+    array.splice(carIndex, 1);
+    let data = {
+        "data":{
+                "order_status":array,
+                "email":localStorage.email
+            }
+        }
+if(array.length>0){
+    filtercall(data);
+}else {
+    setOrderDetails();
+}
+}
+    }
+
+
+    const filterData2 = (val,datas)=>{
+        if(val.target.checked){
+            array.push(datas)
+            let data = {
+                "data":{
+                        "order_status":array,
+                        "email":localStorage.email
+                    }
+                }
+               filtercall(data);
+            }else if(!val.target.checked) {
+                var carIndex = array.indexOf(datas);
+                array.splice(carIndex, 1);
+                let data = {
+                    "data":{
+                            "order_status":array,
+                            "email":localStorage.email
+                        }
+                    }
+            if(array.length>0){
+                filtercall(data);
+            }else {
+                setOrderDetails();
+            }
+            }
+    }
+    const searchOrder = async (val) => {
+        if(val.target.value.length>=2){
+            let data = {
+                
+                    "data":{
+                        "search_keyword":val.target.value,
+                        "email":localStorage.email
+                    }
+                
+            }
+            try {
+                axios({
+                    method: 'post',
+                    url: `${process.env.GATSBY_CART_URL_STARCARE}customer/orderslistsearch`,
+                    data: data,
+                })
+                    .then(function (response) {
+                        setOrders(response.data)
+                    })
+                    .catch(function (response) {
+                        
+                    });
+        
+            } catch (err) {
+                console.error(`An error occured ${err}`)
+            }
+        }else if(val.target.value.length==0 || val.target.value.length==1){
+          setOrderDetails();
+        }
+        }
     const orderDetails = () => {
         if(p==true || outp==true){
             return ( 
+
+            <div >
+             <div class="top">
             
             
              <>
@@ -137,17 +270,35 @@ const Orders = () => {
             <div class="col-lg-9 col-md-12 col-sm-12 ">
             <div class="fo-bg-white">
                 <div class="top">
+
                     <div class="header">
                     <h2 class="heading">My Orders <span>({orders.length})</span></h2>
                     
                 </div>
-                <div class="grid-right">
+                {/* <div class="grid-right">
                     <div class="search">
-                        <input type="text" placeholder="search"/>
+                        <input type="text" placeholder="search" onChange={e => { searchOrder(e) }}/>
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </div>
+                </div> */}
                 </div>
+            <div class="search">
+                        <input type="text" placeholder="search" onChange={e => { searchOrder(e) }}/>
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+            {orders.length == 0 ? 
+            (<div className="col-lg-9 col-md-9 col-xs-12 no_data ">
+                 <div class="grid-right">
+
                 </div>
+            <h1>No Item found</h1>
+            
+            </div>) :
+            
+         
+            <div class="col-lg-9 col-md-12 col-sm-12 ">
+            <div class="fo-bg-white">
+               
                 <div>
                 {orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((items,index) => (
                 <div class="order-details" key={index}>
@@ -289,16 +440,16 @@ const Orders = () => {
             <h6>Order Status</h6>
 
             <ul>
-                <li><a href="#"> <span><div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something"  />
+                <li><a > <span><div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="pending"  onChange={e => { filterData(e,'pending') }}/>
                     
-                  </div></span> On the way</a></li>
-                <li><a href="#"><span><div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something"  />
+                  </div></span>On the way</a></li>
+                <li><a ><span><div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="complete"  onChange={e => { filterData1(e,'complete') }}/>
                     
                   </div></span> Delivered</a></li>
-                <li><a href="#"> <span><div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something"  />
+                <li><a> <span><div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="cancelled"  onChange={e => { filterData2(e,'cancelled') }}/>
                     
                   </div></span>Cancelled</a></li>
                 

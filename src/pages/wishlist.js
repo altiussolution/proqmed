@@ -9,9 +9,11 @@ import empty_cart from './../assets/empty.png';
 import { navigate } from "gatsby";
 import { checkLogin } from "./../services/headerServices";
 import StarRatings from 'react-star-ratings';
+import { TablePagination } from '@mui/material';
 
 const Wishlist = () => {
-
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [wishList, setWishList] = useState([]);
     const [loader, setLoader] = useState(false);
     const [quote_id, setQuoteId] = useState("");
@@ -72,7 +74,14 @@ const Wishlist = () => {
         }
     }
     }
-
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+      };
+    
+      const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+      };
     const removeWishList = (pro_id, data) => {
         if (window.confirm("Delete the item?")) {
             removeProduct(pro_id, data)
@@ -182,7 +191,7 @@ const Wishlist = () => {
  
     <div className="fo-bg-white">
                                                 {
-                                                    wishList.map((item, index) => (
+                                                    wishList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item, index) => (
                                                         <div key={item.sku} className="product_item">
                                                             <div className="product_img">
                                                                 <img src={item.image} />
@@ -192,7 +201,7 @@ const Wishlist = () => {
                                                                 <div className="to-flx">
                                                                 <span>{item.created_at}</span>
                                                                 <p>SKU: <span>{item.sku}</span></p>
-                                                                <span>{item.review_count}</span>
+                                                                <span>Reviews({item.review_count})</span>
                                                                 </div>
                                                                 <div className="qty_price">
                                                                     <h6>${parseFloat(item.price).toFixed(2)}</h6>
@@ -201,7 +210,7 @@ const Wishlist = () => {
                                                                 
                                                             </div>
                                                             <div className="user_actions">
-                                                                    <p>Item added 26 November</p>
+                                                                    <p>Item added {item.created_at}</p>
                                                                 {/* <button className="btn_gray btn" onClick={() => navigate('/checkout')} >Buy Now</button> */}
                                                                 <button className="btn_gray btn" onClick={() => addtoCartItem(item.sku, item.id)}>Add to cart</button>
                                                                 <button className="btn btn_outline" type="button" onClick={() => removeWishList(item.id, 'remove')}>Delete</button>
@@ -235,6 +244,15 @@ const Wishlist = () => {
                     draggable
                     pauseOnHover
                 />
+               <TablePagination
+  component="div"
+  rowsPerPageOptions={[5, 10, 25]}
+  page={page}
+  count={wishList.length}
+  onPageChange={handleChangePage}
+  rowsPerPage={rowsPerPage}
+  onRowsPerPageChange={handleChangeRowsPerPage}
+/>  
             </Layout>
         </>
     )

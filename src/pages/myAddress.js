@@ -13,7 +13,7 @@ const MyAddress = () => {
  const [shippingAddress, setShippingAddress] = useState([])
  useEffect(() => {
   setJwt(localStorage.userToken);
-  setUEmail(localStorage.email)
+  setUEmail(localStorage.email) 
   getUserAddress();  
   const fetchRegion = async () => {
       const res = await fetch(

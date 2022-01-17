@@ -211,6 +211,46 @@ const onSubmitQuote = quoteDetails => {
         console.error(`An error occured ${err}`)
     }
 };
+const searchUser = async (val) => {
+if(val.target.value.length>=2){
+    let data = {
+        
+            "data":{
+                "search_keyword":val.target.value,
+                "parent_customer_id":"39"
+            }
+        
+    }
+    try {
+        axios({
+            method: 'post',
+            url: `${process.env.GATSBY_CART_URL_STARCARE}subuser/subusersearch`,
+            data: data,
+        })
+            .then(function (response) {
+                setSubusers(response.data)
+            })
+            .catch(function (response) {
+                
+            });
+
+    } catch (err) {
+        console.error(`An error occured ${err}`)
+    }
+}else if(val.target.value.length==0 || val.target.value.length==1){
+    const res = await fetch(
+        `${process.env.GATSBY_CART_URL_STARCARE}subuser/subuserlist/parent_customer_id/39`
+    );
+    const json = await res.json();
+    if(json=="Subusers not available for this customer"){
+        
+        await nosubs(json);
+    }else {
+        await setSubusers(json);
+        
+    }
+}
+}
 const handleChange = nextChecked => {
     statusIn(nextChecked);
     
@@ -367,18 +407,35 @@ const onSubmitQuoteadd = quoteDetails => {
                 <h4><span><img src="images/logout.png" alt=""/></span><a href="#">LOGOUT</a></h4>
             </div>
         </div>
-
+       
         <div class="col-lg-8 col-md-12 col-sm-12 ">
+            
             <div class="fo-bg-white">
                 <div class="top">
                     <div class="header">
                     <h2 class="heading">User Management  </h2>
                 </div>
 
+
+                <div class="right">
+                    <div class="search" >
+                        <span class="fa fa-search"></span>
+                        <input placeholder="Search" onChange={e => { searchUser(e) }}/>
+                      </div>
+
+                      <button type="button" class="btn btn-danger" onClick={() => addQuote()}> Create</button>
+                </div>
                
                
                 </div>
+                {subusers.length == 0 ? 
+                (<div className="col-lg-9 col-md-9 col-xs-12 no_data ">
+                 <div class="grid-right">
 
+                </div>
+            <h1>No Item found</h1>
+            
+            </div>) :
                 <div class="user-content">
                     <table class="table table-striped">
                         <thead>
@@ -406,16 +463,10 @@ const onSubmitQuoteadd = quoteDetails => {
                          ))
                         }
                       </table>
-                </div>
-
-                
-
-                
-          </div>  
-          <div class="bottom-paginatino">
+                      <div class="bottom-paginatino">
           <TablePagination
   component="div"
-  rowsPerPageOptions={[4, 8, 12,16,20,24]}
+  rowsPerPageOptions={[4, 8, 12, 16, 20, 24]}
   page={page}
   count={subusers.length}
   onPageChange={handleChangePage}
@@ -423,8 +474,16 @@ const onSubmitQuoteadd = quoteDetails => {
   onRowsPerPageChange={handleChangeRowsPerPage}
 />
           </div>  
+                </div> 
+}
+                
+
+                
+          </div>  
+         
           
     </div>
+
 </div>
 </div>
 </div>
