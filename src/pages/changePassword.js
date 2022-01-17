@@ -43,7 +43,7 @@ const ChangePassword = () => {
             console.error(err)
         }
     }
-    if(p == true){
+    //if(p == true){
         return (
             <>     
                 <Layout>                 
@@ -120,13 +120,13 @@ const ChangePassword = () => {
                 </Layout>
             </>
         )
-    }else {
-        return (
-            <div>
-                Access Denied
-            </div>
-        )
-    }
+    // }else {
+    //     return (
+    //         <div>
+    //             Access Denied
+    //         </div>
+    //     )
+    // }
     
 
 }
