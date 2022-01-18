@@ -13,7 +13,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import Select from 'react-select';
 const UserManage = () => {
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [rowsPerPage, setRowsPerPage] = React.useState(4);
  const [field, setField] = useState([]);
  const [quoteedit, setQuotePopupedit] = useState(false);
  const [quoteadd, setQuotePopupadd] = useState(false);

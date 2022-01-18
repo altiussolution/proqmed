@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
 import axios from "axios";
 import { checkLogin } from "./../services/headerServices";
-import { navigate} from "gatsby"
+import { navigate, Link} from "gatsby"
 import Table from 'react-bootstrap/Table';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
@@ -308,6 +308,7 @@ const Numbersubmit = num => {
     navigate('/')  
 
   }
+ 
     return (
         <Layout>
 
@@ -339,7 +340,7 @@ const Numbersubmit = num => {
                 <ul>
                     <li onClick={() => { navigateOnclick('/profile') }}><a>Profile Information</a></li>
                     <li><a>Manage Addresses</a></li>
-                    <li><a href="#">My reviews</a></li>
+                    <li><Link to="/myReviews"><a>My reviews</a></Link></li>
                 </ul>
               {isuserlogged && <h4><span><img src={logoutt}/></span><a onClick={() => { logout() }}>LOGOUT</a></h4>}
             </div>
@@ -387,8 +388,9 @@ const Numbersubmit = num => {
                 {outp && <a onClick={() => quotePopupOpen()}  >
                   Change Password
                   {quote ? <Modal show={showQuote} onHide={handleCloseQuote} animation={false}>
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>Change Password</Modal.Title>
+
                 </Modal.Header>
                 <Modal.Body>
                 <div className="row">
