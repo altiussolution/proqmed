@@ -16,10 +16,13 @@ const Cart = () => {
     const [checkOut, setCheckout] = useState([]);
     const [updCart, setupdCart] = useState("");
     const [jwt, setjwt] = useState();
-    const [subtotal, setsubtotal] = useState("");
+    const [status, setstatus] = useState([]);
+    const [productid, setproductid] = useState([]);
+
 
     useEffect(() => {
         setjwt(localStorage.userToken)
+        cartstatus()
         // if (checkLogin()) {
             if (!checkLogin()) {
             navigate('/signin')
@@ -35,6 +38,7 @@ const Cart = () => {
                 }
               }
     }
+
     }, [])
    
     const fetchCheckTotal = async () => {
@@ -164,6 +168,35 @@ const Cart = () => {
             console.error(err)
         }
       }
+      const cartstatus = async () => {
+        const jwt = localStorage.getItem('userToken')
+
+           
+        try {
+            axios({
+                method: 'get',
+                url: `${process.env.GATSBY_API_BASE_URL_STARCARE}cart/productstatus/product_id/1`,
+                headers: {
+                    'Authorization': `Bearer ${jwt}`
+                }
+            }).then((res) => {
+                if (res.statusText === "OK" && res.status == 200) {
+                    setstatus(res.data[0].stock_status)
+                    console.log(res.data[0].stock_status)
+                    
+                }
+            }).catch((err) => {
+                console.error(err);
+            })
+
+            setLoader(false);
+        } catch (err) {
+            if (err) {
+                setLoader(false);
+            }
+        }
+    
+}
 
     const showCartItems = () => {
 
@@ -176,7 +209,7 @@ const Cart = () => {
                  <th>Name</th>                       
                   <th>Price</th>
                   <th>Quantity</th>
-                  {/*<th>Status</th>*/}
+                  <th>Status</th>
                   <th>Sub-Total</th>
                   <th></th>
                 </tr>
@@ -189,7 +222,7 @@ const Cart = () => {
                       <td><p>{cart.product_name}</p></td>
                       <td>${parseFloat(cart.price).toFixed(2)}</td>
                       <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart) }}/></td>
-                        {/*<td><p class="green">In Stock</p></td>*/}
+                        <td><p class="green">{status}</p></td>
                         <td><p>$ {cart.qty*cart.price}</p></td>
                        
                             <td> <div className="casualities">
