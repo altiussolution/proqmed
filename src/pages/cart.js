@@ -24,6 +24,7 @@ const Cart = () => {
             if (!checkLogin()) {
             navigate('/signin')
           } else {
+            viewCartItems();
               if(localStorage.getItem('cartData')){
                 let parseCart = JSON.parse(localStorage.getItem('cartData'));
                 if (parseCart) {
@@ -176,7 +177,7 @@ const Cart = () => {
                  <th>Name</th>                       
                   <th>Price</th>
                   <th>Quantity</th>
-                  {/*<th>Status</th>*/}
+                  <th>Status</th>
                   <th>Sub-Total</th>
                   <th></th>
                 </tr>
@@ -189,7 +190,7 @@ const Cart = () => {
                       <td><p>{cart.product_name}</p></td>
                       <td>${parseFloat(cart.price).toFixed(2)}</td>
                       <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart) }}/></td>
-                        {/*<td><p class="green">In Stock</p></td>*/}
+                        <td><p class="green">{cart.status[index]}</p></td>
                         <td><p>$ {cart.qty*cart.price}</p></td>
                        
                             <td> <div className="casualities">
