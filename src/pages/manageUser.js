@@ -208,7 +208,7 @@ const togglePasswordVisiblity2 = () => {
 return (
  <Layout>
    <div class="container-fluid grey">
-<div class="container">
+<div class="container padd">
     <div class="row">
         <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="profile-sec">
