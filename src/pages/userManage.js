@@ -13,7 +13,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import Select from 'react-select';
 const UserManage = () => {
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [rowsPerPage, setRowsPerPage] = React.useState(4);
  const [field, setField] = useState([]);
  const [quoteedit, setQuotePopupedit] = useState(false);
  const [quoteadd, setQuotePopupadd] = useState(false);
@@ -361,6 +361,11 @@ const onSubmitQuoteadd = quoteDetails => {
                                                     </td>
                                                     <td className="action_sec">
                                                         <span>
+                                                            <a onClick={() => editQuote(quote)}><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </a>
+                                                            <a onClick={() => removeQuote(quote.subuser_id)}> <i class="fa fa-trash-o" aria-hidden="true"></i>
+
+                              </a>
                                                             <Link to="/manageUser" state={quote}><button className="action action_btn btn btn_gray">Edit
                               </button></Link>
                                                             <button type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.subuser_id)}> Delete
@@ -379,7 +384,7 @@ const onSubmitQuoteadd = quoteDetails => {
                 </section>
             } */}
            <div class="container-fluid grey">
-<div class="container">
+<div class="container padd">
     <div class="row">
         <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="profile-sec">
@@ -411,6 +416,7 @@ const onSubmitQuoteadd = quoteDetails => {
                     <h2 class="heading">User Management  </h2>
                 </div>
 
+
                 <div class="right">
                     <div class="search" >
                         <span class="fa fa-search"></span>
@@ -419,6 +425,7 @@ const onSubmitQuoteadd = quoteDetails => {
 
                       <button type="button" class="btn btn-danger" onClick={() => addQuote()}> Create</button>
                 </div>
+               
                
                 </div>
                 {subusers.length == 0 ? 

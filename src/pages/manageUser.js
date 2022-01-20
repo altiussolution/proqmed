@@ -4,12 +4,13 @@ import axios from "axios";
 import { navigate, useStaticQuery, Link } from "gatsby";
 import Switch from "react-switch";
 import { useForm } from "react-hook-form";
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 import Multiselect from 'multiselect-react-dropdown';
 const Managesub = ({location}) => {
  const [clip,categoryda] = useState([]);
  const [statys, statusIn] = useState(false);
+ const [statysedit, statusInedit] = useState(false);
  const { register, handleSubmit, errors } = useForm();
  const [quoteForm, setQuoteForm ] = useState();
  const [quoteedit, setQuotePopupedit] = useState(false);
@@ -20,6 +21,8 @@ const Managesub = ({location}) => {
  const [quoteConversations, setQuotesConversations] = useState([])
  const [names, setNames] = useState([]);
  const [catie, setCats] = useState([]);
+ const [namesedit, setNamesedit] = useState([]);
+ const [catieedit, setCatsedit] = useState([]);
  const data = useStaticQuery(graphql`
  {
    allCategory {
@@ -42,6 +45,7 @@ const Managesub = ({location}) => {
    }
  }
 `)
+
  useEffect(() => {
   setCustomerId(localStorage.customer_id)
   rendercategory();
@@ -51,6 +55,9 @@ const Managesub = ({location}) => {
   console.log(location.state.subuser_id)
   setQuoteForm(location.state)
   setQuotePopupedit(true)
+  setCatsedit(location.state['category_permissions'])
+  setNamesedit(location.state['allowed_permissions'])
+  statusInedit(location.state['subuser_status'])
  }else {
   setQuotePopupadd(true)
  }
@@ -107,9 +114,9 @@ const onSubmitQuote = quoteDetails => {
          "lastname": quoteDetails['lastname'],
          "email": quoteDetails['email'],
          "password": quoteDetails['password'],
-         "allowedpermissions": names,
-         "categorypermissions": catie,
-         "status" : statys
+         "allowedpermissions": namesedit,
+         "categorypermissions": catieedit,
+         "status" : statysedit
 
      }
  ]
@@ -121,7 +128,7 @@ const onSubmitQuote = quoteDetails => {
          data: quoteData,
      })
          .then(function (response) {
-             toast.success('SubUser Updated sucessfully')
+             toast.success("SubUser Updated sucessfully")
              navigate('/userManage')
          })
          .catch(function (response) {
@@ -141,7 +148,7 @@ const handleChange = nextChecked => {
 };
 const handleChange1 = nextChecked => {
    console.log(nextChecked)
-  statusIn(nextChecked);
+  statusInedit(nextChecked);
  
 };
 let onSelectNames = name => {
@@ -158,6 +165,22 @@ let onSelectCats = name => {
 let onRemoveCats = name => {
  setCats(name);
 };
+
+//for edit 
+let onSelectNames1 = name => {
+    setNamesedit(name);
+   };
+   
+   let onRemoveNames1 = name => {
+    setNamesedit(name);
+   };
+   let onSelectCats1 = name => {
+    setCatsedit(name);
+   };
+   
+   let onRemoveCats1 = name => {
+    setCatsedit(name);
+   };
 const onSubmitQuoteadd = quoteDetails => {
     
  let quoteData = [
@@ -208,7 +231,7 @@ const togglePasswordVisiblity2 = () => {
 return (
  <Layout>
    <div class="container-fluid grey">
-<div class="container">
+<div class="container padd">
     <div class="row">
         <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="profile-sec">
@@ -389,8 +412,8 @@ return (
                                     selectedValues={quoteForm['allowed_permissions']}
                                     isObject={false}
                                     showCheckbox={true}
-                                    onSelect={onSelectNames} 
-                                    onRemove={onRemoveNames}
+                                    onSelect={onSelectNames1} 
+                                    onRemove={onRemoveNames1}
                                     placeholder="Select Permissions"
                                      />
                                       
@@ -428,8 +451,8 @@ return (
                                     options={clip}
                                     showCheckbox={true}
                                     displayValue="name"
-                                    onSelect={onSelectCats} 
-                                    onRemove={onRemoveCats}
+                                    onSelect={onSelectCats1} 
+                                    onRemove={onRemoveCats1}
                                     selectedValues={quoteForm['category_permissions']}
                                     placeholder="Select Category"
                                      /> 
@@ -439,7 +462,7 @@ return (
                                     <label htmlFor="status">Status</label>
                                      <Switch
                                   onChange={handleChange1}
-                                  checked={quoteForm['subuser_status']} name="status"
+                                  checked={statysedit} name="status"
                                  className="react-switch"
         />
                                     {errors.status && errors.status.type === 'required' && <span className="error">Status is required</span>}
@@ -460,6 +483,17 @@ return (
 </div>
 </div>
 </div>
+<ToastContainer
+                    position="bottom-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
  </Layout>
 )
 }

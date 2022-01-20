@@ -87,7 +87,7 @@ const SignUp = () => {
             </div>
 
             <div className="col-lg-6 col-md-6 col-xs-12 right_side">
-              <div className="box_content">
+              <div className="box_content fo-signup">
                 <div className="logo mb-3">
                   <Link to="/">
                     <img src={logo} />

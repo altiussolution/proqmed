@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
 import axios from "axios";
 import { checkLogin } from "./../services/headerServices";
-import { navigate} from "gatsby"
+import { navigate, Link} from "gatsby"
 import Table from 'react-bootstrap/Table';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
@@ -308,18 +308,19 @@ const Numbersubmit = num => {
     navigate('/')  
 
   }
+ 
     return (
         <Layout>
 
 <div class="container-fluid grey">
-<div class="container">
+<div class="container padd">
     <div class="row">
         <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="profile-sec">
               <div className="fo-deflx">
               {profilepic.logo ? <img src={profilepic.logo}/>: <div></div>}
             <div className="fo-center">
-              <input type="file" onChange={(e) => {uploadImage(e);}}/>
+              <input class="btm" type="file" onChange={(e) => {uploadImage(e);}}/>
               </div>
               {aftimg && <button onClick={onFileUpload} className="action action_btn btn btn_gray">
                   Upload!
@@ -339,7 +340,7 @@ const Numbersubmit = num => {
                 <ul>
                     <li onClick={() => { navigateOnclick('/profile') }}><a>Profile Information</a></li>
                     <li><a>Manage Addresses</a></li>
-                    <li><a href="#">My reviews</a></li>
+                    <li><Link to="/myReviews"><a>My reviews</a></Link></li>
                 </ul>
               {isuserlogged && <h4><span><img src={logoutt}/></span><a onClick={() => { logout() }}>LOGOUT</a></h4>}
             </div>
@@ -357,7 +358,7 @@ const Numbersubmit = num => {
                     <div class="form-1">
                         <div class="head-label">
                             <h4>Personal Information</h4>
-                            {!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}>Edit</i></span>}
+                            {!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}
 
                         </div>
                        
@@ -379,7 +380,7 @@ const Numbersubmit = num => {
                     <div class="form-1">
                         <div class="head-label">
                             <h4>Email Address</h4>
-                            {!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}>Edit</i></span>}
+                            {!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}
                             <span>
                             {/*p && <a onClick={() => { navigateOnclick('/changePassword') }} >
                   Change Password
@@ -387,8 +388,9 @@ const Numbersubmit = num => {
                 {outp && <a onClick={() => quotePopupOpen()}  >
                   Change Password
                   {quote ? <Modal show={showQuote} onHide={handleCloseQuote} animation={false}>
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>Change Password</Modal.Title>
+
                 </Modal.Header>
                 <Modal.Body>
                 <div className="row">
@@ -462,7 +464,7 @@ const Numbersubmit = num => {
                     <div class="form-1">
                         <div class="head-label">
                             <h4>Mobile Number</h4>
-                            {!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}>Edit</i></span>}
+                            {!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}
                             
                         </div>
                         {!shownumber &&  <div class="form-content">
