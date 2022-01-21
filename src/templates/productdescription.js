@@ -12,6 +12,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useForm } from "react-hook-form";
 import ImageNotFound from "./../assets/car-dealer-loader.gif";
 import SliderImage from 'react-zoom-slider';
+import { Link } from "gatsby"
 
 
 
@@ -456,7 +457,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                     <h1 className="mb-2">
                       {proDescription.items.name}
                     </h1>
-                    {proDescription.items.rating ?
+                    {proDescription.items.rating != null &&
                       <StarRatings
                         rating={Math.round(proDescription.items.rating)}
                         numberOfStars={5}
@@ -464,9 +465,8 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         starDimension="20px"
                         starSpacing="3px"
                         starRatedColor="rgb(242 187 22)"
-                      /> : 
+                      />  
                       
-                      <p className="no_review">{proDescription.items.number_of_review}</p>
                     }
 
 
@@ -516,7 +516,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                           )
                         }
 
-                        <span><strike>${Math.round(proDescription.items.strike_price)}</strike></span>
+                       {proDescription.items.strike_price !=null && <span><strike>${Math.round(proDescription.items.strike_price)}</strike></span>}
 </div>
 
                     {tierAmt.length != 0 ? (
@@ -593,7 +593,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                       <p>{proDescription.items.overview}</p>
                       {/* <a>Read More</a> */}
 
-                      <p>Seller: <span>{proDescription.items.seller_name}</span></p>
+                     {proDescription.items.seller_name !=null && <p>Seller: <span>{proDescription.items.seller_name}</span></p>}
 
 
                     </div>
@@ -619,10 +619,11 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
 
                     <div className="product_detail_action">
                           
-
-              <a onClick={() => quotePopupOpen()} >
+                   <a> <Link to="/myquotesedit" state={{ des: proDescription }}><span className="fa fa-comments"></span> Request for a Quote
+                              </Link></a>
+              {/*<a onClick={() => quotePopupOpen()} >
               <span className="fa fa-comments"></span>   Request for a Quote
-              </a>
+                      </a>*/}
 
                          {pcom && <a onClick={() => addToList(1)} >
                             <IoIosGitCompare /> Add to Compare
@@ -676,7 +677,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                       </Modal.Header>
                       <Modal.Body>
 
-                        <p >Product Name:&nbsp;<span>{proDescription.items.name}</span></p>
+                        <p >Product Name:&nbsp;<span>{proDescription.items.name}</span></p> 
 
                         <form onSubmit={handleSubmit(onSubmitQuote)} action="" className="header_signin_form">
                           <div className="form-group">

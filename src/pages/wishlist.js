@@ -24,10 +24,43 @@ const Wishlist = () => {
     const [permit,permission] = useState([]);
     const [p,per] = useState(false);
     const [nop,noper] = useState(false);
+    const [jwt, setJwt] = useState("");
+
     useEffect(() => {
        
         getWishList()
-        setQuoteId(localStorage.cartId)
+        //setQuoteId(localStorage.cartId)
+        setJwt(localStorage.userToken)
+
+        const jwt = localStorage.getItem('userToken')
+        if(jwt){
+          try
+          {    
+            axios({
+              method : 'post',
+              url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine`,
+              headers : {
+                  'Authorization' : `Bearer ${jwt}`
+              }
+            })
+            .then((response) => {
+              if(response.statusText === "OK" && response.status == 200)
+              {
+                console.log(response.data)
+                  localStorage.setItem('cartId',response.data);
+                  setQuoteId(localStorage.cartId)
+              }
+            }) 
+            .catch((error) => {
+              console.error(error,'error')
+            })
+          }catch(err){
+            console.error(err);
+            toast.error('something went wrong')
+          }
+        }else{
+            
+        }
 
     }, [])
 
@@ -141,7 +174,7 @@ const Wishlist = () => {
                     }).then((res) => {
                         if (res.statusText === "OK" && res.status == 200) {
                             viewCartItems();
-                            removeProduct(id, 'cart')
+                            // removeProduct(id, 'cart')
                             toast.success('Succesfully added to cart');
                             setTimeout(() => {
                                 setCartCnt(getCartCount())
@@ -163,115 +196,116 @@ const Wishlist = () => {
         }
     }
     if(p==true || nop==true){
-    return (
-        <>
-            <Layout>
-                {loader ?
-                    (<div className="mx-auto">
-                        <PageLoader />
-                    </div>) :
-                    
-                    (<main className="whishlist_page">
-                        <div className="App">
-                            <div className="content_wrapper">
-                                <div className="container">
-                                    <div className="main_title">
-                                        {/* <h1>My Wishlist <span>(5)</span></h1> */}
-                                        <h1>My Wishlist<span> ({wishList.length})</span></h1>
-                                    </div>
-
-
-                                    <div className="row no_data_found">
-
-                                        {wishList.length == 0 ? <div className="col-lg-12 col-md-12 col-xs-12 text-center">
-                                            <img src={empty_cart} alt={"Empty Cart"} />
-                                            <h4>No items in Wishlist</h4>
-                                        </div> :
-                                            <div className="col-lg-12 col-md-12 col-xs-12">                                        
- 
-    <div className="fo-bg-white">
-                                                {
-                                                    wishList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item, index) => (
-                                                        <div key={item.sku} className="product_item">
-                                                            <div className="product_img">
-                                                            {item.offer_percentage != 0 && <div className="price_off">{parseFloat(item.offer_percentage)}% off</div>}
-
-                                                                <img src={item.image} />
-                                                            </div>
-                                                            <div className="product_desc">
-                                                                <h3>{item.name}</h3>
-                                                                <div className="rating_front">
-                                    <StarRatings
-                                        rating={Math.round(item.review_count)}
-                                        numberOfStars={5}
-                                        name='rating'
-                                        starDimension="20px"
-                                        starSpacing="0px"
-                                        starRatedColor="rgb(255 123 168)"
-                                        svgIconViewBox="0 0 32 32"
-                                        svgIconPath="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798zM16 23.547l-6.983 3.671 1.334-7.776-5.65-5.507 7.808-1.134 3.492-7.075 3.492 7.075 7.807 1.134-5.65 5.507 1.334 7.776-6.983-3.671z"
-                                    />
-                                    
-                                    </div>
-                                                                <div className="to-flx">
-                                                                <span>{item.created_at}</span>
-                                                                <p>SKU: <span>{item.sku}</span></p>
-                                                                <span>Reviews({item.review_count})</span>
+        return (
+            <>
+                <Layout>
+                    {loader ?
+                        (<div className="mx-auto">
+                            <PageLoader />
+                        </div>) :
+                        
+                        (<main className="whishlist_page">
+                            <div className="App">
+                                <div className="content_wrapper">
+                                    <div className="container">
+                                        <div className="main_title">
+                                            {/* <h1>My Wishlist <span>(5)</span></h1> */}
+                                            <h1>My Wishlist<span> ({wishList.length})</span></h1>
+                                        </div>
+    
+    
+                                        <div className="row no_data_found">
+    
+                                            {wishList.length == 0 ? <div className="col-lg-12 col-md-12 col-xs-12 text-center">
+                                                <img src={empty_cart} alt={"Empty Cart"} />
+                                                <h4>No items in Wishlist</h4>
+                                            </div> :
+                                                <div className="col-lg-12 col-md-12 col-xs-12">                                        
+     
+        <div className="fo-bg-white">
+                                                    {
+                                                        wishList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item, index) => (
+                                                            <div key={item.sku} className="product_item">
+                                                                <div className="product_img">
+                                                                {item.offer_percentage != 0 && <div className="price_off">{parseFloat(item.offer_percentage)}% off</div>}
+    
+                                                                    <img src={item.image} />
                                                                 </div>
-                                                                <div className="qty_price">
-                                                                    <h6>${parseFloat(item.price).toFixed(2)}</h6>
+                                                                <div className="product_desc">
+                                                                    <h3>{item.name}</h3>
+                                                                    <div className="rating_front">
+                                        <StarRatings
+                                            rating={Math.round(item.review_count)}
+                                            numberOfStars={5}
+                                            name='rating'
+                                            starDimension="20px"
+                                            starSpacing="0px"
+                                            starRatedColor="rgb(255 123 168)"
+                                            svgIconViewBox="0 0 32 32"
+                                            svgIconPath="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798zM16 23.547l-6.983 3.671 1.334-7.776-5.65-5.507 7.808-1.134 3.492-7.075 3.492 7.075 7.807 1.134-5.65 5.507 1.334 7.776-6.983-3.671z"
+                                        />
+                                        
+                                        </div>
+                                                                    <div className="to-flx">
+                                                                    <span>{item.created_at}</span>
+                                                                    <p>SKU: <span>{item.sku}</span></p>
+                                                                    <span>Reviews({item.review_count})</span>
+                                                                    </div>
+                                                                    <div className="qty_price">
+                                                                        <h6>${parseFloat(item.price).toFixed(2)}</h6>
+                                                                    </div>
+    
+                                                                    
                                                                 </div>
-
+                                   
+                                                                <div className="user_actions">
+                                                                        <p>Item added {item.created_at}</p>
+                                                                    {/* <button className="btn_gray btn" onClick={() => navigate('/checkout')} >Buy Now</button> */}
+                                                                    <button className="btn_gray btn" onClick={() => addtoCartItem(item.sku, item.id)}>Add to cart</button>
+                                                                    <button className="btn btn_outline" type="button" onClick={() => removeWishList(item.id, 'remove')}>Delete</button>
+                                                                </div>
                                                                 
                                                             </div>
-                               
-                                                            <div className="user_actions">
-                                                                    <p>Item added {item.created_at}</p>
-                                                                {/* <button className="btn_gray btn" onClick={() => navigate('/checkout')} >Buy Now</button> */}
-                                                                <button className="btn_gray btn" onClick={() => addtoCartItem(item.sku, item.id)}>Add to cart</button>
-                                                                <button className="btn btn_outline" type="button" onClick={() => removeWishList(item.id, 'remove')}>Delete</button>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    ))
-                                                }
+                                                        ))
+                                                    }
+                                                    </div>
+                                                    
+    
+                                                    
                                                 </div>
+    
                                                 
-
-                                                
-                                            </div>
-
-                                            
-                                        }
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </main>)
-                }
-                <ToastContainer
-                    position="bottom-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                />
-               <TablePagination
-  component="div"
-  rowsPerPageOptions={[5, 10, 25]}
-  page={page}
-  count={wishList.length}
-  onPageChange={handleChangePage}
-  rowsPerPage={rowsPerPage}
-  onRowsPerPageChange={handleChangeRowsPerPage}
-/>  
-            </Layout>
-        </>
-    )
+                        </main>)
+                    }
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
+                   <TablePagination
+      component="div"
+      rowsPerPageOptions={[5, 10, 25]}
+      page={page}
+      count={wishList.length}
+      onPageChange={handleChangePage}
+      rowsPerPage={rowsPerPage}
+      onRowsPerPageChange={handleChangeRowsPerPage}
+    />  
+                </Layout>
+            </>
+        )
+    
             }else {
                 return (
                  <div>

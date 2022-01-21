@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
 import axios from "axios";
 import { checkLogin } from "./../services/headerServices";
-import { navigate} from "gatsby"
+import { navigate, Link} from "gatsby"
 import Table from 'react-bootstrap/Table';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
@@ -20,9 +20,10 @@ const Profile = () => {
     const [user_name, setName] = useState("")
     const [profile, setProfile] = useState({});
     const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
     const [state, setpic] = useState("");
     const [p,per] = useState(false);
-    const [outp,outper] = useState(false);
+   // const [outp,outper] = useState(false);
     const [aftimg,afterimage]= useState(false);
   const [profilepic,setProfilepic] = useState({});
   const [showname,Naming]= useState(false);
@@ -30,10 +31,10 @@ const Profile = () => {
   const [showgender,Gendering]= useState(false);
   const [shownumber,Numbering]= useState(false);
   const [value, setValue] = useState();
-  const [showQuote, setShowQuote] = useState(true);
+ // const [showQuote, setShowQuote] = useState(true);
   const [quote, setQuotePopup] = useState(false);
-  const handleCloseQuote = () => setShowQuote(false);
-  const handleShowQuote = () => setShowQuote(true);
+  //const handleCloseQuote = () => setShowQuote(false);
+ // const handleShowQuote = () => setShowQuote(true);
     useEffect(() => {
         setIsLogged(checkLogin());
         setJwt(localStorage.userToken);
@@ -44,7 +45,7 @@ const Profile = () => {
           per(addwis)
         
       }else if(!localStorage.permissions){
-        outper(true)
+       // outper(true)
         
       }
         setName(localStorage.getItem('user_name'))
@@ -256,8 +257,6 @@ const Numbersubmit = num => {
     
           fileReader.onload = () => {
             resolve(fileReader.result);
-    
-          
           };
     
           fileReader.onerror = (error) => {
@@ -280,7 +279,7 @@ const Numbersubmit = num => {
                 
                 if(response.statusText === "OK" && response.status == 200){
                     toast.success('Password changed sucessfully');
-                    handleCloseQuote()
+                    //handleCloseQuote()
                    // localStorage.clear();
                     //navigate('/profile')
                 }
@@ -298,7 +297,9 @@ const Numbersubmit = num => {
         navigate('/signin')
       } else {
         setQuotePopup(true)
-        handleShowQuote(true)
+       // handleShowQuote(true)
+       //setShow(true);
+
       }
     }
   const logout = () => {
@@ -308,6 +309,8 @@ const Numbersubmit = num => {
     navigate('/')  
 
   }
+
+ 
     return (
         <Layout>
 
@@ -339,7 +342,7 @@ const Numbersubmit = num => {
                 <ul>
                     <li onClick={() => { navigateOnclick('/profile') }}><a>Profile Information</a></li>
                     <li><a>Manage Addresses</a></li>
-                    <li><a href="#">My reviews</a></li>
+                    <li><Link to="/myReviews"><a>My reviews</a></Link></li>
                 </ul>
               {isuserlogged && <h4><span><img src={logoutt}/></span><a onClick={() => { logout() }}>LOGOUT</a></h4>}
             </div>
@@ -384,11 +387,12 @@ const Numbersubmit = num => {
                             {/*p && <a onClick={() => { navigateOnclick('/changePassword') }} >
                   Change Password
                             </a>*/}
-                {outp && <a onClick={() => quotePopupOpen()}  >
-                  Change Password
-                  {quote ? <Modal show={showQuote} onHide={handleCloseQuote} animation={false}>
+                 <a onClick={() => quotePopupOpen()}  >
+                  Change Password 
+                  {quote ? <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>Change Password</Modal.Title>
+
                 </Modal.Header>
                 <Modal.Body>
                 <div className="row">
@@ -442,7 +446,7 @@ const Numbersubmit = num => {
                 </Modal.Body>
                </Modal>: <div></div>
                 }
-                </a>}
+                </a>
                 </span>    
                         </div>
 

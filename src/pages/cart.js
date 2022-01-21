@@ -18,21 +18,27 @@ const Cart = () => {
     const [jwt, setjwt] = useState();
     const [status, setstatus] = useState([]);
     const [productid, setproductid] = useState([]);
+    const [customerId, setCustomerId] = useState("");
+
 
 
     useEffect(() => {
+        setCustomerId(localStorage.customer_id)
         setjwt(localStorage.userToken)
-        cartstatus()
         // if (checkLogin()) {
             if (!checkLogin()) {
             navigate('/signin')
           } else {
+            viewCartItems();
               if(localStorage.getItem('cartData')){
                 let parseCart = JSON.parse(localStorage.getItem('cartData'));
                 if (parseCart) {
                     setCartItems(JSON.parse(localStorage.getItem('cartData')));
+                    console.log(JSON.parse(localStorage.getItem('cartData')))
                     if(localStorage.getItem('userToken')){
                         fetchCheckTotal();
+                    }else{
+
                     }
                    
                 }
@@ -94,7 +100,43 @@ const Cart = () => {
 
     }
 
+    const addToList = (type,id) => {
+        // type 1 = wishlist
+        // type 2 = comparelist
+        let url = (type == 1 ? `${process.env.GATSBY_CART_URL_STARCARE}admin/addtocompare/2` : `${process.env.GATSBY_CART_URL_STARCARE}wishlist/addwishlist_product/`)
+        let message = (type == 1 ? 'Sucessfully added to  compare list' : 'Sucessfully added to wish list')
+        let errormessage = (type == 1 ? 'SignIn to add compare list' : 'SignIn to add wish list')
 
+        let productData = {
+          "data": {
+            "customer_id": customerId,
+            "product_id": id
+          }
+        }
+    
+        try {
+          axios({
+            method: 'post',
+            url: url,
+            data: productData,
+            headers: {
+              'Authorization': `Bearer ${jwt}`
+            }
+          }).then((res) => {
+            if (res.statusText === "OK" && res.status == 200) {
+              toast.success(message)
+              setTimeout(()=>{
+               // wishListCount()
+              },2000)
+            }
+          }).catch((err) => {
+            toast.error(errormessage)
+          })
+        } catch (err) {
+          toast.error(err)
+        }
+    
+      }
     const updateCart = (item) => {
         let updateItem;
         if (updCart === '') {
@@ -168,35 +210,7 @@ const Cart = () => {
             console.error(err)
         }
       }
-      const cartstatus = async () => {
-        const jwt = localStorage.getItem('userToken')
 
-           
-        try {
-            axios({
-                method: 'get',
-                url: `${process.env.GATSBY_API_BASE_URL_STARCARE}cart/productstatus/product_id/1`,
-                headers: {
-                    'Authorization': `Bearer ${jwt}`
-                }
-            }).then((res) => {
-                if (res.statusText === "OK" && res.status == 200) {
-                    setstatus(res.data[0].stock_status)
-                    console.log(res.data[0].stock_status)
-                    
-                }
-            }).catch((err) => {
-                console.error(err);
-            })
-
-            setLoader(false);
-        } catch (err) {
-            if (err) {
-                setLoader(false);
-            }
-        }
-    
-}
 
     const showCartItems = () => {
 
@@ -222,13 +236,13 @@ const Cart = () => {
                       <td><p>{cart.product_name}</p></td>
                       <td>${parseFloat(cart.price).toFixed(2)}</td>
                       <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart) }}/></td>
-                        <td><p class="green">{status}</p></td>
+                        <td><p class="green">{cart.status[index]}</p></td>
                         <td><p>$ {cart.qty*cart.price}</p></td>
                        
                             <td> <div className="casualities">
                                 <a onClick={() => { resetCart(cart.item_id) }}> <AiTwotoneDelete /></a>
                                 <button className="btn btn heart" type="button" onClick={() => { updateCart(cart) }}><AiOutlineCloudUpload /></button>
-                                <button className="btn btn heart" type="button"><AiTwotoneHeart /></button>
+                                <button className="btn btn heart" type="button" onClick={() => addToList(2,cart.product_id)}><AiTwotoneHeart /></button>
                             </div></td>
                     </tr>
                     </tbody>
