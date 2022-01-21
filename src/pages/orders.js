@@ -9,7 +9,7 @@ import { Link } from "gatsby";
 import { TablePagination } from '@mui/material';
 
 const Orders = () => {
-    const [page, setPage] = React.useState(0);
+    const [page, setPage] = React.useState(0); 
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [orders, setOrders] = useState([]);
     const [jwt,setJwt] = useState("")
@@ -253,23 +253,8 @@ if(array.length>0){
     const orderDetails = () => {
         if(p==true || outp==true){
             return ( 
-            <div >
-             <div class="top">
-                    <div class="header">
-                    <h2 class="heading">My Orders <span>({orders.length})</span></h2>
-                    
-                </div>
-                {/* <div class="grid-right">
-                    <div class="search">
-                        <input type="text" placeholder="search" onChange={e => { searchOrder(e) }}/>
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </div>
-                </div> */}
-                </div>
-            <div class="search">
-                        <input type="text" placeholder="search" onChange={e => { searchOrder(e) }}/>
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </div>
+            <>
+             
             {orders.length == 0 ? 
             (<div className="col-lg-9 col-md-9 col-xs-12 no_data ">
                  <div class="grid-right">
@@ -282,14 +267,31 @@ if(array.length>0){
          
             <div class="col-lg-9 col-md-12 col-sm-12 ">
             <div class="fo-bg-white">
-               
+            <div class="top">
+                    <div class="header">
+                    <h2 class="heading">My Orders <span>({orders.length})</span></h2>
+                    
+                </div>
+                {/* <div class="grid-right">
+                    <div class="search">
+                        <input type="text" placeholder="search" onChange={e => { searchOrder(e) }}/>
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                </div> */}
+
+<div class="search orders">
+                        <input type="text" placeholder="search" onChange={e => { searchOrder(e) }}/>
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                </div>
+            
                 <div>
                 {orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((items,index) => (
                 <div class="order-details" key={index}>
                       {
                                 items.map((orders,ind) =>{
                                     return (ind == 0 ? 
-                    <div class="row" key={`${ind}_table`}>
+                    <div class="row same" key={`${ind}_table`}>
                         <div class="col-lg-3 col-md-12 col-sm-12">
                             <div class="or-left">
                                 <p>Order ID</p>
@@ -313,8 +315,8 @@ if(array.length>0){
                         <div class="col-lg-3 col-md-12 col-sm-12">
                             <div class="buttons-or">
                         {re && <button type="button" class="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
-                                            {outre && <button type="button" class="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
-                                            <Link className="btn btn_gray" to="/orderstatus" state={{ order_id: orders.order_id }} ><button type="button" class="btn btn-primary "> View Order</button></Link>
+                                            {outre && <button class="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
+                                            <button className="btn btn-primary" to="/orderstatus" state={{ order_id: orders.order_id }} >View Order</button>
                                             {orders.status !== 'canceled' && <button className="btn btn outline" type="button" onClick={()=> cancelOrder(orders.order_id)}>Cancel Order</button>}
                         <a href="#"><i class="fa fa-sticky-note" aria-hidden="true"></i>Invoice</a>
                             </div>
@@ -364,7 +366,7 @@ if(array.length>0){
 />
           </div>
     </div> }
-        </div>
+        </>
             )
         
     }
@@ -411,8 +413,9 @@ if(array.length>0){
 />
                 </main> */}
  <div class="container-fluid grey">
-<div class="container">
+<div class="container padd">
     <div class="row"><div class="col-lg-3 col-md-12 col-sm-12">
+        
         <div class="cart-details-sec">
             <div class="top">
             <div class="header">
@@ -423,18 +426,18 @@ if(array.length>0){
             <h6>Order Status</h6>
 
             <ul>
-                <li><a > <span><div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="pending"  onChange={e => { filterData(e,'pending') }}/>
+                <li><a > <div class="form-check">
+                    <input type="checkbox" class="form-check-input fo-right" id="check1" name="option1" value="pending"  onChange={e => { filterData(e,'pending') }}/>
                     
-                  </div></span>On the way</a></li>
+                  </div> <span class="way">On the way</span> </a></li>
                 <li><a ><span><div class="form-check">
                     <input type="checkbox" class="form-check-input" id="check1" name="option1" value="complete"  onChange={e => { filterData1(e,'complete') }}/>
                     
-                  </div></span> Delivered</a></li>
+                  </div></span> <span class="way">Delivered</span></a></li>
                 <li><a> <span><div class="form-check">
                     <input type="checkbox" class="form-check-input" id="check1" name="option1" value="cancelled"  onChange={e => { filterData2(e,'cancelled') }}/>
                     
-                  </div></span>Cancelled</a></li>
+                  </div></span><span class="way">Cancelled</span></a></li>
                 
             </ul>
         </div>
@@ -446,13 +449,13 @@ if(array.length>0){
      
         
     </div>
-
+    {orderDetails()} 
        
     
 
         
 </div>
-{orderDetails()}   
+  
 </div>
 </div>
 

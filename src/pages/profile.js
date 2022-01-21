@@ -322,7 +322,7 @@ const Numbersubmit = num => {
               <div className="fo-deflx">
               {profilepic.logo ? <img src={profilepic.logo}/>: <div></div>}
             <div className="fo-center">
-              <input type="file" onChange={(e) => {uploadImage(e);}}/>
+              <input class="btm" type="file" onChange={(e) => {uploadImage(e);}}/>
               </div>
               {aftimg && <button onClick={onFileUpload} className="action action_btn btn btn_gray">
                   Upload!
@@ -360,7 +360,7 @@ const Numbersubmit = num => {
                     <div class="form-1">
                         <div class="head-label">
                             <h4>Personal Information</h4>
-                            {!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}>Edit</i></span>}
+                            {!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}
 
                         </div>
                        
@@ -382,7 +382,7 @@ const Numbersubmit = num => {
                     <div class="form-1">
                         <div class="head-label">
                             <h4>Email Address</h4>
-                            {!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}>Edit</i></span>}
+                            {!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}
                             <span>
                             {/*p && <a onClick={() => { navigateOnclick('/changePassword') }} >
                   Change Password
@@ -466,7 +466,7 @@ const Numbersubmit = num => {
                     <div class="form-1">
                         <div class="head-label">
                             <h4>Mobile Number</h4>
-                            {!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}>Edit</i></span>}
+                            {!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}
                             
                         </div>
                         {!shownumber &&  <div class="form-content">
