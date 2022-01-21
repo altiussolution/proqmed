@@ -9,10 +9,12 @@ const ChangePassword = () => {
     const { register, handleSubmit, errors } = useForm();
     const [jwt,setJwt] = useState("")
     const [p,per] = useState(false);
+    const [permits,setPermit] = useState([]);
     useEffect(() => {
+        setPermit(localStorage.permissions)
         setJwt(localStorage.userToken);
-        if(localStorage.permissions){
-            let addwis=localStorage.permissions.includes("Can Edit Profile")
+        if(permits.at.length!=0){
+            let addwis=permits.includes("Can Edit Profile")
            
             per(addwis)
           

@@ -54,22 +54,23 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
       width: 2000,
       height: 1800
     }])
-
+    const [permits,setPermit] = useState([]);
 
 
   useEffect(() => {
+    setPermit(localStorage.permissions)
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
     setQuoteId(localStorage.cartId);
     console.log(proDescription)
-    if(localStorage.permissions){
-      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
-      let addcar=localStorage.permissions.includes("Can Add To Cart")
-      let addcom=localStorage.permissions.includes("Can Add To Compare")
+    if(permits.length!=0){
+      let addwis=permits.includes("Can Add To Wishlist")
+      let addcar=permits.includes("Can Add To Cart")
+      let addcom=permits.includes("Can Add To Compare")
       per(addwis)
       percart(addcar)
       percomp(addcom)
-  }else if(!localStorage.permissions){
+  }else if(permits.length==0){
     outper(true)
     outpercart(true)
     outpercomp(true)

@@ -181,7 +181,7 @@ const isSticky = (e) => {
       searchResponse.map((item, index) => (
         item.map((val, index) => {
           if (val.items) {
-            if (!cat.includes(val.items.category_name)) {
+            if ((val.items.category_name)) {
               cat.push(val.items.category_name)
               catRoute.push({ name: val.items.category_name, id: val.items.category_id })
             }

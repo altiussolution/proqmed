@@ -34,16 +34,18 @@ const Profile = () => {
   const [quote, setQuotePopup] = useState(false);
   const handleCloseQuote = () => setShowQuote(false);
   const handleShowQuote = () => setShowQuote(true);
+  const [permits,setPermit] = useState([]);
     useEffect(() => {
+      setPermit(localStorage.permissions);
         setIsLogged(checkLogin());
         setJwt(localStorage.userToken);
         setEmail(localStorage.email);
-        if(localStorage.permissions){
-          let addwis=localStorage.permissions.includes("Can Edit Profile")
+        if(permits.length!=0){
+          let addwis=permits.includes("Can Edit Profile")
          
           per(addwis)
         
-      }else if(!localStorage.permissions){
+      }else if(permits.length==0){
         outper(true)
         
       }

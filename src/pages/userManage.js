@@ -36,6 +36,7 @@ const UserManage = () => {
  const [clip,categoryda] = useState([]);
  const [names, setNames] = useState([]);
  const [catie, setCats] = useState([]);
+ const [username, setUsername] = useState();
  const data = useStaticQuery(graphql`
  {
    allCategory {
@@ -60,6 +61,7 @@ const UserManage = () => {
 `)
  useEffect(() => {
      setCustomerId(localStorage.customer_id)
+     setUsername(localStorage.user_name)
      rendercategory();
     getQuotes();
     
@@ -391,7 +393,7 @@ const onSubmitQuoteadd = quoteDetails => {
                 <img src="images/sample.png" alt=""/>
                 <div class="name">
                     <span>Hello</span>
-                    <p>{localStorage.user_name}</p>
+                    <p>{username}</p>
                 </div>
             </div>
 

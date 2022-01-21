@@ -8,12 +8,14 @@ const Address = ({location}) => {
     const { register, handleSubmit, errors } = useForm();
   const [jwt, setJwt] = useState("")
  const [uEmail, setUEmail] = useState();
+ const [username, setUsername] = useState();
  const [loader, setLoader] = useState(false);
  const [profilepic,setProfilepic] = useState({});
  const [region, setRegion] = useState([]);
  const [edit, editdata] = useState([]);
 useEffect(() => {
  setJwt(localStorage.userToken);
+ setUsername(localStorage.user_name)
  setUEmail(localStorage.email)
  if(location.state['city']){
     editdata(location.state)
@@ -131,7 +133,7 @@ return (
                   </div>
                   <div class="name">
                       <span>Hello</span>
-                      <p>{localStorage.user_name}</p>
+                      <p>{username}</p>
                   </div>
               </div>
   

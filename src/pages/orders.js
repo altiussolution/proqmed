@@ -19,8 +19,10 @@ const Orders = () => {
     const [re,reodr]= useState(false);
     const [outp,outper] = useState(false);
     const [outre,outreodr]= useState(false);
+    const [permits,setPermit] = useState([]);
     const array=[]
     useEffect(() => {
+        setPermit(localStorage.permissions)
         setJwt(localStorage.userToken);
         if(localStorage.permissions){
             perMission(localStorage.permissions);
@@ -44,12 +46,12 @@ const Orders = () => {
                         }
                     }
                     setOrders(orderArray);
-                    if(localStorage.permissions){
-                        let orderhis=localStorage.permissions.includes("Can View Order History")
-                        let reorder = localStorage.permissions.includes("Can View Individual Orders Or Reorder")
+                    if(permits.length!=0){
+                        let orderhis=permits.includes("Can View Order History")
+                        let reorder = permits.includes("Can View Individual Orders Or Reorder")
                         per(orderhis)
                         reodr(reorder)
-                    }else if(!localStorage.permissions){
+                    }else if(permits.length==0){
                         outper(true)
                         outreodr(true)
                     }

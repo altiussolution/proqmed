@@ -24,8 +24,9 @@ const Wishlist = () => {
     const [permit,permission] = useState([]);
     const [p,per] = useState(false);
     const [nop,noper] = useState(false);
+    const [permits,setPermit] = useState([]);
     useEffect(() => {
-       
+       setPermit(localStorage.permissions);
         getWishList()
         setQuoteId(localStorage.cartId)
 
@@ -49,11 +50,11 @@ const Wishlist = () => {
                 },
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
-                    if(localStorage.permissions){
-                        let viewwis=localStorage.permissions.includes("Can View Wishlist")
+                    if(permits.length!=0){
+                        let viewwis=permits.includes("Can View Wishlist")
                         per(viewwis)
                     }
-                    else if(!localStorage.permissions){
+                    else if(permits.length==0){
                         noper(true)
                     }
                    

@@ -119,13 +119,13 @@ const viewCartItems = () => {
 }
 
 const getCartCount = (value) =>{
-  // if(value){
+  if(value){
     const isBrowser = typeof window !== "undefined"
     if(isBrowser && localStorage.getItem('cartData')){
       let cart = JSON.parse(localStorage.getItem('cartData'))
       return cart.length
     }
-  // }
+  }
 }
 
 

@@ -14,8 +14,10 @@ const Myreviews = () => {
  const [reviews, setReviews] = useState([]);
  const [isuserlogged, setIsLogged] = useState(false);
  const [norevs, noreviews] = useState("");
+ const [username, setUsername] = useState();
  useEffect(() => {
  getReviews();
+ setUsername(localStorage.user_name);
  setIsLogged(checkLogin());
 }, [])
 
@@ -58,7 +60,7 @@ return (
                 <img src="images/sample.png" alt=""/>
                 <div class="name">
                     <span>Hello</span>
-                    <p>{localStorage.user_name}</p>
+                    <p>{username}</p>
                 </div>
             </div>
 

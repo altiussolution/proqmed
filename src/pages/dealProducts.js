@@ -27,13 +27,15 @@ const Dealproducts = () => {
     const [pcar,percart] = useState(false);
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false);
+    const [permits,setPermit] = useState([]);
  useEffect(() => {
+   setPermit(localStorage.permissions)
      setCustomerId(localStorage.customer_id)
      setJwt(localStorage.userToken)
      setQuoteId(localStorage.cartId)
-     if(localStorage.permissions){
-      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
-      let addcar=localStorage.permissions.includes("Can Add To Cart")
+     if(permits.length!=0){
+      let addwis=permits.includes("Can Add To Wishlist")
+      let addcar=permits.includes("Can Add To Cart")
       per(addwis)
       percart(addcar)
   }else if(!localStorage.permissions){

@@ -24,13 +24,14 @@ const BrandedProducts = ({ location }) =>{
     const [cartCount, setcartCount] = useState(null);
     const [customerId, setCustomerId] = useState("");
     const [p,per] = useState(false);
-
+    const [permits,setPermit] = useState([]);
     useEffect(() => {
         product()
+        setPermit(localStorage.permissions)
         setCustomerId(localStorage.customer_id)
-        if(localStorage.permissions){
-          let addwis=localStorage.permissions.includes("Can Add To Wishlist")
-          let addcar=localStorage.permissions.includes("Can Add To Cart")
+        if(permits.length!=0){
+          let addwis=permits.includes("Can Add To Wishlist")
+          let addcar=permits.includes("Can Add To Cart")
           per(addwis)
           percart(addcar)
       }else if(!localStorage.permissions){
