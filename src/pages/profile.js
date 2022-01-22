@@ -23,7 +23,7 @@ const Profile = () => {
     const handleClose = () => setShow(false);
     const [state, setpic] = useState("");
     const [p,per] = useState(false);
-   // const [outp,outper] = useState(false);
+    const [outp,outper] = useState(false);
     const [aftimg,afterimage]= useState(false);
   const [profilepic,setProfilepic] = useState({});
   const [showname,Naming]= useState(false);
@@ -35,17 +35,20 @@ const Profile = () => {
   const [quote, setQuotePopup] = useState(false);
   //const handleCloseQuote = () => setShowQuote(false);
  // const handleShowQuote = () => setShowQuote(true);
+
+  const [permits,setPermit] = useState([]);
     useEffect(() => {
+      setPermit(localStorage.permissions);
         setIsLogged(checkLogin());
         setJwt(localStorage.userToken);
         setEmail(localStorage.email);
-        if(localStorage.permissions){
-          let addwis=localStorage.permissions.includes("Can Edit Profile")
+        if(permits.length!=0){
+          let addwis=permits.includes("Can Edit Profile")
          
           per(addwis)
         
-      }else if(!localStorage.permissions){
-       // outper(true)
+      }else if(permits.length==0){
+        outper(true)
         
       }
         setName(localStorage.getItem('user_name'))

@@ -20,6 +20,7 @@ const Managesub = ({location}) => {
  const [customerId, setCustomerId] = useState("");
  const [quoteConversations, setQuotesConversations] = useState([])
  const [names, setNames] = useState([]);
+ const [username,setUsername] = useState();
  const [catie, setCats] = useState([]);
  const [namesedit, setNamesedit] = useState([]);
  const [catieedit, setCatsedit] = useState([]);
@@ -48,6 +49,7 @@ const Managesub = ({location}) => {
 
  useEffect(() => {
   setCustomerId(localStorage.customer_id)
+  setUsername(localStorage.user_name)
   rendercategory();
   getConversation();
   console.log(location.state['subuser_firstname'])
@@ -238,7 +240,7 @@ return (
                 <img src="images/sample.png" alt=""/>
                 <div class="name">
                     <span>Hello</span>
-                    <p>{localStorage.user_name}</p>
+                    <p>{username}</p>
                 </div>
             </div>
 

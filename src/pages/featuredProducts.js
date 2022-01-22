@@ -18,12 +18,14 @@ const Featuredproducts = () => {
     const [jwt, setJwt] = useState("");
     const [p,per] = useState(false);
     const [pcar,percart] = useState(false);
+    const [permits,setPermit] = useState([]);
     useEffect(() => {
+      setPermit(localStorage.permissions)
         setCustomerId(localStorage.customer_id)
         setJwt(localStorage.userToken)
-        if(localStorage.permissions){
-          let addwis=localStorage.permissions.includes("Can Add To Wishlist")
-          let addcar=localStorage.permissions.includes("Can Add To Cart")
+        if(permits.length!=0){
+          let addwis=permits.includes("Can Add To Wishlist")
+          let addcar=permits.includes("Can Add To Cart")
           per(addwis)
           percart(addcar)
       }

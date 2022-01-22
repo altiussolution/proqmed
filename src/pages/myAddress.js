@@ -7,6 +7,7 @@ import { Noimage } from "../assets/sample.png";
 const MyAddress = () => {
  const [jwt, setJwt] = useState("")
  const [uEmail, setUEmail] = useState();
+ const [username, setUsername] = useState();
  const [loader, setLoader] = useState(false);
  const [profilepic,setProfilepic] = useState({});
  const [region, setRegion] = useState([]);
@@ -14,6 +15,7 @@ const MyAddress = () => {
  useEffect(() => {
   setJwt(localStorage.userToken);
   setUEmail(localStorage.email) 
+  setUsername(localStorage.user_name)
   getUserAddress();  
   const fetchRegion = async () => {
       const res = await fetch(
@@ -141,7 +143,7 @@ const deleteAddress = (id) => {
             </div>
                 <div class="name">
                     <span>Hello,</span>
-                    <p>{localStorage.user_name}</p>
+                    <p>{username}</p>
                 </div>
             </div>
 
