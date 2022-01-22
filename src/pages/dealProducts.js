@@ -12,6 +12,7 @@ import axios from "axios";
 import { navigate } from "gatsby";
 import {getWLCount, wishListCount,viewCartItems,getCartCount } from '../utils/apiServices'
 import { data } from "jquery";
+import { getCategoryURL } from "./../utils/url";
 
 
 const Dealproducts = () => {
@@ -42,7 +43,7 @@ const Dealproducts = () => {
   }
      const fetchFeature = async () => {
          const res = await fetch(
-             `${process.env.GATSBY_CART_URL_STARCARE}category/dealsofthedays/38`
+             `${process.env.GATSBY_CART_URL_STARCARE}category/dealsofthedays/13`//38
          );
          const json = await res.json();
          await setDealProducts(json);
@@ -145,7 +146,7 @@ const renderProducts = () => {
                       
                      {/* {data.sub_category.sub_category_sub.map((value,index)=>(   */}
                       <><div className="card">
-                      {p && <div className="wishComp">
+                   {/*   {p && <div className="wishComp">
                        <ul>
                         <li><a onClick={() => addToList(2, data.id)}><FaRegHeart /></a></li>
                        </ul>
@@ -154,8 +155,8 @@ const renderProducts = () => {
                        <ul>
                         <li><a onClick={() => addToList(2, data.id)}><FaRegHeart /></a></li>
                        </ul>
-                      </div>}
-                      <div className="image_wrapper">
+                     </div>}*/}
+                      <div className="image_wrapper" key={`${data}_${index}`}>
                         {/* <div className="actn_btn_holder">
                          <ul>
                           <li className="icn"><a onClick={() => addtoCartItems(value.sku, value.id)}><BiShoppingBag /></a></li>
@@ -164,11 +165,12 @@ const renderProducts = () => {
                           <li className="icn"><a onClick={() => addToList(1, value.id)}><IoIosGitCompare /></a></li>
                          </ul>
                         </div> */}
-                        <img src={data.image} />
+                         <Link to={getCategoryURL(data)}><img src={data.image} /></Link>
+                        
 
                        </div>
                        <div className="product_title">{data.name}</div>
-                       <div className="price_holder">
+                      {/* <div className="price_holder">
                                 <div className="price_left">                                  
                                     <div className="product_amt">
                                     <span className="new_price">{data.strike_price}</span>
@@ -176,14 +178,14 @@ const renderProducts = () => {
                                         
                                     </div>
                                     <div className="rating_front">
-                                    {/* <StarRatings
+                                     <StarRatings
                                         rating={Math.round(data.ratings_summary)}
                                         numberOfStars={5}
                                         name='rating'
                                         starDimension="20px"
                                         starSpacing="0px"
                                         starRatedColor="rgb(242 187 22)"
-                                    /> */}
+                                    /> 
                                     
                                     </div>
                                 </div>
@@ -193,7 +195,7 @@ const renderProducts = () => {
                                   {outpcar && <div className="price_right">                                   
                                   <button className="addtocart"><span class="cart_svg"></span></button>
                                   </div>}
-                                </div>
+                                </div>*/}
                                 </div>
                        </>   
                        {/* ))}  */}

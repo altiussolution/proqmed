@@ -103,8 +103,9 @@ const Products = ({ pageContext, location }) => {
     const fetchProducts = async (id) => {
       try {
         const response = await axios(
-          `${process.env.GATSBY_NODE_URL_STARCARE}data/products/${id}.json`
+          //`${process.env.GATSBY_NODE_URL_STARCARE}data/products/${id}.json`
           // `${process.env.GATSBY_CART_URL}admin/products/${id}`
+          `${process.env.GATSBY_CART_URL_STARCARE}admin/products/${id}`,
         );
         if (!ignore) {
 
@@ -388,7 +389,7 @@ const Products = ({ pageContext, location }) => {
                 </div>
               </div>            
             </div>
-          )}
+         ) }
       </Layout>
     </>
 

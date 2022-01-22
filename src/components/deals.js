@@ -44,7 +44,7 @@ const Deals = () => {
 
     const fetchFeature = async () => {
         const res = await fetch(
-            `${process.env.GATSBY_CART_URL_STARCARE}category/dealsofthedays/38`
+            `${process.env.GATSBY_CART_URL_STARCARE}category/dealsofthedays/13`
         );
         const json = await res.json();
         await setDealsofday(json);
@@ -96,15 +96,15 @@ const renderDeals = ()=>{
     dealProducts.map((data,index)=>(
   <div className="card" key={`${data.sub_category}_${index}`}>
       <h5 className="title_link"><Link to={getCategoryURL(data.sub_category)}>{data.sub_category.name}</Link></h5>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      {/*<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>*/}
       <ul>
       {data.sub_category.sub_category_sub.slice(0,4).map((value,index)=>(
         
  <><li>
- <div className="image_wrapper">
-          <Link to={getProductURL(value)}><img src={value.image} /></Link>
+ <div className="image_wrapper"  key={`${value}_${index}`}>
+          <Link to={getCategoryURL(value)}><img src={value.image} /></Link>
         </div><div className="description_list">
-            <Link to={getProductURL(value)}>{value.name}</Link>
+            <Link to={getCategoryURL(value)}>{value.name}</Link>
           </div>
           </li>
           </> 
