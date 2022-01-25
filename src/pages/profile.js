@@ -343,8 +343,8 @@ const Numbersubmit = num => {
                 <h4><span><img src={orders}/></span><a onClick={() => { navigateOnclick('/orders') }}>MY ORDERS</a> </h4>
                 <h4><span><img src={account}/></span><a href="#"> ACCOUNT SETTINGS</a></h4>
                 <ul>
-                    <li onClick={() => { navigateOnclick('/profile') }}><a>Profile Information</a></li>
-                    <li><a>Manage Addresses</a></li>
+                <li><Link to="/profile"><a>Profile Information</a></Link></li>
+                    <li><Link to="/myAddress"><a>Manage Addresses</a></Link></li>
                     <li><Link to="/myReviews"><a>My reviews</a></Link></li>
                 </ul>
               {isuserlogged && <h4><span><img src={logoutt}/></span><a onClick={() => { logout() }}>LOGOUT</a></h4>}

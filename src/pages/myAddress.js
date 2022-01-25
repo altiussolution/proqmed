@@ -148,12 +148,12 @@ const deleteAddress = (id) => {
             </div>
 
             <div class="profile-sec details">
-                <h4><span><img src="images/orders.png" alt=""/></span><a href="#">MY ORDERS</a> </h4>
-                <h4><span><img src="images/account.png" alt=""/></span><a href="#"> ACCOUNT SETTINGS</a></h4>
+            <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders"><a>MY ORDERS</a> </Link></h4>
+                <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile"><a> ACCOUNT SETTINGS</a></Link></h4>
                 <ul>
-                    <li><a href="#">Profile Information</a></li>
-                    <li><a href="#">Manage Addresses</a></li>
-                    <li><a href="#">My reviews</a></li>
+                    <li><Link to="/profile"><a>Profile Information</a></Link></li>
+                    <li><Link to="/myAddress"><a>Manage Addresses</a></Link></li>
+
                 </ul>
                 <h4><span><img src="images/logout.png" alt=""/></span><a href="#">LOGOUT</a></h4>
             </div>
