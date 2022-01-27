@@ -4,33 +4,41 @@ import { useForm } from "react-hook-form";
 import { Link, navigate, useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout";
 import { ToastContainer, toast } from 'react-toastify';
+import Multiselect from 'multiselect-react-dropdown';
+import Select from 'react-select';
 const Address = ({location}) => {
-    const { register, handleSubmit, errors } = useForm();
-  const [jwt, setJwt] = useState("")
+ const { register, handleSubmit, errors } = useForm();
+ const [jwt, setJwt] = useState("")
  const [uEmail, setUEmail] = useState();
+ const [cusID, setCusid] = useState();
  const [username, setUsername] = useState();
+ const [state, setState] = useState([])
  const [loader, setLoader] = useState(false);
  const [profilepic,setProfilepic] = useState({});
  const [region, setRegion] = useState([]);
  const [edit, editdata] = useState([]);
+ const [editadd,editAddress] = useState(false);
+ const [add,addAddress] = useState(false);
+ const [India,defaultcountry] = useState({});
+ const admintoken = "nulqmtn1cyo9ko7ip4zbumjqrlk9k825"
+ const [ship,Shippi] = useState(true);
+ const [bill,Billi] = useState(false);
+ const [shipadd,Shippiadd] = useState(false);
+ const [billadd,Billiadd] = useState(false);
+const [Tamilan,Defaulti] = useState({country_id:location.state['country_id'],label:location.state['region'],value:location.state['region_id']});
 useEffect(() => {
  setJwt(localStorage.userToken);
  setUsername(localStorage.user_name)
+ setRegion(JSON.parse(localStorage.Regions))
+ setCusid(localStorage.customer_id)
  setUEmail(localStorage.email)
  if(location.state['city']){
     editdata(location.state)
+    editAddress(true)
+    console.log(location.state)
+ } else {
+     addAddress(true)
  }
-
- const fetchRegion = async () => {
-     const res = await fetch(
-         `${process.env.GATSBY_CART_URL_STARCARE}regions`
-     );
-
-     const json = await res.json();
-     await setRegion(json);
- };
-
- fetchRegion();
  axios({
   method: 'get',
   url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/list/${localStorage.email}`,
@@ -44,60 +52,104 @@ useEffect(() => {
 }).catch((err) => {
   console.error(err);
 })
+assignStats();
 }, []);
+
+const assignStats = () => {
+    let arr = JSON.parse(localStorage.Regions)
+    if(location.state['city']){
+        
+       let obj = arr.find(o => o.value === location.state['country_id']);
+    console.log(obj)
+       defaultcountry(obj)
+if(obj['states']){
+    setState(obj['states'])
+    
+}   else {
+    setRegion(arr)
+    // defaultcountry(obj)
+}    
+    }else {
+        let obj = arr.find(o => o.value === 'IN');
+        setRegion(arr)
+        console.log('gokul',obj)
+        defaultcountry(obj)
+        setState(obj['states'])
+    }
+}
 const handleChange = (event) => {
     const re = /^[0-9\b]+$/;
     if (!re.test(event.target.value)) {
         event.target.value = ""
     }
 }
-const onSubmit = userAddresses => {
-    let index = 0;
-    let shippingAddress = [];
+const onSelectCats1 = (event) => {
+    console.log(event)
+    setState([])
+        if (event['states']) {
+            setState(event['states'])
+        }else {
 
-
-if(JSON.parse(userAddresses.user_state).value === "")
-    {
-        return toast.error('Select State or Province'); 
-    }
-else{
-
-shippingAddress.push(
-            {
-
-                "firstname": userAddresses.firstname.trim(),
-                "lastname": userAddresses.lastname.trim(),
-                "company": userAddresses.company.trim(),
-                "street": [userAddresses.street_1.trim()],
-                "city": userAddresses.user_city.trim(),
-                "region_id": JSON.parse(userAddresses.user_state).value,
-                "region": JSON.parse(userAddresses.user_state).title,
-                "postcode": userAddresses.postcode.trim(),
-                "country_id": JSON.parse(userAddresses.countryId).value,
-                "telephone": userAddresses.telephone.trim()
-            }
-        )
-    
-
-    let userAddVal = {
-        "customer":
-        {
-            "email": userAddresses.email.trim(),
-            "firstname": userAddresses.firstname.trim(),
-            "lastname": userAddresses.lastname.trim(),
-            "websiteId": 1,
-            "addresses": shippingAddress
         }
+        return;
+}
+const onSelectStates1 = (states) => {
+    console.log(India)
+Defaulti(states)
+}
+
+    const filterData =(val,datas)=> {
+     if(datas=="billing" && val.target.checked){
+      Billi(true)
+     }else if(datas=="shipping" && val.target.checked){
+       Shippi(true)
+     }else if(datas=="billing" && val.target.unchecked){
+        Shippi(false)
+     }else if(datas=="shipping" && val.target.unchecked){
+        Billi(false)
+     }
     }
 
+    const filterData1 =(val,datas)=> {
+        if(datas=="billing" && val.target.checked){
+         Billiadd(true)
+        }else if(datas=="shipping" && val.target.checked){
+          Shippiadd(true)
+        }else if(datas=="billing" && val.target.unchecked){
+           Shippiadd(false)
+        }else if(datas=="shipping" && val.target.unchecked){
+           Billiadd(false)
+        }
+       }
+const onSubmit = userAddresses => {
+let updateAddress = {
+    "address": { 
+        "id":145,
+      "customer_id": cusID,
+      "defaultShipping": ship,
+      "defaultBilling" : bill,
+       "region": {
+          "region_code": Tamilan['value'], //TN
+          "region": Tamilan['label'],     //TamilNadu
+          "region_id": Tamilan['country_id']   //12
+      },
+      "street": [userAddresses.street_1.trim()],
+      "postcode": userAddresses.postcode,
+      "city": userAddresses.user_city,
+      "firstname": userAddresses.name,
+      "lastname": userAddresses.lname,   
+      "telephone": userAddresses.telephone,
+      "countryId": Tamilan['country_id'] //IN
+    }
+  }
     try {
         axios({
-            method: "put",
-            url: `${process.env.GATSBY_CART_URL_STARCARE}customers/me`,
+            method: "post",
+            url: `${process.env.GATSBY_CART_URL_STARCARE}addresses/`,
             headers: {
-                'Authorization': `Bearer ${jwt}`
+                'Authorization': `Bearer ${admintoken}`
             },
-            data: userAddVal
+            data: updateAddress
         }).then((response) => {
             console.log("Add Address", response)
             if (response.statusText === "OK" && response.status == 200) {
@@ -118,9 +170,63 @@ shippingAddress.push(
      
         console.error(err)
     }
-}
+
 }
 
+
+const onSubmitadd = userAddresses => {
+    let updateAddress = {
+        "address": { 
+            "id":145,
+          "customer_id": cusID,
+          "defaultShipping": shipadd,
+          "defaultBilling" : billadd,
+           "region": {
+              "region_code": Tamilan['value'], //TN
+              "region": Tamilan['label'],     //TamilNadu
+              "region_id": Tamilan['country_id']   //12
+          },
+          "street": [userAddresses.street_1.trim()],
+          "postcode": userAddresses.postcode,
+          "city": userAddresses.user_city,
+          "firstname": userAddresses.name,
+          "lastname": userAddresses.lname,   
+          "telephone": userAddresses.telephone,
+          "countryId": Tamilan['country_id'] //IN
+        }
+      }
+        try {
+            axios({
+                method: "post",
+                url: `${process.env.GATSBY_CART_URL_STARCARE}addresses/`,
+                headers: {
+                    'Authorization': `Bearer ${admintoken}`
+                },
+                data: updateAddress
+            }).then((response) => {
+                console.log("Add Address", response)
+                if (response.statusText === "OK" && response.status == 200) {
+                    
+                  
+                    setLoader(false);
+                    
+                }
+    
+            }).catch((err) => {
+                toast.error('error occured');
+               
+                console.error(err)
+            })
+        }
+        catch (err) {
+            toast.error('error occured');
+         
+            console.error(err)
+        }
+    
+    }
+
+    
 return (
   <Layout>
   <div class="container-fluid grey">
@@ -155,23 +261,28 @@ return (
               <div class="fo-bg-white">
                   <div class="top">
                       <div class="header">
-                      <h2 class="heading">Manage Addresses</h2>
+                      <h2 class="heading">Manage Address</h2>
                   </div>
                   
                   
                   </div>
   
-                  <div class="address-form">
+                 {editadd && <div class="address-form">
                       <form onSubmit={handleSubmit(onSubmit)}>
                       <div class="fo-bg-slice">
                           <h6>Add Address</h6>
                           <div class="row">
                               <div class="col-lg-6 col-md-12 col-sm-12">
                                   <div>
-                                  <input type="text" className="form-control" placeholder="Name" name="name" id="name" ref={register({
+                                  <input type="text" className="form-control" placeholder="First Name" name="name" id="name" ref={register({
                                                                                 required: true
                                                                             })} defaultValue={(edit ? edit['firstname'] : "")}/>
-                                         {errors.firstname && errors.name.type === 'required' && <span className="error_label">Name is required</span>}</div>     
+                                         {errors.firstname && errors.name.type === 'required' && <span className="error_label">First Name is required</span>}</div>   
+                                         <div>
+                                  <input type="text" className="form-control" placeholder="Last Name" name="lname" id="lname" ref={register({
+                                                                                required: true
+                                                                            })} defaultValue={(edit ? edit['lastname'] : "")}/>
+                                         {errors.lastname && errors.lname.type === 'required' && <span className="error_label">Last Name is required</span>}</div>       
                                          <div>                            
                                   <input type="text" className="form-control" placeholder="Pincode" name="postcode" id="postcode" onChange={handleChange} ref={register({
                                                                                 required: true,
@@ -185,7 +296,12 @@ return (
                                                                                 required: true
                                                                             })}  defaultValue={(edit ? edit['city'] : "")}/>
                                                                             {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
-                                 <div><input type="text" className="form-control" placeholder="Landmark (Optional)" maxLength="20"/></div> 
+                                 <div> <Select
+                                    options={region}
+                                    onChange={onSelectCats1}
+                                    value={India}
+                                    placeholder="Select Country"
+                                     /></div> 
                               </div>
   
                               <div class="col-lg-6 col-md-12 col-sm-12">
@@ -197,15 +313,16 @@ return (
                                                                             })} defaultValue={(edit ? edit['telephone'] : "")}/>
                                                                             {errors.telephone && errors.telephone.type === 'required' && <span className="error_label">Phone required</span>}
                                                                             {errors.telephone && errors.telephone.type === 'minLength' && <span className="error_label">Enter Valid Phone Number</span>}</div>
-                                  <div> <input type="text" className="form-control" placeholder="Locality" name="locality" id="locality"  ref={register({
-                                                                                required: true,
-                                                                            })} maxLength="20"/></div>
-                                  <div>  <input type="text" className="form-control" placeholder="State/Province" name="user_state" id="user_state"  ref={register({
-                                                                                required: true,
-                                                                            })} maxLength="20" defaultValue={(edit ? edit['region'] : "")}/>
+                                
+                                  <div> <Select
+                                    options={state}
+                                    onChange={onSelectStates1}
+                                    value={Tamilan}
+                                    placeholder="Select State"
+                                     />
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div>
-                                  <div>  <input type="text" className="form-control" placeholder="Alternate Phone (Optional)" name="altertelephone" id="altertelephone" onChange={handleChange} maxLength="10"/></div>
+                                  
                               </div>
   
                               <div class="col-lg-12 col-md-12 col-sm-12">
@@ -217,15 +334,19 @@ return (
                           </div>
                           <h6> Address Type</h6>
                           <div class="billing-stat">
-                              <div class="form-check disc">
-                                  <input class="form-check-input" type="checkbox" id="billing" name="billing" />
-                                  <p class="form-check-label">Billing </p>
-                                </div>
+                          <div className="form-check">
+                        <input type="checkbox" className="form-check-input" id="shipping" ref={register({
+                                                                                required: true
+                                                                            })} onChange={e => { filterData(e,'shipping') }}/>
+                        <label className="form-check-label" htmlFor="shipping">Shipping</label>
+                      </div>
   
-                                <div class="form-check disc">
-                                  <input class="form-check-input" type="checkbox" id="shipping" name="shipping"/>
-                                  <p class="form-check-label">Shipping </p>
-                                </div>
+                      <div className="form-check">
+                        <input type="checkbox" className="form-check-input" id="billing" ref={register({
+                                                                                required: true
+                                                                            })}  onChange={e => { filterData(e,'billing') }}/>
+                        <label className="form-check-label" htmlFor="billing">Billing</label>
+                      </div>
                               
                           </div>
                           <div class="buttons">                            
@@ -235,8 +356,96 @@ return (
                       </div>
                       </form>
                      
-                  </div>
+                  </div> }
+                  {add && <div class="address-form">
+                      <form onSubmit={handleSubmit(onSubmitadd)}>
+                      <div class="fo-bg-slice">
+                          <h6>Add Address</h6>
+                          <div class="row">
+                              <div class="col-lg-6 col-md-12 col-sm-12">
+                                  <div>
+                                  <input type="text" className="form-control" placeholder="First Name" name="name" id="name" ref={register({
+                                                                                required: true
+                                                                            })} defaultValue={(edit ? edit['firstname'] : "")}/>
+                                         {errors.firstname && errors.name.type === 'required' && <span className="error_label">First Name is required</span>}</div>   
+                                         <div>
+                                  <input type="text" className="form-control" placeholder="Last Name" name="lname" id="lname" ref={register({
+                                                                                required: true
+                                                                            })} defaultValue={(edit ? edit['lastname'] : "")}/>
+                                         {errors.lastname && errors.lname.type === 'required' && <span className="error_label">Last Name is required</span>}</div>       
+                                         <div>                            
+                                  <input type="text" className="form-control" placeholder="Pincode" name="postcode" id="postcode" onChange={handleChange} ref={register({
+                                                                                required: true,
+                                                                            })} 
+                                                                            maxLength="6" defaultValue={(edit ? edit['postcode'] : "")}/>
+                                               {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Postcode required</span>}
+                                                                            {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Postcode</span>}                              
+                                                                            </div>  
+                                                                            <div>
+                                                                            <input className="form-control" name="user_city" id="user_city" placeholder="City" type="text" ref={register({
+                                                                                required: true
+                                                                            })}  defaultValue={(edit ? edit['city'] : "")}/>
+                                                                            {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
+                                 <div> <Select
+                                    options={region}
+                                    onChange={onSelectCats1}
+                                    value={India}
+                                    placeholder="Select Country"
+                                     /></div> 
+                              </div>
   
+                              <div class="col-lg-6 col-md-12 col-sm-12">
+                                  <div>
+                                  <input className="form-control" name="telephone" id="telephone" placeholder="Mobile Number" type="text" onChange={handleChange} 
+                                                                            maxLength="10"
+                                                                            ref={register({
+                                                                                required: true,
+                                                                            })} defaultValue={(edit ? edit['telephone'] : "")}/>
+                                                                            {errors.telephone && errors.telephone.type === 'required' && <span className="error_label">Phone required</span>}
+                                                                            {errors.telephone && errors.telephone.type === 'minLength' && <span className="error_label">Enter Valid Phone Number</span>}</div>
+                                
+                                  <div> <Select
+                                    options={state}
+                                    onChange={onSelectStates1}
+                                    placeholder="Select State"
+                                     />
+                                  {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
+                                  </div>
+                                  
+                              </div>
+  
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                              <input className="form-control" name="street_1" id="street_1" placeholder="Address" type="text" ref={register({
+                                                                                required: true
+                                                                            })} defaultValue={(edit ? edit['street'] : "")}/>
+                                                                            {errors.street_1 && errors.street_1.type === 'required' && <span className="error_label">Address required</span>}
+                              </div>
+                          </div>
+                          <h6> Address Type</h6>
+                          <div class="billing-stat">
+                          <div className="form-check">
+                        <input type="checkbox" className="form-check-input" id="shipping" ref={register({
+                                                                                required: true
+                                                                            })} onChange={e => { filterData1(e,'shipping') }}/>
+                        <label className="form-check-label" htmlFor="shipping">Shipping</label>
+                      </div>
+  
+                      <div className="form-check">
+                        <input type="checkbox" className="form-check-input" id="billing" ref={register({
+                                                                                required: true
+                                                                            })}  onChange={e => { filterData1(e,'billing') }}/>
+                        <label className="form-check-label" htmlFor="billing">Billing</label>
+                      </div>
+                              
+                          </div>
+                          <div class="buttons">                            
+                              <button class="btn btn-danger square" type="submit">SAVE</button>
+                              <Link to="/myAddress"><button type="button" class="btn btn" >CANCEL</button></Link>
+                          </div>
+                      </div>
+                      </form>
+                     
+                  </div> }
                   
             </div>    
             

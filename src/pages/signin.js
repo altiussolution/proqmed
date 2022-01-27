@@ -56,6 +56,7 @@ const SignIn = (props) => {
               localStorage.setItem('user_name', response.data[0]['name'])
               createCart(response.data[0]['token']);
               getWishList();
+              fetchRegion();
               checkUser();
             } else {
               setLoader(false);
@@ -134,6 +135,14 @@ const SignIn = (props) => {
         console.error(err)
     }
 }
+const fetchRegion = async () => {
+  const res = await fetch(
+      `${process.env.GATSBY_CART_URL_STARCARE}regions`
+  );
+
+  const json = await res.json();
+  localStorage.setItem("Regions",JSON.stringify(json));
+};
 
 const wistlistsValue = () => {
   setTimeout(() => {

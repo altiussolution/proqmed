@@ -12,11 +12,17 @@ const MyAddress = () => {
  const [profilepic,setProfilepic] = useState({});
  const [region, setRegion] = useState([]);
  const [shippingAddress, setShippingAddress] = useState([])
+ const [defBill,defaultBilling] = useState([]);
+ const [defShip,defaultShipping] = useState([]);
+ const admintoken = "nulqmtn1cyo9ko7ip4zbumjqrlk9k825"
  useEffect(() => {
   setJwt(localStorage.userToken);
   setUEmail(localStorage.email) 
   setUsername(localStorage.user_name)
+  getBillAddress();
+  getShipAddress();
   getUserAddress();  
+
   const fetchRegion = async () => {
       const res = await fetch(
           `${process.env.GATSBY_CART_URL_STARCARE}regions`
@@ -42,6 +48,54 @@ const MyAddress = () => {
  })
 }, []);
 
+
+const getBillAddress =() => {
+    try {
+        axios({
+            method: "get",
+            url: `${process.env.GATSBY_CART_URL_STARCARE}customers/${localStorage.customer_id}/billingAddress/`,
+            headers: {
+                'Authorization': `Bearer ${admintoken}`
+            },
+        }).then((response) => {
+            if (response.statusText === "OK" && response.status == 200) {
+               console.log(response.data) 
+               defaultBilling(response.data)               
+            }
+   
+        }).catch((err) => {
+            console.error(err)
+        })
+    }
+    catch (err) {
+        console.error(err)
+    }
+}
+
+const getShipAddress =()=> {
+    try {
+        axios({
+            method: "get",
+            url: `${process.env.GATSBY_CART_URL_STARCARE}customers/${localStorage.customer_id}/shippingAddress/`,
+            headers: {
+                'Authorization': `Bearer ${admintoken}`
+            },
+        }).then((response) => {
+            if (response.statusText === "OK" && response.status == 200) {
+               console.log(response.data)  
+               defaultShipping(response.data)                
+            }
+   
+        }).catch((err) => {
+            console.error(err)
+        })
+    }
+    catch (err) {
+        console.error(err)
+    }
+}
+
+
 const getUserAddress = () => { 
  setLoader(true);
  let shipAdd = [];
@@ -58,8 +112,7 @@ const getUserAddress = () => {
                  await shipAdd.push(val.address);
                  await setShippingAddress(shipAdd);
                  setLoader(false);
-                 console.log(shippingAddress)
-             })                   
+             })                  
              setLoader(false);
          }
 
@@ -72,8 +125,9 @@ const getUserAddress = () => {
  }
 }
 const navigateOnclick = (value) => {
-
-   navigate(value)
+console.log(defBill.firstname)
+console.log(defShip)
+//    navigate(value)
  
 }
 const deleteAddress = (id) => {
@@ -155,7 +209,7 @@ const deleteAddress = (id) => {
                     <li><Link to="/myAddress"><a>Manage Addresses</a></Link></li>
 
                 </ul>
-                <h4><span><img src="images/logout.png" alt=""/></span><a href="#">LOGOUT</a></h4>
+                <h4><span><img src="images/logout.png" alt=""/></span><a onClick={() => { navigateOnclick('/orders') }}>LOGOUT</a></h4>
             </div>
         </div>
 
@@ -167,18 +221,39 @@ const deleteAddress = (id) => {
                 </div>
                 <a onClick={() => { navigateOnclick('/Address') }}>+ ADD A NEW ADDRESS</a>
                 </div>
+                <div>
+                    {
+                        defBill.map((add,index)=>(
+                            <div key={index}>
+                              <h1>{add.firstname}{add.lastname}</h1>
+                               <p>{add.street},{add.city},{add.postcode},{add.region}.</p>
+                            </div>
+                        ))
+                    }
+                   
+                   
+                </div>
+                <div>
+                {
+                        defShip.map((add,index)=>(
+                            <div key={index}>
+                              <h1>{add.firstname}{add.lastname}</h1>
+                               <p>{add.street},{add.city},{add.postcode},{add.region}.</p>
+                            </div>
+                        ))
+                    }
+                </div>
                 <div class="fo-addresses">
        <div class="edit-address">
                     {
              shippingAddress.map((add, index) => ( 
                         <div class="info" key={`${index}_add`}>
                             <div class="left">
-                                <label>Billing Address</label>
                                 <p>{add.firstname}{add.lastname} <span>{add.telephone}</span></p>
                                 <h6>{add.company},{add.street.join()},{add.city}.</h6>
                             </div>
                             <div class="right">
-                                <div class="dropdown address">
+                                {/* <div class="dropdown address">
                                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-ellipsis-v fa-2x" aria-hidden="true"></i>
                                     </button>
                                     <ul class="dropdown-menu">
@@ -187,7 +262,10 @@ const deleteAddress = (id) => {
                                         Delete</a></li>
                                       
                                     </ul>
-                                  </div>
+                                  </div> */}
+                                  <li><Link to="/Address" state={add}><a><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></Link></li>
+                                      <li><a><i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        Delete</a></li>
                             </div>
                   </div>
                         )) }
