@@ -341,13 +341,22 @@ const isSticky = (e) => {
     const elements_in_each_row = Math.round(allCategory.length / 3);
     const list = [];
     const topSelected = [];
-
-    for (let i = 0; i < allCategory.length; i += elements_in_each_row) {
-      list.push(allCategory.slice(i, i + elements_in_each_row));
+    let result = allCategory;
+    if(localStorage.getItem('userToken')){
+      let catFromLocal = localStorage.getItem('category_permissions');
+      if(catFromLocal){
+        var allowedCat = catFromLocal.split(',').map(function(item) {
+          return parseInt(item, 10);
+        });
+        result = allCategory.filter((o) => allowedCat.includes(+o.node.id));
+      }
+    }
+    for (let i = 0; i < result.length; i += elements_in_each_row) {
+      list.push(result.slice(i, i + elements_in_each_row));
     }
 
     for (let i = 0; i < 6; i++) {
-      topSelected.push([allCategory[i]]);
+      topSelected.push([result[i]]);
     }
 
     if (type === 'dropdown') {
