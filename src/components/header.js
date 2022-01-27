@@ -342,7 +342,7 @@ const isSticky = (e) => {
     const list = [];
     const topSelected = [];
     let result = allCategory;
-    if(localStorage.getItem('userToken')){
+    if(jwt){
       let catFromLocal = localStorage.getItem('category_permissions');
       if(catFromLocal){
         var allowedCat = catFromLocal.split(',').map(function(item) {
