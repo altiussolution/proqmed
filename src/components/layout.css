@@ -6741,3 +6741,7 @@ span.functions p .fa {
 .fo-bg-white .top {
   border-bottom: 0.1px solid #f1f1f1;
 }
+.fo-seperate img {
+  width: 15%;
+  border-radius: 10px;
+}

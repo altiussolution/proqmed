@@ -158,7 +158,7 @@ const removeQuote = (id) => {
         try {
             axios({
                 method: "delete",
-                url: `${process.env.GATSBY_CART_URL_STARCARE}subuser/subuserdelete/${id}`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}subuser/subuserdelete/subuser_id/${id}`,
                 headers: {
                     'Authorization': `Bearer ${localStorage.userToken}`
                 }
@@ -457,7 +457,7 @@ const onSubmitQuoteadd = quoteDetails => {
                             <td>{quote.subuser_firstname}</td>
                             <td>{quote.role_name}</td>
                             <td class="green">{quote.subuser_status == false ? "In-Active" : "Active"}</td>
-                            <td> <Link to="/manageUser" state={quote}><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></Link> <span onClick={() => removeQuote(quote.subuser_id)}><i class="fa fa-trash-o" aria-hidden="true"></i></span> </td>
+                            {quote.subuser_id!=null && <td> <Link to="/manageUser" state={quote}><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></Link> <span onClick={() => removeQuote(quote.subuser_id)}><i class="fa fa-trash-o" aria-hidden="true"></i></span> </td>}
                          </tr>
 
                         

@@ -723,7 +723,7 @@ const CheckOut = () => {
                                             </div>
                                         </Tab>
 
-                                        <Tab eventKey="profile" title="Review &amp; Payments">
+                                      <Tab eventKey="profile" title="Review &amp; Payments">
                                             <div className="row">
                                                 <div className="col-lg-9 col-md-9 col-xs-12 checkout_shipping_address">
                                                     <div className="sec_bg">

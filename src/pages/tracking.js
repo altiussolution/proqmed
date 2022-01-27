@@ -107,8 +107,13 @@ const Tracking =  () => {
                   </div>   
                   </form>
               </div>   
-              {track.length == 0 ? <div className="col-lg-12 col-md-12 col-xs-12 text-center">  
-<h4>No Data Available</h4></div> :
+              {track.length == 0 ? <div className="col-lg-9 col-md-12 col-xs-12 text-center">  
+              <div className="fo-seperate">
+              <img src={empty_cart} alt={"Empty Cart"} />
+<h4>No Data Available</h4>
+</div>
+
+</div> :
     
               <div className="col-lg-9 col-md-12 col-sm-12 ">
                   <div className="fo-bg-white ng">
