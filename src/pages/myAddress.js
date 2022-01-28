@@ -50,6 +50,7 @@ const MyAddress = () => {
 
 
 const getBillAddress =() => {
+    let arr=[]
     try {
         axios({
             method: "get",
@@ -60,7 +61,8 @@ const getBillAddress =() => {
         }).then((response) => {
             if (response.statusText === "OK" && response.status == 200) {
                console.log(response.data) 
-               defaultBilling(response.data)               
+               
+                defaultBilling(response.data)               
             }
    
         }).catch((err) => {
@@ -125,9 +127,9 @@ const getUserAddress = () => {
  }
 }
 const navigateOnclick = (value) => {
-console.log(defBill.firstname)
+console.log(defBill)
 console.log(defShip)
-//    navigate(value)
+   navigate(value)
  
 }
 const deleteAddress = (id) => {
@@ -221,27 +223,33 @@ const deleteAddress = (id) => {
                 </div>
                 <a onClick={() => { navigateOnclick('/Address') }}>+ ADD A NEW ADDRESS</a>
                 </div>
-                <div>
-                    {
-                        defBill.map((add,index)=>(
-                            <div key={index}>
-                              <h1>{add.firstname}{add.lastname}</h1>
-                               <p>{add.street},{add.city},{add.postcode},{add.region}.</p>
-                            </div>
-                        ))
-                    }
+                <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12"> 
+                    
+                      
+                          
+                           <h3>Default Billing Address</h3>   
+                         <span>Name:<a>{defBill['firstname']}</a></span><br></br>
+                         <span>Address:<a>{defBill['street']}</a></span>
+                         <span>City:<a>{defBill['city']}</a></span><br></br>
+                         {/* <span>State:<a>{defBill['region']}</a></span><br></br> */}
+                         <a>Ph no:<a>{defBill['telephone']}</a></a>
+                   
+                       
+                       
+                    
                    
                    
                 </div>
-                <div>
-                {
-                        defShip.map((add,index)=>(
-                            <div key={index}>
-                              <h1>{add.firstname}{add.lastname}</h1>
-                               <p>{add.street},{add.city},{add.postcode},{add.region}.</p>
-                            </div>
-                        ))
-                    }
+               
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                <h3>Default Shipping Address</h3>   
+                         <span>Name:<a>{defShip['firstname']}</a></span><br></br>
+                         <span>Address:<a>{defShip['street']}</a></span>
+                         <span>City:<a>{defShip['city']}</a></span><br></br>
+                         {/* <span>State:<a>{defBill['region']}</a></span><br></br> */}
+                         <a>Ph no:<a>{defShip ['telephone']}</a></a>
+                </div>
                 </div>
                 <div class="fo-addresses">
        <div class="edit-address">
