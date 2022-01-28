@@ -342,7 +342,7 @@ const isSticky = (e) => {
     const list = [];
     const topSelected = [];
     let result = allCategory;
-    if(localStorage.getItem('userToken')){
+    if(jwt){
       let catFromLocal = localStorage.getItem('category_permissions');
       if(catFromLocal){
         var allowedCat = catFromLocal.split(',').map(function(item) {
@@ -456,13 +456,14 @@ const isSticky = (e) => {
                     <a><Link to="/signup">New to ProQmed?</Link>Start here</a>
                     <a><Link to="/"></Link>Sell on ProQmed</a>
                     </li>}
-                    {isuserlogged && <div><li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
+                    {/* {isuserlogged && <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li> */}
+                    {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
-                    <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
+                    <li onClick={() => { navigateOnclick('/myReviews') }}>My Reviews</li>
+                    <li onClick={() => { navigateOnclick('/wishlist') }}>Wishlist</li>
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li></div>}
                     {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
-                    {isuserlogged && <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>}
                     {isuserlogged && <div>{iswhatuser &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}</div>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                     {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}

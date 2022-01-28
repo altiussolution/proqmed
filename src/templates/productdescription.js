@@ -62,7 +62,34 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
     setPermit(localStorage.permissions)
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
-    setQuoteId(localStorage.cartId);
+    //setQuoteId(localStorage.cartId);
+    const jwt = localStorage.getItem('userToken')
+    if(jwt){
+      try
+      {    
+        axios({
+          method : 'post',
+          url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine`,
+          headers : {
+              'Authorization' : `Bearer ${jwt}`
+          }
+        })
+        .then((response) => {
+          if(response.statusText === "OK" && response.status == 200)
+          {
+            console.log(response.data)
+              localStorage.setItem('cartId',response.data);
+              setQuoteId(localStorage.cartId)
+          }
+        }) 
+        .catch((error) => {
+          console.error(error,'error')
+        })
+      }catch(err){
+        console.error(err);
+        toast.error('something went wrong')
+      }
+    }
     console.log(proDescription)
     if(permits.length!=0){
       let addwis=permits.includes("Can Add To Wishlist")
@@ -81,7 +108,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
         "cartItem": {
           "sku": proDescription.items.config_options[0].optins_values.sku,
           "qty": qty,
-          "quote_id": localStorage.cartId
+          "quote_id": quote_id
         }
       })
       let colour_list = [];
@@ -133,7 +160,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
         "cartItem": {
           "sku": proDescription.items.sku,
           "qty": qty,
-          "quote_id": localStorage.cartId
+          "quote_id": quote_id
         }
       })
       setData([
@@ -190,7 +217,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
       "cartItem": {
         "sku": changeSizeValue.optins_values.sku,
         "qty": qty,
-        "quote_id": localStorage.cartId
+        "quote_id": quote_id
       }
     })
     let set_price = [];
@@ -206,7 +233,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
         "cartItem": {
           "sku": change_price[0].sku,
           "qty": qty,
-          "quote_id": localStorage.cartId
+          "quote_id": quote_id
         }
       }
     } else {
@@ -214,7 +241,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
         "cartItem": {
           "sku": proDescription.items.sku,
           "qty": qty,
-          "quote_id": localStorage.cartId
+          "quote_id": quote_id
         }
       }
     }
@@ -427,7 +454,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
       "cartItem": {
         "sku": options.sku,
         "qty": qty,
-        "quote_id": localStorage.cartId
+        "quote_id": quote_id
       }
     })
     setindex_colour(index1);

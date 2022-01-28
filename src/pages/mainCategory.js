@@ -29,7 +29,7 @@ const MainCategory = () => {
   `)
 
   const mainCategory = data.allCategory.edges;
-
+console.log(mainCategory)
   const renderCategories = () => {
     return <div id="products" className="row list-group catgoryPage">
       {
@@ -38,7 +38,7 @@ const MainCategory = () => {
             key={index} className="item product_item">
             <div className="thumbnail">
               <div className="product_img">
-                <img className="img-fluid" src={`${el.node.image}`} onError={e => (e.target.src = ImageNotFound)} alt={el.node.image} />
+                <img className="img-fluid" src={`${el.node.image}`} onError={e => (e.target.src = ImageNotFound)}  />
               </div>
               <div className="caption">
                 <p className="product_text">

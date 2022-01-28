@@ -25,7 +25,7 @@ const Address = ({location}) => {
  const [bill,Billi] = useState(false);
  const [shipadd,Shippiadd] = useState(false);
  const [billadd,Billiadd] = useState(false);
-const [Tamilan,Defaulti] = useState({country_id:location.state['country_id'],label:location.state['region'],value:location.state['region_id']});
+const [Tamilan,Defaulti] = useState({});
 useEffect(() => {
  setJwt(localStorage.userToken);
  setUsername(localStorage.user_name)
@@ -33,7 +33,9 @@ useEffect(() => {
  setCusid(localStorage.customer_id)
  setUEmail(localStorage.email)
  if(location.state['city']){
+   const ef= {country_id:location.state['country_id'],label:location.state['region'],value:location.state['region_id']}
     editdata(location.state)
+    Defaulti(ef)
     editAddress(true)
     console.log(location.state)
  } else {

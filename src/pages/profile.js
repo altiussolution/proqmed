@@ -140,6 +140,7 @@ const Namesubmit = Nameval =>{
         .then(function (response) {
             toast.success('Name Updated Successfully')
             Naming(false)
+                        getProfile()
         })
         .catch(function (response) {
             toast.error('An error occured please contact admin')
@@ -172,6 +173,8 @@ const Emailsubmit = emailss => {
         .then(function (response) {
             toast.success('Email Updated Successfully')
             Emailing(false)
+            getProfile()
+
         })
         .catch(function (response) {
             toast.error('An error occured please contact admin')
@@ -233,6 +236,7 @@ const Numbersubmit = num => {
         .then(function (response) {
             toast.success('Mobile Number Updated Successfully')
             Numbering(false)
+            getProfile()
         })
         .catch(function (response) {
             toast.error('An error occured please contact admin')
