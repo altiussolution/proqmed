@@ -22,7 +22,7 @@ const Wishlist = () => {
     const [cartCnt, setCartCnt] = useState(getCartCount())
     const [wishListCnt, setWishListCnt] = useState(getWLCount());
     const [permit,permission] = useState([]);
-    const [p,per] = useState(false);
+    const [p,per] = useState(true);
     const [nop,noper] = useState(false);
     const [jwt, setJwt] = useState("");
 
@@ -85,10 +85,11 @@ const Wishlist = () => {
                 if (res.statusText === "OK" && res.status == 200) {
                     if(permits.length!=0){
                         let viewwis=permits.includes("Can View Wishlist")
+                        console.log(viewwis)
                         per(viewwis)
                     }
                     else if(permits.length==0){
-                        noper(true)
+                        noper(true) 
                     }
                    
                     setWishList(res.data)
