@@ -111,7 +111,7 @@ const onSubmitQuote = quoteDetails => {
  let quoteData = [
      {
          "subuser_id": quoteForm['subuser_id'],
-         "role_name": quoteForm['role_name'],
+         "role_name": quoteDetails['rolename'],
          "firstname": quoteDetails['firstname'],
          "lastname": quoteDetails['lastname'],
          "email": quoteDetails['email'],
