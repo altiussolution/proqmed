@@ -103,10 +103,10 @@ export default function CategoryCard({ data: product, dataClass }) {
 
   }
 
-  const addItemToCart = (product) =>{
+  const addItemToCart = (sku,product) =>{
     const cartItem = {
       "cartItem": {
-        "sku": product.items.sku,
+        "sku": sku,
         "qty": qty,
         "quote_id": quote_id
       }
@@ -182,8 +182,9 @@ export default function CategoryCard({ data: product, dataClass }) {
                 </div>
                 <div className="price_right"> 
                                    
-                                  {pcar && <button className="addtocart" ><span class="cart_svg"></span></button>}
-                                  {outpcar && <button className="addtocart" ><span class="cart_svg"></span></button>}
+                                  {pcar && <button className="addtocart" onClick={() => addItemToCart(product.items.sku, product.id)}><span class="cart_svg"></span></button>
+}
+                                  {outpcar && <button className="addtocart" onClick={() => addItemToCart(product.items.sku, product.id)}><span class="cart_svg"></span></button>}
                                   { <Link  to={getProductURL(product.items)} state={product} className="btn outline-1">View Detail</Link> }
                                   </div>
                 </div>

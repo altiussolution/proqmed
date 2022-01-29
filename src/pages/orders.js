@@ -334,7 +334,7 @@ if(array.length>0){
                             <div class="buttons-or">
                         {re && <button type="button" class="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
                                             {outre && <button class="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
-                                            <button className="btn btn-primary" to="/orderstatus" state={{ order_id: orders.order_id }} >View Order</button>
+                                            <Link to="/orderstatus" state={{ order_id: orders.order_id }}><button className="btn btn-primary"  >View Order</button></Link>
                                             {orders.status !== 'canceled' && <button className="btn btn outline" type="button" onClick={()=> cancelOrder(orders.order_id)}>Cancel Order</button>}
                         <a href="#"><i class="fa fa-sticky-note" aria-hidden="true"></i>Invoice</a>
                             </div>
