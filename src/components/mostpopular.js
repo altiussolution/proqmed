@@ -22,7 +22,39 @@ const Mostpopular = () => {
   useEffect(() => {
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken)
-    setQuoteId(localStorage.cartId)
+    const jwt = localStorage.getItem('userToken')
+    if(jwt){
+      try
+      {    
+        axios({
+          method : 'post',
+          url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine`,
+          headers : {
+              'Authorization' : `Bearer ${jwt}`
+          }
+        })
+        .then((response) => {
+          if(response.statusText === "OK" && response.status == 200)
+          {
+            console.log(response.data)
+              localStorage.setItem('cartId',response.data);
+              setQuoteId(localStorage.cartId)
+
+              //viewCartItems()
+            //  localStorage.removeItem('cartData', []);
+          }
+        }) 
+        .catch((error) => {
+          console.error(error,'error')
+        })
+      }catch(err){
+        console.error(err);
+        toast.error('something went wrong')
+      }
+    }else{
+        navigate("/signin")
+    }
+   // setQuoteId(localStorage.cartId)
 
     const fetchPopular = async () => {
       const res = await fetch(

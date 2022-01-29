@@ -14,7 +14,8 @@ const Invoice = ({ location }) => {
     const [jwt, setJwt] = useState("")
     const [loader, setLoader] = useState(false);
     const [attach_data, setattachment] = useState([]);
-
+    const [p,per] = useState(false);
+    const [nop,noper] = useState(false);
 
     useEffect(() => {
         setJwt(localStorage.userToken);
@@ -34,6 +35,13 @@ const Invoice = ({ location }) => {
                 if (res.statusText === "OK" && res.status == 200) {
                     console.log(res.data)
                     setOrders(res.data);
+                    if(localStorage.permissions){
+                        let viewwis=localStorage.permissions.includes("Can View Invoice")
+                        per(viewwis)
+                    }
+                    else if(!localStorage.permissions){
+                        noper(true)
+                    }
                     setLoader(false);
                 }
 
@@ -173,39 +181,46 @@ const Invoice = ({ location }) => {
 
 
     const Invoicetable = () => {
-        if (invoices.length != 0 ) {
-            return <div className="order_product">
-                <div className="product_status table-responsive"   >
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Product Image</th>
-                                <th>Product Name</th>
-                                <th>SKU</th>
-                                <th>Qty</th>
-                                <th>Price</th>
-
-                            </tr>
-                        </thead>
-                        {
-                            invoices.map((list, index) => {
-                                return (index >= 1 ?
-                                    <tbody key={`${index}_table`} >
-                                        <tr>
-                                            <td className="product_image"> <img src={list.image} /> </td>
-                                            <td className="product_name">{list.peoduct_name} </td>
-                                            <td>{list.sku}</td>
-                                            <td>{list.qty}</td>
-                                            <td>$ {parseFloat(list.price).toFixed(2)}</td>
-                                        </tr>
-                                    </tbody>
-                                    : <span></span>)
-                            })
-                        }
-                    </table>
+        if(p==true || nop==true){
+            if (invoices.length != 0 ) {
+                return <div className="order_product">
+                    <div className="product_status table-responsive"   >
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>Product Image</th>
+                                    <th>Product Name</th>
+                                    <th>SKU</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+    
+                                </tr>
+                            </thead>
+                            {
+                                invoices.map((list, index) => {
+                                    return (index >= 1 ?
+                                        <tbody key={`${index}_table`} >
+                                            <tr>
+                                                <td className="product_image"> <img src={list.image} /> </td>
+                                                <td className="product_name">{list.peoduct_name} </td>
+                                                <td>{list.sku}</td>
+                                                <td>{list.qty}</td>
+                                                <td>$ {parseFloat(list.price).toFixed(2)}</td>
+                                            </tr>
+                                        </tbody>
+                                        : <span></span>)
+                                })
+                            }
+                        </table>
+                    </div>
                 </div>
+            }
+        }else {
+            return <div>
+                Access Denied
             </div>
         }
+       
     }
     const InvoiceTotal = () => {
         return <div>

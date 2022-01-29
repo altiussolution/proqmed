@@ -62,8 +62,42 @@ const Products = ({ pageContext, location }) => {
   const [viewClass, setViewClass] = useState('sample');
   const [activepage, setActivepage] = useState(1);
   const [cat_url, setcategoryUrl] = useState([]);
-
+  const [p,per] = useState(false);
+  const [pcar,percart] = useState(false);
+  const [outp,outper] = useState(false);
+  const [outpcar,outpercart] = useState(false);
   useEffect(() => {
+    const selecturl = "productsasc"
+    const id = pageContext.id;  
+    const selectRes =[];
+    try {
+      axios({
+          method: 'get',
+          url: `${process.env.GATSBY_CART_URL_STARCARE}admin/${selecturl}/${id}`,
+      }).then((res) => {
+          if (res.statusText === "OK" && res.status == 200) {
+            for(let response of res.data[0]){
+              selectRes.push(response[0])
+            }
+            setProducts(selectRes);
+            console.log(selectRes)
+            // setLoading(false);
+          }
+      }).catch((err) => {
+          console.error(err);
+      })
+    } catch (err) {
+      console.error(err)
+    }
+    if(localStorage.permissions){
+      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
+      let addcar=localStorage.permissions.includes("Can Add To Cart")
+      per(addwis)
+      percart(addcar)
+  }else if(!localStorage.permissions){
+    outper(true)
+    outpercart(true)
+  }
     let ignore = false;
     // await checkUrl() 
     const fetchProducts = async (id) => {
@@ -192,8 +226,11 @@ const Products = ({ pageContext, location }) => {
 //    } 
 // }
   const shortBySelected = (event) => {
-    setLoading(true);
+    // setLoading(true);
     const selecturl = event.target.value;
+    if(event.target.value == ""){
+      event.target.value="productsasc"
+    }
     const id = pageContext.id;  
     const selectRes =[];
     try {
@@ -206,7 +243,8 @@ const Products = ({ pageContext, location }) => {
               selectRes.push(response[0])
             }
             setProducts(selectRes);
-            setLoading(false);
+            console.log(selectRes)
+            // setLoading(false);
           }
       }).catch((err) => {
           console.error(err);
@@ -266,7 +304,7 @@ const Products = ({ pageContext, location }) => {
                               Sort by:
                     </span>
                             <div className="option">
-                              <select className="form-control" id="sort_option1" onChange={shortBySelected}>
+                              <select className="form-control" id="sort_option1" onChange={shortBySelected} >
                                 <option value = "productsasc">Name Asc</option>
                                 <option value = "productsdesc">Name Desc</option>
                                 <option value = "productspriceasc">Price Asc</option>

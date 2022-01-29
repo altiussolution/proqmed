@@ -16,13 +16,20 @@ const Featuredproducts = () => {
     const [featureProducts, setFeatureProducts] = useState(null);
     const [customerId, setCustomerId] = useState("");
     const [jwt, setJwt] = useState("");
-
+    const [p,per] = useState(false);
+    const [pcar,percart] = useState(false);
     useEffect(() => {
         setCustomerId(localStorage.customer_id)
         setJwt(localStorage.userToken)
+        if(localStorage.permissions){
+          let addwis=localStorage.permissions.includes("Can Add To Wishlist")
+          let addcar=localStorage.permissions.includes("Can Add To Cart")
+          per(addwis)
+          percart(addcar)
+      }
         const fetchFeature = async () => {
             const res = await fetch(
-                `${process.env.GATSBY_CART_URL_STARCARE}featureproducts/2`
+                `${process.env.GATSBY_CART_URL_STARCARE}featureproducts/${localStorage.customer_id}`
             );
             const json = await res.json();
             await setFeatureProducts(json);
@@ -77,7 +84,7 @@ const Featuredproducts = () => {
                             <div className="card">    
                             <div className="wishComp">
                                     <ul>
-                                      <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
+                                      {p && <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>}
                                     </ul>
                                 </div>
                                 <div className="image_wrapper">
@@ -89,7 +96,10 @@ const Featuredproducts = () => {
                                       <li className="icn"><a onClick={() => addToList(1,data.id)}><IoIosGitCompare/></a></li>
                                     </ul>                                
                                 </div> */}
-                                    <img src={data.image} />
+                                 <Link to={getProductURL(data)}>
+                                 <img src={data.image} />
+                                 </Link>
+                                    
 
                                 </div>                                
                                 <p className="product_title">{data.name}</p>
@@ -114,9 +124,9 @@ const Featuredproducts = () => {
                                     
                                     </div>
                                 </div>
-                                  <div className="price_right">                                   
+                                  {pcar && <div className="price_right">                                   
                                   <button className="addtocart"><span class="cart_svg"></span></button>
-                                  </div>
+                                  </div>}
                                 </div>
                             </div>
 
@@ -133,14 +143,15 @@ const Featuredproducts = () => {
             <div className="container">
               <div className="row">
                 <div className="col-md-12">
-                <h1 className="page-title">
-                    <div>
+                <div className="main_title left">
+                    <h1>
+                      Our 
                     <span>Featured Products</span>
-                  <div className="breadcrumbs_sec" >
+                  {/* <div className="breadcrumbs_sec" >
                     adasd
-                  </div>
-                  </div>
+                  </div> */}
                   </h1>
+                  </div>
                   <div className="category_container">
                     
                       <div className="cat_scroll">

@@ -23,23 +23,37 @@ const Dealproducts = () => {
  const [isButton, setButton] = useState(false);
  const [cartCnt, setCartCnt] = useState(getCartCount())
  const [sub,setsubproducts] = useState(null);
+ const [p,per] = useState(false);
+    const [pcar,percart] = useState(false);
+    const [outp,outper] = useState(false);
+    const [outpcar,outpercart] = useState(false);
  useEffect(() => {
      setCustomerId(localStorage.customer_id)
      setJwt(localStorage.userToken)
      setQuoteId(localStorage.cartId)
+     if(localStorage.permissions){
+      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
+      let addcar=localStorage.permissions.includes("Can Add To Cart")
+      per(addwis)
+      percart(addcar)
+  }else if(!localStorage.permissions){
+    outper(true)
+    outpercart(true)
+  }
      const fetchFeature = async () => {
          const res = await fetch(
              `${process.env.GATSBY_CART_URL_STARCARE}category/dealsofthedays/38`
          );
          const json = await res.json();
          await setDealProducts(json);
+         console.log(json)
          {json.map((data,index)=>(
           setsubproducts(data.sub_category.sub_category_sub)
         ))}
      };
      fetchFeature();
     
-     
+     console.log(sub)
  }, []);
  
  const addToList = (type,id) => {
@@ -131,11 +145,17 @@ const renderProducts = () => {
                       
                      {/* {data.sub_category.sub_category_sub.map((value,index)=>(   */}
                       <><div className="card">
-                      <div className="wishComp">
+                      {p && <div className="wishComp">
                        <ul>
                         <li><a onClick={() => addToList(2, data.id)}><FaRegHeart /></a></li>
                        </ul>
-                      </div><div className="image_wrapper">
+                      </div>}
+                      {outp && <div className="wishComp">
+                       <ul>
+                        <li><a onClick={() => addToList(2, data.id)}><FaRegHeart /></a></li>
+                       </ul>
+                      </div>}
+                      <div className="image_wrapper">
                         {/* <div className="actn_btn_holder">
                          <ul>
                           <li className="icn"><a onClick={() => addtoCartItems(value.sku, value.id)}><BiShoppingBag /></a></li>
@@ -147,12 +167,12 @@ const renderProducts = () => {
                         <img src={data.image} />
 
                        </div>
-                       <p className="product_title">{data.name}</p>
+                       <div className="product_title">{data.name}</div>
                        <div className="price_holder">
                                 <div className="price_left">                                  
                                     <div className="product_amt">
-                                    <span className="new_price">$000</span>
-                                        <span className="price">asdasdas</span>
+                                    <span className="new_price">{data.strike_price}</span>
+                                        <span className="price">{data.orginal_price}</span>
                                         
                                     </div>
                                     <div className="rating_front">
@@ -167,9 +187,12 @@ const renderProducts = () => {
                                     
                                     </div>
                                 </div>
-                                  <div className="price_right">                                   
+                                  {pcar && <div className="price_right">                                   
                                   <button className="addtocart"><span class="cart_svg"></span></button>
-                                  </div>
+                                  </div>}
+                                  {outpcar && <div className="price_right">                                   
+                                  <button className="addtocart"><span class="cart_svg"></span></button>
+                                  </div>}
                                 </div>
                                 </div>
                        </>   
@@ -212,7 +235,7 @@ const renderProducts = () => {
                     <div>
                     <span>Deal Products</span>
                   <div className="breadcrumbs_sec" >
-                    adasd
+                  
                   </div>
                   </div>
                   </h1>

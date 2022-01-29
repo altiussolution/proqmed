@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import PageLoader from "../components/loaders/pageLoader";
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
+import { Link, navigate, useStaticQuery, graphql } from "gatsby"
 
 const MyQuotes = ({ setcartCount }) => {
 
@@ -50,13 +51,7 @@ const MyQuotes = ({ setcartCount }) => {
         }
     }
 
-    const editQuote = (quote) => {
-        // setIndex(index);
-        setQuotePopup(true)
-        handleShowQuote(true)
-        getConversation(quote['entity_id'])
-        setQuoteForm(quote)
-    }
+
 
     const removeQuote = (id) => {
         if (window.confirm("Delete the item?")) {
@@ -88,59 +83,59 @@ const MyQuotes = ({ setcartCount }) => {
 
     }
 
-    const onSubmitQuote = quoteDetails => {
-        let quoteData = {
-            "data":
-            {
-                "quote_id": quoteForm['entity_id'],
-                "conversation": quoteDetails['conversation'],
-                "quote_qty": quoteDetails['quantity'],
-                "quote_price": quoteDetails['price_per_item']
+    // const onSubmitQuote = quoteDetails => {
+    //     let quoteData = {
+    //         "data":
+    //         {
+    //             "quote_id": quoteForm['entity_id'],
+    //             "conversation": quoteDetails['conversation'],
+    //             "quote_qty": quoteDetails['quantity'],
+    //             "quote_price": quoteDetails['price_per_item']
 
-            }
-        }
+    //         }
+    //     }
 
-        try {
-            axios({
-                method: 'post',
-                url: `${process.env.GATSBY_CART_URL_STARCARE}admin/editquoteconversation`,
-                data: quoteData,
-            })
-                .then(function (response) {
-                    toast.success('Quote Updated sucessfully')
-                    handleCloseQuote();
-                    getQuotes();
-                })
-                .catch(function (response) {
-                    toast.error('An error occured please contact admin')
-                });
+    //     try {
+    //         axios({
+    //             method: 'post',
+    //             url: `${process.env.GATSBY_CART_URL_STARCARE}admin/editquoteconversation`,
+    //             data: quoteData,
+    //         })
+    //             .then(function (response) {
+    //                 toast.success('Quote Updated sucessfully')
+    //                 handleCloseQuote();
+    //                 getQuotes();
+    //             })
+    //             .catch(function (response) {
+    //                 toast.error('An error occured please contact admin')
+    //             });
 
-        } catch (err) {
-            console.error(`An error occured ${err}`)
-        }
-    };
+    //     } catch (err) {
+    //         console.error(`An error occured ${err}`)
+    //     }
+    // };
 
-    const getConversation = (id) => {
-        try {
-            axios({
-                method: "get",
-                url: `${process.env.GATSBY_CART_URL_STARCARE}admin/quotesconversations/${id}`,
-                headers: {
-                    'Authorization': `Bearer ${localStorage.userToken}`
-                },
-            }).then((res) => {
-                if (res.statusText === "OK" && res.status == 200) {
-                    console.error(res)
-                    setQuotesConversations(res.data)
-                }
+    // const getConversation = (id) => {
+    //     try {
+    //         axios({
+    //             method: "get",
+    //             url: `${process.env.GATSBY_CART_URL_STARCARE}admin/quotesconversations/${id}`,
+    //             headers: {
+    //                 'Authorization': `Bearer ${localStorage.userToken}`
+    //             },
+    //         }).then((res) => {
+    //             if (res.statusText === "OK" && res.status == 200) {
+    //                 console.error(res)
+    //                 setQuotesConversations(res.data)
+    //             }
 
-            }).catch((err) => {
-                console.error(err)
-            })
-        } catch (err) {
-            console.error(err)
-        }
-    }
+    //         }).catch((err) => {
+    //             console.error(err)
+    //         })
+    //     } catch (err) {
+    //         console.error(err)
+    //     }
+    // }
 
 
     const addItemToCart = cartDetails => {
@@ -234,10 +229,15 @@ const MyQuotes = ({ setcartCount }) => {
                                                     </td>
                                                     <td className="action_sec">
                                                         <span>
-                                                            <button className="action action_btn btn btn_gray" onClick={() => editQuote(quote)}>Edit
-                              </button>
+                                                        <Link to="/myquotesedit" state={quote}> <button className="action action_btn btn btn_gray">Edit
+                              </button></Link>
+
                                                             <button type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.entity_id)}> Delete
                               </button>
+                                                            <a className="action action_btn btn btn_gray" onClick={() => editQuote(quote)}> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </a>
+                                                            <a type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.entity_id)}> <i class="fa fa-trash-o" aria-hidden="true"></i>
+                              </a>
                                                         </span>
                                                     </td>
 
@@ -251,7 +251,7 @@ const MyQuotes = ({ setcartCount }) => {
                     </div>
                 </section>
             }
-            {quote ? <Modal show={showQuote} onHide={handleCloseQuote} animation={false}>
+            {/*quote ? <Modal show={showQuote} onHide={handleCloseQuote} animation={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>Update Quote Details</Modal.Title>
                 </Modal.Header>
@@ -312,7 +312,7 @@ const MyQuotes = ({ setcartCount }) => {
 
                 </Modal.Footer>
             </Modal> : <div></div>
-            }
+                        */}
         </Layout >
     )
 

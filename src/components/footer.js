@@ -1,6 +1,7 @@
 import { Link } from "gatsby"
 import React, { useState,useEffect } from "react"
-
+import { getProductURL, getCategoryURL } from "./../utils/url";
+import { navigate, useStaticQuery } from "gatsby";
 // images
 import google from './../assets/google.png';
 import pintrest from './../assets/pintrest.png';
@@ -23,7 +24,28 @@ import 'react-toastify/dist/ReactToastify.css';
 const Footer = () => {
     const [email,setemail] = useState("");
     const [isLoged, setIsLoged] = useState(false);
-
+    const data = useStaticQuery(graphql`
+    {
+      allCategory {
+        edges {
+          node {
+            id
+            name
+            grand_child {
+              id
+              is_active
+              name
+            }
+          }
+        }
+      }
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+    `)
     useEffect(() =>{
 
         if(localStorage.userToken){
@@ -56,7 +78,29 @@ const Footer = () => {
           }
         }
     }
-
+    const rendercategory = () =>{
+        let allCategory = data.allCategory.edges;
+        const elements_in_each_row = Math.round(allCategory.length / 3);
+        const list = [];
+    
+        for (let i = 0; i < allCategory.length; i += elements_in_each_row) {
+          list.push(allCategory.slice(i, i + elements_in_each_row));
+        }
+    
+        return <div>
+            {     
+              list.map((el, index) => (    
+                el.map(item => (       
+                  <li key={item.node.id}>   
+                    <Link to={getCategoryURL(item.node)}>{item.node.name}</Link>
+                    
+                  </li>  
+                ))
+              ))
+            }
+        </div>  
+    
+      }
     return (
 
         
@@ -115,7 +159,7 @@ const Footer = () => {
                         <ul className="newsletter">
                             <li>
                                 <form className="w-100 newsletter">
-                                <input type="text" className="form-control search" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"onChange={e => { handleChange(e)}}></input>
+                                <input type="text" className="form-control search" placeholder="Enter Your Email" aria-label="Recipient's username" aria-describedby="basic-addon2"onChange={e => { handleChange(e)}}></input>
                                 <span className="btn btn-success newsletter_btn" onClick={() => { sendNewsLetter()}}>Subscribe Now</span>
                                     <div className="input-group">
                                     </div>
@@ -131,29 +175,22 @@ const Footer = () => {
                         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut</p>
                         
                         <ul className="social_media">
-                            <li><i className="ic_fb"></i><span></span></li>
-                            <li><i className="ic_twitter"></i><span></span></li>
-                            <li><i className="ic_insta"></i><span></span></li>
+                            <li onClick={() => {window.open("https://www.facebook.com/narendramodi/", "_blank");}}><i className="ic_fb"></i><span></span></li>
+                            <li onClick={() => {window.open("https://mobile.twitter.com/narendramodi?lang=en", "_blank");}}><i className="ic_twitter"></i><span></span></li>
+                            <li onClick={() => {window.open("https://www.instagram.com/instagramforbusiness/?hl=en", "_blank");}}><i className="ic_insta"></i><span></span></li>
                         </ul>
                         <h2><i className="phone_footer"></i>(+91)1234-5670</h2>
                     </div>
                     <div className="col-lg-2 col-md-12 col-sm-12">
                         <ul>
                             <li>
-                                <b>Support</b>
+                                <b>Quick links</b>
                             </li>
-                            
                             <li>
                                 <Link to="/aboutUs">About</Link>
                             </li>
                             <li>
                                 <Link to="/contact">Contact Us</Link>
-                            </li>
-                            <li>
-                                <Link to="/contact">FAQ</Link>
-                            </li>
-                            <li>
-                                <Link to="/contact">Support</Link>
                             </li>
                             <li>
                                 <Link to="/privacyPolicy">Privacy Policy </Link>
@@ -175,27 +212,7 @@ const Footer = () => {
                             <li>
                                 <b>Categories</b>
                             </li>
-                            <li>
-                                <Link to="/cart">Face masks</Link>
-                            </li>
-                            <li>
-                                <Link to="/orders">PPE Kit</Link>
-                            </li>
-                            <li>
-                                <Link to="/wishlist">Safety suits</Link>
-                            </li>
-                            <li>
-                                <Link to="/compareList">Eye protector</Link>
-                            </li>
-                            <li>
-                                <Link to="/sourceproductlist">Disposable</Link>
-                            </li>
-                            <li>
-                                <Link to="/compareList">Eye protector</Link>
-                            </li>
-                            <li>
-                                <Link to="/sourceproductlist">Disposable</Link>
-                            </li>
+                            {rendercategory()}
                         </ul>
                     </div>
                     <div className="col-lg-2 col-md-12 col-sm-12">
@@ -204,25 +221,19 @@ const Footer = () => {
                                 <b>My Account</b>
                             </li>
                             <li>
-                                <Link to="/cart">My Account</Link>
+                                <Link to="/profile">My Account</Link>
                             </li>
                             <li>
                                 <Link to="/orders">Shipping Info</Link>
                             </li>
                             <li>
-                                <Link to="/wishlist">Returns</Link>
-                            </li>
-                            <li>
                                 <Link to="/compareList">Compare List</Link>
                             </li>
                             <li>
-                                <Link to="/sourceproductlist">Wishlist</Link>
+                                <Link to="/wishlist">Wishlist</Link>
                             </li>
                             <li>
-                                <Link to="/sourceproductlist">Track Orders</Link>
-                            </li>
-                            <li>
-                                <Link to="/sourceproductlist">Find Product Store</Link>
+                                <Link to="/tracking">Track Orders</Link>
                             </li>
                         </ul>
                     </div>

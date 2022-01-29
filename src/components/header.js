@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import logo from './../assets/logo.png';
 import Cart from './../components/cart/cart';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { checkLogin, logout } from "./../services/headerServices";
+import { checkLogin, logout, checkUser } from "./../services/headerServices";
 import { searchServices, getCartCount, viewCartItems } from "./../utils/apiServices";
 import axios from "axios";
 import { getProductURL, getCategoryURL } from "./../utils/url";
@@ -20,11 +20,11 @@ import closeSearch from './../assets/close.png';
 import classNames from 'classnames';
 import './layout.css';
 import cart from './../assets/ic_cart_top.png';
-import Home from '../pages/Se/sellerhome';
 import imageToBase64 from 'image-to-base64/browser';
 const Header = ({ siteTitle, cartCount, allCategory }) => {
 
   const [isuserlogged, setIsLogged] = useState(false);
+  const [iswhatuser, setisUser] = useState(false);
   const [search, setSearch] = useState("");
   const [activeClass, setActiveClass] = useState(false);
   const [searchResponse, setSearchRes] = useState([]);
@@ -50,6 +50,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
 
   useEffect(() => {
     setIsLogged(checkLogin());
+    setisUser(checkUser());
     setQuoteId(localStorage.cartId);
     setJwt(localStorage.userToken);
     setEmail(localStorage.email);
@@ -442,16 +443,18 @@ const isSticky = (e) => {
                 <a className="btn dropbtn"><span>{isuserlogged ? `Welcome! ${user_name}` : <div>Hello,SignIn</div>}</span>My Account</a>
                 <div className="dropdown-content">
                   <ul>
-                    {!isuserlogged && <li><Link to="/signup">Register</Link>
-                    <Link to="/signin">Login</Link></li>}
-                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
+                    {!isuserlogged && <li><Link to="/signin">Sign-In</Link>
+                    <a><Link to="/signup">New to ProQmed?</Link>Start here</a>
+                    <a><Link to="/"></Link>Sell on ProQmed</a>
+                    </li>}
+                    {isuserlogged && <div><li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
                     <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
-                    <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
-                    <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
+                    <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li></div>}
+                    {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>}
-                    {isuserlogged && <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}
+                    {isuserlogged && <div>{iswhatuser &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}</div>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                     {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
                   </ul>
@@ -460,30 +463,28 @@ const isSticky = (e) => {
 
               </div>
             </Navbar>
-            <Navbar className="bulkorder my_account">
+            {isuserlogged && <Navbar className="bulkorder my_account">
             {/* <div>dasdasdsa<Cart cartCount={cartCount} />
              <img src={cart}/> 
             </div> */}
-              <div className="dropdown">
+              <div >
                 
               
-                <a className="btn dropbtn carttop"><Cart cartCount={cartCount} /></a>
-                <div className="dropdown-content">
+                <Link to="/cart"><a className="btn dropbtn carttop"><Cart cartCount={cartCount} /></a></Link>
+                {/* <div className="dropdown-content">
                   <ul>
                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
                     <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li>
-                    <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li>
-                    {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
-                    {isuserlogged && <li onClick={getProfile}>My Profile</li>}
+                    {isuserlogged && <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                   </ul>
 
-                </div>
+                </div> */}
 
               </div>
-            </Navbar>
+            </Navbar>}
             <div className={`${activeClass ? "sampleDropDown" : "d-none"}`}>
               {sampleVar()}
               {searchList()}
@@ -521,7 +522,7 @@ const isSticky = (e) => {
                   <li onClick={() => { navigateOnclick('/aboutUs') }}><a >About</a></li>
                   <li onClick={() => { navigateOnclick('/contact') }}><a >Contact</a></li>
                   <li onClick={() => { navigateOnclick('/tracking') }}><a >Order Tracking</a></li>
-                  <li onClick={() => { navigateOnclick('/Se/sellerhome') }}><a>Sell on Proqmed</a></li>                  
+                  <li onClick={() => { navigateOnclick('/myAddress') }}><a>My Address</a></li>                 
               </ul>
               <ul className="contact_top">
                   <li>For Sales & Support <a href="#">(+91)1234-5670</a></li>
@@ -551,12 +552,13 @@ const isSticky = (e) => {
             <div className="profile_pic">
             {profilepic.logo ? <img src={`data:image/png;base64,${profilepic.logo}`}/>: ''}
               {/* <img src={profilepic.logo} /> */}
+              
               <input type="file" onChange={onFileChange}/>
               <button onClick={onFileUpload}>
                   Upload!
                 </button>
             </div>
-
+           
             <Table>
               <tbody>
                 <tr>

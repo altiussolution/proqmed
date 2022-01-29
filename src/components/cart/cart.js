@@ -34,7 +34,7 @@ return (
              }
              <div className="cart_text">
               <span>My Cart</span>
-                {isLoged &&  parseFloat(cartTotal()).toFixed(2)  }               
+                {isLoged &&  <div>${parseFloat(cartTotal()).toFixed(2)}</div>  }                
                 </div>
 
             

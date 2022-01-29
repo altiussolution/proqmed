@@ -4,8 +4,16 @@ import axios from "axios";
 import { checkLogin } from "./../services/headerServices";
 import { navigate} from "gatsby"
 import Table from 'react-bootstrap/Table';
+import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
+import { logout } from "./../services/headerServices";
+import { account} from "./../assets/account.png"
+import { logoutt} from "./../assets/logout.png"
+import { orders} from "./../assets/orders.png"
+import Modal from 'react-bootstrap/Modal';
+
 const Profile = () => {
+  const { register, handleSubmit, errors } = useForm();
     const [jwt, setJwt] = useState("")
     const [isuserlogged, setIsLogged] = useState(false);
     const [email, setEmail] = useState("");
@@ -13,11 +21,32 @@ const Profile = () => {
     const [profile, setProfile] = useState({});
     const [show, setShow] = useState(false);
     const [state, setpic] = useState("");
+    const [p,per] = useState(false);
+    const [outp,outper] = useState(false);
+    const [aftimg,afterimage]= useState(false);
   const [profilepic,setProfilepic] = useState({});
+  const [showname,Naming]= useState(false);
+  const [showmail,Emailing]= useState(false);
+  const [showgender,Gendering]= useState(false);
+  const [shownumber,Numbering]= useState(false);
+  const [value, setValue] = useState();
+  const [showQuote, setShowQuote] = useState(true);
+  const [quote, setQuotePopup] = useState(false);
+  const handleCloseQuote = () => setShowQuote(false);
+  const handleShowQuote = () => setShowQuote(true);
     useEffect(() => {
         setIsLogged(checkLogin());
         setJwt(localStorage.userToken);
         setEmail(localStorage.email);
+        if(localStorage.permissions){
+          let addwis=localStorage.permissions.includes("Can Edit Profile")
+         
+          per(addwis)
+        
+      }else if(!localStorage.permissions){
+        outper(true)
+        
+      }
         setName(localStorage.getItem('user_name'))
         
           axios({
@@ -72,9 +101,11 @@ const Profile = () => {
           }).then((res) => {
             if (res.status == 200) {
               toast.success('Profile picture uploaded')
+              afterimage(false);
             }
           }).catch((err) => {
             console.error(err);
+            afterimage(false);
           })
         }
       };
@@ -85,11 +116,136 @@ const Profile = () => {
           navigate('/signin')
         }
       }
+const editingName = (value) =>{
+  Naming(true)
+}
+const Namesubmit = Nameval =>{
+  let data = {
+    "data": {
+      "customer_email":localStorage.email,
+      "first_name":Nameval['firstname'],
+      "last_name":Nameval['lastname']
+    }
+  }
+  try {
+    axios({
+        method: 'post',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}customer/update_name`,
+        data: data,
+    })
+        .then(function (response) {
+            toast.success('Name Updated Successfully')
+            Naming(false)
+        })
+        .catch(function (response) {
+            toast.error('An error occured please contact admin')
+            Naming(false)
+        });
 
+} catch (err) {
+    console.error(`An error occured ${err}`)
+    Naming(false)
+}
+}
+
+const editingEmail = (value) =>{
+  Emailing(true)
+}
+
+const Emailsubmit = emailss => {
+  let data = {
+    "data": {
+      "customer_email":localStorage.email,
+      "new_email":emailss['email'],
+    }
+  }
+  try {
+    axios({
+        method: 'post',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}customer/update_email`,
+        data: data,
+    })
+        .then(function (response) {
+            toast.success('Email Updated Successfully')
+            Emailing(false)
+        })
+        .catch(function (response) {
+            toast.error('An error occured please contact admin')
+            Emailing(false)
+        });
+
+} catch (err) {
+    console.error(`An error occured ${err}`)
+    Emailing(false)
+}
+}
+// const editingGender = (value) =>{
+//   Gendering(true)
+// }
+// const Gendersubmit = gen => {
+//   let data = {
+//     "data": {
+//       "customer_email":localStorage.email,
+//       "gender":gen['gender'],
+//     }
+//   }
+//   try {
+//     axios({
+//         method: 'post',
+//         url: `${process.env.GATSBY_CART_URL_STARCARE}customer/update_gender`,
+//         data: data,
+//     })
+//         .then(function (response) {
+//             toast.success('Gender Updated Successfully')
+//             Gendering(false)
+//         })
+//         .catch(function (response) {
+//             toast.error('An error occured please contact admin')
+//             Gendering(false)
+//         });
+
+// } catch (err) {
+//     console.error(`An error occured ${err}`)
+//     Gendering(false)
+// }
+// }
+const editingNumber = (value) =>{
+  Numbering(true)
+
+}
+const Numbersubmit = num => {
+  let data = {
+    "data": {
+      "customer_email":localStorage.email,
+      "telephone":num['number'],
+    }
+  }
+  try {
+    axios({
+        method: 'post',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}customer/update_phone`,
+        data: data,
+    })
+        .then(function (response) {
+            toast.success('Mobile Number Updated Successfully')
+            Numbering(false)
+        })
+        .catch(function (response) {
+            toast.error('An error occured please contact admin')
+            Numbering(false)
+        });
+
+} catch (err) {
+    console.error(`An error occured ${err}`)
+    Numbering(false)
+}
+}
       const uploadImage = async (e) => {
         const file = e.target.files[0];
+       // setDisabled(false);
         const base64 = await convertBase64(file);
         setpic(base64);
+        afterimage(true);
         console.log(base64)
       };
     
@@ -109,57 +265,231 @@ const Profile = () => {
           };
         });
       };
+
+
+      const onSubmit = userCredential => {
+        try{
+            axios({
+                method : "put",
+                url: `${process.env.GATSBY_CART_URL_STARCARE}customers/me/password`,
+                headers : {
+                'Authorization' : `Bearer ${jwt}`
+                },  
+                data : userCredential
+            }).then((response) => {
+                
+                if(response.statusText === "OK" && response.status == 200){
+                    toast.success('Password changed sucessfully');
+                    handleCloseQuote()
+                   // localStorage.clear();
+                    //navigate('/profile')
+                }
+            }).catch((err)=>{
+                console.log(err);
+                toast.error('An error occured, make sure your current password entered correctly');
+            })                        
+        }
+        catch(err) {
+            console.error(err)
+        }
+    }
+    const quotePopupOpen = () => {
+      if (!checkLogin()) {
+        navigate('/signin')
+      } else {
+        setQuotePopup(true)
+        handleShowQuote(true)
+      }
+    }
+  const logout = () => {
+    setIsLogged(false)
+    localStorage.clear();
+    setValue({})
+    navigate('/')  
+
+  }
     return (
         <Layout>
 
-
-            <main className="profile_page">
-                <div className="App">
-                    <div className="content_wrapper">
-                        <div className="container">
-                            <div className="main_title">
-                                <h1>My <span>Profile</span></h1>
-                            </div>
-                            <div className="col-lg-9 col-md-9 col-xs-12 no_data ">
-                            <div className="profile_pic">
-            {profilepic.logo ? <img src={profilepic.logo}/>: <div></div>}
+<div class="container-fluid grey">
+<div class="container padd">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="profile-sec">
+              <div className="fo-deflx">
+              {profilepic.logo ? <img src={profilepic.logo}/>: <div></div>}
+            <div className="fo-center">
               <input type="file" onChange={(e) => {uploadImage(e);}}/>
-              <button onClick={onFileUpload} className="action action_btn btn btn_gray">
+              </div>
+              {aftimg && <button onClick={onFileUpload} className="action action_btn btn btn_gray">
                   Upload!
-                </button>
-                <button onClick={() => { navigateOnclick('/changePassword') }} className="action action_btn btn btn_gray">
-                  Change Password
-                </button>
+                </button>}
+              </div>
+            
+                  <div class="name">
+                    <span>Hello</span>
+                    <p>{jwt && profile.firstname}</p>
+                </div>
             </div>
+         
 
-            <Table>
-              <tbody>
-                <tr>
-                  <th>Firstname</th>
-                  <td>:</td>
-                  <td>{jwt && profile.firstname}</td>
-                </tr>
+            <div class="profile-sec details">
+                <h4><span><img src={orders}/></span><a onClick={() => { navigateOnclick('/orders') }}>MY ORDERS</a> </h4>
+                <h4><span><img src={account}/></span><a href="#"> ACCOUNT SETTINGS</a></h4>
+                <ul>
+                    <li onClick={() => { navigateOnclick('/profile') }}><a>Profile Information</a></li>
+                    <li><a>Manage Addresses</a></li>
+                    <li><a href="#">My reviews</a></li>
+                </ul>
+              {isuserlogged && <h4><span><img src={logoutt}/></span><a onClick={() => { logout() }}>LOGOUT</a></h4>}
+            </div>
+        </div>
+<div class="col-lg-8 col-md-12 col-sm-12 ">
+            <div class="fo-bg-white">
+                <div class="top">
+                    <div class="header">
+                    <h2 class="heading">My Profile </h2>
+                </div>
+               
+                </div>
 
-                <tr>
-                  <th>Lastname</th>
-                  <td>:</td>
-                  <td>{jwt && profile.lastname}</td>
-                </tr>
+                <div class="my-profile">
+                    <div class="form-1">
+                        <div class="head-label">
+                            <h4>Personal Information</h4>
+                            {!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}>Edit</i></span>}
 
-                <tr>
-                  <th>Email</th>
-                  <td>:</td>
-                  <td>{jwt && profile.email}</td>
-                </tr>
-              </tbody>
-            </Table>
-                            </div>
                         </div>
+                       
+                       {!showname && <div class="form-content">
+                            <input type="text" value={jwt && profile.firstname} disabled/>
+                            <input type="text" value={jwt && profile.lastname} disabled/>
+                        </div>}
+                        {showname && <form onSubmit={handleSubmit(Namesubmit)}>
+                        <div class="form-content">
+                            <input type="text" placeholder="First Name" name="firstname" maxLength="20"ref={register({
+                              required: true})} />
+                            <input type="text" placeholder="Last Name" name="lastname" maxLength="20" ref={register({
+                              required: true})} />
+                            <button type="submit" class="btn btn-danger square">SAVE</button>
+                        </div></form>}
+                    </div>
+
+
+                    <div class="form-1">
+                        <div class="head-label">
+                            <h4>Email Address</h4>
+                            {!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}>Edit</i></span>}
+                            <span>
+                            {/*p && <a onClick={() => { navigateOnclick('/changePassword') }} >
+                  Change Password
+                            </a>*/}
+                {outp && <a onClick={() => quotePopupOpen()}  >
+                  Change Password
+                  {quote ? <Modal show={showQuote} onHide={handleCloseQuote} animation={false}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Change Password</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <div className="row">
+                                        <div className="col-lg-12 col-md-12 col-xs-12">
+                                            <form onSubmit={handleSubmit(onSubmit)} className="Changepwd_form" autoComplete="off">
+                                                <div className="inline_form">
+                                                <div className="form-group">
+                                                    <label>Enter Old Password</label>
+                                                    <input type="password" className="form-control" 
+                                                    id="currentPassword" name="currentPassword"  ref={register({    
+                                                        required: true,
+                                                        minLength : 8 ,
+                                                        pattern : /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
+                                                       })}/> 
+                                                    {errors.currentPassword && errors.currentPassword.type === 'required' && <span>Current Password field is required</span>}
+                                                    {errors.currentPassword && errors.currentPassword.type === 'minLength' && <span>Current  Password must contain 8 digits</span>}
+                                                    {errors.currentPassword && errors.currentPassword.type === 'pattern' && <span>Current  Password must contain 8 charactor along with 1 number and alphanumeric</span>}
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Enter New Password</label>
+                                                    <input type="password" className="form-control" 
+                                                    id="newPassword" name="newPassword"  ref={register({    
+                                                        required: true,
+                                                        minLength : 8 ,
+                                                        pattern : /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
+                                                       })}/> 
+                                                    {errors.newPassword && errors.newPassword.type === 'required' && <span>New Password field is required</span>}
+                                                    {errors.newPassword && errors.newPassword.type === 'minLength' && <span>New  Password must contain 8 digits</span>}
+                                                    {errors.newPassword && errors.newPassword.type === 'pattern' && <span>New  Password must contain 8 charactor along with 1 number and alphanumeric</span>}
+                                                </div>  
+    
+                                                <div className="form-group">
+                                                    <label>Enter Confirm Password</label>
+                                                    <input type="password" className="form-control" 
+                                                    id="confirmPassword" name="confirmPassword"  ref={register({    
+                                                        required: true,
+                                                        minLength : 8 ,
+                                                        pattern : /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
+                                                       })}/> 
+                                                    {errors.confirmPassword && errors.confirmPassword.type === 'required' && <span>Confirm Password field is required</span>}
+                                                    {errors.confirmPassword && errors.confirmPassword.type === 'minLength' && <span>Confirm  Password must contain 8 digits</span>}
+                                                    {errors.confirmPassword && errors.confirmPassword.type === 'pattern' && <span>Confirm  Password must contain 8 charactor along with 1 number and alphanumeric</span>}
+                                                </div> 
+                                                </div>
+                                                <div className="form_btn">
+                                                <button className="btn btn_gray" type="submit">Change Password</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                </Modal.Body>
+               </Modal>: <div></div>
+                }
+                </a>}
+                </span>    
+                        </div>
+
+                        {!showmail && <div class="form-content">
+                            <input type="text" value={jwt && profile.email} disabled/>
+                            </div>}
+                         
+                        {showmail && <form onSubmit={handleSubmit(Emailsubmit)}>
+                           <div class="form-content"> 
+                            <input type="text" placeholder="Email Address" name="email" maxLength="50" ref={register({
+                              required: true})} />
+                            
+                            <button type="submit" class="btn btn-danger square">SAVE</button>
+                        </div></form>}
+                    </div>
+
+                    <div class="form-1">
+                        <div class="head-label">
+                            <h4>Mobile Number</h4>
+                            {!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}>Edit</i></span>}
+                            
+                        </div>
+                        {!shownumber &&  <div class="form-content">
+                            <input type="text" value={jwt && profile.contact_number} disabled/>
+                         </div>}
+                        {shownumber &&  <form onSubmit={handleSubmit(Numbersubmit)}><div class="form-content">
+                            <input type="text" placeholder="Number" name="number" maxLength="10" ref={register({
+                              required: true})} />
+                            
+                            <button type="submit" class="btn btn-danger square">SAVE</button>
+                        </div></form>}
                     </div>
                 </div>
-            </main>
 
-        </Layout>
+                
+          </div>    
+          
+    </div>
+
+</div>
+</div>
+</div>
+
+
+</Layout>
+  
+
     )
 }
 
