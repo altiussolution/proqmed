@@ -348,7 +348,7 @@ return (
                                        />
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group form-grp-space">
                                     <label htmlFor="status">Status</label>
                                      <Switch
                                   onChange={handleChange}
@@ -435,17 +435,19 @@ return (
                             </div>
         
                            
-        
-                              <div class="form-group">
+                            <div class="form-group">
+                              <div class="input-group">
                                     
                                     <input class="form-control" id="usr" placeholder="Password"  name="password"  ref={register({
                                         required: true
                                     })} type={passwordShown ? "text" : "password"} defaultValue={(quoteForm['subuser_password'])}/>
-      
-                                    <i class="fa fa-eye-slash" aria-hidden="true" onClick={togglePasswordVisiblity}></i>
+      <div class="input-group-append">
+    <span class="input-group-text" id="basic-addon2"><i class="fa fa-eye-slash" aria-hidden="true" onClick={togglePasswordVisiblity}></i></span>
+  </div>
+                                    
                                     {errors.password && errors.password.type === 'required' && <span className="error">Password is required</span>}
                                   </div>
-
+                                    </div>
                                   <div className="form-group">
                                    
                                      
@@ -460,7 +462,7 @@ return (
                                      /> 
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group form-grp-space">
                                     <label htmlFor="status">Status</label>
                                      <Switch
                                   onChange={handleChange1}
