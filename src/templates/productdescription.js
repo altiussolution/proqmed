@@ -477,7 +477,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
               <div className="row upper-space">
                 <div className="col-lg-5 col-md-4 col-xs-12 text-center border_f">
                   <div className="slider_Product">
-                    {data.length > 0 && <SliderImage data={data} showDescription={true} direction="right" />}
+                    {data.length > 0 && <SliderImage data={data} width="500px" showDescription={true} direction="top" />}
                   </div>
                 </div>
                 <div className="col-lg-7 col-md-8 col-xs-12 pr-5 product_details">
