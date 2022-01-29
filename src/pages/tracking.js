@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import "../components/layout.css"
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
+import empty_cart from './../assets/empty.png';
 
 const Tracking =  () => {
     const [jwt, setjwt] = useState("");
@@ -105,7 +106,15 @@ const Tracking =  () => {
                       <button type="submit" className="btn_gray btn">Track Order</button>                    
                   </div>   
                   </form>
-              </div>      
+              </div>   
+              {track.length == 0 ? <div className="col-lg-9 col-md-12 col-xs-12 text-center">  
+              <div className="fo-seperate">
+              <img src={empty_cart} alt={"Empty Cart"} />
+<h4>No Data Available</h4>
+</div>
+
+</div> :
+    
               <div className="col-lg-9 col-md-12 col-sm-12 ">
                   <div className="fo-bg-white ng">
                     <div className="tr-header">
@@ -139,6 +148,7 @@ const Tracking =  () => {
                     </div>
                 </div>                    
           </div>
+}
       </div>
 </div>
 </div>

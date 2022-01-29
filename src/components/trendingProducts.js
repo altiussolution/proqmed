@@ -36,8 +36,10 @@ const TrendingProducts = () => {
     const [trendingProducts, setTrendingProducts] = useState(null);
     const [pcar,percart] = useState(false);
     const [outpcar,outpercart] = useState(false);
+    const [permits,setPermit] = useState([]);
   useEffect(() => {
     setJwt(localStorage.userToken)
+    setPermit(localStorage.permissions)
     const jwt = localStorage.getItem('userToken')
     if(jwt){
       try
@@ -70,10 +72,10 @@ const TrendingProducts = () => {
     }else{
         
     }
-    if(localStorage.permissions){
-      let addcar=localStorage.permissions.includes("Can Add To Cart")
+    if(permits.length!=0){
+      let addcar=permits.includes("Can Add To Cart")
       percart(addcar)
-  }else if(!localStorage.permissions){
+  }else if(permits.length==0){
     
     outpercart(true)
   }
@@ -140,18 +142,17 @@ const TrendingProducts = () => {
           trendingProducts.map((data, index) => (
             <div key={`${data.name}_${index}`} className="">
               {/* <div className="" > */}
-              
+              <Link to={getProductURL(data)}>
+
                 <div className="card">
 
                   <div className="image_wrapper">
-                  <Link to={getProductURL(data)}>
                     <img src={data.image} />
-</Link>
                   </div>
                   
                   
                   <div className="img_content">
-                  <h5 className="prod-title">{data.name}</h5>
+                  <Link to={getProductURL(data)}> <h5 className="prod-title">{data.name}</h5></Link>
                     
 
                     
@@ -189,7 +190,8 @@ const TrendingProducts = () => {
                                 </div>
                                 </div>
                 </div>
-                
+                </Link>
+
               {/* </div> */}
             </div>
           ))

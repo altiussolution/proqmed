@@ -13,7 +13,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import Select from 'react-select';
 const UserManage = () => {
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [rowsPerPage, setRowsPerPage] = React.useState(4);
  const [field, setField] = useState([]);
  const [quoteedit, setQuotePopupedit] = useState(false);
  const [quoteadd, setQuotePopupadd] = useState(false);
@@ -36,6 +36,7 @@ const UserManage = () => {
  const [clip,categoryda] = useState([]);
  const [names, setNames] = useState([]);
  const [catie, setCats] = useState([]);
+ const [username, setUsername] = useState();
  const data = useStaticQuery(graphql`
  {
    allCategory {
@@ -60,6 +61,7 @@ const UserManage = () => {
 `)
  useEffect(() => {
      setCustomerId(localStorage.customer_id)
+     setUsername(localStorage.user_name)
      rendercategory();
     getQuotes();
     
@@ -156,7 +158,7 @@ const removeQuote = (id) => {
         try {
             axios({
                 method: "delete",
-                url: `${process.env.GATSBY_CART_URL_STARCARE}subuser/subuserdelete/${id}`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}subuser/subuserdelete/subuser_id/${id}`,
                 headers: {
                     'Authorization': `Bearer ${localStorage.userToken}`
                 }
@@ -391,17 +393,17 @@ const onSubmitQuoteadd = quoteDetails => {
                 <img src="images/sample.png" alt=""/>
                 <div class="name">
                     <span>Hello</span>
-                    <p>{localStorage.user_name}</p>
+                    <p>{username}</p>
                 </div>
             </div>
 
             <div class="profile-sec details">
-                <h4><span><img src="images/orders.png" alt=""/></span><a href="/orders">MY ORDERS</a> </h4>
-                <h4><span><img src="images/account.png" alt=""/></span><a > ACCOUNT SETTINGS</a></h4>
+            <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders"><a>MY ORDERS</a> </Link></h4>
+                <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile"><a> ACCOUNT SETTINGS</a></Link></h4>
                 <ul>
-                    <li><a href="/profile">Profile Information</a></li>
-                    <li><a href="/myAddress">Manage Addresses</a></li>
-                   
+                    <li><Link to="/profile"><a>Profile Information</a></Link></li>
+                    <li><Link to="/myAddress"><a>Manage Addresses</a></Link></li>
+
                 </ul>
                 <h4><span><img src="images/users.png" alt=""/></span><a href="#"> USER MANAGEMENT</a></h4>
                 <h4><span><img src="images/logout.png" alt=""/></span><a href="#">LOGOUT</a></h4>
@@ -455,7 +457,7 @@ const onSubmitQuoteadd = quoteDetails => {
                             <td>{quote.subuser_firstname}</td>
                             <td>{quote.role_name}</td>
                             <td class="green">{quote.subuser_status == false ? "In-Active" : "Active"}</td>
-                            <td> <Link to="/manageUser" state={quote}><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></Link> <span onClick={() => removeQuote(quote.subuser_id)}><i class="fa fa-trash-o" aria-hidden="true"></i></span> </td>
+                            {quote.subuser_id!=null && <td> <Link to="/manageUser" state={quote}><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></Link> <span onClick={() => removeQuote(quote.subuser_id)}><i class="fa fa-trash-o" aria-hidden="true"></i></span> </td>}
                          </tr>
 
                         

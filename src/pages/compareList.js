@@ -6,6 +6,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';    
 import isImageUrl  from 'is-image-url';
+import empty_cart from './../assets/empty.png';
 
 const CompareList = () => {
     const [compareLists, setCompareList] = useState([]);
@@ -98,12 +99,16 @@ const CompareList = () => {
                             <div className="content_wrapper">
                                 <div className="container">
                                     <div className="main_title">
-                                        <h1>My CompareList <span>(5)</span></h1>
+                                        <h1>My CompareList <span>({compareLists.length})</span></h1>
                                     </div>
                                    
                                             {/* {localStorage.getItem('sampleVal')} */}
                                            
-                                            
+                                            <div className="row no_data_found">
+                                            {compareLists.length == 0 ? <div className="col-lg-12 col-md-12 col-xs-12 text-center">
+                                            <img src={empty_cart} alt={"Empty Cart"} />
+                                            <h4>No items in CompareList</h4>
+                                        </div> :
                                             
                                     <div className="compareList_details table-responsive">
                                         <table className="table compareList_table">
@@ -135,6 +140,8 @@ const CompareList = () => {
                                            
                                         </tbody>
                                         </table>
+                                    </div>
+}
                                     </div>
                                 </div>
                             </div>

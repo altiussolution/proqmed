@@ -9,7 +9,8 @@ import { IoIosGitCompare } from "react-icons/io";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-import {getWLCount, wishListCount } from '../utils/apiServices'
+import {getWLCount, wishListCount,viewCartItems,getCartCount } from '../utils/apiServices'
+import { navigate } from "gatsby";
 
 
 const Featuredproducts = () => {
@@ -17,16 +18,58 @@ const Featuredproducts = () => {
     const [customerId, setCustomerId] = useState("");
     const [jwt, setJwt] = useState("");
     const [p,per] = useState(false);
+    const [outp,outper] = useState(false);
     const [pcar,percart] = useState(false);
+    const [permits,setPermit] = useState([]);
+    const [outpcar,outpercart] = useState(false);
+    const [qty, setQty] = useState(1);
+    const [quote_id, setQuoteId] = useState("");
+    const [cartCnt, setCartCnt] = useState(getCartCount())
+    const [isButton, setButton] = useState(false);
+
+
     useEffect(() => {
+      setPermit(localStorage.permissions)
         setCustomerId(localStorage.customer_id)
         setJwt(localStorage.userToken)
-        if(localStorage.permissions){
-          let addwis=localStorage.permissions.includes("Can Add To Wishlist")
-          let addcar=localStorage.permissions.includes("Can Add To Cart")
+        if(permits.length!=0){
+          let addwis=permits.includes("Can Add To Wishlist")
+          let addcar=permits.includes("Can Add To Cart")
           per(addwis)
           percart(addcar)
-      }
+        }else if(!localStorage.permissions){
+          outper(true)
+          outpercart(true)
+        }
+        const jwt = localStorage.getItem('userToken')
+        if(jwt){
+          try
+          {    
+            axios({
+              method : 'post',
+              url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine`,
+              headers : {
+                  'Authorization' : `Bearer ${jwt}`
+              }
+            })
+            .then((response) => {
+              if(response.statusText === "OK" && response.status == 200)
+              {
+                console.log(response.data)
+                  localStorage.setItem('cartId',response.data);
+                  setQuoteId(localStorage.cartId)
+              }
+            }) 
+            .catch((error) => {
+              console.error(error,'error')
+            })
+          }catch(err){
+            console.error(err);
+            toast.error('something went wrong')
+          }
+        }else{
+            
+        }
         const fetchFeature = async () => {
             const res = await fetch(
                 `${process.env.GATSBY_CART_URL_STARCARE}featureproducts/${localStorage.customer_id}`
@@ -37,7 +80,50 @@ const Featuredproducts = () => {
         };
         fetchFeature();
     }, []);
-
+    const addtoCartItems = (sku, id) => {
+      if (localStorage.userToken) {
+          const cartItem = {
+              "cartItem": {
+                  "sku": sku,
+                  "qty": qty,
+                  "quote_id": quote_id
+              }
+          }
+          setButton(true);
+          const jwt = localStorage.userToken
+          if (cartItem) {
+              try {
+                  axios({
+                      method: 'post',
+                      url: `${process.env.GATSBY_API_BASE_URL_STARCARE}carts/mine/items`,
+                      data: cartItem,
+                      headers: {
+                          'Authorization': `Bearer ${jwt}`
+                      }
+                  }).then((res) => {
+                      if (res.statusText === "OK" && res.status == 200) {
+                          viewCartItems();
+                          // removeProduct(id, 'cart')
+                          toast.success('Succesfully added to cart');
+                          setTimeout(() => {
+                              setCartCnt(getCartCount())
+                          }, 3000);
+                          setButton(false);
+                      }
+                  }).catch((err) => {
+                      console.error(err);
+                      toast.error('Failed to add cart')
+                  })
+              } catch (err) {
+                  console.error(err)
+              }
+          }
+      }
+      else {
+          localStorage.clear()
+          navigate("/signin")
+      }
+  }
     const addToList = (type,id) => {
         // type 1 = wishlist
         // type 2 = comparelist
@@ -82,11 +168,17 @@ const Featuredproducts = () => {
                     featureProducts.map((data,index) => (
                         <div className="item product_item sample" key={`${data.name}_${index}`}>
                             <div className="card">    
-                            <div className="wishComp">
+                            {p && <div className="wishComp">
                                     <ul>
-                                      {p && <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>}
+                                      <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
                                     </ul>
-                                </div>
+                                </div>}
+                                {outp && <div className="wishComp">
+                                    <ul>
+                                      <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
+                                    </ul>
+                                </div>}
+                              
                                 <div className="image_wrapper">
                                 {/* <div className="actn_btn_holder">                                  
                                     <ul>
@@ -106,8 +198,8 @@ const Featuredproducts = () => {
                                 <div className="price_holder">
                                 <div className="price_left">                                  
                                     <div className="product_amt">
-                                    <span className="new_price">$000</span>
-                                        <span className="price">${Math.round(data.price)}</span>
+                                    {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
+                                        <span className="price">${Math.round(data.original_price)}</span>
                                         
                                     </div>
                                     <div className="rating_front">
@@ -124,8 +216,11 @@ const Featuredproducts = () => {
                                     
                                     </div>
                                 </div>
-                                  {pcar && <div className="price_right">                                   
-                                  <button className="addtocart"><span class="cart_svg"></span></button>
+                                   {pcar && <div className="price_right">                                   
+                                  <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
+                                  </div>}
+                                  {outpcar && <div className="price_right">                                   
+                                  <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
                                   </div>}
                                 </div>
                             </div>
@@ -145,9 +240,9 @@ const Featuredproducts = () => {
                 <div className="col-md-12">
                 <div className="main_title left">
                     <h1>
-                      Our 
-                    <span>Featured Products</span>
-                  {/* <div className="breadcrumbs_sec" >
+                      Our Featured Products
+                   
+                  {/* <span></span> <div className="breadcrumbs_sec" >
                     adasd
                   </div> */}
                   </h1>

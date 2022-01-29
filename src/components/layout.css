@@ -4372,9 +4372,12 @@ body .all_categories_list .itm_list_holder a.itm_list_title {
 .catgoryPage .category_container .cat_scroll #products .product_item,
 .category_container .cat_scroll #products.catgoryPage  .product_item {
   border: unset!important;
-border-bottom: 1px solid #ccc;
-border-radius: 0;
-width: 23.4%;
+  border-bottom: none !important;
+  width: 23.4%;
+  justify-content: center;
+  padding: 20px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 5px -1px, rgb(0 0 0 / 6%) 0px 3px 1px -1px;
+  border-radius: 1rem;
 }
 .catgoryPage .category_container .cat_scroll #products .product_item:hover,
 .category_container .cat_scroll #products.catgoryPage  .product_item:hover {
@@ -5787,7 +5790,7 @@ header{
 }
 
 .fo-bg-white .product_item:nth-child(even){
-  background: rgb(252, 252, 252);
+  background: rgb(243 243 243);
 }
 
 
@@ -6469,7 +6472,7 @@ button.btn.btn-danger.square {
 }
 
 h2.heading{
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .head-label h4{
     margin-right: 10px;
@@ -6479,6 +6482,7 @@ h2.heading{
 .head-label span {
     color: #1C67A8;
     cursor: pointer;
+    margin-right: 10px;
  }
 
  .form-1{
@@ -6608,7 +6612,7 @@ button.btn.btn-primary{
 
 .cart-details-sec {
   background: #fff;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 20px;
   box-shadow: rgb(50 50 93 / 15%) 0px 6px 12px -2px, rgb(0 0 0 / 10%) 0px 3px 7px -3px;
 }
@@ -6655,7 +6659,7 @@ span.inp_val {
 .fo-bg-white .top .right .search {
   border: 1px solid #ddd;
   height: 40px;
-  width: 33%;
+  width: 75%;
   margin-right: 10px;
   border-radius: 5px;
 }
@@ -6678,4 +6682,66 @@ border-radius: 5px;
 
 .table-striped tbody tr:nth-of-type(even){
 background-color: rgb(252, 252, 252);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+a i.fa.fa-pencil-square-o {
+  color: #000;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
+span.way {
+  margin-left: 20px;
+}
+
+.search.orders {
+  width: 27%;
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: row-reverse;
+    height: 40px;
+}
+
+.search.orders input{
+ border:none;
+} 
+
+span.functions {
+  display: flex;
+}
+
+span.functions p {
+  margin-right: 10px;
+}
+
+span.functions p .fa {
+  margin-right: 5px;
+}
+
+.buttons-or button.btn.btn {
+  width: -webkit-fill-available;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.row.same {
+  display: flex;
+  align-items: center;
+}
+
+.fo-bg-white .top {
+  border-bottom: 0.1px solid #f1f1f1;
+}
+.fo-seperate img {
+  width: 15%;
+  border-radius: 10px;
 }

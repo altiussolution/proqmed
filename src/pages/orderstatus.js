@@ -16,8 +16,9 @@ const Invoice = ({ location }) => {
     const [attach_data, setattachment] = useState([]);
     const [p,per] = useState(false);
     const [nop,noper] = useState(false);
-
+    const [permits,setPermit] = useState([]);
     useEffect(() => {
+        setPermit(localStorage.permissions);
         setJwt(localStorage.userToken);
         OrderStatus()
         invoiceDetails()
@@ -35,11 +36,11 @@ const Invoice = ({ location }) => {
                 if (res.statusText === "OK" && res.status == 200) {
                     console.log(res.data)
                     setOrders(res.data);
-                    if(localStorage.permissions){
-                        let viewwis=localStorage.permissions.includes("Can View Invoice")
+                    if(permits.length!=0){
+                        let viewwis=permits.includes("Can View Invoice")
                         per(viewwis)
                     }
-                    else if(!localStorage.permissions){
+                    else if(permits.length==0){
                         noper(true)
                     }
                     setLoader(false);

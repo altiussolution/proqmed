@@ -12,6 +12,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useForm } from "react-hook-form";
 import ImageNotFound from "./../assets/car-dealer-loader.gif";
 import SliderImage from 'react-zoom-slider';
+import { Link } from "gatsby"
 
 
 
@@ -54,22 +55,50 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
       width: 2000,
       height: 1800
     }])
-
+    const [permits,setPermit] = useState([]);
 
 
   useEffect(() => {
+    setPermit(localStorage.permissions)
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
-    setQuoteId(localStorage.cartId);
+    //setQuoteId(localStorage.cartId);
+    const jwt = localStorage.getItem('userToken')
+    if(jwt){
+      try
+      {    
+        axios({
+          method : 'post',
+          url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine`,
+          headers : {
+              'Authorization' : `Bearer ${jwt}`
+          }
+        })
+        .then((response) => {
+          if(response.statusText === "OK" && response.status == 200)
+          {
+            console.log(response.data)
+              localStorage.setItem('cartId',response.data);
+              setQuoteId(localStorage.cartId)
+          }
+        }) 
+        .catch((error) => {
+          console.error(error,'error')
+        })
+      }catch(err){
+        console.error(err);
+        toast.error('something went wrong')
+      }
+    }
     console.log(proDescription)
-    if(localStorage.permissions){
-      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
-      let addcar=localStorage.permissions.includes("Can Add To Cart")
-      let addcom=localStorage.permissions.includes("Can Add To Compare")
+    if(permits.length!=0){
+      let addwis=permits.includes("Can Add To Wishlist")
+      let addcar=permits.includes("Can Add To Cart")
+      let addcom=permits.includes("Can Add To Compare")
       per(addwis)
       percart(addcar)
       percomp(addcom)
-  }else if(!localStorage.permissions){
+  }else if(permits.length==0){
     outper(true)
     outpercart(true)
     outpercomp(true)
@@ -79,7 +108,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
         "cartItem": {
           "sku": proDescription.items.config_options[0].optins_values.sku,
           "qty": qty,
-          "quote_id": localStorage.cartId
+          "quote_id": quote_id
         }
       })
       let colour_list = [];
@@ -131,7 +160,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
         "cartItem": {
           "sku": proDescription.items.sku,
           "qty": qty,
-          "quote_id": localStorage.cartId
+          "quote_id": quote_id
         }
       })
       setData([
@@ -188,7 +217,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
       "cartItem": {
         "sku": changeSizeValue.optins_values.sku,
         "qty": qty,
-        "quote_id": localStorage.cartId
+        "quote_id": quote_id
       }
     })
     let set_price = [];
@@ -204,7 +233,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
         "cartItem": {
           "sku": change_price[0].sku,
           "qty": qty,
-          "quote_id": localStorage.cartId
+          "quote_id": quote_id
         }
       }
     } else {
@@ -212,7 +241,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
         "cartItem": {
           "sku": proDescription.items.sku,
           "qty": qty,
-          "quote_id": localStorage.cartId
+          "quote_id": quote_id
         }
       }
     }
@@ -425,7 +454,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
       "cartItem": {
         "sku": options.sku,
         "qty": qty,
-        "quote_id": localStorage.cartId
+        "quote_id": quote_id
       }
     })
     setindex_colour(index1);
@@ -456,7 +485,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                     <h1 className="mb-2">
                       {proDescription.items.name}
                     </h1>
-                    {proDescription.items.rating ?
+                    {proDescription.items.rating != null &&
                       <StarRatings
                         rating={Math.round(proDescription.items.rating)}
                         numberOfStars={5}
@@ -464,9 +493,8 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         starDimension="20px"
                         starSpacing="3px"
                         starRatedColor="rgb(242 187 22)"
-                      /> : 
+                      />  
                       
-                      <p className="no_review">{proDescription.items.number_of_review}</p>
                     }
 
 
@@ -516,7 +544,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                           )
                         }
 
-                        <span><strike>${Math.round(proDescription.items.strike_price)}</strike></span>
+                       {proDescription.items.strike_price !=null && <span><strike>${Math.round(proDescription.items.strike_price)}</strike></span>}
 </div>
 
                     {tierAmt.length != 0 ? (
@@ -593,7 +621,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                       <p>{proDescription.items.overview}</p>
                       {/* <a>Read More</a> */}
 
-                      <p>Seller: <span>{proDescription.items.seller_name}</span></p>
+                     {proDescription.items.seller_name !=null && <p>Seller: <span>{proDescription.items.seller_name}</span></p>}
 
 
                     </div>
@@ -619,10 +647,11 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
 
                     <div className="product_detail_action">
                           
-
-              <a onClick={() => quotePopupOpen()} >
+                   <a> <Link to="/myquotesedit" state={{ des: proDescription }}><span className="fa fa-comments"></span> Request for a Quote
+                              </Link></a>
+              {/*<a onClick={() => quotePopupOpen()} >
               <span className="fa fa-comments"></span>   Request for a Quote
-              </a>
+                      </a>*/}
 
                          {pcom && <a onClick={() => addToList(1)} >
                             <IoIosGitCompare /> Add to Compare
@@ -676,7 +705,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                       </Modal.Header>
                       <Modal.Body>
 
-                        <p >Product Name:&nbsp;<span>{proDescription.items.name}</span></p>
+                        <p >Product Name:&nbsp;<span>{proDescription.items.name}</span></p> 
 
                         <form onSubmit={handleSubmit(onSubmitQuote)} action="" className="header_signin_form">
                           <div className="form-group">

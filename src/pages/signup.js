@@ -8,7 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import sign_bg from './../assets/bg.jpg';
 import PageLoader from "../components/loaders/pageLoader";
 import { trim } from "jquery";
-import { AiTwotoneDelete } from "react-icons/ai";
+import { AiFillEye } from "react-icons/ai";
+import { AiFillEyeInvisible } from "react-icons/ai";
+
 const SignUp = () => {
 
   const { register, handleSubmit, watch, errors } = useForm();
@@ -119,7 +121,7 @@ const SignUp = () => {
                     minLength: 6,
                     pattern: /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
                   })} />
-                  <button className="btn btn heart" type="button" onClick={togglePasswordVisiblity2}><AiTwotoneDelete /></button>
+                  <button className="btn btn heart" type="button" onClick={togglePasswordVisiblity2}>{passwordShown2 ? <AiFillEye />: <AiFillEyeInvisible />}</button>
                   {errors.password && errors.password.type === 'required' && <span className="error">Password field is required</span>}
                   {errors.password && errors.password.type === 'minLength' && <span className="error">Passwords must contain 6 characters</span>}
                   {errors.password && errors.password.type === 'pattern' && <span className="error">Password must contain 6 charactors along with 1 number and alphanumeric</span>}
@@ -128,7 +130,7 @@ const SignUp = () => {
                     minLength: 6,
                     pattern: /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
                   })} />
-                  <button className="btn btn heart" type="button" onClick={togglePasswordVisiblity}><AiTwotoneDelete /></button>
+                  <button className="btn btn heart" type="button" onClick={togglePasswordVisiblity}>{passwordShown ? <AiFillEye />: <AiFillEyeInvisible />} </button>
                   {errors.conpassword && errors.conpassword.type === 'required' && <span className="error">Confirm Password field is required</span>}
                   {errors.conpassword && errors.conpassword.type === 'minLength' && <span className="error">Confirm Password must contain 6 digits</span>}
                   {errors.conpassword && errors.conpassword.type === 'pattern' && <span className="error">Confirm Password must contain 6 charactors along with 1 number and alphanumeric</span>}

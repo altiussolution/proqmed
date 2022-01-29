@@ -43,10 +43,17 @@ const SignIn = (props) => {
       })
       
         .then(function (response) {
-         console.log(response)
           if (response.statusText === "OK" && response.status == 200 ) {
+            
+            let categoryJson = [];
             if(response.data[0]['approve_account'] === "approved"){
             if (typeof (response.data[0]['token']) === 'string') {
+              if(response.data[0]['category_permissions']){
+                for (let key in response.data[0]['category_permissions']) {
+                  categoryJson.push(response.data[0]['category_permissions'][key].id);
+                }
+                localStorage.setItem('category_permissions', categoryJson.toString());
+              }
               if(response.data[0]['allowed_permissions']){
                 localStorage.setItem('permissions', response.data[0]['allowed_permissions']);
               }
@@ -56,6 +63,7 @@ const SignIn = (props) => {
               localStorage.setItem('user_name', response.data[0]['name'])
               createCart(response.data[0]['token']);
               getWishList();
+              fetchRegion();
               checkUser();
             } else {
               setLoader(false);
@@ -134,6 +142,14 @@ const SignIn = (props) => {
         console.error(err)
     }
 }
+const fetchRegion = async () => {
+  const res = await fetch(
+      `${process.env.GATSBY_CART_URL_STARCARE}regions`
+  );
+
+  const json = await res.json();
+  localStorage.setItem("Regions",JSON.stringify(json));
+};
 
 const wistlistsValue = () => {
   setTimeout(() => {

@@ -22,16 +22,47 @@ export default function CategoryCard({ data: product, dataClass }) {
   const [pcar,percart] = useState(false);
   const [outp,outper] = useState(false);
   const [outpcar,outpercart] = useState(false);
+  const [permits,setPermits] = useState([]);
   useEffect(() => {
     setCustomerId(localStorage.customer_id)
+    setPermits(localStorage.permissions)
     setJwt(localStorage.userToken)
-    setQuoteId(localStorage.cartId)
-    if(localStorage.permissions){
-      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
-      let addcar=localStorage.permissions.includes("Can Add To Cart")
+   // setQuoteId(localStorage.cartId)
+    const jwt = localStorage.getItem('userToken')
+        if(jwt){
+          try
+          {    
+            axios({
+              method : 'post',
+              url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine`,
+              headers : {
+                  'Authorization' : `Bearer ${jwt}`
+              }
+            })
+            .then((response) => {
+              if(response.statusText === "OK" && response.status == 200)
+              {
+                console.log(response.data)
+                  localStorage.setItem('cartId',response.data);
+                  setQuoteId(localStorage.cartId)
+              }
+            }) 
+            .catch((error) => {
+              console.error(error,'error')
+            })
+          }catch(err){
+            console.error(err);
+            toast.error('something went wrong')
+          }
+        }else{
+            
+        }
+    if(permits.length!=0){
+      let addwis=permits.includes("Can Add To Wishlist")
+      let addcar=permits.includes("Can Add To Cart")
       per(addwis)
       percart(addcar)
-  }else if(!localStorage.permissions){
+  }else if(permits.length==0){
     outper(true)
     outpercart(true)
   }

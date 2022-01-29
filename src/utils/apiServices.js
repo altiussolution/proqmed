@@ -77,6 +77,8 @@ const deleteCart = (id) => {
 }
 
 const viewCartItems = () => {
+  let resi=[]
+  let stocks=[]
   const jwt = localStorage.getItem('userToken');
   const email = localStorage.email;
   try{
@@ -86,8 +88,21 @@ const viewCartItems = () => {
         headers : {
                'Authorization' : `Bearer ${jwt}`
              }  
-      }).then((res) => {
+      }).then(async (res) => {
         if(res.statusText === "OK" && res.status == 200){
+            for(let i=0;i<res.data.length;i++){
+              const resp = await fetch(
+                `${process.env.GATSBY_CART_URL_STARCARE}cart/productstatus/product_id/${res.data[i].product_id}`
+            );
+            resi.push(await resp.json());
+            }
+            for(let i=0;i<resi.length;i++){
+              stocks.push(resi[i][0]['stock_status'])
+            }
+            res.data.forEach(object => {
+              object.status = stocks;
+            });
+            console.log(res.data)
             localStorage.setItem('cartData' , JSON.stringify(res.data))
         }
 
@@ -104,13 +119,13 @@ const viewCartItems = () => {
 }
 
 const getCartCount = (value) =>{
-  // if(value){
+  if(value){
     const isBrowser = typeof window !== "undefined"
     if(isBrowser && localStorage.getItem('cartData')){
       let cart = JSON.parse(localStorage.getItem('cartData'))
       return cart.length
     }
-  // }
+  }
 }
 
 

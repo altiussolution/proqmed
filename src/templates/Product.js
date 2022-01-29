@@ -39,7 +39,7 @@ const Product = props  => {
   const [sellerprod, setothersellers] = useState(null);
   const [jwt, setJwt] = useState("");
   const id = props.slug.split("-").slice(-1)[0]; 
-  
+  const [permits,setPermit] = useState([]);
   const [data, setData] = useState([  
     {
       image:(ImageNotFound),
@@ -56,6 +56,7 @@ const Product = props  => {
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false);
     useEffect(() => {
+      setPermit(localStorage.permissions)
       setCustomerId(localStorage.customer_id)
       setJwt(localStorage.userToken)
       const jwt = localStorage.getItem('userToken')
@@ -91,12 +92,12 @@ const Product = props  => {
           navigate("/signin")
       }
       //setQuoteId(localStorage.cartId)
-      if(localStorage.permissions){
-        let addwis=localStorage.permissions.includes("Can Add To Wishlist")
-        let addcar=localStorage.permissions.includes("Can Add To Cart")
+      if(permits.length!=0){
+        let addwis=permits.includes("Can Add To Wishlist")
+        let addcar=permits.includes("Can Add To Cart")
         per(addwis)
         percart(addcar)
-    }else if(!localStorage.permissions){
+    }else if(permits.length==0){
       outper(true)
       outpercart(true)
     }
@@ -104,7 +105,8 @@ const Product = props  => {
         setLoading(true);   
         try {  
           const res = await axios.get(
-            `${process.env.GATSBY_NODE_URL_STARCARE}data/singleproduct/${id}.json`
+            `${process.env.GATSBY_CART_URL_STARCARE}admin/productsattributes/${id}`
+            //`${process.env.GATSBY_NODE_URL_STARCARE}data/singleproduct/${id}.json`
           );
           const data = convertToObject(res.data);
           console.log(data)

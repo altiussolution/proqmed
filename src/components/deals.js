@@ -7,11 +7,11 @@ import 'react-tabs/style/react-tabs.css';
 import Steth from "./../assets/steth.png"
 import Doc from "./../assets/hot_deals.png"
 import maskgirl from "./../assets/mask_girl.png"
-import Glove from "./../assets/glove.png"
 import { getProductURL, getCategoryURL } from "./../utils/url";
 import { Slide } from 'react-slideshow-image';
 import Slider from "react-slick";
-
+// import src from "react-select/dist/declarations/src";
+const img = "./../assets/aid.jpg";
 const dealofday = {
   autoplay: false,
   speed: 1000,
@@ -45,7 +45,7 @@ const Deals = () => {
 
     const fetchFeature = async () => {
         const res = await fetch(
-            `${process.env.GATSBY_CART_URL_STARCARE}category/dealsofthedays/38`
+            `${process.env.GATSBY_CART_URL_STARCARE}category/dealsofthedays/13`
         );
         const json = await res.json();
         await setDealsofday(json);
@@ -74,7 +74,7 @@ const renderHots =()=>{
                     {
     hotProducts.map((data,index)=>(
       <Link to="/hotDeals">
-  <img className="HF_BImg" src={data.category_image} alt={"banner"}/></Link> )) }
+  <img className="HF_BImg" src={data.category_image} onError={e => (e.target.src = ImageNotFound)}/></Link> )) }
   </div>
     )
 
@@ -97,15 +97,16 @@ const renderDeals = ()=>{
     dealProducts.map((data,index)=>(
   <div className="card" key={`${data.sub_category}_${index}`}>
       <h5 className="title_link"><Link to={getCategoryURL(data.sub_category)}>{data.sub_category.name}</Link></h5>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      {/*<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>*/}
       <ul>
       {data.sub_category.sub_category_sub.slice(0,4).map((value,index)=>(
         
  <><li>
- <div className="image_wrapper">
-          <Link to={getProductURL(value)}><img src={value.image} /></Link>
+ <div className="image_wrapper"  key={`${value}_${index}`}>
+          <Link to={getCategoryURL(value)}><img src={value.image} 
+    onError={e => (e.target.src = ImageNotFound)}/></Link>
         </div><div className="description_list">
-            <Link to={getProductURL(value)}>{value.name}</Link>
+            <Link to={getCategoryURL(value)}>{value.name}</Link>
           </div>
           </li>
           </> 
