@@ -126,14 +126,14 @@ Defaulti(states)
 const onSubmit = userAddresses => {
 let updateAddress = {
     "address": { 
-        "id":145,
+    "id":location.state['entity_id'],
       "customer_id": cusID,
       "defaultShipping": ship,
       "defaultBilling" : bill,
        "region": {
-          "region_code": Tamilan['value'], //TN
+          "region_id": Tamilan['value'], //563
           "region": Tamilan['label'],     //TamilNadu
-          "region_id": Tamilan['country_id']   //12
+           //12
       },
       "street": [userAddresses.street_1.trim()],
       "postcode": userAddresses.postcode,
@@ -179,14 +179,12 @@ let updateAddress = {
 const onSubmitadd = userAddresses => {
     let updateAddress = {
         "address": { 
-            "id":145,
           "customer_id": cusID,
           "defaultShipping": shipadd,
           "defaultBilling" : billadd,
            "region": {
-              "region_code": Tamilan['value'], //TN
               "region": Tamilan['label'],     //TamilNadu
-              "region_id": Tamilan['country_id']   //12
+              "region_id": Tamilan['value']   //12
           },
           "street": [userAddresses.street_1.trim()],
           "postcode": userAddresses.postcode,

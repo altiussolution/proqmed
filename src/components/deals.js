@@ -7,11 +7,11 @@ import 'react-tabs/style/react-tabs.css';
 import Steth from "./../assets/steth.png"
 import Doc from "./../assets/hot_deals.png"
 import maskgirl from "./../assets/mask_girl.png"
-import Glove from "./../assets/glove.png"
 import { getProductURL, getCategoryURL } from "./../utils/url";
 import { Slide } from 'react-slideshow-image';
 import Slider from "react-slick";
-
+// import src from "react-select/dist/declarations/src";
+const img = "./../assets/aid.jpg";
 const dealofday = {
   autoplay: false,
   speed: 1000,
@@ -73,7 +73,7 @@ const renderHots =()=>{
                     {
     hotProducts.map((data,index)=>(
       <Link to="/hotDeals">
-  <img className="HF_BImg" src={data.category_image} alt={"banner"}/></Link> )) }
+  <img className="HF_BImg" src={data.category_image} onError={e => (e.target.src = ImageNotFound)}/></Link> )) }
   </div>
     )
 
@@ -102,7 +102,8 @@ const renderDeals = ()=>{
         
  <><li>
  <div className="image_wrapper"  key={`${value}_${index}`}>
-          <Link to={getCategoryURL(value)}><img src={value.image} /></Link>
+          <Link to={getCategoryURL(value)}><img src={value.image} 
+    onError={e => (e.target.src = ImageNotFound)}/></Link>
         </div><div className="description_list">
             <Link to={getCategoryURL(value)}>{value.name}</Link>
           </div>

@@ -45,6 +45,7 @@ const Orders = () => {
                             orderArray.push(groupArray(res.data, 'order_id')[x['order_id']])
                         }
                     }
+                    console.log(orderArray)
                     setOrders(orderArray);
                     if(permits.length!=0){
                         let orderhis=permits.includes("Can View Order History")
@@ -127,7 +128,15 @@ const filtercall = (data) =>{
             data: data,
         })
             .then(function (response) {
-                setOrders(response.data)
+                console.log(response.data)
+                let orderArray = [];
+                for(let x of response.data){
+                    if(x['increment_id']){
+                        orderArray.push(groupArray(response.data, 'order_id')[x['order_id']])
+                    }
+                }
+                console.log(orderArray)
+                setOrders(orderArray);
             })
             .catch(function (response) {
                 
@@ -239,7 +248,14 @@ if(array.length>0){
                     data: data,
                 })
                     .then(function (response) {
-                        setOrders(response.data)
+                        let orderArray = [];
+                        for(let x of response.data){
+                            if(x['increment_id']){
+                                orderArray.push(groupArray(response.data, 'order_id')[x['order_id']])
+                            }
+                        }
+                        console.log(orderArray)
+                        setOrders(orderArray);
                     })
                     .catch(function (response) {
                         
