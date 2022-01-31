@@ -20,6 +20,7 @@ const Orders = () => {
     const [outp,outper] = useState(false);
     const [outre,outreodr]= useState(false);
     const [permits,setPermit] = useState([]);
+    const [attach_data, setattachment] = useState(null);
     const array=[]
     useEffect(() => {
         setPermit(localStorage.permissions)
@@ -231,6 +232,17 @@ if(array.length>0){
             }
             }
     }
+
+    const handleClick = (id) =>{
+        const res = axios.get(
+        `${process.env.GATSBY_CART_URL_STARCARE}admin/pdfinvoice/${id}`
+        // `${process.env.GATSBY_CART_URL}admin/pdfinvoice/${entity_id}`
+
+        ).then((data)=>{
+          let response_data = data.data
+          setattachment(response_data)
+      })   
+    }
     const searchOrder = async (val) => {
         if(val.target.value.length>=2){
             let data = {
@@ -321,12 +333,12 @@ if(array.length>0){
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12">
                             <div class="or-left">
-                                <p>: {orders.orders_id}</p>
+                                <p>: {orders.order_id}</p>
                                 <p>: {orders.shipping_description}</p>
-                                <p>:${orders.grand_total}</p>
+                                <p>:${parseFloat(orders.grand_total).toFixed(2)}</p>
                                 <p>: {orders.status}</p>
                                 <p>: {orders.payment_method}</p>
-                                <span class="functions"><p><i class="fa fa-calendar-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleString()}</p><p><i class="fa fa-clock-o" aria-hidden="true"></i> 12.30 PM</p></span>
+                                <span class="functions"><p><i class="fa fa-calendar-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleDateString()}</p><p><i class="fa fa-clock-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleTimeString('en-US')}</p></span>
                             </div>
                         </div>
 
@@ -336,11 +348,12 @@ if(array.length>0){
                                             {outre && <button class="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
                                             <Link to="/orderstatus" state={{ order_id: orders.order_id }}><button className="btn btn-primary"  >View Order</button></Link>
                                             {orders.status !== 'canceled' && <button className="btn btn outline" type="button" onClick={()=> cancelOrder(orders.order_id)}>Cancel Order</button>}
-                        <a href="#"><i class="fa fa-sticky-note" aria-hidden="true"></i>Invoice</a>
+                                            
+                        <a><i class="fa fa-sticky-note" aria-hidden="true"></i>Invoice</a>
                             </div>
                         </div>
                     </div>
-                    : <div key={`${ind}_product`}  className="product_item"> 
+                    :<div> {/*<div key={`${ind}_product`}  className="product_item"> 
                     <div className="product_img">
                         <img src={orders.image} />
                     </div>
@@ -358,7 +371,7 @@ if(array.length>0){
                             </li>
                         </ul>  
                        
-                    </div>
+                                    </div>*/}
                     
             </div>
                     ) 

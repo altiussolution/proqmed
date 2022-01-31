@@ -306,7 +306,7 @@ const Numbersubmit = num => {
       } else {
         setQuotePopup(true)
        // handleShowQuote(true)
-       //setShow(true);
+       setShow(true);
 
       }
     }
