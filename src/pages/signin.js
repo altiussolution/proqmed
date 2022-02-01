@@ -44,7 +44,7 @@ const SignIn = (props) => {
       
         .then(function (response) {
           if (response.statusText === "OK" && response.status == 200 ) {
-            
+            console.log(response.data)
             let categoryJson = [];
             if(response.data[0]['approve_account'] === "approved"){
             if (typeof (response.data[0]['token']) === 'string') {
@@ -55,7 +55,7 @@ const SignIn = (props) => {
                 localStorage.setItem('category_permissions', categoryJson.toString());
               }
               if(response.data[0]['allowed_permissions']){
-                localStorage.setItem('permissions', response.data[0]['allowed_permissions']);
+                localStorage.setItem('permissions',JSON.stringify(response.data[0]['allowed_permissions']));
               }
               localStorage.setItem('userToken', response.data[0]['token']);
               localStorage.setItem('email', response.data[0]['email']);
