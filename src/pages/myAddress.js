@@ -272,8 +272,8 @@ const deleteAddress = (id) => {
                                     </ul>
                                   </div> */}
                                   <li><Link to="/Address" state={add}><a><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></Link></li>
-                                      <li><a><i class="fa fa-trash-o" aria-hidden="true"></i>
-                                        Delete</a></li>
+                                      <button onClick={() => {deleteAddress(add.entity_id)}}><a ><i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        Delete</a></button>
                             </div>
                   </div>
                         )) }

@@ -56,7 +56,6 @@ const Product = props  => {
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false);
     useEffect(() => {
-      setPermit(localStorage.permissions)
       setCustomerId(localStorage.customer_id)
       setJwt(localStorage.userToken)
       const jwt = localStorage.getItem('userToken')
@@ -92,15 +91,16 @@ const Product = props  => {
           navigate("/signin")
       }
       //setQuoteId(localStorage.cartId)
-      if(permits.length!=0){
-        let addwis=permits.includes("Can Add To Wishlist")
-        let addcar=permits.includes("Can Add To Cart")
+      if(!localStorage.permissions){
+        outper(true)
+        outpercart(true)
+       } else {
+        let hi = JSON.parse(localStorage.permissions)
+        let addwis=hi.includes("Can Add To Wishlist")
+        let addcar=hi.includes("Can Add To Cart")
         per(addwis)
         percart(addcar)
-    }else if(permits.length==0){
-      outper(true)
-      outpercart(true)
-    }
+       }
       const fetchData = async () => {
         setLoading(true);   
         try {  
