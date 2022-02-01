@@ -101,7 +101,7 @@ const Cart = () => {
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
                     setCheckout(res.data.total_segments)
-                    
+                    //toast.success('Update Cart Successfully')
                 }
             }).catch((err) => {
                 console.error(err);

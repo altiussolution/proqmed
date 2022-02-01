@@ -156,7 +156,8 @@ let updateAddress = {
             console.log("Add Address", response)
             if (response.statusText === "OK" && response.status == 200) {
                 
-              
+                toast.success('Edit Address Successfully');
+                navigate("/checkout")
                 setLoader(false);
                 
             }
@@ -207,7 +208,8 @@ const onSubmitadd = userAddresses => {
                 console.log("Add Address", response)
                 if (response.statusText === "OK" && response.status == 200) {
                     
-                  
+                    toast.success('Add Address Successfully');
+                    navigate("/checkout")
                     setLoader(false);
                     
                 }

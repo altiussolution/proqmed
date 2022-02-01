@@ -484,7 +484,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                     </ul>
                   </div>
                   <div className="slider_Product">
-                    {data.length > 0 && <SliderImage data={data} showDescription={true} direction="right" />}
+                    {data.length > 0 && <SliderImage data={data} width="500px" showDescription={true} direction="top" />}
                   </div>
                 </div>
                 <div className="col-lg-5 col-md-8 col-xs-12 pr-5 product_details">

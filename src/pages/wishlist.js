@@ -22,7 +22,7 @@ const Wishlist = () => {
     const [cartCnt, setCartCnt] = useState(getCartCount())
     const [wishListCnt, setWishListCnt] = useState(getWLCount());
     const [permit,permission] = useState([]);
-    const [p,per] = useState(true);
+    const [p,per] = useState(false);
     const [nop,noper] = useState(false);
     const [jwt, setJwt] = useState("");
 
@@ -30,9 +30,12 @@ const Wishlist = () => {
     useEffect(() => {
        setPermit(localStorage.permissions);
         getWishList()
+        if(!localStorage.permissions){
+            noper(true) 
+        }
         //setQuoteId(localStorage.cartId)
         setJwt(localStorage.userToken)
-
+       
         const jwt = localStorage.getItem('userToken')
         if(jwt){
           try
@@ -47,9 +50,11 @@ const Wishlist = () => {
             .then((response) => {
               if(response.statusText === "OK" && response.status == 200)
               {
+                
                 console.log(response.data)
                   localStorage.setItem('cartId',response.data);
                   setQuoteId(localStorage.cartId)
+                
               }
             }) 
             .catch((error) => {
@@ -71,6 +76,10 @@ const Wishlist = () => {
 
     const getWishList = () => {
         setLoader(true);
+        console.log(permits)
+        let viewwis=permits.includes("Can View Wishlist")
+        console.log(viewwis)
+        per(viewwis)
         if (!checkLogin()) {
             navigate('/signin')
           } else {
@@ -83,14 +92,7 @@ const Wishlist = () => {
                 },
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
-                    if(permits.length!=0){
-                        let viewwis=permits.includes("Can View Wishlist")
-                        console.log(viewwis)
-                        per(viewwis)
-                    }
-                    else if(permits.length==0){
-                        noper(true) 
-                    }
+                   
                    
                     setWishList(res.data)
                     console.log(res.data)
@@ -310,9 +312,10 @@ const Wishlist = () => {
     
             }else {
                 return (
+                    <Layout>
                  <div>
                      <span>Access Denied</span>
-                 </div>   
+                 </div>  </Layout> 
                 )
             }
 }

@@ -42,15 +42,7 @@ const Profile = () => {
         setIsLogged(checkLogin());
         setJwt(localStorage.userToken);
         setEmail(localStorage.email);
-        if(permits.length!=0){
-          let addwis=permits.includes("Can Edit Profile")
-         
-          per(addwis)
-        
-      }else if(permits.length==0){
-        outper(true)
-        
-      }
+    
         setName(localStorage.getItem('user_name'))
         
           axios({
@@ -80,6 +72,15 @@ const Profile = () => {
               console.log(res,"profile")
               setProfile(res.data[0]);
               setShow(true);
+              if(permits.length!=0){
+                let addwis=permits.includes("Can Edit Profile")
+               
+                per(addwis)
+              
+            }else if(!localStorage.permissions){
+              outper(true)
+              
+            }
             }
           }).catch((err) => {
             console.error(err);
@@ -305,7 +306,7 @@ const Numbersubmit = num => {
       } else {
         setQuotePopup(true)
        // handleShowQuote(true)
-       //setShow(true);
+       setShow(true);
 
       }
     }
@@ -367,8 +368,8 @@ const Numbersubmit = num => {
                     <div class="form-1">
                         <div class="head-label">
                             <h4>Personal Information</h4>
-                            {!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}
-
+                           {p && <div>{!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}</div> }
+                           {outp && <div>{!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}</div>}
                         </div>
                        
                        {!showname && <div class="form-content">
@@ -389,13 +390,15 @@ const Numbersubmit = num => {
                     <div class="form-1">
                         <div class="head-label">
                             <h4>Email Address</h4>
-                            {!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}
-                            <span>
-                            {/*p && <a onClick={() => { navigateOnclick('/changePassword') }} >
-                  Change Password
-                            </a>*/}
+                            {p && <div>{!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}</div>}
+                           {outp &&<div>{!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}</div>}
+
+                           {p && <span>
                  <a onClick={() => quotePopupOpen()}  >
-                  Change Password 
+                  Change Password </a> </span> }
+                   { outp && <span>
+                 <a onClick={() => quotePopupOpen()}  >
+                  Change Password </a> </span> }
                   {quote ? <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>Change Password</Modal.Title>
@@ -453,8 +456,7 @@ const Numbersubmit = num => {
                 </Modal.Body>
                </Modal>: <div></div>
                 }
-                </a>
-                </span>    
+                 
                         </div>
 
                         {!showmail && <div class="form-content">
@@ -473,7 +475,8 @@ const Numbersubmit = num => {
                     <div class="form-1">
                         <div class="head-label">
                             <h4>Mobile Number</h4>
-                            {!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}
+                          {p && <div>{!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}</div> } 
+                          {outp && <div> {!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}</div>} 
                             
                         </div>
                         {!shownumber &&  <div class="form-content">
