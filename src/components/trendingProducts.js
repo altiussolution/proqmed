@@ -38,7 +38,6 @@ const TrendingProducts = () => {
     const [outpcar,outpercart] = useState(false);
     const [permits,setPermit] = useState([]);
   useEffect(() => {
-    setJwt(localStorage.userToken)
     setPermit(localStorage.permissions)
     const jwt = localStorage.getItem('userToken')
     if(jwt){
@@ -72,12 +71,12 @@ const TrendingProducts = () => {
     }else{
         
     }
-    if(permits.length!=0){
-      let addcar=permits.includes("Can Add To Cart")
-      percart(addcar)
-  }else if(!localStorage.permissions){
-    
+  if(!localStorage.permissions){
     outpercart(true)
+  }else {
+    let hi = JSON.parse(localStorage.permissions)
+    let addcar=hi.includes("Can Add To Cart")
+    percart(addcar)
   }
     const fetchTrending = async () => {
       const res = await fetch(

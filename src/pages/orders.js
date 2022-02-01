@@ -23,13 +23,8 @@ const Orders = () => {
     const [attach_data, setattachment] = useState(null);
     const array=[]
     useEffect(() => {
-        setPermit(localStorage.permissions)
         setJwt(localStorage.userToken);
-        if(localStorage.permissions){
-            perMission(localStorage.permissions);
-        }
-        
-        console.log(permit)
+      
         setOrderDetails()
     }, [])
 
@@ -48,16 +43,16 @@ const Orders = () => {
                     }
                     console.log(orderArray)
                     setOrders(orderArray);
-                    if(permits.length!=0){
-                        let orderhis=permits.includes("Can View Order History")
-                        let reorder = permits.includes("Can View Individual Orders Or Reorder")
-                        per(orderhis)
-                        reodr(reorder)
-                    }else if(permits.length==0){
+                    if(!localStorage.permissions){
                         outper(true)
                         outreodr(true)
-                    }
-                   
+                      }else {
+                        let hi = JSON.parse(localStorage.permissions)
+                        let orderhis=hi.includes("Can View Order History")
+                        let reorder = hi.includes("Can View Individual Orders Or Reorder")
+                        per(orderhis)
+                        reodr(reorder)
+                      }
                 }
                 
             }).catch((err) => {  

@@ -34,15 +34,16 @@ const Dealproducts = () => {
      setCustomerId(localStorage.customer_id)
      setJwt(localStorage.userToken)
      setQuoteId(localStorage.cartId)
-     if(permits.length!=0){
-      let addwis=permits.includes("Can Add To Wishlist")
-      let addcar=permits.includes("Can Add To Cart")
+     if(!localStorage.permissions){
+      outper(true)
+      outpercart(true)
+    }else {
+      let hi = JSON.parse(localStorage.permissions)
+      let addwis=hi.includes("Can Add To Wishlist")
+      let addcar=hi.includes("Can Add To Cart")
       per(addwis)
       percart(addcar)
-  }else if(!localStorage.permissions){
-    outper(true)
-    outpercart(true)
-  }
+    }
      const fetchFeature = async () => {
          const res = await fetch(
              `${process.env.GATSBY_CART_URL_STARCARE}category/dealsofthedays/13`//38
