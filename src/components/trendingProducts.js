@@ -75,7 +75,7 @@ const TrendingProducts = () => {
     if(permits.length!=0){
       let addcar=permits.includes("Can Add To Cart")
       percart(addcar)
-  }else if(permits.length==0){
+  }else if(!localStorage.permissions){
     
     outpercart(true)
   }

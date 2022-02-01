@@ -18,7 +18,19 @@ body {
   font-size: .9rem!important;
 
 }
-
+.react-slider__imgZoom {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transform: translateX(20px);
+  width: 350px;
+  height: 350px;
+  background-repeat: no-repeat;
+  border: thin solid #ccc;
+  opacity: 0;
+  z-index: -9999;
+  transition: opacity .3s ease-in-out;
+}
 .banner_top .img-fluid{
   width:100%;
 }
