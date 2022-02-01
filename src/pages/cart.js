@@ -19,7 +19,9 @@ const Cart = () => {
     const [status, setstatus] = useState([]);
     const [productid, setproductid] = useState([]);
     const [customerId, setCustomerId] = useState("");
-
+    const [tierAmt, setTierProduct] = useState([]);
+    const [normal_price, setPrice] = useState("")
+    const [qty, setQty] = useState(1);
 
 
     useEffect(() => {
@@ -127,7 +129,42 @@ const Cart = () => {
             }, 3000)
         }
     }
-
+    // const handleChange = async (event,data) => {
+    //     axios({
+    //         method: "get",
+    //         url: `${process.env.GATSBY_CART_URL_STARCARE}admin/tierprice/${data.product_id}`,
+    //         //${proDescription.items.id}
+    //       }).then((res) => {
+    //         setTierProduct(res.data)
+    //       }).catch((err) => {
+    //         console.error(err);
+    //       });
+          
+    //     let price;
+    //     if (event.target.value <= 0) {
+    //       event.target.value = 1;
+    //       data.qty=event.target.value
+    //       setQty(event.target.value)
+    //       setPrice(data.qty)
+    //     } else {
+    //         data.qty=event.target.value
+    //       setQty(event.target.value)
+    //       tierAmt.map(item => {
+    //         if (event.target.value == item.Tier_quantity) {
+    //           price = item.Tier_price 
+    //         }
+    
+    //       })
+    //       await updatePirce(price)
+    //     }
+    //   }
+    //   const updatePirce = (price) => {
+    //     if (price != undefined) {
+    //       setPrice(price)
+    //     } else {
+    //       setPrice(qty)
+    //     }
+    //   }
     const handleChange = (event,data,ivalue) => {
         if (event.target.value <= 0) {
             event.target.value = 1;

@@ -370,7 +370,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
       setQty(event.target.value)
       tierAmt.map(item => {
         if (event.target.value == item.Tier_quantity) {
-          price = item.Tier_price
+          price = item.Tier_price 
         }
 
       })
