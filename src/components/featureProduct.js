@@ -44,11 +44,10 @@ const FeatureProduct = () => {
     const [pcar,percart] = useState(false);
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false);
-    const [permits,setPermit] = useState([]);
+    const [permits,setPermit] = useState(JSON.parse(localStorage.permissions));
     useEffect(() => {
         setCustomerId(localStorage.customer_id)
         setJwt(localStorage.userToken)
-        setPermit(localStorage.permissions)
         const jwt = localStorage.getItem('userToken')
         if(jwt){
           try
@@ -79,9 +78,11 @@ const FeatureProduct = () => {
             
         }
        // setQuoteId(localStorage.cartId)
-        if(permits.length!=0){
+        if(permits){
           let addwis=permits.includes("Can Add To Wishlist")
           let addcar=permits.includes("Can Add To Cart")
+          console.log(permits
+            )
           per(addwis)
           percart(addcar)
       }else if(!localStorage.permissions){

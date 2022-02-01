@@ -25,15 +25,11 @@ const Wishlist = () => {
     const [p,per] = useState(false);
     const [nop,noper] = useState(false);
     const [jwt, setJwt] = useState("");
+    const [permits,setPermit] = useState(JSON.parse(localStorage.permissions));
 
-    const [permits,setPermit] = useState([]);
     useEffect(() => {
-       setPermit(localStorage.permissions);
         getWishList()
-        if(!localStorage.permissions){
-            noper(true) 
-        }
-        //setQuoteId(localStorage.cartId)
+      //setQuoteId(localStorage.cartId)
         setJwt(localStorage.userToken)
        
         const jwt = localStorage.getItem('userToken')
@@ -67,7 +63,7 @@ const Wishlist = () => {
         }else{
             
         }
-
+      
     }, [])
 
     const wistlistsValue = () => {
@@ -77,12 +73,7 @@ const Wishlist = () => {
     const getWishList = () => {
         setLoader(true);
         console.log(permits)
-        let viewwis=permits.includes("Can View Wishlist")
-        console.log(viewwis)
-        per(viewwis)
-        if (!checkLogin()) {
-            navigate('/signin')
-          } else {
+      
         try {
             axios({
                 method: "get",
@@ -92,8 +83,6 @@ const Wishlist = () => {
                 },
             }).then((res) => {
                 if (res.statusText === "OK" && res.status == 200) {
-                   
-                   
                     setWishList(res.data)
                     console.log(res.data)
                     wishListCount();
@@ -109,7 +98,12 @@ const Wishlist = () => {
             setLoader(false);
             console.error(err)
         }
-    }
+        if(permits.length!=0){
+            let addwis=permits.includes("Can View Wishlist")
+            per(addwis)
+        }else if(!localStorage.permissions){
+            noper(true) 
+        } 
     }
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -199,6 +193,7 @@ const Wishlist = () => {
             navigate("/signin")
         }
     }
+    
     if(p==true || nop==true){
         return (
             <>
