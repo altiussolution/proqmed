@@ -67,7 +67,6 @@ const Products = ({ pageContext, location }) => {
   const [outp,outper] = useState(false);
   const [outpcar,outpercart] = useState(false);
   useEffect(() => {
-    setPermit(localStorage.permissions)
     const selecturl = "productsasc"
     const id = pageContext.id;  
     const selectRes =[];
@@ -90,15 +89,17 @@ const Products = ({ pageContext, location }) => {
     } catch (err) {
       console.error(err)
     }
-    if(permits.length!=0){
-      let addwis=permits.includes("Can Add To Wishlist")
-      let addcar=permits.includes("Can Add To Cart")
+    if(!localStorage.permissions){
+      outper(true)
+      outpercart(true)
+     } else {
+      let hi = JSON.parse(localStorage.permissions)
+      let addwis=hi.includes("Can Add To Wishlist")
+      let addcar=hi.includes("Can Add To Cart")
       per(addwis)
       percart(addcar)
-  }else if(permits.length==0){
-    outper(true)
-    outpercart(true)
-  }
+     }
+  
     let ignore = false;
     // await checkUrl() 
     const fetchProducts = async (id) => {

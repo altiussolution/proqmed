@@ -59,7 +59,6 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
 
 
   useEffect(() => {
-    setPermit(localStorage.permissions)
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
     //setQuoteId(localStorage.cartId);
@@ -91,18 +90,19 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
       }
     }
     console.log(proDescription)
-    if(permits.length!=0){
-      let addwis=permits.includes("Can Add To Wishlist")
-      let addcar=permits.includes("Can Add To Cart")
-      let addcom=permits.includes("Can Add To Compare")
+    if(!localStorage.permissions){
+      outper(true)
+      outpercart(true)
+      outpercomp(true)
+     } else {
+      let hi = JSON.parse(localStorage.permissions)
+      let addwis=hi.includes("Can Add To Wishlist")
+      let addcar=hi.includes("Can Add To Cart")
+      let addcom=hi.includes("Can Add To Compare")
       per(addwis)
       percart(addcar)
       percomp(addcom)
-  }else if(permits.length==0){
-    outper(true)
-    outpercart(true)
-    outpercomp(true)
-  }
+     }
     if (proDescription.items.config_options) {
       setcartItem({
         "cartItem": {
