@@ -47,6 +47,7 @@ const Cart = () => {
     const listCarts = () => {
             let resi=[]
             let stocks=[]
+            let tierqty=[]
             let cq=[]
             const jwt = localStorage.getItem('userToken');
             const email = localStorage.email;
@@ -62,9 +63,18 @@ const Cart = () => {
                       for(let i=0;i<res.data.length;i++){
                         const resp = await fetch(
                           `${process.env.GATSBY_CART_URL_STARCARE}cart/productstatus/product_id/${res.data[i].product_id}`
-                      );                  
+                      );  
+                      const qtyyy = await fetch(
+                        `${process.env.GATSBY_CART_URL_STARCARE}admin/tierprice/${res.data[i].product_id}`
+                    );           
+                      cq.push(await qtyyy.json());       
                       resi.push(await resp.json());
-                      }              
+                      }  
+                      // for(let i=0;i<cq.length;i++){
+                      //   if(resi[i][i]['Tier_quantity'] == cartItems[i].qty){
+                      //           cartItems[i].price == 
+                      //     }
+                      // }            
                       for(let i=0;i<resi.length;i++){
                         await stocks.push(resi[i][0]['stock_status'])
                       }
@@ -72,24 +82,10 @@ const Cart = () => {
                         object.status = stocks;
                       });
                       console.log(res.data)
+                      console.log(cq)
                       const data = JSON.stringify(res.data)
                       localStorage.setItem('cartData' , JSON.stringify(res.data))
                       setCartItems(JSON.parse(data))
-for(let i=0;i<res.data.length;i++){
-  const qtyyy = await fetch(
-    `${process.env.GATSBY_CART_URL_STARCARE}admin/tierprice/${res.data[i].product_id}`
-);  
-cq.push(await qtyyy.json());
-
-console.log(cq)
-for(let i=0;i<cq.length;i++){
-
-if(cq[i] !=[]){
-  const ccq=cq
-  console.log(ccq)
-}
-}
- }
                   
                 }).catch((err) =>{
                   alert('error occured')
