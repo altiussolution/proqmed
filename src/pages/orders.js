@@ -344,7 +344,12 @@ if(array.length>0){
                                             <Link to="/orderstatus" state={{ order_id: orders.order_id }}><button className="btn btn-primary"  >View Order</button></Link>
                                             {orders.status !== 'canceled' && <button className="btn btn outline" type="button" onClick={()=> cancelOrder(orders.order_id)}>Cancel Order</button>}
                                             
-                        <a><i class="fa fa-sticky-note" aria-hidden="true"></i>Invoice</a>
+                     {attach_data &&   <a><i class="fa fa-sticky-note" aria-hidden="true" onClick={handleClick}></i>Invoice
+                        <div> 
+                            {  attach_data?  
+                                <a href={attach_data[0].invoice_pdf} download>{attach_data[0].invoice_pdf}</a>:<span></span>
+                            }
+                                </div></a>}
                             </div>
                         </div>
                     </div>

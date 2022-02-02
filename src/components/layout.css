@@ -6786,3 +6786,11 @@ span.functions p .fa {
   /* padding-top: 10px; */
   display: inline-b
 }
+
+.sample {
+    display: none;
+}
+.img-wrapper-as-seen a img {
+  border-radius: 20px;
+  height: 330px;
+}

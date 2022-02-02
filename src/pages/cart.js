@@ -41,12 +41,13 @@ const Cart = () => {
                    
             //     }
             //   }
-    
+   
 
     }, []);
     const listCarts = () => {
             let resi=[]
             let stocks=[]
+            let cq=[]
             const jwt = localStorage.getItem('userToken');
             const email = localStorage.email;
             try {
@@ -57,14 +58,13 @@ const Cart = () => {
                          'Authorization' : `Bearer ${jwt}`
                        }  
                 }).then(async (res) => {
-                  
                       console.log(res.data)
                       for(let i=0;i<res.data.length;i++){
                         const resp = await fetch(
                           `${process.env.GATSBY_CART_URL_STARCARE}cart/productstatus/product_id/${res.data[i].product_id}`
-                      );
+                      );                  
                       resi.push(await resp.json());
-                      }
+                      }              
                       for(let i=0;i<resi.length;i++){
                         await stocks.push(resi[i][0]['stock_status'])
                       }
@@ -75,9 +75,21 @@ const Cart = () => {
                       const data = JSON.stringify(res.data)
                       localStorage.setItem('cartData' , JSON.stringify(res.data))
                       setCartItems(JSON.parse(data))
-                  
-          
-                  
+for(let i=0;i<res.data.length;i++){
+  const qtyyy = await fetch(
+    `${process.env.GATSBY_CART_URL_STARCARE}admin/tierprice/${res.data[i].product_id}`
+);  
+cq.push(await qtyyy.json());
+
+console.log(cq)
+for(let i=0;i<cq.length;i++){
+
+if(cq[i] !=[]){
+  const ccq=cq
+  console.log(ccq)
+}
+}
+ }
                   
                 }).catch((err) =>{
                   alert('error occured')
@@ -129,35 +141,39 @@ const Cart = () => {
             }, 3000)
         }
     }
-    // const handleChange = async (event,data) => {
-    //     axios({
-    //         method: "get",
-    //         url: `${process.env.GATSBY_CART_URL_STARCARE}admin/tierprice/${data.product_id}`,
-    //         //${proDescription.items.id}
-    //       }).then((res) => {
-    //         setTierProduct(res.data)
-    //       }).catch((err) => {
-    //         console.error(err);
-    //       });
+    const handleChange = async (event,data) => {
+        axios({
+            method: "get",
+            url: `${process.env.GATSBY_CART_URL_STARCARE}admin/tierprice/${data.product_id}`,
+            //${proDescription.items.id}
+          }).then((res) => {
+            setTierProduct(res.data)
+          }).catch((err) => {
+            console.error(err);
+          });
           
-    //     let price;
-    //     if (event.target.value <= 0) {
-    //       event.target.value = 1;
-    //       data.qty=event.target.value
-    //       setQty(event.target.value)
-    //       setPrice(data.qty)
-    //     } else {
-    //         data.qty=event.target.value
-    //       setQty(event.target.value)
-    //       tierAmt.map(item => {
-    //         if (event.target.value == item.Tier_quantity) {
-    //           price = item.Tier_price 
-    //         }
+        let price;
+        if (event.target.value <= 0) {
+          event.target.value = 1;
+          data.qty=event.target.value
+          data.price = data.price
+          setQty(event.target.value)
+          setPrice(data.qty)
+        } else {
+            data.qty=event.target.value
+            data.price = data.price
+          setQty(event.target.value)
+          tierAmt.map(item => {
+            if (event.target.value == item.Tier_quantity) {
+              data.price = item.Tier_price / data.qty
+              console.log(item.Tier_price / data.qty)
+              setPrice(item.Tier_price / data.qty)
+            }
     
-    //       })
-    //       await updatePirce(price)
-    //     }
-    //   }
+          })
+        //   await updatePirce(price)
+        }
+      }
     //   const updatePirce = (price) => {
     //     if (price != undefined) {
     //       setPrice(price)
@@ -165,18 +181,18 @@ const Cart = () => {
     //       setPrice(qty)
     //     }
     //   }
-    const handleChange = (event,data,ivalue) => {
-        if (event.target.value <= 0) {
-            event.target.value = 1;
-            data.qty = event.target.value;
+    // const handleChange = (event,data,ivalue) => {
+    //     if (event.target.value <= 0) {
+    //         event.target.value = 1;
+    //         data.qty = event.target.value;
            
-        } else {
-            setupdCart(event.target.value)
-            data.qty = event.target.value;
+    //     } else {
+    //         setupdCart(event.target.value)
+    //         data.qty = event.target.value;
             
-        }
+    //     }
 
-    }
+    // }
 
     const addToList = (type,id) => {
         // type 1 = wishlist

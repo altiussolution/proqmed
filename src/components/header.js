@@ -188,7 +188,7 @@ const isSticky = (e) => {
           }
         })
       ))
-      return <div><h1>Category Value</h1>
+      return <div className="sample"><h1>Category Value</h1>
         {
           catRoute.map((catVal, index) => (
             <Link to={getCategoryURL(catVal)}><p className="categories_list">{catVal ? catVal.name : 'No Product Found'}</p></Link>
