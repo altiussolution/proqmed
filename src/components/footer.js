@@ -22,7 +22,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const Footer = () => {
-    const [email,setemail] = useState("");
+    const [email,setemail] = useState();
     const [isLoged, setIsLoged] = useState(false);
     const data = useStaticQuery(graphql`
     {

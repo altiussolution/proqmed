@@ -153,7 +153,7 @@ export default function CategoryCard({ data: product, dataClass }) {
           </ul>
         </div>
         <div className="product_img">
-        <div className="price_off">Upto 50% off</div>
+        {/* <div className="price_off">Upto 50% off</div> */}
                                
          { <Link to={getProductURL(product.items)} state={product}><img className="w-100" src={`${product.items.image}`} alt={product.items.image} /></Link>}
         </div>
