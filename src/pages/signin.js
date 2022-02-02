@@ -200,9 +200,9 @@ const wistlistsValue = () => {
 
                 </form>
 
-                {/* <p className="user_link my-4">
-                  <Link to="/changePassword">Forgot Password?</Link>
-                </p> */}
+                <p className="user_link my-4">
+                  <Link to="/forgotForm">Forgot Password?</Link>
+                </p>
 
                 <p className="user_link">New to ProQmed? 
               <Link to="/signup" className="ml-2">Start here</Link>
