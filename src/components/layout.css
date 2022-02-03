@@ -2666,9 +2666,10 @@ input:focus {
     color: #0162A2 !important;
 }
 .product_view img {
-  position: sticky;
-  top: 0;
-  border: 1px solid #ececec;
+  display: flex;
+  width: 70%;
+  margin: auto;
+  align-items: center;
 }
 
 /* .mmenu{
