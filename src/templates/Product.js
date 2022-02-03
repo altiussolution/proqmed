@@ -6,11 +6,12 @@ import { convertToObject } from "../utils/convertToObj";
 import ImageNotFound from "./../assets/car-dealer-loader.gif";
 import Layout from "../components/layout";
 import { getCartCount ,getWLCount,viewCartItems} from "./../utils/apiServices";
+import { IoChevronForwardOutline } from "react-icons/io5";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "gatsby";
-import { getProductURL } from "./../utils/url";
+import { getProductURL , getCategoryURL } from "./../utils/url";
 import PageLoader from "../components/loaders/pageLoader";
 import { navigate } from "gatsby";
 import StarRatings from 'react-star-ratings';
@@ -28,7 +29,8 @@ const similar_product = {
 
   ]
 }
-const Product = props  => {  
+
+const Product = (props,location)  => {  
   const [customerId, setCustomerId] = useState("");
   const [isButton, setButton] = useState(false);
   const [notFound, setNotFound] = useState(false);
@@ -56,6 +58,8 @@ const Product = props  => {
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false);
     useEffect(() => {
+      // console.log(location,"Gokul")
+      console.log(props.location.state['values'])
       setCustomerId(localStorage.customer_id)
       setJwt(localStorage.userToken)
       const jwt = localStorage.getItem('userToken')
@@ -207,6 +211,7 @@ const Product = props  => {
         navigate("/signin")
     }
 }
+
   const Renderproduct = () => {    
     if (productdata) { 
       console.log("productdata")
@@ -280,7 +285,34 @@ const Product = props  => {
       setWishListCnt(getWLCount());
     }, 3000);
   }
-
+ const breadCrumps = () => {
+   if(props.location.state['crumpy']){
+     return (
+       <div>
+    {props.location.state['crumpy'].hierarchy.map(parent => (
+      <React.Fragment key={parent.id}>
+        <Link
+          className="text-gray-600 hover:text-gray-800"
+          to={getCategoryURL(parent)}
+        >
+          <span dangerouslySetInnerHTML={{ __html: parent.name }} />
+        </Link>
+        &nbsp;&nbsp; <IoChevronForwardOutline /> &nbsp;&nbsp;
+      </React.Fragment>
+    ))}<React.Fragment>
+    <Link
+      className="text-gray-600 hover:text-gray-800"
+      to={getCategoryURL(props.location.state['crumpy'])}
+    >
+      <span dangerouslySetInnerHTML={{ __html: props.location.state['crumpy'].name }} />
+    </Link>
+    &nbsp;&nbsp; <IoChevronForwardOutline /> &nbsp;&nbsp;
+  </React.Fragment>
+    <span dangerouslySetInnerHTML={{ __html: props.location.state['values'].items.name}} />
+    </div>
+     )
+   }
+ };
 
   if (notFound) {
     return (
@@ -309,6 +341,11 @@ return (
      <section>
     <div className="categorylistpage"> 
        <div className="container">
+       <div className="breadcrumbs_sec" >
+       <div className="mt-1 mb-2">
+         {breadCrumps()}
+    </div>
+                  </div>
         <div className="product_view">  
           <div className="row upper-space">
              <Productdescription proDescription = {product} setcartCount={cartValue.bind(this)} setWishListCnt={wistlistsValue.bind(this)}/>
