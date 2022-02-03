@@ -59,7 +59,7 @@ const Product = (props,location)  => {
     const [outpcar,outpercart] = useState(false);
     useEffect(() => {
       // console.log(location,"Gokul")
-      console.log(props.location.state['values'])
+      console.log(props.location.state)
       setCustomerId(localStorage.customer_id)
       setJwt(localStorage.userToken)
       const jwt = localStorage.getItem('userToken')
@@ -286,7 +286,7 @@ const Product = (props,location)  => {
     }, 3000);
   }
  const breadCrumps = () => {
-   if(props.location.state['crumpy']){
+   if(props.location.state['crumpy'].name){
      return (
        <div>
     {props.location.state['crumpy'].hierarchy.map(parent => (

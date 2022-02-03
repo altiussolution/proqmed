@@ -430,6 +430,17 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     }
   };
 
+  const changeImage = (value) => {
+    setData([
+      {
+        image: (!value ? ImageNotFound : value),
+        text: 'img1',
+        width: 2000,
+        height: 1800
+      }
+    ]);
+  }
+
   const size = (options, index1) => {
     setData([
       {
@@ -481,7 +492,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                   <div className="slider_thumb">
                       <ul>
                       { proDescription.items.all_images.map((val, index) => (
-                           <li><a><img src={val}/></a></li>
+                           <li><a onClick={() => changeImage(val)}><img src={val}/></a></li>
                           ))
                       }
                     </ul>
