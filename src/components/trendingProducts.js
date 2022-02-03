@@ -160,8 +160,8 @@ const TrendingProducts = () => {
                   <div className="price_holder">
                                 <div className="price_left">                                  
                                     <div className="product_amt">
-                                    {/* <span className="new_price">$000</span> */}
-                                        <span className="price">${Math.round(data.price)}</span>
+                                    {data.strike_price != ""  &&  <span className="new_price">${Math.round(data.strike_price)}</span>}
+                                    <span className="price">${Math.round(data.original_price)}</span>
                                         
                                     </div>
                                     <div className="rating_front">

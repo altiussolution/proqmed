@@ -56,6 +56,7 @@ const Product = props  => {
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false);
     useEffect(() => {
+      console.log(props)
       setCustomerId(localStorage.customer_id)
       setJwt(localStorage.userToken)
       const jwt = localStorage.getItem('userToken')
@@ -159,7 +160,7 @@ const Product = props  => {
   const relatedproducts = async () =>{
     await axios({
       method : "get",
-      url: `${process.env.GATSBY_NODE_URL_STARCARE}data/categories/relatedproducts/${id}.json`
+      url: `${process.env.GATSBY_API_BASE_URL_STARCARE}relatedprodut/1`//`${process.env.GATSBY_NODE_URL_STARCARE}data/categories/relatedproducts/${id}.json`
       }).then((res) => { 
       const item = res.data
       setProductdata(item);
@@ -230,8 +231,8 @@ const Product = props  => {
                        <div className="price_holder">
                        <div className="price_left">                                  
                            <div className="product_amt">
-                           <span className="new_price">$000</span>
-                               <span className="price">${Math.round(data.price)}</span>
+                           {data.strike_price != null  &&  <span className="new_price">${Math.round(data.strike_price)}</span>}
+                               <span className="price">${Math.round(data.original_price)}</span>
                                
                            </div>
                            <div className="rating_front">
