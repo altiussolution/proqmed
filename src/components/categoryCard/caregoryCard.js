@@ -11,7 +11,7 @@ import { IoIosGitCompare } from "react-icons/io";
 import {getWLCount, wishListCount ,viewCartItems,getCartCount} from './../../utils/apiServices'
 
 export default function CategoryCard({ data: product, dataClass }) {
-
+  
   const [customerId, setCustomerId] = useState("");
   const [jwt, setJwt] = useState("");
   const [isButton,setButton] = useState(false);
@@ -24,6 +24,7 @@ export default function CategoryCard({ data: product, dataClass }) {
   const [outpcar,outpercart] = useState(false);
   const [permits,setPermits] = useState([]);
   useEffect(() => {
+    console.log(product)
     setCustomerId(localStorage.customer_id)
     setPermits(localStorage.permissions)
     setJwt(localStorage.userToken)
@@ -74,7 +75,7 @@ export default function CategoryCard({ data: product, dataClass }) {
     let productData = {
       "data": {
         "customer_id": customerId,
-        "product_id": product.items.id
+        "product_id": product['values'].items.id
       }
     }
 
@@ -145,7 +146,7 @@ export default function CategoryCard({ data: product, dataClass }) {
 
   return (
     <div className={`item product_item ${dataClass}`}> 
-            {product.items.length == 0?<sapn>You don't have Authorization for this category</sapn>:  
+            {product['values'].items.length == 0?<sapn>You don't have Authorization for this category</sapn>:  
      <div className="thumbnail">
         <div className="wishComp">
           <ul>
@@ -155,19 +156,19 @@ export default function CategoryCard({ data: product, dataClass }) {
         <div className="product_img">
         {/* <div className="price_off">Upto 50% off</div> */}
                                
-         { <Link to={getProductURL(product.items)} state={product}><img className="w-100" src={`${product.items.image}`} alt={product.items.image} /></Link>}
+         { <Link to={getProductURL(product['values'].items)} state={product}><img className="w-100" src={`${product['values'].items.image}`} alt={product['values'].items.image} /></Link>}
         </div>
         <div className="desc_holder">
         <div className="caption">
           <p className="product_text">
-         {<Link to={getProductURL(product.items)} state={product}> {product.items.name.slice(0,45)}... </Link>}
+         {<Link to={getProductURL(product['values'].items)} state={product}> {product['values'].items.name.slice(0,45)}... </Link>}
           </p>
         </div>
         <div className="price_holder">
         <div className="CC_prod_disc">
-        {product.items.rating ?
+        {product['values'].items.rating ?
           <StarRatings
-            rating={product.items.rating}
+            rating={product['values'].items.rating}
             starRatedColor="blue"
             numberOfStars={5}
             name='rating'
@@ -177,15 +178,15 @@ export default function CategoryCard({ data: product, dataClass }) {
           /> : 'No Reviews yet'
         }
          <div className="product_amt">
-                    <span className="price">${Math.round(product.items.price)}</span>
+                    <span className="price">${Math.round(product['values'].items.price)}</span>
                 </div>
                 </div>
                 <div className="price_right"> 
                                    
-                                  {pcar && <button className="addtocart" onClick={() => addItemToCart(product.items.sku, product.id)}><span class="cart_svg"></span></button>
+                                  {pcar && <button className="addtocart" onClick={() => addItemToCart(product['values'].items.sku, product['values'].id)}><span class="cart_svg"></span></button>
 }
-                                  {outpcar && <button className="addtocart" onClick={() => addItemToCart(product.items.sku, product.id)}><span class="cart_svg"></span></button>}
-                                  { <Link  to={getProductURL(product.items)} state={product} className="btn outline-1">View Detail</Link> }
+                                  {outpcar && <button className="addtocart" onClick={() => addItemToCart(product['values'].items.sku, product['values'].id)}><span class="cart_svg"></span></button>}
+                                  { <Link  to={getProductURL(product['values'].items)} state={product} className="btn outline-1">View Detail</Link> }
                                   </div>
                 </div>
                 </div>

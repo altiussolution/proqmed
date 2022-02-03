@@ -18,7 +18,7 @@ export default function Category(props) {
       {
         pageContext.children_data.map(({ id, name, children_data, image, product_count }, index) => (
           <div key={index} className="item product_item">
-            <Link key={id} to={getCategoryURL({ id, name })}>
+            <Link key={id} to={getCategoryURL({ id, name })} state={pageContext}>
               <div className="thumbnail">
                 <div className="product_img">
                   <img src={`${image}`} alt={name} onError={e => (e.target.src = ImageNotFound)} />

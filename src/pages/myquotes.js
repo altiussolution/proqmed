@@ -169,10 +169,11 @@ const MyQuotes = ({ setcartCount }) => {
 
 
     const addItemToCart = cartDetails => {
+        console.log(cartDetails)
         let cartItem = {
             "cartItem":
             {
-                "sku": cartDetails['product_id'],
+                "sku": cartDetails['product_sku'],
                 "qty": cartDetails['quote_qty'],
                 "quote_id": quote_id
             }

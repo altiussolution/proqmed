@@ -51,7 +51,7 @@ const NoProductsFound = ({ error }) => {
   );
 };
 
-const Products = ({ pageContext, location }) => {
+const Products = ({ pageContext, location , props }) => {
   const [permits,setPermit] = useState([]);
   const [products, setProducts] = useState([]);
   const [productTemp, setProductTemp] = useState([]);
@@ -67,6 +67,7 @@ const Products = ({ pageContext, location }) => {
   const [outp,outper] = useState(false);
   const [outpcar,outpercart] = useState(false);
   useEffect(() => {
+    console.log(pageContext)
     const selecturl = "productsasc"
     const id = pageContext.id;  
     const selectRes =[];
@@ -180,7 +181,7 @@ const Products = ({ pageContext, location }) => {
             if(data.items.url_key === cusUrl.url) return URL = cusUrl.url             
            })
            if(data.items.url_key !== URL){
-          return  <CategoryCard data={data} dataClass={viewClass} key={data.items.id} />
+          return  <CategoryCard data={{values:data,crumpy:pageContext}} dataClass={viewClass} key={data.items.id} />
         }  
           
       });
@@ -192,7 +193,7 @@ const Products = ({ pageContext, location }) => {
           if(data.items.url_key === cusUrl.url) return URL = cusUrl.url             
       })
       if(data.items.url_key !== URL){
-        return <CategoryCard data={data} dataClass={viewClass} key={data.items.id} />;
+        return <CategoryCard data={{values:data,crumpy:pageContext}} dataClass={viewClass} key={data.items.id} />;
          } 
     });
     } else
@@ -296,7 +297,7 @@ const Products = ({ pageContext, location }) => {
                   <div className="col-lg-9 col-md-8 col-xs-12 ">
                   <h1 className="page-title">
                     <div>
-                    <span>{pageContext.name}</span>
+                    <span>{pageContext.name} </span>
                   <div className="breadcrumbs_sec" >
                     <Hamburger pageContext={pageContext} />
                   </div>
