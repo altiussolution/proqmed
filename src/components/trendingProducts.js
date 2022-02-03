@@ -160,7 +160,7 @@ const TrendingProducts = () => {
                   <div className="price_holder">
                                 <div className="price_left">                                  
                                     <div className="product_amt">
-                                    <span className="new_price">$000</span>
+                                    {/* <span className="new_price">$000</span> */}
                                         <span className="price">${Math.round(data.price)}</span>
                                         
                                     </div>

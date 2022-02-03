@@ -553,7 +553,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         }
 
                        {proDescription.items.strike_price !=null && <span><strike>${Math.round(proDescription.items.strike_price)}</strike>0</span>}
-                       <span className="price"><strike>$0</strike></span>
+                       {/* <span className="price"><strike>$0</strike></span> */}
 </div>
 
                     {tierAmt.length != 0 ? (
