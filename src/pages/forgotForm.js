@@ -24,26 +24,27 @@ const Forgoted = (props) => {
 
   const onSubmit = userCredential => {
     setLoader(true);
-    let userLoginData = {
-      "data":
+    let userLoginData = 
+      
       {
-        "username": userCredential.username.trim(),
+        "email": userCredential.username.trim(),
+        "template": "email_reset",
+        "websiteId": 1
       }
-    }
+    
 
     try {
       axios({
-        method: 'post',
-        url: `${process.env.GATSBY_CART_URL_STARCARE}customerlogin/id`,
+        method: 'put',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}customers/password`,
         data: userLoginData,
        
       })
       
         .then(function (response) {
           if (response.statusText === "OK" && response.status == 200 ) {
-            console.log(response.data)
-            let categoryJson = [];
-          
+           setLoader(false)
+           toast.success("Email Sent Successfully")
           }
         })
         .catch(function (response) {

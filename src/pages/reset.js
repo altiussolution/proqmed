@@ -8,47 +8,47 @@ import 'react-toastify/dist/ReactToastify.css';
 import sign_bg from './../assets/bg.jpg';
 import PageLoader from "../components/loaders/pageLoader";
 
-const Resett = (props) => {
+const Resett = ({location}) => {
 
   const { register, handleSubmit, errors } = useForm();
   const _isMounted = useRef(false);
   const [isButton, setButton] = useState(false);
   const [loader, setLoader] = useState(false);
-
  
 
   useEffect(() => {
-    return () => { _isMounted.current = true }
+   return () => { _isMounted.current = true }
   }, []);
 
   const onSubmit = userCredential => {
+    const params = new URLSearchParams(location.search);
+    const parameter1 = params.get("email");
+    const parameter2 = params.get("token");
+    console.log()
     setLoader(true);
     let userLoginData = {
-      "data":
-      {
-        "password": userCredential.password.trim(),
-        "confirmpassword": userCredential.confirmpassword.trim(),
-      }
+      
+      
+        "email":parameter1,
+        "template":"email_reset",
+        "resetToken":parameter2,
+        "newPassword": userCredential.password.trim()
+      
     }
 
     try {
       axios({
         method: 'post',
-        url: `${process.env.GATSBY_CART_URL_STARCARE}customerlogin/id`,
+        url: `${process.env.GATSBY_CART_URL_STARCARE}customers/resetPassword`,
         data: userLoginData,
        
       })
       
         .then(function (response) {
           if (response.statusText === "OK" && response.status == 200 ) {
-            console.log(response.data)
-            let categoryJson = [];
-            if(response.data[0]['approve_account'] === "approved"){
-           
-          }else{
             setLoader(false);
-             toast.error('Admin need to approve you')
-          }
+             toast.success("Password Changed Successfully")
+             navigate('/signin')
           }
         })
         .catch(function (response) {
@@ -92,16 +92,16 @@ const Resett = (props) => {
                 <h1>Almost Done!</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="login_form">
 
-                  <input className="form-control" name="password" placeholder="Password *" type="password" ref={register({
+                  <input className="form-control" name="password" placeholder="Enter New Password *" type="password" ref={register({
                     required: true,
       
                   })} />
                   {errors.password && errors.password.type === 'required' && <span>Password field is required</span>}
-                  <input className="form-control" name="confirmpassword" placeholder="Confirm Password *" type="password" ref={register({
+                  {/* <input className="form-control" name="confirmpassword" placeholder="Confirm Password *" type="password" ref={register({
                     required: true,
       
                   })} />
-                  {errors.confirmpassword && errors.confirmpassword.type === 'required' && <span>Confirm Password field is required</span>}
+                  {errors.confirmpassword && errors.confirmpassword.type === 'required' && <span>Confirm Password field is required</span>} */}
                   <div className="my-3">
                     <input className="btn btn_gray submit_btn" type="submit" value="Reset" disabled={isButton} />
                   </div>
