@@ -7,7 +7,7 @@ import FilterProduct from "./../components/FilterProduct";
 import PageLoader from "../components/loaders/pageLoader";
 import { convertToObject } from "../utils/convertToObj"
 
-const Search = props => {  
+const Search = (props,pageContext) => {  
   
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);  
@@ -30,8 +30,9 @@ const Search = props => {
                   let proProduct = prod[0][1];
                   productList.push(proProduct);
                 }
-
+                setSearchProducts("hi")
                 await setProducts(productList);
+                console.log(productList)
                 setLoading(false);
             }catch (err) {
                 if (!ignore) {
@@ -48,8 +49,23 @@ const Search = props => {
 
 
     const renderSearchCard = () => {
-        if (searchProducts.length) {   
-          if (searchProducts === "empty")
+       if(products.length)
+       if(products.length)
+            return products.map(product => {
+              const data = convertToObject(product.flat());
+              // return <div key={data.items.id}>{data.items.name}</div>
+              return <CategoryCard data={{values:data,crumpy:pageContext}} key={data.items.id} />;
+            }); 
+            else 
+            return (
+              <div className="mx-auto">
+                {/* <NoProducts /> */}
+                {/* is no product */}
+                <h2 className="text-2xl text-center mt-4">No items found!</h2>
+              </div>
+            );
+        else if(searchProducts.length)  
+          if (searchProducts == "empty")
             return (
               <div className="mx-auto">
                 {/* <NoProducts /> */}
@@ -60,23 +76,11 @@ const Search = props => {
           else
             return searchProducts.map(data => (
               // <div key={data.items.id}>{data.items.name}</div>
-              <CategoryCard data={data} key={data.items.id} />
+              <CategoryCard data={{values:data,crumpy:pageContext}} key={data.items.id} />
             ));
-        } else if(products.length){
-            return products.map(product => {
-              const data = convertToObject(product.flat());
-              // return <div key={data.items.id}>{data.items.name}</div>
-              return <CategoryCard data={data} key={data.items.id} />;
-            });
-        }else
-        return (
-          <div className="mx-auto">
-            {/* <NoProducts /> */}
-            {/* is no product */}
-            <h2 className="text-2xl text-center mt-4">No items found!</h2>
-          </div>
-        );
-          
+        
+       
+       
       };
     
 

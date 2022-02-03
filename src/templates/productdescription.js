@@ -5,16 +5,21 @@ import { viewCartItems, wishListCount } from "./../utils/apiServices";
 import { checkLogin } from "./../services/headerServices";
 import { navigate } from 'gatsby';
 import { ToastContainer, toast } from 'react-toastify';
+import { IoChevronForwardOutline } from "react-icons/io5";
 import 'react-toastify/dist/ReactToastify.css';
 import { FaRegHeart } from 'react-icons/fa';
 import { IoIosGitCompare } from "react-icons/io";
 import Modal from 'react-bootstrap/Modal';
+import { getCategoryURL } from "./../utils/url";
 import { useForm } from "react-hook-form";
 import ImageNotFound from "./../assets/car-dealer-loader.gif";
 import SliderImage from 'react-zoom-slider';
 import { Link } from "gatsby"
 
-const Productdescription = ({ proDescription, setcartCount, setWishListCnt,pageContext  }) => {
+
+
+
+const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => {
   const [quote_id, setQuoteId] = useState("");
   const [customerId, setCustomerId] = useState("");
   const [jwt, setJwt] = useState("");
@@ -425,6 +430,17 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt,pageC
     }
   };
 
+  const changeImage = (value) => {
+    setData([
+      {
+        image: (!value ? ImageNotFound : value),
+        text: 'img1',
+        width: 2000,
+        height: 1800
+      }
+    ]);
+  }
+
   const size = (options, index1) => {
     setData([
       {
@@ -474,11 +490,14 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt,pageC
               <div className="row upper-space">
                 <div className="col-lg-7 col-md-4 col-xs-12 text-center border_f">
                   <div className="slider_thumb">
-                    <ul>
-                      <li><a></a></li>
-                      <li><a></a></li>
-                      <li><a></a></li>
+                      <ul>
+                      { proDescription.items.all_images.map((val, index) => (
+                           <li><a onClick={() => changeImage(val)}><img src={val}/></a></li>
+                          ))
+                      }
                     </ul>
+                  
+                    
                   </div>
                   <div className="slider_Product">
                     {data.length > 0 && <SliderImage data={data} width="500px" showDescription={true} direction="top" />}
