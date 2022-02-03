@@ -4,7 +4,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab'
-import { navigate } from "gatsby";
+import { navigate, Link } from "gatsby";
 import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -490,7 +490,7 @@ const CheckOut = () => {
 
                         <div className="action_sec">
                             <button className="action action_btn btn btn_gray" onClick={() => {deleteAddress(add.entity_id); setaddressEdit(false)}} disabled={index !== selAddIndex}>Delete</button>
-                            <button className="action action_btn btn btn_gray ml-1" onClick={() => {editAddress(add,index); setaddressEdit(true)}}  disabled={index !== selAddIndex}>Edit</button>
+                            <Link to="/Address" state={add}><button className="action action_btn btn btn_gray ml-1"   disabled={index !== selAddIndex}>Edit</button></Link>
                         </div>
 
                     </div>
@@ -507,6 +507,7 @@ const CheckOut = () => {
         const valueToParse = event.target.value;
         const itemSelected = JSON.parse(valueToParse);
         setSelected(itemSelected);
+        console.log(itemSelected)
         if (itemSelected['states']) {
             setState(itemSelected['states'])
         }
@@ -537,9 +538,9 @@ const CheckOut = () => {
                                                         </div>
 
                                                         <div className="new_address_popup">
-                                                            <button type="button" className="btn action action_show_popup btn_gray" onClick={() => { setShow(true); setaddressEdit(false) }}>
+                                                            <Link to="/Address"><button type="button" className="btn action action_show_popup btn_gray">
                                                                 + New Address
-                                                            </button>
+                                                            </button></Link>
 
                                                             <button type="button" className="btn action btn_next ml-2" onClick={() => confirmShippingAddress()}>Next</button>
 
@@ -723,7 +724,7 @@ const CheckOut = () => {
                                             </div>
                                         </Tab>
 
-                                        <Tab eventKey="profile" title="Review &amp; Payments">
+                                     {checkOutDetails.length != 0 && <Tab eventKey="profile" title="Review &amp; Payments">
                                             <div className="row">
                                                 <div className="col-lg-9 col-md-9 col-xs-12 checkout_shipping_address">
                                                     <div className="sec_bg">
@@ -776,7 +777,7 @@ const CheckOut = () => {
                                                 </div>
 
                                             </div>
-                                        </Tab>
+                                        </Tab>}
 
                                     </Tabs>
 

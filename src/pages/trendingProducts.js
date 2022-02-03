@@ -51,7 +51,7 @@ const TrendingProducts = () => {
     
                         <div>
                           <span className="price">$ {Math.round(data.price)}</span>
-                          <span className="off_txt_lft">$000</span>
+                          {/* <span className="off_txt_lft">$000</span> */}
                         </div>
                       </div>
     

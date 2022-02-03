@@ -39,7 +39,7 @@ const Product = props  => {
   const [sellerprod, setothersellers] = useState(null);
   const [jwt, setJwt] = useState("");
   const id = props.slug.split("-").slice(-1)[0]; 
-  
+  const [permits,setPermit] = useState([]);
   const [data, setData] = useState([  
     {
       image:(ImageNotFound),
@@ -91,20 +91,22 @@ const Product = props  => {
           navigate("/signin")
       }
       //setQuoteId(localStorage.cartId)
-      if(localStorage.permissions){
-        let addwis=localStorage.permissions.includes("Can Add To Wishlist")
-        let addcar=localStorage.permissions.includes("Can Add To Cart")
+      if(!localStorage.permissions){
+        outper(true)
+        outpercart(true)
+       } else {
+        let hi = JSON.parse(localStorage.permissions)
+        let addwis=hi.includes("Can Add To Wishlist")
+        let addcar=hi.includes("Can Add To Cart")
         per(addwis)
         percart(addcar)
-    }else if(!localStorage.permissions){
-      outper(true)
-      outpercart(true)
-    }
+       }
       const fetchData = async () => {
         setLoading(true);   
         try {  
           const res = await axios.get(
-            `${process.env.GATSBY_NODE_URL_STARCARE}data/singleproduct/${id}.json`
+            `${process.env.GATSBY_CART_URL_STARCARE}admin/productsattributes/${id}`
+            //`${process.env.GATSBY_NODE_URL_STARCARE}data/singleproduct/${id}.json`
           );
           const data = convertToObject(res.data);
           console.log(data)

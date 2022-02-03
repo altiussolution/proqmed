@@ -181,14 +181,14 @@ const isSticky = (e) => {
       searchResponse.map((item, index) => (
         item.map((val, index) => {
           if (val.items) {
-            if (!cat.includes(val.items.category_name)) {
+            if ((val.items.category_name)) {
               cat.push(val.items.category_name)
               catRoute.push({ name: val.items.category_name, id: val.items.category_id })
             }
           }
         })
       ))
-      return <div><h1>Category Value</h1>
+      return <div className="samplecategory"><h1>Category Value</h1>
         {
           catRoute.map((catVal, index) => (
             <Link to={getCategoryURL(catVal)}><p className="categories_list">{catVal ? catVal.name : 'No Product Found'}</p></Link>
@@ -341,13 +341,22 @@ const isSticky = (e) => {
     const elements_in_each_row = Math.round(allCategory.length / 3);
     const list = [];
     const topSelected = [];
-
-    for (let i = 0; i < allCategory.length; i += elements_in_each_row) {
-      list.push(allCategory.slice(i, i + elements_in_each_row));
+    let result = allCategory;
+    if(jwt){
+      let catFromLocal = localStorage.getItem('category_permissions');
+      if(catFromLocal){
+        var allowedCat = catFromLocal.split(',').map(function(item) {
+          return parseInt(item, 10);
+        });
+        result = allCategory.filter((o) => allowedCat.includes(+o.node.id));
+      }
+    }
+    for (let i = 0; i < result.length; i += elements_in_each_row) {
+      list.push(result.slice(i, i + elements_in_each_row));
     }
 
     for (let i = 0; i < 6; i++) {
-      topSelected.push([allCategory[i]]);
+      topSelected.push([result[i]]);
     }
 
     if (type === 'dropdown') {
@@ -447,13 +456,14 @@ const isSticky = (e) => {
                     <a><Link to="/signup">New to ProQmed?</Link>Start here</a>
                     <a><Link to="/"></Link>Sell on ProQmed</a>
                     </li>}
-                    {isuserlogged && <div><li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
+                    {/* {isuserlogged && <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li> */}
+                    {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>
                     <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
-                    <li onClick={() => { navigateOnclick('/wishlist') }}>My Wishlist</li>
+                    <li onClick={() => { navigateOnclick('/myReviews') }}>My Reviews</li>
+                    <li onClick={() => { navigateOnclick('/wishlist') }}>Wishlist</li>
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li></div>}
                     {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
-                    {isuserlogged && <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>}
                     {isuserlogged && <div>{iswhatuser &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}</div>}
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                     {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}

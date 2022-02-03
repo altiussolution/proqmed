@@ -36,8 +36,9 @@ const TrendingProducts = () => {
     const [trendingProducts, setTrendingProducts] = useState(null);
     const [pcar,percart] = useState(false);
     const [outpcar,outpercart] = useState(false);
+    const [permits,setPermit] = useState([]);
   useEffect(() => {
-    setJwt(localStorage.userToken)
+    setPermit(localStorage.permissions)
     const jwt = localStorage.getItem('userToken')
     if(jwt){
       try
@@ -70,12 +71,12 @@ const TrendingProducts = () => {
     }else{
         
     }
-    if(localStorage.permissions){
-      let addcar=localStorage.permissions.includes("Can Add To Cart")
-      percart(addcar)
-  }else if(!localStorage.permissions){
-    
+  if(!localStorage.permissions){
     outpercart(true)
+  }else {
+    let hi = JSON.parse(localStorage.permissions)
+    let addcar=hi.includes("Can Add To Cart")
+    percart(addcar)
   }
     const fetchTrending = async () => {
       const res = await fetch(
@@ -140,18 +141,17 @@ const TrendingProducts = () => {
           trendingProducts.map((data, index) => (
             <div key={`${data.name}_${index}`} className="">
               {/* <div className="" > */}
-              
+              <Link to={getProductURL(data)}>
+
                 <div className="card">
 
                   <div className="image_wrapper">
-                  <Link to={getProductURL(data)}>
                     <img src={data.image} />
-</Link>
                   </div>
                   
                   
                   <div className="img_content">
-                  <h5 className="prod-title">{data.name}</h5>
+                  <Link to={getProductURL(data)}> <h5 className="prod-title">{data.name}</h5></Link>
                     
 
                     
@@ -160,7 +160,7 @@ const TrendingProducts = () => {
                   <div className="price_holder">
                                 <div className="price_left">                                  
                                     <div className="product_amt">
-                                    <span className="new_price">$000</span>
+                                    {/* <span className="new_price">$000</span> */}
                                         <span className="price">${Math.round(data.price)}</span>
                                         
                                     </div>
@@ -189,7 +189,8 @@ const TrendingProducts = () => {
                                 </div>
                                 </div>
                 </div>
-                
+                </Link>
+
               {/* </div> */}
             </div>
           ))

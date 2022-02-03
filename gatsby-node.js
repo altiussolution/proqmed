@@ -21,7 +21,7 @@ let categories,
   return new Promise(async (resolve, reject) => {
     try {
       const { data } = await axios(
-          "http://35.154.13.190/Starcare/rest/V1/altius/categories?rootCategoryId=13"
+          "http://15.207.190.73/proqmed/rest/V1/altius/categories?rootCategoryId=13"
       );  
       categories = data;
       // console.log("data", data)   

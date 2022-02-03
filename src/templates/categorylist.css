@@ -489,6 +489,7 @@ list-style: none;
     font-size: 30px;
     color: #161616;
     line-height: 34px;
+    font-weight: 300;
     
   }
   .product_view .product_details .brand p {
@@ -516,7 +517,7 @@ list-style: none;
   .product_view .product_details .product_note {
        -webkit-display: flex;
     -moz-display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     -ms-display: flex;
     -o-display: flex;
      display: flex;
@@ -540,8 +541,9 @@ list-style: none;
     font-size: 16px;
     font-weight: 300;
     color: #000;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     margin-right: 10px;
+    line-height: 16px;
   }
 
   .prd_note a {
@@ -560,12 +562,14 @@ list-style: none;
   }
   .product_view .product_details .product_note i {
     color: #ffffff;
-    font-size: 14px;
+    font-size: 11px;
     font-style: initial;
     background: hsl(141deg 60% 56%);
     font-family: 'Poppins';
     padding: 2px 5px;
     border-radius: 7px;
+    border: 1px solid #44c171;
+    font-weight: 600;
     
   }
   .product_view .product_details .product_qty {
@@ -1033,11 +1037,12 @@ section.breadcrums ul li a::after {
   margin-left: 0;
   font-size: 13px;
   line-height: 24px;
+  flex-direction: column;
 }
 .qty_inner{
   display: flex;
   align-items: center;
-  margin-right: 30px;
+  margin-right: 10px;
 }
 .react-slider__ul li.active img {
   border: 2px solid #e7ab3c!important;
@@ -1448,9 +1453,12 @@ h5.pdt_heading {
 .table.compareList_table td{
   padding: 6px 10px 0px!important;
   /* width: 20%; */
+  border-right: 1px solid #e9e9e9;
 }
 .table.compareList_table th{
   padding: 6px 10px 6px!important;
+  text-align: left;
+  border-right: 1px solid #e9e9e9;
 }
 .inner_page{
   padding: 30px 0px;
@@ -1491,3 +1499,41 @@ padding-left: 100px;
 .category_container .cat_scroll .products_fp .product_item .image_wrapper img{
   width: 100%;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+
+   opacity: 1;
+
+}
+.slider_thumb {
+  width: 100px;
+  float: left;
+  /* background: #fff; */
+  margin-right: 10px;
+}
+.slider_thumb ul{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.slider_thumb ul li{
+  width: 100%;
+  height: 90px;
+  border-radius: 20px;
+  background: #fff;
+  margin-bottom: 10px;
+}
+.slider_wrap{
+  display: flex;
+}
+.delivery-section .input-group-addon {
+  border: 1px solid #cdcdcd;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-left: -1px;
+}
+.react-slider__areaZoom img {
+  z-index: 2;
+  position: absolute!important;
+}
+

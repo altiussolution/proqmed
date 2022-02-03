@@ -22,16 +22,47 @@ export default function CategoryCard({ data: product, dataClass }) {
   const [pcar,percart] = useState(false);
   const [outp,outper] = useState(false);
   const [outpcar,outpercart] = useState(false);
+  const [permits,setPermits] = useState([]);
   useEffect(() => {
     setCustomerId(localStorage.customer_id)
+    setPermits(localStorage.permissions)
     setJwt(localStorage.userToken)
-    setQuoteId(localStorage.cartId)
-    if(localStorage.permissions){
-      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
-      let addcar=localStorage.permissions.includes("Can Add To Cart")
+   // setQuoteId(localStorage.cartId)
+    const jwt = localStorage.getItem('userToken')
+        if(jwt){
+          try
+          {    
+            axios({
+              method : 'post',
+              url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine`,
+              headers : {
+                  'Authorization' : `Bearer ${jwt}`
+              }
+            })
+            .then((response) => {
+              if(response.statusText === "OK" && response.status == 200)
+              {
+                console.log(response.data)
+                  localStorage.setItem('cartId',response.data);
+                  setQuoteId(localStorage.cartId)
+              }
+            }) 
+            .catch((error) => {
+              console.error(error,'error')
+            })
+          }catch(err){
+            console.error(err);
+            toast.error('something went wrong')
+          }
+        }else{
+            
+        }
+    if(permits.length!=0){
+      let addwis=permits.includes("Can Add To Wishlist")
+      let addcar=permits.includes("Can Add To Cart")
       per(addwis)
       percart(addcar)
-  }else if(!localStorage.permissions){
+  }else if(permits.length==0){
     outper(true)
     outpercart(true)
   }
@@ -72,10 +103,10 @@ export default function CategoryCard({ data: product, dataClass }) {
 
   }
 
-  const addItemToCart = (product) =>{
+  const addItemToCart = (sku,product) =>{
     const cartItem = {
       "cartItem": {
-        "sku": product.items.sku,
+        "sku": sku,
         "qty": qty,
         "quote_id": quote_id
       }
@@ -122,7 +153,7 @@ export default function CategoryCard({ data: product, dataClass }) {
           </ul>
         </div>
         <div className="product_img">
-        <div className="price_off">Upto 50% off</div>
+        {/* <div className="price_off">Upto 50% off</div> */}
                                
          { <Link to={getProductURL(product.items)} state={product}><img className="w-100" src={`${product.items.image}`} alt={product.items.image} /></Link>}
         </div>
@@ -151,8 +182,9 @@ export default function CategoryCard({ data: product, dataClass }) {
                 </div>
                 <div className="price_right"> 
                                    
-                                  {pcar && <button className="addtocart" ><span class="cart_svg"></span></button>}
-                                  {outpcar && <button className="addtocart" ><span class="cart_svg"></span></button>}
+                                  {pcar && <button className="addtocart" onClick={() => addItemToCart(product.items.sku, product.id)}><span class="cart_svg"></span></button>
+}
+                                  {outpcar && <button className="addtocart" onClick={() => addItemToCart(product.items.sku, product.id)}><span class="cart_svg"></span></button>}
                                   { <Link  to={getProductURL(product.items)} state={product} className="btn outline-1">View Detail</Link> }
                                   </div>
                 </div>

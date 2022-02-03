@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
 import axios from "axios";
 import { checkLogin } from "./../services/headerServices";
-import { navigate} from "gatsby"
+import { navigate, Link} from "gatsby"
 import Table from 'react-bootstrap/Table';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
@@ -20,6 +20,7 @@ const Profile = () => {
     const [user_name, setName] = useState("")
     const [profile, setProfile] = useState({});
     const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
     const [state, setpic] = useState("");
     const [p,per] = useState(false);
     const [outp,outper] = useState(false);
@@ -30,23 +31,18 @@ const Profile = () => {
   const [showgender,Gendering]= useState(false);
   const [shownumber,Numbering]= useState(false);
   const [value, setValue] = useState();
-  const [showQuote, setShowQuote] = useState(true);
+ // const [showQuote, setShowQuote] = useState(true);
   const [quote, setQuotePopup] = useState(false);
-  const handleCloseQuote = () => setShowQuote(false);
-  const handleShowQuote = () => setShowQuote(true);
+  //const handleCloseQuote = () => setShowQuote(false);
+ // const handleShowQuote = () => setShowQuote(true);
+
+  const [permits,setPermit] = useState([]);
     useEffect(() => {
+      setPermit(localStorage.permissions);
         setIsLogged(checkLogin());
         setJwt(localStorage.userToken);
         setEmail(localStorage.email);
-        if(localStorage.permissions){
-          let addwis=localStorage.permissions.includes("Can Edit Profile")
-         
-          per(addwis)
-        
-      }else if(!localStorage.permissions){
-        outper(true)
-        
-      }
+    
         setName(localStorage.getItem('user_name'))
         
           axios({
@@ -76,6 +72,15 @@ const Profile = () => {
               console.log(res,"profile")
               setProfile(res.data[0]);
               setShow(true);
+              if(permits.length!=0){
+                let addwis=permits.includes("Can Edit Profile")
+               
+                per(addwis)
+              
+            }else if(!localStorage.permissions){
+              outper(true)
+              
+            }
             }
           }).catch((err) => {
             console.error(err);
@@ -136,6 +141,7 @@ const Namesubmit = Nameval =>{
         .then(function (response) {
             toast.success('Name Updated Successfully')
             Naming(false)
+                        getProfile()
         })
         .catch(function (response) {
             toast.error('An error occured please contact admin')
@@ -168,6 +174,8 @@ const Emailsubmit = emailss => {
         .then(function (response) {
             toast.success('Email Updated Successfully')
             Emailing(false)
+            getProfile()
+
         })
         .catch(function (response) {
             toast.error('An error occured please contact admin')
@@ -229,6 +237,7 @@ const Numbersubmit = num => {
         .then(function (response) {
             toast.success('Mobile Number Updated Successfully')
             Numbering(false)
+            getProfile()
         })
         .catch(function (response) {
             toast.error('An error occured please contact admin')
@@ -256,8 +265,6 @@ const Numbersubmit = num => {
     
           fileReader.onload = () => {
             resolve(fileReader.result);
-    
-          
           };
     
           fileReader.onerror = (error) => {
@@ -280,7 +287,7 @@ const Numbersubmit = num => {
                 
                 if(response.statusText === "OK" && response.status == 200){
                     toast.success('Password changed sucessfully');
-                    handleCloseQuote()
+                    //handleCloseQuote()
                    // localStorage.clear();
                     //navigate('/profile')
                 }
@@ -298,7 +305,9 @@ const Numbersubmit = num => {
         navigate('/signin')
       } else {
         setQuotePopup(true)
-        handleShowQuote(true)
+       // handleShowQuote(true)
+       setShow(true);
+
       }
     }
   const logout = () => {
@@ -308,6 +317,8 @@ const Numbersubmit = num => {
     navigate('/')  
 
   }
+
+ 
     return (
         <Layout>
 
@@ -337,9 +348,9 @@ const Numbersubmit = num => {
                 <h4><span><img src={orders}/></span><a onClick={() => { navigateOnclick('/orders') }}>MY ORDERS</a> </h4>
                 <h4><span><img src={account}/></span><a href="#"> ACCOUNT SETTINGS</a></h4>
                 <ul>
-                    <li onClick={() => { navigateOnclick('/profile') }}><a>Profile Information</a></li>
-                    <li><a>Manage Addresses</a></li>
-                    <li><a href="#">My reviews</a></li>
+                <li><Link to="/profile"><a>Profile Information</a></Link></li>
+                    <li><Link to="/myAddress"><a>Manage Addresses</a></Link></li>
+                    <li><Link to="/myReviews"><a>My reviews</a></Link></li>
                 </ul>
               {isuserlogged && <h4><span><img src={logoutt}/></span><a onClick={() => { logout() }}>LOGOUT</a></h4>}
             </div>
@@ -357,8 +368,8 @@ const Numbersubmit = num => {
                     <div class="form-1">
                         <div class="head-label">
                             <h4>Personal Information</h4>
-                            {!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}
-
+                           {p && <div>{!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}</div> }
+                           {outp && <div>{!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}</div>}
                         </div>
                        
                        {!showname && <div class="form-content">
@@ -379,16 +390,19 @@ const Numbersubmit = num => {
                     <div class="form-1">
                         <div class="head-label">
                             <h4>Email Address</h4>
-                            {!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}
-                            <span>
-                            {/*p && <a onClick={() => { navigateOnclick('/changePassword') }} >
-                  Change Password
-                            </a>*/}
-                {outp && <a onClick={() => quotePopupOpen()}  >
-                  Change Password
-                  {quote ? <Modal show={showQuote} onHide={handleCloseQuote} animation={false}>
+                            {p && <div>{!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}</div>}
+                           {outp &&<div>{!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}</div>}
+
+                           {p && <span>
+                 <a onClick={() => quotePopupOpen()}  >
+                  Change Password </a> </span> }
+                   { outp && <span>
+                 <a onClick={() => quotePopupOpen()}  >
+                  Change Password </a> </span> }
+                  {quote ? <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>Change Password</Modal.Title>
+
                 </Modal.Header>
                 <Modal.Body>
                 <div className="row">
@@ -442,8 +456,7 @@ const Numbersubmit = num => {
                 </Modal.Body>
                </Modal>: <div></div>
                 }
-                </a>}
-                </span>    
+                 
                         </div>
 
                         {!showmail && <div class="form-content">
@@ -462,7 +475,8 @@ const Numbersubmit = num => {
                     <div class="form-1">
                         <div class="head-label">
                             <h4>Mobile Number</h4>
-                            {!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}
+                          {p && <div>{!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}</div> } 
+                          {outp && <div> {!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}</div>} 
                             
                         </div>
                         {!shownumber &&  <div class="form-content">

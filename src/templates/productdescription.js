@@ -12,6 +12,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useForm } from "react-hook-form";
 import ImageNotFound from "./../assets/car-dealer-loader.gif";
 import SliderImage from 'react-zoom-slider';
+import { Link } from "gatsby"
 
 
 
@@ -54,32 +55,60 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
       width: 2000,
       height: 1800
     }])
-
+    const [permits,setPermit] = useState([]);
 
 
   useEffect(() => {
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
-    setQuoteId(localStorage.cartId);
+    //setQuoteId(localStorage.cartId);
+    const jwt = localStorage.getItem('userToken')
+    if(jwt){
+      try
+      {    
+        axios({
+          method : 'post',
+          url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine`,
+          headers : {
+              'Authorization' : `Bearer ${jwt}`
+          }
+        })
+        .then((response) => {
+          if(response.statusText === "OK" && response.status == 200)
+          {
+            console.log(response.data)
+              localStorage.setItem('cartId',response.data);
+              setQuoteId(localStorage.cartId)
+          }
+        }) 
+        .catch((error) => {
+          console.error(error,'error')
+        })
+      }catch(err){
+        console.error(err);
+        toast.error('something went wrong')
+      }
+    }
     console.log(proDescription)
-    if(localStorage.permissions){
-      let addwis=localStorage.permissions.includes("Can Add To Wishlist")
-      let addcar=localStorage.permissions.includes("Can Add To Cart")
-      let addcom=localStorage.permissions.includes("Can Add To Compare")
+    if(!localStorage.permissions){
+      outper(true)
+      outpercart(true)
+      outpercomp(true)
+     } else {
+      let hi = JSON.parse(localStorage.permissions)
+      let addwis=hi.includes("Can Add To Wishlist")
+      let addcar=hi.includes("Can Add To Cart")
+      let addcom=hi.includes("Can Add To Compare")
       per(addwis)
       percart(addcar)
       percomp(addcom)
-  }else if(!localStorage.permissions){
-    outper(true)
-    outpercart(true)
-    outpercomp(true)
-  }
+     }
     if (proDescription.items.config_options) {
       setcartItem({
         "cartItem": {
           "sku": proDescription.items.config_options[0].optins_values.sku,
           "qty": qty,
-          "quote_id": localStorage.cartId
+          "quote_id": quote_id
         }
       })
       let colour_list = [];
@@ -131,7 +160,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
         "cartItem": {
           "sku": proDescription.items.sku,
           "qty": qty,
-          "quote_id": localStorage.cartId
+          "quote_id": quote_id
         }
       })
       setData([
@@ -188,7 +217,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
       "cartItem": {
         "sku": changeSizeValue.optins_values.sku,
         "qty": qty,
-        "quote_id": localStorage.cartId
+        "quote_id": quote_id
       }
     })
     let set_price = [];
@@ -204,7 +233,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
         "cartItem": {
           "sku": change_price[0].sku,
           "qty": qty,
-          "quote_id": localStorage.cartId
+          "quote_id": quote_id
         }
       }
     } else {
@@ -212,7 +241,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
         "cartItem": {
           "sku": proDescription.items.sku,
           "qty": qty,
-          "quote_id": localStorage.cartId
+          "quote_id": quote_id
         }
       }
     }
@@ -341,7 +370,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
       setQty(event.target.value)
       tierAmt.map(item => {
         if (event.target.value == item.Tier_quantity) {
-          price = item.Tier_price
+          price = item.Tier_price 
         }
 
       })
@@ -425,7 +454,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
       "cartItem": {
         "sku": options.sku,
         "qty": qty,
-        "quote_id": localStorage.cartId
+        "quote_id": quote_id
       }
     })
     setindex_colour(index1);
@@ -446,29 +475,36 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
           <div className="container">
             <div className="product_view">
               <div className="row upper-space">
-                <div className="col-lg-5 col-md-4 col-xs-12 text-center border_f">
+                <div className="col-lg-7 col-md-4 col-xs-12 text-center border_f">
+                  <div className="slider_thumb">
+                    <ul>
+                      <li><a></a></li>
+                      <li><a></a></li>
+                      <li><a></a></li>
+                    </ul>
+                  </div>
                   <div className="slider_Product">
-                    {data.length > 0 && <SliderImage data={data} showDescription={true} direction="right" />}
+                    {data.length > 0 && <SliderImage data={data} width="500px" showDescription={true} direction="top" />}
                   </div>
                 </div>
-                <div className="col-lg-7 col-md-8 col-xs-12 pr-5 product_details">
+                <div className="col-lg-5 col-md-8 col-xs-12 pr-5 product_details">
                   <section className="product_details">
                     <h1 className="mb-2">
                       {proDescription.items.name}
                     </h1>
-                    {proDescription.items.rating ?
-                      <StarRatings
-                        rating={Math.round(proDescription.items.rating)}
-                        numberOfStars={5}
-                        name='rating'
-                        starDimension="20px"
-                        starSpacing="3px"
-                        starRatedColor="rgb(242 187 22)"
-                      /> : 
-                      
-                      <p className="no_review">{proDescription.items.number_of_review}</p>
+                    {proDescription.items.rating != null &&
+                       <StarRatings
+                          rating={Math.round(proDescription.items.rating)}
+                          numberOfStars={5}
+                          name='rating'
+                          starDimension="20px"
+                          starSpacing="0px"
+                          starRatedColor="rgb(255 123 168)"
+                          svgIconViewBox="0 0 32 32"
+                          svgIconPath="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798zM16 23.547l-6.983 3.671 1.334-7.776-5.65-5.507 7.808-1.134 3.492-7.075 3.492 7.075 7.807 1.134-5.65 5.507 1.334 7.776-6.983-3.671z"
+                      />                        
                     }
-
+                    <span class="rating-count">2350 Comments</span>
 
                     <div className="brand mt-2">
 
@@ -502,7 +538,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                         }
                       </div>
                       <div>
-                        <i>{proDescription.items.is_in_stock == 1 ? "IN STOCK" : "OUT OF STOCK"}</i>
+                        <i>{proDescription.items.is_in_stock == 1 ? "In Stock" : "Out Of Stock"}</i>
                       </div>
                     </div>
 
@@ -516,7 +552,8 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                           )
                         }
 
-                        <span><strike>${Math.round(proDescription.items.strike_price)}</strike></span>
+                       {proDescription.items.strike_price !=null && <span><strike>${Math.round(proDescription.items.strike_price)}</strike>0</span>}
+                       {/* <span className="price"><strike>$0</strike></span> */}
 </div>
 
                     {tierAmt.length != 0 ? (
@@ -556,8 +593,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                       : <span></span>}
                     <div className="product_qty">
                       <div className="qty_inner">
-                        <p>Qty<span className="mx-2">:</span>
-                        </p>
+                        
                         <div className="qty_price">
                           <input type="number" value={qty} onChange={event => { handleChange(event) }} />
                         </div>
@@ -582,9 +618,23 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                             <FaRegHeart />
               </a>
               </button>}
-                        
+              
                       </div>
-
+                      <div className="product_detail_action">
+                          
+                          <a> <Link to="/myquotesedit" state={{ des: proDescription }}><span className="fa fa-comments"></span> Request for a Quote
+                                     </Link></a>
+                     {/*<a onClick={() => quotePopupOpen()} >
+                     <span className="fa fa-comments"></span>   Request for a Quote
+                             </a>*/}
+       
+                                {pcom && <a onClick={() => addToList(1)} >
+                                   <IoIosGitCompare /> Add to Compare
+                     </a>}
+                     {outpcom && <a onClick={() => addToList(1)} >
+                                   <IoIosGitCompare /> Add to Compare
+                     </a>}
+                               </div>
                       
                     </div>
 
@@ -593,7 +643,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                       <p>{proDescription.items.overview}</p>
                       {/* <a>Read More</a> */}
 
-                      <p>Seller: <span>{proDescription.items.seller_name}</span></p>
+                     {proDescription.items.seller_name !=null && <p>Seller: <span>{proDescription.items.seller_name}</span></p>}
 
 
                     </div>
@@ -601,14 +651,19 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                     <div className="delivery-section">
                       
                       <div className="input-sec">
-                      <p>Delivery</p>
+                      
                       <form onSubmit={handleSubmit(pinCodeChecker)}>
-  <label>
+                      <div class="form-group">
+                      <label>Delivery</label>
+                      <div class="input-group">
     
-    <input type="tel" id="pincode" name="postcode" placeholder="Zip/Postal Code " onChange={handleChange1} maxLength="6" className="form-control" required="true"/>
+    <input class="form-control" type="tel" id="pincode" name="postcode" placeholder="Zip/Postal Code " onChange={handleChange1} maxLength="6" className="form-control" required="true"/>
     {errors.postcode && errors.postcode.type === 'required' && <span>Zip/Postal Code is required</span>}
-    <button  type="submit"  className="input-group-text" disabled={Istrue}>Check</button>
-  </label> 
+    
+    <div class="input-group-addon">
+    <button type="submit"  className="btn btn-default" disabled={Istrue}>Check</button>
+      </div>
+    </div> </div>
  
 </form>
                         
@@ -617,20 +672,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                     </div>
 
 
-                    <div className="product_detail_action">
-                          
-
-              <a onClick={() => quotePopupOpen()} >
-              <span className="fa fa-comments"></span>   Request for a Quote
-              </a>
-
-                         {pcom && <a onClick={() => addToList(1)} >
-                            <IoIosGitCompare /> Add to Compare
-              </a>}
-              {outpcom && <a onClick={() => addToList(1)} >
-                            <IoIosGitCompare /> Add to Compare
-              </a>}
-                        </div>
+                    
                     <div>
 
                       {config.length > 0 && <p><span className="color_type">Colour: </span>{colour}</p>}
@@ -676,7 +718,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt }) =>
                       </Modal.Header>
                       <Modal.Body>
 
-                        <p >Product Name:&nbsp;<span>{proDescription.items.name}</span></p>
+                        <p >Product Name:&nbsp;<span>{proDescription.items.name}</span></p> 
 
                         <form onSubmit={handleSubmit(onSubmitQuote)} action="" className="header_signin_form">
                           <div className="form-group">

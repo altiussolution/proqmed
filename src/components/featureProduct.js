@@ -44,9 +44,20 @@ const FeatureProduct = () => {
     const [pcar,percart] = useState(false);
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false);
+    const [permits,setPermit] = useState();
     useEffect(() => {
         setCustomerId(localStorage.customer_id)
         setJwt(localStorage.userToken)
+        if(!localStorage.permissions){
+          outper(true)
+          outpercart(true)
+        }else {
+          let hi = JSON.parse(localStorage.permissions)
+          let addwis=hi.includes("Can Add To Wishlist")
+          let addcar=hi.includes("Can Add To Cart")
+          per(addwis)
+          percart(addcar)
+        }
         const jwt = localStorage.getItem('userToken')
         if(jwt){
           try
@@ -77,15 +88,7 @@ const FeatureProduct = () => {
             
         }
        // setQuoteId(localStorage.cartId)
-        if(localStorage.permissions){
-          let addwis=localStorage.permissions.includes("Can Add To Wishlist")
-          let addcar=localStorage.permissions.includes("Can Add To Cart")
-          per(addwis)
-          percart(addcar)
-      }else if(!localStorage.permissions){
-        outper(true)
-        outpercart(true)
-      }
+  
         const fetchFeature = async () => {
             const res = await fetch(
                 `${process.env.GATSBY_CART_URL_STARCARE}featureproducts/${localStorage.customer_id}`
@@ -237,7 +240,7 @@ const FeatureProduct = () => {
                                     </ul>
                                 </div>}
                                 <div className="image_wrapper">
-                               {data.offer_percentage != 0 && <div className="price_off">Updo {data.offer_percentage}% off</div>}
+                               {data.offer_percentage != 0 && <div className="price_off">Upto {data.offer_percentage}% off</div>}
                                     <Link to={getProductURL(data)}><img src={data.image} /></Link>
                                 </div>
                                 <div className="description_list">                               

@@ -19,14 +19,12 @@ const Orders = () => {
     const [re,reodr]= useState(false);
     const [outp,outper] = useState(false);
     const [outre,outreodr]= useState(false);
+    const [permits,setPermit] = useState([]);
+    const [attach_data, setattachment] = useState(null);
     const array=[]
     useEffect(() => {
         setJwt(localStorage.userToken);
-        if(localStorage.permissions){
-            perMission(localStorage.permissions);
-        }
-        
-        console.log(permit)
+      
         setOrderDetails()
     }, [])
 
@@ -43,17 +41,18 @@ const Orders = () => {
                             orderArray.push(groupArray(res.data, 'order_id')[x['order_id']])
                         }
                     }
+                    console.log(orderArray)
                     setOrders(orderArray);
-                    if(localStorage.permissions){
-                        let orderhis=localStorage.permissions.includes("Can View Order History")
-                        let reorder = localStorage.permissions.includes("Can View Individual Orders Or Reorder")
-                        per(orderhis)
-                        reodr(reorder)
-                    }else if(!localStorage.permissions){
+                    if(!localStorage.permissions){
                         outper(true)
                         outreodr(true)
-                    }
-                   
+                      }else {
+                        let hi = JSON.parse(localStorage.permissions)
+                        let orderhis=hi.includes("Can View Order History")
+                        let reorder = hi.includes("Can View Individual Orders Or Reorder")
+                        per(orderhis)
+                        reodr(reorder)
+                      }
                 }
                 
             }).catch((err) => {  
@@ -125,7 +124,15 @@ const filtercall = (data) =>{
             data: data,
         })
             .then(function (response) {
-                setOrders(response.data)
+                console.log(response.data)
+                let orderArray = [];
+                for(let x of response.data){
+                    if(x['increment_id']){
+                        orderArray.push(groupArray(response.data, 'order_id')[x['order_id']])
+                    }
+                }
+                console.log(orderArray)
+                setOrders(orderArray);
             })
             .catch(function (response) {
                 
@@ -220,6 +227,17 @@ if(array.length>0){
             }
             }
     }
+
+    const handleClick = (id) =>{
+        const res = axios.get(
+        `${process.env.GATSBY_CART_URL_STARCARE}admin/pdfinvoice/${id}`
+        // `${process.env.GATSBY_CART_URL}admin/pdfinvoice/${entity_id}`
+
+        ).then((data)=>{
+          let response_data = data.data
+          setattachment(response_data)
+      })   
+    }
     const searchOrder = async (val) => {
         if(val.target.value.length>=2){
             let data = {
@@ -237,7 +255,14 @@ if(array.length>0){
                     data: data,
                 })
                     .then(function (response) {
-                        setOrders(response.data)
+                        let orderArray = [];
+                        for(let x of response.data){
+                            if(x['increment_id']){
+                                orderArray.push(groupArray(response.data, 'order_id')[x['order_id']])
+                            }
+                        }
+                        console.log(orderArray)
+                        setOrders(orderArray);
                     })
                     .catch(function (response) {
                         
@@ -303,12 +328,12 @@ if(array.length>0){
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12">
                             <div class="or-left">
-                                <p>: {orders.orders_id}</p>
+                                <p>: {orders.order_id}</p>
                                 <p>: {orders.shipping_description}</p>
-                                <p>:${orders.grand_total}</p>
+                                <p>:${parseFloat(orders.grand_total).toFixed(2)}</p>
                                 <p>: {orders.status}</p>
                                 <p>: {orders.payment_method}</p>
-                                <span class="functions"><p><i class="fa fa-calendar-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleString()}</p><p><i class="fa fa-clock-o" aria-hidden="true"></i> 12.30 PM</p></span>
+                                <span class="functions"><p><i class="fa fa-calendar-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleDateString()}</p><p><i class="fa fa-clock-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleTimeString('en-US')}</p></span>
                             </div>
                         </div>
 
@@ -316,13 +341,19 @@ if(array.length>0){
                             <div class="buttons-or">
                         {re && <button type="button" class="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
                                             {outre && <button class="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
-                                            <button className="btn btn-primary" to="/orderstatus" state={{ order_id: orders.order_id }} >View Order</button>
+                                            <Link to="/orderstatus" state={{ order_id: orders.order_id }}><button className="btn btn-primary"  >View Order</button></Link>
                                             {orders.status !== 'canceled' && <button className="btn btn outline" type="button" onClick={()=> cancelOrder(orders.order_id)}>Cancel Order</button>}
-                        <a href="#"><i class="fa fa-sticky-note" aria-hidden="true"></i>Invoice</a>
+                                            
+                     {attach_data &&   <a><i class="fa fa-sticky-note" aria-hidden="true" onClick={handleClick}></i>Invoice
+                        <div> 
+                            {  attach_data?  
+                                <a href={attach_data[0].invoice_pdf} download>{attach_data[0].invoice_pdf}</a>:<span></span>
+                            }
+                                </div></a>}
                             </div>
                         </div>
                     </div>
-                    : <div key={`${ind}_product`}  className="product_item"> 
+                    :<div> {/*<div key={`${ind}_product`}  className="product_item"> 
                     <div className="product_img">
                         <img src={orders.image} />
                     </div>
@@ -340,7 +371,7 @@ if(array.length>0){
                             </li>
                         </ul>  
                        
-                    </div>
+                                    </div>*/}
                     
             </div>
                     ) 

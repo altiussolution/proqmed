@@ -20,8 +20,38 @@ const MyQuotes = ({ setcartCount }) => {
     const [quoteConversations, setQuotesConversations] = useState([])
     const [loader, setLoader] = useState(false);
     const [quoteForm, setQuoteForm ] = useState();
+    const [quote_id, setQuoteId] = useState("");
 
     useEffect(() => {
+        const jwt = localStorage.getItem('userToken')
+        if(jwt){
+          try
+          {    
+            axios({
+              method : 'post',
+              url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine`,
+              headers : {
+                  'Authorization' : `Bearer ${jwt}`
+              }
+            })
+            .then((response) => {
+              if(response.statusText === "OK" && response.status == 200)
+              {
+                console.log(response.data)
+                  localStorage.setItem('cartId',response.data);
+                  setQuoteId(localStorage.cartId)
+              }
+            }) 
+            .catch((error) => {
+              console.error(error,'error')
+            })
+          }catch(err){
+            console.error(err);
+            toast.error('something went wrong')
+          }
+        }else{
+            
+        } 
         getQuotes();
     }, [])
 
@@ -144,7 +174,7 @@ const MyQuotes = ({ setcartCount }) => {
             {
                 "sku": cartDetails['product_id'],
                 "qty": cartDetails['quote_qty'],
-                "quote_id": localStorage.cartId
+                "quote_id": quote_id
             }
         }
         const jwt = localStorage.getItem('userToken')
@@ -229,13 +259,13 @@ const MyQuotes = ({ setcartCount }) => {
                                                     </td>
                                                     <td className="action_sec">
                                                         <span>
-                                                        <Link to="/myquotesedit" state={quote}> <button className="action action_btn btn btn_gray">Edit
+                                                        {/*<Link to="/myquotesedit" state={quote}> <button className="action action_btn btn btn_gray">Edit
                               </button></Link>
 
                                                             <button type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.entity_id)}> Delete
-                              </button>
-                                                            {/* <a className="action action_btn btn btn_gray" onClick={() => editQuote(quote)}> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                              </a> */}
+                                                </button>*/}
+                              <Link to="/myquotesedit" state={quote}> <a className="action action_btn btn btn_gray"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </a></Link>
                                                             <a type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.entity_id)}> <i class="fa fa-trash-o" aria-hidden="true"></i>
                               </a>
                                                         </span>

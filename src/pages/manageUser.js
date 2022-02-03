@@ -4,12 +4,13 @@ import axios from "axios";
 import { navigate, useStaticQuery, Link } from "gatsby";
 import Switch from "react-switch";
 import { useForm } from "react-hook-form";
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 import Multiselect from 'multiselect-react-dropdown';
 const Managesub = ({location}) => {
  const [clip,categoryda] = useState([]);
  const [statys, statusIn] = useState(false);
+ const [statysedit, statusInedit] = useState(false);
  const { register, handleSubmit, errors } = useForm();
  const [quoteForm, setQuoteForm ] = useState();
  const [quoteedit, setQuotePopupedit] = useState(false);
@@ -19,7 +20,10 @@ const Managesub = ({location}) => {
  const [customerId, setCustomerId] = useState("");
  const [quoteConversations, setQuotesConversations] = useState([])
  const [names, setNames] = useState([]);
+ const [username,setUsername] = useState();
  const [catie, setCats] = useState([]);
+ const [namesedit, setNamesedit] = useState([]);
+ const [catieedit, setCatsedit] = useState([]);
  const data = useStaticQuery(graphql`
  {
    allCategory {
@@ -42,8 +46,10 @@ const Managesub = ({location}) => {
    }
  }
 `)
+
  useEffect(() => {
   setCustomerId(localStorage.customer_id)
+  setUsername(localStorage.user_name)
   rendercategory();
   getConversation();
   console.log(location.state['subuser_firstname'])
@@ -51,6 +57,9 @@ const Managesub = ({location}) => {
   console.log(location.state.subuser_id)
   setQuoteForm(location.state)
   setQuotePopupedit(true)
+  setCatsedit(location.state['category_permissions'])
+  setNamesedit(location.state['allowed_permissions'])
+  statusInedit(location.state['subuser_status'])
  }else {
   setQuotePopupadd(true)
  }
@@ -102,14 +111,14 @@ const onSubmitQuote = quoteDetails => {
  let quoteData = [
      {
          "subuser_id": quoteForm['subuser_id'],
-         "role_name": quoteForm['role_name'],
+         "role_name": quoteDetails['rolename'],
          "firstname": quoteDetails['firstname'],
          "lastname": quoteDetails['lastname'],
          "email": quoteDetails['email'],
          "password": quoteDetails['password'],
-         "allowedpermissions": names,
-         "categorypermissions": catie,
-         "status" : statys
+         "allowedpermissions": namesedit,
+         "categorypermissions": catieedit,
+         "status" : statysedit
 
      }
  ]
@@ -121,7 +130,7 @@ const onSubmitQuote = quoteDetails => {
          data: quoteData,
      })
          .then(function (response) {
-             toast.success('SubUser Updated sucessfully')
+             toast.success("SubUser Updated sucessfully")
              navigate('/userManage')
          })
          .catch(function (response) {
@@ -141,7 +150,7 @@ const handleChange = nextChecked => {
 };
 const handleChange1 = nextChecked => {
    console.log(nextChecked)
-  statusIn(nextChecked);
+  statusInedit(nextChecked);
  
 };
 let onSelectNames = name => {
@@ -158,6 +167,22 @@ let onSelectCats = name => {
 let onRemoveCats = name => {
  setCats(name);
 };
+
+//for edit 
+let onSelectNames1 = name => {
+    setNamesedit(name);
+   };
+   
+   let onRemoveNames1 = name => {
+    setNamesedit(name);
+   };
+   let onSelectCats1 = name => {
+    setCatsedit(name);
+   };
+   
+   let onRemoveCats1 = name => {
+    setCatsedit(name);
+   };
 const onSubmitQuoteadd = quoteDetails => {
     
  let quoteData = [
@@ -215,17 +240,17 @@ return (
                 <img src="images/sample.png" alt=""/>
                 <div class="name">
                     <span>Hello</span>
-                    <p>{localStorage.user_name}</p>
+                    <p>{username}</p>
                 </div>
             </div>
 
             <div class="profile-sec details">
-                <h4><span><img src="images/orders.png" alt=""/></span><a href="#">MY ORDERS</a> </h4>
-                <h4><span><img src="images/account.png" alt=""/></span><a href="#"> ACCOUNT SETTINGS</a></h4>
+            <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders"><a>MY ORDERS</a> </Link></h4>
+                <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile"><a> ACCOUNT SETTINGS</a></Link></h4>
                 <ul>
-                    <li><a href="#">Profile Information</a></li>
-                    <li><a href="#">Manage Addresses</a></li>
-                   
+                    <li><Link to="/profile"><a>Profile Information</a></Link></li>
+                    <li><Link to="/myAddress"><a>Manage Addresses</a></Link></li>
+
                 </ul>
                 <h4><span><img src="images/users.png" alt=""/></span><a href="#"> USER MANAGEMENT</a></h4>
                 <h4><span><img src="images/logout.png" alt=""/></span><a href="#">LOGOUT</a></h4>
@@ -323,7 +348,7 @@ return (
                                        />
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group form-grp-space">
                                     <label htmlFor="status">Status</label>
                                      <Switch
                                   onChange={handleChange}
@@ -389,8 +414,8 @@ return (
                                     selectedValues={quoteForm['allowed_permissions']}
                                     isObject={false}
                                     showCheckbox={true}
-                                    onSelect={onSelectNames} 
-                                    onRemove={onRemoveNames}
+                                    onSelect={onSelectNames1} 
+                                    onRemove={onRemoveNames1}
                                     placeholder="Select Permissions"
                                      />
                                       
@@ -410,17 +435,19 @@ return (
                             </div>
         
                            
-        
-                              <div class="form-group">
+                            <div class="form-group">
+                              <div class="input-group">
                                     
                                     <input class="form-control" id="usr" placeholder="Password"  name="password"  ref={register({
                                         required: true
                                     })} type={passwordShown ? "text" : "password"} defaultValue={(quoteForm['subuser_password'])}/>
-      
-                                    <i class="fa fa-eye-slash" aria-hidden="true" onClick={togglePasswordVisiblity}></i>
+      <div class="input-group-append">
+    <span class="input-group-text" id="basic-addon2"><i class="fa fa-eye-slash" aria-hidden="true" onClick={togglePasswordVisiblity}></i></span>
+  </div>
+                                    
                                     {errors.password && errors.password.type === 'required' && <span className="error">Password is required</span>}
                                   </div>
-
+                                    </div>
                                   <div className="form-group">
                                    
                                      
@@ -428,18 +455,18 @@ return (
                                     options={clip}
                                     showCheckbox={true}
                                     displayValue="name"
-                                    onSelect={onSelectCats} 
-                                    onRemove={onRemoveCats}
+                                    onSelect={onSelectCats1} 
+                                    onRemove={onRemoveCats1}
                                     selectedValues={quoteForm['category_permissions']}
                                     placeholder="Select Category"
                                      /> 
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group form-grp-space">
                                     <label htmlFor="status">Status</label>
                                      <Switch
                                   onChange={handleChange1}
-                                  checked={quoteForm['subuser_status']} name="status"
+                                  checked={statysedit} name="status"
                                  className="react-switch"
         />
                                     {errors.status && errors.status.type === 'required' && <span className="error">Status is required</span>}
@@ -460,6 +487,17 @@ return (
 </div>
 </div>
 </div>
+<ToastContainer
+                    position="bottom-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
  </Layout>
 )
 }
