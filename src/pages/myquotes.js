@@ -1,25 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Layout from '../components/layout';
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import Modal from 'react-bootstrap/Modal'
-import { useForm } from "react-hook-form";
+import { toast } from 'react-toastify';
 import PageLoader from "../components/loaders/pageLoader";
-import Tab from 'react-bootstrap/Tab'
-import Tabs from 'react-bootstrap/Tabs'
-import { Link, navigate, useStaticQuery, graphql } from "gatsby"
+
+import { Link } from "gatsby"
 
 const MyQuotes = ({ setcartCount }) => {
 
     const [quotes, setQuotes] = useState([])
-    const [quote, setQuotePopup] = useState(false);
-    const { register, handleSubmit, errors } = useForm();
-    const [showQuote, setShowQuote] = useState(true);
-    const handleCloseQuote = () => setShowQuote(false);
-    const handleShowQuote = () => setShowQuote(true);
-    const [quoteConversations, setQuotesConversations] = useState([])
     const [loader, setLoader] = useState(false);
-    const [quoteForm, setQuoteForm ] = useState();
     const [quote_id, setQuoteId] = useState("");
 
     useEffect(() => {
@@ -35,7 +25,7 @@ const MyQuotes = ({ setcartCount }) => {
               }
             })
             .then((response) => {
-              if(response.statusText === "OK" && response.status == 200)
+              if(response.statusText === "OK" && response.status === 200)
               {
                 console.log(response.data)
                   localStorage.setItem('cartId',response.data);
@@ -66,7 +56,7 @@ const MyQuotes = ({ setcartCount }) => {
                     'Authorization': `Bearer ${localStorage.userToken}`
                 },
             }).then((res) => {
-                if (res.statusText === "OK" && res.status == 200) {
+                if (res.statusText === "OK" && res.status === 200) {
                     setQuotes(res.data)
                     setLoader(false);
                 }
@@ -99,7 +89,7 @@ const MyQuotes = ({ setcartCount }) => {
                         }
                     }
                 }).then((res) => {
-                    if (res.statusText === "OK" && res.status == 200) {
+                    if (res.statusText === "OK" && res.status === 200) {
                         toast.success("Quote Deleted Successfully");
                         getQuotes();
                     }
@@ -154,7 +144,7 @@ const MyQuotes = ({ setcartCount }) => {
     //                 'Authorization': `Bearer ${localStorage.userToken}`
     //             },
     //         }).then((res) => {
-    //             if (res.statusText === "OK" && res.status == 200) {
+    //             if (res.statusText === "OK" && res.status ===00) {
     //                 console.error(res)
     //                 setQuotesConversations(res.data)
     //             }
@@ -189,7 +179,7 @@ const MyQuotes = ({ setcartCount }) => {
                         'Authorization': `Bearer ${jwt}`
                     }
                 }).then((res) => {
-                    if (res.statusText === "OK" && res.status == 200) {
+                    if (res.statusText === "OK" && res.status === 200) {
                         toast.success('succesfully added to cart');
                         setcartCount();
                     }
@@ -267,7 +257,7 @@ const MyQuotes = ({ setcartCount }) => {
                                                 </button>*/}
                               <Link to="/myquotesedit" state={quote}> <a className="action action_btn btn btn_gray"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                               </a></Link>
-                                                            <a type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.entity_id)}> <i class="fa fa-trash-o" aria-hidden="true"></i>
+                             <a type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.entity_id)}> <i class="fa fa-trash-o" aria-hidden="true"></i>
                               </a>
                                                         </span>
                                                     </td>

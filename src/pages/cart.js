@@ -1,27 +1,22 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
-import { checkLogin } from "./../services/headerServices";
 import { navigate } from "gatsby";
-import { deleteCart, viewCartItems } from "./../utils/apiServices";
+import { deleteCart } from "./../utils/apiServices";
 import PageLoader from "../components/loaders/pageLoader";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiTwotoneDelete } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
-import { AiOutlineCloudUpload } from "react-icons/ai";
 const Cart = () => {
     const [cartItems, setCartItems] = useState([])
     const [loader, setLoader] = useState(false);
     const [checkOut, setCheckout] = useState([]);
-    const [updCart, setupdCart] = useState("");
     const [jwt, setjwt] = useState();
-    const [status, setstatus] = useState([]);
-    const [productid, setproductid] = useState([]);
     const [customerId, setCustomerId] = useState("");
     const [tierAmt, setTierProduct] = useState([]);
-    const [normal_price, setPrice] = useState("")
-    const [qty, setQty] = useState(1);
+    //const [normal_price, setPrice] = useState("")
+   // const [qty, setQty] = useState(1);
 
 
     useEffect(() => {
@@ -47,7 +42,6 @@ const Cart = () => {
     const listCarts = () => {
             let resi=[]
             let stocks=[]
-            let tierqty=[]
             let cq=[]
             const jwt = localStorage.getItem('userToken');
             const email = localStorage.email;
@@ -109,7 +103,7 @@ const Cart = () => {
                     'Authorization': `Bearer ${jwt}`
                 }
             }).then((res) => {
-                if (res.statusText === "OK" && res.status == 200) {
+                if (res.statusText === "OK" && res.status === 200) {
                     setCheckout(res.data.total_segments)
                     //toast.success('Update Cart Successfully')
                 }
@@ -148,22 +142,21 @@ const Cart = () => {
             console.error(err);
           });
           
-        let price;
         if (event.target.value <= 0) {
           event.target.value = 1;
           data.qty=event.target.value
           data.price = data.price
-          setQty(event.target.value)
-          setPrice(data.qty)
+         // setQty(event.target.value)
+          //setPrice(data.qty)
         } else {
             data.qty=event.target.value
             data.price = data.price
-          setQty(event.target.value)
+          //setQty(event.target.value)
           tierAmt.map(item => {
-            if (event.target.value == item.Tier_quantity) {
+            if (event.target.value === item.Tier_quantity) {
               data.price = item.Tier_price / data.qty
               console.log(item.Tier_price / data.qty)
-              setPrice(item.Tier_price / data.qty)
+              //setPrice(item.Tier_price / data.qty)
             }
     
           })
@@ -193,9 +186,9 @@ const Cart = () => {
     const addToList = (type,id) => {
         // type 1 = wishlist
         // type 2 = comparelist
-        let url = (type == 1 ? `${process.env.GATSBY_CART_URL_STARCARE}admin/addtocompare/2` : `${process.env.GATSBY_CART_URL_STARCARE}wishlist/addwishlist_product/`)
-        let message = (type == 1 ? 'Sucessfully added to  compare list' : 'Sucessfully added to wish list')
-        let errormessage = (type == 1 ? 'SignIn to add compare list' : 'SignIn to add wish list')
+        let url = (type === 1 ? `${process.env.GATSBY_CART_URL_STARCARE}admin/addtocompare/2` : `${process.env.GATSBY_CART_URL_STARCARE}wishlist/addwishlist_product/`)
+        let message = (type === 1 ? 'Sucessfully added to  compare list' : 'Sucessfully added to wish list')
+        let errormessage = (type === 1 ? 'SignIn to add compare list' : 'SignIn to add wish list')
 
         let productData = {
           "data": {
@@ -213,7 +206,7 @@ const Cart = () => {
               'Authorization': `Bearer ${jwt}`
             }
           }).then((res) => {
-            if (res.statusText === "OK" && res.status == 200) {
+            if (res.statusText === "OK" && res.status === 200) {
               toast.success(message)
               setTimeout(()=>{
                // wishListCount()
@@ -249,7 +242,7 @@ const Cart = () => {
             },
             data: updateItem
         }).then((response) => {
-            if (response.statusText === "OK" && response.status == 200) {
+            if (response.statusText === "OK" && response.status === 200) {
                 fetchCheckTotal()
                 // viewCartItems1()
                 
@@ -358,7 +351,7 @@ const Cart = () => {
                                     </div> */}
 
                                             {/* {localStorage.getItem('sampleVal')} */}
-                                            {cartItems?.length == 0 ? (<h1>No Item found</h1>) : showCartItems()}
+                                            {cartItems?.length === 0 ? (<h1>No Item found</h1>) : showCartItems()}
 
                                             
                                         </div>
@@ -371,7 +364,7 @@ const Cart = () => {
                                                 <h3>Cart Totals</h3>
                                                 <h6>Estimate Shipping and Tax</h6>
                                                 {checkoutDetails()}
-                                                <button className="btn btn_brown" type="button" onClick={() => navigate('/checkout')} disabled={cartItems?.length == 0}>Proceed to Checkout</button>
+                                                <button className="btn btn_brown" type="button" onClick={() => navigate('/checkout')} disabled={cartItems?.length === 0}>Proceed to Checkout</button>
                                                 {/* <button className="btn btn-default" type="button" onClick={() => navigate('/')}>Continue to Shopping</button> */}
                                             </div>
                                         </div>

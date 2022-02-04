@@ -29,12 +29,12 @@ const CompareList = () => {
                     'Authorization': `Bearer ${localStorage.userToken}`
                 },
             }).then((res) => {
-                if (res.statusText === "OK" && res.status == 200) {
+                if (res.statusText === "OK" && res.status === 200) {
                     console.log(res.data)
-                    res.data.map((data,ind)=>{
-                        Object.entries(data.attributes).map(([val, key])=>{
-                            Object.entries(key).map(([key, val],i)=>{
-                                if(attributesVal.indexOf(key) == -1){
+                    res.data.map((data,ind) => {
+                        Object.entries(data.attributes).map(([val, key]) => {
+                            Object.entries(key).map(([key, val],i) => {
+                                if(attributesVal.indexOf(key) === -1){
                                     attributesVal.push(key);
                                 }
                                 res.data[ind][key] = val;   
@@ -73,7 +73,7 @@ const CompareList = () => {
                         }
                     }
                 }).then((res) => {
-                    if (res.statusText === "OK" && res.status == 200) {
+                    if (res.statusText === "OK" && res.status === 200) {
                         toast.success(res.data);
                         getCompareList()
                     }
@@ -105,7 +105,7 @@ const CompareList = () => {
                                             {/* {localStorage.getItem('sampleVal')} */}
                                            
                                             <div className="row no_data_found">
-                                            {compareLists.length == 0 ? <div className="col-lg-12 col-md-12 col-xs-12 text-center">
+                                            {compareLists.length === 0 ? <div className="col-lg-12 col-md-12 col-xs-12 text-center">
                                             <img src={empty_cart} alt={"Empty Cart"} />
                                             <h4>No items in CompareList</h4>
                                         </div> :
@@ -123,7 +123,7 @@ const CompareList = () => {
                                                             compareLists.map((item,index)=>(
                                                                 <td className="compare_product">
                                                                     {isImageUrl(item[tle]) ? <img src={item[tle]}/> : <p className={`${tle === 'price' && 'price'}`}>{tle === 'price' ?`$${parseFloat(item[tle]).toFixed(2)}` : item[tle]}</p>}
-                                                                    {tle == 'image' &&
+                                                                    {tle === 'image' &&
                                                                         <div className="close">
                                                                             <button onClick={() => removeCompareList(item.id)} className="close_link">X</button>
                                                                         </div>
