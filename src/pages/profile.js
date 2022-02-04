@@ -407,7 +407,7 @@ const Numbersubmit = num => {
                 <Modal.Body>
                 <div className="row">
                                         <div className="col-lg-12 col-md-12 col-xs-12">
-                                            <form onSubmit={handleSubmit(onSubmit)} className="Changepwd_form" autoComplete="off">
+                                            <form onSubmit={handleSubmit(onSubmit)} className="Changepwd_form fo-wid" autoComplete="off">
                                                 <div className="inline_form">
                                                 <div className="form-group">
                                                     <label>Enter Old Password</label>
