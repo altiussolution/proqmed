@@ -3003,6 +3003,7 @@ margin-right: 20px;
 .sec_bg {
   border: 1px solid #e4e4e4;
   padding: 15px;
+  border-radius: 10px;
   background: #fff;
 }
 .content_wrapper{
@@ -3179,9 +3180,10 @@ ul.totals li span {
 }
 .shipping_address_items .selected_item {
   width: 24%;
-  margin: 0 5px 20px 0;
-  padding: 10px;
-  border: 1px solid #e6e6e6;
+    margin: 0 8px 20px 0;
+    padding: 10px;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
 }
 .shipping_address_items .selected_item address a {
   font-size: 14px;
@@ -3559,7 +3561,6 @@ margin-bottom: 10px;
 }
 .bulkorder .dropdown-content a {
   border-radius: 5px;
-  background: #dcdcdc;
   margin: 0;
   margin-top: 10px;
   color: black;
@@ -4137,9 +4138,6 @@ ul.sub_menus a:before {
   font-size: 14px;
 }
 
-.my_account .dropdown-content li:hover {
-  background: #f7f7f7;
-}
 /* All catregories Styles */
 .all_categories_list .dropdown-content {
   position: absolute;
@@ -5414,7 +5412,7 @@ section.main-footer p{
   border: 1px solid #ebebeb;
     margin: 0px -1px;
     background: #fff;
-    margin: 10px;
+    /* margin: 10px; */
     height: 100%;
     text-align: center;
     padding: 20px;
@@ -6792,4 +6790,118 @@ span.functions p .fa {
 .img-wrapper-as-seen a img {
   border-radius: 20px;
   height: 330px;
+}
+
+/* New styles 04/02/2022/////////////////////////////////////////////////////////////////////////// */
+
+.edit-address .fo-info .right button {
+  background: none;
+  border: none;
+  margin-left: 0;
+}
+
+.edit-address .fo-info .right {
+  float: right;
+  margin-top: -73px;
+  background: #fff;
+  box-shadow: rgb(50 50 93 / 15%) 0px 6px 12px -2px, rgb(0 0 0 / 10%) 0px 3px 7px -3px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.edit-address .fo-info .right .fa {
+  margin-right: 10px !important;
+  margin-left: 0;
+}
+
+.edit-address .fo-info .right li {
+  list-style: none;
+}
+
+.edit-address .fo-info:nth-child(odd) {
+  background: #f3f3f3;
+  border-radius: 10px;
+}
+
+.edit-address .fo-info {
+  padding: 20px;
+}
+
+.fo-addresses {
+  margin-top: 20px;
+}
+
+.order-details:nth-child(odd) {
+  background: #f3f3f3;
+  border-radius: 10px;
+}
+
+.order-details {
+padding: 20px;
+}
+
+td.action_sec a.action.action_btn.btn.btn_gray {
+  background: none !important;
+  color: #7e7e7e !important;
+  padding: 0;
+}
+
+.fo-bg-white .top a {
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: -10px;
+}
+
+.edit-address .fo-info .right a {
+  text-decoration: none;
+  color: #000;
+}
+
+form.Changepwd_form.fo-wid {
+    box-shadow: none;
+    padding: 0;
+}
+
+form.Changepwd_form.fo-wid .inline_form {
+  display: block;
+}
+
+form.Changepwd_form.fo-wid .inline_form .form-group {
+  width: 100%;
+}
+
+.modal-header{
+  align-items: center !important;
+}
+
+nav.nav.nav-tabs {
+  padding: 20px;
+  padding-bottom: 0 !important;
+}
+
+ .tab-content {
+  padding: 20px;
+}
+
+.container.padd.fo-editquote button.action_btn.btn.btn_gray {
+  padding: 10px 30px;
+  border-radius: 10px;
+}
+
+.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.MuiTablePagination-toolbar.css-11bfvty-MuiToolbar-root-MuiTablePagination-toolbar {
+  align-items: baseline;
+}
+
+.billing-stat .form-check .form-check-label {
+  margin-left: 20px;
+}
+
+.checkout_page .shipping_address_items .shipping_address_items .selected_item .action_sec button.action.action_btn.btn.btn_gray {
+  margin-right: 0px;
+}
+
+.new_address_popup {
+  display: flex;
+  justify-content: space-between;
 }

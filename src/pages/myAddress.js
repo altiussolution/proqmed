@@ -255,7 +255,7 @@ const deleteAddress = (id) => {
        <div class="edit-address">
                     {
              shippingAddress.map((add, index) => ( 
-                        <div class="info" key={`${index}_add`}>
+                        <div class="fo-info" key={`${index}_add`}>
                             <div class="left">
                                 <p>{add.firstname}{add.lastname} <span>{add.telephone}</span></p>
                                 <h6>{add.company},{add.street.join()},{add.city}.</h6>
