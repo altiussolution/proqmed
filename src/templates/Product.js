@@ -41,6 +41,7 @@ const Product = (props,location)  => {
   const [sellerprod, setothersellers] = useState(null);
   const [jwt, setJwt] = useState("");
   const id = props.slug.split("-").slice(-1)[0]; 
+  const [crumname,crump] = useState("");
   const [permits,setPermit] = useState([]);
   const [data, setData] = useState([  
     {
@@ -60,6 +61,9 @@ const Product = (props,location)  => {
     useEffect(() => {
       // console.log(location,"Gokul")
       console.log(props.location.state)
+   
+        crump(props.location.state['crumpy']?.name)
+      
       setCustomerId(localStorage.customer_id)
       setJwt(localStorage.userToken)
       const jwt = localStorage.getItem('userToken')
@@ -286,7 +290,7 @@ const Product = (props,location)  => {
     }, 3000);
   }
  const breadCrumps = () => {
-   if(props.location.state['crumpy'].name){
+   if(crumname){
      return (
        <div>
     {props.location.state['crumpy'].hierarchy.map(parent => (
@@ -311,7 +315,7 @@ const Product = (props,location)  => {
     <span dangerouslySetInnerHTML={{ __html: props.location.state['values'].items.name}} />
     </div>
      )
-   }
+   } 
  };
 
   if (notFound) {

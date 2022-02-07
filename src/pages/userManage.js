@@ -230,7 +230,12 @@ if(val.target.value.length>=2){
             data: data,
         })
             .then(function (response) {
-                setSubusers(response.data)
+                if(response.data == "No data found"){
+                    setSubusers([])
+                }else {
+                    setSubusers(response.data)
+                }
+               
             })
             .catch(function (response) {
                 
@@ -240,17 +245,7 @@ if(val.target.value.length>=2){
         console.error(`An error occured ${err}`)
     }
 }else if(val.target.value.length==0 || val.target.value.length==1){
-    const res = await fetch(
-        `${process.env.GATSBY_CART_URL_STARCARE}subuser/subuserlist/parent_customer_id/39`
-    );
-    const json = await res.json();
-    if(json=="Subusers not available for this customer"){
-        
-        await nosubs(json);
-    }else {
-        await setSubusers(json);
-        
-    }
+   getQuotes();
 }
 }
 const handleChange = nextChecked => {

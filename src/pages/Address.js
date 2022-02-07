@@ -209,7 +209,7 @@ const onSubmitadd = userAddresses => {
                 if (response.statusText === "OK" && response.status == 200) {
                     
                     toast.success('Add Address Successfully');
-                    navigate("/checkout")
+                    navigate("/myAddress")
                     setLoader(false);
                     
                 }

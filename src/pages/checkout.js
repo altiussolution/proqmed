@@ -406,7 +406,8 @@ const CheckOut = () => {
                     if (response.statusText === "OK" && response.status == 200) {
                         setLoader(false);
                         localStorage.setItem('cartData', [])
-                        navigate("/paymentSuccess")
+                        // navigate("/paymentSuccess")
+                        navigate(`/paymentSuccess?id=${response}&increid=${response}`)
 
                     }
 

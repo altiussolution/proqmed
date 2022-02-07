@@ -265,9 +265,9 @@ const MyQuotes = ({ setcartCount }) => {
 
                                                             <button type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.entity_id)}> Delete
                                                 </button>*/}
-                              <Link to="/myquotesedit" state={quote}> <a className="action action_btn btn btn_gray"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                              </a></Link>
-                                                            <a type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.entity_id)}> <i class="fa fa-trash-o" aria-hidden="true"></i>
+                              <Link to="/myquotesedit" state={quote} className="action action_btn btn btn_gray"><i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </Link>
+                                                            <a type="button" className="action action_btn btn btn_gray ml-1" onClick={() => removeQuote(quote.entity_id)}> <i className="fa fa-trash-o" aria-hidden="true"></i>
                               </a>
                                                         </span>
                                                     </td>

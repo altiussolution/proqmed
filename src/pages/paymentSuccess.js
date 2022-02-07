@@ -8,11 +8,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';    
 
 
-const PaymentSuccess = () => {
+const PaymentSuccess = ({location}) => {
   // if (typeof window !== `undefined`) {
     const [token, setToken]  = useState('');
     useEffect( () => {
       setToken(localStorage.userToken)
+      const params = new URLSearchParams(location.search);
+      const parameter1 = params.get("id");
+      const parameter2 = params.get("increid");
         if(localStorage.userToken){
             localStorage.setItem('cartData', []);
             try
