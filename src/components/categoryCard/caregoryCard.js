@@ -183,9 +183,9 @@ export default function CategoryCard({ data: product, dataClass }) {
                 </div>
                 <div className="price_right"> 
                                    
-                                  {pcar && <button className="addtocart" onClick={() => addItemToCart(product['values'].items.sku, product['values'].id)}><span class="cart_svg"></span></button>
+                                  {pcar && <button className="addtocart" onClick={() => addItemToCart(product['values'].items.sku, product['values'].id)}><span className="cart_svg"></span></button>
 }
-                                  {outpcar && <button className="addtocart" onClick={() => addItemToCart(product['values'].items.sku, product['values'].id)}><span class="cart_svg"></span></button>}
+                                  {outpcar && <button className="addtocart" onClick={() => addItemToCart(product['values'].items.sku, product['values'].id)}><span className="cart_svg"></span></button>}
                                   { <Link  to={getProductURL(product['values'].items)} state={product} className="btn outline-1">View Detail</Link> }
                                   </div>
                 </div>

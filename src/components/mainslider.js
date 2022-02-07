@@ -115,10 +115,10 @@ const Renderproduct = () => {
 
   
        
-           {splash.map((data) => ( 
+           {splash.map((data,index) => ( 
           
            
-        <div className="banner_top">
+        <div className="banner_top" key={index}>
         <Link to={data.button_link} > <img src={banner_01} alt={"banner"} className="img-fluid"/> </Link> 
         
       </div>

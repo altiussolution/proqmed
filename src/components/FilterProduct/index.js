@@ -211,7 +211,7 @@ export default function Filter({
                 payload: {},
               })
             }
-            MediumMediumMedium
+            mediummediummedium="true"
             title="Clear Filters"
             className="clear_all_link"
           >

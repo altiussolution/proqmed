@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Layout from "../components/layout";
 import axios from "axios";
 import { navigate, useStaticQuery, Link } from "gatsby";
@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import Multiselect from 'multiselect-react-dropdown';
 const Managesub = ({location}) => {
+const _isMounted = useRef(false);
  const [clip,categoryda] = useState([]);
  const [statys, statusIn] = useState(false);
  const [statysedit, statusInedit] = useState(false);
@@ -48,14 +49,15 @@ const Managesub = ({location}) => {
 `)
 
  useEffect(() => {
+  localStorage.setItem("Editdata",location.state)
   setCustomerId(localStorage.customer_id)
   setUsername(localStorage.user_name)
   rendercategory();
   getConversation();
-  console.log(location.state['subuser_firstname'])
- if(location.state['subuser_firstname']){
+  const str = (localStorage.Editdata)
+ if(location.state['subuser_firstname'] || str){
   console.log(location.state.subuser_id)
-  setQuoteForm(location.state)
+  setQuoteForm(localStorage.Editdata)
   setQuotePopupedit(true)
   setCatsedit(location.state['category_permissions'])
   setNamesedit(location.state['allowed_permissions'])
@@ -63,7 +65,7 @@ const Managesub = ({location}) => {
  }else {
   setQuotePopupadd(true)
  }
-
+ return () => { _isMounted.current = true }
 }, []);
 const rendercategory = () =>{
  const list = [];
@@ -232,24 +234,24 @@ const togglePasswordVisiblity2 = () => {
 
 return (
  <Layout>
-   <div class="container-fluid grey">
-<div class="container padd">
-    <div class="row">
-        <div class="col-lg-4 col-md-12 col-sm-12">
-            <div class="profile-sec">
+   <div className="container-fluid grey">
+<div className="container padd">
+    <div className="row">
+        <div className="col-lg-4 col-md-12 col-sm-12">
+            <div className="profile-sec">
                 <img src="images/sample.png" alt=""/>
-                <div class="name">
+                <div className="name">
                     <span>Hello</span>
                     <p>{username}</p>
                 </div>
             </div>
 
-            <div class="profile-sec details">
-            <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders"><a>MY ORDERS</a> </Link></h4>
-                <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile"><a> ACCOUNT SETTINGS</a></Link></h4>
+            <div className="profile-sec details">
+            <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders">MY ORDERS</Link></h4>
+                <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile">ACCOUNT SETTINGS</Link></h4>
                 <ul>
-                    <li><Link to="/profile"><a>Profile Information</a></Link></li>
-                    <li><Link to="/myAddress"><a>Manage Addresses</a></Link></li>
+                    <li><Link to="/profile">Profile Information</Link></li>
+                    <li><Link to="/myAddress">Manage Addresses</Link></li>
 
                 </ul>
                 <h4><span><img src="images/users.png" alt=""/></span><a href="#"> USER MANAGEMENT</a></h4>
@@ -257,45 +259,45 @@ return (
             </div>
         </div>
 
-        {quoteadd &&  <div class="col-lg-8 col-md-12 col-sm-12 ">
-            <div class="fo-bg-white">
-                <div class="top">
-                    <div class="header">
-                    <h2 class="heading">Create Sub User</h2>
+        {quoteadd &&  <div className="col-lg-8 col-md-12 col-sm-12 ">
+            <div className="fo-bg-white">
+                <div className="top">
+                    <div className="header">
+                    <h2 className="heading">Create Sub User</h2>
                 </div>
 
                 
                
                 </div>
-                <div class="form-sec c-su">
+                <div className="form-sec c-su">
                  <form onSubmit={handleSubmit(onSubmitQuoteadd)}>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div className="row">
+                        <div className="col-lg-6 col-md-12 col-sm-12">
                             
-                                <div class="form-group">
+                                <div className="form-group">
                                  
-                                  <input type="text" class="form-control" id="usr" placeholder="First Name" name="firstname"  type="text" ref={register({
+                                  <input type="text" className="form-control" id="usr" placeholder="First Name" name="firstname"  type="text" ref={register({
                                         required: true
                                     })}/>
                                      {errors.firstname && errors.firstname.type === 'required' && <span className="error">First Name is required</span>}
                                 </div>
                                 
         
-                                <div class="form-group">
+                                <div className="form-group">
                                     
-                                    <input type="text" class="form-control" id="usr" placeholder="Email" type="text" name="email"  ref={register({
+                                    <input type="text" className="form-control" id="usr" placeholder="Email" type="text" name="email"  ref={register({
                                         required: true
                                     })}/>
                                     {errors.email && errors.email.type === 'required' && <span className="error">Email is required</span>}
                                   </div>
-                                  <div class="form-group">
+                                  <div className="form-group">
                                     
-                                    <input type="text" class="form-control" id="usr" type="text" name="rolename" placeholder="RoleName" ref={register({
+                                    <input type="text" className="form-control" id="usr" type="text" name="rolename" placeholder="RoleName" ref={register({
                                         required: true
                                     })}/>
                                     {errors.rolename && errors.rolename.type === 'required' && <span className="error">RoleName is required</span>}
                                   </div>
-                                 <div class="form-group">
+                                 <div className="form-group">
                                   <Multiselect
                                             options={quoteConversations}
                                             isObject={false} 
@@ -311,11 +313,11 @@ return (
                                     {errors.permission && errors.permission.type === 'required' && <span className="error">Permission is required</span>}
                                     </div>
                         </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div className="col-lg-6 col-md-12 col-sm-12">
                             
-                            <div class="form-group">
+                            <div className="form-group">
                               
-                              <input  class="form-control" id="pwd" placeholder="Last Name" type="text" name="lastname"  ref={register({
+                              <input  className="form-control" id="pwd" placeholder="Last Name" type="text" name="lastname"  ref={register({
                                         required: true
                                     })}/>
                                    {errors.lastname && errors.lastname.type === 'required' && <span className="error">Last Name is required</span>}  
@@ -323,13 +325,13 @@ return (
         
                            
         
-                              <div class="form-group">
+                              <div className="form-group">
                                     
-                                    <input class="form-control" id="usr" placeholder="Password"  name="password"  ref={register({
+                                    <input className="form-control" id="usr" placeholder="Password"  name="password"  ref={register({
                                         required: true
                                     })} type={passwordShown2 ? "text" : "password"}/>
       
-                                    <i class="fa fa-eye-slash" aria-hidden="true" onClick={togglePasswordVisiblity}></i>
+                                    <i className="fa fa-eye-slash" aria-hidden="true" onClick={togglePasswordVisiblity}></i>
                                     {errors.password && errors.password.type === 'required' && <span className="error">Password is required</span>}
                                   </div>
 
@@ -361,8 +363,8 @@ return (
 
                     </div>
 
-                    <div class="button-sec">
-                    <button type="submit" class="btn btn-danger square">SAVE</button>
+                    <div className="button-sec">
+                    <button type="submit" className="btn btn-danger square">SAVE</button>
                 </div>
                 </form>
                 </div> 
@@ -370,45 +372,45 @@ return (
             
           
     </div>}
-    {quoteedit &&  <div class="col-lg-8 col-md-12 col-sm-12 ">
-            <div class="fo-bg-white">
-                <div class="top">
-                    <div class="header">
-                    <h2 class="heading">Edit Sub User</h2>
+    {quoteedit &&  <div className="col-lg-8 col-md-12 col-sm-12 ">
+            <div className="fo-bg-white">
+                <div className="top">
+                    <div className="header">
+                    <h2 className="heading">Edit Sub User</h2>
                 </div>
 
                 
                
                 </div>
-                <div class="form-sec c-su">
+                <div className="form-sec c-su">
                  <form onSubmit={handleSubmit(onSubmitQuote)}>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div className="row">
+                        <div className="col-lg-6 col-md-12 col-sm-12">
                             
-                                <div class="form-group">
+                                <div className="form-group">
                                  
-                                  <input type="text" class="form-control" id="usr" placeholder="First Name" name="firstname"  type="text" ref={register({
+                                  <input type="text" className="form-control" id="usr" placeholder="First Name" name="firstname"  type="text" ref={register({
                                         required: true
                                     })} defaultValue={(quoteForm['subuser_firstname'])}/>
                                      {errors.firstname && errors.firstname.type === 'required' && <span className="error">First Name is required</span>}
                                 </div>
                                 
         
-                                <div class="form-group">
+                                <div className="form-group">
                                     
-                                    <input type="text" class="form-control" id="usr" placeholder="Email" type="text" name="email"  ref={register({
+                                    <input type="text" className="form-control" id="usr" placeholder="Email" type="text" name="email"  ref={register({
                                         required: true
                                     })} defaultValue={(quoteForm['subuser_email'])}/>
                                     {errors.email && errors.email.type === 'required' && <span className="error">Email is required</span>}
                                   </div>
-                                  <div class="form-group">
+                                  <div className="form-group">
                                     
-                                    <input type="text" class="form-control" id="usr" type="text" name="rolename" placeholder="RoleName" ref={register({
+                                    <input type="text" className="form-control" id="usr" type="text" name="rolename" placeholder="RoleName" ref={register({
                                         required: true
                                     })} defaultValue={(quoteForm['role_name'])}/>
                                     {errors.rolename && errors.rolename.type === 'required' && <span className="error">RoleName is required</span>}
                                   </div>
-                                 <div class="form-group">
+                                 <div className="form-group">
                                  <Multiselect
                                     options={quoteConversations}
                                     selectedValues={quoteForm['allowed_permissions']}
@@ -424,25 +426,25 @@ return (
                                     {errors.permission && errors.permission.type === 'required' && <span className="error">Permission is required</span>}
                                     </div>
                         </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div className="col-lg-6 col-md-12 col-sm-12">
                             
-                            <div class="form-group">
+                            <div className="form-group">
                               
-                              <input  class="form-control" id="pwd" placeholder="Last Name" type="text" name="lastname"  ref={register({
+                              <input  className="form-control" id="pwd" placeholder="Last Name" type="text" name="lastname"  ref={register({
                                         required: true
                                     })} defaultValue={(quoteForm['subuser_lastname'])}/>
                                    {errors.lastname && errors.lastname.type === 'required' && <span className="error">Last Name is required</span>}  
                             </div>
         
                            
-                            <div class="form-group">
-                              <div class="input-group">
+                            <div className="form-group">
+                              <div className="input-group">
                                     
-                                    <input class="form-control" id="usr" placeholder="Password"  name="password"  ref={register({
+                                    <input className="form-control" id="usr" placeholder="Password"  name="password"  ref={register({
                                         required: true
                                     })} type={passwordShown ? "text" : "password"} defaultValue={(quoteForm['subuser_password'])}/>
-      <div class="input-group-append">
-    <span class="input-group-text" id="basic-addon2"><i class="fa fa-eye-slash" aria-hidden="true" onClick={togglePasswordVisiblity}></i></span>
+      <div className="input-group-append">
+    <span className="input-group-text" id="basic-addon2"><i className="fa fa-eye-slash" aria-hidden="true" onClick={togglePasswordVisiblity}></i></span>
   </div>
                                     
                                     {errors.password && errors.password.type === 'required' && <span className="error">Password is required</span>}
@@ -475,8 +477,8 @@ return (
 
                     </div>
 
-                    <div class="button-sec">
-                    <button type="submit" class="btn btn-danger square">SAVE</button>
+                    <div className="button-sec">
+                    <button type="submit" className="btn btn-danger square">SAVE</button>
                 </div>
                 </form>
                 </div> 

@@ -73,7 +73,7 @@ const renderHots =()=>{
                     </h2>
                     {
     hotProducts.map((data,index)=>(
-      <Link to="/hotDeals">
+      <Link to="/hotDeals" key={index}>
   <img className="HF_BImg" src={data.category_image} onError={e => (e.target.src = ImageNotFound)}/></Link> )) }
   </div>
     )
@@ -101,15 +101,15 @@ const renderDeals = ()=>{
       <ul>
       {data.sub_category.sub_category_sub.slice(0,4).map((value,index)=>(
         
- <><li>
- <div className="image_wrapper"  key={`${value}_${index}`}>
+ <li key={index}>
+ <div className="image_wrapper">
           <Link to={getCategoryURL(value)}><img src={value.image} 
     onError={e => (e.target.src = ImageNotFound)}/></Link>
         </div><div className="description_list">
             <Link to={getCategoryURL(value)}>{value.name}</Link>
           </div>
           </li>
-          </> 
+          
 ))}
  </ul>
 
@@ -136,7 +136,7 @@ const renderDeals = ()=>{
               <h1>Mask & Gloves</h1>
               <h2>during pandemic</h2>
               </div>
-              <Link to="/hotDeals"><button type="button" class="btn_proceed"></button></Link>
+              <Link to="/hotDeals"><button type="button" className="btn_proceed"></button></Link>
               </div>
               <div className="img-gradient">
               <Link to="/hotDeals"><img src={maskgirl}></img></Link>

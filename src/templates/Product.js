@@ -253,8 +253,8 @@ const Product = (props,location)  => {
                        </div>
                           <div className="price_right"> 
                           
-                         {pcar && <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>}
-                         {outpcar && <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>}
+                         {pcar && <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span className="cart_svg"></span></button>}
+                         {outpcar && <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span className="cart_svg"></span></button>}
 
                          </div>
                        </div>
@@ -354,7 +354,7 @@ return (
            <div className="suma">
              </div>
            </div>
-           <div class="full-desc-tabs">
+           <div className="full-desc-tabs">
            <Technicalspec specification = {product} attachment={attach_data}/>
            </div>
 

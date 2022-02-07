@@ -139,9 +139,9 @@ const TrendingProducts = () => {
 {/* <div className="col-4 single_trending"> */}
         {
           trendingProducts.map((data, index) => (
-            <div key={`${data.name}_${index}`} className="">
+            <div key={`${data.name}_${index}`}>
               {/* <div className="" > */}
-              <Link to={getProductURL(data)}>
+              <div onClick={() => getProductURL(data)}>
 
                 <div className="card">
 
@@ -151,7 +151,7 @@ const TrendingProducts = () => {
                   
                   
                   <div className="img_content">
-                  <Link to={getProductURL(data)}> <h5 className="prod-title">{data.name}</h5></Link>
+                  <Link to={getProductURL(data)} className="prod-title"> {data.name}</Link>
                     
 
                     
@@ -180,16 +180,16 @@ const TrendingProducts = () => {
                                 </div>
                                    {pcar && <div className="price_right"> 
                                    
-                                  <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
+                                  <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span className="cart_svg"></span></button>
                                   </div>}
                                   {outpcar && <div className="price_right"> 
                                    
-                                   <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
+                                   <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span className="cart_svg"></span></button>
                                    </div>}
                                 </div>
                                 </div>
                 </div>
-                </Link>
+                </div>
 
               {/* </div> */}
             </div>

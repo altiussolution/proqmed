@@ -52,59 +52,59 @@ const logout = () => {
 
 return (
  <Layout>
-   <div class="container-fluid grey">
-<div class="container">
-    <div class="row">
-        <div class="col-lg-4 col-md-12 col-sm-12">
-            <div class="profile-sec">
+   <div className="container-fluid grey">
+<div className="container">
+    <div className="row">
+        <div className="col-lg-4 col-md-12 col-sm-12">
+            <div className="profile-sec">
                 <img src="images/sample.png" alt=""/>
-                <div class="name">
+                <div className="name">
                     <span>Hello</span>
                     <p>{username}</p>
                 </div>
             </div>
 
-            <div class="profile-sec details">
-                <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders"><a>MY ORDERS</a> </Link></h4>
-                <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile"><a> ACCOUNT SETTINGS</a></Link></h4>
+            <div className="profile-sec details">
+                <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders">MY ORDERS</Link></h4>
+                <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile"> ACCOUNT SETTINGS</Link></h4>
                 <ul>
-                    <li><Link to="/profile"><a>Profile Information</a></Link></li>
-                    <li><Link to="/myAddress"><a>Manage Addresses</a></Link></li>
+                    <li><Link to="/profile">Profile Information</Link></li>
+                    <li><Link to="/myAddress">Manage Addresses</Link></li>
 
                 </ul>
                 <h4><span><img src="images/logout.png" alt=""/></span><a onClick={() => { logout() }}>LOGOUT</a></h4>
             </div>
         </div>
 
-        <div class="col-lg-8 col-md-12 col-sm-12 ">
-            <div class="fo-bg-white">
-                <div class="top">
-                    <div class="header">
-                    <h2 class="heading">My Reviews <span>({reviews.length})</span></h2>
+        <div className="col-lg-8 col-md-12 col-sm-12 ">
+            <div className="fo-bg-white">
+                <div className="top">
+                    <div className="header">
+                    <h2 className="heading">My Reviews <span>({reviews.length})</span></h2>
                 </div>
                 
                 </div>
                 {reviews.length!=0 ?
               
-                <div class="wishlist">
+                <div className="wishlist">
                    {
                     reviews.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((quote, index) => (
-                  <div class="sec-top">
-                    <div class="row fo-align">
-                      <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div className="sec-top" key={index}>
+                    <div className="row fo-align">
+                      <div className="col-lg-4 col-md-12 col-sm-12">
                     
                         
                           <img src="images/fp1.png" alt=""/>
                         
                       </div>
 
-                      <div class="col-lg-8 col-md-12 col-sm-12">
-                        <div class="wishlist-content">             
+                      <div className="col-lg-8 col-md-12 col-sm-12">
+                        <div className="wishlist-content">             
                         <p>{quote.product_name}</p>               
                         
-                        <div class="fo-date">
-                        <div class="star">                   
-                          {/* <p > <span><i class="fa fa-star" aria-hidden="true"></i></span>{quote.review_percentage}</p>  */}
+                        <div className="fo-date">
+                        <div className="star">                   
+                          {/* <p > <span><i className="fa fa-star" aria-hidden="true"></i></span>{quote.review_percentage}</p>  */}
                            <StarRatings
                                rating={Math.round(quote.review_percentage)}
                                numberOfStars={5}
@@ -114,9 +114,9 @@ return (
                                starRatedColor="rgb(242 187 22)"
                            />                         
                         </div> 
-                        <span class="added">{quote.summary_of_review}</span>
+                        <span className="added">{quote.summary_of_review}</span>
                       </div> 
-                      <p class="description">{quote.detail}</p>
+                      <p className="description">{quote.detail}</p>
                                                           
                               
                       </div>
@@ -131,7 +131,7 @@ return (
                
                 : "Reviews not available"}
           </div>    
-          <div class="bottom-paginatino">
+          <div className="bottom-paginatino">
           <TablePagination
   component="div"
   rowsPerPageOptions={[4, 8, 12, 16, 20, 24]}

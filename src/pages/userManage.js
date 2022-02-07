@@ -378,6 +378,7 @@ const onSubmitQuoteadd = quoteDetails => {
                                                 </tr>
                                             </tbody>
                                         ))
+
                                     }
                                 </table> : "SubUsers not available"}
                             </div>
@@ -385,24 +386,24 @@ const onSubmitQuoteadd = quoteDetails => {
                     </div>
                 </section>
             } */}
-           <div class="container-fluid grey">
-<div class="container padd">
-    <div class="row">
-        <div class="col-lg-4 col-md-12 col-sm-12">
-            <div class="profile-sec">
+           <div className="container-fluid grey">
+<div className="container padd">
+    <div className="row">
+        <div className="col-lg-4 col-md-12 col-sm-12">
+            <div className="profile-sec">
                 <img src="images/sample.png" alt=""/>
-                <div class="name">
+                <div className="name">
                     <span>Hello</span>
                     <p>{username}</p>
                 </div>
             </div>
 
-            <div class="profile-sec details">
-            <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders"><a>MY ORDERS</a> </Link></h4>
-                <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile"><a> ACCOUNT SETTINGS</a></Link></h4>
+            <div className="profile-sec details">
+            <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders">MY ORDERS </Link></h4>
+                <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile">ACCOUNT SETTINGS</Link></h4>
                 <ul>
-                    <li><Link to="/profile"><a>Profile Information</a></Link></li>
-                    <li><Link to="/myAddress"><a>Manage Addresses</a></Link></li>
+                    <li><Link to="/profile">Profile Information</Link></li>
+                    <li><Link to="/myAddress">Manage Addresses</Link></li>
 
                 </ul>
                 <h4><span><img src="images/users.png" alt=""/></span><a href="#"> USER MANAGEMENT</a></h4>
@@ -410,36 +411,36 @@ const onSubmitQuoteadd = quoteDetails => {
             </div>
         </div>
        
-        <div class="col-lg-8 col-md-12 col-sm-12 ">
+        <div className="col-lg-8 col-md-12 col-sm-12 ">
             
-            <div class="fo-bg-white">
-                <div class="top">
-                    <div class="header">
-                    <h2 class="heading">User Management  </h2>
+            <div className="fo-bg-white">
+                <div className="top">
+                    <div className="header">
+                    <h2 className="heading">User Management  </h2>
                 </div>
 
 
-                <div class="right">
-                    <div class="search" >
-                        <span class="fa fa-search"></span>
+                <div className="right">
+                    <div className="search" >
+                        <span className="fa fa-search"></span>
                         <input placeholder="Search" onChange={e => { searchUser(e) }}/>
                       </div>
 
-                      <button type="button" class="btn btn-danger" onClick={() => addQuote()}> Create</button>
+                      <button type="button" className="btn btn-danger" onClick={() => addQuote()}> Create</button>
                 </div>
                
                
                 </div>
                 {subusers.length == 0 ? 
                 (<div className="col-lg-9 col-md-9 col-xs-12 no_data ">
-                 <div class="grid-right">
+                 <div className="grid-right">
 
                 </div>
             <h1>No Item found</h1>
             
             </div>) :
-                <div class="user-content">
-                    <table class="table table-striped">
+                <div className="user-content">
+                    <table className="table table-striped">
                         <thead>
                           <tr>
                             <th>S.No</th>
@@ -456,8 +457,8 @@ const onSubmitQuoteadd = quoteDetails => {
                             <td>{index + 1}</td>
                             <td>{quote.subuser_firstname}</td>
                             <td>{quote.role_name}</td>
-                            <td class="green">{quote.subuser_status == false ? "In-Active" : "Active"}</td>
-                            {quote.subuser_id!=null && <td> <Link to="/manageUser" state={quote}><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></Link> <span onClick={() => removeQuote(quote.subuser_id)}><i class="fa fa-trash-o" aria-hidden="true"></i></span> </td>}
+                            <td className="green">{quote.subuser_status == false ? "In-Active" : "Active"}</td>
+                            {quote.subuser_id!=null && <td> <Link to="/manageUser" state={quote}><span><i className="fa fa-pencil-square-o" aria-hidden="true"></i></span></Link> <span onClick={() => removeQuote(quote.subuser_id)}><i className="fa fa-trash-o" aria-hidden="true"></i></span> </td>}
                          </tr>
 
                         
@@ -465,7 +466,7 @@ const onSubmitQuoteadd = quoteDetails => {
                          ))
                         }
                       </table>
-                      <div class="bottom-paginatino">
+                      <div className="bottom-paginatino">
           <TablePagination
   component="div"
   rowsPerPageOptions={[4, 8, 12, 16, 20, 24]}

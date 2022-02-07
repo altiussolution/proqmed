@@ -282,7 +282,7 @@ if(array.length>0){
              
             {orders.length == 0 ? 
             (<div className="col-lg-9 col-md-9 col-xs-12 no_data ">
-                 <div class="grid-right">
+                 <div className="grid-right">
 
                 </div>
             <h1>No Item found</h1>
@@ -290,11 +290,11 @@ if(array.length>0){
             </div>) :
             
          
-            <div class="col-lg-9 col-md-12 col-sm-12 ">
-            <div class="fo-bg-white">
-            <div class="top">
-                    <div class="header">
-                    <h2 class="heading">My Orders <span>({orders.length})</span></h2>
+            <div className="col-lg-9 col-md-12 col-sm-12 ">
+            <div className="fo-bg-white">
+            <div className="top">
+                    <div className="header">
+                    <h2 className="heading">My Orders <span>({orders.length})</span></h2>
                     
                 </div>
                 {/* <div class="grid-right">
@@ -304,21 +304,21 @@ if(array.length>0){
                     </div>
                 </div> */}
 
-<div class="search orders">
+<div className="search orders">
                         <input type="text" placeholder="search" onChange={e => { searchOrder(e) }}/>
-                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <i className="fa fa-search" aria-hidden="true"></i>
                     </div>
                 </div>
             
                 <div>
                 {orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((items,index) => (
-                <div class="order-details" key={index}>
+                <div className="order-details" key={index}>
                       {
-                                items.map((orders,ind) =>{
-                                    return (ind == 0 ? 
-                    <div class="row same" key={`${ind}_table`}>
-                        <div class="col-lg-3 col-md-12 col-sm-12">
-                            <div class="or-left">
+                                items.map((orders,ind) =>(
+                                   
+                    <div className="row same" key={`${ind}_table`}>
+                        <div className="col-lg-3 col-md-12 col-sm-12">
+                            <div className="or-left">
                                 <p>Order ID</p>
                                 <p>Customer Name</p>
                                 <p>Price</p>
@@ -326,25 +326,25 @@ if(array.length>0){
                                 <p>Payment method</p>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12">
-                            <div class="or-left">
+                        <div className="col-lg-6 col-md-12 col-sm-12">
+                            <div className="or-left">
                                 <p>: {orders.order_id}</p>
                                 <p>: {orders.shipping_description}</p>
                                 <p>:${parseFloat(orders.grand_total).toFixed(2)}</p>
                                 <p>: {orders.status}</p>
                                 <p>: {orders.payment_method}</p>
-                                <span class="functions"><p><i class="fa fa-calendar-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleDateString()}</p><p><i class="fa fa-clock-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleTimeString('en-US')}</p></span>
+                                <span className="functions"><p><i className="fa fa-calendar-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleDateString()}</p><p><i className="fa fa-clock-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleTimeString('en-US')}</p></span>
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-12 col-sm-12">
-                            <div class="buttons-or">
-                        {re && <button type="button" class="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
-                                            {outre && <button class="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
+                        <div className="col-lg-3 col-md-12 col-sm-12">
+                            <div className="buttons-or">
+                        {re && <button type="button" className="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
+                                            {outre && <button className="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
                                             <Link to="/orderstatus" state={{ order_id: orders.order_id }}><button className="btn btn-primary"  >View Order</button></Link>
                                             {orders.status !== 'canceled' && <button className="btn btn outline" type="button" onClick={()=> cancelOrder(orders.order_id)}>Cancel Order</button>}
                                             
-                     {attach_data &&   <a><i class="fa fa-sticky-note" aria-hidden="true" onClick={handleClick}></i>Invoice
+                     {attach_data &&   <a><i className="fa fa-sticky-note" aria-hidden="true" onClick={handleClick}></i>Invoice
                         <div> 
                             {  attach_data?  
                                 <a href={attach_data[0].invoice_pdf} download>{attach_data[0].invoice_pdf}</a>:<span></span>
@@ -353,7 +353,7 @@ if(array.length>0){
                             </div>
                         </div>
                     </div>
-                    :<div> {/*<div key={`${ind}_product`}  className="product_item"> 
+                    /*<div key={`${ind}_product`}  className="product_item"> 
                     <div className="product_img">
                         <img src={orders.image} />
                     </div>
@@ -371,11 +371,11 @@ if(array.length>0){
                             </li>
                         </ul>  
                        
-                                    </div>*/}
+                                    </div>*/
                     
-            </div>
-                    ) 
-                })
+        
+                     
+                                ))
             }
                 </div>
   ))
@@ -385,7 +385,7 @@ if(array.length>0){
                   
           </div>      
          
-          <div class="bottom-paginatino">
+          <div className="bottom-paginatino">
           <TablePagination
   component="div"
   rowsPerPageOptions={[5, 10, 25]}
@@ -443,32 +443,32 @@ if(array.length>0){
   onRowsPerPageChange={handleChangeRowsPerPage}
 />
                 </main> */}
- <div class="container-fluid grey">
-<div class="container padd">
-    <div class="row"><div class="col-lg-3 col-md-12 col-sm-12">
+ <div className="container-fluid grey">
+<div className="container padd">
+    <div className="row"><div className="col-lg-3 col-md-12 col-sm-12">
         
-        <div class="cart-details-sec">
-            <div class="top">
-            <div class="header">
-                <h2 class="heading">Filters </h2>
+        <div className="cart-details-sec">
+            <div className="top">
+            <div className="header">
+                <h2 className="heading">Filters </h2>
             </div>
         </div>
-        <div class="filters">
+        <div className="filters">
             <h6>Order Status</h6>
 
             <ul>
-                <li><a > <div class="form-check">
-                    <input type="checkbox" class="form-check-input fo-right" id="check1" name="option1" value="pending"  onChange={e => { filterData(e,'pending') }}/>
+                <li><a > <div className="form-check">
+                    <input type="checkbox" className="form-check-input fo-right" id="check1" name="option1" value="pending"  onChange={e => { filterData(e,'pending') }}/>
                     
-                  </div> <span class="way">On the way</span> </a></li>
-                <li><a ><span><div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="complete"  onChange={e => { filterData1(e,'complete') }}/>
+                  </div> <span className="way">On the way</span> </a></li>
+                <li><a ><span><div className="form-check">
+                    <input type="checkbox" className="form-check-input" id="check1" name="option1" value="complete"  onChange={e => { filterData1(e,'complete') }}/>
                     
-                  </div></span> <span class="way">Delivered</span></a></li>
-                <li><a> <span><div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="cancelled"  onChange={e => { filterData2(e,'cancelled') }}/>
+                  </div></span> <span className="way">Delivered</span></a></li>
+                <li><a> <span><div className="form-check">
+                    <input type="checkbox" className="form-check-input" id="check1" name="option1" value="cancelled"  onChange={e => { filterData2(e,'cancelled') }}/>
                     
-                  </div></span><span class="way">Cancelled</span></a></li>
+                  </div></span><span className="way">Cancelled</span></a></li>
                 
             </ul>
         </div>
