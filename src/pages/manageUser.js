@@ -214,12 +214,13 @@ const onSubmitQuoteadd = quoteDetails => {
              navigate('/userManage')
          })
          .catch(function (response) {
-             toast.error('An error occured please contact admin')
+             toast.error(response['message'])
              navigate('/userManage')
          });
 
  } catch (err) {
      console.error(`An error occured ${err}`)
+     toast.error(err['message'])
      navigate('/userManage')
  }
 };

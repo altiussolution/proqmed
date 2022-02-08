@@ -421,7 +421,7 @@ const onSubmitQuoteadd = quoteDetails => {
                         <input placeholder="Search" onChange={e => { searchUser(e) }}/>
                       </div>
 
-                      <button type="button" className="btn btn-danger" onClick={() => addQuote()}> Create</button>
+                    {subusers.length < 6 && <button type="button" className="btn btn-danger" onClick={() => addQuote()}> Create</button>}  
                 </div>
                
                

@@ -179,7 +179,39 @@ const Invoice = ({ location }) => {
 
         </div>
     }
+ const orderInformation = () => {
+     return (
+         <div>
+             <h3>Order Information</h3>
+             {
+                orders.map((items, index) => {
+                    return (index == 0 ?
+             <><div>
+                            <h6>Shipping Address</h6>
 
+
+                            <span>{items.Customer_address[0].firstname}</span><br></br>
+                            <span>{items.Customer_address[0].street},{items.Customer_address[0].city},{items.Customer_address[0].region}</span>
+
+
+                        </div>
+                        <div>
+                                <h6>Shipping Method</h6>
+                                <span>{items.shipping_method}</span>
+                            </div><div>
+                                <h6>Billing Address</h6>
+                                <span>{items.Customer_address[0].firstname}</span><br></br>
+                            <span>{items.Customer_address[0].street},{items.Customer_address[0].city},{items.Customer_address[0].region}</span>
+                            </div><div>
+                                <h6>Payment Method</h6>
+                                <span>{items.payment_method}</span>
+                            </div></>
+                 : <span></span>)
+                })
+            }   
+         </div>
+     )
+ }
 
     const Invoicetable = () => {
         if(p==true || nop==true){
@@ -304,7 +336,9 @@ const Invoice = ({ location }) => {
                     </div>
                 </div>
             </section>
-
+<section>
+    {orderInformation()}
+</section>
 
         </Layout >
     )

@@ -560,12 +560,12 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
 
 <div className="price-name-strike">
                    
-                          (proDescription.items.config_options ?
-                          { change_price.map((val, index) => (
+                          {proDescription.items.config_options ?
+                          change_price.map((val, index) => (
                               <span className="price" key={index}>${Math.round(val.price)}</span>
-                            ))} :
+                            )) :
                             <span className="price">${Math.round(proDescription.items.original_price)}</span>
-                          )
+}
                         
 
                        {proDescription.items.strike_price !=null && <span><strike>${Math.round(proDescription.items.strike_price)}</strike>0</span>}

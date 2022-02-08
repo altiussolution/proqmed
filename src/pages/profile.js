@@ -72,15 +72,17 @@ const Profile = () => {
               console.log(res,"profile")
               setProfile(res.data[0]);
               setShow(true);
-              if(permits.length!=0){
-                let addwis=permits.includes("Can Edit Profile")
-               
-                per(addwis)
-              
-            }else if(!localStorage.permissions){
+             if(!localStorage.permissions){
               outper(true)
               
             }
+            else {
+              let hi = JSON.parse(localStorage.permissions)
+              let addwis=hi.includes("Can Edit Profile")
+             
+              per(addwis)
+            
+          }
             }
           }).catch((err) => {
             console.error(err);

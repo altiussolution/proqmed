@@ -75,6 +75,7 @@ const Featuredproducts = () => {
                 `${process.env.GATSBY_CART_URL_STARCARE}featureproducts/${localStorage.customer_id}`
             );
             const json = await res.json();
+            console.log(json)
             await setFeatureProducts(json);
              
         };

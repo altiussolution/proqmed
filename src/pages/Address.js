@@ -339,14 +339,14 @@ return (
                           <div className="form-check">
                         <input type="checkbox" className="form-check-input" id="shipping" ref={register({
                                                                                 required: true
-                                                                            })} onChange={e => { filterData(e,'shipping') }}/>
+                                                                            })} onChange={e => { filterData(e,'shipping') }} checked={(edit ? edit['default_shipping'] : "")}/>
                         <label className="form-check-label" htmlFor="shipping">Shipping</label>
                       </div>
   
                       <div className="form-check">
                         <input type="checkbox" className="form-check-input" id="billing" ref={register({
                                                                                 required: true
-                                                                            })}  onChange={e => { filterData(e,'billing') }}/>
+                                                                            })}  onChange={e => { filterData(e,'billing') }} checked={(edit ? edit['default_billing'] : "")}/>
                         <label className="form-check-label" htmlFor="billing">Billing</label>
                       </div>
                               

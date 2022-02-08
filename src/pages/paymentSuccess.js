@@ -11,11 +11,17 @@ import 'react-toastify/dist/ReactToastify.css';
 const PaymentSuccess = ({location}) => {
   // if (typeof window !== `undefined`) {
     const [token, setToken]  = useState('');
+    const [increid,IncreID] = useState([]);
+    const [id,ID] = useState([]);
     useEffect( () => {
+      let arr=[]
+      let arr1=[]
       setToken(localStorage.userToken)
       const params = new URLSearchParams(location.search);
       const parameter1 = params.get("id");
       const parameter2 = params.get("increid");
+      ID(parameter1.split(","))
+      IncreID(parameter2.split(","))
         if(localStorage.userToken){
             localStorage.setItem('cartData', []);
             try
@@ -55,6 +61,10 @@ const PaymentSuccess = ({location}) => {
                 <Card.Body>
                 <Card.Title>your order placed sucessfully</Card.Title>
                 <Card.Text>
+                  
+                    { increid.map((val, index) => (
+                      <Link to="/orderstatus" state={{ order_id: id[index] }}><span key={index}>{val}</span></Link>
+                  ))}
                 <Link to="/"> Click here </Link> to continue shopping
                 </Card.Text>
                 </Card.Body>

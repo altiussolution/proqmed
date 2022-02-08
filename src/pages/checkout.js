@@ -241,6 +241,8 @@ const CheckOut = () => {
         if (shippingAddress) {
 
             delete shippingAddress[selAddIndex]['entity_id']
+            delete shippingAddress[selAddIndex]['default_billing']
+            delete shippingAddress[selAddIndex]['default_shipping']
             let userAddVal = {
                 "addressInformation": {
                     "billingAddress": shippingAddress[selAddIndex],
@@ -406,11 +408,16 @@ const CheckOut = () => {
                     if (response.statusText === "OK" && response.status == 200) {
                         
                         console.log(response.data)
+                        let data = [
+                            { 
+                                order_id:response.data
+                            }
+                        ]
                         try {
                             axios({
                                 method: "post",
                                 url: `${process.env.GATSBY_CART_URL_STARCARE}getincrementid`,
-                                data: response.data
+                                data: data
                             }).then((res)=> {
                                 if (res.statusText === "OK" && res.status == 200) {
                                     console.log(res.data)
