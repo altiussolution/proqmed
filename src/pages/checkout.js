@@ -404,10 +404,26 @@ const CheckOut = () => {
                     data: payDetails
                 }).then((response) => {
                     if (response.statusText === "OK" && response.status == 200) {
-                        setLoader(false);
-                        localStorage.setItem('cartData', [])
+                        
+                        console.log(response.data)
+                        try {
+                            axios({
+                                method: "post",
+                                url: `${process.env.GATSBY_CART_URL_STARCARE}getincrementid`,
+                                data: response.data
+                            }).then((res)=> {
+                                if (res.statusText === "OK" && res.status == 200) {
+                                    console.log(res.data)
+                                     navigate(`/paymentSuccess?id=${response.data}&increid=${res.data}`)
+                                     setLoader(false);
+                                     localStorage.setItem('cartData', [])
+                                } 
+                            })
+                        } catch(err)  {
+                            console.error(err)
+                        }
                         // navigate("/paymentSuccess")
-                        navigate(`/paymentSuccess?id=${response}&increid=${response}`)
+                       
 
                     }
 

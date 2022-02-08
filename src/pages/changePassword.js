@@ -34,7 +34,7 @@ const ChangePassword = () => {
                 if(response.statusText === "OK" && response.status == 200){
                     toast.success('Password changed sucessfully');
                     localStorage.clear();
-                    navigate('/')
+                    navigate('/signin')
                 }
             }).catch((err)=>{
                 console.log(err);

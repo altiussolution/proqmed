@@ -230,6 +230,11 @@ const isSticky = (e) => {
       navigate('/signin')
     }
   }
+  const navigateOnclick1 = (value) => {
+   
+      navigate(value)
+ 
+  }
   const handleChange = (event, i) => {
     const { name, value } = event.target;
     let orders = [...bulkOrder];
@@ -531,7 +536,7 @@ const isSticky = (e) => {
                   <li onClick={() => { navigateOnclick('/mainCategory') }}><a>Shop</a></li>
                   <li onClick={() => { navigateOnclick('/aboutUs') }}><a >About</a></li>
                   <li onClick={() => { navigateOnclick('/contact') }}><a >Contact</a></li>
-                  <li onClick={() => { navigateOnclick('/tracking') }}><a >Order Tracking</a></li>
+                  <li onClick={() => { navigateOnclick1('/tracking') }}><a >Order Tracking</a></li>
                   <li onClick={() => { navigateOnclick('/myAddress') }}><a>My Address</a></li>                 
               </ul>
               <ul className="contact_top">
