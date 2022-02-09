@@ -58,7 +58,7 @@ const addToCart = (cartItem) => {
             'Authorization' : `Bearer ${jwt}`
           }
         }).then((res) => {
-          if(res.statusText === "OK" && res.status == 200){
+          if(res.statusText === "OK" && res.status === 200){
             return res;
             // alert('succesfully added to cart');
             // viewCartItems();
@@ -83,7 +83,7 @@ const deleteCart = (id) => {
           'Authorization' : `Bearer ${jwt}`
         }  
       }).then((res) => {
-        if(res.statusText === "OK" && res.status == 200){
+        if(res.statusText === "OK" && res.status === 200){
           viewCartItems();
         }
       }).catch((err) =>{
@@ -109,7 +109,7 @@ const viewCartItems = () => {
                'Authorization' : `Bearer ${jwt}`
              }  
       }).then(async (res) => {
-        if(res.statusText === "OK" && res.status == 200){
+        if(res.statusText === "OK" && res.status === 200){
             for(let i=0;i<res.data.length;i++){
               const resp = await fetch(
                 `${process.env.GATSBY_CART_URL_STARCARE}cart/productstatus/product_id/${res.data[i].product_id}`
@@ -174,7 +174,7 @@ const wishListCount = async () => {
         method: 'get',
         url: `${process.env.GATSBY_CART_URL_STARCARE}wishlistcount/${localStorage.email}`,
       }).then((res)=>{
-        if(res.statusText === "OK" && res.status == 200){
+        if(res.statusText === "OK" && res.status === 200){
         localStorage.setItem('wishCount',res.data)   
         }
         return res;

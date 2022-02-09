@@ -189,21 +189,21 @@ const deleteAddress = (id) => {
  }
  return (
   <Layout>
-  <div class="container-fluid grey">
-<div class="container padd">
-    <div class="row">
-        <div class="col-lg-4 col-md-12 col-sm-12">
-            <div class="profile-sec">
+  <div className="container-fluid grey">
+<div className="container padd">
+    <div className="row">
+        <div className="col-lg-4 col-md-12 col-sm-12">
+            <div className="profile-sec">
             <div className="fo-deflx">
             {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}
             </div>
-                <div class="name">
+                <div className="name">
                     <span>Hello,</span>
                     <p>{username}</p>
                 </div>
             </div>
 
-            <div class="profile-sec details">
+            <div className="profile-sec details">
             <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders"><a>MY ORDERS</a> </Link></h4>
                 <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile"><a> ACCOUNT SETTINGS</a></Link></h4>
                 <ul>
@@ -215,16 +215,16 @@ const deleteAddress = (id) => {
             </div>
         </div>
 
-        <div class="col-lg-8 col-md-12 col-sm-12 ">
-            <div class="fo-bg-white">
-                <div class="top">
-                    <div class="header">
-                    <h2 class="heading">My Addresses <span>({shippingAddress.length})</span></h2>
+        <div className="col-lg-8 col-md-12 col-sm-12 ">
+            <div className="fo-bg-white">
+                <div className="top">
+                    <div className="header">
+                    <h2 className="heading">My Addresses <span>({shippingAddress.length})</span></h2>
                 </div>
                 <a onClick={() => { navigateOnclick('/Address') }}>+ ADD A NEW ADDRESS</a>
                 </div>
-                <div class="row">
-                <div class="col-lg-4 col-md-12 col-sm-12"> 
+                <div className="row">
+                <div className="col-lg-4 col-md-12 col-sm-12"> 
                     
                       
                           
@@ -242,7 +242,7 @@ const deleteAddress = (id) => {
                    
                 </div>
                
-                <div class="col-lg-4 col-md-12 col-sm-12">
+                <div className="col-lg-4 col-md-12 col-sm-12">
                 <h6>Default Shipping Address</h6>   
                          <span>Name:<a>{defShip['firstname']}</a></span><br></br>
                          <span>Address:<a>{defShip['street']}</a></span>
@@ -251,28 +251,28 @@ const deleteAddress = (id) => {
                          <a>Ph no:<a>{defShip ['telephone']}</a></a>
                 </div>
                 </div>
-                <div class="fo-addresses">
-       <div class="edit-address">
+                <div className="fo-addresses">
+       <div className="edit-address">
                     {
              shippingAddress.map((add, index) => ( 
-                        <div class="fo-info" key={`${index}_add`}>
-                            <div class="left">
+                        <div className="fo-info" key={`${index}_add`}>
+                            <div className="left">
                                 <p>{add.firstname}{add.lastname} <span>{add.telephone}</span></p>
                                 <h6>{add.company},{add.street.join()},{add.city}.</h6>
                             </div>
-                            <div class="right">
-                                {/* <div class="dropdown address">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-ellipsis-v fa-2x" aria-hidden="true"></i>
+                            <div className="right">
+                                {/* <div className="dropdown address">
+                                    <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i className="fa fa-ellipsis-v fa-2x" aria-hidden="true"></i>
                                     </button>
-                                    <ul class="dropdown-menu">
-                                      <li><Link to="/Address" state={add}><a><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></Link></li>
-                                      <li><a><i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    <ul className="dropdown-menu">
+                                      <li><Link to="/Address" state={add}><a><i className="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></Link></li>
+                                      <li><a><i className="fa fa-trash-o" aria-hidden="true"></i>
                                         Delete</a></li>
                                       
                                     </ul>
                                   </div> */}
-                                  <li><Link to="/Address" state={add}><a><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></Link></li>
-                                      <button onClick={() => {deleteAddress(add.entity_id)}}><a ><i class="fa fa-trash-o" aria-hidden="true"></i>
+                                  <li><Link to="/Address" state={add}><a><i className="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></Link></li>
+                                      <button onClick={() => {deleteAddress(add.entity_id)}}><a ><i className="fa fa-trash-o" aria-hidden="true"></i>
                                         Delete</a></button>
                             </div>
                   </div>

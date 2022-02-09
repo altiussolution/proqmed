@@ -7,19 +7,18 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import sign_bg from './../assets/bg.jpg';
 import PageLoader from "../components/loaders/pageLoader";
-import { trim } from "jquery";
 import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
 
 const SignUp = () => {
 
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const [loader, setLoader] = useState(false);
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordShown2, setPasswordShown2] = useState(false);
   const onSubmit = data => {    
    
-    if(data.password == data.conpassword){
+    if(data.password === data.conpassword){
       setLoader(true);
     let customerData =
     {

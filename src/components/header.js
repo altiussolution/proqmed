@@ -544,8 +544,14 @@ const isSticky = (e) => {
             </Navbar> */}
             <div className="menu_botm">
               <ul>
-                  <li onClick={() => { navigateOnclick('/') }}><a>Home</a></li>
-                  <li onClick={() => { navigateOnclick('/mainCategory') }}><a>Shop</a></li>
+                  {/* <li> <Nav.Link><Link to="/">Home</Link></Nav.Link></li>
+                  <li> <Nav.Link><Link to="/mainCategory">Shop</Link></Nav.Link></li>               
+                  <li> <Nav.Link><Link to="/aboutUs">About</Link></Nav.Link></li>
+                  <li><Link to="/contact">Contact</Link></li>
+                  <li><Link to="/tracking">Order Tracking</Link></li>
+                  <li><Link to="/myAddress">My Address</Link></li> */}
+                   <li onClick={() => { navigateOnclick('/') }}><a>Home</a></li>
+                  <li onClick={() => { navigateOnclick('/mainCategory') }}><a>Shop</a></li> 
                   <li onClick={() => { navigateOnclick('/aboutUs') }}><a >About</a></li>
                   <li onClick={() => { navigateOnclick('/contact') }}><a >Contact</a></li>
                   <li onClick={() => { navigateOnclick1('/tracking') }}><a >Order Tracking</a></li>

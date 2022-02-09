@@ -2,24 +2,21 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
 import axios from "axios";
 import groupArray  from "group-array"
-import { ToastContainer, toast } from 'react-toastify';
-import {  navigate } from "gatsby";
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';   
 import { Link } from "gatsby";
 import { TablePagination } from '@mui/material';
+import { navigate } from "gatsby"
 
 const Orders = () => {
     const [page, setPage] = React.useState(0); 
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [orders, setOrders] = useState([]);
     const [jwt,setJwt] = useState("")
-    const [permit,perMission] = useState([]);
-    const [fildata,Filter] = useState([]);
     const [p,per] = useState(false);
     const [re,reodr]= useState(false);
     const [outp,outper] = useState(false);
     const [outre,outreodr]= useState(false);
-    const [permits,setPermit] = useState([]);
     const [attach_data, setattachment] = useState(null);
     const array=[]
     useEffect(() => {
@@ -34,7 +31,7 @@ const Orders = () => {
                 method : "get",
                 url: `${process.env.GATSBY_CART_URL_STARCARE}orderlistcustomer/${localStorage.email}`,
             }).then((res) => {
-                if(res.statusText === "OK" && res.status == 200){
+                if(res.statusText === "OK" && res.status === 200){
                     let orderArray = [];
                     for(let x of res.data){
                         if(x['increment_id']){
@@ -87,7 +84,7 @@ const Orders = () => {
                     'Authorization' : `Bearer ${jwt}`
                 },
             }).then((res) => {
-                if(res.statusText === "OK" && res.status == 200){
+                if(res.statusText === "OK" && res.status === 200){
                     toast.success(res.data);
                    setOrderDetails();    
                 }
@@ -110,7 +107,7 @@ const Orders = () => {
                     'Authorization': `Bearer ${jwt}`
                 },
             }).then((res) => {
-                if (res.statusText === "OK" && res.status == 200) {
+                if (res.statusText === "OK" && res.status === 200) {
                     toast.success('Reorder Created');
                     setOrderDetails();
                 }
@@ -149,9 +146,6 @@ const filtercall = (data) =>{
         console.error(`An error occured ${err}`)
     }   
 }
-    const orderstatus = () => {
-        navigate('/orderstatus');
-    }
     const filterData =(val,datas)=> {
         if(val.target.checked){
             array.push(datas)
@@ -241,6 +235,7 @@ if(array.length>0){
         // `${process.env.GATSBY_CART_URL}admin/pdfinvoice/${entity_id}`
 
         ).then((data)=>{
+            console.log(res)
           let response_data = data.data
           setattachment(response_data)
       })   
@@ -278,7 +273,7 @@ if(array.length>0){
             } catch (err) {
                 console.error(`An error occured ${err}`)
             }
-        }else if(val.target.value.length==0 || val.target.value.length==1){
+        }else if(val.target.value.length ===0 || val.target.value.length ===1){
           setOrderDetails();
         }
         }
@@ -288,7 +283,7 @@ return (
 )
         }
     const orderDetails = () => {
-        if(p==true || outp==true){
+        if(p===true || outp===true){
             return ( 
             <>
             <div className="col-lg-9 col-md-9 col-xs-12 no_data ">
