@@ -281,6 +281,8 @@ const Wishlist = () => {
                             </div>
                         </main>)
                     }
+
+<div className="container">
                     <ToastContainer
                         position="bottom-right"
                         autoClose={5000}
@@ -301,6 +303,7 @@ const Wishlist = () => {
       rowsPerPage={rowsPerPage}
       onRowsPerPageChange={handleChangeRowsPerPage}
     />  
+    </div>
                 </Layout>
             </>
         )

@@ -7,7 +7,9 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
 
 import Multiselect from 'multiselect-react-dropdown';
+
 const Managesub = ({location}) => {
+
 const _isMounted = useRef(false);
  const [clip,categoryda] = useState([]);
  const [statys, statusIn] = useState(false);
@@ -49,15 +51,13 @@ const _isMounted = useRef(false);
 `)
 
  useEffect(() => {
-  localStorage.setItem("Editdata",location.state)
   setCustomerId(localStorage.customer_id)
   setUsername(localStorage.user_name)
   rendercategory();
   getConversation();
-  const str = (localStorage.Editdata)
- if(location.state['subuser_firstname'] || str){
+  if(location.state['subuser_firstname']){
   console.log(location.state.subuser_id)
-  setQuoteForm(localStorage.Editdata)
+  setQuoteForm(location.state)
   setQuotePopupedit(true)
   setCatsedit(location.state['category_permissions'])
   setNamesedit(location.state['allowed_permissions'])
@@ -214,12 +214,13 @@ const onSubmitQuoteadd = quoteDetails => {
              navigate('/userManage')
          })
          .catch(function (response) {
-             toast.error('An error occured please contact admin')
+             toast.error(response['message'])
              navigate('/userManage')
          });
 
  } catch (err) {
      console.error(`An error occured ${err}`)
+     toast.error(err['message'])
      navigate('/userManage')
  }
 };

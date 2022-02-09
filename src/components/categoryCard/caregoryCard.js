@@ -58,14 +58,15 @@ export default function CategoryCard({ data: product, dataClass }) {
         }else{
             
         }
-    if(permits.length!=0){
-      let addwis=permits.includes("Can Add To Wishlist")
-      let addcar=permits.includes("Can Add To Cart")
-      per(addwis)
-      percart(addcar)
-  }else if(permits.length==0){
+  if(!localStorage.permissions){
     outper(true)
     outpercart(true)
+  }else {
+    let hi = JSON.parse(localStorage.permissions)
+    let addwis=hi.includes("Can Add To Wishlist")
+    let addcar=hi.includes("Can Add To Cart")
+    per(addwis)
+    percart(addcar)
   }
   },[])
 

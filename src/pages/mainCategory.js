@@ -49,7 +49,7 @@ console.log(mainCategory)
             <ul className="sub_categoriesList">
               {
                 el.node.grand_child.map((e, index) => (
-                  <li key={e.name}><Link className="sub_categoriesItem" to={getCategoryURL(e)}>{index}{e.name}</Link></li>
+                  <li key={e.name}><Link className="sub_categoriesItem" to={getCategoryURL(e)}>{index+1}.{e.name}</Link></li>
                 ))
               }
             </ul>
@@ -67,7 +67,7 @@ console.log(mainCategory)
         <div className="content_wrapper">
           <div className="container">
             <div className="page-title">
-              <h1 className="page-title"><span>Category</span>
+              <h1 className="page-title"><span>All Categories</span>
               </h1>
             </div>
           </div>

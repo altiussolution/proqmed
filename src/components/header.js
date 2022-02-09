@@ -46,6 +46,8 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
   const [profilepic,setProfilepic] = useState({});
   const [min, setMin] = useState("");
   const [max, setMax] = useState("");
+  const [orderno,Orderstats] = useState(false)
+  const [order,Orderstat] = useState(false)
   const [addCartBtn, setCartBtn] = useState(false)
 
   useEffect(() => {
@@ -54,6 +56,15 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
     setQuoteId(localStorage.cartId);
     setJwt(localStorage.userToken);
     setEmail(localStorage.email);
+    if(!localStorage.permissions){
+      
+      Orderstat(true)
+    }else {
+      let hi = JSON.parse(localStorage.permissions)
+      let orderhis=hi.includes("Can View Order History")
+      Orderstats(orderhis)
+      
+    }
     setName(localStorage.getItem('user_name'))
     window.addEventListener('scroll', isSticky);
     return () => {
@@ -229,6 +240,11 @@ const isSticky = (e) => {
     } else {
       navigate('/signin')
     }
+  }
+  const navigateOnclick1 = (value) => {
+   
+      navigate(value)
+ 
   }
   const handleChange = (event, i) => {
     const { name, value } = event.target;
@@ -458,7 +474,8 @@ const isSticky = (e) => {
                     </li>}
                     {/* {isuserlogged && <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li> */}
                     {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>
-                    <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>
+                    { order && <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>}
+                    { orderno && <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>}
                     <li onClick={() => { navigateOnclick('/myReviews') }}>My Reviews</li>
                     <li onClick={() => { navigateOnclick('/wishlist') }}>Wishlist</li>
                     <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li></div>}
@@ -537,7 +554,7 @@ const isSticky = (e) => {
                   <li onClick={() => { navigateOnclick('/mainCategory') }}><a>Shop</a></li> 
                   <li onClick={() => { navigateOnclick('/aboutUs') }}><a >About</a></li>
                   <li onClick={() => { navigateOnclick('/contact') }}><a >Contact</a></li>
-                  <li onClick={() => { navigateOnclick('/tracking') }}><a >Order Tracking</a></li>
+                  <li onClick={() => { navigateOnclick1('/tracking') }}><a >Order Tracking</a></li>
                   <li onClick={() => { navigateOnclick('/myAddress') }}><a>My Address</a></li>                 
               </ul>
               <ul className="contact_top">

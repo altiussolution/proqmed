@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';   
 import { Link } from "gatsby";
 import { TablePagination } from '@mui/material';
+import { navigate } from "gatsby"
 
 const Orders = () => {
     const [page, setPage] = React.useState(0); 
@@ -46,6 +47,13 @@ const Orders = () => {
                         let hi = JSON.parse(localStorage.permissions)
                         let orderhis=hi.includes("Can View Order History")
                         let reorder = hi.includes("Can View Individual Orders Or Reorder")
+                        if(orderhis == false){
+                            navigate('/')
+                            setTimeout(() => {
+                                toast.error("Access Denied,Please Contact Admin")
+                              }, 500)
+                            
+                            }
                         per(orderhis)
                         reodr(reorder)
                       }
@@ -269,132 +277,99 @@ if(array.length>0){
           setOrderDetails();
         }
         }
+        const orderDetails1 = () => {
+return ( 
+    <div> <h1>Access Denied</h1></div>
+)
+        }
     const orderDetails = () => {
         if(p===true || outp===true){
             return ( 
             <>
-             
-            {orders.length === 0 ? 
-            (<div className="col-lg-9 col-md-9 col-xs-12 no_data ">
+            <div className="col-lg-9 col-md-9 col-xs-12 no_data ">
                  <div className="grid-right">
+                 <div className="top">
+                                    <div className="header">
+                                        <h2 className="heading">My Orders <span>({orders.length})</span></h2>
 
-                </div>
-            <h1>No Item found</h1>
-            
-            </div>) :
-            
-         
-            <div className="col-lg-9 col-md-12 col-sm-12 ">
-            <div className="fo-bg-white">
-            <div className="top">
-                    <div className="header">
-                    <h2 className="heading">My Orders <span>({orders.length})</span></h2>
-                    
-                </div>
-                {/* <div class="grid-right">
-                    <div class="search">
-                        <input type="text" placeholder="search" onChange={e => { searchOrder(e) }}/>
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </div>
-                </div> */}
-
-<div className="search orders">
+                                    </div>
+                         <div className="search orders">
                         <input type="text" placeholder="search" onChange={e => { searchOrder(e) }}/>
                         <i className="fa fa-search" aria-hidden="true"></i>
                     </div>
-                </div>
-            
-                <div>
-                {orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((items,index) => (
-                <div className="order-details" key={index}>
-                      {
-                                items.map((orders,ind) =>(
-                                   
-                    <div className="row same" key={`${ind}_table`}>
-                        <div className="col-lg-3 col-md-12 col-sm-12">
-                            <div className="or-left">
-                                <p>Order ID</p>
-                                <p>Customer Name</p>
-                                <p>Price</p>
-                                <p>Status</p>
-                                <p>Payment method</p>
-                            </div>
-                        </div>
-                        <div className="col-lg-6 col-md-12 col-sm-12">
-                            <div className="or-left">
-                                <p>: {orders.order_id}</p>
-                                <p>: {orders.shipping_description}</p>
-                                <p>:${parseFloat(orders.grand_total).toFixed(2)}</p>
-                                <p>: {orders.status}</p>
-                                <p>: {orders.payment_method}</p>
-                                <span className="functions"><p><i className="fa fa-calendar-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleDateString()}</p><p><i className="fa fa-clock-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleTimeString('en-US')}</p></span>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-3 col-md-12 col-sm-12">
-                            <div className="buttons-or">
-                        {re && <button type="button" className="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
-                                            {outre && <button className="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
-                                            <Link to="/orderstatus" state={{ order_id: orders.order_id }}><button className="btn btn-primary"  >View Order</button></Link>
-                                            {orders.status !== 'Cancelled' && <button className="btn btn outline" type="button" onClick={()=> cancelOrder(orders.order_id)}>Cancel Order</button>}
-                                            
-                     {attach_data &&   <a><i className="fa fa-sticky-note" aria-hidden="true" onClick={handleClick}></i>Invoice
-                        <div> 
-                            {  attach_data?  
-                                <a href={attach_data[0].invoice_pdf} download>{attach_data[0].invoice_pdf}</a>:<span></span>
-                            }
-                                </div></a>}
-                            </div>
-                        </div>
-                    </div>
-                    /*<div key={`${ind}_product`}  className="product_item"> 
-                    <div className="product_img">
-                        <img src={orders.image} />
-                    </div>
-                    <div className="product_desc">
-                        <h3>{orders.peoduct_name}</h3>
-                        <ul>
-                            <li>
-                                <p>SKU <span>{orders.sku}</span></p>
-                            </li>
-                            <li>
-                                <p>Qty <span>{orders.qty} </span></p>
-                            </li>
-                            <li>
-                                <p>Product Id <span>{orders.product_id}</span></p>
-                            </li>
-                        </ul>  
-                       
-                                    </div>*/
-                    
-        
-                     
-                                ))
-            }
-                </div>
-  ))
-}</div>
+                                </div>
                 
+                </div>
+                {orders.length == 0 ?   (<h1>No Item found</h1>):
+              <><div className="fo-bg-white">
+                             
 
-                  
-          </div>      
+                                <div>
+                                    {orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((items, index) => (
+                                        <div className="order-details" key={index}>
+                                           
+
+                                                <div className="row same">
+                                                    <div className="col-lg-3 col-md-12 col-sm-12">
+                                                        <div className="or-left">
+                                                            <p>Order ID</p>
+                                                            <p>Customer Name</p>
+                                                            <p>Price</p>
+                                                            <p>Status</p>
+                                                            <p>Payment method</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-lg-6 col-md-12 col-sm-12">
+                                                        <div className="or-left">
+                                                            <p>: {items[0].increment_id}</p>
+                                                            <p>: {items[0].customer_firstname}</p>
+                                                            <p>:${parseFloat(items[0].grand_total).toFixed(2)}</p>
+                                                            <p>: {items[0].status}</p>
+                                                            <p>: {items[0].payment_method}</p>
+                                                            {/* <span className="functions"><p><i className="fa fa-calendar-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleDateString()}</p><p><i className="fa fa-clock-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleTimeString('en-US')}</p></span> */}
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="col-lg-3 col-md-12 col-sm-12">
+                                                        <div className="buttons-or">
+                                                            {re && <button type="button" className="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
+                                                            {outre && <button className="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
+                                                            <Link to="/orderstatus" state={{ order_id: orders.order_id }}><button className="btn btn-primary">View Order</button></Link>
+                                                            {/* {orders.status !== 'canceled' && <button className="btn btn outline" type="button" onClick={() => cancelOrder(orders.order_id)}>Cancel Order</button>} */}
+
+                                                            {attach_data && <a><i className="fa fa-sticky-note" aria-hidden="true" onClick={handleClick}></i>Invoice
+                                                                <div>
+                                                                    {attach_data ?
+                                                                        <a href={attach_data[0].invoice_pdf} download>{attach_data[0].invoice_pdf}</a> : <span></span>}
+                                                                </div></a>}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                              
+                                         
+                                        </div>
+                                    ))}</div>
+
+
+
+                            </div><div className="bottom-paginatino">
+                                    <TablePagination
+                                        component="div"
+                                        rowsPerPageOptions={[5, 10, 25]}
+                                        page={page}
+                                        count={orders.length}
+                                        onPageChange={handleChangePage}
+                                        rowsPerPage={rowsPerPage}
+                                        onRowsPerPageChange={handleChangeRowsPerPage} />
+                                </div></>
+                    
+                    }
+             </div>
          
-          <div className="bottom-paginatino">
-          <TablePagination
-  component="div"
-  rowsPerPageOptions={[5, 10, 25]}
-  page={page}
-  count={orders.length}
-  onPageChange={handleChangePage}
-  rowsPerPage={rowsPerPage}
-  onRowsPerPageChange={handleChangeRowsPerPage}
-/>
-          </div>
-    </div> }
         </>
             )
         
-    }
+    } 
 
             };
 
@@ -474,8 +449,8 @@ if(array.length>0){
      
         
     </div>
-    {orderDetails()} 
-       
+   {orderDetails()}  
+        
     
 
         

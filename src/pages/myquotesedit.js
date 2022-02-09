@@ -149,9 +149,9 @@ const MyQuotesEdit = ({location} ) => {
         <Layout>
             <section className="inner_banner_section">
             </section>
-         
-            {quoteForm["entity_id"] !== undefined &&  <h6>Update Quote Details</h6>}
-            {quoteForm["entity_id"] === undefined  && <h6>Request for a Quote</h6>}
+            <div class="container padd fo-editquote">
+            {quoteForm["entity_id"] != undefined &&  <h2 class="heading">Update Quote Details</h2>}
+            {quoteForm["entity_id"] == undefined  && <h2 class="heading">Request for a Quote</h2>}
                     <Tabs defaultActiveKey="detail" id="uncontrolled-tab-example">
                         <Tab eventKey="detail" title="Quote Details">
                         {quoteForm["entity_id"] === undefined && <p >Product Name:&nbsp;<span>{item['name']}</span></p>}
@@ -192,7 +192,7 @@ const MyQuotesEdit = ({location} ) => {
                             </textarea>
                             {errors.description && errors.description.type === 'required' && <span className="error">Description is required</span>}
                           </div>}
-                                <button type="submit" className="btn_link theme_btn_blue w-100">Submit</button>
+                                <button type="submit" className="action_btn btn btn_gray">Submit</button>
                             </form>
                         </Tab>
                         {quoteForm["entity_id"] !== undefined && 
@@ -215,7 +215,7 @@ const MyQuotesEdit = ({location} ) => {
                             }
                         </Tab> }
                         </Tabs>
-             
+                        </div>
         </Layout >
     )
 

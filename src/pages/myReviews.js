@@ -4,6 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import {  navigate } from "gatsby";
 import 'react-toastify/dist/ReactToastify.css';   
+import ImageNotFound from "./../assets/not-found.png"
 import { Link } from "gatsby";
 import { TablePagination } from '@mui/material';
 import { checkLogin } from "./../services/headerServices";
@@ -91,15 +92,10 @@ return (
                     reviews.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((quote, index) => (
                   <div className="sec-top" key={index}>
                     <div className="row fo-align">
-                      <div className="col-lg-4 col-md-12 col-sm-12">
-                    
-                        
-                          <img src="images/fp1.png" alt=""/>
-                        
-                      </div>
-
+                     
                       <div className="col-lg-8 col-md-12 col-sm-12">
-                        <div className="wishlist-content">             
+                        <div className="wishlist-content">  
+                        <img src={quote.product_image} onError={e => (e.target.src = ImageNotFound)}/>           
                         <p>{quote.product_name}</p>               
                         
                         <div className="fo-date">

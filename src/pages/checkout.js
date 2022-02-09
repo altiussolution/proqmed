@@ -241,6 +241,8 @@ const CheckOut = () => {
         if (shippingAddress) {
 
             delete shippingAddress[selAddIndex]['entity_id']
+            delete shippingAddress[selAddIndex]['default_billing']
+            delete shippingAddress[selAddIndex]['default_shipping']
             let userAddVal = {
                 "addressInformation": {
                     "billingAddress": shippingAddress[selAddIndex],
@@ -404,9 +406,31 @@ const CheckOut = () => {
                     data: payDetails
                 }).then((response) => {
                     if (response.statusText === "OK" && response.status == 200) {
-                        setLoader(false);
-                        localStorage.setItem('cartData', [])
-                        navigate("/paymentSuccess")
+                        
+                        console.log(response.data)
+                        let data = [
+                            { 
+                                order_id:response.data
+                            }
+                        ]
+                        try {
+                            axios({
+                                method: "post",
+                                url: `${process.env.GATSBY_CART_URL_STARCARE}getincrementid`,
+                                data: data
+                            }).then((res)=> {
+                                if (res.statusText === "OK" && res.status == 200) {
+                                    console.log(res.data)
+                                     navigate(`/paymentSuccess?id=${response.data}&increid=${res.data}`)
+                                     setLoader(false);
+                                     localStorage.setItem('cartData', [])
+                                } 
+                            })
+                        } catch(err)  {
+                            console.error(err)
+                        }
+                        // navigate("/paymentSuccess")
+                       
 
                     }
 

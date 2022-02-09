@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StarRatings from 'react-star-ratings';
 import { Link } from "gatsby"
-import ImageNotFound from "./../assets/allimg.jpg"
+import ImageNotFound from "./../assets/not-found.png"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Steth from "./../assets/steth.png"
