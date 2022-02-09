@@ -185,23 +185,23 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
       });
     }
 
-    axios({
-      method: "get",
-      url: `${process.env.GATSBY_CART_URL_STARCARE}admin/priceaddtocartenabledisable/${localStorage.customer_id}
-      `,
-    }).then((res) => {
-      let cart_price = res.data
-      if (cart_price[0].hide_price == "1") {
-        setDisable(true)
-        return setShowBtn(1)
-      }
-      if (cart_price[1].hide_add_to_cart == "1") {
-        setDisable(true)
-        return setButton(true)
-      }
-    }).catch((err) => {
-      console.error(err);
-    });
+    // axios({
+    //   method: "get",
+    //   url: `${process.env.GATSBY_CART_URL_STARCARE}admin/priceaddtocartenabledisable/${localStorage.customer_id}
+    //   `,
+    // }).then((res) => {
+    //   let cart_price = res.data
+    //   if (cart_price[0].hide_price == "1") {
+    //     setDisable(true)
+    //     return setShowBtn(1)
+    //   }
+    //   if (cart_price[1].hide_add_to_cart == "1") {
+    //     setDisable(true)
+    //     return setButton(true)
+    //   }
+    // }).catch((err) => {
+    //   console.error(err);
+    // });
 
     const res = axios.get(
       `${process.env.GATSBY_CART_URL_STARCARE}admin/minmaxquantity/${proDescription.items.id}`
@@ -492,7 +492,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                   <div className="slider_thumb">
                       <ul>
                       { proDescription.items.all_images.map((val, index) => (
-                           <li><a onClick={() => changeImage(val)}><img src={val}/></a></li>
+                           <li key={index}><a onClick={() => changeImage(val)}><img src={val}/></a></li>
                           ))
                       }
                     </ul>
@@ -520,7 +520,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                           svgIconPath="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798zM16 23.547l-6.983 3.671 1.334-7.776-5.65-5.507 7.808-1.134 3.492-7.075 3.492 7.075 7.807 1.134-5.65 5.507 1.334 7.776-6.983-3.671z"
                       />                        
                     }
-                    <span class="rating-count">{proDescription.items.review_details.length} Comments</span>
+                    <span className="rating-count">{proDescription.items.review_details.length} Comments</span>
 
                     <div className="brand mt-2">
 
@@ -559,14 +559,14 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                     </div>
 
 <div className="price-name-strike">
-                    {isShow == 1 ? <span></span> :
+                   
                           (proDescription.items.config_options ?
-                            change_price.map((val, index) => (
+                          { change_price.map((val, index) => (
                               <span className="price" key={index}>${Math.round(val.price)}</span>
-                            )) :
+                            ))} :
                             <span className="price">${Math.round(proDescription.items.original_price)}</span>
                           )
-                        }
+                        
 
                        {proDescription.items.strike_price !=null && <span><strike>${Math.round(proDescription.items.strike_price)}</strike>0</span>}
                        {/* <span className="price"><strike>$0</strike></span> */}
@@ -585,7 +585,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
 
                         {
                           tierAmt.map((item, index) => (
-                            <tbody key={item.sku}>
+                            <tbody key={index}>
                               <tr>
                                 <td>
                                   <input type="radio" checked={qty == item.Tier_quantity} value="item.Tier_quantity" name="item.Tier_quantity" onChange={() => { onChangeValue(item) }} />
@@ -619,12 +619,12 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                         {pcar && <button onClick={() => addItemToCart(cartItem)} className="btn_gray btn"
                         //  disabled={isButton}
                          >
-                          <span class="cart_svg"></span> Add To Cart   
+                          <span className="cart_svg"></span> Add To Cart   
               </button>}
               {outpcar && <button onClick={() => addItemToCart(cartItem)} className="btn_gray btn"
                         //  disabled={isButton}
                          >
-                          <span class="cart_svg"></span> Add To Cart   
+                          <span className="cart_svg"></span> Add To Cart   
               </button>}
               {p &&<button className="btn_gray heart">     <a onClick={() => addToList(2)} >
                             <FaRegHeart />
@@ -638,8 +638,8 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                       </div>
                       <div className="product_detail_action">
                           
-                          <a> <Link to="/myquotesedit" state={{ des: proDescription }}><span className="fa fa-comments"></span> Request for a Quote
-                                     </Link></a>
+                       <Link to="/myquotesedit" state={{ des: proDescription }}><span className="fa fa-comments"></span> Request for a Quote
+                                     </Link>
                      {/*<a onClick={() => quotePopupOpen()} >
                      <span className="fa fa-comments"></span>   Request for a Quote
                              </a>*/}
@@ -669,15 +669,15 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                       <div className="input-sec">
                       
                       <form onSubmit={handleSubmit(pinCodeChecker)}>
-                      <div class="form-group">
+                      <div className="form-group">
                       <label>Delivery</label>
-                      <div class="input-group">
+                      <div className="input-group">
     
-    <input class="form-control" type="tel" id="pincode" name="postcode" placeholder="Zip/Postal Code " onChange={handleChange1} maxLength="6" className="form-control" required="true"/>
+    <input className="form-control" type="tel" id="pincode" name="postcode" placeholder="Zip/Postal Code " onChange={handleChange1} maxLength="6" className="form-control" required={true}/>
     {errors.postcode && errors.postcode.type === 'required' && <span>Zip/Postal Code is required</span>}
     
-    <div class="input-group-addon">
-    <button type="submit"  className="btn btn-default" disabled={Istrue}>Check</button>
+    <div className="input-group-addon">
+    <button type="submit"  className="btn btn-default">Check</button>
       </div>
     </div> </div>
  

@@ -117,11 +117,11 @@ const CompareList = () => {
                                             {/* {compareList.length == 0 ?  <div></div>: */}
                                                  {compareLists ?
                                                  compareAttr.map((tle,ind)=>(
-                                                    <tr>
+                                                    <tr key={ind}>
                                                         <th>{tle}</th>
                                                         {
                                                             compareLists.map((item,index)=>(
-                                                                <td className="compare_product">
+                                                                <td className="compare_product" key={index}>
                                                                     {isImageUrl(item[tle]) ? <img src={item[tle]}/> : <p className={`${tle === 'price' && 'price'}`}>{tle === 'price' ?`$${parseFloat(item[tle]).toFixed(2)}` : item[tle]}</p>}
                                                                     {tle === 'image' &&
                                                                         <div className="close">

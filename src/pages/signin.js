@@ -43,7 +43,7 @@ const SignIn = (props) => {
       })
       
         .then(function (response) {
-          if (response.statusText === "OK" && response.status == 200 ) {
+          if (response.statusText === "OK" && response.status === 200 ) {
             console.log(response.data)
             let categoryJson = [];
             if(response.data[0]['approve_account'] === "approved"){
@@ -98,7 +98,7 @@ const SignIn = (props) => {
           }
         })
           .then((response) => {
-            if (response.statusText === "OK" && response.status == 200) {
+            if (response.statusText === "OK" && response.status === 200) {
               localStorage.setItem('cartId', response.data);
               setButton(true)
               viewCartItems();

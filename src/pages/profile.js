@@ -322,76 +322,76 @@ const Numbersubmit = num => {
     return (
         <Layout>
 
-<div class="container-fluid grey">
-<div class="container padd">
-    <div class="row">
-        <div class="col-lg-4 col-md-12 col-sm-12">
-            <div class="profile-sec">
+<div className="container-fluid grey">
+<div className="container padd">
+    <div className="row">
+        <div className="col-lg-4 col-md-12 col-sm-12">
+            <div className="profile-sec">
               <div className="fo-deflx">
               {profilepic.logo ? <img src={profilepic.logo}/>: <div></div>}
             <div className="fo-center">
-              <input class="btm" type="file" onChange={(e) => {uploadImage(e);}}/>
+              <input className="btm" type="file" onChange={(e) => {uploadImage(e);}}/>
               </div>
               {aftimg && <button onClick={onFileUpload} className="action action_btn btn btn_gray">
                   Upload!
                 </button>}
               </div>
             
-                  <div class="name">
+                  <div className="name">
                     <span>Hello</span>
                     <p>{jwt && profile.firstname}</p>
                 </div>
             </div>
          
 
-            <div class="profile-sec details">
+            <div className="profile-sec details">
                 <h4><span><img src={orders}/></span><a onClick={() => { navigateOnclick('/orders') }}>MY ORDERS</a> </h4>
                 <h4><span><img src={account}/></span><a href="#"> ACCOUNT SETTINGS</a></h4>
                 <ul>
-                <li><Link to="/profile"><a>Profile Information</a></Link></li>
-                    <li><Link to="/myAddress"><a>Manage Addresses</a></Link></li>
-                    <li><Link to="/myReviews"><a>My reviews</a></Link></li>
+                <li><Link to="/profile">Profile Information</Link></li>
+                    <li><Link to="/myAddress">Manage Addresses</Link></li>
+                    <li><Link to="/myReviews">My reviews</Link></li>
                 </ul>
               {isuserlogged && <h4><span><img src={logoutt}/></span><a onClick={() => { logout() }}>LOGOUT</a></h4>}
             </div>
         </div>
-<div class="col-lg-8 col-md-12 col-sm-12 ">
-            <div class="fo-bg-white">
-                <div class="top">
-                    <div class="header">
-                    <h2 class="heading">My Profile </h2>
+<div className="col-lg-8 col-md-12 col-sm-12 ">
+            <div className="fo-bg-white">
+                <div className="top">
+                    <div className="header">
+                    <h2 className="heading">My Profile </h2>
                 </div>
                
                 </div>
 
-                <div class="my-profile">
-                    <div class="form-1">
-                        <div class="head-label">
+                <div className="my-profile">
+                    <div className="form-1">
+                        <div className="head-label">
                             <h4>Personal Information</h4>
-                           {p && <div>{!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}</div> }
-                           {outp && <div>{!showname &&<span><i class="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}</div>}
+                           {p && <div>{!showname &&<span><i className="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}</div> }
+                           {outp && <div>{!showname &&<span><i className="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}</div>}
                         </div>
                        
-                       {!showname && <div class="form-content">
-                            <input type="text" value={jwt && profile.firstname} disabled/>
-                            <input type="text" value={jwt && profile.lastname} disabled/>
+                       {!showname && <div className="form-content">
+                            <input type="text" value={jwt && profile.firstname || ''} disabled/>
+                            <input type="text" value={jwt && profile.lastname || ''} disabled/>
                         </div>}
                         {showname && <form onSubmit={handleSubmit(Namesubmit)}>
-                        <div class="form-content">
+                        <div className="form-content">
                             <input type="text" placeholder="First Name" name="firstname" maxLength="20"ref={register({
                               required: true})} />
                             <input type="text" placeholder="Last Name" name="lastname" maxLength="20" ref={register({
                               required: true})} />
-                            <button type="submit" class="btn btn-danger square">SAVE</button>
+                            <button type="submit" className="btn btn-danger square">SAVE</button>
                         </div></form>}
                     </div>
 
 
-                    <div class="form-1">
-                        <div class="head-label">
+                    <div className="form-1">
+                        <div className="head-label">
                             <h4>Email Address</h4>
-                            {p && <div>{!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}</div>}
-                           {outp &&<div>{!showmail && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}</div>}
+                            {p && <div>{!showmail && <span><i className="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}</div>}
+                           {outp &&<div>{!showmail && <span><i className="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}</div>}
 
                            {p && <span>
                  <a onClick={() => quotePopupOpen()}  >
@@ -459,34 +459,34 @@ const Numbersubmit = num => {
                  
                         </div>
 
-                        {!showmail && <div class="form-content">
-                            <input type="text" value={jwt && profile.email} disabled/>
+                        {!showmail && <div className="form-content">
+                            <input type="text" value={jwt && profile.email || ''} disabled/>
                             </div>}
                          
                         {showmail && <form onSubmit={handleSubmit(Emailsubmit)}>
-                           <div class="form-content"> 
+                           <div className="form-content"> 
                             <input type="text" placeholder="Email Address" name="email" maxLength="50" ref={register({
                               required: true})} />
                             
-                            <button type="submit" class="btn btn-danger square">SAVE</button>
+                            <button type="submit" className="btn btn-danger square">SAVE</button>
                         </div></form>}
                     </div>
 
-                    <div class="form-1">
-                        <div class="head-label">
+                    <div className="form-1">
+                        <div className="head-label">
                             <h4>Mobile Number</h4>
-                          {p && <div>{!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}</div> } 
-                          {outp && <div> {!shownumber && <span><i class="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}</div>} 
+                          {p && <div>{!shownumber && <span><i className="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}</div> } 
+                          {outp && <div> {!shownumber && <span><i className="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}</div>} 
                             
                         </div>
-                        {!shownumber &&  <div class="form-content">
-                            <input type="text" value={jwt && profile.contact_number} disabled/>
+                        {!shownumber &&  <div className="form-content">
+                            <input type="text" value={jwt && profile.contact_number || ''} disabled/>
                          </div>}
-                        {shownumber &&  <form onSubmit={handleSubmit(Numbersubmit)}><div class="form-content">
+                        {shownumber &&  <form onSubmit={handleSubmit(Numbersubmit)}><div className="form-content">
                             <input type="text" placeholder="Number" name="number" maxLength="10" ref={register({
                               required: true})} />
                             
-                            <button type="submit" class="btn btn-danger square">SAVE</button>
+                            <button type="submit" className="btn btn-danger square">SAVE</button>
                         </div></form>}
                     </div>
                 </div>

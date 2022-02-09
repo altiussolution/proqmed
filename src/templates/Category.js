@@ -114,8 +114,8 @@ export default function Category(props) {
                       </div>
                       <div className="tools">
                         <span className="title_view">
-                          <Link className="view-grid  active" id="grid" data-toggle="tooltip" data-placement="top" title="Grid"><IoGridOutline /></Link>
-                          <Link className="view-list" id="list" data-toggle="tooltip" data-placement="top" title="List"><i className="fas fa-list"></i></Link>
+                          <Link to="" className="view-grid  active" id="grid" data-toggle="tooltip" data-placement="top" title="Grid"><IoGridOutline /></Link>
+                          <Link to="" className="view-list" id="list" data-toggle="tooltip" data-placement="top" title="List"><i className="fas fa-list"></i></Link>
                         </span>
                       </div>
                     </div>

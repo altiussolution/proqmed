@@ -266,7 +266,7 @@ const Cart = () => {
 
         return (
             <div>
-              <table class="table table-striped">
+              <table className="table table-striped">
               <thead>
                 <tr>
                 <th>Product</th> 
@@ -286,7 +286,7 @@ const Cart = () => {
                       <td><p>{cart.product_name}</p></td>
                       <td>${parseFloat(cart.price).toFixed(2)}</td>
                       <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart,index) }}/></td>
-                        <td><p class="green">{cart.status[index]}</p></td>
+                        <td><p className="green">{cart.status[index]}</p></td>
                         <td><p>$ {cart.qty*cart.price}</p></td>
                        
                             <td> <div className="casualities">

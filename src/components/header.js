@@ -446,15 +446,15 @@ const isSticky = (e) => {
               /> :<></>
             }
             </form>
-            <Navbar className="bulkorder my_account">
+            <div className="bulkorder my_account">
            
               <div className="dropdown">
-                <a className="btn dropbtn"><span>{isuserlogged ? `Welcome! ${user_name}` : <div>Hello,SignIn</div>}</span>My Account</a>
+                <div className="btn dropbtn"><span>{isuserlogged ? `Welcome! ${user_name}` : <div>Hello,SignIn</div>}</span>My Account</div>
                 <div className="dropdown-content">
                   <ul>
                     {!isuserlogged && <li><Link to="/signin">Sign-In</Link>
-                    <a><Link to="/signup">New to ProQmed?</Link>Start here</a>
-                    <a><Link to="/"></Link>Sell on ProQmed</a>
+                   <Link to="/signup">New to ProQmed? Start here</Link>
+                  <Link to="/">Sell on ProQmed</Link>
                     </li>}
                     {/* {isuserlogged && <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li> */}
                     {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>
@@ -472,15 +472,15 @@ const isSticky = (e) => {
                 </div>
 
               </div>
-            </Navbar>
-            {isuserlogged && <Navbar className="bulkorder my_account">
+            </div>
+            {isuserlogged && <div className="bulkorder my_account">
             {/* <div>dasdasdsa<Cart cartCount={cartCount} />
              <img src={cart}/> 
             </div> */}
               <div >
                 
               
-                <Link to="/cart"><a className="btn dropbtn carttop"><Cart cartCount={cartCount} /></a></Link>
+                <Link to="/cart" className="btn dropbtn carttop"><Cart cartCount={cartCount} /></Link>
                 {/* <div className="dropdown-content">
                   <ul>
                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>
@@ -494,7 +494,7 @@ const isSticky = (e) => {
                 </div> */}
 
               </div>
-            </Navbar>}
+            </div>}
             <div className={`${activeClass ? "sampleDropDown" : "d-none"}`}>
               {sampleVar()}
               {searchList()}
@@ -527,8 +527,14 @@ const isSticky = (e) => {
             </Navbar> */}
             <div className="menu_botm">
               <ul>
-                  <li onClick={() => { navigateOnclick('/') }}><a>Home</a></li>
-                  <li onClick={() => { navigateOnclick('/mainCategory') }}><a>Shop</a></li>
+                  {/* <li> <Nav.Link><Link to="/">Home</Link></Nav.Link></li>
+                  <li> <Nav.Link><Link to="/mainCategory">Shop</Link></Nav.Link></li>               
+                  <li> <Nav.Link><Link to="/aboutUs">About</Link></Nav.Link></li>
+                  <li><Link to="/contact">Contact</Link></li>
+                  <li><Link to="/tracking">Order Tracking</Link></li>
+                  <li><Link to="/myAddress">My Address</Link></li> */}
+                   <li onClick={() => { navigateOnclick('/') }}><a>Home</a></li>
+                  <li onClick={() => { navigateOnclick('/mainCategory') }}><a>Shop</a></li> 
                   <li onClick={() => { navigateOnclick('/aboutUs') }}><a >About</a></li>
                   <li onClick={() => { navigateOnclick('/contact') }}><a >Contact</a></li>
                   <li onClick={() => { navigateOnclick('/tracking') }}><a >Order Tracking</a></li>
