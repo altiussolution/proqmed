@@ -70,8 +70,14 @@ const SignIn = (props) => {
               toast.error(response.data[0]['token']['message']);
             }
           }else{
-            setLoader(false);
-             toast.error('Admin need to approve you')
+            if(response.data=="invalid Username and Password"){
+              setLoader(false);
+              toast.error("Invalid Username & Password")
+            }else {
+              setLoader(false);
+              toast.error('Admin need to approve you')
+            }
+            
           }
           }
         })
