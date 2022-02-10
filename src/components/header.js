@@ -469,7 +469,7 @@ const isSticky = (e) => {
                 <div className="dropdown-content">
                   <ul>
                     {!isuserlogged && <li><Link to="/signin">Sign-In</Link>
-                   <Link to="/signup">New to ProQmed? Start here</Link>
+                   <h6> New to ProQmed?  <Link to="/signup"> Start here</Link></h6>
                   <Link to="/">Sell on ProQmed</Link>
                     </li>}
                     {/* {isuserlogged && <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li> */}
