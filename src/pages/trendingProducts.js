@@ -51,7 +51,7 @@ const TrendingProducts = () => {
     
                         <div>
                           <span className="price">$ {Math.round(data.original_price)}</span>
-                          {data.strike_price != ""  &&  <span className="off_txt_lft">${Math.round(data.strike_price)}</span>}
+                          {data.strike_price != null  &&  <span className="off_txt_lft">${Math.round(data.strike_price)}</span>}
                         </div>
                       </div>
     

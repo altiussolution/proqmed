@@ -577,9 +577,9 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Save Discount</th>
+                            <th>QTY</th>
+                            <th>Price per QTY</th>
+                            <th>Discount</th>
                           </tr>
                         </thead>
 

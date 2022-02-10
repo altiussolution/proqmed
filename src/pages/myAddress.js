@@ -230,7 +230,7 @@ const deleteAddress = (id) => {
                           
                            <h6>Default Billing Address</h6>   
                          <span>Name:<a>{defBill['firstname']}</a></span><br></br>
-                         <span>Address:<a>{defBill['street']}</a></span>
+                         <span>Address:<a>{defBill['street']}</a></span><br></br>
                          <span>City:<a>{defBill['city']}</a></span><br></br>
                          {/* <span>State:<a>{defBill['region']}</a></span><br></br> */}
                          <a>Ph no:<a>{defBill['telephone']}</a></a>
@@ -245,7 +245,7 @@ const deleteAddress = (id) => {
                 <div className="col-lg-4 col-md-12 col-sm-12">
                 <h6>Default Shipping Address</h6>   
                          <span>Name:<a>{defShip['firstname']}</a></span><br></br>
-                         <span>Address:<a>{defShip['street']}</a></span>
+                         <span>Address:<a>{defShip['street']}</a></span><br></br>
                          <span>City:<a>{defShip['city']}</a></span><br></br>
                          {/* <span>State:<a>{defBill['region']}</a></span><br></br> */}
                          <a>Ph no:<a>{defShip ['telephone']}</a></a>
