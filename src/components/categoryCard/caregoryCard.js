@@ -179,7 +179,7 @@ export default function CategoryCard({ data: product, dataClass }) {
           /> : 'No Reviews yet'
         }
          <div className="product_amt">
-                    <span className="price">${Math.round(product['values'].items.price)}</span>
+                    <span className="price">${Math.round(product['values'].items.original_price)}</span>
                 </div>
                 </div>
                 <div className="price_right"> 

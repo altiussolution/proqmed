@@ -63,7 +63,7 @@ const MyQuotesEdit = ({location} ) => {
         try {
             axios({
                 method: "get",
-                url: `${process.env.GATSBY_CART_URL_STARCARE}admin/quotesconversations/${id}`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}admin/quotesconversations/${localStorage.customer_id}`,
                 headers: {
                     'Authorization': `Bearer ${localStorage.userToken}`
                 },

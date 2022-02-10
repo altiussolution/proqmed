@@ -332,9 +332,9 @@ return (
 
                                                     <div className="col-lg-3 col-md-12 col-sm-12">
                                                         <div className="buttons-or">
-                                                            {re && <button type="button" className="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
-                                                            {outre && <button className="btn btn-danger" onClick={() => reorder(orders.order_id)}>ReOrder</button>}
-                                                            <Link to="/orderstatus" state={{ order_id: orders.order_id }}><button className="btn btn-primary">View Order</button></Link>
+                                                            {re && <button type="button" className="btn btn-danger" onClick={() => reorder(items[0].order_id)}>ReOrder</button>}
+                                                            {outre && <button className="btn btn-danger" onClick={() => reorder(items[0].order_id)}>ReOrder</button>}
+                                                            <Link to="/orderstatus" state={{ order_id: items[0].order_id }}><button className="btn btn-primary">View Order</button></Link>
                                                             {/* {orders.status !== 'canceled' && <button className="btn btn outline" type="button" onClick={() => cancelOrder(orders.order_id)}>Cancel Order</button>} */}
 
                                                             {attach_data && <a><i className="fa fa-sticky-note" aria-hidden="true" onClick={handleClick}></i>Invoice
@@ -435,9 +435,9 @@ return (
                     
                   </div></span> <span className="way">Delivered</span></a></li>
                 <li><a> <span><div className="form-check">
-                    <input type="checkbox" className="form-check-input" id="check1" name="option1" value="cancelled"  onChange={e => { filterData2(e,'cancelled') }}/>
+                    <input type="checkbox" className="form-check-input" id="check1" name="option1" value="canceled"  onChange={e => { filterData2(e,'canceled') }}/>
                     
-                  </div></span><span className="way">Cancelled</span></a></li>
+                  </div></span><span className="way">Canceled</span></a></li>
                 
             </ul>
         </div>

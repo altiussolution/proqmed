@@ -31,7 +31,41 @@ const MainCategory = () => {
   const mainCategory = data.allCategory.edges;
 console.log(mainCategory)
   const renderCategories = () => {
+    let mainCategory3 = mainCategory;
+    let catFromLocal = localStorage.getItem('category_permissions');
+    if(catFromLocal){
+      var allowedCat = catFromLocal.split(',').map(function(item) {
+        return parseInt(item, 10);
+      });
+      mainCategory3 = mainCategory.filter((o) => allowedCat.includes(+o.node.id));
     return <div id="products" className="row list-group catgoryPage">
+      {
+        mainCategory3.map((el, index) => (
+          <Link to={getCategoryURL(el.node)}
+            key={index} className="item product_item">
+            <div className="thumbnail">
+              <div className="product_img">
+                <img className="img-fluid" src={`${el.node.image}`} onError={e => (e.target.src = ImageNotFound)}  />
+              </div>
+              <div className="caption">
+                <p className="product_text">
+                  {el.node.name}
+                </p>
+              </div>
+            </div>
+            <ul className="sub_categoriesList">
+              {
+                el.node.grand_child.map((e, index) => (
+                  <li key={e.name}><Link className="sub_categoriesItem" to={getCategoryURL(e)}>{index+1}.{e.name}</Link></li>
+                ))
+              }
+            </ul>
+          </Link>
+        ))
+      }
+    </div>
+    }else {
+      return <div id="products" className="row list-group catgoryPage">
       {
         mainCategory.map((el, index) => (
           <Link to={getCategoryURL(el.node)}
@@ -57,7 +91,7 @@ console.log(mainCategory)
         ))
       }
     </div>
-
+    }
   }
 
 

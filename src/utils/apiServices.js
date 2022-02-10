@@ -1,4 +1,5 @@
 import axios from "axios";
+import { arrayOf } from "prop-types";
 
 const searchServices = async (value) => {
   if(value.length !== 0){
@@ -15,7 +16,26 @@ const searchServices = async (value) => {
             let proProduct = prod[0][1];
             productList.push(proProduct);
           }
-
+          // let mainCategory3 = [];
+          // let arr=[]
+          // let arr1=[]
+          // let catFromLocal = localStorage.getItem('category_permissions');
+    // if(catFromLocal){
+    //   var allowedCat = catFromLocal.split(',').map(function(item) {
+    //     return parseInt(item, 10);
+    //   });
+    //   for(let i=0;i<productList.length;i++){
+    //     productList[i].find((o,i)=>{
+       
+    //     arr.push(o)
+          
+    //     })
+    //   }
+    //   console.log(arr)
+    //   mainCategory3 = arr.filter((o) => allowedCat.includes(o.items?.category_id)
+    //   );
+    // }
+            console.log(productList)
           return await productList;
       
       } 

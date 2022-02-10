@@ -122,7 +122,7 @@ const Invoice = ({ location }) => {
                                                     <td><img src={list.image} /></td>
                                                     <td>{list.name}</td>
                                                     <td>{list.sku}</td>
-                                                    <td>{list.quantity}</td>
+                                                    <td>{Math.round(list.quantity)}</td>
                                                     <td>${parseFloat(list.price).toFixed(2)}</td>
                                                 </tr>
                                             </tbody>
@@ -130,7 +130,56 @@ const Invoice = ({ location }) => {
                                     }
                                 </table>
                                 <div >
-                                    <p>Total : <span> {items.order_total} </span></p>
+                                    <p>Total : <span> {Math.round(items.order_total)} </span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    ))
+                }
+
+            </div>
+        }
+        
+    }
+
+    const orderShipDetails = () => {
+        if (orders ) {
+            return <div>
+                {
+                    orders.map((items, index) => (
+                        <div key={index} className="order_product">
+
+                            <div className="product_status table-responsive" >
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Image</th>
+                                            <th>Product Name</th>
+                                            <th>SKU</th>
+                                            <th>Qty</th>
+                                            <th>Price</th>
+
+                                        </tr>
+                                    </thead>
+                                    {
+                                        items.product_details.map((list, ind) => {
+                                            return <tbody key={`${ind}_table`}>
+                                                <tr>
+                                                    <td><img src={list.image} /></td>
+                                                    <td>{list.name}</td>
+                                                    <td>{list.sku}</td>
+                                                    <td>{Math.round(list.quantity)}</td>
+                                                    <td>${parseFloat(list.price).toFixed(2)}</td>
+                                                </tr>
+                                            </tbody>
+                                        })
+                                    }
+                                </table>
+                                <div >
+                                    <p>Print Shipment</p>
+                                   <Link to="/tracking"><p>Track this Shipment</p></Link> 
+
                                 </div>
                             </div>
                         </div>
@@ -163,7 +212,7 @@ const Invoice = ({ location }) => {
                                         <tr>
                                             <td>{items.order_date}</td>
                                             <td>{items.status}</td>
-                                            <td>${items.order_total}</td>
+                                            <td>${Math.round(items.order_total)}</td>
 
                                         </tr>
                                     </tbody>
@@ -237,7 +286,7 @@ const Invoice = ({ location }) => {
                                                 <td className="product_image"> <img src={list.image} /> </td>
                                                 <td className="product_name">{list.peoduct_name} </td>
                                                 <td>{list.sku}</td>
-                                                <td>{list.qty}</td>
+                                                <td>{Math.round(list.qty)}</td>
                                                 <td>$ {parseFloat(list.price).toFixed(2)}</td>
                                             </tr>
                                         </tbody>
@@ -264,16 +313,16 @@ const Invoice = ({ location }) => {
                         return (index == 0 ?
                             <div>
                                 <tr key={index}>
-                                    <th>Subtotal</th> <td>{item.Subtotal}</td>
+                                    <th>Subtotal</th> <td>{Math.round(item.Subtotal)}</td>
                                 </tr>
                                 <tr>
-                                    <th>TaxAmount</th><td>{item.Tax_Amount}</td>
+                                    <th>TaxAmount</th><td>{Math.round(item.Tax_Amount)}</td>
                                 </tr>
                                 <tr>
-                                    <th>Shipping &amp; Handling</th><td>${item.Shipping_Amount}</td>
+                                    <th>Shipping &amp; Handling</th><td>${Math.round(item.Shipping_Amount)}</td>
                                 </tr>
                                 <tr>
-                                    <th>Grand Total</th><td>${item.Grand_Total}</td>
+                                    <th>Grand Total</th><td>${Math.round(item.Grand_Total)}</td>
                                 </tr>
                             </div> : <span></span>)
                     })
@@ -330,6 +379,9 @@ const Invoice = ({ location }) => {
                                             </div>
                                         </div>
                                     </div>
+                                </Tab>
+                                <Tab eventKey="ship" title="Order Shipment">
+                                    {orderShipDetails()}
                                 </Tab>
                             </Tabs>
                         </div>

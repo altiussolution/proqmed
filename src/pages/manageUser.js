@@ -132,17 +132,27 @@ const onSubmitQuote = quoteDetails => {
          data: quoteData,
      })
          .then(function (response) {
-             toast.success("SubUser Updated sucessfully")
-             navigate('/userManage')
+            navigate('/userManage')
+            setTimeout(() => {
+                toast.success("SubUser Updated sucessfully")
+              }, 500)
+            
+             
          })
-         .catch(function (response) {
-             toast.error('An error occured please contact admin')
+         .catch(function (error) {
+            
              navigate('/userManage')
+             setTimeout(() => {
+                toast.error(error.response.data['message'])
+              }, 500)
          });
 
  } catch (err) {
-     console.error(`An error occured ${err}`)
+     console.error(err.message)
      navigate('/userManage')
+     setTimeout(() => {
+        toast.error(err.message)
+      }, 500)
 
  }
 };
@@ -210,18 +220,31 @@ const onSubmitQuoteadd = quoteDetails => {
          data: quoteData,
      })
          .then(function (response) {
-             toast.success('SubUser Created sucessfully')
              navigate('/userManage')
+             setTimeout(() => {
+                toast.success('SubUser Created sucessfully')
+              }, 500)
          })
-         .catch(function (response) {
-             toast.error(response['message'])
-             navigate('/userManage')
-         });
+         .catch(function (err) {
+             if(err.response.data['message'] == 'Email already exists'){
+                setTimeout(() => {
+                    toast.error(err.response.data['message'])
+                     }, 500)
+             }else {
+                navigate('/userManage')
+                setTimeout(() => {
+                 toast.error(err.response.data['message'])
+                  }, 500)
+                
+             }
+            });
 
  } catch (err) {
-     console.error(`An error occured ${err}`)
-     toast.error(err['message'])
+     console.log(err.error.message)
      navigate('/userManage')
+     setTimeout(() => {
+        toast.error(err['message'])
+      }, 500)
  }
 };
 

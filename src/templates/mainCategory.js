@@ -21,12 +21,36 @@ const MainCategory = () => {
 
   const renderCategories = () => {
     const list = [];
-
+    let mainCategory3 = mainCategory;
     for (let i = 0; i < mainCategory.length; i += 1) {
         list.push(mainCategory[i]['node']);
     }
-
-    return <div className="row">
+    let catFromLocal = localStorage.getItem('category_permissions');
+    if(catFromLocal){
+      var allowedCat = catFromLocal.split(',').map(function(item) {
+        return parseInt(item, 10);
+      });
+      mainCategory3 = mainCategory.filter((o) => allowedCat.includes(+o.node.id));
+      return <div className="row">
+        {
+            mainCategory3.map((el, index) => (
+                <div key={index} className="col-lg-4 col-md-6 col-xs-12 item product_item">
+                    <div  className="thumbnail">
+                        <div className="product_img">
+                            <img className="w-100" src={el.node.image} alt={el.node.image}/>
+                        </div>
+                        <div className="caption">
+                        <p className="product_text">
+                            {el.node.name}
+                        </p>
+                    </div>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+    } else {
+        return <div className="row">
         {
             mainCategory.map((el, index) => (
                 <div key={index} className="col-lg-4 col-md-6 col-xs-12 item product_item">
@@ -44,6 +68,8 @@ const MainCategory = () => {
             ))
         }
     </div>
+    }
+    
   
   }
 
