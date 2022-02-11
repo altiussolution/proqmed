@@ -13,7 +13,7 @@ import { getCartCount } from "./../utils/apiServices";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const CheckOut = () => {
+const CheckOut = ({location}) => {
 
     const { register, handleSubmit, errors } = useForm();
     const [show, setShow] = useState(false);
@@ -35,6 +35,7 @@ const CheckOut = () => {
     const [sta,stat]= useState(null);
     const [countrs,countres]=useState(false);
     const [statys,stateys]=useState(false);
+    const adding = {city:"add"}
     useEffect(() => {
         setJwt(localStorage.userToken);
         setUEmail(localStorage.email)
@@ -514,7 +515,7 @@ const CheckOut = () => {
 
                         <div className="action_sec">
                             <button className="action action_btn btn btn_gray" onClick={() => {deleteAddress(add.entity_id); setaddressEdit(false)}} disabled={index !== selAddIndex}>Delete</button>
-                            <Link to="/Address" state={add}><button className="action action_btn btn btn_gray ml-1"   disabled={index !== selAddIndex}>Edit</button></Link>
+                            <Link to="/Address" state={{data:add,prevPath:location.pathname}}><button className="action action_btn btn btn_gray ml-1"   disabled={index !== selAddIndex}>Edit</button></Link>
                         </div>
 
                     </div>
@@ -562,7 +563,7 @@ const CheckOut = () => {
                                                         </div>
 
                                                         <div className="new_address_popup">
-                                                            <Link to="/Address"><button type="button" className="btn action action_show_popup btn_gray">
+                                                            <Link to="/Address" state={{data:adding,prevPath:location.pathname}}><button type="button" className="btn action action_show_popup btn_gray">
                                                                 + New Address
                                                             </button></Link>
 

@@ -6,7 +6,7 @@ import Layout from "../components/layout";
 import { ToastContainer, toast } from 'react-toastify';
 import Multiselect from 'multiselect-react-dropdown';
 import Select from 'react-select';
-const Address = ({location}) => {
+const Address = ({location,data:product}) => {
  const { register, handleSubmit, errors } = useForm();
  const [jwt, setJwt] = useState("")
  const [uEmail, setUEmail] = useState();
@@ -32,15 +32,17 @@ useEffect(() => {
  setRegion(JSON.parse(localStorage.Regions))
  setCusid(localStorage.customer_id)
  setUEmail(localStorage.email)
- if(location.state['city']){
-   const ef= {country_id:location.state['country_id'],label:location.state['region'],value:location.state['region_id']}
-    editdata(location.state)
-    Defaulti(ef)
-    editAddress(true)
-    console.log(location.state)
- } else {
+ console.log(location)
+  if(location.state.data['city']=="add"){
      addAddress(true)
- }
+     console.log(location)
+ }else {
+    const ef= {country_id:location.state.data['country_id'],label:location.state.data['region'],value:location.state.data['region_id']}
+     editdata(location.state.data)
+     Defaulti(ef)
+     editAddress(true)
+     console.log(location)
+  } 
  axios({
   method: 'get',
   url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/list/${localStorage.email}`,
@@ -59,24 +61,26 @@ assignStats();
 
 const assignStats = () => {
     let arr = JSON.parse(localStorage.Regions)
-    if(location.state['city']){
-        
-       let obj = arr.find(o => o.value === location.state['country_id']);
-    console.log(obj)
-       defaultcountry(obj)
-if(obj['states']){
-    setState(obj['states'])
-    
-}   else {
-    setRegion(arr)
-    // defaultcountry(obj)
-}    
-    }else {
+    if(location.state.data['city'] =="add"){
         let obj = arr.find(o => o.value === 'IN');
         setRegion(arr)
         console.log('gokul',obj)
         defaultcountry(obj)
         setState(obj['states'])
+
+    
+    }else {
+      
+        let obj = arr.find(o => o.value === location.state.data['country_id']);
+        console.log(obj)
+           defaultcountry(obj)
+    if(obj['states']){
+        setState(obj['states'])
+        
+    }   else {
+        setRegion(arr)
+        // defaultcountry(obj)
+    }    
     }
 }
 const handleChange = (event) => {
@@ -112,6 +116,15 @@ Defaulti(states)
      }
     }
 
+    const Cancelling = () => {
+        console.log(location.state.prevPath)
+        if(location.state.prevPath=="/myAddress/"){
+            navigate('/myAddress/')
+        }else {
+            navigate('/checkout/')
+        }
+    }
+
     const filterData1 =(val,datas)=> {
         if(datas=="billing" && val.target.checked){
          Billiadd(true)
@@ -126,7 +139,7 @@ Defaulti(states)
 const onSubmit = userAddresses => {
 let updateAddress = {
     "address": { 
-    "id":location.state['entity_id'],
+    "id":location.state.data['entity_id'],
       "customer_id": cusID,
       "defaultShipping": ship,
       "defaultBilling" : bill,
@@ -155,10 +168,14 @@ let updateAddress = {
         }).then((response) => {
             console.log("Add Address", response)
             if (response.statusText === "OK" && response.status == 200) {
-                
-                toast.success('Edit Address Successfully');
-                navigate("/checkout")
+                console.log(location.state.prevPath)
+                 if(location.state.prevPath=="/myAddress/"){
+                    navigate('/myAddress/')
+                }else {
+                    navigate('/checkout/')
+                }
                 setLoader(false);
+                toast.success('Edit Address Successfully');
                 
             }
 
@@ -207,10 +224,13 @@ const onSubmitadd = userAddresses => {
             }).then((response) => {
                 console.log("Add Address", response)
                 if (response.statusText === "OK" && response.status == 200) {
-                    
-                    toast.success('Add Address Successfully');
-                    navigate("/myAddress")
+                    if(location.state.prevPath=="/checkout/"){
+                        navigate('/checkout/')
+                    }else {
+                        navigate('/myAddress/')
+                    }
                     setLoader(false);
+                    toast.success('Add Address Successfully');
                     
                 }
     
@@ -353,7 +373,7 @@ return (
                           </div>
                           <div class="buttons">                            
                               <button class="btn btn-danger square" type="submit">SAVE</button>
-                              <Link to="/myAddress"><button type="button" class="btn btn" >CANCEL</button></Link>
+                             <button type="button" class="btn btn" onClick={() => Cancelling()}>CANCEL</button>
                           </div>
                       </div>
                       </form>
@@ -442,7 +462,7 @@ return (
                           </div>
                           <div class="buttons">                            
                               <button class="btn btn-danger square" type="submit">SAVE</button>
-                              <Link to="/myAddress"><button type="button" class="btn btn" >CANCEL</button></Link>
+                              <button type="button" class="btn btn" onClick={() => Cancelling()}>CANCEL</button>
                           </div>
                       </div>
                       </form>

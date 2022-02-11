@@ -473,7 +473,7 @@ const isSticky = (e) => {
                   <Link to="/">Sell on ProQmed</Link>
                     </li>}
                     {/* {isuserlogged && <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li> */}
-                    {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>
+                    {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}> My Profile</li>
                     { order && <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>}
                     { orderno && <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>}
                     <li onClick={() => { navigateOnclick('/myReviews') }}>My Reviews</li>
@@ -485,7 +485,6 @@ const isSticky = (e) => {
                     {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
                     {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
                   </ul>
-
                 </div>
 
               </div>
