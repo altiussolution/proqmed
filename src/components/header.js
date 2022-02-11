@@ -188,8 +188,8 @@ const isSticky = (e) => {
   const cat = [];
   const catRoute = [];
   var allowedCat = [];
-  if(localStorage.getItem('userToken')){
-    let catFromLocal = localStorage.getItem('category_permissions');
+  if(jwt){
+    let catFromLocal = localStorage.category_permissions
     if(catFromLocal){
       allowedCat = catFromLocal.split(',').map(function(item) {
         return parseInt(item, 10);
@@ -398,7 +398,7 @@ const isSticky = (e) => {
     const topSelected = [];
     let result = allCategory;
     if(jwt){
-      let catFromLocal = localStorage.getItem('category_permissions');
+      let catFromLocal = localStorage.category_permissions
       if(catFromLocal){
         var allowedCat = catFromLocal.split(',').map(function(item) {
           return parseInt(item, 10);
