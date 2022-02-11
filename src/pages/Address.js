@@ -6,6 +6,7 @@ import Layout from "../components/layout";
 import { ToastContainer, toast } from 'react-toastify';
 import Multiselect from 'multiselect-react-dropdown';
 import Select from 'react-select';
+import { Noimage } from "../assets/sample.png";
 const Address = ({location,data:product}) => {
  const { register, handleSubmit, errors } = useForm();
  const [jwt, setJwt] = useState("")
@@ -257,11 +258,10 @@ return (
           <div class="col-lg-4 col-md-12 col-sm-12">
               <div class="profile-sec">
               <div className="fo-deflx">
-                  <img src="images/sample.png" alt=""/>
-                  </div>
+              {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}                  </div>
                   <div class="name">
                       <span>Hello</span>
-                      <p>{username}</p>
+                      <p>{username}</p> 
                   </div>
               </div>
   
@@ -357,16 +357,16 @@ return (
                           <h6> Address Type</h6>
                           <div class="billing-stat">
                           <div className="form-check">
-                        <input type="checkbox" className="form-check-input" id="shipping" ref={register({
+                        <input type="checkbox" className="form-check-input" id="shipping"  ref={register({
                                                                                 required: true
-                                                                            })} onChange={e => { filterData(e,'shipping') }} checked={(edit ? edit['default_shipping'] : "")}/>
+                                                                            })}  onChange={e => { filterData(e,'shipping') }} defaultChecked={(edit ? edit['default_shipping'] : "")}/>
                         <label className="form-check-label" htmlFor="shipping">Shipping</label>
                       </div>
   
                       <div className="form-check">
-                        <input type="checkbox" className="form-check-input" id="billing" ref={register({
+                        <input type="checkbox" className="form-check-input" id="billing"   ref={register({
                                                                                 required: true
-                                                                            })}  onChange={e => { filterData(e,'billing') }} checked={(edit ? edit['default_billing'] : "")}/>
+                                                                            })}  onChange={e => { filterData(e,'billing') }} defaultChecked={(edit ? edit['default_billing'] : "")}/>
                         <label className="form-check-label" htmlFor="billing">Billing</label>
                       </div>
                               

@@ -578,7 +578,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                           <tr>
                             <th>#</th>
                             <th>QTY</th>
-                            <th>Price per QTY</th>
+                            <th>Tier Price</th>
                             <th>Discount</th>
                           </tr>
                         </thead>
@@ -636,13 +636,13 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
               </button>}
               
                       </div>
-                      <div className="product_detail_action">
+                      {/* <div className="product_detail_action">
                           
                        <Link to="/myquotesedit" state={{ des: proDescription }}><span className="fa fa-comments"></span> Request for a Quote
                                      </Link>
-                     {/*<a onClick={() => quotePopupOpen()} >
+                     <a onClick={() => quotePopupOpen()} >
                      <span className="fa fa-comments"></span>   Request for a Quote
-                             </a>*/}
+                             </a>
        
                                 {pcom && <a onClick={() => addToList(1)} >
                                    <IoIosGitCompare /> Add to Compare
@@ -650,7 +650,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                      {outpcom && <a onClick={() => addToList(1)} >
                                    <IoIosGitCompare /> Add to Compare
                      </a>}
-                               </div>
+                               </div> */}
                       
                     </div>
 
