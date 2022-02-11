@@ -53,9 +53,9 @@ const Tracking =  () => {
           <li className="active">Delivered<span>{track.order_shipped_date}</span></li></ul>)
       } else if (track.order_status == "pending") {
         return( <ul className="progressbar"> <li className="active">Ordered <span>{track.order_created_date}</span></li>
-       <li className="active">Pending<span>{track.order_updated_date}</span></li></ul>)
+       <li >Pending<span>{track.order_updated_date}</span></li> <li >Out For Delivery <span></span></li></ul>)
       }  
-      return( <ul className="progressbar"> <li className="active">Ordered <span>{track.order_created_date}</span></li>
+      return( <ul className="progressbar"> <li>Ordered <span>{track.order_created_date}</span></li><li>Pending <span></span></li><li>Out For Delivery  <span></span></li>
 </ul>  ) 
  }
       return (
@@ -129,7 +129,7 @@ const Tracking =  () => {
 
                     <div className="tr-body">
                       <div className="tr-img">
-                        <img className="images/fp4.png" alt=""></img>
+                        <img className="images/fp4.png" src={track.product_image} alt=""></img>
                       </div>
 
                       <div className="info">

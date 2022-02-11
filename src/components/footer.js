@@ -108,7 +108,7 @@ const Footer = () => {
         <div className="benefits"> 
                 <div className="container">
                     <div className="row"> 
-                        <div className="col-md-3">
+                        {/* <div className="col-md-3">
                             <div className="banefit_content">
                                 <span className="ic_benefits">
                                     <i className="free_shipping"></i>
@@ -124,6 +124,15 @@ const Footer = () => {
                                 </span>
                                 <div className="info-block-content"><div className="info-block-title">15 days returns</div>
                                 <div className="info-block-text">Moneyback guarantee</div></div>
+                            </div>
+                        </div> */}
+                          <div className="col-md-3">
+                            <div className="banefit_content">
+                                <span className="ic_benefits">
+                                    <i className="free_shipping"></i>
+                                </span>
+                                <div className="info-block-content"><div className="info-block-title">Approved Suppliers</div>
+                                <div className="info-block-text">Trusted Sellers</div></div>
                             </div>
                         </div>
                         <div className="col-md-3">

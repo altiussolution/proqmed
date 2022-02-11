@@ -351,23 +351,23 @@ const Cart = () => {
                                     </div> */}
 
                                             {/* {localStorage.getItem('sampleVal')} */}
-                                            {cartItems?.length === 0 ? (<h1>No Item found</h1>) : showCartItems()}
+                                            {cartItems?.length === 0 ? (<h1>No Cart Items</h1>) : showCartItems()}
 
                                             
                                         </div>
                                        
 
                                         
-                                        <div className="col-lg-3 col-md-3 col-xs-12">
+                                        {cartItems?.length === 0 ? (<h1></h1>) :   <div className="col-lg-3 col-md-3 col-xs-12">
                                             <div className="side_sec">
                                                 {/* <h3>Summary</h3> */}
                                                 <h3>Cart Totals</h3>
                                                 <h6>Estimate Shipping and Tax</h6>
-                                                {checkoutDetails()}
+                                               {checkoutDetails()}
                                                 <button className="btn btn_brown" type="button" onClick={() => navigate('/checkout')} disabled={cartItems?.length === 0}>Proceed to Checkout</button>
                                                 {/* <button className="btn btn-default" type="button" onClick={() => navigate('/')}>Continue to Shopping</button> */}
                                             </div>
-                                        </div>
+                                        </div>}
 
                                         <div className="col-lg-9 col-md-9 col-xs-12">
                                         <div className="casualities bottom">

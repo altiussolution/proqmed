@@ -240,7 +240,7 @@ const FeatureProduct = () => {
                                     </ul>
                                 </div>}
                                 <div className="image_wrapper">
-                               {data.offer_percentage != 0 && <div className="price_off">Upto {data.offer_percentage}% off</div>}
+                               {data.offer_percentage != 0 && <div className="price_off">Upto {Math.round(data.offer_percentage)}% off</div>}
                                     <Link to={getProductURL(data)}><img src={data.image} /></Link>
                                 </div>
                                 <div className="description_list">                               

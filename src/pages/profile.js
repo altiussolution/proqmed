@@ -382,15 +382,19 @@ const Numbersubmit = num => {
                         <div className="form-content">
                             <input type="text" placeholder="First Name" name="firstname" maxLength="20"ref={register({
                               required: true})} />
+                           {errors.firstname && errors.firstname.type === 'required' && <span className="error_label">First Name is required</span>} 
+
                             <input type="text" placeholder="Last Name" name="lastname" maxLength="20" ref={register({
                               required: true})} />
+                           {errors.lastname && errors.lastname.type === 'required' && <span className="error_label">Last Name is required</span>}   
+
                             <button type="submit" className="btn btn-danger square">SAVE</button>
                         </div></form>}
                     </div>
 
 
                     <div className="form-1">
-                        <div className="head-label">
+                        <div className="head-label"> 
                             <h4>Email Address</h4>
                             {p && <div>{!showmail && <span><i className="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}</div>}
                            {outp &&<div>{!showmail && <span><i className="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}</div>}
