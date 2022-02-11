@@ -64,6 +64,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
     //setQuoteId(localStorage.cartId);
+    setPrice(proDescription.items.original_price)
     const jwt = localStorage.getItem('userToken')
     if(jwt){
       try
@@ -362,6 +363,35 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
   }
 
 
+  // const handleChange = async (event) => {
+  //   let price;
+  //   if (event.target.value <= 0) {
+  //     event.target.value = 1;
+  //     setQty(event.target.value)
+  //     setPrice(proDescription.items.original_price)
+  //   } else {
+  //     setQty(event.target.value)
+  //     tierAmt.map((item,index) => {
+  //       console.log(item)
+  //       if(index==0){
+  //         item.from_qty=1
+  //         item.to_qty=item.Tier_quantity
+  //       }else {
+  //         item.from_qty=+tierAmt[index-1].Tier_quantity + +1
+  //         item.to_qty=item.Tier_quantity
+  //       }
+        
+  //         if ((event.target.value >= item.from_qty && event.target.value <= item.to_qty) || (event.target.value > item.to_qty)) {
+  //           console.log(item)
+  //           price = item.Tier_price/item.Tier_quantity
+  //         }
+       
+       
+
+  //     })
+  //     await updatePirce(price)
+  //   }
+  // }
   const handleChange = async (event) => {
     let price;
     if (event.target.value <= 0) {
@@ -372,7 +402,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
       setQty(event.target.value)
       tierAmt.map(item => {
         if (event.target.value == item.Tier_quantity) {
-          price = item.Tier_price 
+          price = item.Tier_price/item.Tier_quantity
         }
 
       })
@@ -380,10 +410,11 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     }
   }
   const updatePirce = (price) => {
+    console.log(price)
     if (price != undefined) {
       setPrice(price)
     } else {
-      setPrice(proDescription.items.price)
+      setPrice(proDescription.items.original_price)
     }
   }
   const quotePopupOpen = () => {
@@ -396,7 +427,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
   }
   const onChangeValue = (event) => {
     setQty(event.Tier_quantity)
-    setPrice(event.Tier_price)
+    setPrice(event.Tier_price/event.Tier_quantity)
   }
   const onSubmitQuote = quoteDetails => {
     let quoteData = {
@@ -564,7 +595,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                           change_price.map((val, index) => (
                               <span className="price" key={index}>${Math.round(val.price)}</span>
                             )) :
-                            <span className="price">${Math.round(proDescription.items.original_price)}</span>
+                            <span className="price">${Math.round(normal_price)}</span>
 }
                         
 
@@ -579,7 +610,8 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                             <th>#</th>
                             <th>QTY</th>
                             <th>Price per QTY</th>
-                            <th>Discount</th>
+                            <th>Tier price</th>
+                            <th>Discount %</th>
                           </tr>
                         </thead>
 
@@ -591,7 +623,12 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                                   <input type="radio" checked={qty == item.Tier_quantity} value="item.Tier_quantity" name="item.Tier_quantity" onChange={() => { onChangeValue(item) }} />
                                 </td>
                                 <td>
-                                  <span>{item.Tier_quantity}</span>
+                                  <span>{index > 0 ? +tierAmt[index-1].Tier_quantity + +1: 1}-{item.Tier_quantity}</span>
+                                </td> 
+                                <td>
+                                  <span className="whish-list-price">
+                                    $ {Math.round(parseFloat(item.Tier_price).toFixed(2)/item.Tier_quantity)}
+                                  </span>
                                 </td>
                                 <td>
                                   <span className="whish-list-price">

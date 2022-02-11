@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiTwotoneDelete } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
+import { string } from "prop-types";
 const Cart = () => {
     const [cartItems, setCartItems] = useState([])
     const [loader, setLoader] = useState(false);
@@ -77,6 +78,31 @@ const Cart = () => {
                       });
                       console.log(res.data)
                       console.log(cq)
+                      let trumpcard=[];
+                      for(let i=0;i<cq.length;i++){
+                       
+                          trumpcard.push(cq[i])
+                          console.log(trumpcard)
+                        
+                         }
+                         for(let j=0;j<trumpcard.length;j++){
+                           console.log(res.data[j])
+                           console.log(trumpcard[j])
+                          trumpcard[j].map((item,index) => {
+                            if(index==0){
+                              item.from_qty=1
+                              item.to_qty=item.Tier_quantity
+                            }else {
+                              item.from_qty=+trumpcard[j][index-1].Tier_quantity + +1
+                              item.to_qty=item.Tier_quantity
+                            }
+                            if ((res.data[j].qty >= item.from_qty && res.data[j].qty <= item.to_qty) || res.data[j].qty>item.to_qty) {
+                              console.log(item)
+                              res.data[j].price =item.Tier_price/item.Tier_quantity 
+                            } 
+                    
+                          })
+                        }
                       const data = JSON.stringify(res.data)
                       localStorage.setItem('cartData' , JSON.stringify(res.data))
                       setCartItems(JSON.parse(data))
@@ -152,14 +178,7 @@ const Cart = () => {
             data.qty=event.target.value
             data.price = data.price
           //setQty(event.target.value)
-          tierAmt.map(item => {
-            if (event.target.value === item.Tier_quantity) {
-              data.price = item.Tier_price / data.qty
-              console.log(item.Tier_price / data.qty)
-              //setPrice(item.Tier_price / data.qty)
-            }
-    
-          })
+       
         //   await updatePirce(price)
         }
       }
@@ -244,6 +263,7 @@ const Cart = () => {
         }).then((response) => {
             if (response.statusText === "OK" && response.status === 200) {
                 fetchCheckTotal()
+                listCarts()
                 // viewCartItems1()
                 
                 // toast.success("Updated sucessfully")
@@ -287,7 +307,7 @@ const Cart = () => {
                       <td>${parseFloat(cart.price).toFixed(2)}</td>
                       <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart,index) }}/></td>
                         <td><p className="green">{cart.status[index]}</p></td>
-                        <td><p>$ {cart.qty*cart.price}</p></td>
+                        <td><p>$ {Math.round(cart.qty*cart.price)}</p></td>
                        
                             <td> <div className="casualities">
                                 <a onClick={() => { resetCart(cart.item_id) }}> <AiTwotoneDelete /></a>

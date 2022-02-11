@@ -26,6 +26,8 @@ const Address = ({location,data:product}) => {
  const [shipadd,Shippiadd] = useState(false);
  const [billadd,Billiadd] = useState(false);
 const [Tamilan,Defaulti] = useState({});
+const [checkbox,Cbox] = useState(); 
+const [checkbox2,Cbox2] = useState();
 useEffect(() => {
  setJwt(localStorage.userToken);
  setUsername(localStorage.user_name)
@@ -357,16 +359,16 @@ return (
                           <h6> Address Type</h6>
                           <div class="billing-stat">
                           <div className="form-check">
-                        <input type="checkbox" className="form-check-input" id="shipping" ref={register({
+                        <input type="checkbox" className="form-check-input" name="shipping" id="shipping" ref={register({
                                                                                 required: true
-                                                                            })} onChange={e => { filterData(e,'shipping') }} checked={(edit ? edit['default_shipping'] : "")}/>
+                                                                            })} onChange={e => { filterData(e,'shipping') }}  onClick={e=>{edit['default_shipping']=e.checked}} defaultValue={(edit ? edit['default_shipping'] : "")} checked={edit ? edit['default_shipping'] : "false"}/>
                         <label className="form-check-label" htmlFor="shipping">Shipping</label>
                       </div>
   
                       <div className="form-check">
-                        <input type="checkbox" className="form-check-input" id="billing" ref={register({
+                        <input type="checkbox" className="form-check-input" name="billing" id="billing" ref={register({
                                                                                 required: true
-                                                                            })}  onChange={e => { filterData(e,'billing') }} checked={(edit ? edit['default_billing'] : "")}/>
+                                                                            })}  onChange={e => { filterData(e,'billing') }}  onClick={e=>{edit['default_billing']=e.checked}} defaultValue={(edit ? edit['default_billing'] : "")} checked={edit ? edit['default_billing'] : "false"}/>
                         <label className="form-check-label" htmlFor="billing">Billing</label>
                       </div>
                               
@@ -446,14 +448,14 @@ return (
                           <h6> Address Type</h6>
                           <div class="billing-stat">
                           <div className="form-check">
-                        <input type="checkbox" className="form-check-input" id="shipping" ref={register({
+                        <input type="checkbox" className="form-check-input" id="shipping" name="shipping" ref={register({
                                                                                 required: true
                                                                             })} onChange={e => { filterData1(e,'shipping') }}/>
                         <label className="form-check-label" htmlFor="shipping">Shipping</label>
                       </div>
   
                       <div className="form-check">
-                        <input type="checkbox" className="form-check-input" id="billing" ref={register({
+                        <input type="checkbox" className="form-check-input" id="billing" name="billing" ref={register({
                                                                                 required: true
                                                                             })}  onChange={e => { filterData1(e,'billing') }}/>
                         <label className="form-check-label" htmlFor="billing">Billing</label>
