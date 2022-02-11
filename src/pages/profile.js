@@ -319,7 +319,16 @@ const Numbersubmit = num => {
     navigate('/')  
 
   }
+const closeName = () =>{
+  Naming(false)
+}
+const closeNumber = () =>{
+  Numbering(false)
+}
+const closeEmail = () =>{
+  Emailing(false)
 
+}
  
     return (
         <Layout>
@@ -370,8 +379,8 @@ const Numbersubmit = num => {
                     <div className="form-1">
                         <div className="head-label">
                             <h4>Personal Information</h4>
-                           {p && <div>{!showname &&<span><i className="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}</div> }
-                           {outp && <div>{!showname &&<span><i className="fa fa-pencil" aria-hidden="true"  onClick={editingName}></i>Edit</span>}</div>}
+                           {p && <div>{!showname &&<span onClick={editingName}><i className="fa fa-pencil" aria-hidden="true"></i>Edit</span>}</div> }
+                           {outp && <div>{!showname &&<span  onClick={editingName}><i className="fa fa-pencil" aria-hidden="true" ></i>Edit</span>}</div>}
                         </div>
                        
                        {!showname && <div className="form-content">
@@ -389,6 +398,8 @@ const Numbersubmit = num => {
                            {errors.lastname && errors.lastname.type === 'required' && <span className="error_label">Last Name is required</span>}   
 
                             <button type="submit" className="btn btn-danger square">SAVE</button>
+                            <button type="button" class="btn btn" onClick={closeName}>Cancel</button>
+
                         </div></form>}
                     </div>
 
@@ -396,8 +407,8 @@ const Numbersubmit = num => {
                     <div className="form-1">
                         <div className="head-label"> 
                             <h4>Email Address</h4>
-                            {p && <div>{!showmail && <span><i className="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}</div>}
-                           {outp &&<div>{!showmail && <span><i className="fa fa-pencil" aria-hidden="true" onClick={editingEmail}></i>Edit</span>}</div>}
+                            {p && <div>{!showmail && <span onClick={editingEmail}><i className="fa fa-pencil" aria-hidden="true" ></i>Edit</span>}</div>}
+                           {outp &&<div>{!showmail && <span onClick={editingEmail}><i className="fa fa-pencil" aria-hidden="true" ></i>Edit</span>}</div>}
 
                            {p && <span>
                  <a onClick={() => quotePopupOpen()}  >
@@ -475,14 +486,16 @@ const Numbersubmit = num => {
                               required: true})} />
                             
                             <button type="submit" className="btn btn-danger square">SAVE</button>
+                            <button type="button" class="btn btn"onClick={closeEmail}>Cancel</button>
+
                         </div></form>}
                     </div>
 
                     <div className="form-1">
                         <div className="head-label">
                             <h4>Mobile Number</h4>
-                          {p && <div>{!shownumber && <span><i className="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}</div> } 
-                          {outp && <div> {!shownumber && <span><i className="fa fa-pencil" aria-hidden="true" onClick={editingNumber}></i>Edit</span>}</div>} 
+                          {p && <div>{!shownumber && <span  onClick={editingNumber}><i className="fa fa-pencil" aria-hidden="true"></i>Edit</span>}</div> } 
+                          {outp && <div> {!shownumber && <span  onClick={editingNumber}><i className="fa fa-pencil" aria-hidden="true"></i>Edit</span>}</div>} 
                             
                         </div>
                         {!shownumber &&  <div className="form-content">
@@ -493,6 +506,8 @@ const Numbersubmit = num => {
                               required: true})} />
                             
                             <button type="submit" className="btn btn-danger square">SAVE</button>
+                            <button type="button" class="btn btn" onClick={closeNumber}>Cancel</button>
+
                         </div></form>}
                     </div>
                 </div>

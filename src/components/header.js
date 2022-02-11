@@ -516,12 +516,12 @@ const isSticky = (e) => {
                     { order && <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>}
                     { orderno && <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>}
                     <li onClick={() => { navigateOnclick('/myReviews') }}>My Reviews</li>
-                    <li onClick={() => { navigateOnclick('/wishlist') }}>Wishlist</li>
-                    <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li></div>}
+                    <li onClick={() => { navigateOnclick('/wishlist') }}>Wishlist</li></div>}
+                    {/* <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li></div>} */}
                     {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <div>{iswhatuser &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}</div>}
-                    {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
+                    {/* {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>} */}
                     {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
                   </ul>
                 </div>

@@ -6,6 +6,7 @@ import Layout from "../components/layout";
 import { ToastContainer, toast } from 'react-toastify';
 import Multiselect from 'multiselect-react-dropdown';
 import Select from 'react-select';
+import { Noimage } from "../assets/sample.png";
 const Address = ({location,data:product}) => {
  const { register, handleSubmit, errors } = useForm();
  const [jwt, setJwt] = useState("")
@@ -259,11 +260,10 @@ return (
           <div class="col-lg-4 col-md-12 col-sm-12">
               <div class="profile-sec">
               <div className="fo-deflx">
-                  <img src="images/sample.png" alt=""/>
-                  </div>
+              {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}                  </div>
                   <div class="name">
                       <span>Hello</span>
-                      <p>{username}</p>
+                      <p>{username}</p> 
                   </div>
               </div>
   
