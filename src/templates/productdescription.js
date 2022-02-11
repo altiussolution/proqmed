@@ -92,6 +92,34 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
         toast.error('something went wrong')
       }
     }
+    let id = {
+      "data":{
+          "product_id":proDescription.items.id,
+          "seller_id":proDescription.items.seller_id
+      
+      }
+  }
+  
+    try
+    {    
+      axios({
+        method : 'post',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}seller/mostviewedproducts`,
+        headers : {
+            'Authorization' : `Bearer ${jwt}`
+        },
+        data : id
+      })
+      .then((response) => {
+       
+      }) 
+      .catch((error) => {
+        console.error(error,'error')
+      })
+    }catch(err){
+      console.error(err);
+      toast.error('something went wrong')
+    }
     console.log(proDescription)
     if(!localStorage.permissions){
       outper(true)
@@ -363,52 +391,52 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
   }
 
 
-  // const handleChange = async (event) => {
-  //   let price;
-  //   if (event.target.value <= 0) {
-  //     event.target.value = 1;
-  //     setQty(event.target.value)
-  //     setPrice(proDescription.items.original_price)
-  //   } else {
-  //     setQty(event.target.value)
-  //     tierAmt.map((item,index) => {
-  //       console.log(item)
-  //       if(index==0){
-  //         item.from_qty=1
-  //         item.to_qty=item.Tier_quantity
-  //       }else {
-  //         item.from_qty=+tierAmt[index-1].Tier_quantity + +1
-  //         item.to_qty=item.Tier_quantity
-  //       }
-        
-  //         if ((event.target.value >= item.from_qty && event.target.value <= item.to_qty) || (event.target.value > item.to_qty)) {
-  //           console.log(item)
-  //           price = item.Tier_price/item.Tier_quantity
-  //         }
-       
-       
-
-  //     })
-  //     await updatePirce(price)
-  //   }
-  // }
   const handleChange = async (event) => {
     let price;
     if (event.target.value <= 0) {
       event.target.value = 1;
       setQty(event.target.value)
-      setPrice(proDescription.items.price)
+      setPrice(proDescription.items.original_price)
     } else {
       setQty(event.target.value)
-      tierAmt.map(item => {
-        if (event.target.value == item.Tier_quantity) {
-          price = item.Tier_price/item.Tier_quantity
+      tierAmt.map((item,index) => {
+        console.log(item)
+        if(index==0){
+          item.from_qty=1
+          item.to_qty=item.Tier_quantity
+        }else {
+          item.from_qty=+tierAmt[index-1].Tier_quantity + +1
+          item.to_qty=item.Tier_quantity
         }
+        
+          if ((event.target.value >= item.from_qty && event.target.value <= item.to_qty) || (event.target.value > item.to_qty)) {
+            console.log(item)
+            price = item.Tier_price/item.Tier_quantity
+          }
+       
+       
 
       })
       await updatePirce(price)
     }
   }
+  // const handleChange = async (event) => {
+  //   let price;
+  //   if (event.target.value <= 0) {
+  //     event.target.value = 1;
+  //     setQty(event.target.value)
+  //     setPrice(proDescription.items.price)
+  //   } else {
+  //     setQty(event.target.value)
+  //     tierAmt.map(item => {
+  //       if (event.target.value == item.Tier_quantity) {
+  //         price = item.Tier_price/item.Tier_quantity
+  //       }
+
+  //     })
+  //     await updatePirce(price)
+  //   }
+  // }
   const updatePirce = (price) => {
     console.log(price)
     if (price != undefined) {
