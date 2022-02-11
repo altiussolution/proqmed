@@ -458,6 +458,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
 
     } catch (err) {
       console.error(`An error occured ${err}`)
+      ///
     }
   };
 
