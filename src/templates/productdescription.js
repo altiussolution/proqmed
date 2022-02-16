@@ -64,6 +64,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
     //setQuoteId(localStorage.cartId);
+    setPrice(proDescription.items.original_price)
     const jwt = localStorage.getItem('userToken')
     if(jwt){
       try
@@ -90,6 +91,34 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
         console.error(err);
         toast.error('something went wrong')
       }
+    }
+    let id = {
+      "data":{
+          "product_id":proDescription.items.id,
+          "seller_id":proDescription.items.seller_id
+      
+      }
+  }
+  
+    try
+    {    
+      axios({
+        method : 'post',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}seller/mostviewedproducts`,
+        headers : {
+            'Authorization' : `Bearer ${jwt}`
+        },
+        data : id
+      })
+      .then((response) => {
+       
+      }) 
+      .catch((error) => {
+        console.error(error,'error')
+      })
+    }catch(err){
+      console.error(err);
+      toast.error('something went wrong')
     }
     console.log(proDescription)
     if(!localStorage.permissions){
@@ -367,23 +396,53 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     if (event.target.value <= 0) {
       event.target.value = 1;
       setQty(event.target.value)
-      setPrice(proDescription.items.price)
+      setPrice(proDescription.items.original_price)
     } else {
       setQty(event.target.value)
-      tierAmt.map(item => {
-        if (event.target.value == item.Tier_quantity) {
-          price = item.Tier_price 
+      tierAmt.map((item,index) => {
+        console.log(item)
+        if(index==0){
+          item.from_qty=1
+          item.to_qty=item.Tier_quantity
+        }else {
+          item.from_qty=+tierAmt[index-1].Tier_quantity + +1
+          item.to_qty=item.Tier_quantity
         }
+        
+          if ((event.target.value >= item.from_qty && event.target.value <= item.to_qty) || (event.target.value > item.to_qty)) {
+            console.log(item)
+            price = item.Tier_price/item.Tier_quantity
+          }
+       
+       
 
       })
       await updatePirce(price)
     }
   }
+  // const handleChange = async (event) => {
+  //   let price;
+  //   if (event.target.value <= 0) {
+  //     event.target.value = 1;
+  //     setQty(event.target.value)
+  //     setPrice(proDescription.items.price)
+  //   } else {
+  //     setQty(event.target.value)
+  //     tierAmt.map(item => {
+  //       if (event.target.value == item.Tier_quantity) {
+  //         price = item.Tier_price/item.Tier_quantity
+  //       }
+
+  //     })
+  //     await updatePirce(price)
+  //   }
+  // }
   const updatePirce = (price) => {
+    console.log(price)
     if (price != undefined) {
       setPrice(price)
     } else {
-      setPrice(proDescription.items.price)
+      setPrice(proDescription.items.original_price)
     }
   }
   const quotePopupOpen = () => {
@@ -396,7 +455,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
   }
   const onChangeValue = (event) => {
     setQty(event.Tier_quantity)
-    setPrice(event.Tier_price)
+    setPrice(event.Tier_price/event.Tier_quantity)
   }
   const onSubmitQuote = quoteDetails => {
     let quoteData = {
@@ -427,6 +486,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
 
     } catch (err) {
       console.error(`An error occured ${err}`)
+      ///
     }
   };
 
@@ -564,7 +624,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                           change_price.map((val, index) => (
                               <span className="price" key={index}>${Math.round(val.price)}</span>
                             )) :
-                            <span className="price">${Math.round(proDescription.items.original_price)}</span>
+                            <span className="price">${Math.round(normal_price)}</span>
 }
                         
 
@@ -577,9 +637,10 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Save Discount</th>
+                            <th>QTY</th>
+                            <th>Price per QTY</th>
+                            <th>Tier price</th>
+                            <th>Discount %</th>
                           </tr>
                         </thead>
 
@@ -591,7 +652,12 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                                   <input type="radio" checked={qty == item.Tier_quantity} value="item.Tier_quantity" name="item.Tier_quantity" onChange={() => { onChangeValue(item) }} />
                                 </td>
                                 <td>
-                                  <span>{item.Tier_quantity}</span>
+                                  <span>{index > 0 ? +tierAmt[index-1].Tier_quantity + +1: 1}-{item.Tier_quantity}</span>
+                                </td> 
+                                <td>
+                                  <span className="whish-list-price">
+                                    $ {Math.round(parseFloat(item.Tier_price).toFixed(2)/item.Tier_quantity)}
+                                  </span>
                                 </td>
                                 <td>
                                   <span className="whish-list-price">
@@ -636,13 +702,13 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
               </button>}
               
                       </div>
-                      <div className="product_detail_action">
+                      {/* <div className="product_detail_action">
                           
                        <Link to="/myquotesedit" state={{ des: proDescription }}><span className="fa fa-comments"></span> Request for a Quote
                                      </Link>
-                     {/*<a onClick={() => quotePopupOpen()} >
+                     <a onClick={() => quotePopupOpen()} >
                      <span className="fa fa-comments"></span>   Request for a Quote
-                             </a>*/}
+                             </a>
        
                                 {pcom && <a onClick={() => addToList(1)} >
                                    <IoIosGitCompare /> Add to Compare
@@ -650,7 +716,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                      {outpcom && <a onClick={() => addToList(1)} >
                                    <IoIosGitCompare /> Add to Compare
                      </a>}
-                               </div>
+                               </div> */}
                       
                     </div>
 

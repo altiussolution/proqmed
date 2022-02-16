@@ -21,9 +21,23 @@ const Hotproducts = () => {
  const [qty, setQty] = useState(1);
  const [isButton, setButton] = useState(false);
  const [cartCnt, setCartCnt] = useState(getCartCount())
+ const [p,per] = useState(false);
+ const [pcar,percart] = useState(false);
+ const [outp,outper] = useState(false);
+ const [outpcar,outpercart] = useState(false);
  useEffect(() => {
      setCustomerId(localStorage.customer_id)
      setJwt(localStorage.userToken)
+     if(!localStorage.permissions){
+      outper(true)
+      outpercart(true)
+    }else {
+      let hi = JSON.parse(localStorage.permissions)
+      let addwis=hi.includes("Can Add To Wishlist")
+      let addcar=hi.includes("Can Add To Cart")
+      per(addwis)
+      percart(addcar)
+    }
      const jwt = localStorage.getItem('userToken')
      if(jwt){
        try
@@ -143,37 +157,36 @@ const addtoCartItems = (sku, id) => {
      navigate("/signin")
  }
 }
-const renderProducts = () => {    
+const renderProductss = () => {    
  if (dealProducts) { 
      return <div>   
          {       
              dealProducts.map((data,index) => (
                  <div className="item" key={`${data}_${index}`}>
                      <div className="card"> 
-                     {data.products.map((value,index)=>(  
                       <><div className="wishComp">
                        <ul>
-                        <li><a onClick={() => addToList(2, value.id)}><FaRegHeart /></a></li>
+                        <li><a onClick={() => addToList(2, data.id)}><FaRegHeart /></a></li>
                        </ul>
                       </div><div className="image_wrapper">
                         <div className="actn_btn_holder">
                          <ul>
-                          <li className="icn"><a onClick={() => addtoCartItems(value.sku, value.id)}><BiShoppingBag /></a></li>
-                          {/* <li>{<Link className="btn" to={getProductURL(value)}
-                           state={value}>View Detail</Link>}</li> */}
-                          <li className="icn"><a onClick={() => addToList(1, value.id)}><IoIosGitCompare /></a></li>
+                          <li className="icn"><a onClick={() => addtoCartItems(data.sku, data.id)}><BiShoppingBag /></a></li>
+                          {/* <li>{<Link className="btn" to={getProductURL(data)}
+                           state={data}>View Detail</Link>}</li> */}
+                          <li className="icn"><a onClick={() => addToList(1, data.id)}><IoIosGitCompare /></a></li>
                          </ul>
                         </div>
-                        <img src={value.image} />
+                        <img src={data.image} />
 
                        </div>
-                       <p className="product_title">{value.name}</p>
+                       <p className="product_title">{data.name}</p>
                        </>   
-                      ))} 
+                      
                      
                                                      
                          
-                         {/* <div>
+                         <div>
                              <StarRatings
                                  rating={Math.round(data.ratings_summary)}
                                  numberOfStars={5}
@@ -189,7 +202,7 @@ const renderProducts = () => {
                                  <span className="new_price">$000</span>
                              </div>
 
-                         </div> */}
+                         </div>
                      </div>
 
                  </div>
@@ -198,9 +211,106 @@ const renderProducts = () => {
      </div>
  }
 }
- return (
+const renderProducts = () => {    
+  if (dealProducts) { 
+      return <div className="row products_fp">   
+          {       
+              dealProducts.map((data,index) => (
+                  <div className="item product_item sample" key={`${data.name}_${index}`}>
+                      <div className="card">    
+                      {p && <div className="wishComp">
+                              <ul>
+                                <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
+                              </ul>
+                          </div>}
+                          {outp && <div className="wishComp">
+                              <ul>
+                                <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
+                              </ul>
+                          </div>}
+                        
+                          <div className="image_wrapper">
+                          {/* <div className="actn_btn_holder">                                  
+                              <ul>
+                                <li className="icn"><BiShoppingBag/></li>
+                                <li>{ <Link className="btn" to={getProductURL(data)}
+                              state={data}>View Detail</Link> }</li>
+                                <li className="icn"><a onClick={() => addToList(1,data.id)}><IoIosGitCompare/></a></li>
+                              </ul>                                
+                          </div> */}
+                           <Link to={getProductURL(data)}>
+                           <img src={data.image} />
+                           </Link>
+                              
+
+                          </div>                                
+                          <p className="product_title">{data.name}</p>
+                          <div className="price_holder">
+                          <div className="price_left">                                  
+                              <div className="product_amt">
+                              {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
+                                  <span className="price">${Math.round(data.original_price)}</span>
+                                  
+                              </div>
+                              <div className="rating_front">
+                              <StarRatings
+                                  rating={Math.round(data.ratings_summary)}
+                                  numberOfStars={5}
+                                  name='rating'
+                                  starDimension="20px"
+                                  starSpacing="0px"
+                                  starRatedColor="rgb(242 187 22)"
+                                  svgIconViewBox="0 0 32 32"
+                                  svgIconPath="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798zM16 23.547l-6.983 3.671 1.334-7.776-5.65-5.507 7.808-1.134 3.492-7.075 3.492 7.075 7.807 1.134-5.65 5.507 1.334 7.776-6.983-3.671z"
+                              />
+                              
+                              </div>
+                          </div>
+                             {pcar && <div className="price_right">                                   
+                            <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
+                            </div>}
+                            {outpcar && <div className="price_right">                                   
+                            <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
+                            </div>}
+                          </div>
+                      </div>
+
+                  </div>
+              ))
+          }
+      </div>
+  }
+}
+return (
   <Layout>
-      <div>{renderProducts()}</div>
+    <div className="content_wrapper">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+          <div className="main_title left">
+              <h1>
+                Hot Deals Products
+             
+            {/* <span></span> <div className="breadcrumbs_sec" >
+              adasd
+            </div> */}
+            </h1>
+            </div>
+            <div className="category_container">
+              
+                <div className="cat_scroll">
+                  <div className="container">
+                    
+            {renderProducts()}
+            
+            </div>
+            </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </Layout>
 )
 }

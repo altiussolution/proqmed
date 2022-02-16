@@ -16,26 +16,27 @@ const searchServices = async (value) => {
             let proProduct = prod[0][1];
             productList.push(proProduct);
           }
-          // let mainCategory3 = [];
-          // let arr=[]
-          // let arr1=[]
-          // let catFromLocal = localStorage.getItem('category_permissions');
-    // if(catFromLocal){
-    //   var allowedCat = catFromLocal.split(',').map(function(item) {
-    //     return parseInt(item, 10);
-    //   });
-    //   for(let i=0;i<productList.length;i++){
-    //     productList[i].find((o,i)=>{
-       
-    //     arr.push(o)
           
-    //     })
-    //   }
-    //   console.log(arr)
-    //   mainCategory3 = arr.filter((o) => allowedCat.includes(o.items?.category_id)
-    //   );
-    // }
-            console.log(productList)
+          let result = [];
+
+          Object.entries(productList).forEach(([key, value]) => {
+            Object.entries(value).forEach(([i, j]) => {
+              let items = j.items;
+              if(typeof items !== "undefined" ){
+                result.push(items);
+              }
+            });
+          });
+          if(localStorage.getItem('userToken')){
+            let catFromLocal = localStorage.getItem('category_permissions');
+            if(catFromLocal){
+              var allowedCat = catFromLocal.split(',').map(function(item) {
+                return parseInt(item, 10);
+              });
+              result = result.filter((o) => allowedCat.includes(+o.category_id));
+              return await result;
+            }
+          }
           return await productList;
       
       } 

@@ -4,7 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import Layout from "../components/layout";
 import { Noimage } from "../assets/sample.png";
-const MyAddress = () => {
+const MyAddress = ({location}) => {
  const [jwt, setJwt] = useState("")
  const [uEmail, setUEmail] = useState();
  const [username, setUsername] = useState();
@@ -15,6 +15,7 @@ const MyAddress = () => {
  const [defBill,defaultBilling] = useState([]);
  const [defShip,defaultShipping] = useState([]);
  const admintoken = "nulqmtn1cyo9ko7ip4zbumjqrlk9k825"
+ const adding = {city:"add",hello:"world"}
  useEffect(() => {
   setJwt(localStorage.userToken);
   setUEmail(localStorage.email) 
@@ -221,7 +222,7 @@ const deleteAddress = (id) => {
                     <div className="header">
                     <h2 className="heading">My Addresses <span>({shippingAddress.length})</span></h2>
                 </div>
-                <a onClick={() => { navigateOnclick('/Address') }}>+ ADD A NEW ADDRESS</a>
+                <Link to="/Address" state={{data:adding,prevPath:location.pathname}}><button>+ ADD A NEW ADDRESS</button></Link>
                 </div>
                 <div className="row">
                 <div className="col-lg-4 col-md-12 col-sm-12"> 
@@ -230,7 +231,7 @@ const deleteAddress = (id) => {
                           
                            <h6>Default Billing Address</h6>   
                          <span>Name:<a>{defBill['firstname']}</a></span><br></br>
-                         <span>Address:<a>{defBill['street']}</a></span>
+                         <span>Address:<a>{defBill['street']}</a></span><br></br>
                          <span>City:<a>{defBill['city']}</a></span><br></br>
                          {/* <span>State:<a>{defBill['region']}</a></span><br></br> */}
                          <a>Ph no:<a>{defBill['telephone']}</a></a>
@@ -245,7 +246,7 @@ const deleteAddress = (id) => {
                 <div className="col-lg-4 col-md-12 col-sm-12">
                 <h6>Default Shipping Address</h6>   
                          <span>Name:<a>{defShip['firstname']}</a></span><br></br>
-                         <span>Address:<a>{defShip['street']}</a></span>
+                         <span>Address:<a>{defShip['street']}</a></span><br></br>
                          <span>City:<a>{defShip['city']}</a></span><br></br>
                          {/* <span>State:<a>{defBill['region']}</a></span><br></br> */}
                          <a>Ph no:<a>{defShip ['telephone']}</a></a>
@@ -271,7 +272,7 @@ const deleteAddress = (id) => {
                                       
                                     </ul>
                                   </div> */}
-                                  <li><Link to="/Address" state={add}><a><i className="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></Link></li>
+                                  <li><Link to="/Address" state={{data:add,prevPath:location.pathname}} ><a><i className="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></Link></li>
                                       <button onClick={() => {deleteAddress(add.entity_id)}}><a ><i className="fa fa-trash-o" aria-hidden="true"></i>
                                         Delete</a></button>
                             </div>

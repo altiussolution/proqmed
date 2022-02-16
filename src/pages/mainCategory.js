@@ -1,5 +1,5 @@
 import { useStaticQuery, graphql, Link } from "gatsby"
-import React from "react"
+import React, { useRef, useState, useEffect } from "react";
 import Layout from "../components/layout";
 import { getCategoryURL } from "../utils/url";
 import "./../templates/categorylist.css";
@@ -10,6 +10,7 @@ import Brands from "../components/brands";
 import FeatureProduct from "../components/featureProduct";
 
 const MainCategory = () => {
+  const [perm,catperm] = useState();
   const data = useStaticQuery(graphql`
     {
       allCategory {
@@ -27,12 +28,16 @@ const MainCategory = () => {
       }
     }
   `)
-
+  
   const mainCategory = data.allCategory.edges;
 console.log(mainCategory)
+useEffect(() => {
+  catperm(localStorage.category_permissions)
+}, []);
   const renderCategories = () => {
+    
     let mainCategory3 = mainCategory;
-    let catFromLocal = localStorage.getItem('category_permissions');
+    let catFromLocal = perm
     if(catFromLocal){
       var allowedCat = catFromLocal.split(',').map(function(item) {
         return parseInt(item, 10);

@@ -187,18 +187,39 @@ const isSticky = (e) => {
 
   const cat = [];
   const catRoute = [];
+  var allowedCat = [];
+  if(jwt){
+    let catFromLocal = localStorage.category_permissions
+    if(catFromLocal){
+      allowedCat = catFromLocal.split(',').map(function(item) {
+        return parseInt(item, 10);
+      });
+    }
+  }
   const sampleVar = () => {
     if (searchResponse) {
-      searchResponse.map((item, index) => (
-        item.map((val, index) => {
-          if (val.items) {
-            if ((val.items.category_name)) {
-              cat.push(val.items.category_name)
-              catRoute.push({ name: val.items.category_name, id: val.items.category_id })
+        if(allowedCat.length !== 0){
+          Object.entries(searchResponse).forEach(([key, value]) => {
+            if (value) {
+              if ((value.category_name)) {
+                cat.push(value.category_name)
+                catRoute.push({ name: value.category_name, id: value.category_id })
+              }
             }
-          }
-        })
-      ))
+          })
+        }else{
+          searchResponse.map((item, index) => (
+            item.map((val, index) => {
+              if (val.items) {
+                if ((val.items.category_name)) {
+                  cat.push(val.items.category_name)
+                  catRoute.push({ name: val.items.category_name, id: val.items.category_id })
+                }
+              }
+            })
+          ))
+        }
+      
       return <div className="samplecategory"><h1>Category Value</h1>
         {
           catRoute.map((catVal, index) => (
@@ -212,8 +233,23 @@ const isSticky = (e) => {
   const searchList = () => {
 
     if (searchResponse) {
+      if(allowedCat.length !== 0){
+        return <div>
+        {
+          searchResponse.map((item, index) => (
+            <ul>
+              <li key={`${index}_item`}>
+               
+              <Link to={getProductURL(item)} onClick={() => setActiveClass(false)}>
+                  <span className="searchImg_holder"><img src={item.image} className="search-img" /></span>
+                  <p className="srch_txt">{item.name}</p></Link></li>
+            </ul>
+          ))
+        }
+      </div>
+      }else{
 
-      return <div>
+        return <div>
         {
           searchResponse.map((item, index) => (
             <ul key={index}>{
@@ -227,6 +263,9 @@ const isSticky = (e) => {
           ))
         }
       </div>
+      }
+
+      
 
     } else {
       return <div>No Product found</div>
@@ -359,7 +398,7 @@ const isSticky = (e) => {
     const topSelected = [];
     let result = allCategory;
     if(jwt){
-      let catFromLocal = localStorage.getItem('category_permissions');
+      let catFromLocal = localStorage.category_permissions
       if(catFromLocal){
         var allowedCat = catFromLocal.split(',').map(function(item) {
           return parseInt(item, 10);
@@ -473,19 +512,18 @@ const isSticky = (e) => {
                   <Link to="/">Sell on ProQmed</Link>
                     </li>}
                     {/* {isuserlogged && <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li> */}
-                    {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}>My Profile</li>
+                    {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}> My Profile</li>
                     { order && <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>}
                     { orderno && <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>}
                     <li onClick={() => { navigateOnclick('/myReviews') }}>My Reviews</li>
-                    <li onClick={() => { navigateOnclick('/wishlist') }}>Wishlist</li>
-                    <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li></div>}
+                    <li onClick={() => { navigateOnclick('/wishlist') }}>Wishlist</li></div>}
+                    {/* <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li></div>} */}
                     {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <div>{iswhatuser &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}</div>}
-                    {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>}
+                    {/* {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>} */}
                     {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
                   </ul>
-
                 </div>
 
               </div>
