@@ -361,14 +361,14 @@ return (
                           <div className="form-check">
                         <input type="checkbox" className="form-check-input" name="shipping" id="shipping" ref={register({
                                                                                 required: true
-                                                                            })} onChange={e => { filterData(e,'shipping') }}  onClick={e=>{edit['default_shipping']=e.checked}} defaultValue={(edit ? edit['default_shipping'] : "")} checked={edit ? edit['default_shipping'] : "false"}/>
+                                                                            })} onChange={e => { filterData(e,'shipping') }}   defaultChecked={(edit ? edit['default_shipping'] : "")} />
                         <label className="form-check-label" htmlFor="shipping">Shipping</label>
                       </div>
-  
+                      {/* checked={edit ? edit['default_shipping'] : "false"} checked={edit ? edit['default_billing'] : "false"}*/}
                       <div className="form-check">
                         <input type="checkbox" className="form-check-input" name="billing" id="billing" ref={register({
                                                                                 required: true
-                                                                            })}  onChange={e => { filterData(e,'billing') }}  onClick={e=>{edit['default_billing']=e.checked}} defaultValue={(edit ? edit['default_billing'] : "")} checked={edit ? edit['default_billing'] : "false"}/>
+                                                                            })}  onChange={e => { filterData(e,'billing') }}  defaultChecked={(edit ? edit['default_billing'] : "")} />
                         <label className="form-check-label" htmlFor="billing">Billing</label>
                       </div>
                               

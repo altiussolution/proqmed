@@ -132,8 +132,11 @@ const Cart = () => {
                 if (res.statusText === "OK" && res.status === 200) {
                     setCheckout(res.data.total_segments)
                     //toast.success('Update Cart Successfully')
+                }else{
+                  navigate("/signin")
                 }
             }).catch((err) => {
+              navigate("/signin")
                 console.error(err);
             })
 

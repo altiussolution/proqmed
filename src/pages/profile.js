@@ -11,6 +11,7 @@ import { account} from "./../assets/account.png"
 import { logoutt} from "./../assets/logout.png"
 import { orders} from "./../assets/orders.png"
 import Modal from 'react-bootstrap/Modal';
+import { AiOutlineClose } from "react-icons/ai";
 
 const Profile = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -390,15 +391,15 @@ const closeEmail = () =>{
                         {showname && <form onSubmit={handleSubmit(Namesubmit)}>
                         <div className="form-content">
                             <input type="text" placeholder="First Name" name="firstname" maxLength="20"ref={register({
-                              required: true})} />
+                              required: true})} defaultValue={(profile ? profile['firstname'] : "")}/>
                            {errors.firstname && errors.firstname.type === 'required' && <span className="error_label">First Name is required</span>} 
 
                             <input type="text" placeholder="Last Name" name="lastname" maxLength="20" ref={register({
-                              required: true})} />
+                              required: true})} defaultValue={(profile ? profile['lastname'] : "")} />
                            {errors.lastname && errors.lastname.type === 'required' && <span className="error_label">Last Name is required</span>}   
 
                             <button type="submit" className="btn btn-danger square">SAVE</button>
-                            <button type="button" class="btn btn" onClick={closeName}>Cancel</button>
+                            <button type="button" class="btn btn" onClick={closeName}><AiOutlineClose /></button>
 
                         </div></form>}
                     </div>
@@ -483,10 +484,10 @@ const closeEmail = () =>{
                         {showmail && <form onSubmit={handleSubmit(Emailsubmit)}>
                            <div className="form-content"> 
                             <input type="text" placeholder="Email Address" name="email" maxLength="50" ref={register({
-                              required: true})} />
+                              required: true})} defaultValue={(profile ? profile['email'] : "")} />
                             
                             <button type="submit" className="btn btn-danger square">SAVE</button>
-                            <button type="button" class="btn btn"onClick={closeEmail}>Cancel</button>
+                            <button type="button" class="btn btn"onClick={closeEmail}><AiOutlineClose /></button>
 
                         </div></form>}
                     </div>
@@ -503,10 +504,10 @@ const closeEmail = () =>{
                          </div>}
                         {shownumber &&  <form onSubmit={handleSubmit(Numbersubmit)}><div className="form-content">
                             <input type="text" placeholder="Number" name="number" maxLength="10" ref={register({
-                              required: true})} />
+                              required: true})} defaultValue={(profile ? profile['contact_number'] : "")} />
                             
                             <button type="submit" className="btn btn-danger square">SAVE</button>
-                            <button type="button" class="btn btn" onClick={closeNumber}>Cancel</button>
+                     <button type="button" class="btn btn" onClick={closeNumber}><AiOutlineClose /></button>
 
                         </div></form>}
                     </div>
