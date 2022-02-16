@@ -332,7 +332,7 @@ return (
 
                                                     <div className="col-lg-3 col-md-12 col-sm-12">
                                                         <div className="buttons-or">
-                                                            {re && <button type="button" className="btn btn-danger" onClick={() => reorder(items[0].order_id)}>ReOrder</button>}
+                                                            {re && <button type="button" className="btn btn-danger square" onClick={() => reorder(items[0].order_id)}>ReOrder</button>}
                                                             {outre && <button className="btn btn-danger" onClick={() => reorder(items[0].order_id)}>ReOrder</button>}
                                                             <Link to="/orderstatus" state={{ order_id: items[0].order_id }}><button className="btn btn-primary">View Order</button></Link>
                                                             {/* {orders.status !== 'canceled' && <button className="btn btn outline" type="button" onClick={() => cancelOrder(orders.order_id)}>Cancel Order</button>} */}

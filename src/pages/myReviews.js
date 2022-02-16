@@ -108,15 +108,15 @@ return (
                 </div>
                 {reviews.length!=0 ?
               
-                <div className="wishlist">
+                <div className="review">
                    {
                     reviews.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((quote, index) => (
-                  <div className="sec-top" key={index}>
-                    <div className="row fo-align">
-                     
-                      <div className="col-lg-8 col-md-12 col-sm-12">
-                        <div className="wishlist-content">  
-                        <img src={quote.product_image} onError={e => (e.target.src = ImageNotFound)}/>           
+                  <div className="sec-top" key={index}>                                     
+                      
+                        <div className="review-content">  
+                        <img src={quote.product_image} onError={e => (e.target.src = ImageNotFound)}/>
+
+                        <div className="det">           
                         <p>{quote.product_name}</p>               
                         
                         <div className="fo-date">
@@ -134,13 +134,10 @@ return (
                         <span className="added">{quote.summary_of_review}</span>
                       </div> 
                       <p className="description">{quote.detail}</p>
-                                                          
+                      </div>                                 
                               
                       </div>
-                    </div>
-
                     
-                  </div>
                 </div>
             ))
            }
