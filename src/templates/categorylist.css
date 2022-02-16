@@ -456,11 +456,11 @@ list-style: none;
     margin-bottom: 10px;
   }
   .category_container .cat_scroll #products .product_item .caption .rating_field {
-       -webkit-display: flex;
-    -moz-display: flex;
-    -ms-display: flex;
-    -o-display: flex;
-     display: flex;
+       -webkit-display: none;
+    -moz-display: none;
+    -ms-display: none;
+    -o-display: none;
+     display: none;
     align-items: baseline;
     justify-content: left;
   }
@@ -1532,8 +1532,12 @@ input[type=number]::-webkit-outer-spin-button {
   border-bottom-right-radius: 5px;
   margin-left: -1px;
 }
+ 
 .react-slider__areaZoom img {
   z-index: 2;
   position: absolute!important;
 }
 
+.slick-slide.slick-active.slick-current {
+  margin-right: 10px;
+}

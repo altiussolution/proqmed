@@ -507,9 +507,9 @@ const isSticky = (e) => {
                 <div className="btn dropbtn"><span>{isuserlogged ? `Welcome! ${user_name}` : <div>Hello,SignIn</div>}</span>My Account</div>
                 <div className="dropdown-content">
                   <ul>
-                    {!isuserlogged && <li><Link to="/signin">Sign-In</Link>
-                   <h6> New to ProQmed?  <Link to="/signup"> Start here</Link></h6>
-                  <Link to="/">Sell on ProQmed</Link>
+                    {!isuserlogged && <li><Link className="sign_in" to="/signin">Sign-In</Link>
+                   <h6 className="new"> New to ProQmed?  <Link to="/signup"> Start here</Link></h6>
+                  <Link className="" to="/">Sell on ProQmed</Link>
                     </li>}
                     {/* {isuserlogged && <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li> */}
                     {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}> My Profile</li>
