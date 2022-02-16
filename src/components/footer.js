@@ -186,10 +186,11 @@ const Footer = () => {
                         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut</p>
                         
                         <ul className="social_media">
-                            <li onClick={() => {window.open("https://www.facebook.com/narendramodi/", "_blank");}}><i className="ic_fb"></i><span></span></li>
-                            <li onClick={() => {window.open("https://mobile.twitter.com/narendramodi?lang=en", "_blank");}}><i className="ic_twitter"></i><span></span></li>
-                            <li onClick={() => {window.open("https://www.instagram.com/instagramforbusiness/?hl=en", "_blank");}}><i className="ic_insta"></i><span></span></li>
+                            <li href="#"><i className="ic_fb"></i><span></span></li>
+                            <li href="#"><i className="ic_twitter"></i><span></span></li>
+                            <li href="#"><i className="ic_insta"></i><span></span></li>
                         </ul>
+                        {/* onClick={() => {window.open("https://www.facebook.com/narendramodi/", "_blank");}} */}
                         <h2><i className="phone_footer"></i>(+91)1234-5670</h2>
                     </div>
                     <div className="col-lg-2 col-md-12 col-sm-12">

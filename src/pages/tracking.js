@@ -48,14 +48,22 @@ const Tracking =  () => {
 //    console.log(track.order_status)
 
     if (track.order_status == "complete") {
-          return( <ul className="progressbar"> <li className="active">Ordered <span>{track.order_created_date}</span></li>
+          return( <ul className="progressbar"> <li className="active">Order received by supplier <span>{track.order_created_date}</span></li>
+          <li className="active">Order Confirmed <span>{track.order_created_date}</span></li>
           <li className="active">Out For Delivery <span>{track.order_updated_date}</span></li>
           <li className="active">Delivered<span>{track.order_shipped_date}</span></li></ul>)
       } else if (track.order_status == "pending") {
-        return( <ul className="progressbar"> <li className="active">Ordered <span>{track.order_created_date}</span></li>
+        return( <ul className="progressbar"> <li className="active">Order received by supplier <span>{track.order_created_date}</span></li>
+          <li className="active">Order Confirmed <span>{track.order_created_date}</span></li>
        <li >Pending<span>{track.order_updated_date}</span></li> <li >Out For Delivery <span></span></li></ul>)
-      }  
-      return( <ul className="progressbar"> <li>Ordered <span>{track.order_created_date}</span></li><li>Pending <span></span></li><li>Out For Delivery  <span></span></li>
+      }else if(track.order_status == "canceled"){
+        return(<ul className="progressbar"> <li className="active">Ordered <span>{track.order_created_date}</span></li>
+        <li className="active">Cancelled <span>{track.order_updated_date}</span></li>
+        </ul>)
+      }
+      return( <ul className="progressbar"><li className="active">Order received by supplier <span>{track.order_created_date}</span></li>
+      <li >Order Confirmed <span>{track.order_created_date}</span></li>
+      <li>Pending <span></span></li><li>Out For Delivery  <span></span></li>
 </ul>  ) 
  }
       return (
@@ -66,7 +74,7 @@ const Tracking =  () => {
                         <div className="content_wrapper">
                             <div className="container">
                                 <div className="main_title">
-                                    <h1>Track Order</h1>
+                                    <h3>Track Order</h3>
                                 </div>
                                 {/* <div className="row">
                                     <div className="col-lg-12 col-md-12 col-xs-12">
@@ -161,4 +169,3 @@ const Tracking =  () => {
     }
 
 export default Tracking;
-//Fri, 22nd Dec

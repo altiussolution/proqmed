@@ -525,7 +525,8 @@ const isSticky = (e) => {
 
               </div>
             </div>
-            {isuserlogged && <div className="bulkorder my_account">
+            {/* {isuserlogged && */}
+             <div className="bulkorder my_account">
             {/* <div>dasdasdsa<Cart cartCount={cartCount} />
              <img src={cart}/> 
             </div> */}
@@ -546,7 +547,7 @@ const isSticky = (e) => {
                 </div> */}
 
               </div>
-            </div>}
+            </div>
             <div className={`${activeClass ? "sampleDropDown" : "d-none"}`}>
               {sampleVar()}
               {searchList()}

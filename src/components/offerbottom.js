@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "gatsby"
 import ad1 from "./../assets/ad1.jpg"
 import ad2 from "./../assets/ad2.png"
-import { getProductURL } from "../utils/url";
+import { getProductURL,getCategoryURL } from "../utils/url";
 import ImageNotFound from "./../assets/not-found.png";
 
 const Offerbottom = () => {
@@ -39,9 +39,9 @@ const Renderproduct = () => {
           <div className="wrapper-content">
             <p>Medical Research</p>
             <h1>Health Matters</h1>
-            <Link to={getProductURL(data.sub_category)} ><button className="btn btn update" type="button">Read More </button></Link>
+            <Link to={getCategoryURL(data.sub_category)} ><button className="btn btn update" type="button">Read More </button></Link>
             </div>
-            <Link to={getProductURL(data.sub_category)} ><img src={data.category_image} onError={e => (e.target.src = ImageNotFound)}
+            <Link to={getCategoryURL(data.sub_category)} ><img src={data.category_image} onError={e => (e.target.src = ImageNotFound)}
    /></Link> 
           </div>
           </div>
