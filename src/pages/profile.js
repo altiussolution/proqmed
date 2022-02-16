@@ -7,9 +7,9 @@ import Table from 'react-bootstrap/Table';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import { logout } from "./../services/headerServices";
-import { account} from "./../assets/account.png"
-import { logoutt} from "./../assets/logout.png"
-import { orders} from "./../assets/orders.png"
+import account from "./../assets/account.png"
+import logoutt from "./../assets/logout.png"
+import order from "./../assets/order.png"
 import Modal from 'react-bootstrap/Modal';
 
 const Profile = () => {
@@ -347,7 +347,7 @@ const Numbersubmit = num => {
          
 
             <div className="profile-sec details">
-                <h4><span><img src={orders}/></span><a onClick={() => { navigateOnclick('/orders') }}>MY ORDERS</a> </h4>
+                <h4><span><img src={order}/></span> <a onClick={() => { navigateOnclick('/orders') }}>MY ORDERS</a> </h4>
                 <h4><span><img src={account}/></span><a href="#"> ACCOUNT SETTINGS</a></h4>
                 <ul>
                 <li><Link to="/profile">Profile Information</Link></li>

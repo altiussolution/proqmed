@@ -6036,7 +6036,7 @@ span.cart_count{
   border-radius: 50%;
 }
 .bulkorder .dropbtn.carttop:after {
-  margin-top: 27px;
+  display: none;
 }
 .cart_img_holder .cart_svg{
   background-color: #000;
@@ -6484,6 +6484,8 @@ button.btn.btn-danger.square {
 .form-content input {
     padding: 10px;
     margin-right: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
 }
 
 .form-content {
@@ -6577,7 +6579,6 @@ h2.heading{
 
 .profile-sec.details h4 a{
   text-decoration: none;
-  margin-top: 2px;
   cursor: pointer;
 }
 
@@ -6588,7 +6589,7 @@ h2.heading{
 
 .profile-sec.details h4 span img {
   margin-right: 10px;
-  width: 18px;
+  
 }
 .fo-deflx img {
   width: 100%;
