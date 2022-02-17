@@ -277,9 +277,9 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
       }
     }
 
-    if (!checkLogin()) {
-      navigate('/signin')
-    } else {
+    //if (!checkLogin()) {
+     // navigate('/signin')
+    //} else {
       const jwt = localStorage.getItem('userToken')
       if (cartItem) {
         if (qty < min) {
@@ -311,7 +311,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
           }
         }
       }
-    }
+    //}
   }
 
   const handleChange1 = (event) => {
@@ -445,14 +445,14 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
       setPrice(proDescription.items.original_price)
     }
   }
-  const quotePopupOpen = () => {
-    if (!checkLogin()) {
-      navigate('/signin')
-    } else {
-      setQuotePopup(true)
-      handleShowQuote(true)
-    }
-  }
+  // const quotePopupOpen = () => {
+  //   if (!checkLogin()) {
+  //     navigate('/signin')
+  //   } else {
+  //     setQuotePopup(true)
+  //     handleShowQuote(true)
+  //   }
+  // }
   const onChangeValue = (event) => {
     setQty(event.Tier_quantity)
     setPrice(event.Tier_price/event.Tier_quantity)
