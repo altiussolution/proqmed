@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="238" height="284" viewBox="0 0 238 284">
+  <defs>
+    <filter id="Rectangle_191" x="0" y="0" width="238" height="284" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="6.5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_929" data-name="Group 929" transform="translate(-974.5 -58.5)">
+    <g transform="matrix(1, 0, 0, 1, 974.5, 58.5)" filter="url(#Rectangle_191)">
+      <rect id="Rectangle_191-2" data-name="Rectangle 191" width="199" height="245" rx="10" transform="translate(19.5 16.5)" fill="#fff"/>
+    </g>
+    <rect id="Rectangle_174" data-name="Rectangle 174" width="12.445" height="8.907" transform="translate(1012.778 125.778)" fill="#0f75b6"/>
+    <path id="arrow-down" d="M7.782,7.162l2.074-2.88a.2.2,0,0,1,.163-.083h0a.2.2,0,0,1,.163.084l2.061,2.88a.2.2,0,0,1,.015.207.2.2,0,0,1-.178.108h-.97v2.587a.2.2,0,0,1-.059.141.2.2,0,0,1-.142.058H9.115a.2.2,0,0,1-.142-.058.2.2,0,0,1-.059-.141V7.477h-.97a.2.2,0,0,1-.178-.108A.2.2,0,0,1,7.782,7.162Z" transform="translate(1006.218 124.736)" fill="#fff"/>
+    <text id="My_Profile" data-name="My Profile" transform="translate(1041 102)" font-size="14" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">My Profile</tspan></text>
+    <text id="My_Orders" data-name="My Orders" transform="translate(1041 136)" font-size="14" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">My Orders</tspan></text>
+    <text id="My_Reviews" data-name="My Reviews" transform="translate(1041 170)" font-size="14" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">My Reviews</tspan></text>
+    <text id="Newsletter" transform="translate(1041 238)" font-size="14" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">Newsletter</tspan></text>
+    <text id="User_Management" data-name="User Management" transform="translate(1041 270)" font-size="14" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">User Management</tspan></text>
+    <g id="user_people_person_users_man" data-name="user people person users man" transform="translate(1007.953 85.854)">
+      <path id="Path_3" data-name="Path 3" d="M15.3,16.049a.55.55,0,0,0-.775.781,4.947,4.947,0,0,1,1.468,3.518c0,.671-1.93,1.649-4.947,1.649S6.1,21.019,6.1,20.348a4.947,4.947,0,0,1,1.446-3.5.548.548,0,0,0-.775-.775A6,6,0,0,0,5,20.348C5,22.135,8.117,23.1,11.047,23.1s6.047-.962,6.047-2.749a6.014,6.014,0,0,0-1.792-4.3Z" transform="translate(0 -5.804)" fill="#0f75b6"/>
+      <path id="Path_4" data-name="Path 4" d="M12.848,10.7A3.848,3.848,0,1,0,9,6.848,3.848,3.848,0,0,0,12.848,10.7Zm0-6.6A2.749,2.749,0,1,1,10.1,6.848,2.749,2.749,0,0,1,12.848,4.1Z" transform="translate(-1.801)" fill="#0f75b6"/>
+    </g>
+    <path id="star" d="M9.614,12.269,5.941,9.575,2.2,12.169,3.624,7.844,0,5.085l4.554.02,1.5-4.3L7.447,5.144l4.553.1L8.3,7.907Z" transform="translate(1013 157.463)" fill="#0f75b6"/>
+    <path id="Icon_awesome-newspaper" data-name="Icon awesome-newspaper" d="M11.5,4.5H1.833a.5.5,0,0,0-.5.5v.167H.5a.5.5,0,0,0-.5.5v5.667A1.167,1.167,0,0,0,1.167,12.5H11a1,1,0,0,0,1-1V5A.5.5,0,0,0,11.5,4.5Zm-10.333,7A.167.167,0,0,1,1,11.333V6.167h.333v5.167A.167.167,0,0,1,1.167,11.5Zm4.917-.333H2.917a.25.25,0,0,1-.25-.25V10.75a.25.25,0,0,1,.25-.25H6.083a.25.25,0,0,1,.25.25v.167A.25.25,0,0,1,6.083,11.167Zm4.333,0H7.25a.25.25,0,0,1-.25-.25V10.75a.25.25,0,0,1,.25-.25h3.167a.25.25,0,0,1,.25.25v.167A.25.25,0,0,1,10.417,11.167Zm-4.333-2H2.917a.25.25,0,0,1-.25-.25V8.75a.25.25,0,0,1,.25-.25H6.083a.25.25,0,0,1,.25.25v.167A.25.25,0,0,1,6.083,9.167Zm4.333,0H7.25A.25.25,0,0,1,7,8.917V8.75a.25.25,0,0,1,.25-.25h3.167a.25.25,0,0,1,.25.25v.167A.25.25,0,0,1,10.417,9.167Zm0-2h-7.5a.25.25,0,0,1-.25-.25V6.083a.25.25,0,0,1,.25-.25h7.5a.25.25,0,0,1,.25.25v.833A.25.25,0,0,1,10.417,7.167Z" transform="translate(1013.222 223.5)" fill="#0f75b6"/>
+    <line id="Line_31" data-name="Line 31" x2="160" transform="translate(1012.5 114.5)" fill="none" stroke="#707070" stroke-width="1" opacity="0.1"/>
+    <line id="Line_31-2" data-name="Line 31" x2="160" transform="translate(1012.5 148.5)" fill="none" stroke="#707070" stroke-width="1" opacity="0.1"/>
+    <line id="Line_31-3" data-name="Line 31" x2="160" transform="translate(1012.5 183.5)" fill="none" stroke="#707070" stroke-width="1" opacity="0.1"/>
+    <line id="Line_31-4" data-name="Line 31" x2="160" transform="translate(1012.5 216.5)" fill="none" stroke="#707070" stroke-width="1" opacity="0.1"/>
+    <line id="Line_32" data-name="Line 32" x2="160" transform="translate(1013 281.5)" fill="none" stroke="#707070" stroke-width="1" opacity="0.1"/>
+    <path id="Icon_metro-users" data-name="Icon metro-users" d="M9.9,12.5V12a2.729,2.729,0,0,0,1.222-2.271c0-1.519,0-2.75-1.833-2.75S7.46,8.207,7.46,9.726A2.729,2.729,0,0,0,8.683,12v.5c-2.073.169-3.667,1.188-3.667,2.42h8.556c0-1.231-1.594-2.25-3.667-2.42ZM5.7,12.737A5.806,5.806,0,0,1,7.6,11.969a3.447,3.447,0,0,1-.387-.564,3.5,3.5,0,0,1-.444-1.68,5.426,5.426,0,0,1,.292-2.232,1.99,1.99,0,0,1,1.52-1.141c-.162-.73-.591-1.21-1.736-1.21-1.833,0-1.833,1.231-1.833,2.75a2.729,2.729,0,0,0,1.222,2.271v.5c-2.073.169-3.667,1.188-3.667,2.42H5.236a3.914,3.914,0,0,1,.46-.35Z" transform="translate(1011.428 254.857)" fill="#0f75b6"/>
+    <text id="Logout" transform="translate(1041.5 301.045)" font-size="14" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">Logout</tspan></text>
+    <g id="bx-log-out-circle" transform="translate(1014.35 302.09) rotate(-90)" style="isolation: isolate">
+      <path id="Path_45" data-name="Path 45" d="M11.844,14.527,8.686,12v1.9H3v1.263H8.686v1.9Z" transform="translate(0.791 -8.841)" fill="#0f75b6"/>
+      <path id="Path_46" data-name="Path 46" d="M15.641,15.87a5.646,5.646,0,0,0,4.02-1.666l-.893-.894a4.423,4.423,0,1,1,0-6.254l.893-.893a5.686,5.686,0,1,0-4.02,9.706Z" transform="translate(-9.955 -4.498)" fill="#0f75b6"/>
+    </g>
+    <text id="Wishlist" transform="translate(1041 205)" font-size="14" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">Wishlist</tspan></text>
+    <path id="Icon_ionic-md-heart-empty" data-name="Icon ionic-md-heart-empty" d="M12.075,4.5a3.549,3.549,0,0,0-2.7,1.266A3.549,3.549,0,0,0,6.675,4.5a3.262,3.262,0,0,0-3.3,3.32c0,2.293,2.039,4.134,5.129,6.972l.871.785.871-.785c3.089-2.838,5.129-4.679,5.129-6.972A3.262,3.262,0,0,0,12.075,4.5ZM9.744,14l-.121.112-.248.225-.248-.225L9.006,14A36.665,36.665,0,0,1,5.466,10.48,4.232,4.232,0,0,1,4.3,7.82,2.4,2.4,0,0,1,4.985,6.11a2.348,2.348,0,0,1,1.69-.687,2.646,2.646,0,0,1,1.993.938l.707.839.707-.839a2.636,2.636,0,0,1,1.993-.937,2.359,2.359,0,0,1,1.693.687,2.4,2.4,0,0,1,.684,1.711,4.254,4.254,0,0,1-1.165,2.66A36.739,36.739,0,0,1,9.744,14Z" transform="translate(1010.125 190.962)" fill="#0f75b6"/>
+    <line id="Line_35" data-name="Line 35" x2="160" transform="translate(1012.5 248.5)" fill="none" stroke="#707070" stroke-width="1" opacity="0.1"/>
+  </g>
+</svg>
