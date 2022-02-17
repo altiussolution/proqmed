@@ -27,10 +27,12 @@ return (
               </li>} */}
               
               {
-                
-              <Link to="/cart" data-toggle="tooltip" title="Cart"><span className="cart_count">{isLoged ? getCartCount(isLoged) : 0}</span>
-              <div className="cart_img_holder"> <span className="cart_svg"> </span></div>
-              </Link>                
+             <div className="fo-crt">   
+              <Link to="/cart" data-toggle="tooltip" title="Cart">
+              <div className="cart_img_holder"> <span className="cart_svg"> </span>
+              <span className="cart_count">{isLoged ? getCartCount(isLoged) : 0}</span></div>
+              </Link>   
+              </div>             
              }
              <div className="cart_text">
               <span>My Cart</span>

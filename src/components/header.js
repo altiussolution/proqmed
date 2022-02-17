@@ -21,6 +21,12 @@ import classNames from 'classnames';
 import './layout.css';
 import cart from './../assets/ic_cart_top.png';
 import imageToBase64 from 'image-to-base64/browser';
+import pr from './../assets/pr.png';
+import or from './../assets/or.png';
+import rev from './../assets/rev.png';
+import wi from './../assets/wi.png';
+import us from './../assets/us.png';
+import lo from './../assets/lo.png';
 const Header = ({ siteTitle, cartCount, allCategory }) => {
 
   const [isuserlogged, setIsLogged] = useState(false);
@@ -512,17 +518,17 @@ const isSticky = (e) => {
                   <Link className="sell" to="/">Sell on ProQmed</Link>
                     </li>}
                     {/* {isuserlogged && <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li> */}
-                    {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}> <span class="dr1_svg"></span>My Profile</li>
-                    { order && <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>}
-                    { orderno && <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>}
-                    <li onClick={() => { navigateOnclick('/myReviews') }}>My Reviews</li>
-                    <li onClick={() => { navigateOnclick('/wishlist') }}>Wishlist</li></div>}
+                    {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}> <span><img src={pr} /></span>My Profile</li>
+                    { order && <li onClick={() => { navigateOnclick('/orders') }}><img src={or} />My Orders</li>}
+                    { orderno && <li onClick={() => { navigateOnclick('/orders') }}><img src={or} />My Orders</li>}
+                    <li onClick={() => { navigateOnclick('/myReviews') }}><img src={rev} />My Reviews</li>
+                    <li onClick={() => { navigateOnclick('/wishlist') }}><img src={wi} />Wishlist</li></div>}
                     {/* <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li></div>} */}
                     {/* <li onClick={() => {  navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
-                    {isuserlogged && <div>{iswhatuser &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}</div>}
+                    {isuserlogged && <div>{iswhatuser &&  <li onClick={() => { navigateOnclick('/userManage') }}><img src={us} />User Management</li>}</div>}
                     {/* {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>} */}
-                    {isuserlogged && <li onClick={() => { logout() }}>Logout</li>}
+                    {isuserlogged && <li onClick={() => { logout() }}><img src={lo} />Logout</li>}
                   </ul>
                 </div>
 
