@@ -553,7 +553,6 @@ list-style: none;
   .product_view .product_details .product_note .prd_note p span {
     font-size: 16px;
     color: #000;
-    padding-left: 5px;
   }
   .product_view .product_details .product_note .prd_note .colon {
     color: #ccc;

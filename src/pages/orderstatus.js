@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import Layout from '../components/layout';
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "gatsby";
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
-
+import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
+import Orders from './orders'
+import { useReactToPrint } from "react-to-print";
 
 const Invoice = ({ location }) => {
 
@@ -17,6 +19,10 @@ const Invoice = ({ location }) => {
     const [p,per] = useState(false);
     const [nop,noper] = useState(false);
     const [permits,setPermit] = useState([]);
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current
+      });
     useEffect(() => {
         setPermit(localStorage.permissions);
         setJwt(localStorage.userToken);
@@ -24,7 +30,7 @@ const Invoice = ({ location }) => {
         invoiceDetails()
         handleClick()
     }, [])
-
+  
     const OrderStatus = () => {
         setLoader(true);
 
@@ -55,6 +61,9 @@ const Invoice = ({ location }) => {
             setLoader(false);
 
         }
+    }
+    const print = () =>{
+        window.print();
     }
     const invoiceDetails = () => {
         setLoader(true);
@@ -173,6 +182,20 @@ const Invoice = ({ location }) => {
                                     }
                                 </table>
                                 <div >
+        {/* <ReactToPrint
+     trigger={() => { return <p>Print Shipment</p> ; }}     
+      content={() => componentRef.current}
+      />
+      <Orders  ref={componentRef} /> */}
+
+              {/* <button onClick={() => window.print({})}>PRINT</button> */}
+              {/* <div>
+      <ReactToPrint
+        trigger={() => <button>Print this out!</button>}
+        content={() => componentRef.current}
+      />
+      <orderShipDetails ref={componentRef} />
+    </div> */}
                                     <p>Print Shipment</p>
                                    <Link to="/tracking"><p>Track this Shipment</p></Link> 
 

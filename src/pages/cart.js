@@ -132,8 +132,11 @@ const Cart = () => {
                 if (res.statusText === "OK" && res.status === 200) {
                     setCheckout(res.data.total_segments)
                     //toast.success('Update Cart Successfully')
+                }else{
+                  navigate("/signin")
                 }
             }).catch((err) => {
+              navigate("/signin")
                 console.error(err);
             })
 
@@ -381,8 +384,8 @@ const Cart = () => {
                                         {cartItems?.length === 0 ? (<h1></h1>) :   <div className="col-lg-3 col-md-3 col-xs-12">
                                             <div className="side_sec">
                                                 {/* <h3>Summary</h3> */}
-                                                <h3>Cart Totals</h3>
-                                                <h6>Estimate Shipping and Tax</h6>
+                                                <h4>Cart Totals</h4>
+                                                <h7>Estimate Shipping and Tax</h7>
                                                {checkoutDetails()}
                                                 <button className="btn btn_brown" type="button" onClick={() => navigate('/checkout')} disabled={cartItems?.length === 0}>Proceed to Checkout</button>
                                                 {/* <button className="btn btn-default" type="button" onClick={() => navigate('/')}>Continue to Shopping</button> */}

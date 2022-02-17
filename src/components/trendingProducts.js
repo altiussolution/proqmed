@@ -146,7 +146,7 @@ const TrendingProducts = () => {
                 <div className="card">
 
                   <div className="image_wrapper">
-                    <img src={data.image} />
+                  <Link to={getProductURL(data)} ><img src={data.image} /></Link>
                   </div>
                   
                   

@@ -5,7 +5,7 @@ import Productdescription from "./productdescription"
 import { convertToObject } from "../utils/convertToObj";
 import ImageNotFound from "./../assets/car-dealer-loader.gif";
 import Layout from "../components/layout";
-import { getCartCount ,getWLCount,viewCartItems} from "./../utils/apiServices";
+import { getCartCount ,getWLCount,viewCartItems,wishListCount} from "./../utils/apiServices";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -16,6 +16,8 @@ import PageLoader from "../components/loaders/pageLoader";
 import { navigate } from "gatsby";
 import StarRatings from 'react-star-ratings';
 import { ToastContainer, toast } from 'react-toastify';
+import { FaRegHeart } from 'react-icons/fa';
+
 const similar_product = {
   autoplay: false,
   speed: 1000,
@@ -201,9 +203,18 @@ const Product = (props,location)  => {
                           cartValue();
                           setButton(false);
                     }
-                }).catch((err) => {
-                    console.error(err);
+
+                })
+                .catch((err) => {
+                  if (err.message === "Request failed with status code 400") {
+                    toast.error("Product that you are trying to add is not available")
+
+                  }else{
                     toast.error('Failed to add cart')
+
+                  }
+
+                    console.error(err);
                 })
             } catch (err) {
                 console.error(err)
@@ -215,7 +226,43 @@ const Product = (props,location)  => {
         navigate("/signin")
     }
 }
+const addToList = (type,id) => {
+  // type 1 = wishlist
+  // type 2 = comparelist
+  let url = (type == 1 ? `${process.env.GATSBY_CART_URL_STARCARE}admin/addtocompare/2` : `${process.env.GATSBY_CART_URL_STARCARE}wishlist/addwishlist_product/`)
+  let message = (type == 1 ? 'Sucessfully added to  compare list' : 'Sucessfully added to wish list')
+  let errormessage = (type == 1 ? 'SignIn to add compare list' : 'SignIn to add wish list')
 
+  let productData = {
+    "data": {
+      "customer_id": customerId,
+      "product_id": id
+    }
+  }
+
+  try {
+    axios({
+      method: 'post',
+      url: url,
+      data: productData,
+      headers: {
+        'Authorization': `Bearer ${jwt}`
+      }
+    }).then((res) => {
+      if (res.statusText === "OK" && res.status == 200) {
+        toast.success(message)
+        setTimeout(()=>{
+          wishListCount()
+        },2000)
+      }
+    }).catch((err) => {
+      toast.error(errormessage)
+    })
+  } catch (err) {
+    toast.error(err)
+  }
+
+}
   const Renderproduct = () => {    
     if (productdata) { 
       console.log("productdata")
@@ -225,11 +272,17 @@ const Product = (props,location)  => {
               productdata.map((data,index) => (  
                   <div key={`${index}_key`} className="item similar-item">
                     <div className="card">    
-                   {/* <div className="wishComp">
-                           <ul>
-                             <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
-                           </ul>
-                       </div> */}
+                    {p && <div className="wishComp">
+                                    <ul>
+                                      <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
+                                    </ul>
+                                </div>}
+                                {outp && <div className="wishComp">
+                                    <ul>
+                                      <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
+                                    </ul>
+                                </div>}
+                              
                        <div className="image_wrapper">
                            <Link to={getProductURL(data)}><img src={data.image} /></Link>
                        </div>

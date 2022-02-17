@@ -209,7 +209,7 @@ const Wishlist = () => {
                                     <div className="container">
                                         <div className="main_title">
                                             {/* <h1>My Wishlist <span>(5)</span></h1> */}
-                                            <h1>My Wishlist<span> ({wishList.length})</span></h1>
+                                            <h3>My Wishlist<span> ({wishList.length})</span></h3>
                                         </div>
     
     

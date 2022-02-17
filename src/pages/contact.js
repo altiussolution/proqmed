@@ -58,7 +58,7 @@ const Contact = () => {
                     <div className="content_wrapper">
                         <div className="container">
                             <div className="main_title">
-                                <h1>Contact Us</h1>
+                                <h3>Contact Us</h3>
                             </div>
                             <div className="row">
                                 <div className="col-lg-9 col-md-8 col-xs-12 left_side">
@@ -67,28 +67,28 @@ const Contact = () => {
 
                                     <form id="create-form" className="contact_form" onSubmit={handleSubmit(Submit)} >
                                         <div className="contact_form">
-                                            <input className="form-control" name="firstname" placeholder="Name" type="text" ref={register({
+                                            <input className="form-control" name="firstname" placeholder="Name *" type="text" ref={register({
                                                 required: true
                                             })}/>
                                             {errors.firstname && errors.firstname.type === 'required' && <span className="error_label">Name is required</span>}
                                         </div>
                                         <div className="contact_form">
-                                            <input className="form-control" name="email" placeholder="Email" type="email" ref={register({
+                                            <input className="form-control" name="email" placeholder="Email *" type="email" ref={register({
                                                     required: true,
                                                     pattern: /\S+@\S+\.\S+/
-                                                })} />  
+                                                })} required/>  
                                                  {errors.email && errors.email.type === 'required' && <span className="error_label">Email is required</span>}
                                                  {errors.email && errors.email.type === 'pattern' && <span className="error_label">Valid email required</span>}
                                         </div>
                                         <div className="contact_form">
-                                            <input className="form-control" name="telephone" id="telephone" placeholder="Phone" type="tel" maxLength = "10" minLength = "10" onChange={handleChange} ref={register({
+                                            <input className="form-control" name="telephone" id="telephone" placeholder="Phone *" type="tel" maxLength = "10" minLength = "10" onChange={handleChange} ref={register({
                                                 required: true,
                                             })} />
                                             {errors.telephone && errors.telephone.type === 'required' && <span className="error_label">Phone number required</span>}
                                             {errors.telephone && errors.telephone.type === 'minlength' && <span className="error_label">Enter Valid Phone Number</span>}
                                         </div>
                                         <div className="contact_form">
-                                            <textarea className="form-control" rows="4" placeholder="Message" id="Message" name="Message" type="text" ref={register({
+                                            <textarea className="form-control" rows="4" placeholder="Message *" id="Message" name="Message" type="text" ref={register({
                                                     required: true
                                                  })}></textarea>
                                             {errors.Message && errors.Message.type  === 'required' && <span className="error_label">Message is required</span>}

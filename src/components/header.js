@@ -184,9 +184,9 @@ const isSticky = (e) => {
     setActiveClass(boolVal);
     if (boolVal) {
       
-      setTimeout(async () => {
+      // setTimeout(async () => {
         setSearchRes(await searchServices(localStorage.getItem('searchString')));
-      }, 500)
+      // }, 500)
       
     };
   }
@@ -238,7 +238,7 @@ const isSticky = (e) => {
 
   const searchList = () => {
 
-    if (searchResponse) {
+    if (searchResponse.length !== 0) {
       if(allowedCat.length !== 0){
         return <div>
         {
@@ -270,11 +270,8 @@ const isSticky = (e) => {
         }
       </div>
       }
-
-      
-
     } else {
-      return <div>No Product found</div>
+      return <div>No Product Found</div>
     }
 
   }
@@ -534,7 +531,8 @@ const isSticky = (e) => {
 
               </div>
             </div>
-            {isuserlogged && <div className="bulkorder my_account">
+            {/* {isuserlogged && */}
+             <div className="bulkorder my_account">
             {/* <div>dasdasdsa<Cart cartCount={cartCount} />
              <img src={cart}/> 
             </div> */}
@@ -555,7 +553,7 @@ const isSticky = (e) => {
                 </div> */}
 
               </div>
-            </div>}
+            </div>
             <div className={`${activeClass ? "sampleDropDown" : "d-none"}`}>
               {sampleVar()}
               {searchList()}

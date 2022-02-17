@@ -9,6 +9,8 @@ import { Link } from "gatsby";
 import { TablePagination } from '@mui/material';
 import { checkLogin } from "./../services/headerServices";
 import StarRatings from 'react-star-ratings';
+import { Noimage } from "../assets/sample.png";
+
 const Myreviews = () => {
  const [page, setPage] = React.useState(0);
  const [rowsPerPage, setRowsPerPage] = React.useState(4);
@@ -16,10 +18,27 @@ const Myreviews = () => {
  const [isuserlogged, setIsLogged] = useState(false);
  const [norevs, noreviews] = useState("");
  const [username, setUsername] = useState();
+ const [profilepic,setProfilepic] = useState({});
+ const [jwt, setJwt] = useState("")
+
  useEffect(() => {
+ setJwt(localStorage.userToken);
  getReviews();
  setUsername(localStorage.user_name);
  setIsLogged(checkLogin());
+ axios({
+    method: 'get',
+    url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/list/${localStorage.email}`,
+    headers: {
+      'Authorization': `Bearer ${jwt}`
+  }
+  }).then((res) => {
+    if (res.status == 200) {
+    setProfilepic(res.data[0]);
+    }
+  }).catch((err) => {
+    console.error(err);
+  })
 }, [])
 
 const getReviews = async () => {
@@ -58,9 +77,11 @@ return (
     <div className="row">
         <div className="col-lg-4 col-md-12 col-sm-12">
             <div className="profile-sec">
-                <img src="images/sample.png" alt=""/>
+            <div className="fo-deflx">
+            {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}
+            </div>
                 <div className="name">
-                    <span>Hello</span>
+                    <span>Hello,</span>
                     <p>{username}</p>
                 </div>
             </div>
