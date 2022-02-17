@@ -73,7 +73,7 @@ const logout = () => {
 return (
  <Layout>
    <div className="container-fluid grey">
-<div className="container">
+<div className="container padd">
     <div className="row">
         <div className="col-lg-4 col-md-12 col-sm-12">
             <div className="profile-sec">

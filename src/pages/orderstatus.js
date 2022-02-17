@@ -110,9 +110,7 @@ const Invoice = ({ location }) => {
             return <div>
                 {
                     orders.map((items, index) => (
-                        <div key={index} className="order_product">
-
-                            <div className="product_status table-responsive" >
+                        <div key={index} className="card orderstatus">
                                 <table className="table">
                                     <thead>
                                         <tr>
@@ -139,9 +137,9 @@ const Invoice = ({ location }) => {
                                     }
                                 </table>
                                 <div >
-                                    <p>Total : <span> {Math.round(items.order_total)} </span></p>
+                                    <p className="fo-align lft">Total : <span> {Math.round(items.order_total)} </span></p>
                                 </div>
-                            </div>
+                            
                         </div>
 
                     ))
@@ -157,9 +155,7 @@ const Invoice = ({ location }) => {
             return <div>
                 {
                     orders.map((items, index) => (
-                        <div key={index} className="order_product">
-
-                            <div className="product_status table-responsive" >
+                        <div key={index} className="card orderstatus">                            
                                 <table className="table">
                                     <thead>
                                         <tr>
@@ -204,7 +200,7 @@ const Invoice = ({ location }) => {
                                    <Link to="/tracking"><p>Track this Shipment</p></Link> 
 
                                 </div>
-                            </div>
+                            
                         </div>
 
                     ))
@@ -216,40 +212,40 @@ const Invoice = ({ location }) => {
     }
 
     const orderStatusDetails = () => {
-        return <div className="col-lg-12 col-md-12 col-xs-12"> 
-              {
-                orders.map((items, index) => {
-                    return (index == 0 ?
-                        <div key={index} className="order_product">
-                            <div className="product_status"  key={`${index}_table`} >
-                                <table cellSpacing="2" cellPadding="4">
-                                    <thead>
-                                        <tr>
-                                            <th>Ordered Placed</th>
-                                            <th>Status</th>
-                                            <th>Total Amount</th>
+        // return <div className="col-lg-12 col-md-12 col-xs-12"> 
+        //       {
+        //         orders.map((items, index) => {
+        //             return (index == 0 ?
+        //                 <div key={index} className="order_product">
+        //                     <div className="product_status"  key={`${index}_table`} >
+        //                         <table cellSpacing="2" cellPadding="4">
+        //                             <thead>
+        //                                 <tr>
+        //                                     <th>Ordered Placed</th>
+        //                                     <th>Status</th>
+        //                                     <th>Total Amount</th>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{items.order_date}</td>
-                                            <td>{items.status}</td>
-                                            <td>${Math.round(items.order_total)}</td>
+        //                                 </tr>
+        //                             </thead>
+        //                             <tbody>
+        //                                 <tr>
+        //                                     <td>{items.order_date}</td>
+        //                                     <td>{items.status}</td>
+        //                                     <td>${Math.round(items.order_total)}</td>
 
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div className="order_note" >
-                                    <p>order name : <span> {items.Firstname} </span></p>
-                                    <p>Payment Method : <span> {items.payment_method} </span></p>
-                                </div>
-                            </div>
-                        </div> : <span></span>)
-                })
-            }
+        //                                 </tr>
+        //                             </tbody>
+        //                         </table>
+        //                         <div className="order_note" >
+        //                             <p>order name : <span> {items.Firstname} </span></p>
+        //                             <p>Payment Method : <span> {items.payment_method} </span></p>
+        //                         </div>
+        //                     </div>
+        //                 </div> : <span></span>)
+        //         })
+        //     }
 
-        </div>
+        // </div>
     }
  const orderInformation = () => {
      return (
@@ -258,7 +254,7 @@ const Invoice = ({ location }) => {
              {
                 orders.map((items, index) => {
                     return (index == 0 ?
-             <><div>
+             <><div className="fo-btm">
                             <h6>Shipping Address</h6>
 
 
@@ -267,14 +263,16 @@ const Invoice = ({ location }) => {
 
 
                         </div>
-                        <div>
+                        <div className="fo-btm">
                                 <h6>Shipping Method</h6>
                                 <span>{items.shipping_method}</span>
-                            </div><div>
+                            </div>
+                            <div className="fo-btm">
                                 <h6>Billing Address</h6>
                                 <span>{items.Customer_address[0].firstname}</span><br></br>
                             <span>{items.Customer_address[0].street},{items.Customer_address[0].city},{items.Customer_address[0].region}</span>
-                            </div><div>
+                            </div>
+                            <div className="fo-btm">
                                 <h6>Payment Method</h6>
                                 <span>{items.payment_method}</span>
                             </div></>
@@ -289,7 +287,6 @@ const Invoice = ({ location }) => {
         if(p==true || nop==true){
             if (invoices.length != 0 ) {
                 return <div className="order_product">
-                    <div className="product_status table-responsive"   >
                         <table className="table">
                             <thead>
                                 <tr>
@@ -317,7 +314,7 @@ const Invoice = ({ location }) => {
                                 })
                             }
                         </table>
-                    </div>
+                    
                 </div>
             }
         }else {
@@ -359,24 +356,22 @@ const Invoice = ({ location }) => {
 
     return (
         <Layout>
-            <section className="inner_banner_section">
-                <h3>Orders</h3>
-                <div className="inner_breadcrums">
+
+<div className="container-fluid grey">
+<div className="container padd OS">          
+                                           
+                        <div className="row">
+                        
+                            <div className="col-lg-9 col-md-12 col-sm-12">
+
+                            <div className="bg OS">
+                            <div className="page_title_sec">
+                            <h3 className="text-capitalize">Order</h3>
+                            <div className="inner_breadcrums">
                     <Link to="/" className="breadcrum_anchor">Home</Link>
                     <p className="breadcrum_text">Order Status</p>
                 </div>
-            </section>
-            <section className="page_content inner_page">
-                <div className="container boxed-content">
-                    {/* <div className="inner_banner_img">
-                        <img src={innerbanner} alt="inner_banner1" />
-                    </div> */}
-                    <div className="sec_block">
-                        <div className="row page_title_sec">
-                            <h3 className="text-capitalize">Order Details</h3>
                         </div>
-                        <div className="row compare_section cart_page table-responsive">
-
                             <table className="table compareList_table">
                                 <tbody>
                                     {orderStatusDetails()}
@@ -391,7 +386,7 @@ const Invoice = ({ location }) => {
                                         {attach_data.length !=0 ?
                                             <a href={attach_data} download>Pdf Download</a> : <span>This order Invoice not Available now </span>
                                         }
-                                    </div><br></br>
+                                    </div>
                                     <div className="row">
                                         <div className="col-lg-9 col-md-12 col-xs-12 compare_section cart_page table_responsive p-0">
                                             {Invoicetable()}
@@ -407,13 +402,19 @@ const Invoice = ({ location }) => {
                                     {orderShipDetails()}
                                 </Tab>
                             </Tabs>
-                        </div>
-                    </div>
-                </div>
-            </section>
-<section>
-    {orderInformation()}
-</section>
+                            </div>
+
+                            </div>
+
+                            <div className="col-lg-3 col-md-12 col-sm-12">
+                            <div className="bg OS">
+                            {orderInformation()}
+                            </div>
+                            </div>
+                        </div>       
+            </div>
+            </div>
+
 
         </Layout >
     )

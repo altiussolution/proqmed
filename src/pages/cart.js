@@ -329,7 +329,7 @@ const Cart = () => {
     }
 
     const checkoutDetails = () => {
-        return <div>
+        return <div className="fo-scroll-crt">
             
             <table className="table table-striped summary">
             <tbody>
@@ -362,12 +362,12 @@ const Cart = () => {
                             <div className="content_wrapper">
                                 <div className="container">
                                    
-                                    <div className="main_title left">
-                                        <h3>My Cart<span> ({cartItems?.length})</span></h3>
-                                    </div>
+                                    
                                     <div className="row">
                                         <div className="col-lg-9 col-md-9 col-xs-12 no_data">
-
+                                        <div className="main_title left crt">
+                                        <h1>My Cart<span> ({cartItems?.length})</span></h1>
+                                    </div>
 
                                         {/* <div className="main_title left">
                                         <h1>My Cart <span>(5)</span>  </h1>

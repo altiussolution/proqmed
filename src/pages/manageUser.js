@@ -355,7 +355,7 @@ return (
                                         required: true
                                     })} type={passwordShown2 ? "text" : "password"}/>
       
-                                    <i className="fa fa-eye-slash" aria-hidden="true" onClick={togglePasswordVisiblity}></i>
+                                    <i className="fa fa-eye-slash sep" aria-hidden="true" onClick={togglePasswordVisiblity}></i>
                                     {errors.password && errors.password.type === 'required' && <span className="error">Password is required</span>}
                                   </div>
 
