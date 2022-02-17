@@ -1538,6 +1538,3 @@ input[type=number]::-webkit-outer-spin-button {
   position: absolute!important;
 }
 
-.slick-slide.slick-active.slick-current {
-  margin-right: 10px;
-}

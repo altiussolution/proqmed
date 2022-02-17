@@ -128,7 +128,7 @@ const Footer = () => {
                                 <div className="info-block-text">Moneyback guarantee</div></div>
                             </div>
                         </div> */}
-                          <div className="col-md-3">
+                          <div className="col-md-4">
                             <div className="banefit_content">
                                 <span className="ic_benefits">
                                     <i className="free_shipping"></i>
@@ -137,7 +137,7 @@ const Footer = () => {
                                 <div className="info-block-text">Trusted Sellers</div></div>
                             </div>
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-md-4">
                             <div className="banefit_content">
                             <span className="ic_benefits">
                                     <i className="secure_payment"></i>
@@ -146,7 +146,7 @@ const Footer = () => {
                                 <div className="info-block-text">Protected by Paypal</div></div>
                             </div>
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-md-4">
                             <div className="banefit_content">
                             <span className="ic_benefits">
                                     <i className="support"></i>

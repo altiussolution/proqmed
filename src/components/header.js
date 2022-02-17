@@ -508,17 +508,17 @@ const isSticky = (e) => {
                 <div className="dropdown-content">
                   <ul>
                     {!isuserlogged && <li><Link className="sign_in" to="/signin">Sign-In</Link>
-                   <h6 className="new"> New to ProQmed?  <Link to="/signup"> Start here</Link></h6>
-                  <Link className="" to="/">Sell on ProQmed</Link>
+                   <h6 className="new"> New to ProQmed?  <span><Link to="/signup"> Start here</Link></span></h6>
+                  <Link className="sell" to="/">Sell on ProQmed</Link>
                     </li>}
                     {/* {isuserlogged && <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li> */}
-                    {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}> My Profile</li>
+                    {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}> <span class="dr1_svg"></span>My Profile</li>
                     { order && <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>}
                     { orderno && <li onClick={() => { navigateOnclick('/orders') }}>My Orders</li>}
                     <li onClick={() => { navigateOnclick('/myReviews') }}>My Reviews</li>
                     <li onClick={() => { navigateOnclick('/wishlist') }}>Wishlist</li></div>}
                     {/* <li onClick={() => { navigateOnclick('/compareList') }}>Compare List</li></div>} */}
-                    {/* <li onClick={() => { navigateOnclick('/changePassword') }}>Change Password</li> */}
+                    {/* <li onClick={() => {  navigateOnclick('/changePassword') }}>Change Password</li> */}
                     {/* <li onClick={() => { navigateOnclick('/setting') }}>Setting</li> */}
                     {isuserlogged && <div>{iswhatuser &&  <li onClick={() => { navigateOnclick('/userManage') }}>User Management</li>}</div>}
                     {/* {isuserlogged && <li onClick={() => { navigateOnclick('/myquotes') }}>My Quotes</li>} */}
