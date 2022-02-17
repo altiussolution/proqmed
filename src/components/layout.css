@@ -5357,7 +5357,7 @@ section.main-footer p{
 .indicators{
   position: absolute;
   bottom: 20px;
-  right: 0;
+  right: 20px;
 }
 .react-slideshow-container+ul.indicators .each-slideshow-indicator:before {
   width: 15px!important;
