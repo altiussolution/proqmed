@@ -323,11 +323,7 @@ return (
                                                {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Pincode required</span>}
                                                                             {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Pincode</span>}                              
                                                                             </div>  
-                                                                            <div>
-                                                                            <input className="form-control" name="user_city" id="user_city" placeholder="City *" type="text" ref={register({
-                                                                                required: true
-                                                                            })}  defaultValue={(edit ? edit['city'] : "")}/>
-                                                                            {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
+
                                  <div> <Select
                                     options={region}
                                     onChange={onSelectCats1}
@@ -345,7 +341,11 @@ return (
                                                                             })} defaultValue={(edit ? edit['telephone'] : "")}/>
                                                                             {errors.telephone && errors.telephone.type === 'required' && <span className="error_label">Mobile Number required</span>}
                                                                             {errors.telephone && errors.telephone.type === 'minLength' && <span className="error_label">Enter Valid Mobile Number</span>}</div>
-                                
+                                                                            <div>
+                                                                            <input className="form-control" name="user_city" id="user_city" placeholder="City *" type="text" ref={register({
+                                                                                required: true
+                                                                            })}  defaultValue={(edit ? edit['city'] : "")}/>
+                                                                            {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
                                   <div> <Select
                                     options={state}
                                     onChange={onSelectStates1}
@@ -354,6 +354,7 @@ return (
                                      />
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div>
+                                 
                                   
                               </div>
   
@@ -413,11 +414,7 @@ return (
                                                {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Pincode required</span>}
                                                                             {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Pincode</span>}                              
                                                                             </div>  
-                                                                            <div>
-                                                                            <input className="form-control" name="user_city" id="user_city" placeholder="City *" type="text" ref={register({
-                                                                                required: true
-                                                                            })}  defaultValue={(edit ? edit['city'] : "")}/>
-                                                                            {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
+                                                                         
                                  <div> <Select
                                     options={region}
                                     onChange={onSelectCats1}
@@ -435,7 +432,11 @@ return (
                                                                             })} defaultValue={(edit ? edit['telephone'] : "")}/>
                                                                             {errors.telephone && errors.telephone.type === 'required' && <span className="error_label">Mobile Number required</span>}
                                                                             {errors.telephone && errors.telephone.type === 'minLength' && <span className="error_label">Enter Valid Mobile Number</span>}</div>
-                                
+                                                                            <div>
+                                                                            <input className="form-control" name="user_city" id="user_city" placeholder="City *" type="text" ref={register({
+                                                                                required: true
+                                                                            })}  defaultValue={(edit ? edit['city'] : "")}/>
+                                                                            {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
                                   <div> <Select
                                     options={state}
                                     onChange={onSelectStates1}
@@ -443,6 +444,7 @@ return (
                                      />
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div>
+                                
                                   
                               </div>
   

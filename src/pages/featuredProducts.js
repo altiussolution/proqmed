@@ -4,9 +4,7 @@ import { Link } from "gatsby"
 import {getProductURL} from './../utils/url';
 import Layout from "../components/layout";
 import { FaRegHeart } from 'react-icons/fa';
-import { BiShoppingBag } from "react-icons/bi";
-import { IoIosGitCompare } from "react-icons/io";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import {getWLCount, wishListCount,viewCartItems,getCartCount } from '../utils/apiServices'

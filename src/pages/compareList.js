@@ -58,7 +58,7 @@ const CompareList = () => {
 
 
     const removeCompareList = (pro_id) => {
-        if (window.confirm("Delete the item?")) {
+        if (window.confirm("Would you like delete the product in comparelist?")) {
             try {
                 axios({
                     method: "post",
