@@ -11,6 +11,10 @@ import { toast } from 'react-toastify';
 import Dropdown from 'react-bootstrap/Dropdown'
 import Multiselect from 'multiselect-react-dropdown';
 import Select from 'react-select';
+import account from "./../assets/account.png"
+import logoutt from "./../assets/logout.png"
+import order from "./../assets/order.png"
+import us1 from './../assets/us1.png';
 const UserManage = () => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(4);
@@ -403,16 +407,16 @@ const onSubmitQuoteadd = quoteDetails => {
             </div>
 
             <div className="profile-sec details">
-            <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders">MY ORDERS </Link></h4>
-                <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile">ACCOUNT SETTINGS</Link></h4>
+            <h4><Link to="/orders"><span><img src={order}/></span>MY ORDERS </Link></h4>
+                <h4><Link to="/profile"><span><img src={account}/></span>ACCOUNT SETTINGS</Link></h4>
                 <ul>
                     <li><Link to="/profile">Profile Information</Link></li>
                     <li><Link to="/myAddress">Manage Addresses</Link></li>
                     <li><Link to="/myReviews">My reviews</Link></li>
 
                 </ul>
-                <h4><span><img src="images/users.png" alt=""/></span><a href="#"> USER MANAGEMENT</a></h4>
-                <h4><span><img src="images/logout.png" alt=""/></span><a href="#">LOGOUT</a></h4>
+                <h4><a href="#"><span><img src={us1} /></span> USER MANAGEMENT</a></h4>
+                <h4><a href="#"><span><img src={logoutt}/></span>LOGOUT</a></h4>
             </div>
         </div>
        

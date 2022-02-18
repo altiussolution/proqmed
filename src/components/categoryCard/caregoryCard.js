@@ -175,7 +175,7 @@ export default function CategoryCard({ data: product, dataClass }) {
             name='rating'
             starDimension="20px"
             starSpacing="0px"
-            starRatedColor="rgb(242 187 22)"
+            starRatedColor="rgb(255 123 168)"
           /> : 'No Reviews yet'
         }
          <div className="product_amt">
@@ -193,7 +193,7 @@ export default function CategoryCard({ data: product, dataClass }) {
                 </div>
                 <div className="cart-btns">
                 <a className="other" onClick={() => addToList(2)}><FaRegHeart /> </a>
-                  <a className="other" onClick={() => addToList(1)}><IoIosGitCompare/> </a>
+                  {/* <a className="other" onClick={() => addToList(1)}><IoIosGitCompare/> </a> */}
                 
                   
                   

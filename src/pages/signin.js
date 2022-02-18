@@ -6,7 +6,7 @@ import logo from './../assets/logo.png';
 import { viewCartItems, wishListCount, getWLCount} from "./../utils/apiServices";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import sign_bg from './../assets/bg.jpg';
+import sign_bg2 from './../assets/sign_bg2.jpg';
 import PageLoader from "../components/loaders/pageLoader";
 import { checkUser } from "./../services/headerServices";
 import { AiFillEye } from "react-icons/ai";
@@ -178,7 +178,7 @@ const wistlistsValue = () => {
         <div className="wrapper">
           <div className="login_box">
             <div className="col-lg-6 col-md-6 col-xs-12 left_side">
-              <img src={sign_bg} alt={"Laptop"} />
+              <img src={sign_bg2} alt={"Laptop"} />
             </div>
 
             <div className="col-lg-6 col-md-6 col-xs-12 right_side">
