@@ -5,7 +5,8 @@ import { navigate, useStaticQuery, Link } from "gatsby";
 import Switch from "react-switch";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
-
+import { AiFillEye } from "react-icons/ai";
+import { AiFillEyeInvisible } from "react-icons/ai";
 import Multiselect from 'multiselect-react-dropdown';
 
 const Managesub = ({location}) => {
@@ -205,7 +206,7 @@ const onSubmitQuoteadd = quoteDetails => {
          "firstname": quoteDetails['firstname'],
          "lastname": quoteDetails['lastname'],
          "email": quoteDetails['email'],
-         "parent_customer_id": 39,
+         "parent_customer_id": localStorage.customer_id,
          "password": quoteDetails['password'],
          "allowedpermissions": names,
          "categorypermissions": catie,
@@ -276,6 +277,7 @@ return (
                 <ul>
                     <li><Link to="/profile">Profile Information</Link></li>
                     <li><Link to="/myAddress">Manage Addresses</Link></li>
+                    <li><Link to="/myReviews">My reviews</Link></li>
 
                 </ul>
                 <h4><span><img src="images/users.png" alt=""/></span><a href="#"> USER MANAGEMENT</a></h4>
@@ -287,7 +289,7 @@ return (
             <div className="fo-bg-white">
                 <div className="top">
                     <div className="header">
-                    <h2 className="heading">Create Sub User</h2>
+                    <h2 className="heading">Create Sub User</h2> 
                 </div>
 
                 
@@ -300,7 +302,7 @@ return (
                             
                                 <div className="form-group">
                                  
-                                  <input type="text" className="form-control" id="usr" placeholder="First Name" name="firstname"  type="text" ref={register({
+                                  <input type="text" className="form-control" id="usr" placeholder="First Name *" name="firstname"  type="text" ref={register({
                                         required: true
                                     })}/>
                                      {errors.firstname && errors.firstname.type === 'required' && <span className="error">First Name is required</span>}
@@ -309,14 +311,14 @@ return (
         
                                 <div className="form-group">
                                     
-                                    <input type="text" className="form-control" id="usr" placeholder="Email" type="text" name="email"  ref={register({
+                                    <input type="text" className="form-control" id="usr" placeholder="Email *" type="text" name="email"  ref={register({
                                         required: true
                                     })}/>
                                     {errors.email && errors.email.type === 'required' && <span className="error">Email is required</span>}
                                   </div>
                                   <div className="form-group">
                                     
-                                    <input type="text" className="form-control" id="usr" type="text" name="rolename" placeholder="RoleName" ref={register({
+                                    <input type="text" className="form-control" id="usr" type="text" name="rolename" placeholder="RoleName *" ref={register({
                                         required: true
                                     })}/>
                                     {errors.rolename && errors.rolename.type === 'required' && <span className="error">RoleName is required</span>}
@@ -329,7 +331,7 @@ return (
                                             onSelect={onSelectNames} 
                                             onRemove={onRemoveNames}
                                             name="permission"
-                                            placeholder="Select Permissions"
+                                            placeholder="Select Permissions "
                                             />
                                       
                             
@@ -341,7 +343,7 @@ return (
                             
                             <div className="form-group">
                               
-                              <input  className="form-control" id="pwd" placeholder="Last Name" type="text" name="lastname"  ref={register({
+                              <input  className="form-control" id="pwd" placeholder="Last Name *" type="text" name="lastname"  ref={register({
                                         required: true
                                     })}/>
                                    {errors.lastname && errors.lastname.type === 'required' && <span className="error">Last Name is required</span>}  
@@ -351,11 +353,12 @@ return (
         
                               <div className="form-group">
                                     
-                                    <input className="form-control" id="usr" placeholder="Password"  name="password"  ref={register({
+                                    <input className="form-control" id="usr" placeholder="Password *" type={passwordShown ? "text" : "password"}  name="password"  ref={register({
                                         required: true
-                                    })} type={passwordShown2 ? "text" : "password"}/>
-      
-                                    <i className="fa fa-eye-slash sep" aria-hidden="true" onClick={togglePasswordVisiblity}></i>
+                                    })} />
+                        <button className="btn btn eye" type="button" onClick={togglePasswordVisiblity}>{passwordShown ? <AiFillEye />: <AiFillEyeInvisible />} </button>
+                      
+                                    {/*type={passwordShown2 ? "text" : "password"} <i className="fa fa-eye-slash sep" aria-hidden="true" onClick={togglePasswordVisiblity}></i> */}
                                     {errors.password && errors.password.type === 'required' && <span className="error">Password is required</span>}
                                   </div>
 
@@ -370,7 +373,7 @@ return (
                                        onRemove={onRemoveCats}
                                        showCheckbox={true} 
                                        name="catpermission"
-                                       placeholder="Select Category"
+                                       placeholder="Select Category "
                                        />
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
                                 </div>
@@ -413,7 +416,7 @@ return (
                             
                                 <div className="form-group">
                                  
-                                  <input type="text" className="form-control" id="usr" placeholder="First Name" name="firstname"  type="text" ref={register({
+                                  <input type="text" className="form-control" id="usr" placeholder="First Name *" name="firstname"  type="text" ref={register({
                                         required: true
                                     })} defaultValue={(quoteForm['subuser_firstname'])}/>
                                      {errors.firstname && errors.firstname.type === 'required' && <span className="error">First Name is required</span>}
@@ -422,14 +425,14 @@ return (
         
                                 <div className="form-group">
                                     
-                                    <input type="text" className="form-control" id="usr" placeholder="Email" type="text" name="email"  ref={register({
+                                    <input type="text" className="form-control" id="usr" placeholder="Email *" type="text" name="email"  ref={register({
                                         required: true
                                     })} defaultValue={(quoteForm['subuser_email'])}/>
                                     {errors.email && errors.email.type === 'required' && <span className="error">Email is required</span>}
                                   </div>
                                   <div className="form-group">
                                     
-                                    <input type="text" className="form-control" id="usr" type="text" name="rolename" placeholder="RoleName" ref={register({
+                                    <input type="text" className="form-control" id="usr" type="text" name="rolename" placeholder="RoleName *" ref={register({
                                         required: true
                                     })} defaultValue={(quoteForm['role_name'])}/>
                                     {errors.rolename && errors.rolename.type === 'required' && <span className="error">RoleName is required</span>}
@@ -462,17 +465,18 @@ return (
         
                            
                             <div className="form-group">
-                              <div className="input-group">
+                              {/* <div className="input-group"> */}
                                     
-                                    <input className="form-control" id="usr" placeholder="Password"  name="password"  ref={register({
+                                    <input className="form-control" id="usr" placeholder="Password *" type={passwordShown ? "text" : "password"}  name="password"  ref={register({
                                         required: true
-                                    })} type={passwordShown ? "text" : "password"} defaultValue={(quoteForm['subuser_password'])}/>
-      <div className="input-group-append">
+                                    })}  defaultValue={(quoteForm['subuser_password'])}/>
+      {/* type={passwordShown ? "text" : "password"} <div className="input-group-append">
     <span className="input-group-text" id="basic-addon2"><i className="fa fa-eye-slash" aria-hidden="true" onClick={togglePasswordVisiblity}></i></span>
-  </div>
-                                    
+  </div> */}
+                                 <button className="btn btn eye" type="button" onClick={togglePasswordVisiblity}>{passwordShown ? <AiFillEye />: <AiFillEyeInvisible />} </button>
+                                 
                                     {errors.password && errors.password.type === 'required' && <span className="error">Password is required</span>}
-                                  </div>
+                                  {/* </div> */}
                                     </div>
                                   <div className="form-group">
                                    

@@ -208,8 +208,9 @@ const deleteAddress = (id) => {
             <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders"><a>MY ORDERS</a> </Link></h4>
                 <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile"><a> ACCOUNT SETTINGS</a></Link></h4>
                 <ul>
-                    <li><Link to="/profile"><a>Profile Information</a></Link></li>
-                    <li><Link to="/myAddress"><a>Manage Addresses</a></Link></li>
+                    <li><Link to="/profile">Profile Information</Link></li>
+                    <li><Link to="/myAddress">Manage Addresses</Link></li>
+                    <li><Link to="/myReviews">My reviews</Link></li>
 
                 </ul>
                 <h4><span><img src="images/logout.png" alt=""/></span><a onClick={() => { navigateOnclick('/orders') }}>LOGOUT</a></h4>

@@ -9,7 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import sign_bg from './../assets/bg.jpg';
 import PageLoader from "../components/loaders/pageLoader";
 import { checkUser } from "./../services/headerServices";
-
+import { AiFillEye } from "react-icons/ai";
+import { AiFillEyeInvisible } from "react-icons/ai";
 const SignIn = (props) => {
 
   const { register, handleSubmit, errors } = useForm();
@@ -17,6 +18,7 @@ const SignIn = (props) => {
   const [isButton, setButton] = useState(false);
   const [loader, setLoader] = useState(false);
   const [wishListCnt, setWishListCnt] = useState(getWLCount());
+  const [passwordShown, setPasswordShown] = useState(false);
 
  
 
@@ -92,7 +94,9 @@ const SignIn = (props) => {
     }
 
   };
-
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
   const createCart = (token) => {
     if (token) {
       try {
@@ -194,10 +198,12 @@ const wistlistsValue = () => {
                   })} />
                   {errors.username && errors.username.type === 'required' && <span>Email field is required</span>}
                   {errors.username && errors.username.type === 'pattern' && <span>Valid email required</span>}
-                  <input className="form-control" name="password" placeholder="Password *" type="password" ref={register({
+                  <input className="form-control" name="password" placeholder="Password *"  type={passwordShown ? "text" : "password"} ref={register({
                     required: true,
       
                   })} />
+                  <button className="btn btn heart" type="button" onClick={togglePasswordVisiblity}>{passwordShown ? <AiFillEye />: <AiFillEyeInvisible />} </button>
+
                   {errors.password && errors.password.type === 'required' && <span>Password field is required</span>}
 
                   <div className="my-3">

@@ -614,7 +614,8 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                         }
                       </div>
                       <div>
-                        <i>{proDescription.items.is_in_stock == 1 ? "In Stock" : "Out Of Stock"}</i>
+                        <i>{proDescription.items.is_in_stock == 1 ? "In Stock" :<p className="fo-o-stock">Out Of Stock</p> }</i>
+
                       </div>
                     </div>
 

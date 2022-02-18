@@ -562,12 +562,12 @@ list-style: none;
   .product_view .product_details .product_note i {
     color: #ffffff;
     font-size: 11px;
-    font-style: initial;
+    font-style: italic;
     background: hsl(141deg 60% 56%);
     font-family: 'Poppins';
     padding: 2px 5px;
     border-radius: 7px;
-    border: 1px solid #44c171;
+
     font-weight: 600;
     
   }
