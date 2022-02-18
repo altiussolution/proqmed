@@ -390,11 +390,11 @@ const closeEmail = () =>{
                         </div>}
                         {showname && <form onSubmit={handleSubmit(Namesubmit)}>
                         <div className="form-content">
-                            <input type="text" placeholder="First Name" name="firstname" maxLength="20"ref={register({
+                            <input type="text" placeholder="First Name *" name="firstname" maxLength="20"ref={register({
                               required: true})} defaultValue={(profile ? profile['firstname'] : "")}/>
                            {errors.firstname && errors.firstname.type === 'required' && <span className="error_label">First Name is required</span>} 
 
-                            <input type="text" placeholder="Last Name" name="lastname" maxLength="20" ref={register({
+                            <input type="text" placeholder="Last Name *" name="lastname" maxLength="20" ref={register({
                               required: true})} defaultValue={(profile ? profile['lastname'] : "")} />
                            {errors.lastname && errors.lastname.type === 'required' && <span className="error_label">Last Name is required</span>}   
 
@@ -428,8 +428,8 @@ const closeEmail = () =>{
                                             <form onSubmit={handleSubmit(onSubmit)} className="Changepwd_form fo-wid" autoComplete="off">
                                                 <div className="inline_form">
                                                 <div className="form-group">
-                                                    <label>Enter Old Password</label>
-                                                    <input type="password" className="form-control" 
+                                                    <label>Enter Old Password *</label>
+                                                    <input type="password" className="form-control"  
                                                     id="currentPassword" name="currentPassword"  ref={register({    
                                                         required: true,
                                                         minLength : 8 ,
@@ -440,7 +440,7 @@ const closeEmail = () =>{
                                                     {errors.currentPassword && errors.currentPassword.type === 'pattern' && <span>Current  Password must contain 8 charactor along with 1 number and alphanumeric</span>}
                                                 </div>
                                                 <div className="form-group">
-                                                    <label>Enter New Password</label>
+                                                    <label>Enter New Password *</label>
                                                     <input type="password" className="form-control" 
                                                     id="newPassword" name="newPassword"  ref={register({    
                                                         required: true,
@@ -453,7 +453,7 @@ const closeEmail = () =>{
                                                 </div>  
     
                                                 <div className="form-group">
-                                                    <label>Enter Confirm Password</label>
+                                                    <label>Enter Confirm Password *</label>
                                                     <input type="password" className="form-control" 
                                                     id="confirmPassword" name="confirmPassword"  ref={register({    
                                                         required: true,
@@ -483,9 +483,10 @@ const closeEmail = () =>{
                          
                         {showmail && <form onSubmit={handleSubmit(Emailsubmit)}>
                            <div className="form-content"> 
-                            <input type="text" placeholder="Email Address" name="email" maxLength="50" ref={register({
+                            <input type="text" placeholder="Email Address *" name="email" maxLength="50" ref={register({
                               required: true})} defaultValue={(profile ? profile['email'] : "")} />
-                            
+                         {errors.email && errors.email.type === 'required' && <span className="error_label">Email Address is required</span>} 
+
                             <button type="submit" className="btn btn-danger square">SAVE</button>
                             <button type="button" class="btn btn"onClick={closeEmail}><AiOutlineClose /></button>
 
@@ -503,9 +504,10 @@ const closeEmail = () =>{
                             <input type="text" value={jwt && profile.contact_number || ''} disabled/>
                          </div>}
                         {shownumber &&  <form onSubmit={handleSubmit(Numbersubmit)}><div className="form-content">
-                            <input type="text" placeholder="Number" name="number" maxLength="10" ref={register({
+                            <input type="text" placeholder="Mobile Number *" name="number" maxLength="10" ref={register({
                               required: true})} defaultValue={(profile ? profile['contact_number'] : "")} />
-                            
+                            {errors.number && errors.number.type === 'required' && <span className="error_label">Mobile Number is required</span>} 
+
                             <button type="submit" className="btn btn-danger square">SAVE</button>
                      <button type="button" class="btn btn" onClick={closeNumber}><AiOutlineClose /></button>
 

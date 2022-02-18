@@ -105,7 +105,7 @@ const Tracking =  () => {
                       {/* <h4> <span><i className="fa fa-truck" aria-hidden="true"></i></span> Track Order</h4> */}
                       <div className="track">                      
                         <input className="form-control" id="orderid" name="orderid" type="text" 
-                        placeholder="Enter Order Id" maxLength="9" onChange={(event) => setorder(event.target.value)} 
+                        placeholder="Enter Order Id *" maxLength="9" onChange={(event) => setorder(event.target.value)} 
                         ref={register({    
                                           required: true,
                                })}/> 

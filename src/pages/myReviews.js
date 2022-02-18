@@ -96,6 +96,7 @@ return (
                     <li><Link to="/profile">Profile Information</Link></li>
                     <li><Link to="/myAddress">Manage Addresses</Link></li>
                     <li><Link to="/myReviews">My reviews</Link></li>
+
                 </ul>
                 <h4><a onClick={() => { logout() }}><span><img src={logoutt}/></span>LOGOUT</a></h4>
             </div>

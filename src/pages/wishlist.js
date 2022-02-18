@@ -114,7 +114,7 @@ const Wishlist = () => {
         setPage(0);
       };
     const removeWishList = (pro_id, data) => {
-        if (window.confirm("Delete the item?")) {
+        if (window.confirm("Would you like delete the product in wishlist?")) {
             removeProduct(pro_id, data)
         }
     }

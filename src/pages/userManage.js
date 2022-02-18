@@ -41,6 +41,8 @@ const UserManage = () => {
  const [names, setNames] = useState([]);
  const [catie, setCats] = useState([]);
  const [username, setUsername] = useState();
+ const [disable, setDisable] = useState(false);
+
  const data = useStaticQuery(graphql`
  {
    allCategory {
@@ -219,6 +221,8 @@ const onSubmitQuote = quoteDetails => {
     }
 };
 const searchUser = async (val) => {
+    setDisable(true)
+
 if(val.target.value.length>=2){
     let data = {
         
@@ -251,6 +255,10 @@ if(val.target.value.length>=2){
     }
 }else if(val.target.value.length==0 || val.target.value.length==1){
    getQuotes();
+   if(val.target.value.length==0 ){
+    setDisable(false)
+
+   }
 }
 }
 const handleChange = nextChecked => {
@@ -404,6 +412,7 @@ const onSubmitQuoteadd = quoteDetails => {
                 <ul>
                     <li><Link to="/profile">Profile Information</Link></li>
                     <li><Link to="/myAddress">Manage Addresses</Link></li>
+                    <li><Link to="/myReviews">My reviews</Link></li>
 
                 </ul>
                 <h4><a href="#"><span><img src={us1} /></span> USER MANAGEMENT</a></h4>
@@ -426,8 +435,8 @@ const onSubmitQuoteadd = quoteDetails => {
                         <input placeholder="Search" onChange={e => { searchUser(e) }}/>
                       </div>
 
-                    {subusers.length == 5 && <button type="button"  disabled className="btn btn-danger" onClick={() => addQuote()}> Create</button>}  
-                    {subusers.length < 5 && <button type="button" className="btn btn-danger" onClick={() => addQuote()}> Create</button>} 
+                    {subusers.length == 5 && <button type="button" disabled={disable} disabled className="btn btn-danger" onClick={() => addQuote()}> Create</button>}  
+                    {subusers.length < 5 && <button type="button" disabled={disable} className="btn btn-danger" onClick={() => addQuote()}> Create</button>} 
                 </div>
                
                
@@ -446,6 +455,7 @@ const onSubmitQuoteadd = quoteDetails => {
                             <th>Name</th>
                             <th>Role</th>
                             <th>Status</th>
+                            <th>Approval Status</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -456,7 +466,8 @@ const onSubmitQuoteadd = quoteDetails => {
                             <td>{index + 1}</td>
                             <td>{quote.subuser_firstname}</td>
                             <td>{quote.role_name}</td>
-                            <td className="green">{quote.subuser_status == false ? "In-Active" : "Active"}</td>
+                            <td className="green">{quote.account_status == false ? <p className="fo-ia">In-Active</p> : "Active"}</td>
+                            <td>{quote.approval_status}</td>
                             {quote.subuser_id!=null && <td> <Link to="/manageUser" state={quote}><span><i className="fa fa-pencil-square-o" aria-hidden="true"></i></span></Link> <span onClick={() => removeQuote(quote.subuser_id)}><i className="fa fa-trash-o" aria-hidden="true"></i></span> </td>}
                          </tr>
 

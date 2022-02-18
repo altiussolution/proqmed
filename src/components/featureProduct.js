@@ -262,7 +262,7 @@ const FeatureProduct = () => {
                                     </div>
                                     <div className="rating_front">
                                     <StarRatings
-                                        rating={Math.round(data.ratings_summary)}
+                                        rating={Math.round(data.ratings_summary)} 
                                         numberOfStars={5}
                                         name='rating'
                                         starDimension="20px"

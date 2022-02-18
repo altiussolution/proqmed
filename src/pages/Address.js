@@ -124,11 +124,13 @@ Defaulti(states)
 
     const Cancelling = () => {
         console.log(location.state.prevPath)
-        if(location.state.prevPath=="/myAddress/"){
-            navigate('/myAddress/')
-        }else {
-            navigate('/checkout/')
-        }
+        navigate('/myAddress/')
+
+        // if(location.state.prevPath=="/myAddress/"){
+        //     navigate('/myAddress/')
+        // }else {
+        //     navigate('/checkout/')
+        // }
     }
 
     const filterData1 =(val,datas)=> {
@@ -175,11 +177,13 @@ let updateAddress = {
             console.log("Add Address", response)
             if (response.statusText === "OK" && response.status == 200) {
                 console.log(location.state.prevPath)
-                 if(location.state.prevPath=="/myAddress/"){
-                    navigate('/myAddress/')
-                }else {
-                    navigate('/checkout/')
-                }
+                 navigate('/myAddress/')
+
+                //  if(location.state.prevPath=="/myAddress/"){
+                //     navigate('/myAddress/')
+                // }else {
+                //     navigate('/checkout/')
+                // }
                 setLoader(false);
                 toast.success('Edit Address Successfully');
                 
@@ -230,11 +234,12 @@ const onSubmitadd = userAddresses => {
             }).then((response) => {
                 console.log("Add Address", response)
                 if (response.statusText === "OK" && response.status == 200) {
-                    if(location.state.prevPath=="/checkout/"){
-                        navigate('/checkout/')
-                    }else {
-                        navigate('/myAddress/')
-                    }
+                    navigate('/myAddress/')
+                    // if(location.state.prevPath=="/checkout/"){
+                    //     navigate('/checkout/')
+                    // }else {
+                    //     navigate('/myAddress/')
+                    // }
                     setLoader(false);
                     toast.success('Add Address Successfully');
                     
@@ -301,25 +306,25 @@ return (
                           <div class="row">
                               <div class="col-lg-6 col-md-12 col-sm-12">
                                   <div>
-                                  <input type="text" className="form-control" placeholder="First Name" name="name" id="name" ref={register({
+                                  <input type="text" className="form-control" placeholder="First Name *" name="name" id="name" ref={register({
                                                                                 required: true
                                                                             })} defaultValue={(edit ? edit['firstname'] : "")}/>
-                                         {errors.firstname && errors.name.type === 'required' && <span className="error_label">First Name is required</span>}</div>   
+                                         {errors.name && errors.name.type === 'required' && <span className="error_label">First Name is required</span>}</div>   
                                          <div>
-                                  <input type="text" className="form-control" placeholder="Last Name" name="lname" id="lname" ref={register({
+                                  <input type="text" className="form-control" placeholder="Last Name *" name="lname" id="lname" ref={register({
                                                                                 required: true
                                                                             })} defaultValue={(edit ? edit['lastname'] : "")}/>
-                                         {errors.lastname && errors.lname.type === 'required' && <span className="error_label">Last Name is required</span>}</div>       
+                                         {errors.lname && errors.lname.type === 'required' && <span className="error_label">Last Name is required</span>}</div>       
                                          <div>                            
-                                  <input type="text" className="form-control" placeholder="Pincode" name="postcode" id="postcode" onChange={handleChange} ref={register({
+                                  <input type="text" className="form-control" placeholder="Pincode *" name="postcode" id="postcode" onChange={handleChange} ref={register({
                                                                                 required: true,
                                                                             })} 
                                                                             maxLength="6" defaultValue={(edit ? edit['postcode'] : "")}/>
-                                               {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Postcode required</span>}
-                                                                            {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Postcode</span>}                              
+                                               {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Pincode required</span>}
+                                                                            {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Pincode</span>}                              
                                                                             </div>  
                                                                             <div>
-                                                                            <input className="form-control" name="user_city" id="user_city" placeholder="City" type="text" ref={register({
+                                                                            <input className="form-control" name="user_city" id="user_city" placeholder="City *" type="text" ref={register({
                                                                                 required: true
                                                                             })}  defaultValue={(edit ? edit['city'] : "")}/>
                                                                             {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
@@ -327,25 +332,25 @@ return (
                                     options={region}
                                     onChange={onSelectCats1}
                                     value={India}
-                                    placeholder="Select Country"
+                                    placeholder="Select Country *"
                                      /></div> 
                               </div>
   
                               <div class="col-lg-6 col-md-12 col-sm-12">
                                   <div>
-                                  <input className="form-control" name="telephone" id="telephone" placeholder="Mobile Number" type="text" onChange={handleChange} 
+                                  <input className="form-control" name="telephone" id="telephone" placeholder="Mobile Number *" type="text" onChange={handleChange} 
                                                                             maxLength="10"
                                                                             ref={register({
                                                                                 required: true,
                                                                             })} defaultValue={(edit ? edit['telephone'] : "")}/>
-                                                                            {errors.telephone && errors.telephone.type === 'required' && <span className="error_label">Phone required</span>}
-                                                                            {errors.telephone && errors.telephone.type === 'minLength' && <span className="error_label">Enter Valid Phone Number</span>}</div>
+                                                                            {errors.telephone && errors.telephone.type === 'required' && <span className="error_label">Mobile Number required</span>}
+                                                                            {errors.telephone && errors.telephone.type === 'minLength' && <span className="error_label">Enter Valid Mobile Number</span>}</div>
                                 
                                   <div> <Select
                                     options={state}
                                     onChange={onSelectStates1}
                                     value={Tamilan}
-                                    placeholder="Select State"
+                                    placeholder="Select State *"
                                      />
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div>
@@ -353,13 +358,13 @@ return (
                               </div>
   
                               <div class="col-lg-12 col-md-12 col-sm-12">
-                              <input className="form-control" name="street_1" id="street_1" placeholder="Address" type="text" ref={register({
+                              <input className="form-control" name="street_1" id="street_1" placeholder="Address " type="text" ref={register({
                                                                                 required: true
                                                                             })} defaultValue={(edit ? edit['street'] : "")}/>
                                                                             {errors.street_1 && errors.street_1.type === 'required' && <span className="error_label">Address required</span>}
                               </div>
                           </div>
-                          <h6> Address Type</h6>
+                          <h6> Address Type </h6>
                           <div class="billing-stat">
                           <div className="form-check">
                         <input type="checkbox" className="form-check-input" name="shipping" id="shipping" ref={register({
@@ -391,25 +396,25 @@ return (
                           <div class="row">
                               <div class="col-lg-6 col-md-12 col-sm-12">
                                   <div>
-                                  <input type="text" className="form-control" placeholder="First Name" name="name" id="name" ref={register({
+                                  <input type="text" className="form-control" placeholder="First Name *" name="name" id="name" ref={register({
                                                                                 required: true
                                                                             })} defaultValue={(edit ? edit['firstname'] : "")}/>
-                                         {errors.firstname && errors.name.type === 'required' && <span className="error_label">First Name is required</span>}</div>   
+                                         {errors.name && errors.name.type === 'required' && <span className="error_label">First Name is required</span>}</div>   
                                          <div>
-                                  <input type="text" className="form-control" placeholder="Last Name" name="lname" id="lname" ref={register({
+                                  <input type="text" className="form-control" placeholder="Last Name *" name="lname" id="lname" ref={register({
                                                                                 required: true
                                                                             })} defaultValue={(edit ? edit['lastname'] : "")}/>
-                                         {errors.lastname && errors.lname.type === 'required' && <span className="error_label">Last Name is required</span>}</div>       
+                                         {errors.lname && errors.lname.type === 'required' && <span className="error_label">Last Name is required</span>}</div>       
                                          <div>                            
-                                  <input type="text" className="form-control" placeholder="Pincode" name="postcode" id="postcode" onChange={handleChange} ref={register({
+                                  <input type="text" className="form-control" placeholder="Pincode *" name="postcode" id="postcode" onChange={handleChange} ref={register({
                                                                                 required: true,
                                                                             })} 
                                                                             maxLength="6" defaultValue={(edit ? edit['postcode'] : "")}/>
-                                               {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Postcode required</span>}
-                                                                            {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Postcode</span>}                              
+                                               {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Pincode required</span>}
+                                                                            {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Pincode</span>}                              
                                                                             </div>  
                                                                             <div>
-                                                                            <input className="form-control" name="user_city" id="user_city" placeholder="City" type="text" ref={register({
+                                                                            <input className="form-control" name="user_city" id="user_city" placeholder="City *" type="text" ref={register({
                                                                                 required: true
                                                                             })}  defaultValue={(edit ? edit['city'] : "")}/>
                                                                             {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
@@ -417,24 +422,24 @@ return (
                                     options={region}
                                     onChange={onSelectCats1}
                                     value={India}
-                                    placeholder="Select Country"
+                                    placeholder="Select Country *"
                                      /></div> 
                               </div>
   
                               <div class="col-lg-6 col-md-12 col-sm-12">
                                   <div>
-                                  <input className="form-control" name="telephone" id="telephone" placeholder="Mobile Number" type="text" onChange={handleChange} 
+                                  <input className="form-control" name="telephone" id="telephone" placeholder="Mobile Number *" type="text" onChange={handleChange} 
                                                                             maxLength="10"
                                                                             ref={register({
                                                                                 required: true,
                                                                             })} defaultValue={(edit ? edit['telephone'] : "")}/>
-                                                                            {errors.telephone && errors.telephone.type === 'required' && <span className="error_label">Phone required</span>}
-                                                                            {errors.telephone && errors.telephone.type === 'minLength' && <span className="error_label">Enter Valid Phone Number</span>}</div>
+                                                                            {errors.telephone && errors.telephone.type === 'required' && <span className="error_label">Mobile Number required</span>}
+                                                                            {errors.telephone && errors.telephone.type === 'minLength' && <span className="error_label">Enter Valid Mobile Number</span>}</div>
                                 
                                   <div> <Select
                                     options={state}
                                     onChange={onSelectStates1}
-                                    placeholder="Select State"
+                                    placeholder="Select State *"
                                      />
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div>
@@ -442,13 +447,13 @@ return (
                               </div>
   
                               <div class="col-lg-12 col-md-12 col-sm-12">
-                              <input className="form-control" name="street_1" id="street_1" placeholder="Address" type="text" ref={register({
+                              <input className="form-control" name="street_1" id="street_1" placeholder="Address *" type="text" ref={register({
                                                                                 required: true
                                                                             })} defaultValue={(edit ? edit['street'] : "")}/>
                                                                             {errors.street_1 && errors.street_1.type === 'required' && <span className="error_label">Address required</span>}
                               </div>
                           </div>
-                          <h6> Address Type</h6>
+                          <h6> Address Type </h6>
                           <div class="billing-stat">
                           <div className="form-check">
                         <input type="checkbox" className="form-check-input" id="shipping" name="shipping" ref={register({
