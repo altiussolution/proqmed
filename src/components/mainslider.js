@@ -16,7 +16,7 @@ import 'react-slideshow-image/dist/styles.css'
 //     dots: true,
 //     infinite: true,
 //     speed: 1000,
-//     fadeIn: false,
+//     fadeIn: false, 
 //     autoplay: true,
 //     pauseOnHover: true,
 //     slidesToShow: 1,
@@ -119,7 +119,7 @@ const Renderproduct = () => {
           
            
         <div className="banner_top" key={index}>
-        <Link to={data.button_link} > <img src={banner_01} alt={"banner"} className="img-fluid"/> </Link> 
+        <Link to={data.button_link} > <img src={data.banner_image} alt={"banner"} className="img-fluid"/> </Link> 
         
       </div>
       

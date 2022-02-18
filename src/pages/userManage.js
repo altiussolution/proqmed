@@ -65,6 +65,7 @@ const UserManage = () => {
 `)
  useEffect(() => {
      setCustomerId(localStorage.customer_id)
+     console.log(localStorage.customer_id)
      setUsername(localStorage.user_name)
      rendercategory();
     getQuotes();
@@ -75,7 +76,7 @@ const UserManage = () => {
  const getQuotes = async () => {
     setLoader(true)
     const res = await fetch(
-        `${process.env.GATSBY_CART_URL_STARCARE}subuser/subuserlist/parent_customer_id/39`
+        `${process.env.GATSBY_CART_URL_STARCARE}subuser/subuserlist/parent_customer_id/${localStorage.customer_id}`
     );
     const json = await res.json();
     if(json=="Subusers not available for this customer"){
@@ -436,7 +437,7 @@ const onSubmitQuoteadd = quoteDetails => {
                  <div className="grid-right">
 
                 </div>
-            <h1>No Item found</h1>
+            <h1>No User found</h1>
             
             </div>) :
                 <div className="user-content">

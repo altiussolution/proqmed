@@ -279,7 +279,16 @@ const isSticky = (e) => {
   const navigateOnclick = (value) => {
     if (isuserlogged) {
       navigate(value)
-    } else {
+    } 
+    // else {
+    //   navigate('/signin')
+    // }
+  }
+  const navigateOnclick2 = (value) => {
+    if (isuserlogged) {
+      navigate(value)
+    } 
+    else {
       navigate('/signin')
     }
   }
@@ -592,12 +601,12 @@ const isSticky = (e) => {
                   <li><Link to="/contact">Contact</Link></li>
                   <li><Link to="/tracking">Order Tracking</Link></li>
                   <li><Link to="/myAddress">My Address</Link></li> */}
-                   <li onClick={() => { navigateOnclick('/') }}><a>Home</a></li>
-                  <li onClick={() => { navigateOnclick('/mainCategory') }}><a>Shop</a></li> 
-                  <li onClick={() => { navigateOnclick('/aboutUs') }}><a >About</a></li>
-                  <li onClick={() => { navigateOnclick('/contact') }}><a >Contact</a></li>
+                   <li onClick={() => { navigateOnclick1('/') }}><a>Home</a></li>
+                  <li onClick={() => { navigateOnclick1('/mainCategory') }}><a>Shop</a></li> 
+                  <li onClick={() => { navigateOnclick1('/aboutUs') }}><a >About</a></li>
+                  <li onClick={() => { navigateOnclick1('/contact') }}><a >Contact</a></li>
                   <li onClick={() => { navigateOnclick1('/tracking') }}><a >Order Tracking</a></li>
-                  <li onClick={() => { navigateOnclick('/myAddress') }}><a>My Address</a></li>                 
+                  <li onClick={() => { navigateOnclick2('/myAddress') }}><a>My Address</a></li>                 
               </ul>
               <ul className="contact_top">
                   <li>For Sales & Support <a href="#">(+91)1234-5670</a></li>

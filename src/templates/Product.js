@@ -97,8 +97,6 @@ const Product = (props,location)  => {
           console.error(err);
           toast.error('something went wrong')
         }
-      }else{
-          navigate("/signin")
       }
       //setQuoteId(localStorage.cartId)
       if(!localStorage.permissions){
@@ -227,6 +225,8 @@ const Product = (props,location)  => {
     }
 }
 const addToList = (type,id) => {
+  if (localStorage.userToken) {
+
   // type 1 = wishlist
   // type 2 = comparelist
   let url = (type == 1 ? `${process.env.GATSBY_CART_URL_STARCARE}admin/addtocompare/2` : `${process.env.GATSBY_CART_URL_STARCARE}wishlist/addwishlist_product/`)
@@ -261,6 +261,10 @@ const addToList = (type,id) => {
   } catch (err) {
     toast.error(err)
   }
+}  else {
+  localStorage.clear()
+  navigate("/signin")
+}
 
 }
   const Renderproduct = () => {    

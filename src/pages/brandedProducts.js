@@ -68,9 +68,10 @@ const BrandedProducts = ({ location }) =>{
           console.error(err);
           toast.error('something went wrong')
         }
-      }else{
-          navigate("/signin")
-      }
+       }
+      //else{
+      //     navigate("/signin")
+      // }
     },[]);
 
 
@@ -144,6 +145,8 @@ const addtoCartItems = (sku, id) => {
     }
 }
 const addToList = (type,id) => {
+  if (localStorage.userToken) {
+
     // type 1 = wishlist
     // type 2 = comparelist
     let url = (type == 1 ? `${process.env.GATSBY_CART_URL_STARCARE}admin/addtocompare/2` : `${process.env.GATSBY_CART_URL_STARCARE}wishlist/addwishlist_product/`)
@@ -177,7 +180,10 @@ const addToList = (type,id) => {
     } catch (err) {
       toast.error(err)
     }
-
+  }  else {
+    localStorage.clear()
+    navigate("/signin")
+}
   }
 const Renderproduct = () => {    
     if (productBrand) {
