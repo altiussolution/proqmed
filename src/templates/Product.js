@@ -21,9 +21,9 @@ import { FaRegHeart } from 'react-icons/fa';
 const similar_product = {
   autoplay: false,
   speed: 1000,
-  slidesToShow:2,
+  slidesToShow:5,
   slidesToScroll: 1,
-  infinite: true,
+  infinite: false,
   responsive: [
     {
       breakpoint: 600,
@@ -303,7 +303,7 @@ const addToList = (type,id) => {
                                name='rating'
                                starDimension="20px"
                                starSpacing="0px"
-                               starRatedColor="rgb(242 187 22)"
+                               starRatedColor="rgb(255 123 168)"
                            />
                            
                            </div>

@@ -122,7 +122,7 @@ setitemid(specification.items)
                                 name='rating'
                                 starDimension="15px"
                                 starSpacing="0px"
-                                starRatedColor="rgb(242 187 22)"
+                                starRatedColor="rgb(255 123 168)"
                               />
                             </td>
                             <td><span>{new Date(reviews.created_at).toLocaleString()}</span></td>

@@ -44,7 +44,7 @@ const Mostpopular = () => {
                           name='rating'
                           starDimension="15px"
                           starSpacing="0px"
-                          starRatedColor="rgb(242 187 22)"
+                          starRatedColor="rgb(255 123 168)"
                         />
     
                         <div>

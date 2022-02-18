@@ -7,6 +7,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import Multiselect from 'multiselect-react-dropdown';
 import Select from 'react-select';
 import { Noimage } from "../assets/sample.png";
+import account from "./../assets/account.png"
+import logoutt from "./../assets/logout.png"
+import order from "./../assets/order.png"
 const Address = ({location,data:product}) => {
  const { register, handleSubmit, errors } = useForm();
  const [jwt, setJwt] = useState("")
@@ -269,15 +272,15 @@ return (
   
               <div class="profile-sec details">
                 
-                  <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders"><a>MY ORDERS</a> </Link></h4>
-                <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile"><a> ACCOUNT SETTINGS</a></Link></h4>
+                  <h4><Link to="/orders"><a><span><img src={order}/></span>MY ORDERS</a> </Link></h4>
+                <h4><span><img src={account}/></span><Link to="/profile"><a> ACCOUNT SETTINGS</a></Link></h4>
                 <ul>
                     <li><Link to="/profile"><a>Profile Information</a></Link></li>
                     <li><Link to="/myAddress"><a>Manage Addresses</a></Link></li>
                     <li><Link to="/myReviews"><a>My reviews</a></Link></li>
 
                 </ul>
-                  <h4><span><img src="images/logout.png" alt=""/></span><a href="#">LOGOUT</a></h4>
+                  <h4><span><img src={logoutt}/></span><a href="#">LOGOUT</a></h4>
               </div>
           </div>
   

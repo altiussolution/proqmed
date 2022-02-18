@@ -28,14 +28,15 @@ return (
               
               {
                 isLoged &&
-              <Link to="/cart" data-toggle="tooltip" title="Cart"><span className="cart_count">{isLoged ? getCartCount(isLoged) : 0}</span>
-              <div className="cart_img_holder"> <span className="cart_svg"> </span></div>
+              <Link to="/cart" data-toggle="tooltip" title="Cart">
+              <div className="cart_img_holder"><span className="cart_count">{isLoged ? getCartCount(isLoged) : 0}</span> <span className="cart_svg"> </span></div>
               </Link>                
              }
               {
                 !isLoged &&
-              <Link to="/signin" data-toggle="tooltip" title="Cart"><span className="cart_count">{isLoged ? getCartCount(isLoged) : 0}</span>
-              <div className="cart_img_holder"> <span className="cart_svg"> </span></div>
+              <Link to="/signin" data-toggle="tooltip" title="Cart">
+              <div className="cart_img_holder"> <span className="cart_count">{isLoged ? getCartCount(isLoged) : 0}</span> <span className="cart_svg"> </span> 
+              </div>
               </Link>                
              }
              <div className="cart_text">

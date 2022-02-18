@@ -10,6 +10,9 @@ import { TablePagination } from '@mui/material';
 import { checkLogin } from "./../services/headerServices";
 import StarRatings from 'react-star-ratings';
 import { Noimage } from "../assets/sample.png";
+import account from "./../assets/account.png"
+import logoutt from "./../assets/logout.png"
+import order from "./../assets/order.png"
 
 const Myreviews = () => {
  const [page, setPage] = React.useState(0);
@@ -87,14 +90,14 @@ return (
             </div>
 
             <div className="profile-sec details">
-                <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders">MY ORDERS</Link></h4>
-                <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile"> ACCOUNT SETTINGS</Link></h4>
+                <h4><Link to="/orders"><span><img src={order}/></span>MY ORDERS</Link></h4>
+                <h4><Link to="/profile"><span><img src={account}/></span> ACCOUNT SETTINGS</Link></h4>
                 <ul>
                     <li><Link to="/profile">Profile Information</Link></li>
                     <li><Link to="/myAddress">Manage Addresses</Link></li>
-
+                    <li><Link to="/myReviews">My reviews</Link></li>
                 </ul>
-                <h4><span><img src="images/logout.png" alt=""/></span><a onClick={() => { logout() }}>LOGOUT</a></h4>
+                <h4><a onClick={() => { logout() }}><span><img src={logoutt}/></span>LOGOUT</a></h4>
             </div>
         </div>
 
@@ -128,7 +131,7 @@ return (
                                name='rating'
                                starDimension="20px"
                                starSpacing="0px"
-                               starRatedColor="rgb(242 187 22)"
+                               starRatedColor="rgb(255 123 168)"
                            />                         
                         </div> 
                         <span className="added">{quote.summary_of_review}</span>

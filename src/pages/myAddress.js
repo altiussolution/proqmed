@@ -4,6 +4,9 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import Layout from "../components/layout";
 import { Noimage } from "../assets/sample.png";
+import account from "./../assets/account.png"
+import logoutt from "./../assets/logout.png"
+import order from "./../assets/order.png"
 const MyAddress = ({location}) => {
  const [jwt, setJwt] = useState("")
  const [uEmail, setUEmail] = useState();
@@ -205,14 +208,14 @@ const deleteAddress = (id) => {
             </div>
 
             <div className="profile-sec details">
-            <h4><span><img src="images/orders.png" alt=""/></span><Link to="/orders"><a>MY ORDERS</a> </Link></h4>
-                <h4><span><img src="images/account.png" alt=""/></span><Link to="/profile"><a> ACCOUNT SETTINGS</a></Link></h4>
+            <h4><Link to="/orders"><a><span><img src={order}/></span>MY ORDERS</a> </Link></h4>
+            <h4><Link to="/profile"><a><span><img src={account}/></span> ACCOUNT SETTINGS</a></Link></h4>
                 <ul>
                     <li><Link to="/profile"><a>Profile Information</a></Link></li>
                     <li><Link to="/myAddress"><a>Manage Addresses</a></Link></li>
 
                 </ul>
-                <h4><span><img src="images/logout.png" alt=""/></span><a onClick={() => { navigateOnclick('/orders') }}>LOGOUT</a></h4>
+            <h4><a onClick={() => { navigateOnclick('/orders') }}><span><img src={logoutt}/></span>LOGOUT</a></h4>
             </div>
         </div>
 
@@ -225,18 +228,17 @@ const deleteAddress = (id) => {
                 <Link to="/Address" state={{data:adding,prevPath:location.pathname}}><button className="sample">+ ADD A NEW ADDRESS</button></Link>
                 </div>
                 <div className="row">
-                <div className="col-lg-4 col-md-12 col-sm-12"> 
-                    
-                      
+                <div className="col-lg-4 col-md-12 col-sm-12">                    
+                      <div className="fo-aligh">
                           
                            <h6>Default Billing Address</h6>   
-                         <span>Name:<a>{defBill['firstname']}</a></span><br></br>
-                         <span>Address:<a>{defBill['street']}</a></span><br></br>
-                         <span>City:<a>{defBill['city']}</a></span><br></br>
+                         <p> <span className="bold"> Name : </span> <a>{defBill['firstname']}</a></p>
+                         <p> <span className="bold">Address : </span><a>{defBill['street']}</a></p>
+                         <p> <span className="bold"> City : </span><a>{defBill['city']}</a></p>
                          {/* <span>State:<a>{defBill['region']}</a></span><br></br> */}
-                         <a>Ph no:<a>{defBill['telephone']}</a></a>
+                         <p> <span className="bold"> Ph no : </span> <a>{defBill['telephone']}</a></p>
                    
-                       
+                         </div>
                        
                     
                    
@@ -244,12 +246,15 @@ const deleteAddress = (id) => {
                 </div>
                
                 <div className="col-lg-4 col-md-12 col-sm-12">
+
+                <div className="fo-aligh">
                 <h6>Default Shipping Address</h6>   
-                         <span>Name:<a>{defShip['firstname']}</a></span><br></br>
-                         <span>Address:<a>{defShip['street']}</a></span><br></br>
-                         <span>City:<a>{defShip['city']}</a></span><br></br>
+                         <p > <span className="bold"> Name :</span> <a>{defShip['firstname']}</a></p>
+                         <p> <span className="bold"> Address : </span><a>{defShip['street']}</a></p>
+                         <p> <span className="bold">City : </span><a>{defShip['city']}</a></p>
                          {/* <span>State:<a>{defBill['region']}</a></span><br></br> */}
-                         <a>Ph no:<a>{defShip ['telephone']}</a></a>
+                         <p> <span className="bold"> Ph no :</span> <a>{defShip ['telephone']}</a></p>
+                         </div>
                 </div>
                 </div>
                 <div className="fo-addresses">

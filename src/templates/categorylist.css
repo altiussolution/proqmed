@@ -271,6 +271,7 @@ html {
   .category_container .card .tools_items .tools span {
     font-size: 14px;
     padding-right: 10px;
+    margin: 0;
   }
   .category_container .card .tools_items .tools .category-product-count {
     color: #afafaf;
@@ -1134,16 +1135,19 @@ section.breadcrums ul li a::after {
 
 .item.product_item.list_view .cart-btns {
   position: absolute;
-  top: 10%;
+  top: 20%;
   display: none !important;
   right: 5%;
   transition: 0.5s ease;
 }
 
 .item.product_item.list_view .cart-btns a.other {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #1075b7;
+  font-size: 18px;
+    margin-bottom: 10px;
+    color: #fff;
+    background: #ff7ba8;
+    border-radius: 50%;
+    padding: 10px 13px;
 }
 
 .item.product_item.list_view:hover .cart-btns{

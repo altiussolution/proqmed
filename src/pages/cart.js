@@ -385,7 +385,7 @@ const Cart = () => {
                                             <div className="side_sec">
                                                 {/* <h3>Summary</h3> */}
                                                 <h4>Cart Totals</h4>
-                                                <h7>Estimate Shipping and Tax</h7>
+                                                <h6>Estimate Shipping and Tax</h6>
                                                {checkoutDetails()}
                                                 <button className="btn btn_brown" type="button" onClick={() => navigate('/checkout')} disabled={cartItems?.length === 0}>Proceed to Checkout</button>
                                                 {/* <button className="btn btn-default" type="button" onClick={() => navigate('/')}>Continue to Shopping</button> */}
