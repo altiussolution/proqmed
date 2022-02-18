@@ -433,10 +433,8 @@ const onSubmitQuoteadd = quoteDetails => {
                
                 </div>
                 {subusers.length == 0 ? 
-                (<div className="col-lg-9 col-md-9 col-xs-12 no_data ">
-                 <div className="grid-right">
-
-                </div>
+                (<div className="No user ">
+                 
             <h1>No User found</h1>
             
             </div>) :
