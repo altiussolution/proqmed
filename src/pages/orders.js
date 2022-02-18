@@ -279,7 +279,9 @@ if(array.length>0){
         }
         const orderDetails1 = () => {
 return ( 
-    <div> <h1>Access Denied</h1></div>
+    <div className="container padd">
+                     <span className="fo-AD">Access Denied</span>
+                 </div>
 )
         }
     const orderDetails = () => {

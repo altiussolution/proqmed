@@ -318,9 +318,9 @@ const Invoice = ({ location }) => {
                 </div>
             }
         }else {
-            return <div>
-                Access Denied
-            </div>
+            return <div className="container padd">
+            <span className="fo-AD">Access Denied</span>
+        </div>
         }
        
     }

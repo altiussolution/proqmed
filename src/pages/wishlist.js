@@ -219,9 +219,7 @@ const Wishlist = () => {
                                                 <img src={empty_cart} alt={"Empty Cart"} />
                                                 <h4>No items in Wishlist</h4>
                                             </div> :
-                                                <div className="col-lg-12 col-md-12 col-xs-12">                                        
-     
-        <div className="fo-bg-white">
+                                                <div className="col-lg-12 col-md-12 col-xs-12">
                                                     {
                                                         wishList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item, index) => (
                                                             <div key={item.sku} className="product_item">
@@ -267,7 +265,7 @@ const Wishlist = () => {
                                                             </div>
                                                         ))
                                                     }
-                                                    </div>
+                                                    
                                                     
     
                                                     
@@ -311,8 +309,8 @@ const Wishlist = () => {
             }else {
                 return (
                     <Layout>
-                 <div>
-                     <span>Access Denied</span>
+                 <div className="container padd">
+                     <span className="fo-AD">Access Denied</span>
                  </div>  </Layout> 
                 )
             }
