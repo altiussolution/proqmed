@@ -6571,8 +6571,7 @@ h2.heading{
 
   color: #1C67A8;
   font-weight: 600;
-  transition: 0.4s ease;
-  opacity: 100% !important;
+  transition: 0.2s ease;
   
 }
 
@@ -7237,6 +7236,18 @@ span.fo-AD {
   display: block;
   text-align: center;
 }
+
+.button-sec {
+  text-align: right;
+}
+
+button.btn.btn.eye {
+  position: absolute;
+  bottom: 123px;
+  right: 20px;
+}
+
+
 
 /* San Styles 18022022*/
 

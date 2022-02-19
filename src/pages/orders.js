@@ -296,7 +296,7 @@ return (
 
                                     </div>
                          <div className="search orders">
-                        <input type="text" placeholder="search" onChange={e => { searchOrder(e) }}/>
+                        <input type="text" placeholder="Search" onChange={e => { searchOrder(e) }}/>
                         <i className="fa fa-search" aria-hidden="true"></i>
                     </div>
                                 </div>
