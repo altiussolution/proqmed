@@ -161,7 +161,7 @@ const funn = (data) => {
 savedperms(data)
 }
 const removeQuote = (id) => {
-    if (window.confirm("Delete the subuser?")) {
+    if (window.confirm("Would you like delete the subuser?")) {
         try {
             axios({
                 method: "delete",

@@ -149,7 +149,7 @@ const Cart = () => {
     };
 
     const resetCart = (item_id) => {
-        if (window.confirm("Delete the item?")) {
+        if (window.confirm("Would you like delete the product in cart?")) {
             deleteCart(item_id);
             setLoader(true);
             setCartItems(cartItems.filter(item => item.item_id !== item_id)) // splice may not work so using filter
