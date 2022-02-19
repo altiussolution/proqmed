@@ -61,6 +61,8 @@ const Dealproducts = () => {
  }, []);
  
  const addToList = (type,id) => {
+  if (localStorage.userToken) {
+
   // type 1 = wishlist
   // type 2 = comparelist
   let url = (type == 1 ? `${process.env.GATSBY_CART_URL_STARCARE}admin/addtocompare/2` : `${process.env.GATSBY_CART_URL_STARCARE}wishlist/addwishlist_product/`)
@@ -94,7 +96,10 @@ const Dealproducts = () => {
   } catch (err) {
     toast.error(err)
   }
-
+  }else {
+    localStorage.clear()
+    navigate("/signin")
+}
 }
 const addtoCartItems = (sku, id) => {
  if (localStorage.userToken) {

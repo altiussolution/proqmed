@@ -12,6 +12,7 @@ import logoutt from "./../assets/logout.png"
 import order from "./../assets/order.png"
 import us1 from "./../assets/us1.png"
 import Multiselect from 'multiselect-react-dropdown';
+import { Noimage } from "../assets/sample.png";
 
 const Managesub = ({location}) => {
 
@@ -32,6 +33,8 @@ const _isMounted = useRef(false);
  const [catie, setCats] = useState([]);
  const [namesedit, setNamesedit] = useState([]);
  const [catieedit, setCatsedit] = useState([]);
+ const [profilepic,setProfilepic] = useState({});
+ const [jwt, setJwt] = useState("")
  const data = useStaticQuery(graphql`
  {
    allCategory {
@@ -56,17 +59,32 @@ const _isMounted = useRef(false);
 `)
 
  useEffect(() => {
+  setJwt(localStorage.userToken);
   setCustomerId(localStorage.customer_id)
   setUsername(localStorage.user_name)
   rendercategory();
   getConversation();
+  axios({
+    method: 'get',
+    url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/list/${localStorage.email}`,
+    headers: {
+      'Authorization': `Bearer ${jwt}`
+  }
+  }).then((res) => {
+    if (res.status == 200) {
+    setProfilepic(res.data[0]);
+    }
+  }).catch((err) => {
+    console.error(err);
+  })
   if(location.state['subuser_firstname']){
   console.log(location.state.subuser_id)
   setQuoteForm(location.state)
   setQuotePopupedit(true)
   setCatsedit(location.state['category_permissions'])
   setNamesedit(location.state['allowed_permissions'])
-  statusInedit(location.state['subuser_status'])
+  statusInedit(location.state['account_status'])
+  console.log(location.state)
  }else {
   setQuotePopupadd(true)
  }
@@ -268,8 +286,10 @@ return (
     <div className="row">
         <div className="col-lg-4 col-md-12 col-sm-12">
             <div className="profile-sec">
-                <img src="images/sample.png" alt=""/>
-                <div className="name">
+            <div className="fo-deflx">
+            {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}
+            </div>
+          <div className="name">
                     <span>Hello</span>
                     <p>{username}</p>
                 </div>

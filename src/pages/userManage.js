@@ -15,6 +15,8 @@ import account from "./../assets/account.png"
 import logoutt from "./../assets/logout.png"
 import order from "./../assets/order.png"
 import us1 from './../assets/us1.png';
+import { Noimage } from "../assets/sample.png";
+
 const UserManage = () => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(4);
@@ -42,6 +44,8 @@ const UserManage = () => {
  const [catie, setCats] = useState([]);
  const [username, setUsername] = useState();
  const [disable, setDisable] = useState(false);
+ const [profilepic,setProfilepic] = useState({});
+ const [jwt, setJwt] = useState("")
 
  const data = useStaticQuery(graphql`
  {
@@ -66,6 +70,7 @@ const UserManage = () => {
  }
 `)
  useEffect(() => {
+    setJwt(localStorage.userToken);
      setCustomerId(localStorage.customer_id)
      console.log(localStorage.customer_id)
      setUsername(localStorage.user_name)
@@ -73,6 +78,19 @@ const UserManage = () => {
     getQuotes();
     
     console.log(data)
+    axios({
+        method: 'get',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/list/${localStorage.email}`,
+        headers: {
+          'Authorization': `Bearer ${jwt}`
+      }
+      }).then((res) => {
+        if (res.status == 200) {
+        setProfilepic(res.data[0]);
+        }
+      }).catch((err) => {
+        console.error(err);
+      })
  }, []);
 
  const getQuotes = async () => {
@@ -397,9 +415,11 @@ const onSubmitQuoteadd = quoteDetails => {
            <div className="container-fluid grey">
 <div className="container padd">
     <div className="row">
-        <div className="col-lg-4 col-md-12 col-sm-12">
+        <div className="col-lg-4 col-md-12 col-sm-12"> 
             <div className="profile-sec">
-                <img src="images/sample.png" alt=""/>
+            <div className="fo-deflx">
+            {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}
+            </div>
                 <div className="name">
                     <span>Hello</span>
                     <p>{username}</p>

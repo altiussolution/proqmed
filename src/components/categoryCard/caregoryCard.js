@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FaRegHeart } from 'react-icons/fa';
 import { IoIosGitCompare } from "react-icons/io";
 import {getWLCount, wishListCount ,viewCartItems,getCartCount} from './../../utils/apiServices'
+import { navigate } from "gatsby";
 
 export default function CategoryCard({ data: product, dataClass }) {
   
@@ -71,6 +72,7 @@ export default function CategoryCard({ data: product, dataClass }) {
   },[])
 
   const addToList = (type) => {
+    if (localStorage.userToken) {
     let url = (type == 1 ? `${process.env.GATSBY_CART_URL_STARCARE}admin/addtocompare/2` : `${process.env.GATSBY_CART_URL_STARCARE}wishlist/addwishlist_product/`)
     let message = (type == 1 ? 'Sucessfully added to  compare list' : 'Sucessfully added to wish list')
     let productData = {
@@ -102,10 +104,14 @@ export default function CategoryCard({ data: product, dataClass }) {
     } catch (err) {
       toast.error(err)
     }
-
+  }  else {
+    localStorage.clear()
+    navigate("/signin")
+}
   }
 
   const addItemToCart = (sku,product) =>{
+    if (localStorage.userToken) {
     const cartItem = {
       "cartItem": {
         "sku": sku,
@@ -142,6 +148,10 @@ export default function CategoryCard({ data: product, dataClass }) {
             console.error(err)
           }
         }
+      }else {
+        localStorage.clear()
+        navigate("/signin")
+    }
   }
 
 

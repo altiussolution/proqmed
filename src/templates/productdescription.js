@@ -61,6 +61,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
 
 
   useEffect(() => {
+    console.log(proDescription)
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
     //setQuoteId(localStorage.cartId);
@@ -258,6 +259,8 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
   }
 
   const addItemToCart = (cartItem) => {
+    if (localStorage.userToken) {
+
     let cartData;
     if (proDescription.items.config_options) {
       cartData = {
@@ -311,6 +314,10 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
           }
         }
       }
+    }else {
+      localStorage.clear()
+      navigate("/signin")
+  }
     //}
   }
 
@@ -358,6 +365,8 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
 
 
   const addToList = (type) => {
+    if (localStorage.userToken) {
+
     let url = (type == 1 ? `${process.env.GATSBY_CART_URL_STARCARE}admin/addtocompare/2` : `${process.env.GATSBY_CART_URL_STARCARE}wishlist/addwishlist_product/`)
     let message = (type == 1 ? 'Sucessfully added to compare list' : 'Sucessfully added to wish list')
     let productData = {
@@ -387,7 +396,10 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     } catch (err) {
       toast.error(err);
     }
-
+  }else {
+    localStorage.clear()
+    navigate("/signin")
+}
   }
 
 
@@ -604,6 +616,8 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                       <div className="prd_note">
                         <p>
                           Brand: <a href="/filterBrands">{proDescription.Brand}</a>
+                          {/* <Link to="/brandedProducts/" state={{ brand_id: data.brand_id }} ><img className="product_img" src={data.image} /></Link> */}
+
                         </p>
 
                         {proDescription.items.config_options ?

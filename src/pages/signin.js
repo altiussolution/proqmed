@@ -75,11 +75,15 @@ const SignIn = (props) => {
             if(response.data=="invalid Username and Password"){
               setLoader(false);
               toast.error("Invalid Username & Password")
+            }
+            if(response.data=="Account Disabled"){
+              setLoader(false);
+              toast.error('Your Account Disabled')
+
             }else {
               setLoader(false);
               toast.error('Admin need to approve you')
             }
-            
           }
           }
         })
