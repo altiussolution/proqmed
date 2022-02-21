@@ -140,7 +140,7 @@ const onSubmitQuote = quoteDetails => {
          "firstname": quoteDetails['firstname'],
          "lastname": quoteDetails['lastname'],
          "email": quoteDetails['email'],
-         "password": quoteDetails['password'],
+        //  "password": quoteDetails['password'],
          "allowedpermissions": namesedit,
          "categorypermissions": catieedit,
          "status" : statysedit
@@ -488,20 +488,16 @@ return (
                             </div>
         
                            
-                            <div className="form-group">
-                              {/* <div className="input-group"> */}
+                            {/* <div className="form-group">
                                     
                                     <input className="form-control" id="usr" placeholder="Password *" type={passwordShown ? "text" : "password"}  name="password"  ref={register({
                                         required: true
                                     })}  defaultValue={(quoteForm['subuser_password'])}/>
-      {/* type={passwordShown ? "text" : "password"} <div className="input-group-append">
-    <span className="input-group-text" id="basic-addon2"><i className="fa fa-eye-slash" aria-hidden="true" onClick={togglePasswordVisiblity}></i></span>
-  </div> */}
+     
                                  <button className="btn btn eye" type="button" onClick={togglePasswordVisiblity}>{passwordShown ? <AiFillEye />: <AiFillEyeInvisible />} </button>
                                  
                                     {errors.password && errors.password.type === 'required' && <span className="error">Password is required</span>}
-                                  {/* </div> */}
-                                    </div>
+                                    </div> */}
                                   <div className="form-group">
                                    
                                      

@@ -98,6 +98,8 @@ const renderDeals = ()=>{
   <div className="card" key={`${data.sub_category}_${index}`}>
       <h5 className="title_link"><Link to={getCategoryURL(data.sub_category)}>{data.sub_category.name}</Link></h5>
       {/*<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>*/}
+       <p>{data.sub_category.description}</p>
+
       <ul>
       {data.sub_category.sub_category_sub.slice(0,4).map((value,index)=>(
         

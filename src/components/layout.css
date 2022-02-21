@@ -7243,12 +7243,30 @@ span.fo-AD {
 
 button.btn.btn.eye {
   position: absolute;
-  bottom: 123px;
-  right: 20px;
+  bottom: 0px;
+  right: 10px;
 }
 
+.form-group {
+  margin-bottom: 1rem;
+  position: relative;
+}
 
+p.fo-ia {
+  color: #e92326;
+  margin: 0;
+}
 
+p.user_link a.ml-2 {
+  margin-left: 0 !important;
+}
+
+p.user_link.fo-right {
+  display: block;
+  text-align: right;
+  margin-top: -7px;
+  padding: 0;
+}
 /* San Styles 18022022*/
 
 .itm_list_holder{

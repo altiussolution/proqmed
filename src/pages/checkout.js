@@ -248,8 +248,8 @@ const CheckOut = ({location}) => {
                 "addressInformation": {
                     "billingAddress": shippingAddress[selAddIndex],
                     "shippingAddress": shippingAddress[selAddIndex],
-                    "shippingCarrierCode": "flatrateone",
-                    "shippingMethodCode": "flatrate"
+                    "shippingCarrierCode": "apptha",
+                    "shippingMethodCode": "apptha"
                 }
             }
 
