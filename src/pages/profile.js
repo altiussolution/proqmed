@@ -293,6 +293,8 @@ const Numbersubmit = num => {
                     //handleCloseQuote()
                    // localStorage.clear();
                     //navigate('/profile')
+                   navigate('/signin')
+
                 }
             }).catch((err)=>{
                 console.log(err);

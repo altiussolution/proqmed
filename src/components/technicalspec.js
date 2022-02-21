@@ -21,7 +21,7 @@ const Technicalspec = ({ specification, attachment }) => {
   useEffect(() => {
     setjwt(localStorage.userToken)
     getReview();
-console.log(specification.items.id)
+console.log(specification)
 setitemid(specification.items)
 
   }, []);

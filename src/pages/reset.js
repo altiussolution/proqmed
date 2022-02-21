@@ -7,14 +7,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import sign_bg from './../assets/bg.jpg';
 import PageLoader from "../components/loaders/pageLoader";
-
+import { AiFillEye } from "react-icons/ai";
+import { AiFillEyeInvisible } from "react-icons/ai";
 const Resett = ({location}) => {
 
   const { register, handleSubmit, errors } = useForm();
   const _isMounted = useRef(false);
   const [isButton, setButton] = useState(false);
   const [loader, setLoader] = useState(false);
- 
+  const [passwordShown, setPasswordShown] = useState(false);
+
 
   useEffect(() => {
    return () => { _isMounted.current = true }
@@ -64,7 +66,9 @@ const Resett = ({location}) => {
   };
 
   
-
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
   
 
   return (
@@ -78,7 +82,7 @@ const Resett = ({location}) => {
         <div className="wrapper">
           <div className="login_box">
             <div className="col-lg-6 col-md-6 col-xs-12 left_side">
-              <img src={sign_bg} alt={"Laptop"} />
+              <img src={sign_bg} alt={"Laptop"} /> 
             </div>
 
             <div className="col-lg-6 col-md-6 col-xs-12 right_side">
@@ -97,6 +101,8 @@ const Resett = ({location}) => {
       
                   })} />
                   {errors.password && errors.password.type === 'required' && <span>Password field is required</span>}
+                  <button className="btn btn heart" type="button" onClick={togglePasswordVisiblity}>{passwordShown ? <AiFillEye />: <AiFillEyeInvisible />} </button>
+
                   {/* <input className="form-control" name="confirmpassword" placeholder="Confirm Password *" type="password" ref={register({
                     required: true,
       

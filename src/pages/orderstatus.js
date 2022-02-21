@@ -258,25 +258,25 @@ const Invoice = ({ location }) => {
                             <h6>Shipping Address</h6>
 
 
-                            <span>{items.Customer_address[0].firstname}</span><br></br>
-                            <span>{items.Customer_address[0].street},{items.Customer_address[0].city},{items.Customer_address[0].region}</span>
+                            <a>{items.Customer_address[0].firstname}</a><br></br>
+                            <a>{items.Customer_address[0].street},{items.Customer_address[0].city},{items.Customer_address[0].region}</a>
 
 
                         </div>
                         <div className="fo-btm">
                                 <h6>Shipping Method</h6>
-                                <span>{items.shipping_method}</span>
+                                <a>{items.shipping_method}</a>
                             </div>
                             <div className="fo-btm">
                                 <h6>Billing Address</h6>
-                                <span>{items.Customer_address[0].firstname}</span><br></br>
-                            <span>{items.Customer_address[0].street},{items.Customer_address[0].city},{items.Customer_address[0].region}</span>
+                                <a>{items.Customer_address[0].firstname}</a><br></br>
+                            <a>{items.Customer_address[0].street},{items.Customer_address[0].city},{items.Customer_address[0].region}</a>
                             </div>
                             <div className="fo-btm">
                                 <h6>Payment Method</h6>
-                                <span>{items.payment_method}</span>
+                                <a>{items.payment_method}</a>
                             </div></>
-                 : <span></span>)
+                 : <a></a>)
                 })
             }   
          </div>

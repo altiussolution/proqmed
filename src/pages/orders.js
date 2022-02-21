@@ -337,8 +337,7 @@ return (
                                                             {re && <button type="button" className="btn btn-danger square" onClick={() => reorder(items[0].order_id)}>ReOrder</button>}
                                                             {outre && <button className="btn btn-danger" onClick={() => reorder(items[0].order_id)}>ReOrder</button>}
                                                             <Link to="/orderstatus" state={{ order_id: items[0].order_id }}><button className="btn btn-primary">View Order</button></Link>
-                                                            {/* {orders.status !== 'canceled' && <button className="btn btn outline" type="button" onClick={() => cancelOrder(orders.order_id)}>Cancel Order</button>} */}
-
+                                                            {items[0].status !== 'canceled' && <button className="btn btn outline" type="button" onClick={() => cancelOrder(items[0].order_id)}>Cancel Order</button>}
                                                             {attach_data && <a><i className="fa fa-sticky-note" aria-hidden="true" onClick={handleClick}></i>Invoice
                                                                 <div>
                                                                     {attach_data ?

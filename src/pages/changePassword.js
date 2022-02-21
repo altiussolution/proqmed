@@ -62,7 +62,7 @@ const ChangePassword = () => {
                                                 <div className="inline_form">
                                                 <div className="form-group">
                                                     <label>Enter Old Password</label>
-                                                    <input type="password" className="form-control" 
+                                                    <input type="text" className="form-control" 
                                                     id="currentPassword" name="currentPassword"  ref={register({    
                                                         required: true,
                                                         minLength : 8 ,
@@ -74,7 +74,7 @@ const ChangePassword = () => {
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Enter New Password</label>
-                                                    <input type="password" className="form-control" 
+                                                    <input type="text" className="form-control" 
                                                     id="newPassword" name="newPassword"  ref={register({    
                                                         required: true,
                                                         minLength : 8 ,
@@ -87,7 +87,7 @@ const ChangePassword = () => {
     
                                                 <div className="form-group">
                                                     <label>Enter Confirm Password</label>
-                                                    <input type="password" className="form-control" 
+                                                    <input type="text" className="form-control" 
                                                     id="confirmPassword" name="confirmPassword"  ref={register({    
                                                         required: true,
                                                         minLength : 8 ,
