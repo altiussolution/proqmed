@@ -2463,10 +2463,7 @@ nav.bulkorder, .middlenavbar a.nav-link,.bottom_header, .upper_header .d-flex.my
   padding: 0 10px;
   margin-bottom: 10px;
 }
-.product_view .product_details .button_sec button.btn_gray {
-  margin: 0!important;
-  margin-bottom: 10px!important;
-}
+
 .cart_top {
   padding: 10px 20px;
   margin-bottom: 0px;
@@ -7278,4 +7275,55 @@ button.btn.btn.eye {
 
 .col-lg-12.col.slider_row .slick-slider.slick-initialized .slick-list .card a.prod-title {
   font-size: 21px;
+}
+
+@media only screen and (max-width:600px) {
+
+  .content_wrapper {
+    padding: 20px !important;
+}
+
+.catgoryPage .category_container .cat_scroll #products .product_item .caption .product_text, .category_container .cat_scroll #products.catgoryPage .product_item .caption .product_text {
+  justify-content: center;
+}
+
+.col-lg-5.col-md-8.col-xs-12.pr-5.product_details {
+  padding: 0;
+}
+
+.product_view .product_details .product_qty {
+  display: flex !important;
+  margin-right: 10px;
+}
+
+.product_qty .button_sec button.btn.btn_gray{
+  margin-right: 10px I !important;
+}
+
+.product_view .product_details .button_sec{
+  margin: 0 !important;
+  margin-right: 10px;
+}
+
+.row.brandsec{
+
+padding:0 !important;
+}
+
+.popular_section.trending_products .card .image_wrapper{
+  height: 100% !important;
+}
+
+.add-banner{
+  padding: 20px 0 !important;
+}
+
+.feature_section{
+  padding: 20px 0 !important;
+}
+
+.menu_top {
+  flex-wrap: wrap;
+}
+
 }

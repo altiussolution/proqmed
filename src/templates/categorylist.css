@@ -997,8 +997,9 @@ section.breadcrums ul li a::after {
   width: 100%;
 }
 .category_container .card .tools_items .tools {
-  width: 100%;
+  width: auto;
 }
+
 }
 
 .title_sub {
