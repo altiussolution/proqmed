@@ -20,9 +20,9 @@ const dealofday = {
   infinite: true,
   responsive: [
     {
-      slidesToShow:1,
-      breakpoint: 300
-
+      
+      breakpoint: 600,
+      slidesToShow:1
     },
 
   ]
