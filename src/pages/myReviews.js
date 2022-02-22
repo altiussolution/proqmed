@@ -9,7 +9,7 @@ import { Link } from "gatsby";
 import { TablePagination } from '@mui/material';
 import { checkLogin } from "./../services/headerServices";
 import StarRatings from 'react-star-ratings';
-import { Noimage } from "../assets/sample.png";
+import noimage from "./../assets/noimage.png"
 import account from "./../assets/account.png"
 import logoutt from "./../assets/logout.png"
 import order from "./../assets/order.png"
@@ -81,7 +81,7 @@ return (
         <div className="col-lg-4 col-md-12 col-sm-12">
             <div className="profile-sec">
             <div className="fo-deflx">
-            {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}
+            {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={noimage}/></div>}
             </div>
                 <div className="name">
                     <span>Hello,</span>

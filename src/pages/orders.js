@@ -152,6 +152,7 @@ const filterDataa =(val,datas)=> {
     }
 }
     const filterData =(val,datas)=> {
+        console.log(val.target.checked,datas)
         if(val.target.checked){
             array.push(datas)
             let data = {

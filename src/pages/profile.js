@@ -12,7 +12,7 @@ import logoutt from "./../assets/logout.png"
 import order from "./../assets/order.png"
 import Modal from 'react-bootstrap/Modal';
 import { AiOutlineClose } from "react-icons/ai";
-import { Noimage } from "../assets/sample.png";
+import noimage from "./../assets/noimage.png"
 
 const Profile = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -346,7 +346,7 @@ const closeEmail = () =>{
         <div className="col-lg-4 col-md-12 col-sm-12">
             <div className="profile-sec">
               <div className="fo-deflx">
-              {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}   
+              {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={noimage}/></div>}   
 
             <div className="fo-center">
               <input className="btm" type="file" onChange={(e) => {uploadImage(e);}}/>

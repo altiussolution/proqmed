@@ -15,7 +15,7 @@ import account from "./../assets/account.png"
 import logoutt from "./../assets/logout.png"
 import order from "./../assets/order.png"
 import us1 from './../assets/us1.png';
-import { Noimage } from "../assets/sample.png";
+import noimage from "./../assets/noimage.png"
 
 const UserManage = () => {
     const [page, setPage] = React.useState(0);
@@ -418,7 +418,7 @@ const onSubmitQuoteadd = quoteDetails => {
         <div className="col-lg-4 col-md-12 col-sm-12"> 
             <div className="profile-sec">
             <div className="fo-deflx">
-            {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}
+            {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={noimage}/></div>}
             </div>
                 <div className="name">
                     <span>Hello</span>
