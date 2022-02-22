@@ -288,7 +288,9 @@ return (
         if(p===true || outp===true){
             return ( 
             <>
-            <div className="col-lg-9 col-md-9 col-xs-12 no_data ">
+            <div className="col-lg-9 col-md-9 col-xs-12 ">
+
+                <div className="fo-bg-white po">
                  <div className="grid-right">
                  <div className="top">
                                     <div className="header">
@@ -365,6 +367,8 @@ return (
                                 </div></>
                     
                     }
+
+</div>
              </div>
          
         </>

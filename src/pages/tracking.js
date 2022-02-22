@@ -48,10 +48,31 @@ const Tracking =  () => {
 //    console.log(track.order_status)
 
     if (track.order_status == "complete") {
-          return( <ul className="progressbar"> <li className="active">Order received by supplier <span>{track.order_created_date}</span></li>
-          <li className="active">Order Confirmed <span>{track.order_created_date}</span></li>
-          <li className="active">Out For Delivery <span>{track.order_updated_date}</span></li>
-          <li className="active">Delivered<span>{track.order_shipped_date}</span></li></ul>)
+          return( <ul className="progressbar"> <li className="active">
+            <div className="fo-progress">
+            <h6>Order received by supplier </h6>
+            <p>{track.order_created_date}</p>
+            </div>
+            </li>
+            
+          <li className="active">
+          <div className="fo-progress">
+          <h6>Order Confirmed </h6>
+            <p>{track.order_created_date}</p>
+            </div>
+            </li>
+          <li className="active">
+          <div className="fo-progress">
+            <h6>Out For Delivery </h6>
+            <p>{track.order_updated_date}</p>
+            </div>
+            </li>
+          <li className="active">
+          <div className="fo-progress">
+           <h6>Delivered</h6> 
+            <p>{track.order_shipped_date}</p>
+            </div>
+            </li></ul>)
       } else if (track.order_status == "pending") {
         return( <ul className="progressbar"> <li className="active">Order received by supplier <span>{track.order_created_date}</span></li>
           <li className="active">Order Confirmed <span>{track.order_created_date}</span></li>

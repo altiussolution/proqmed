@@ -382,7 +382,7 @@ const Invoice = ({ location }) => {
                                     {orderProductDetails()}
                                 </Tab>
                                 <Tab eventKey="spec" title="Invoice Details"><br></br>
-                                    <div className="order_note">
+                                    <div className="diff-note">
                                         {attach_data.length !=0 ?
                                             <a href={attach_data} download>Pdf Download</a> : <span>This order Invoice not Available now </span>
                                         }

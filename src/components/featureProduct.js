@@ -19,7 +19,7 @@ const feature_slide = {
   speed: 1000,
   slidesToShow:5,
   slidesToScroll: 3,
-  infinite: true,
+  infinite: false,
   responsive: [
     {
       breakpoint: 600,

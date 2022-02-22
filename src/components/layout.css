@@ -1959,7 +1959,8 @@ ul.newsletter .form-control {
 
   .mobile_header.d-lg-none.d-md-block button svg {
     position: absolute;
-    right: -18px;
+    right: 0px;
+    z-index: 99999;
 }
   .Changepwd_form .form-group
   {
@@ -7244,7 +7245,15 @@ button.btn.btn.eye {
   right: 20px;
 }
 
+.fo-progress h6 {
+  font-size: 16px;
+}
 
+.fo-progress p {
+  font-size: 14px;
+  color: #939393;
+  font-weight: 400;
+}
 
 /* San Styles 18022022*/
 
@@ -7278,10 +7287,6 @@ button.btn.btn.eye {
 }
 
 @media only screen and (max-width:600px) {
-
-  .content_wrapper {
-    padding: 20px !important;
-}
 
 .catgoryPage .category_container .cat_scroll #products .product_item .caption .product_text, .category_container .cat_scroll #products.catgoryPage .product_item .caption .product_text {
   justify-content: center;
@@ -7324,6 +7329,147 @@ padding:0 !important;
 
 .menu_top {
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+.fo-bg-white.po {
+  padding: 15px !important;
+}
+
+.fo-bg-white .top {
+  flex-direction: column;
+}
+
+.search.orders {
+  width: 100%;
+}
+.fo-bg-white{
+  margin-top: 15px;
+  padding: 15px !important;
+}
+
+.card.orderstatus {
+  overflow: scroll;
+}
+
+.container.padd.OS .nav-tabs .nav-link {
+  width: 100%;
+  text-align: center;
+}
+
+.bg.OS{
+  margin-top: 15px;
+}
+
+.diff-note {
+  text-align: center;
+  color: #f63434;
+}
+
+main.contactus_page .container{
+  padding: 15px;
+}
+
+.contactus_page form.contact_form{
+  padding: 15px;
+}
+
+.fo-seperate {
+  margin-top: 15px;
+}
+
+ul.desktop-menu {
+  display: none;
+}
+
+ul.mobile-menu {
+  margin: 15px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+ul.mobile-menu li {
+  text-align: left;
+  font-size: 16px;
+  margin: 10px 0px;
+}
+
+.content_wrapper.pad {
+  padding: 20px;
+}
+
+.bulkorder.my_account a.btn.dropbtn.carttop {
+  width: 80%;
+  margin-top: 4px;
+}
+
+.bulkorder.my_account .btn.dropbtn {
+  margin-left: 0 !important;
+}
+
+.bulkorder .dropdown:hover .dropdown-content {
+  left: 0;
+}
+
+.my-profile .form-content input {
+  width: -webkit-fill-available;
+  margin-right: 0;
+  margin-bottom: 10px;
+}
+
+.my-profile .form-content {
+  display: block ;
+}
+
+.fo-scrol {
+    overflow-x: scroll;
+}
+
+.edit-address .fo-info .right {
+  float: unset;
+  margin: 10px 0;
+  margin-bottom: 0;
+}
+
+
+/* Prgress bar tracking//////////////////////////////////////////////////////////////// */
+
+.progressbar li {
+  width: 100%;
+  text-align: left;
+}
+
+.progressbar li::before {
+  margin: unset;
+  margin-left: 10px;
+  margin-bottom: 50px;
+}
+
+.fo-progress {
+  position: absolute;
+  margin-left: 40px;
+}
+
+.progressbar li::after {
+  width: 1%;
+  left: 18px;
+  top: -50px;
+  height: 60px;
+}
+
+.tr-bottom {
+  height: 310px;
+}
+
+.fo-progress h6 {
+  font-size: 16px;
+}
+
+.fo-progress p {
+  font-size: 14px;
+  color: #939393;
+  font-weight: 400;
 }
 
 }

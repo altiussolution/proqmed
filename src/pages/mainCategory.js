@@ -103,7 +103,7 @@ useEffect(() => {
   return (
     <>
       <Layout className="catgoryPage">
-        <div className="content_wrapper">
+        <div className="content_wrapper pad">
           <div className="container">
             <div className="page-title">
               <h1 className="page-title"><span>All Categories</span>
