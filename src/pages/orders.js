@@ -146,6 +146,11 @@ const filtercall = (data) =>{
         console.error(`An error occured ${err}`)
     }   
 }
+const filterDataa =(val,datas)=> {
+    if(val.target.checked){
+
+    }
+}
     const filterData =(val,datas)=> {
         if(val.target.checked){
             array.push(datas)
@@ -307,7 +312,7 @@ return (
                              
 
                                 <div>
-                                    {orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((items, index) => (
+                                    {orders.slice(0).reverse().slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((items, index) => (
                                         <div className="order-details" key={index}>
                                            
 
@@ -336,8 +341,8 @@ return (
                                                         <div className="buttons-or">
                                                             {re && <button type="button" className="btn btn-danger square" onClick={() => reorder(items[0].order_id)}>ReOrder</button>}
                                                             {outre && <button className="btn btn-danger" onClick={() => reorder(items[0].order_id)}>ReOrder</button>}
-                                                            <Link to="/orderstatus" state={{ order_id: items[0].order_id }}><button className="btn btn-primary">View Order</button></Link>
-                                                            {items[0].status !== 'canceled' && <button className="btn btn outline" type="button" onClick={() => cancelOrder(items[0].order_id)}>Cancel Order</button>}
+                                                            <Link to="/orderstatus" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}><button className="btn btn-primary">View Order</button></Link>
+                                                            {items[0].status !== 'canceled' && items[0].status !== 'complete' && <button className="btn btn outline" type="button" onClick={() => cancelOrder(items[0].order_id)}>Cancel Order</button>}
                                                             {attach_data && <a><i className="fa fa-sticky-note" aria-hidden="true" onClick={handleClick}></i>Invoice
                                                                 <div>
                                                                     {attach_data ?
@@ -432,11 +437,11 @@ return (
                     
                   </div> <span className="way">On the way</span> </a></li>
                 <li><a ><span><div className="form-check">
-                    <input type="checkbox" className="form-check-input" id="check1" name="option1" value="complete"  onChange={e => { filterData1(e,'complete') }}/>
+                    <input type="checkbox" className="form-check-input" id="check1" name="option1" value="complete"  onChange={e => { filterData(e,'complete') }}/>
                     
                   </div></span> <span className="way">Delivered</span></a></li>
                 <li><a> <span><div className="form-check">
-                    <input type="checkbox" className="form-check-input" id="check1" name="option1" value="canceled"  onChange={e => { filterData2(e,'canceled') }}/>
+                    <input type="checkbox" className="form-check-input" id="check1" name="option1" value="canceled"  onChange={e => { filterData(e,'canceled') }}/>
                     
                   </div></span><span className="way">Canceled</span></a></li>
                 

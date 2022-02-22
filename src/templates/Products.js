@@ -81,7 +81,7 @@ const Products = ({ pageContext, location , props }) => {
               selectRes.push(response[0])
             }
             setProducts(selectRes);
-            console.log(selectRes)
+            console.log(selectRes) 
             // setLoading(false);
           }
       }).catch((err) => {
@@ -118,6 +118,10 @@ const Products = ({ pageContext, location , props }) => {
             prod[0][1].push(prod[0][0])
             let proProduct = prod[0][1];
             productList.push(proProduct);
+          }
+          if(response.data[0]=[]){
+            setLoading(false);
+
           }
           // setProducts(productList);         
           // setLoading(false);

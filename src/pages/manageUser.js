@@ -401,7 +401,7 @@ return (
                                        />
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
                                 </div>
-                                <div className="form-group form-grp-space">
+                                {/* <div className="form-group form-grp-space">
                                     <label htmlFor="status">Status</label>
                                      <Switch
                                   onChange={handleChange}
@@ -409,7 +409,7 @@ return (
                                  className="react-switch"
         />
                                     {errors.status && errors.status.type === 'required' && <span className="error">Status is required</span>}
-                                </div>
+                                </div> */}
                     </div>
 
                     </div>

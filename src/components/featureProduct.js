@@ -15,18 +15,30 @@ import Glov from "./../assets/glov.png"
 import cart from './../assets/ic_cart_top.png';
 
 const feature_slide = {
+  // autoplay: false,
+  // speed: 1000,
+  // slidesToShow:5,
+  // slidesToScroll: 3,
+  // infinite: true,
+  // responsive: [
+  //   {
+  //     breakpoint: 600,
+  //     settings: {
+  //       slidesToShow: 1,
+  //       slidesToScroll: 1
+  //     }
+  //   },
+
+  // ]
   autoplay: false,
   speed: 1000,
   slidesToShow:5,
-  slidesToScroll: 3,
-  infinite: true,
+  slidesToScroll: 1,
+  infinite: false,
   responsive: [
     {
+      slidesToShow:5,
       breakpoint: 600,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
     },
 
   ]

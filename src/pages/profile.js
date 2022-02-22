@@ -12,6 +12,7 @@ import logoutt from "./../assets/logout.png"
 import order from "./../assets/order.png"
 import Modal from 'react-bootstrap/Modal';
 import { AiOutlineClose } from "react-icons/ai";
+import { Noimage } from "../assets/sample.png";
 
 const Profile = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -142,9 +143,12 @@ const Namesubmit = Nameval =>{
         data: data,
     })
         .then(function (response) {
+          console.log(response)
+          //localStorage.setItem('uname', response.data[0]['name'])
+
             toast.success('Name Updated Successfully')
             Naming(false)
-                        getProfile()
+             getProfile()
         })
         .catch(function (response) {
             toast.error('An error occured please contact admin')
@@ -342,7 +346,8 @@ const closeEmail = () =>{
         <div className="col-lg-4 col-md-12 col-sm-12">
             <div className="profile-sec">
               <div className="fo-deflx">
-              {profilepic.logo ? <img src={profilepic.logo}/>: <div></div>}
+              {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}   
+
             <div className="fo-center">
               <input className="btm" type="file" onChange={(e) => {uploadImage(e);}}/>
               </div>

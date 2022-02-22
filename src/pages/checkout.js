@@ -103,7 +103,7 @@ const CheckOut = ({location}) => {
                                 </div>
                             </div>
                             <div className="product_item_price">
-                                <span className="price">${item.price}</span>
+                                <span className="price">${Math.round(item.price).toFixed(2)}</span> 
                             </div>
                         </div>
 

@@ -71,7 +71,8 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
       Orderstats(orderhis)
       
     }
-    setName(localStorage.getItem('user_name'))
+   setName(localStorage.getItem('user_name'))
+    
     window.addEventListener('scroll', isSticky);
     return () => {
         window.removeEventListener('scroll', isSticky);
@@ -621,7 +622,7 @@ const isSticky = (e) => {
 
 
 
-      <Modal
+      {/* <Modal
         show={show}
         onHide={handleClose}
         backdrop="static"
@@ -635,7 +636,6 @@ const isSticky = (e) => {
           <div className="profile_sec">
             <div className="profile_pic">
             {profilepic.logo ? <img src={`data:image/png;base64,${profilepic.logo}`}/>: ''}
-              {/* <img src={profilepic.logo} /> */}
               
               <input type="file" onChange={onFileChange}/>
               <button onClick={onFileUpload}>
@@ -666,7 +666,7 @@ const isSticky = (e) => {
             </Table>
           </div>
         </Modal.Body>
-      </Modal>
+      </Modal> */}
 
 
       <ToastContainer
