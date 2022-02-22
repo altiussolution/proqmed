@@ -595,7 +595,7 @@ const isSticky = (e) => {
               </div>
             </Navbar> */}
             <div className="menu_botm">
-              <ul>
+              <ul className="desktop-menu">
                   {/* <li> <Nav.Link><Link to="/">Home</Link></Nav.Link></li>
                   <li> <Nav.Link><Link to="/mainCategory">Shop</Link></Nav.Link></li>               
                   <li> <Nav.Link><Link to="/aboutUs">About</Link></Nav.Link></li>

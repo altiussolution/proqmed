@@ -33,11 +33,11 @@ const feature_slide = {
   autoplay: false,
   speed: 1000,
   slidesToShow:5,
-  slidesToScroll: 1,
+  slidesToScroll: 3,
   infinite: false,
   responsive: [
     {
-      slidesToShow:5,
+      slidesToShow:1,
       breakpoint: 600,
     },
 

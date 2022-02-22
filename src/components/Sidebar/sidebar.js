@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link, navigate, useStaticQuery } from "gatsby";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { getCategoryURL } from "../../utils/url";
-import { logout } from "./../../services/headerServices";
+import { logout ,checkLogin} from "./../../services/headerServices";
+
 
 const Sidebar = () => {
 
 
   const [isLoged, setIsLoged] = useState(false);
+  const [isuserlogged, setIsLogged] = useState(false);
 
   const data = useStaticQuery(graphql`
   {
@@ -36,13 +38,34 @@ const Sidebar = () => {
 
 
   useEffect(() =>{
+    setIsLogged(checkLogin());
 
     if(localStorage.userToken){
       setIsLoged(true);
     }
 
   }, [])   
-
+  const navigateOnclick = (value) => {
+    if (isuserlogged) {
+      navigate(value)
+    } 
+    // else {
+    //   navigate('/signin')
+    // }
+  }
+  const navigateOnclick2 = (value) => {
+    if (isuserlogged) {
+      navigate(value)
+    } 
+    else {
+      navigate('/signin')
+    }
+  }
+  const navigateOnclick1 = (value) => {
+   
+      navigate(value)
+ 
+  }
   const rendercategory = () =>{
     let allCategory = data.allCategory.edges;
     const elements_in_each_row = Math.round(allCategory.length / 3);
@@ -89,7 +112,23 @@ const Sidebar = () => {
             </li>}
           </ul>
         </div>
-
+        <div className="mobile-menu-wrapper">
+              <ul className="mobile-menu">
+                  {/* <li> <Nav.Link><Link to="/">Home</Link></Nav.Link></li>
+                  <li> <Nav.Link><Link to="/mainCategory">Shop</Link></Nav.Link></li>               
+                  <li> <Nav.Link><Link to="/aboutUs">About</Link></Nav.Link></li>
+                  <li><Link to="/contact">Contact</Link></li>
+                  <li><Link to="/tracking">Order Tracking</Link></li>
+                  <li><Link to="/myAddress">My Address</Link></li> */}
+                   <li onClick={() => { navigateOnclick1('/') }}><a>Home</a></li>
+                  <li onClick={() => { navigateOnclick1('/mainCategory') }}><a>Shop</a></li> 
+                  <li onClick={() => { navigateOnclick1('/aboutUs') }}><a >About</a></li>
+                  <li onClick={() => { navigateOnclick1('/contact') }}><a >Contact</a></li>
+                  <li onClick={() => { navigateOnclick1('/tracking') }}><a >Order Tracking</a></li>
+                  <li onClick={() => { navigateOnclick2('/myAddress') }}><a>My Address</a></li>                 
+              </ul>
+      
+            </div>
         <div className="sidenav_menus">
           {rendercategory()}
         </div>
@@ -125,6 +164,6 @@ const Sidebar = () => {
     </div>
   )
 
-}
+} 
 
 export default Sidebar;

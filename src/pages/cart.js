@@ -293,7 +293,7 @@ const Cart = () => {
     const showCartItems = () => {
 
         return (
-            <div>
+            <div className="fo-scrol">
               <table className="table table-striped">
               <thead>
                 <tr>
@@ -369,7 +369,9 @@ const Cart = () => {
                                    
                                     
                                     <div className="row">
-                                        <div className="col-lg-9 col-md-9 col-xs-12 no_data">
+                                        <div className="col-lg-9 col-md-9 col-xs-12">
+
+                                          <div className="fo-bg-white">
                                         <div className="main_title left crt">
                                         <h1>My Cart<span> ({cartItems?.length})</span></h1>
                                     </div>
@@ -381,7 +383,7 @@ const Cart = () => {
                                             {/* {localStorage.getItem('sampleVal')} */}
                                             {cartItems?.length === 0 ? (<h1>No Cart Items</h1>) : showCartItems()}
 
-                                            
+                                            </div>
                                         </div>
                                        
 
