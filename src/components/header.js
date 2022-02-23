@@ -62,6 +62,13 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
     setQuoteId(localStorage.cartId);
     setJwt(localStorage.userToken);
     setEmail(localStorage.email);
+    if(localStorage.getItem('name')){
+    setName(localStorage.getItem('name'))
+    }else{
+      setName(localStorage.getItem('user_name'))
+  
+    }
+
     if(!localStorage.permissions){
       
       Orderstat(true)
@@ -71,7 +78,6 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
       Orderstats(orderhis)
       
     }
-   setName(localStorage.getItem('user_name'))
     
     window.addEventListener('scroll', isSticky);
     return () => {

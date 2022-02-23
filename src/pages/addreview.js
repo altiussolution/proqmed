@@ -73,12 +73,16 @@ console.log(location.state.id)
   }
 
   const changePriceRating = (rating) => {
-    setPrice_rating(rating)
+    setPrice_rating(rating)      
   }
 
 
   return (
-      <Layout>  <h1>Add Review</h1>
+      <Layout>  
+        <div className="container-fluid grey">
+        <div className="container padd">
+        <div className="fo-bg-white">
+        <h1>Add Review</h1>
                 <form onSubmit={handleSubmit(onSubmitReview)} action="" className="header_signin_form">
                   <div className="form-group">
                     <label htmlFor="nick_name">Nick Name<span className="error_label">*</span></label>
@@ -166,9 +170,9 @@ console.log(location.state.id)
                   </div>
                   <button type="submit" className="btn_link theme_btn_blue w-100" onClick={() => { setError_rating(true) }}>Submit</button>
                 </form>
-        
-         
-   
+                </div>
+         </div>
+         </div>
     </Layout>
  
   )

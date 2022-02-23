@@ -97,7 +97,7 @@ const Forgoted = (props) => {
                
 
                   <div className="my-3">
-                    <input className="btn btn_gray submit_btn" type="submit" value="Get Email" disabled={isButton} />
+                    <input className="btn btn_gray submit_btn" type="submit" value="Continue" disabled={isButton} />
                   </div>
 
                 </form>
@@ -106,7 +106,7 @@ const Forgoted = (props) => {
                   <Link to="/changePassword">Forgot Password?</Link>
                 </p> */}
   <p className="user_link fo-right">
-              <Link to="/signin" className="ml-2">Back to Sign-In</Link>
+              <Link to="/signin" className="ml-2">Back to sign in</Link>
                 </p>
                 <p className="user_link">New to ProQmed? 
               <Link to="/signup" className="ml-2">Start here</Link>

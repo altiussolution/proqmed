@@ -193,45 +193,7 @@ const addToList = (type,id) => {
     navigate("/signin")
 }
   }
-const Renderproduct = () => {    
-    if (productBrand) {
-        return <>
 
-                {    productBrand ? 
-                    (productBrand.map((data, index) => (
-                        <div className="brandedpro_item" key={index}>
-                            <div className="products">
-                            {p && <div className="wishComp">
-                       <ul>
-                        <li><a onClick={() => addToList(2, data.id)}><FaRegHeart /></a></li>
-                       </ul>
-                      </div>}
-                      {outp && <div className="wishComp">
-                       <ul>
-                        <li><a onClick={() => addToList(2, data.id)}><FaRegHeart /></a></li>
-                       </ul>
-                      </div>}
-                                {/* <img className="product_img" src={data.brand_image} /> */}
-                                <Link to={getProductURL(data)} ><img className="product_img" src={data.image} alt="" /></Link>
-                                {/* <img className="product_img" src={data.image} alt="" /> */}
-                                <h4 className="product_name">{brandImage.brand_name}</h4>
-                                <h4 className="product_name"><Link to={getProductURL(data)} >{data.name.slice(0, 81)}...</Link><br />
-                                </h4>
-                                <p className="product_number"><span>Model:{data.sku}</span></p>
-                                <div className="product_btm">
-                                    <h3 className="product_price">${Math.floor(data.price)}<sup className="price_decimal"></sup></h3>  
-                                    <div className="price_right">                                   
-                                 <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
-                                {/*outpcar && <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>*/}                                  </div>
-                            </div>                           
-                                </div>
-                               
-                        </div>
-                    ))) : <div></div>
-                }
-            </>
-        }
-    }
     const renderProducts = () => {    
       if (productBrand) { 
           return <div className="row products_fp">   
@@ -266,7 +228,7 @@ const Renderproduct = () => {
                                   
 
                               </div>                                
-                              <p className="product_title">{data.name}</p>
+                              <Link to={getProductURL(data)}><p className="product_title">{data.name}</p></Link>
                               <div className="price_holder">
                               <div className="price_left">                                  
                                   <div className="product_amt">

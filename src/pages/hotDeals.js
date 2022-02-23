@@ -251,7 +251,7 @@ const renderProducts = () => {
                               
 
                           </div>                                
-                          <p className="product_title">{data.name}</p>
+                          <Link to={getProductURL(data)}><p className="product_title">{data.name}</p></Link>
                           <div className="price_holder">
                           <div className="price_left">                                  
                               <div className="product_amt">

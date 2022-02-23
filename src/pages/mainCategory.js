@@ -61,7 +61,7 @@ useEffect(() => {
             <ul className="sub_categoriesList">
               {
                 el.node.grand_child.map((e, index) => (
-                  <li key={e.name}><Link className="sub_categoriesItem" to={getCategoryURL(e)}>{index+1}.{e.name}</Link></li>
+                  <li key={e.name}><Link className="sub_categoriesItem" to={getCategoryURL(e)}>{e.name}</Link></li>
                 ))
               }
             </ul>
@@ -88,7 +88,7 @@ useEffect(() => {
             <ul className="sub_categoriesList">
               {
                 el.node.grand_child.map((e, index) => (
-                  <li key={e.name}><Link className="sub_categoriesItem" to={getCategoryURL(e)}>{index+1}.{e.name}</Link></li>
+                  <li key={e.name}><Link className="sub_categoriesItem" to={getCategoryURL(e)}>{e.name}</Link></li>
                 ))
               }
             </ul>

@@ -13,6 +13,8 @@ import order from "./../assets/order.png"
 import Modal from 'react-bootstrap/Modal';
 import { AiOutlineClose } from "react-icons/ai";
 import noimage from "./../assets/noimage.png"
+import PageLoader from "../components/loaders/pageLoader";
+
 
 const Profile = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -37,35 +39,58 @@ const Profile = () => {
   const [quote, setQuotePopup] = useState(false);
   //const handleCloseQuote = () => setShowQuote(false);
  // const handleShowQuote = () => setShowQuote(true);
+ const [loader, setLoader] = useState(true);
 
   const [permits,setPermit] = useState([]);
     useEffect(() => {
+
       setPermit(localStorage.permissions);
         setIsLogged(checkLogin());
         setJwt(localStorage.userToken);
         setEmail(localStorage.email);
-    
         setName(localStorage.getItem('user_name'))
-        
-          axios({
-         method: 'get',
-         url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/list/${localStorage.email}`,
-         headers: {
-           'Authorization': `Bearer ${jwt}`
-       }
-       }).then((res) => {
-         if (res.status == 200) {
-         setProfilepic(res.data[0]);
-           getProfile();
-           setShow(true);
-         }
-       }).catch((err) => {
-         console.error(err);
-       })
-     
+        name()
+        pic()
+        getProfile()
+
       }, [])
-    const getProfile = () => {
+const pic=() => {
+  axios({
+    method: 'get',
+    url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/list/${localStorage.email}`,
+    headers: {
+      'Authorization': `Bearer ${jwt}`
+  }
+  }).then((res) => {
+    if (res.status == 200) {
+    setProfilepic(res.data[0]);
+    getProfile()
+      setShow(true);
+    }
+  }).catch((err) => {
+    console.error(err);
+  })
+
+}
+      const name=() => {
+          axios({
+            method: 'get',
+            url: `${process.env.GATSBY_CART_URL_STARCARE}getusername/customer_id/${localStorage.customer_id}`,
+         
+          }).then((res) => {
+            if (res.status == 200) {
+       console.log(res.data)
+       localStorage.setItem('name', res.data);
+
+            }
+          }).catch((err) => {
+            console.error(err);
+          })
         
+      }
+    const getProfile = () => {
+      setLoader(true);
+
           axios({
             method: 'post',
             url: `${process.env.GATSBY_CART_URL_STARCARE}customerprofile/${localStorage.email}`,
@@ -89,7 +114,8 @@ const Profile = () => {
           }).catch((err) => {
             console.error(err);
           })
-        
+          setLoader(false);
+
       }
       const onFileUpload = () => {
         let profiledata = {   
@@ -111,6 +137,7 @@ const Profile = () => {
             if (res.status == 200) {
               toast.success('Profile picture uploaded')
               afterimage(false);
+              pic()
             }
           }).catch((err) => {
             console.error(err);
@@ -149,6 +176,7 @@ const Namesubmit = Nameval =>{
             toast.success('Name Updated Successfully')
             Naming(false)
              getProfile()
+             name()
         })
         .catch(function (response) {
             toast.error('An error occured please contact admin')
@@ -282,6 +310,7 @@ const Numbersubmit = num => {
 
 
       const onSubmit = userCredential => {
+        if(userCredential.newPassword === userCredential.confirmPassword){
         try{
             axios({
                 method : "put",
@@ -293,6 +322,7 @@ const Numbersubmit = num => {
             }).then((response) => {
                 
                 if(response.statusText === "OK" && response.status == 200){
+
                     toast.success('Password changed sucessfully');
                     //handleCloseQuote()
                    // localStorage.clear();
@@ -308,6 +338,10 @@ const Numbersubmit = num => {
         catch(err) {
             console.error(err)
         }
+      }else{
+        toast.error('New password and Confirm password are incorrect');
+ 
+      }
     }
     const quotePopupOpen = () => {
       if (!checkLogin()) {
@@ -340,6 +374,11 @@ const closeEmail = () =>{
     return (
         <Layout>
 
+{loader ? (
+          <div className="mx-auto">
+            <PageLoader />
+          </div>
+        ) : (
 <div className="container-fluid grey">
 <div className="container padd">
     <div className="row">
@@ -530,7 +569,7 @@ const closeEmail = () =>{
 </div>
 </div>
 </div>
-
+        )}
 
 </Layout>
   
