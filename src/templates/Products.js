@@ -368,9 +368,9 @@ const Products = ({ pageContext, location , props }) => {
                               Show:
                     </span>
                             <div className="option">
-                              <select className="form-control" id="show_option1" onChange={showSelected}>
-                              <option>{products.length}</option>
-                                <option value="5">5</option>
+                              <select className="form-control" id="show_option1"  onChange={showSelected}>
+                              {/* <option>{products.length}</option> */}
+                                <option value="5" >5</option>
                                 <option value="10">10</option>
                                 <option value="15">15</option>
                                 <option value="20">20</option>

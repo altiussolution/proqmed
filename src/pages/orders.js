@@ -306,7 +306,7 @@ if(array.length>0){
             } catch (err) {
                 console.error(`An error occured ${err}`)
             }
-        }else if(val.target.value.length ===0 || val.target.value.length ===1){
+        }else if(val.target.value.length ===0){
           setOrderDetails();
         }
         }
@@ -371,8 +371,11 @@ return (
                                                         <div className="buttons-or">
                                                             {re && <button type="button" className="btn btn-danger square" onClick={() => reorder(items[0].order_id)}>Reorder</button>}
                                                             {outre && <button className="btn btn-danger" onClick={() => reorder(items[0].order_id)}>Reorder</button>}
-                                                            <Link to="/orderstatus" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}><button className="btn btn-primary">View Order</button></Link>
-                                                            {items[0].status !== 'canceled' && items[0].status !== 'complete' && <button className="btn btn outline" type="button" onClick={() => cancelOrder(items[0].order_id)}>Cancel Order</button>}
+                                                            <Link to="/orderstatus" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{re && <button className="btn btn-primary">View Order</button>}</Link>
+                                                            <Link to="/orderstatus" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{outre && <button className="btn btn-primary">View Order</button>}</Link>
+
+                                                            {items[0].status !== 'canceled' && items[0].status !== 'complete' && outre && <button className="btn btn outline" type="button" onClick={() => cancelOrder(items[0].order_id)}>Cancel Order</button>}
+
                                                             {attach_data && <a><i className="fa fa-sticky-note" aria-hidden="true" onClick={handleClick}></i>Invoice
                                                                 <div>
                                                                     {attach_data ?
@@ -471,7 +474,7 @@ return (
                 <li><a ><span><div className="form-check">
                     <input type="checkbox" className="form-check-input" id="check1" name="option1" value="complete"  onClick={e => { filterData1(e,'complete') }}/>
                     
-                  </div></span> <span className="way">Delivered</span></a></li>
+                  </div></span> <span className="way">Complete</span></a></li>
                 <li><a> <span><div className="form-check">
                     <input type="checkbox" className="form-check-input" id="check1" name="option1" value="canceled"  onClick={e => { filterData2(e,'canceled') }}/>
                     

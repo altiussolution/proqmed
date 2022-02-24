@@ -245,7 +245,7 @@ const onSubmitQuoteadd = quoteDetails => {
          .then(function (response) {
              navigate('/userManage')
              setTimeout(() => {
-                toast.success('SubUser Created sucessfully')
+                toast.success('Account created successfully for further information please check your registered mail')
               }, 500)
          })
          .catch(function (err) {

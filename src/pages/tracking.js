@@ -135,7 +135,7 @@ const Tracking =  ({ location }) => {
                         placeholder="Enter Order Id *" maxLength="9" onChange={(event) => setorder(event.target.value)} 
                         ref={register({    
                                           required: true,
-                               })}defaultValue={(order ? order : "")}/> {}
+                               })}defaultValue={(order ? order : "")}/> 
                       {errors.orderid && errors.orderid.type === 'required' && <span>Please Enter Order Id</span>}                        
                       </div>
                       <button type="submit" className="btn_gray btn">Track Order</button>                    
