@@ -29,9 +29,12 @@ const Contact = () => {
               data: ContactDetail,
               })
               .then(function (response) {
-    
-                  toast.success(response.data)
+                if (response.statusText === "OK" && response.status == 200) {
+
+                toast.success("Your mail has been sent to admin")
+                 // toast.success(response.data)
                   document.getElementById("create-form").reset();
+                }
               })
               .catch(function (response) {
                                                   

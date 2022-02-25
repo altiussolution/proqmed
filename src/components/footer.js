@@ -24,6 +24,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const Footer = () => {
     const [email,setemail] = useState();
     const [isLoged, setIsLoged] = useState(false);
+    const [jwt, setJwt] = useState("")
+
     const data = useStaticQuery(graphql`
     {
       allCategory {
@@ -47,6 +49,7 @@ const Footer = () => {
     }
     `)
     useEffect(() =>{
+        setJwt(localStorage.userToken);
 
         if(localStorage.userToken){
           setIsLoged(true);
@@ -84,10 +87,27 @@ const Footer = () => {
         let allCategory = data.allCategory.edges;
         const elements_in_each_row = Math.round(allCategory.length / 3);
         const list = [];
-    
-        for (let i = 0; i < allCategory.length; i += elements_in_each_row) {
-          list.push(allCategory.slice(i, i + elements_in_each_row));
-        }
+        const topSelected = [];
+    let result = allCategory;
+    if(jwt){
+      let catFromLocal = localStorage.category_permissions 
+      if(catFromLocal){
+        var allowedCat = catFromLocal.split(',').map(function(item) {
+          return parseInt(item, 10);
+        });
+        result = allCategory.filter((o) => allowedCat.includes(+o.node.id));
+      }
+    }
+    for (let i = 0; i < result.length; i += elements_in_each_row) {
+      list.push(result.slice(i, i + elements_in_each_row));
+    }
+
+    for (let i = 0; i < 6; i++) {
+      topSelected.push([result[i]]);
+    }
+        // for (let i = 0; i < allCategory.length; i += elements_in_each_row) {
+        //   list.push(allCategory.slice(i, i + elements_in_each_row));
+        // }
     
         return <div>
             {     

@@ -17,6 +17,7 @@ const Invoice = ({ location }) => {
     const [loader, setLoader] = useState(false);
     const [attach_data, setattachment] = useState([]);
     const [p,per] = useState(false);
+    const [idd,setid] = useState(false);
     const [nop,noper] = useState(false);
     const [permits,setPermit] = useState([]);
     const componentRef = useRef();
@@ -29,6 +30,7 @@ const Invoice = ({ location }) => {
         OrderStatus()
         invoiceDetails()
         handleClick()
+        setid(location.state.increment_id)
     }, [])
   
     const OrderStatus = () => {
@@ -196,8 +198,8 @@ const Invoice = ({ location }) => {
       />
       <orderShipDetails ref={componentRef} />
     </div> */}
-                                    <p>Print Shipment</p>
-                                   <Link to="/tracking"><p>Track this Shipment</p></Link> 
+                                    <p>Print Shipment</p> 
+                                   <Link to="/tracking"  state={{id: idd}}><p>Track this Shipment</p></Link> 
 
                                 </div>
                             

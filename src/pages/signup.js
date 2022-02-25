@@ -38,7 +38,8 @@ const SignUp = () => {
       })
         .then(function (response) {
           if (response.data === 'Your Account Created') {
-            toast.success(response.data);
+            // toast.success(response.data);
+            toast.success("Account created successfully for further information please check your registered mail")
             navigate('/signin')
             setLoader(false);
           }
@@ -138,7 +139,7 @@ const SignUp = () => {
                   </div>
 
                 </form>
-                <p className="user_link"><a><Link to="/termsConditions" className="ml-2">Terms of use </Link> and <Link to="/privacyPolicy" className="ml-2">Privacy policy</Link></a>
+                <p className="user_link"><a><Link to="/termsConditions" className="ml-2">Terms of use </Link> & <Link to="/privacyPolicy" className="ml-2">Privacy policy</Link></a>
                 </p>
                 <p className="user_link">
                   Already have an account? <Link to="/signin" className="ml-2">Sign in</Link>

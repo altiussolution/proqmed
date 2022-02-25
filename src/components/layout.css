@@ -7248,6 +7248,16 @@ button.btn.btn.eye {
   right: 20px;
 }
 
+.form-group {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+p.fo-ia {
+  color: #e92326;
+  margin: 0;
+}
+
 .fo-progress h6 {
   font-size: 16px;
 }
@@ -7510,6 +7520,7 @@ ul.mobile-menu li {
   color: #939393;
   font-weight: 400;
 }
+
 
 /* Prgress bar tracking ends//////////////////////////////////////////////////////////////// */
 

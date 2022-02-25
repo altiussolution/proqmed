@@ -6,7 +6,7 @@ import Layout from "../components/layout";
 import { ToastContainer, toast } from 'react-toastify';
 import Multiselect from 'multiselect-react-dropdown';
 import Select from 'react-select';
-import { Noimage } from "../assets/sample.png";
+import noimage  from "./../assets/noimage.png"
 import account from "./../assets/account.png"
 import logoutt from "./../assets/logout.png"
 import order from "./../assets/order.png"
@@ -97,6 +97,8 @@ const handleChange = (event) => {
 }
 const onSelectCats1 = (event) => {
     console.log(event)
+    defaultcountry(event)
+
     setState([])
         if (event['states']) {
             setState(event['states'])
@@ -177,13 +179,13 @@ let updateAddress = {
             console.log("Add Address", response)
             if (response.statusText === "OK" && response.status == 200) {
                 console.log(location.state.prevPath)
-                 navigate('/myAddress/')
+                //  navigate('/myAddress/')
 
-                //  if(location.state.prevPath=="/myAddress/"){
-                //     navigate('/myAddress/')
-                // }else {
-                //     navigate('/checkout/')
-                // }
+                 if(location.state.prevPath=="/myAddress/"){
+                    navigate('/myAddress/')
+                }else {
+                    navigate('/checkout/')
+                }
                 setLoader(false);
                 toast.success('Edit Address Successfully');
                 
@@ -234,12 +236,12 @@ const onSubmitadd = userAddresses => {
             }).then((response) => {
                 console.log("Add Address", response)
                 if (response.statusText === "OK" && response.status == 200) {
-                    navigate('/myAddress/')
-                    // if(location.state.prevPath=="/checkout/"){
-                    //     navigate('/checkout/')
-                    // }else {
-                    //     navigate('/myAddress/')
-                    // }
+                    // navigate('/myAddress/')
+                    if(location.state.prevPath=="/checkout/"){
+                        navigate('/checkout/')
+                    }else {
+                        navigate('/myAddress/')
+                    }
                     setLoader(false);
                     toast.success('Add Address Successfully');
                     
@@ -268,7 +270,7 @@ return (
           <div class="col-lg-4 col-md-12 col-sm-12">
               <div class="profile-sec">
               <div className="fo-deflx">
-              {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}                  </div>
+              {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={noimage}/></div>}                  </div>
                   <div class="name">
                       <span>Hello</span>
                       <p>{username}</p> 
@@ -302,7 +304,7 @@ return (
                  {editadd && <div class="address-form">
                       <form onSubmit={handleSubmit(onSubmit)}>
                       <div class="fo-bg-slice">
-                          <h6>Add Address</h6>
+                          <h6>Edit Address</h6>
                           <div class="row">
                               <div class="col-lg-6 col-md-12 col-sm-12">
                                   <div>

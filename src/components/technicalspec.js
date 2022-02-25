@@ -17,13 +17,19 @@ const Technicalspec = ({ specification, attachment }) => {
   const [value_rating, setValue_rating] = useState(0);
   const [price_rating, setPrice_rating] = useState(0);
   const [itemid, setitemid] = useState({})
+  const [isLoged, setIsLoged] = useState(false);
+
 
   useEffect(() => {
     setjwt(localStorage.userToken)
     getReview();
 console.log(specification)
 setitemid(specification.items)
-
+if(localStorage.userToken){
+  setIsLoged(true);
+}else{
+    setIsLoged(false);
+}
   }, []);
 
   const getReview = async () => {
@@ -133,9 +139,13 @@ setitemid(specification.items)
                   </table>
                 }
                 <div className="button_sec">
-                <Link to="/addreview" state={itemid}><button className="btn_gray btn">
+             
+              {!isLoged &&  <Link to="/signin"><button className="btn_gray btn">
                     Add Review
-              </button></Link> 
+              </button></Link> }
+               {isLoged && <Link to="/addreview" state={itemid}><button className="btn_gray btn">
+                    Add Review
+              </button></Link>  }
                 </div>
               </Tab>
             </Tabs>

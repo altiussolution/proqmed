@@ -6,16 +6,22 @@ import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import empty_cart from './../assets/empty.png';
 
-const Tracking =  () => {
+const Tracking =  ({ location }) => {
     const [jwt, setjwt] = useState("");
     const [track, settrack] = useState([]);
     const [order, setorder] = useState([]);
     const {register, handleSubmit, errors } = useForm();
     const [aftimg,afterseller]= useState(false);
     const [status,setstatus]= useState(false);
+ //   const [idd,setid]= useState(false);
 
     useEffect(() => {
       setjwt(localStorage.userToken);
+      if(location.state.id){
+     // setid(location.state.id)
+      console.log(location.state.id)
+      setorder(location.state.id)
+      }
   },[])
   const onSubmit =(event) => {
     try {
@@ -129,7 +135,7 @@ const Tracking =  () => {
                         placeholder="Enter Order Id *" maxLength="9" onChange={(event) => setorder(event.target.value)} 
                         ref={register({    
                                           required: true,
-                               })}/> 
+                               })}defaultValue={(order ? order : "")}/> 
                       {errors.orderid && errors.orderid.type === 'required' && <span>Please Enter Order Id</span>}                        
                       </div>
                       <button type="submit" className="btn_gray btn">Track Order</button>                    

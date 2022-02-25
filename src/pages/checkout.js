@@ -40,6 +40,7 @@ const CheckOut = ({location}) => {
         setJwt(localStorage.userToken);
         setUEmail(localStorage.email)
         setcartItems(JSON.parse(localStorage.cartData))
+        console.log(JSON.parse(localStorage.cartData))
         getUserAddress();  
         const fetchRegion = async () => {
             const res = await fetch(
@@ -103,7 +104,7 @@ const CheckOut = ({location}) => {
                                 </div>
                             </div>
                             <div className="product_item_price">
-                                <span className="price">${item.price}</span>
+                                <span className="price">${Math.round(item.price).toFixed(2)*item.qty}</span> 
                             </div>
                         </div>
 
@@ -248,8 +249,10 @@ const CheckOut = ({location}) => {
                 "addressInformation": {
                     "billingAddress": shippingAddress[selAddIndex],
                     "shippingAddress": shippingAddress[selAddIndex],
-                    "shippingCarrierCode": "apptha",
-                    "shippingMethodCode": "apptha"
+                    "shippingCarrierCode": "flatrateone",
+                    "shippingMethodCode": "flatrate"
+                    // "shippingCarrierCode": "apptha",
+                    // "shippingMethodCode": "apptha"
                 }
             }
 

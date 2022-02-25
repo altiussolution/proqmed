@@ -12,7 +12,7 @@ import logoutt from "./../assets/logout.png"
 import order from "./../assets/order.png"
 import us1 from "./../assets/us1.png"
 import Multiselect from 'multiselect-react-dropdown';
-import { Noimage } from "../assets/sample.png";
+import noimage from "./../assets/noimage.png"
 
 const Managesub = ({location}) => {
 
@@ -245,7 +245,7 @@ const onSubmitQuoteadd = quoteDetails => {
          .then(function (response) {
              navigate('/userManage')
              setTimeout(() => {
-                toast.success('SubUser Created sucessfully')
+                toast.success('Account created successfully for further information please check your registered mail')
               }, 500)
          })
          .catch(function (err) {
@@ -287,7 +287,7 @@ return (
         <div className="col-lg-4 col-md-12 col-sm-12">
             <div className="profile-sec">
             <div className="fo-deflx">
-            {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}
+            {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={noimage}/></div>}
             </div>
           <div className="name">
                     <span>Hello</span>
@@ -401,7 +401,7 @@ return (
                                        />
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
                                 </div>
-                                <div className="form-group form-grp-space">
+                                {/* <div className="form-group form-grp-space">
                                     <label htmlFor="status">Status</label>
                                      <Switch
                                   onChange={handleChange}
@@ -409,7 +409,7 @@ return (
                                  className="react-switch"
         />
                                     {errors.status && errors.status.type === 'required' && <span className="error">Status is required</span>}
-                                </div>
+                                </div> */}
                     </div>
 
                     </div>

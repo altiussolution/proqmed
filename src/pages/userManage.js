@@ -15,7 +15,7 @@ import account from "./../assets/account.png"
 import logoutt from "./../assets/logout.png"
 import order from "./../assets/order.png"
 import us1 from './../assets/us1.png';
-import { Noimage } from "../assets/sample.png";
+import noimage from "./../assets/noimage.png"
 
 const UserManage = () => {
     const [page, setPage] = React.useState(0);
@@ -46,6 +46,8 @@ const UserManage = () => {
  const [disable, setDisable] = useState(false);
  const [profilepic,setProfilepic] = useState({});
  const [jwt, setJwt] = useState("")
+ const [showResults, setShowResults] = React.useState(true)
+ const onhide = () => setShowResults(false)
 
  const data = useStaticQuery(graphql`
  {
@@ -142,7 +144,11 @@ categoryda(lott)
 }
 
 const addQuote = () => {
-    navigate('/manageUser')
+    if(subusers.length === 5){
+        toast.success("You have reached maximum users");
+    }else{
+        navigate('/manageUser')
+    }
     // console.log(clip)
     // setQuotePopupadd(true)
     // handleShowQuoteforadd(true)
@@ -239,8 +245,8 @@ const onSubmitQuote = quoteDetails => {
     }
 };
 const searchUser = async (val) => {
-    setDisable(true)
-
+    // setDisable(true)
+onhide()
 if(val.target.value.length>=2){
     let data = {
         
@@ -273,6 +279,7 @@ if(val.target.value.length>=2){
     }
 }else if(val.target.value.length==0 || val.target.value.length==1){
    getQuotes();
+   setShowResults(true)
    if(val.target.value.length==0 ){
     setDisable(false)
 
@@ -418,7 +425,7 @@ const onSubmitQuoteadd = quoteDetails => {
         <div className="col-lg-4 col-md-12 col-sm-12"> 
             <div className="profile-sec">
             <div className="fo-deflx">
-            {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}
+            {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={noimage}/></div>}
             </div>
                 <div className="name">
                     <span>Hello</span>
@@ -454,9 +461,10 @@ const onSubmitQuoteadd = quoteDetails => {
                         <span className="fa fa-search"></span>
                         <input placeholder="Search" onChange={e => { searchUser(e) }}/>
                       </div>
+                     { showResults ? <button type="button" className="btn btn-danger" onClick={() => addQuote()}> Create</button>:<p></p> }
 
-                    {subusers.length == 5 && <button type="button" disabled={disable} disabled className="btn btn-danger" onClick={() => addQuote()}> Create</button>}  
-                    {subusers.length < 5 && <button type="button" disabled={disable} className="btn btn-danger" onClick={() => addQuote()}> Create</button>} 
+                    {/* {subusers.length == 5 && <button type="button" disabled={disable} disabled className="btn btn-danger" onClick={() => addQuote()}> Create</button>}  
+                    {subusers.length < 5 && <button type="button" disabled={disable} className="btn btn-danger" onClick={() => addQuote()}> Create</button>}  */}
                 </div>
                
                

@@ -62,6 +62,13 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
     setQuoteId(localStorage.cartId);
     setJwt(localStorage.userToken);
     setEmail(localStorage.email);
+    if(localStorage.getItem('name')){
+    setName(localStorage.getItem('name'))
+    }else{
+      setName(localStorage.getItem('user_name'))
+  
+    }
+
     if(!localStorage.permissions){
       
       Orderstat(true)
@@ -71,7 +78,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
       Orderstats(orderhis)
       
     }
-    setName(localStorage.getItem('user_name'))
+    
     window.addEventListener('scroll', isSticky);
     return () => {
         window.removeEventListener('scroll', isSticky);
@@ -621,7 +628,7 @@ const isSticky = (e) => {
 
 
 
-      <Modal
+      {/* <Modal
         show={show}
         onHide={handleClose}
         backdrop="static"
@@ -635,7 +642,6 @@ const isSticky = (e) => {
           <div className="profile_sec">
             <div className="profile_pic">
             {profilepic.logo ? <img src={`data:image/png;base64,${profilepic.logo}`}/>: ''}
-              {/* <img src={profilepic.logo} /> */}
               
               <input type="file" onChange={onFileChange}/>
               <button onClick={onFileUpload}>
@@ -666,7 +672,7 @@ const isSticky = (e) => {
             </Table>
           </div>
         </Modal.Body>
-      </Modal>
+      </Modal> */}
 
 
       <ToastContainer

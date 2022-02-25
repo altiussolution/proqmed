@@ -49,14 +49,14 @@ const Search = (props,pageContext) => {
 
 
     const renderSearchCard = () => {
-       if(products.length)
-       if(products.length)
+      //  if(products.length !== 0)
+       if(products.length !== 0){
             return products.map(product => {
               const data = convertToObject(product.flat());
               // return <div key={data.items.id}>{data.items.name}</div>
               return <CategoryCard data={{values:data,crumpy:pageContext}} key={data.items.id} />;
-            }); 
-            else 
+            }); }
+            else {
             return (
               <div className="mx-auto">
                 {/* <NoProducts /> */}
@@ -64,23 +64,25 @@ const Search = (props,pageContext) => {
                 <h2 className="text-2xl text-center mt-4">No items found!</h2>
               </div>
             );
-        else if(searchProducts.length)  
-          if (searchProducts == "empty")
-            return (
-              <div className="mx-auto">
-                {/* <NoProducts /> */}
-                <h2 className="text-2xl text-center mt-4">No Items Found!</h2>
-                <p className="text-center">Try clearing all filters</p>
-              </div>
-            );
-          else
-            return searchProducts.map(data => (
-              // <div key={data.items.id}>{data.items.name}</div>
-              <CategoryCard data={{values:data,crumpy:pageContext}} key={data.items.id} />
-            ));
+            }
+        // else if(searchProducts.length === 0)  {
+        //   if (searchProducts == "empty")
+        //     return (
+        //       <div className="mx-auto">
+        //         {/* <NoProducts /> */}
+        //         <h2 className="text-2xl text-center mt-4">No Items Found!</h2>
+        //         <p className="text-center">Try clearing all filters</p>
+        //       </div>
+        //     );
+        //   else
+        //     return searchProducts.map(data => (
+        //       // <div key={data.items.id}>{data.items.name}</div>
+        //       <CategoryCard data={{values:data,crumpy:pageContext}} key={data.items.id} />
+        //     ));
         
        
-       
+        //     }
+            
       };
     
 

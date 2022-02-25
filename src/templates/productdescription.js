@@ -740,7 +740,8 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                       <p>{proDescription.items.overview}</p>
                       {/* <a>Read More</a> */}
 
-                     {proDescription.items.seller_name !=null && <p>Seller: <span>{proDescription.items.seller_name}</span></p>}
+                     {proDescription.items.seller_name !=null && <p>Seller:<Link to="/sellerreview" state={{ seller_id: proDescription.items.seller_id }} ><span>{proDescription.items.seller_name}</span></Link></p>}
+                          {/*  */}
 
 
                     </div>

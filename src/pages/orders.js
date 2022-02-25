@@ -76,6 +76,7 @@ const Orders = () => {
         setPage(0);
       };
     const cancelOrder = (order_id) => {
+        if (window.confirm("Do you want to cancel order?")) {
         try{  
             axios({
                 method : "post",
@@ -96,6 +97,7 @@ const Orders = () => {
         catch(err){
             console.error(err)
         }
+    }
     }
 
     const reorder = (id) => {
@@ -146,8 +148,11 @@ const filtercall = (data) =>{
         console.error(`An error occured ${err}`)
     }   
 }
-    const filterData =(val,datas)=> {
-        if(val.target.checked){
+
+    const filterData =(e,datas)=> {
+        console.log(e.target.checked,datas)
+        console.log(e.target.value)
+        if(e.target.checked){
             array.push(datas)
             let data = {
                 "data":{
@@ -156,7 +161,7 @@ const filtercall = (data) =>{
                     }
                 }
                filtercall(data);
-            }else if(!val.target.checked) {
+            }else if(!e.target.checked) {
                 var carIndex = array.indexOf(datas);
                 array.splice(carIndex, 1);
                 let data = {
@@ -174,6 +179,34 @@ const filtercall = (data) =>{
     }
 
 
+    const filterDataa =(e,datas)=> {
+        console.log(e.target.checked,datas)
+        console.log(e.target.value)
+        if(e.target.checked){
+            array.push(e.target.value)
+            let data = {
+                "data":{
+                        "order_status":[e.target.value],
+                        "email":localStorage.email
+                    }
+                }
+               filtercall(data);
+            }else if(!e.target.checked) {
+                var carIndex = array.indexOf(datas);
+                array.splice(carIndex, 1);
+                let data = {
+                    "data":{
+                            "order_status":array,
+                            "email":localStorage.email
+                        }
+                    }
+            if(array.length>0){
+                filtercall(data);
+            }else {
+                setOrderDetails();
+            }
+            }
+    }
 const filterData1 = (val,datas)=>{
 if(val.target.checked){
 array.push(datas)
@@ -273,7 +306,7 @@ if(array.length>0){
             } catch (err) {
                 console.error(`An error occured ${err}`)
             }
-        }else if(val.target.value.length ===0 || val.target.value.length ===1){
+        }else if(val.target.value.length ===0){
           setOrderDetails();
         }
         }
@@ -309,7 +342,7 @@ return (
                              
 
                                 <div>
-                                    {orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((items, index) => (
+                                    {orders.slice(0).reverse().slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((items, index) => (
                                         <div className="order-details" key={index}>
                                            
 
@@ -336,10 +369,13 @@ return (
 
                                                     <div className="col-lg-3 col-md-12 col-sm-12">
                                                         <div className="buttons-or">
-                                                            {re && <button type="button" className="btn btn-danger square" onClick={() => reorder(items[0].order_id)}>ReOrder</button>}
-                                                            {outre && <button className="btn btn-danger" onClick={() => reorder(items[0].order_id)}>ReOrder</button>}
-                                                            <Link to="/orderstatus" state={{ order_id: items[0].order_id }}><button className="btn btn-primary">View Order</button></Link>
-                                                            {items[0].status !== 'canceled' && <button className="btn btn outline" type="button" onClick={() => cancelOrder(items[0].order_id)}>Cancel Order</button>}
+                                                            {re && <button type="button" className="btn btn-danger square" onClick={() => reorder(items[0].order_id)}>Reorder</button>}
+                                                            {outre && <button className="btn btn-danger" onClick={() => reorder(items[0].order_id)}>Reorder</button>}
+                                                            <Link to="/orderstatus" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{re && <button className="btn btn-primary">View Order</button>}</Link>
+                                                            <Link to="/orderstatus" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{outre && <button className="btn btn-primary">View Order</button>}</Link>
+
+                                                            {items[0].status !== 'canceled' && items[0].status !== 'complete' && outre && <button className="btn btn outline" type="button" onClick={() => cancelOrder(items[0].order_id)}>Cancel Order</button>}
+
                                                             {attach_data && <a><i className="fa fa-sticky-note" aria-hidden="true" onClick={handleClick}></i>Invoice
                                                                 <div>
                                                                     {attach_data ?
@@ -432,15 +468,15 @@ return (
 
             <ul>
                 <li><a > <div className="form-check">
-                    <input type="checkbox" className="form-check-input fo-right" id="check1" name="option1" value="pending"  onChange={e => { filterData(e,'pending') }}/>
+                    <input type="checkbox" className="form-check-input fo-right" id="check1" name="option1" value="pending"  onClick={e => { filterData(e,'pending') }}/>
                     
                   </div> <span className="way">On the way</span> </a></li>
                 <li><a ><span><div className="form-check">
-                    <input type="checkbox" className="form-check-input" id="check1" name="option1" value="complete"  onChange={e => { filterData1(e,'complete') }}/>
+                    <input type="checkbox" className="form-check-input" id="check1" name="option1" value="complete"  onClick={e => { filterData1(e,'complete') }}/>
                     
-                  </div></span> <span className="way">Delivered</span></a></li>
+                  </div></span> <span className="way">Complete</span></a></li>
                 <li><a> <span><div className="form-check">
-                    <input type="checkbox" className="form-check-input" id="check1" name="option1" value="canceled"  onChange={e => { filterData2(e,'canceled') }}/>
+                    <input type="checkbox" className="form-check-input" id="check1" name="option1" value="canceled"  onClick={e => { filterData2(e,'canceled') }}/>
                     
                   </div></span><span className="way">Canceled</span></a></li>
                 

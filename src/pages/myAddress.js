@@ -3,7 +3,7 @@ import { Link, navigate, useStaticQuery, graphql } from "gatsby"
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import Layout from "../components/layout";
-import { Noimage } from "../assets/sample.png";
+import noimage from "./../assets/noimage.png"
 import account from "./../assets/account.png"
 import logoutt from "./../assets/logout.png"
 import order from "./../assets/order.png"
@@ -199,7 +199,7 @@ const deleteAddress = (id) => {
         <div className="col-lg-4 col-md-12 col-sm-12">
             <div className="profile-sec">
             <div className="fo-deflx">
-            {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={Noimage}/></div>}
+            {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={noimage}/></div>}
             </div>
                 <div className="name">
                     <span>Hello,</span>
