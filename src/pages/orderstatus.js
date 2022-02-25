@@ -8,6 +8,7 @@ import Tabs from 'react-bootstrap/Tabs'
 import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
 import Orders from './orders'
 import { useReactToPrint } from "react-to-print";
+import { toast } from 'react-toastify';
 
 const Invoice = ({ location }) => {
 
@@ -106,13 +107,35 @@ const Invoice = ({ location }) => {
             }
         })
     }
+    const reorder = (id) => {
+        try {
+            axios({
+                method: "post",
+                url: `${process.env.GATSBY_CART_URL_STARCARE}admin/reorder/${id}`,
+                headers: {
+                    'Authorization': `Bearer ${jwt}`
+                },
+            }).then((res) => {
+                if (res.statusText === "OK" && res.status === 200) {
+                    toast.success('Reorder Created');
+                }
 
+            }).catch((err) => {
+                console.error(err);
+            })
+        }
+        catch (err) {
+            console.error(err)
+        }
+    }
     const orderProductDetails = () => {
         if (orders ) {
             return <div>
                 {
                     orders.map((items, index) => (
                         <div key={index} className="card orderstatus">
+                            <p onClick={() => reorder(items.order_id)}>Reorder</p>
+                            <p onClick={() => window.print({})}>Print Order</p>
                                 <table className="table">
                                     <thead>
                                         <tr>
@@ -188,9 +211,9 @@ const Invoice = ({ location }) => {
      trigger={() => { return <p>Print Shipment</p> ; }}     
       content={() => componentRef.current}
       />
-      <Orders  ref={componentRef} /> */}
+      <attach_data  ref={componentRef} /> */}
 
-              {/* <button onClick={() => window.print({})}>PRINT</button> */}
+              <p onClick={() => window.print({})}>Print Shipment</p>
               {/* <div>
       <ReactToPrint
         trigger={() => <button>Print this out!</button>}
@@ -198,7 +221,7 @@ const Invoice = ({ location }) => {
       />
       <orderShipDetails ref={componentRef} />
     </div> */}
-                                    <p>Print Shipment</p> 
+                                    {/* <p>Print Shipment</p>  */}
                                    <Link to="/tracking"  state={{id: idd}}><p>Track this Shipment</p></Link> 
 
                                 </div>
@@ -286,9 +309,11 @@ const Invoice = ({ location }) => {
  }
 
     const Invoicetable = () => {
+       
         if(p==true || nop==true){
             if (invoices.length != 0 ) {
-                return <div className="order_product">
+                return <div className="order_product"> <p onClick={() => reorder(invoices[1].order_id)}>Reorder</p>
+                <p onClick={() => window.print(attach_data)}>Print Order</p>
                         <table className="table">
                             <thead>
                                 <tr>

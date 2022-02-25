@@ -47,6 +47,7 @@ const Orders = () => {
                         let hi = JSON.parse(localStorage.permissions)
                         let orderhis=hi.includes("Can View Order History")
                         let reorder = hi.includes("Can View Individual Orders Or Reorder")
+                        let invoice = hi.includes("Can View Invoice")
                         if(orderhis == false){
                             navigate('/')
                             setTimeout(() => {
@@ -56,6 +57,7 @@ const Orders = () => {
                             }
                         per(orderhis)
                         reodr(reorder)
+                        reodr(invoice)
                       }
                 }
                 
@@ -151,7 +153,7 @@ const filtercall = (data) =>{
 
     const filterData =(e,datas)=> {
         console.log(e.target.checked,datas)
-        console.log(e.target.value)
+        console.log(e.target.value,e.target.checked.value)
         if(e.target.checked){
             array.push(datas)
             let data = {
