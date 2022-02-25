@@ -96,7 +96,7 @@ const Resett = ({location}) => {
                 <h1>Almost Done!</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="login_form">
 
-                  <input className="form-control" name="password" placeholder="Enter New Password *" type="password" ref={register({
+                  <input className="form-control" name="password" placeholder="Enter New Password *"type={passwordShown ? "text" : "password"} ref={register({
                     required: true,
       
                   })} />

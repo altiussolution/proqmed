@@ -177,7 +177,7 @@ const renderProducts = () => {
                         
 
                        </div>
-                       <div className="product_title">{data.name}</div>
+                       <Link to={getCategoryURL(data)}> <div className="product_title">{data.name}</div></Link>
                       {/* <div className="price_holder">
                                 <div className="price_left">                                  
                                     <div className="product_amt">
@@ -243,7 +243,7 @@ const renderProducts = () => {
                 <div className="col-md-12">
                 <h1 className="page-title">
                     <div>
-                    <span>Deal Products</span>
+                    <span>Deal of the Day</span>
                   <div className="breadcrumbs_sec" >
                   
                   </div>
