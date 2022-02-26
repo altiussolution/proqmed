@@ -432,26 +432,28 @@ const isSticky = (e) => {
     for (let i = 0; i < 6; i++) {
       topSelected.push([result[i]]);
     }
-
-    if (type === 'dropdown') {
-      return <div className="itm_list_holder">
-        {
-          list.map((el, index) => (
-            el.map(item => (
-              <figure key={item.node.id} className="itm_list">
-                <Link to={getCategoryURL(item.node)} className="itm_list_title">{item.node.name}</Link>
-                {
-                  item.node.grand_child.map(grand_child => (
-                    <span key={grand_child.id} ><Link to={getCategoryURL(grand_child)} >{grand_child.name}</Link></span>
-                  ))
-                }
-
-              </figure>
+   
+    
+      if (type === 'dropdown') {
+        return <div className="itm_list_holder">
+          {
+            list.map((el, index) => (
+              el.map(item => (
+                <figure key={item.node.id} className="itm_list">
+                  <Link to={getCategoryURL(item.node)} className="itm_list_title">{item.node.name}</Link>
+                  {
+                    item.node.grand_child.map(grand_child => (
+                      <span key={grand_child.id} ><Link to={getCategoryURL(grand_child)} >{grand_child.name}</Link></span>
+                    ))
+                  }
+  
+                </figure>
+              ))
             ))
-          ))
-        }
-      </div>
-    }
+          }
+        </div>
+      }
+    
 
     if (type === 'topList')
       return <div>

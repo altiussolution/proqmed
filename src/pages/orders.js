@@ -161,37 +161,7 @@ const filtercall = (data) =>{
                     }
                 }
                filtercall(data);
-            }else if(!e.target.checked) {
-                var carIndex = array.indexOf(datas);
-                array.splice(carIndex, 1);
-                let data = {
-                    "data":{
-                            "order_status":array,
-                            "email":localStorage.email
-                        }
-                    }
-            if(array.length>0){
-                filtercall(data);
-            }else {
-                setOrderDetails();
-            }
-            }
-    }
-
-
-    const filterDataa =(e,datas)=> {
-        console.log(e.target.checked,datas)
-        console.log(e.target.value)
-        if(e.target.checked){
-            array.push(e.target.value)
-            let data = {
-                "data":{
-                        "order_status":[e.target.value],
-                        "email":localStorage.email
-                    }
-                }
-               filtercall(data);
-            }else if(!e.target.checked) {
+            }else if(e.target.unchecked) {
                 var carIndex = array.indexOf(datas);
                 array.splice(carIndex, 1);
                 let data = {
@@ -208,6 +178,7 @@ const filtercall = (data) =>{
             }
     }
 const filterData1 = (val,datas)=>{
+    console.log(array)
 if(val.target.checked){
 array.push(datas)
 let data = {
@@ -217,7 +188,7 @@ let data = {
         }
     }
    filtercall(data);
-}else if(!val.target.checked) {
+}else if(val.target.unchecked) {
     var carIndex = array.indexOf(datas);
     array.splice(carIndex, 1);
     let data = {
@@ -236,6 +207,7 @@ if(array.length>0){
 
 
     const filterData2 = (val,datas)=>{
+        console.log(array)
         if(val.target.checked){
             array.push(datas)
             let data = {
@@ -245,7 +217,7 @@ if(array.length>0){
                     }
                 }
                filtercall(data);
-            }else if(!val.target.checked) {
+            }else if(val.target.unchecked) {
                 var carIndex = array.indexOf(datas);
                 array.splice(carIndex, 1);
                 let data = {
