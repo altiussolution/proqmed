@@ -126,13 +126,13 @@ Defaulti(states)
 
     const Cancelling = () => {
         console.log(location.state.prevPath)
-        navigate('/myAddress/')
+        
 
-        // if(location.state.prevPath=="/myAddress/"){
-        //     navigate('/myAddress/')
-        // }else {
-        //     navigate('/checkout/')
-        // }
+        if(location.state.prevPath=="/myAddress/" || location.state.prevPath=="/myAddress"){
+            navigate('/myAddress/')
+        }else {
+            navigate('/checkout/')
+        }
     }
 
     const filterData1 =(val,datas)=> {
@@ -181,7 +181,7 @@ let updateAddress = {
                 console.log(location.state.prevPath)
                 //  navigate('/myAddress/')
 
-                 if(location.state.prevPath=="/myAddress/"){
+                 if(location.state.prevPath=="/myAddress/" || location.state.prevPath=="/myAddress"){
                     navigate('/myAddress/')
                 }else {
                     navigate('/checkout/')
@@ -237,7 +237,7 @@ const onSubmitadd = userAddresses => {
                 console.log("Add Address", response)
                 if (response.statusText === "OK" && response.status == 200) {
                     // navigate('/myAddress/')
-                    if(location.state.prevPath=="/checkout/"){
+                    if(location.state.prevPath=="/checkout/" || location.state.prevPath=="/checkout"){
                         navigate('/checkout/')
                     }else {
                         navigate('/myAddress/')
@@ -263,7 +263,7 @@ const onSubmitadd = userAddresses => {
 
     
 return (
-  <Layout>
+  <Layout {...location} propWhatever={{location}}>
   <div class="container-fluid grey">
   <div class="container padd">
       <div class="row">
@@ -301,7 +301,7 @@ return (
                   
                   </div>
   
-                 {editadd && <div class="address-form">
+                 {editadd && <div class="address-form" {...location}>
                       <form onSubmit={handleSubmit(onSubmit)}>
                       <div class="fo-bg-slice">
                           <h6>Edit Address</h6>
