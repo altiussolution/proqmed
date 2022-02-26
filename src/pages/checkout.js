@@ -121,7 +121,7 @@ const CheckOut = ({location}) => {
             return <ul className="totals">
                 <li>
                     <p>Cart Subtotal</p>
-                    <span>${checkItem.grand_total}</span>
+                    <span>${checkItem.subtotal}</span>
                 </li>
 
                 <li>
@@ -133,12 +133,12 @@ const CheckOut = ({location}) => {
 
                 <li>
                     <p>Tax</p>
-                    <span>${checkItem.base_shipping_incl_tax}</span>
+                    <span>${checkItem.tax_amount}</span>
                 </li>
 
                 <li>
                     <p>Order Total</p>
-                    <span className="order_total">${checkItem.subtotal}</span>
+                    <span className="order_total">${checkItem.grand_total}</span>
                 </li>
             </ul>
         }
@@ -733,7 +733,7 @@ const CheckOut = ({location}) => {
 
                                                             <Accordion defaultActiveKey="0">
                                                                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                                                    <p><span>{cartItems.length}</span>Item in Cart</p>
+                                                                    <p>{cartItems.length} Item in Cart</p>
                                                                 </Accordion.Toggle>
                                                                 <Accordion.Collapse eventKey="0">
                                                                     <div className="content minicart_items">

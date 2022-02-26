@@ -29,6 +29,9 @@ const Profile = () => {
     const [p,per] = useState(false);
     const [outp,outper] = useState(false);
     const [aftimg,afterimage]= useState(false);
+    const [up,upimage]= useState(true);
+    const [cfile,setcfile]= useState(false);
+
   const [profilepic,setProfilepic] = useState({});
   const [showname,Naming]= useState(false);
   const [showmail,Emailing]= useState(false);
@@ -118,6 +121,7 @@ const pic=() => {
 
       }
       const onFileUpload = () => {
+
         let profiledata = {   
           "data": {
               "customer_email": email,
@@ -136,6 +140,8 @@ const pic=() => {
           }).then((res) => {
             if (res.status == 200) {
               toast.success('Profile picture uploaded')
+              setcfile(false)
+              upimage(true)
               afterimage(false);
               pic()
             }
@@ -285,6 +291,7 @@ const Numbersubmit = num => {
 }
 }
       const uploadImage = async (e) => {
+        upimage(false)
         const file = e.target.files[0];
        // setDisabled(false);
         const base64 = await convertBase64(file);
@@ -370,7 +377,10 @@ const closeEmail = () =>{
   Emailing(false)
 
 }
- 
+const choosefile =() =>{
+  setcfile(true)
+
+}
     return (
         <Layout>
 
@@ -385,11 +395,11 @@ const closeEmail = () =>{
         <div className="col-lg-4 col-md-12 col-sm-12">
             <div className="profile-sec">
               <div className="fo-deflx">
-              {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={noimage}/></div>}   
+              {profilepic.logo ? <img src={profilepic.logo}  />: <div><img src={noimage} /></div>}   
 
-            <div className="fo-center">
+           {up && <div className="fo-center">
               <input className="btm" type="file" onChange={(e) => {uploadImage(e);}}/>
-              </div>
+              </div>}
               {aftimg && <button onClick={onFileUpload} className="action action_btn btn btn_gray">
                   Upload!
                 </button>}

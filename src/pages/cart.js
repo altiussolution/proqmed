@@ -407,12 +407,12 @@ const alldel=(id) =>{
 
                                           <div className="fo-bg-white">
                                         <div className="main_title left crt">
-                                        <h1>My Cart<span> ({cartItems?.length})</span><a onClick={() => { alldel() }}> <AiTwotoneDelete /></a></h1> 
+                                        <h1>My Cart<span> ({cartItems?.length})</span></h1> 
                                     </div>
 
                                         {/* <div className="main_title left">
                                         <h1>My Cart <span>(5)</span>  </h1>
-                                    </div> */}
+                                    </div> <a onClick={() => { alldel() }}> <AiTwotoneDelete /></a>*/}
 
                                             {/* {localStorage.getItem('sampleVal')} */}
                                             {cartItems?.length === 0 ? (<h1>No Cart Items</h1>) : showCartItems()}

@@ -181,7 +181,7 @@ const Products = ({ pageContext, location , props }) => {
       else
          return filteredProducts.map(data => {
           let URL;
-           cat_url.map(cusUrl=>{
+           cat_url.map(cusUrl=>{ 
             if(data.items.url_key === cusUrl.url) return URL = cusUrl.url             
            })
            if(data.items.url_key !== URL){
@@ -325,8 +325,8 @@ const Products = ({ pageContext, location , props }) => {
                           <div className="tools">
                             <div className="title_view">
                               <button className="view-list" id="list" data-toggle="tooltip" data-placement="top" title="List" onClick={() => setViewClass('list_view')}><IoList /></button>
-                              <button className="view-grid  active" id="grid" data-toggle="tooltip" data-placement="top" title="Grid" onClick={() => setViewClass('grid_view')}><IoGridOutline /></button>
-                            </div>
+                              <button className="view-grid  active"  id="grid" data-toggle="tooltip" data-placement="top" title="Grid" onClick={() => setViewClass('grid_view')}><IoGridOutline /></button>
+                       </div>
                           </div>
                         </div>
                 </h1>
