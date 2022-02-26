@@ -140,7 +140,7 @@ const pic=() => {
           }).then((res) => {
             if (res.status == 200) {
               toast.success('Profile picture uploaded')
-              setcfile(false)
+              // setcfile(false)
               upimage(true)
               afterimage(false);
               pic()

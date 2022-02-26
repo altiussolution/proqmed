@@ -59,13 +59,15 @@ const Products = ({ pageContext, location , props }) => {
   const [error, setError] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [viewClass, setViewClass] = useState('sample');
+  const [viewClass, setViewClass] = useState('grid_view');
   const [activepage, setActivepage] = useState(1);
   const [cat_url, setcategoryUrl] = useState([]);
   const [p,per] = useState(false);
   const [pcar,percart] = useState(false);
   const [outp,outper] = useState(false);
   const [outpcar,outpercart] = useState(false);
+  // const [cName, setClassName] = useState('grid_view');
+
   useEffect(() => {
     console.log(pageContext)
     const selecturl = "productsasc"
@@ -324,8 +326,10 @@ const Products = ({ pageContext, location , props }) => {
                           </div>
                           <div className="tools">
                             <div className="title_view">
-                              <button className="view-list" id="list" data-toggle="tooltip" data-placement="top" title="List" onClick={() => setViewClass('list_view')}><IoList /></button>
-                              <button className="view-grid  active"  id="grid" data-toggle="tooltip" data-placement="top" title="Grid" onClick={() => setViewClass('grid_view')}><IoGridOutline /></button>
+                              <button  className={"view-btn list-view"+(viewClass === 'list_view' ? ' active_btn':'')} id="list" data-toggle="tooltip" data-placement="top" title="List" onClick={() => setViewClass('list_view')}><IoList /></button>
+                              <button  className={"view-btn grid-view"+(viewClass === 'grid_view' ? ' active_btn':'')} id="grid" data-toggle="tooltip" data-placement="top" title="Grid" onClick={() => setViewClass('grid_view')}><IoGridOutline /></button>
+                              {/* className="view-list"
+                              className="view-grid  active"  */}
                        </div>
                           </div>
                         </div>
