@@ -50,6 +50,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false);
     const [outpcom,outpercomp] = useState(false);
+
   const [data, setData] = useState([
     {
       image: (ImageNotFound),
@@ -552,7 +553,19 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     setproduct_id(options.product_id)
   }
 
-
+const newprice =() => {
+if(proDescription.items.config_options){
+  return(
+    change_price.map((val, index) => (
+      <span className="price" key={index}>${Math.round(val.price)}</span>
+    )
+  )
+  )
+}else{
+  return(      <span className="price">${Math.round(normal_price)}</span>
+  )
+}
+}
   return (
     <>
       {proDescription && proDescription.items ? (
@@ -635,13 +648,15 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
 
 <div className="price-name-strike">
                    
-                          {proDescription.items.config_options ?
+                          {/* {proDescription.items.config_options ?
                           change_price.map((val, index) => (
                               <span className="price" key={index}>${Math.round(val.price)}</span>
                             )) :
                             <span className="price">${Math.round(normal_price)}</span>
-}
-                        
+} */}
+{proDescription.items.strike_price ==null && newprice()}
+{proDescription.items.strike_price !=null && <span  className="price">${Math.round(proDescription.items.final_price)}</span>}
+
 
                        {proDescription.items.strike_price !=null && <span><strike>${Math.round(proDescription.items.strike_price)}</strike></span>}
                        {/* <span className="price"><strike>$0</strike></span> */}

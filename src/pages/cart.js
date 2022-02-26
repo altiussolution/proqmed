@@ -354,7 +354,41 @@ const Cart = () => {
 
 
 
+const alldel=(id) =>{
+  for(let i=0;i<cartItems.length;i++){
 
+
+    const jwt = localStorage.getItem('userToken')
+    try{
+      axios({  
+          method : 'delete',
+          url : `${process.env.GATSBY_CART_URL_STARCARE}carts/mine/items/${cartItems[i].item_id}`,
+          headers : {
+            'Authorization' : `Bearer ${jwt}`
+          }  
+        }).then((res) => {
+          if(res.statusText === "OK" && res.status === 200){
+            setLoader(true);
+            setTimeout(() => {
+                setLoader(false);
+                fetchCheckTotal();
+                listCarts()
+
+                toast.success('All item deleted successfully')
+            }, 3000)
+          }
+        }).catch((err) =>{
+          alert('error occured')
+          console.error(err)
+        })   
+      
+    }catch(err){
+        console.error(err) 
+    }
+    
+
+  }
+}
     return (
         <>
             <Layout cartCount={cartItems?.length}>
@@ -373,7 +407,7 @@ const Cart = () => {
 
                                           <div className="fo-bg-white">
                                         <div className="main_title left crt">
-                                        <h1>My Cart<span> ({cartItems?.length})</span></h1>
+                                        <h1>My Cart<span> ({cartItems?.length})</span><a onClick={() => { alldel() }}> <AiTwotoneDelete /></a></h1> 
                                     </div>
 
                                         {/* <div className="main_title left">

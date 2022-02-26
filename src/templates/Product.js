@@ -41,7 +41,7 @@ const Product = (props,location)  => {
   const [productdata, setProductdata] = useState([]);
   const [cartCount, setcartCount] = useState(null);
   const [attach_data, setattachment] = useState(null);
-  const [sellerprod, setothersellers] = useState(null);
+  const [sellerprod, setothersellers] = useState([]);
   const [jwt, setJwt] = useState("");
   const id = props.slug.split("-").slice(-1)[0]; 
   const [crumname,crump] = useState("");
@@ -298,7 +298,8 @@ const addToList = (type,id) => {
                        <div className="price_left">                                  
                            <div className="product_amt">
                            {data.strike_price != null  &&  <span className="new_price">${Math.round(data.strike_price)}</span>}
-                               <span className="price">${Math.round(data.original_price)}</span>
+                           { data.strike_price == null &&  <span className="price">${Math.round(data.original_price)}</span>}
+                           { data.strike_price != null &&  <span className="price">${Math.round(data.final_price)}</span>}
                                
                            </div>
                            <div className="rating_front">
@@ -419,8 +420,8 @@ return (
            <div className="full-desc-tabs">
            <Technicalspec specification = {product} attachment={attach_data}/>
            </div>
-
-           {/* <div className="More-Sellers">
+{sellerprod.length != 0 ?
+           <div className="More-Sellers">
            <h2 className="section_title">
                     <span>More sellers selling this product </span>
                     
@@ -432,6 +433,7 @@ return (
       <th>Product Image</th>
       <th>Sellers Information</th>
       <th>Product Name</th>
+      <th>Product Sku</th>
       <th>Price </th>
       <th></th>
     </tr>
@@ -440,14 +442,15 @@ return (
   sellerprod.map((quote, index) => (
   <tbody>
     <tr>
-      <th> 
+      <td> 
         <div className="image-sec">
-        <img src={quote.product_image}></img></div> </th>
+        <img src={quote.product_image}></img></div> </td>
       <td>{quote.seller}</td>
       <td>{quote.product_name}</td>
-      <td>{quote.price}</td>
-      <td>{pcar && <button className="action action_btn btn btn_gray" onClick={() => addtoCartItems(1,1)}> <span className="fa fa-shopping-cart"></span> Add to Cart  </button>}
-      {outpcar && <button className="action action_btn btn btn_gray" onClick={() => addtoCartItems(1,1)}> <span className="fa fa-shopping-cart"></span> Add to Cart  </button>}
+      <td>{quote.product_sku}</td>
+      <td>${Math.round(quote.price).toFixed(2)}</td>
+      <td>{pcar && <button className="action action_btn btn btn_gray" onClick={() => addtoCartItems(quote.product_sku, quote.id)}> <span className="fa fa-shopping-cart"></span> Add to Cart  </button>}
+      {outpcar && <button className="action action_btn btn btn_gray" onClick={() => addtoCartItems(quote.product_sku, quote.id)}> <span className="fa fa-shopping-cart"></span> Add to Cart  </button>}
       </td>
     </tr>
     
@@ -457,7 +460,8 @@ return (
       }
 </table>
 </div>
-           </div> */}
+           </div>:<div></div>}
+
          </div>        
       </div>
      </div>

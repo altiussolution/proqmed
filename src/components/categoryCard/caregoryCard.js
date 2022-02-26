@@ -189,7 +189,9 @@ export default function CategoryCard({ data: product, dataClass }) {
           /> : 'No Reviews yet'
         }
          <div className="product_amt">
-                    <span className="price">${Math.round(product['values'].items.original_price)}</span> 
+         {product['values'].items.strike_price == null  && <span className="price">${Math.round(product['values'].items.original_price)}</span> }
+                    {product['values'].items.strike_price != null  &&  <span className="price">${Math.round(product['values'].items.final_price)}</span>}
+
                     {product['values'].items.strike_price != null  &&  <span className="new_price">${Math.round(product['values'].items.strike_price)}</span>}
 
                 </div>
