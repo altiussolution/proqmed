@@ -232,12 +232,37 @@ const deleteAddress = (id) => {
                 <div className="col-lg-4 col-md-12 col-sm-12">                    
                       <div className="fo-aligh">
                           
-                           <h6>Default Billing Address</h6>   
-                         <p> <span className="bold"> Name : </span> <a>{defBill['firstname']}</a></p>
+                           <h6>Default Billing Address</h6>  
+  
+  {/* <tr>
+    <td className="bold">Name</td>
+    <td>{defBill['firstname']}</td>
+
+ 
+  </tr> 
+  <tr>
+    <td className="bold">Address </td>
+    <td>{defBill['street']}</td>
+
+
+  </tr> 
+  <tr>
+    <td className="bold">City    </td>
+    <td>{defBill['city']}</td>
+
+
+  </tr> 
+  <tr>
+    <td className="bold">Ph no   </td>
+    <td>{defBill['telephone']}</td>
+
+
+  </tr>  */}
+
+                         <p> <span className="bold"> Name    : </span> <a>{defBill['firstname']}</a></p>
                          <p> <span className="bold">Address : </span><a>{defBill['street']}</a></p>
                          <p> <span className="bold"> City : </span><a>{defBill['city']}</a></p>
-                         {/* <span>State:<a>{defBill['region']}</a></span><br></br> */}
-                         <p> <span className="bold"> Ph no : </span> <a>{defBill['telephone']}</a></p>
+                         <p> <span className="bold"> Ph no : </span> <a>{defBill['telephone']}</a></p> 
                    
                          </div>
                        
@@ -250,10 +275,33 @@ const deleteAddress = (id) => {
 
                 <div className="fo-aligh">
                 <h6>Default Shipping Address</h6>   
+                {/* <tr>
+    <td className="bold">Name</td>
+    <td>{defShip['firstname']}</td>
+
+ 
+  </tr> 
+  <tr>
+    <td className="bold">Address </td>
+    <td>{defShip['street']}</td>
+
+
+  </tr> 
+  <tr>
+    <td className="bold">City    </td>
+    <td>{defShip['city']}</td>
+
+
+  </tr> 
+  <tr>
+    <td className="bold">Ph no   </td>
+    <td>{defShip['telephone']}</td>
+
+
+  </tr>  */}
                          <p > <span className="bold"> Name :</span> <a>{defShip['firstname']}</a></p>
                          <p> <span className="bold"> Address : </span><a>{defShip['street']}</a></p>
                          <p> <span className="bold">City : </span><a>{defShip['city']}</a></p>
-                         {/* <span>State:<a>{defBill['region']}</a></span><br></br> */}
                          <p> <span className="bold"> Ph no :</span> <a>{defShip ['telephone']}</a></p>
                          </div>
                 </div>

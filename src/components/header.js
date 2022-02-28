@@ -186,6 +186,12 @@ const isSticky = (e) => {
 
   const handleClick = async event => {
     setSearch(event.target.value);
+    // var searchedPara = document.querySelector('.search-content p');
+    // var words = event.target.value;
+    // var regex = RegExp(words, 'gi') // case insensitive
+    // var replacement = '<b>'+ words +'</b>';
+    // var newHTML = searchedPara.textContent.replace(regex, replacement);
+    // searchedPara.innerHTML = newHTML;
     localStorage.setItem('searchString', event.target.value)
     var boolVal = (event.target.value.length == 0 ? false : true)
     setActiveClass(boolVal);
