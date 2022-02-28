@@ -7055,7 +7055,6 @@ a.sell:hover {
 
 .container.padd.OS nav.nav.nav-tabs {
   background: none;
-  margin-bottom: 20px;
   padding: 0;
   border: none;
 }
@@ -7294,6 +7293,66 @@ button.btn.btn-link {
   color: #c42929;
 }
 
+.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.MuiTablePagination-toolbar.css-1wif0xq{
+  align-items: baseline;
+}
+
+.table_below.det {
+  text-align: right;
+  display: flex;
+  justify-content: end;
+  padding: 0px 20px !important;
+}
+
+.table_below.det tr th {
+  padding-right: 30px !important;
+}
+
+.table_below.det tr th:after {
+  content: ":";
+  padding-left: 10px;
+}
+
+.fo-flx {
+  display: flex;
+}
+
+.fo-flx p {
+  font-size: 14px;
+  margin-right: 15px;
+  color: #0f74b6;
+  margin-top: 15px;
+}
+
+.diff-note a {
+  color: #0f74b6;
+  margin-bottom: 10px;
+}
+
+.order_product1 .table{
+  margin-top: 15px;
+}
+
+.fo-bg-white.wid {
+  width: 50%;
+  margin: auto;
+}
+
+.fo-bg-white.wid form.header_signin_form button.btn_link.theme_btn_blue.w-100 {
+  width: auto !important;
+  margin: auto;
+  display: block;
+}
+
+label.fo-wid {
+  width: 20%;
+}
+
+.react-slider {
+  margin: 0 auto;
+}
+
+
 /* San Styles 18022022*/
 
 .itm_list_holder{
@@ -7334,6 +7393,8 @@ button.btn.btn-link {
 .slider_thumb ul li {
   display: flex;
   }
+
+  
 
 @media only screen and (max-width:600px) {
 

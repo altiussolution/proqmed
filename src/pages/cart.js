@@ -381,7 +381,7 @@ const Cart = () => {
                                     </div> */}
 
                                             {/* {localStorage.getItem('sampleVal')} */}
-                                            {cartItems?.length === 0 ? (<h1>No Cart Items</h1>) : showCartItems()}
+                                            {cartItems?.length === 0 ? (<h1 className="fo-center">No Cart Items</h1>) : showCartItems()}
 
                                             </div>
                                         </div>

@@ -97,6 +97,7 @@ const Invoice = ({location}) => {
           <li class="active"><a class="tabs_heading" data-toggle="tab"><Link to = "/orderstatus">order Status</Link></a></li>
     {/* <li><a class="tabs_heading1" data-toggle="tab" href="#menu1"><Link to = "/invoicedetails">Invoice details</Link></a></li> */}
 <        li><a class="tabs_heading1" data-toggle="tab" href="#menu2">Order Shipments</a></li>
+
       </ul>  
                     <button onClick={handleClick}>
                                 Pdf Download

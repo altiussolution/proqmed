@@ -81,8 +81,8 @@ console.log(location.state.id)
       <Layout>  
         <div className="container-fluid grey">
         <div className="container padd">
-        <div className="fo-bg-white">
-        <h1>Add Review</h1>
+        <div className="fo-bg-white wid">
+        <h2 className="heading">Add Review</h2>
                 <form onSubmit={handleSubmit(onSubmitReview)} action="" className="header_signin_form">
                   <div className="form-group">
                     <label htmlFor="nick_name">Nick Name<span className="error_label">*</span></label>
@@ -106,7 +106,7 @@ console.log(location.state.id)
                     {errors.review_details && errors.review_details.type === 'required' && <span className="error">Review Details is required</span>}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="quality_rating">Quality Rating<span className="error_label">*</span></label>
+                    <label className="fo-wid" htmlFor="quality_rating">Quality Rating<span className="error_label">*</span></label>
                     <StarRatings
                       numberOfStars={5}
                       name='quality_rating'
@@ -121,7 +121,7 @@ console.log(location.state.id)
                     {quality_rating === 0 && error_rating && <span className="error">Quality Rating is required</span>}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="value_rating">Value Rating<span className="error_label">*</span></label>
+                    <label className="fo-wid" htmlFor="value_rating">Value Rating<span className="error_label">*</span></label>
                     <StarRatings
                       numberOfStars={5}
                       name='value_rating'
@@ -137,7 +137,7 @@ console.log(location.state.id)
                     {value_rating === 0 && error_rating && <span className="error">Value Rating is required</span>}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="price_rating">Price Rating<span className="error_label">*</span></label>
+                    <label className="fo-wid" htmlFor="price_rating">Price Rating<span className="error_label">*</span></label>
                     <StarRatings
                       numberOfStars={5}
                       name='price_rating'
@@ -153,7 +153,7 @@ console.log(location.state.id)
                     {price_rating === 0 && error_rating && <span className="error">Price Rating is required</span>}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="rating">Rating<span className="error_label">*</span></label>
+                    <label className="fo-wid" htmlFor="rating">Rating<span className="error_label">*</span></label>
                     <StarRatings
                       numberOfStars={5}
                       name='rating'

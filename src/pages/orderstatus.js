@@ -198,8 +198,8 @@ const Invoice = ({ location }) => {
       />
       <orderShipDetails ref={componentRef} />
     </div> */}
-                                    <p>Print Shipment</p> 
-                                   <Link to="/tracking"  state={{id: idd}}><p>Track this Shipment</p></Link> 
+                                      
+ 
 
                                 </div>
                             
@@ -288,7 +288,7 @@ const Invoice = ({ location }) => {
     const Invoicetable = () => {
         if(p==true || nop==true){
             if (invoices.length != 0 ) {
-                return <div className="order_product">
+                return <div className="order_product1">
                         <table className="table">
                             <thead>
                                 <tr>
@@ -320,7 +320,7 @@ const Invoice = ({ location }) => {
                 </div>
             }
         }else {
-            return <div className="container padd">
+            return <div>
             <span className="fo-AD">Access Denied</span>
         </div>
         }
@@ -329,7 +329,7 @@ const Invoice = ({ location }) => {
     const InvoiceTotal = () => {
         return <div>
             <table className="table table-striped summary">
-                <div class="table_below">
+                <div class="table_below det">
                 {
                     invoices.map((item, index) => {
                         return (index == 0 ?
@@ -390,10 +390,10 @@ const Invoice = ({ location }) => {
                                         }
                                     </div>
                                     <div className="row">
-                                        <div className="col-lg-9 col-md-12 col-xs-12 compare_section cart_page table_responsive p-0">
+                                        <div className="col-lg-12 col-md-12 col-xs-12 ">
                                             {Invoicetable()}
                                         </div>
-                                        <div className="col-lg-3 col-md-6 col-xs-12 p-0">
+                                        <div className="col-lg-12 col-md-6 col-xs-12 p-0">
                                             <div className="side_sec">
                                                 {InvoiceTotal()}
                                             </div>
@@ -401,6 +401,10 @@ const Invoice = ({ location }) => {
                                     </div>
                                 </Tab>
                                 <Tab eventKey="ship" title="Order Shipment">
+                                    <div className="fo-flx">
+                                <p id="demo" className="point" onClick={() => window.print({})}>Print Shipment</p>
+                                      <Link to="/tracking"  state={{id: idd}}><p>Track this Shipment</p></Link> 
+                                      </div>
                                     {orderShipDetails()}
                                 </Tab>
                             </Tabs>
