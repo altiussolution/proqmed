@@ -145,6 +145,8 @@ const getCartCount = (value) =>{
     if(isBrowser && localStorage.getItem('cartData')){
       let cart = JSON.parse(localStorage.getItem('cartData'))
       return cart.length
+    } else {
+      return 0
     }
   }
 }

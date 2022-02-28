@@ -6773,7 +6773,9 @@ span.functions p .fa {
   display: flex;
   align-items: center;
 }
-
+.point:hover {
+  cursor:pointer;
+ }
 .fo-bg-white .top {
   border-bottom: 0.1px solid #f1f1f1;
 }

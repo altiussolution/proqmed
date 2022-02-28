@@ -11,7 +11,6 @@ import { useReactToPrint } from "react-to-print";
 import { toast } from 'react-toastify';
 
 const Invoice = ({ location }) => {
-
     const [orders, setOrders] = useState([]);
     const [invoices, setInvoices] = useState([]);
     const [jwt, setJwt] = useState("")
@@ -26,6 +25,7 @@ const Invoice = ({ location }) => {
         content: () => componentRef.current
       });
     useEffect(() => {
+        
         setPermit(localStorage.permissions);
         setJwt(localStorage.userToken);
         OrderStatus()
@@ -213,7 +213,7 @@ const Invoice = ({ location }) => {
       />
       <attach_data  ref={componentRef} /> */}
 
-              <p onClick={() => window.print({})}>Print Shipment</p>
+             <p id="demo" className="point" onClick={() => window.print({})}>Print Shipment</p>
               {/* <div>
       <ReactToPrint
         trigger={() => <button>Print this out!</button>}

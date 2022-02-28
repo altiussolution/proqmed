@@ -12,6 +12,7 @@ import { IoIosGitCompare } from "react-icons/io";
 import Modal from 'react-bootstrap/Modal';
 import { getCategoryURL } from "./../utils/url";
 import { useForm } from "react-hook-form";
+import CursorZoom from 'react-cursor-zoom';
 import ImageNotFound from "./../assets/car-dealer-loader.gif";
 import SliderImage from 'react-zoom-slider';
 import { Link } from "gatsby"
@@ -584,8 +585,20 @@ if(proDescription.items.config_options){
                   
                     
                   </div>
-                  <div className="slider_Product">
-                    {data.length > 0 && <SliderImage data={data} width="500px" showDescription={true} direction="top" />}
+                  <div>
+                    {data.length > 0 &&  <CursorZoom
+                image={{
+                    src: data[0].image,
+                    width: 400,
+                    height: 300
+                }}
+                zoomImage={{
+                    src: data[0].image,
+                    width: 600,
+                    height: 500
+                }}
+                cursorOffset={{ x: 30, y: -30 }}
+            />}
                   </div>
                 </div>
                 <div className="col-lg-5 col-md-8 col-xs-12 pr-5 product_details">

@@ -517,8 +517,8 @@ const CheckOut = ({location}) => {
                         {/* <button className="action action_btn btn btn_gray" onClick={() => setIndex(index)}>Ship Here</button> */}
 
                         <div className="action_sec">
-                            <button className="action action_btn btn btn_gray" onClick={() => {deleteAddress(add.entity_id); setaddressEdit(false)}} disabled={index !== selAddIndex}>Delete</button>
-                            <Link to="/Address" state={{data:add,prevPath:location.pathname}}><button className="action action_btn btn btn_gray ml-1"   disabled={index !== selAddIndex}>Edit</button></Link>
+                            <button className="action action_btn btn btn_gray" onClick={() => {deleteAddress(add.entity_id); setaddressEdit(false)}} >Delete</button>
+                            <Link to="/Address" state={{data:add,prevPath:location.pathname}}><button className="action action_btn btn btn_gray ml-1"  >Edit</button></Link>
                         </div>
 
                     </div>
