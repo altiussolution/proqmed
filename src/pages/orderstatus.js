@@ -215,9 +215,7 @@ const Invoice = ({ location }) => {
       content={() => componentRef.current}
       />
       <attach_data  ref={componentRef} /> */}
-
-      <div className="fo-flx">
-
+<div className="fo-flx">
              <p id="demo" className="point" onClick={() => window.print({})}>Print Shipment</p>
               {/* <div>
       <ReactToPrint
@@ -318,6 +316,7 @@ const Invoice = ({ location }) => {
         if(p==true || nop==true){
             if (invoices.length != 0 ) {
                 return <div className="order_product_wrapper"> 
+
                 <div className="fo-flx">
                 <p onClick={() => reorder(invoices[1].order_id)}>Reorder</p>
                 <p onClick={() => window.print(attach_data)}>Print Order</p>
