@@ -137,7 +137,7 @@ return (
                         </div> 
                         <span className="added">{quote.summary_of_review}</span>
                       </div> 
-                      <p className="description">{quote.detail}</p>
+                      <h6 className="description">{quote.detail}</h6>
                       </div>                                 
                               
                       </div>

@@ -7402,7 +7402,28 @@ table.table.table-striped.summary {
   border-radius: 10px;
   background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #fff;
   -webkit-appearance: none;
-  background-position-x: 238px;
+  background-size: 4.5%;
+  background-position-x: 242px;
+}
+
+.sec-top {
+  border-bottom: 1px solid #ededed;
+  margin-bottom: 20px;
+}
+
+.review-content .det p {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+h6.description {
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.prd_note p span.bold {
+  font-weight: 600;
 }
 
 /* San Styles 18022022*/
