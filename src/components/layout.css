@@ -7084,6 +7084,7 @@ a.sell:hover {
   color: #000 !IMPORTANT;
   border: 1px solid #ddd!IMPORTANT;
   border-radius: 0 !important;
+  margin-bottom: 2px;
 }
 
 p.fo-align.lft {
