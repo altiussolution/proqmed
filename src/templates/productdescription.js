@@ -12,6 +12,7 @@ import { IoIosGitCompare } from "react-icons/io";
 import Modal from 'react-bootstrap/Modal';
 import { getCategoryURL } from "./../utils/url";
 import { useForm } from "react-hook-form";
+import CursorZoom from 'react-cursor-zoom';
 import ImageNotFound from "./../assets/car-dealer-loader.gif";
 import SliderImage from 'react-zoom-slider';
 import { Link } from "gatsby"
@@ -50,6 +51,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false);
     const [outpcom,outpercomp] = useState(false);
+
   const [data, setData] = useState([
     {
       image: (ImageNotFound),
@@ -552,7 +554,19 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     setproduct_id(options.product_id)
   }
 
-
+const newprice =() => {
+if(proDescription.items.config_options){
+  return(
+    change_price.map((val, index) => (
+      <span className="price" key={index}>${Math.round(val.price)}</span>
+    )
+  )
+  )
+}else{
+  return(      <span className="price">${Math.round(normal_price)}</span>
+  )
+}
+}
   return (
     <>
       {proDescription && proDescription.items ? (
@@ -571,8 +585,20 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
                   
                     
                   </div>
-                  <div className="slider_Product">
-                    {data.length > 0 && <SliderImage data={data} width="500px" showDescription={true} direction="top" />}
+                  <div>
+                    {data.length > 0 &&  <CursorZoom
+                image={{
+                    src: data[0].image,
+                    width: 400,
+                    height: 300
+                }}
+                zoomImage={{
+                    src: data[0].image,
+                    width: 600,
+                    height: 500
+                }}
+                cursorOffset={{ x: 30, y: -30 }}
+            />}
                   </div>
                 </div>
                 <div className="col-lg-5 col-md-8 col-xs-12 pr-5 product_details">
@@ -635,13 +661,15 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
 
 <div className="price-name-strike">
                    
-                          {proDescription.items.config_options ?
+                          {/* {proDescription.items.config_options ?
                           change_price.map((val, index) => (
                               <span className="price" key={index}>${Math.round(val.price)}</span>
                             )) :
                             <span className="price">${Math.round(normal_price)}</span>
-}
-                        
+} */}
+{proDescription.items.strike_price ==null && newprice()}
+{proDescription.items.strike_price !=null && <span  className="price">${Math.round(proDescription.items.final_price)}</span>}
+
 
                        {proDescription.items.strike_price !=null && <span><strike>${Math.round(proDescription.items.strike_price)}</strike></span>}
                        {/* <span className="price"><strike>$0</strike></span> */}

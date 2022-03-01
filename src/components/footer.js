@@ -108,19 +108,24 @@ const Footer = () => {
         // for (let i = 0; i < allCategory.length; i += elements_in_each_row) {
         //   list.push(allCategory.slice(i, i + elements_in_each_row));
         // }
-    
-        return <div>
-            {     
-              list.map((el, index) => (    
-                el.map(item => (       
-                  <li key={item.node.id}>   
-                    <Link to={getCategoryURL(item.node)}>{item.node.name}</Link>
-                    
-                  </li>  
-                ))
+        
+          return <div>
+             <li>
+                                <b>Categories</b>
+                            </li>
+          {     
+            list.map((el, index) => (    
+              el.map(item => (       
+                <li key={item.node.id}>   
+                  <Link to={getCategoryURL(item.node)}>{item.node.name}</Link>
+                  
+                </li>  
               ))
-            }
-        </div>  
+            ))
+          }
+      </div>  
+        
+      
     
       }
     return (
@@ -241,9 +246,7 @@ const Footer = () => {
                     </div>
                     <div className="col-lg-2 col-md-12 col-sm-12">
                         <ul>
-                            <li>
-                                <b>Categories</b>
-                            </li>
+                           
                             {rendercategory()}
                         </ul>
                     </div>

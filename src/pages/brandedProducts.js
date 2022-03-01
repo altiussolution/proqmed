@@ -3,6 +3,8 @@ import axios from "axios";
 import { getProductURL } from "../utils/url";
 import { Link } from "gatsby";
 import Layout from '../components/layout';
+import { IoGridOutline } from "react-icons/io5";
+import { IoList } from "react-icons/io5";
 import { FaRegHeart } from 'react-icons/fa';
 import PageLoader from "../components/loaders/pageLoader";
 import { getCartCount ,getWLCount,viewCartItems} from "./../utils/apiServices";
@@ -11,7 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { wishListCount } from '../utils/apiServices'
 import StarRatings from 'react-star-ratings';
 
-const BrandedProducts = ({ location }) =>{
+const BrandedProducts = ({pageContext, location }) =>{
     const [productBrand, setProductBrand] = useState([]);
     const [loader, setLoader] = useState(false);
     const [brandImage, setBrandImage] = useState('');
@@ -19,6 +21,7 @@ const BrandedProducts = ({ location }) =>{
     const [quote_id, setQuoteId] = useState("");
     const [qty, setQty] = useState(1);
     const [isButton, setButton] = useState(false);
+    const [viewClass, setViewClass] = useState('sample');
     const [pcar,percart] = useState(false);
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false); 
@@ -193,13 +196,40 @@ const addToList = (type,id) => {
     navigate("/signin")
 }
   }
-
+  const shortBySelected = (event) => {
+    // setLoading(true);
+    const selecturl = event.target.value;
+    if(event.target.value == ""){
+      event.target.value="productsasc"
+    }
+    const id = pageContext.id;  
+    const selectRes =[];
+    try {
+      axios({
+          method: 'get',
+          url: `${process.env.GATSBY_CART_URL_STARCARE}admin/${selecturl}/${id}`,
+      }).then((res) => {
+          if (res.statusText === "OK" && res.status == 200) {
+            for(let response of res.data[0]){
+              selectRes.push(response[0])
+            }
+            setProductBrand(selectRes);
+            console.log(selectRes)
+            // setLoading(false);
+          }
+      }).catch((err) => {
+          console.error(err);
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
     const renderProducts = () => {    
       if (productBrand) { 
           return <div className="row products_fp">   
               {       
                   productBrand.map((data,index) => (
-                      <div className="item product_item sample" key={`${data.name}_${index}`}>
+                      <div className="item product_item sample" key={`${data.name}_${index}`} dataClass={viewClass}>
                         {p && <div className="wishComp">
                                   <ul>
                                     <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
@@ -273,6 +303,29 @@ const addToList = (type,id) => {
                     <div className="container">
                         <div className="row main_title">
                             <h1>Our <span>Brands</span></h1>
+                            <div className="tools_items">
+                          <div className="tools">
+                            <span>
+                              Sort by:
+                    </span>
+                            <div className="option">
+                              <select className="form-control" id="sort_option1" onChange={shortBySelected} >
+                                <option value = "productsasc">Name Asc</option>
+                                <option value = "productsdesc">Name Desc</option>
+                                <option value = "productspriceasc">Price Asc</option>
+                                <option value = "productspricedesc">Price Desc</option>
+                                <option value = "productsdateasc">Created Date Asc</option>
+                                <option value = "productsdatedesc">Created Date Desc</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div className="tools">
+                            <div className="title_view">
+                              <button className="view-list" id="list" data-toggle="tooltip" data-placement="top" title="List" onClick={() => setViewClass('list_view')}><IoList /></button>
+                              <button className="view-grid  active" id="grid" data-toggle="tooltip" data-placement="top" title="Grid" onClick={() => setViewClass('grid_view')}><IoGridOutline /></button>
+                            </div>
+                          </div>
+                        </div>
                         </div>
                         <div className="category_container">
                     

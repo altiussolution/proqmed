@@ -21,6 +21,30 @@ const Tracking =  ({ location }) => {
      // setid(location.state.id)
       console.log(location.state.id)
       setorder(location.state.id)
+      try {
+        axios({
+          method: 'get',
+          url: `${process.env.GATSBY_CART_URL_STARCARE}trackorder/order_id/${location.state.id}`,
+          headers: {
+            'Authorization': `Bearer ${jwt}`
+          }
+        }).then((res) => {
+          if (res.statusText === "OK" && res.status == 200) {
+              settrack(res.data[0]);
+              setstatus(res.data[0].order_status);
+              console.log(res.data[0])
+              if (res.data[0].seller != null) {
+                afterseller(true);
+              }else{
+                afterseller(false);
+              }   
+          }
+        }).catch((err) => {
+          console.error(err);
+        })
+      } catch (err) {
+        console.error(err)
+      } 
       }
   },[])
   const onSubmit =(event) => {

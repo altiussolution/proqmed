@@ -2,7 +2,7 @@ import React, { useEffect, useState, useReducer } from "react";
 import { navigate } from "gatsby";
 import queryString from "query-string";
 import Helmet from 'react-helmet';
-
+import { Slider } from '@mui/material';
 import { convertToObject } from "../../utils/convertToObj";
 import "./filter.css";
 
@@ -81,8 +81,10 @@ export default function Filter({
       // temporary fix by meenu not efficient
     }
     // Create displayFilters from Products listing
+    console.log(products)
     products.forEach(el => {
       const product = convertToObject(el.flat());
+      console.log(product)
       for (let prop in product) {
         if (prop !== "items") {
           displayFilters[prop] = displayFilters[prop]
@@ -218,6 +220,7 @@ export default function Filter({
             Clear all
           </div>
         </div>
+        
         <div className="productFilters ">{renderFilters()}</div>
       </div>
     </div>

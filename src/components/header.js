@@ -186,6 +186,12 @@ const isSticky = (e) => {
 
   const handleClick = async event => {
     setSearch(event.target.value);
+    // var searchedPara = document.querySelector('.search-content p');
+    // var words = event.target.value;
+    // var regex = RegExp(words, 'gi') // case insensitive
+    // var replacement = '<b>'+ words +'</b>';
+    // var newHTML = searchedPara.textContent.replace(regex, replacement);
+    // searchedPara.innerHTML = newHTML;
     localStorage.setItem('searchString', event.target.value)
     var boolVal = (event.target.value.length == 0 ? false : true)
     setActiveClass(boolVal);
@@ -432,26 +438,28 @@ const isSticky = (e) => {
     for (let i = 0; i < 6; i++) {
       topSelected.push([result[i]]);
     }
-
-    if (type === 'dropdown') {
-      return <div className="itm_list_holder">
-        {
-          list.map((el, index) => (
-            el.map(item => (
-              <figure key={item.node.id} className="itm_list">
-                <Link to={getCategoryURL(item.node)} className="itm_list_title">{item.node.name}</Link>
-                {
-                  item.node.grand_child.map(grand_child => (
-                    <span key={grand_child.id} ><Link to={getCategoryURL(grand_child)} >{grand_child.name}</Link></span>
-                  ))
-                }
-
-              </figure>
+   
+    
+      if (type === 'dropdown') {
+        return <div className="itm_list_holder">
+          {
+            list.map((el, index) => (
+              el.map(item => (
+                <figure key={item.node.id} className="itm_list">
+                  <Link to={getCategoryURL(item.node)} className="itm_list_title">{item.node.name}</Link>
+                  {
+                    item.node.grand_child.map(grand_child => (
+                      <span key={grand_child.id} ><Link to={getCategoryURL(grand_child)} >{grand_child.name}</Link></span>
+                    ))
+                  }
+  
+                </figure>
+              ))
             ))
-          ))
-        }
-      </div>
-    }
+          }
+        </div>
+      }
+    
 
     if (type === 'topList')
       return <div>

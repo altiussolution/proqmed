@@ -204,7 +204,8 @@ const Featuredproducts = () => {
                                 <div className="price_left">                                  
                                     <div className="product_amt">
                                     {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
-                                        <span className="price">${Math.round(data.original_price)}</span>
+                                    { data.strike_price == null &&  <span className="price">${Math.round(data.original_price)}</span>}
+                                     { data.strike_price != null &&  <span className="price">${Math.round(data.final_price)}</span>}
                                         
                                     </div>
                                     <div className="rating_front">

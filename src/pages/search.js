@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 import axios from "axios";
 import "./../templates/categorylist.css"
 import CategoryCard from "./../components/categoryCard/caregoryCard"
+import { searchServices } from "./../utils/apiServices";
 import FilterProduct from "./../components/FilterProduct";
 import PageLoader from "../components/loaders/pageLoader";
 import { convertToObject } from "../utils/convertToObj"
@@ -31,8 +32,32 @@ const Search = (props,pageContext) => {
                   productList.push(proProduct);
                 }
                 setSearchProducts("hi")
-                await setProducts(productList);
-                console.log(productList)
+                let result = [];
+
+                Object.entries(productList).forEach(([key, value]) => {
+                  Object.entries(value).forEach(([i, j]) => {
+                    let items = j.items;
+                    if(typeof items !== "undefined" ){
+                      result.push(items);
+                    }
+                  });
+                });
+                if(localStorage.getItem('userToken')){
+                  let catFromLocal = localStorage.getItem('category_permissions');
+                  if(catFromLocal){
+                    var allowedCat = catFromLocal.split(',').map(function(item) {
+                      return parseInt(item, 10);
+                    });
+                    result = result.filter((o) => allowedCat.includes(+o.category_id));
+                    console.log(result)
+                    await setProducts(result);
+                    // return await result;
+               
+                  }else {
+                    await setProducts(productList);
+                  }
+                }
+                
                 setLoading(false);
             }catch (err) {
                 if (!ignore) {
@@ -42,6 +67,7 @@ const Search = (props,pageContext) => {
               }
         };
         fetchSearch();
+        
         return () => {  
             ignore = true;
           };

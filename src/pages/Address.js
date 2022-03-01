@@ -18,6 +18,7 @@ const Address = ({location,data:product}) => {
  const [username, setUsername] = useState();
  const [state, setState] = useState([])
  const [loader, setLoader] = useState(false);
+ const [manilam,stateoff] = useState(false);
  const [profilepic,setProfilepic] = useState({});
  const [region, setRegion] = useState([]);
  const [edit, editdata] = useState([]);
@@ -73,7 +74,7 @@ const assignStats = () => {
         console.log('gokul',obj)
         defaultcountry(obj)
         setState(obj['states'])
-
+        stateoff(true)
     
     }else {
       
@@ -82,9 +83,10 @@ const assignStats = () => {
            defaultcountry(obj)
     if(obj['states']){
         setState(obj['states'])
-        
+        stateoff(true)
     }   else {
         setRegion(arr)
+        stateoff(false)
         // defaultcountry(obj)
     }    
     }
@@ -98,12 +100,12 @@ const handleChange = (event) => {
 const onSelectCats1 = (event) => {
     console.log(event)
     defaultcountry(event)
-
     setState([])
         if (event['states']) {
             setState(event['states'])
+            stateoff(true)
         }else {
-
+             stateoff(false)
         }
         return;
 }
@@ -126,13 +128,13 @@ Defaulti(states)
 
     const Cancelling = () => {
         console.log(location.state.prevPath)
-        navigate('/myAddress/')
+        
 
-        // if(location.state.prevPath=="/myAddress/"){
-        //     navigate('/myAddress/')
-        // }else {
-        //     navigate('/checkout/')
-        // }
+        if(location.state.prevPath=="/myAddress/" || location.state.prevPath=="/myAddress"){
+            navigate('/myAddress/')
+        }else {
+            navigate('/checkout/')
+        }
     }
 
     const filterData1 =(val,datas)=> {
@@ -164,7 +166,7 @@ let updateAddress = {
       "firstname": userAddresses.name,
       "lastname": userAddresses.lname,   
       "telephone": userAddresses.telephone,
-      "countryId": Tamilan['country_id'] //IN
+      "countryId": India //IN
     }
   }
     try {
@@ -181,7 +183,7 @@ let updateAddress = {
                 console.log(location.state.prevPath)
                 //  navigate('/myAddress/')
 
-                 if(location.state.prevPath=="/myAddress/"){
+                 if(location.state.prevPath=="/myAddress/" || location.state.prevPath=="/myAddress"){
                     navigate('/myAddress/')
                 }else {
                     navigate('/checkout/')
@@ -222,7 +224,7 @@ const onSubmitadd = userAddresses => {
           "firstname": userAddresses.name,
           "lastname": userAddresses.lname,   
           "telephone": userAddresses.telephone,
-          "countryId": Tamilan['country_id'] //IN
+          "countryId": India['value']//IN
         }
       }
         try {
@@ -237,7 +239,7 @@ const onSubmitadd = userAddresses => {
                 console.log("Add Address", response)
                 if (response.statusText === "OK" && response.status == 200) {
                     // navigate('/myAddress/')
-                    if(location.state.prevPath=="/checkout/"){
+                    if(location.state.prevPath=="/checkout/" || location.state.prevPath=="/checkout"){
                         navigate('/checkout/')
                     }else {
                         navigate('/myAddress/')
@@ -263,7 +265,7 @@ const onSubmitadd = userAddresses => {
 
     
 return (
-  <Layout>
+  <Layout {...location} propWhatever={{location}}>
   <div class="container-fluid grey">
   <div class="container padd">
       <div class="row">
@@ -301,7 +303,7 @@ return (
                   
                   </div>
   
-                 {editadd && <div class="address-form">
+                 {editadd && <div class="address-form" {...location}>
                       <form onSubmit={handleSubmit(onSubmit)}>
                       <div class="fo-bg-slice">
                           <h6>Edit Address</h6>
@@ -348,14 +350,14 @@ return (
                                                                                 required: true
                                                                             })}  defaultValue={(edit ? edit['city'] : "")}/>
                                                                             {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
-                                  <div> <Select
+                                {manilam &&  <div> <Select
                                     options={state}
                                     onChange={onSelectStates1}
                                     value={Tamilan}
                                     placeholder="Select State *"
                                      />
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
-                                  </div>
+                                  </div>}
                                  
                                   
                               </div>
@@ -439,13 +441,13 @@ return (
                                                                                 required: true
                                                                             })}  defaultValue={(edit ? edit['city'] : "")}/>
                                                                             {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
-                                  <div> <Select
+                                {manilam &&  <div> <Select
                                     options={state}
                                     onChange={onSelectStates1}
                                     placeholder="Select State *"
                                      />
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
-                                  </div>
+                                  </div> }
                                 
                                   
                               </div>

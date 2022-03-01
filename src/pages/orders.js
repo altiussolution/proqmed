@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "gatsby";
 import { TablePagination } from '@mui/material';
 import { navigate } from "gatsby"
-
+const array=[];
 const Orders = () => {
     const [page, setPage] = React.useState(0); 
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -18,7 +18,7 @@ const Orders = () => {
     const [outp,outper] = useState(false);
     const [outre,outreodr]= useState(false);
     const [attach_data, setattachment] = useState(null);
-    const array=[]
+    
     useEffect(() => {
         setJwt(localStorage.userToken);
       
@@ -47,6 +47,7 @@ const Orders = () => {
                         let hi = JSON.parse(localStorage.permissions)
                         let orderhis=hi.includes("Can View Order History")
                         let reorder = hi.includes("Can View Individual Orders Or Reorder")
+                        let invoice = hi.includes("Can View Invoice")
                         if(orderhis == false){
                             navigate('/')
                             setTimeout(() => {
@@ -56,6 +57,7 @@ const Orders = () => {
                             }
                         per(orderhis)
                         reodr(reorder)
+                        reodr(invoice)
                       }
                 }
                 
@@ -148,11 +150,66 @@ const filtercall = (data) =>{
         console.error(`An error occured ${err}`)
     }   
 }
+    var check= new Array();
+    const filterData =async(e,datas)=> {
+        console.log(e.target.checked)
+            if(e.target.checked==true){
+                array.push(datas)
+                let data = {
+                    "data":{
+                            "order_status":array,
+                            "email":localStorage.email
+                        }
+                    }
+                   await filtercall(data);
+                }else if(e.target.checked==false) {
+                    var carIndex = array.indexOf(datas);
+                   array.splice(carIndex, 1);
+                    let data = {
+                        "data":{
+                                "order_status":array,
+                                "email":localStorage.email
+                            }
+                        }
+                if(array.length>0){
+                   await filtercall(data);
+                }else {
+                   await setOrderDetails();
+                }
+                }
+        
+      
+    }
+    const filterData1 =async (e,datas)=> {
+        if(e.target.checked==true){
+          array.push(datas)
+            let data = {
+                "data":{
+                        "order_status":array,
+                        "email":localStorage.email
+                    }
+                }
+               await filtercall(data);
+            }else if(e.target.checked==false) {
+                var carIndex = array.indexOf(datas);
+                array.splice(carIndex, 1);
+                let data = {
+                    "data":{
+                            "order_status":array,
+                            "email":localStorage.email
+                        }
+                    }
+            if(array.length>0){
+                await filtercall(data);
+            }else {
+                await setOrderDetails();
+            }
+            }
+    }
 
-    const filterData =(e,datas)=> {
-        console.log(e.target.checked,datas)
-        console.log(e.target.value)
-        if(e.target.checked){
+    const filterData2 =async(e,datas)=> {
+        console.log(array)
+        if(e.target.checked==true){
             array.push(datas)
             let data = {
                 "data":{
@@ -160,8 +217,8 @@ const filtercall = (data) =>{
                         "email":localStorage.email
                     }
                 }
-               filtercall(data);
-            }else if(!e.target.checked) {
+               await filtercall(data);
+            }else if(e.target.checked==false) {
                 var carIndex = array.indexOf(datas);
                 array.splice(carIndex, 1);
                 let data = {
@@ -171,93 +228,9 @@ const filtercall = (data) =>{
                         }
                     }
             if(array.length>0){
-                filtercall(data);
+                await filtercall(data);
             }else {
-                setOrderDetails();
-            }
-            }
-    }
-
-
-    const filterDataa =(e,datas)=> {
-        console.log(e.target.checked,datas)
-        console.log(e.target.value)
-        if(e.target.checked){
-            array.push(e.target.value)
-            let data = {
-                "data":{
-                        "order_status":[e.target.value],
-                        "email":localStorage.email
-                    }
-                }
-               filtercall(data);
-            }else if(!e.target.checked) {
-                var carIndex = array.indexOf(datas);
-                array.splice(carIndex, 1);
-                let data = {
-                    "data":{
-                            "order_status":array,
-                            "email":localStorage.email
-                        }
-                    }
-            if(array.length>0){
-                filtercall(data);
-            }else {
-                setOrderDetails();
-            }
-            }
-    }
-const filterData1 = (val,datas)=>{
-if(val.target.checked){
-array.push(datas)
-let data = {
-    "data":{
-            "order_status":array,
-            "email":localStorage.email
-        }
-    }
-   filtercall(data);
-}else if(!val.target.checked) {
-    var carIndex = array.indexOf(datas);
-    array.splice(carIndex, 1);
-    let data = {
-        "data":{
-                "order_status":array,
-                "email":localStorage.email
-            }
-        }
-if(array.length>0){
-    filtercall(data);
-}else {
-    setOrderDetails();
-}
-}
-    }
-
-
-    const filterData2 = (val,datas)=>{
-        if(val.target.checked){
-            array.push(datas)
-            let data = {
-                "data":{
-                        "order_status":array,
-                        "email":localStorage.email
-                    }
-                }
-               filtercall(data);
-            }else if(!val.target.checked) {
-                var carIndex = array.indexOf(datas);
-                array.splice(carIndex, 1);
-                let data = {
-                    "data":{
-                            "order_status":array,
-                            "email":localStorage.email
-                        }
-                    }
-            if(array.length>0){
-                filtercall(data);
-            }else {
-                setOrderDetails();
+                await setOrderDetails();
             }
             }
     }

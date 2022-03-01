@@ -356,6 +356,9 @@ return (
                                             onRemove={onRemoveNames}
                                             name="permission"
                                             placeholder="Select Permissions "
+                                            ref={register({
+                                              required: true
+                                          })}
                                             />
                                       
                             
@@ -398,6 +401,9 @@ return (
                                        showCheckbox={true} 
                                        name="catpermission"
                                        placeholder="Select Category "
+                                       ref={register({
+                                        required: true
+                                    })}
                                        />
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
                                 </div>
@@ -470,6 +476,9 @@ return (
                                     onSelect={onSelectNames1} 
                                     onRemove={onRemoveNames1}
                                     placeholder="Select Permissions"
+                                    ref={register({
+                                      required: true
+                                  })}
                                      />
                                       
                             
@@ -509,6 +518,9 @@ return (
                                     onRemove={onRemoveCats1}
                                     selectedValues={quoteForm['category_permissions']}
                                     placeholder="Select Category"
+                                    ref={register({
+                                      required: true
+                                  })}
                                      /> 
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
                                 </div>
