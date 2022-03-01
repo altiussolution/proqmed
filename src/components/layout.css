@@ -6197,6 +6197,7 @@ height: 246px;
   background: #fff;
   padding: 10px 25px;
   color: #019FE0;
+  margin-top: 10px;
   font-size: 18px;
 }
 
@@ -7281,7 +7282,14 @@ p.fo-ia {
 }
 
 .casualities.bottom a:hover {
-  transition: 0.3s ease;
+  transition: 0.5s ease;
+  cursor: pointer;
+  background: #0f75b7;
+  color: #fff !important;
+}
+
+.fo-bg-white .top a:hover{
+  transition: 0.5s ease;
   cursor: pointer;
   background: #0f75b7;
   color: #fff !important;
@@ -7426,6 +7434,36 @@ h6.description {
   font-weight: 600;
 }
 
+.overview p span.bold {
+  font-weight: 600;
+}
+
+section.main-footer ul li a:hover {
+  font-size: 15px;
+  transition: 0.2s linear;
+  font-weight: 600;
+}
+
+.af-tr-banner button.btn.btn.update:hover {
+  background: none;
+  border: 1px solid rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  transition: 0.4s linear;
+}
+
+button.btn.btn_brown:hover {
+  border: 1px solid #ffc107;
+  transition: 0.2s linear;
+  background: none;
+  color: black !IMPORTANT;
+}
+
+.whishlist_page .product_item .user_actions button.btn_gray.btn:hover{
+  border: 1px solid #ffc107;
+  transition: 0.2s linear;
+  background: none !important;
+  color: black !IMPORTANT;
+}
 /* San Styles 18022022*/
 
 .itm_list_holder{
