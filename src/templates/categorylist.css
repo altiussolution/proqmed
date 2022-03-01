@@ -292,7 +292,7 @@ html {
   }
   .category_container .cat_scroll #products {
     margin: 0;
-    padding-top: 15px;
+    
     width: 100%;
   }
   .category_container .cat_scroll #products.list-group {

@@ -212,7 +212,7 @@ const deleteAddress = (id) => {
             <h4><Link to="/profile"><a><span><img src={account}/></span> ACCOUNT SETTINGS</a></Link></h4>
                 <ul>
                     <li><Link to="/profile">Profile Information</Link></li>
-                    <li><Link to="/myAddress">Manage Addresses</Link></li>
+                    <li className="fo-active-bg"><Link to="/myAddress">Manage Addresses</Link></li>
                     <li><Link to="/myReviews">My reviews</Link></li>
 
                 </ul>

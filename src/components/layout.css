@@ -967,7 +967,7 @@ section.main-footer ul li a {
      display: block;
 }
 .page-title {
-  font-size: 40px;
+  font-size: 30px;
   border-width: 0;
   border-bottom-width: 1px;
   border-style: solid;
@@ -982,6 +982,16 @@ section.main-footer ul li a {
   display: flex;
   justify-content: space-between;
 }
+
+.page-title h1{
+  font-size: 30px;
+}
+
+h1.page-title span {
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
 .page-title span:after {
   width: 100px;
   height: 1px;
@@ -6570,7 +6580,7 @@ h2.heading{
 
 .profile-sec.details ul li a:hover {
 
-  color: #1C67A8;
+  color: #0f75b7;
   font-weight: 600;
   transition: 0.2s ease;
   
@@ -6687,13 +6697,13 @@ span.inp_val {
 .fo-bg-white .top .right {
   display: flex;
   justify-content: right;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .fo-bg-white .top .right .search {
   border: 1px solid #ddd;
   height: 40px;
-  width: 75%;
+  width: 100%;
   margin-right: 10px;
   border-radius: 5px;
 }
@@ -7243,8 +7253,8 @@ span.fo-AD {
 
 button.btn.btn.eye {
   position: absolute;
-  bottom: 123px;
-  right: 20px;
+  bottom: 0px;
+  right: 0px;
 }
 
 .form-group {
@@ -7301,11 +7311,21 @@ button.btn.btn-link {
   text-align: right;
   display: flex;
   justify-content: end;
-  padding: 0px 20px !important;
+  padding: 0px !important;
 }
 
 .table_below.det tr th {
   padding-right: 30px !important;
+  border: none !important;
+}
+
+.table_below.det tr:nth-child(even) {
+  background: none !important;
+}
+
+.table_below.det tr td {
+  padding-right: 10px !important;
+  border: none !important;
 }
 
 .table_below.det tr th:after {
@@ -7352,6 +7372,35 @@ label.fo-wid {
   margin: 0 auto;
 }
 
+.form-group{
+  position: relative;
+}
+
+li.fo-active-bg a{
+color: #0f75b7 !important;
+font-weight: 600;
+}
+
+.col-lg-12.col-md-6.col-xs-12.p-0 {
+  padding: 17px !important;
+  padding-top: 0 !important;
+}
+
+table.table.table-striped.summary {
+  background: #fafafa;
+}
+
+.option select#sort_option1 {
+  width: 268px;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1;
+  border: 0;
+  border-radius: 10px;
+  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #fff;
+  -webkit-appearance: none;
+  background-position-x: 238px;
+}
 
 /* San Styles 18022022*/
 
@@ -7392,7 +7441,7 @@ label.fo-wid {
 
 .slider_thumb ul li {
   display: flex;
-  }
+}
 
   
 

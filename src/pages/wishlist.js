@@ -207,9 +207,9 @@ const Wishlist = () => {
                             <div className="App">
                                 <div className="content_wrapper">
                                     <div className="container">
-                                        <div className="main_title">
+                                        <div className="heading">
                                             {/* <h1>My Wishlist <span>(5)</span></h1> */}
-                                            <h3>My Wishlist<span> ({wishList.length})</span></h3>
+                                            <h2>My Wishlist<span> ({wishList.length})</span></h2>
                                         </div>
     
     

@@ -406,7 +406,7 @@ const closeEmail = () =>{
                 <h4><span><img src={order}/></span> <a onClick={() => { navigateOnclick('/orders') }}>MY ORDERS</a> </h4>
                 <h4><span><img src={account}/></span><a href="#"> ACCOUNT SETTINGS</a></h4>
                 <ul>
-                <li><Link to="/profile">Profile Information</Link></li>
+                <li className="fo-active-bg"><Link to="/profile">Profile Information</Link></li>
                     <li><Link to="/myAddress">Manage Addresses</Link></li>
                     <li><Link to="/myReviews">My reviews</Link></li>
                 </ul>
