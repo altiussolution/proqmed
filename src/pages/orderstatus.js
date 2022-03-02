@@ -134,8 +134,11 @@ const Invoice = ({ location }) => {
                 {
                     orders.map((items, index) => (
                         <div key={index} className="card orderstatus">
+
+                            <div className="fo-flx">
                             <p onClick={() => reorder(items.order_id)}>Reorder</p>
                             <p onClick={() => window.print({})}>Print Order</p>
+                            </div>
                                 <table className="table">
                                     <thead>
                                         <tr>
@@ -212,7 +215,7 @@ const Invoice = ({ location }) => {
       content={() => componentRef.current}
       />
       <attach_data  ref={componentRef} /> */}
-
+<div className="fo-flx">
              <p id="demo" className="point" onClick={() => window.print({})}>Print Shipment</p>
               {/* <div>
       <ReactToPrint
@@ -223,7 +226,7 @@ const Invoice = ({ location }) => {
     </div> */}
                                     {/* <p>Print Shipment</p>  */}
                                    <Link to="/tracking"  state={{id: idd}}><p>Track this Shipment</p></Link> 
-
+                                   </div>
                                 </div>
                             
                         </div>
@@ -312,8 +315,12 @@ const Invoice = ({ location }) => {
        
         if(p==true || nop==true){
             if (invoices.length != 0 ) {
-                return <div className="order_product"> <p onClick={() => reorder(invoices[1].order_id)}>Reorder</p>
+                return <div className="order_product_wrapper"> 
+
+                <div className="fo-flx">
+                <p onClick={() => reorder(invoices[1].order_id)}>Reorder</p>
                 <p onClick={() => window.print(attach_data)}>Print Order</p>
+                </div>
                         <table className="table">
                             <thead>
                                 <tr>
@@ -427,6 +434,7 @@ const Invoice = ({ location }) => {
                                 </Tab>
                                 <Tab eventKey="ship" title="Order Shipment">
                                     <div className="fo-flx">
+                                        
                                 <p id="demo" className="point" onClick={() => window.print({})}>Print Shipment</p>
                                       <Link to="/tracking"  state={{id: idd}}><p>Track this Shipment</p></Link> 
                                       </div>

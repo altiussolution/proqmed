@@ -641,16 +641,16 @@ if(proDescription.items.config_options){
 
                       <div className="prd_note">
                         <p>
-                          Brand: <a href="/filterBrands">{proDescription.Brand}</a>
+                          <span className="bold">Brand:</span> <a href="/filterBrands">{proDescription.Brand}</a>
                           {/* <Link to="/brandedProducts/" state={{ brand_id: data.brand_id }} ><img className="product_img" src={data.image} /></Link> */}
 
                         </p>
 
                         {proDescription.items.config_options ?
                           change_price.map((val, index) => (
-                           <p> SKU:<span >{val.sku}</span></p>
+                           <p>  <span className="bold">SKU:</span><span >{val.sku}</span></p>
                           )) :
-                          <p> SKU: <span>{proDescription.items.sku}</span></p>
+                          <p> <span className="bold">SKU:</span> <span>{proDescription.items.sku}</span></p>
                         }
                       </div>
                       <div>
@@ -768,7 +768,7 @@ if(proDescription.items.config_options){
                       <p>{proDescription.items.overview}</p>
                       {/* <a>Read More</a> */}
 
-                     {proDescription.items.seller_name !=null && <p>Seller:<Link to="/sellerreview" state={{ seller_id: proDescription.items.seller_id }} ><span>{proDescription.items.seller_name}</span></Link></p>}
+                     {proDescription.items.seller_name !=null && <p> <span className="bold">Seller : </span><Link to="/sellerreview" state={{ seller_id: proDescription.items.seller_id }} ><span>{proDescription.items.seller_name}</span></Link></p>}
                           {/*  */}
 
 

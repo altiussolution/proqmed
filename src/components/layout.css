@@ -967,7 +967,7 @@ section.main-footer ul li a {
      display: block;
 }
 .page-title {
-  font-size: 40px;
+  font-size: 30px;
   border-width: 0;
   border-bottom-width: 1px;
   border-style: solid;
@@ -982,6 +982,16 @@ section.main-footer ul li a {
   display: flex;
   justify-content: space-between;
 }
+
+.page-title h1{
+  font-size: 30px;
+}
+
+h1.page-title span {
+  font-size: 24px;
+  padding-bottom: 10px;
+}
+
 .page-title span:after {
   width: 100px;
   height: 1px;
@@ -3505,7 +3515,8 @@ margin-bottom: 10px;
   border: 2px solid rgb(1 98 162);
   border-radius: 0px;
   text-align: left;
-  width: 150px;
+  min-width: 170px;
+  white-space: nowrap;
   color: #0162a2;
   border-radius: 3px;
   line-height: 20px;
@@ -6186,6 +6197,7 @@ height: 246px;
   background: #fff;
   padding: 10px 25px;
   color: #019FE0;
+  margin-top: 10px;
   font-size: 18px;
 }
 
@@ -6570,7 +6582,7 @@ h2.heading{
 
 .profile-sec.details ul li a:hover {
 
-  color: #1C67A8;
+  color: #0f75b7;
   font-weight: 600;
   transition: 0.2s ease;
   
@@ -6687,13 +6699,13 @@ span.inp_val {
 .fo-bg-white .top .right {
   display: flex;
   justify-content: right;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .fo-bg-white .top .right .search {
   border: 1px solid #ddd;
   height: 40px;
-  width: 75%;
+  width: 100%;
   margin-right: 10px;
   border-radius: 5px;
 }
@@ -7072,6 +7084,7 @@ a.sell:hover {
   color: #000 !IMPORTANT;
   border: 1px solid #ddd!IMPORTANT;
   border-radius: 0 !important;
+  margin-bottom: 2px;
 }
 
 p.fo-align.lft {
@@ -7245,8 +7258,8 @@ span.fo-AD {
 
 button.btn.btn.eye {
   position: absolute;
-  bottom: 123px;
-  right: 20px;
+  bottom: 0px;
+  right: 0px;
 }
 
 .form-group {
@@ -7270,7 +7283,14 @@ p.fo-ia {
 }
 
 .casualities.bottom a:hover {
-  transition: 0.3s ease;
+  transition: 0.5s ease;
+  cursor: pointer;
+  background: #0f75b7;
+  color: #fff !important;
+}
+
+.fo-bg-white .top a:hover{
+  transition: 0.5s ease;
   cursor: pointer;
   background: #0f75b7;
   color: #fff !important;
@@ -7307,11 +7327,21 @@ button.btn.btn-link {
   text-align: right;
   display: flex;
   justify-content: end;
-  padding: 0px 20px !important;
+  padding: 0px !important;
 }
 
 .table_below.det tr th {
   padding-right: 30px !important;
+  border: none !important;
+}
+
+.table_below.det tr:nth-child(even) {
+  background: none !important;
+}
+
+.table_below.det tr td {
+  padding-right: 10px !important;
+  border: none !important;
 }
 
 .table_below.det tr th:after {
@@ -7358,7 +7388,87 @@ label.fo-wid {
   margin: 0 auto;
 }
 
+.form-group{
+  position: relative;
+}
 
+li.fo-active-bg a{
+color: #0f75b7 !important;
+font-weight: 600;
+}
+
+.col-lg-12.col-md-6.col-xs-12.p-0 {
+  padding: 17px !important;
+  padding-top: 0 !important;
+}
+
+table.table.table-striped.summary {
+  background: #fafafa;
+}
+
+.option select#sort_option1 {
+  width: 268px;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1;
+  border: 0;
+  border-radius: 10px;
+  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #fff;
+  -webkit-appearance: none;
+  background-size: 4.5%;
+  background-position-x: 242px;
+}
+
+.sec-top {
+  border-bottom: 1px solid #ededed;
+  margin-bottom: 20px;
+}
+
+.review-content .det p {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+h6.description {
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.prd_note p span.bold {
+  font-weight: 600;
+}
+
+.overview p span.bold {
+  font-weight: 600;
+}
+
+section.main-footer ul li a:hover {
+  font-size: 15px;
+  transition: 0.2s linear;
+  font-weight: 600;
+}
+
+.af-tr-banner button.btn.btn.update:hover {
+  background: none;
+  border: 1px solid rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  transition: 0.4s linear;
+}
+
+button.btn.btn_brown:hover {
+  border: 1px solid #ffc107;
+  transition: 0.2s linear;
+  background: none;
+  color: black !IMPORTANT;
+}
+
+.whishlist_page .product_item .user_actions button.btn_gray.btn:hover{
+  border: 1px solid #ffc107;
+  transition: 0.2s linear;
+  background: none !important;
+  color: black !IMPORTANT;
+}
 /* San Styles 18022022*/
 
 .itm_list_holder{
@@ -7398,7 +7508,7 @@ label.fo-wid {
 
 .slider_thumb ul li {
   display: flex;
-  }
+}
 
   
 

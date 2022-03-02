@@ -72,7 +72,43 @@ const logout = () => {
  navigate('/')  
 
 }
+const searchReview = async (val) => {
+    console.log(val.target.value)
+    if(val.target.value.length>=2){
+        let data = {
+            
+                "data":{
+                    "keyword":val.target.value,
+                    "customer_id":localStorage.customer_id
+                }
+            
+        }
+        try {
+            axios({
+                method: 'post',
+                url: `${process.env.GATSBY_CART_URL_STARCARE}reviewssearch`,
 
+                data: data,
+            })
+                .then(function (response) {
+                   console.log(response)
+                   if(response.data == "No data found"){
+                    setReviews([])
+                }else {
+                    setReviews(response.data)
+                }
+                })
+                .catch(function (response) {
+                    
+                });
+    
+        } catch (err) {
+            console.error(`An error occured ${err}`)
+        }
+    }else if(val.target.value.length ===0){
+        getReviews();
+    }
+    }
 return (
  <Layout>
    <div className="container-fluid grey">
@@ -108,7 +144,10 @@ return (
                     <div className="header">
                     <h2 className="heading">My Reviews <span>({reviews.length})</span></h2>
                 </div>
-                
+                <div className="search orders">
+                        <input type="text" placeholder="Search" onChange={e => { searchReview(e) }}/>
+                        <i className="fa fa-search" aria-hidden="true"></i>
+                    </div>
                 </div>
                 {reviews.length!=0 ?
               

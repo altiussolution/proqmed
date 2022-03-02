@@ -106,8 +106,7 @@ useEffect(() => {
         <div className="content_wrapper pad">
           <div className="container">
             <div className="page-title">
-              <h1 className="page-title"><span>All Categories</span>
-              </h1>
+              <h1>All Categories</h1>
             </div>
           </div>
 
