@@ -397,7 +397,7 @@ const choosefile =() =>{
               <div className="fo-deflx">
               {profilepic.logo ? <img src={profilepic.logo}  />: <div><img src={noimage} /></div>}   
 
-           {up && <div className="fo-center">
+           {up && <div className="fo-center-1">
               <input className="btm" type="file" onChange={(e) => {uploadImage(e);}}/>
               </div>}
               {aftimg && <button onClick={onFileUpload} className="action action_btn btn btn_gray">
