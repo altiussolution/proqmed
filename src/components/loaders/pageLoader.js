@@ -12,6 +12,7 @@ const PageLoader = () => {
         <span></span>
       </div>
     </div>
+    
     </div>
   );
 };
