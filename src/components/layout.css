@@ -34,6 +34,14 @@ body {
 .banner_top .img-fluid{
   width:100%;
 }
+.text-bold {
+  font-weight: normal;
+ }
+ 
+ .text-bold i {
+  font-weight: bold;
+  color: #01aa67;
+ }
 .is-sticky {
     position: fixed;
     top: 0;

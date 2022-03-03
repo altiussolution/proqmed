@@ -206,22 +206,24 @@ const Products = ({ pageContext, location , props }) => {
       return (
         <div className="mx-auto no_data_found">
           <img src={empty_cart} alt={"Empty Cart"} />
-          <h4>No items found!</h4>
+          <h4>No items found !</h4>
         </div>
       );
 
   };
 
-  const showSelected = (e) => {
+  const showSelected = async (e) => {
     let index = e.target.value;
+    console.log(index)
     var selectValue = [];
-    for(var ind=0;ind<index;ind++){
-      if(productTemp[ind] !== undefined){
-      selectValue.push(productTemp[ind])
+    for(var i=0;i<index;i++){
+      if(productTemp[i] !== undefined){
+      selectValue.push(productTemp[i])
       }
     }
-    // setProducts(productTemp.slice(0, index));
-    setProducts(selectValue);
+    
+    // await setProducts(products.slice(0, index));
+    await setProducts(selectValue);
   }
 // const checkUrl =()=>{
 //   if (checkLogin()) {
