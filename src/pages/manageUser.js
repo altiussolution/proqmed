@@ -16,7 +16,7 @@ import noimage from "./../assets/noimage.png"
 
 const Managesub = ({location}) => {
 
-const _isMounted = useRef(false);
+// const _isMounted = useRef(false);
  const [clip,categoryda] = useState([]);
  const [statys, statusIn] = useState(false);
  const [statysedit, statusInedit] = useState(false);
@@ -88,8 +88,7 @@ const _isMounted = useRef(false);
  }else {
   setQuotePopupadd(true)
  }
- return () => { _isMounted.current = true }
-}, []);
+},[]);
 const rendercategory = () =>{
  const list = [];
  const lis = [];
