@@ -996,7 +996,7 @@ section.main-footer ul li a {
 }
 
 h1.page-title span {
-  font-size: 24px;
+  font-size: 16px;
   padding-bottom: 10px;
 }
 
@@ -5477,6 +5477,7 @@ section.main-footer p{
 }
 .title_view{
   display: flex;
+  flex-direction: row-reverse;
 }
 .tools .form-control {
   border-radius: 10px;
@@ -7415,7 +7416,7 @@ table.table.table-striped.summary {
 }
 
 .option select#sort_option1 {
-  width: 268px;
+  width: 198px;
   padding: 10px;
   font-size: 16px;
   line-height: 1;
@@ -7424,7 +7425,7 @@ table.table.table-striped.summary {
   background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #fff;
   -webkit-appearance: none;
   background-size: 4.5%;
-  background-position-x: 242px;
+  background-position-x: 177px
 }
 
 .sec-top {
@@ -7477,6 +7478,12 @@ button.btn.btn_brown:hover {
   background: none !important;
   color: black !IMPORTANT;
 }
+
+button.active_btn {
+  background: #1c67a8 !important;
+  color: #ffffff;
+}
+
 /* San Styles 18022022*/
 
 .itm_list_holder{
@@ -7517,8 +7524,6 @@ button.btn.btn_brown:hover {
 .slider_thumb ul li {
   display: flex;
 }
-
-  
 
 @media only screen and (max-width:600px) {
 
