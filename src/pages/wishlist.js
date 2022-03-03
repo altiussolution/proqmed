@@ -193,7 +193,43 @@ const Wishlist = () => {
             navigate("/signin")
         }
     }
+    const searchwishlist = async (val) => {
+        console.log(val.target.value)
+        if(val.target.value.length>=2){
+            let data = {
+                
+                    "data":{
+                        "keyword":val.target.value,
+                        "customer_id":localStorage.customer_id
+                    }
+                
+            }
+            try {
+                axios({
+                    method: 'post',
+                    url: `${process.env.GATSBY_CART_URL_STARCARE}searchwishlist`,
     
+                    data: data,
+                })
+                    .then(function (response) {
+                       console.log(response)
+                       if(response.data == "No data found"){
+                        setWishList([])
+                    }else {
+                        setWishList(response.data)
+                    }
+                    })
+                    .catch(function (response) {
+                        
+                    });
+        
+            } catch (err) {
+                console.error(`An error occured ${err}`)
+            }
+        }else if(val.target.value.length ===0){
+            getWishList();
+        }
+        }
     if(p==true || nop==true){
         return (
             <>
@@ -207,12 +243,16 @@ const Wishlist = () => {
                             <div className="App">
                                 <div className="content_wrapper">
                                     <div className="container">
+                                    <div className="top">
                                         <div className="heading">
                                             {/* <h1>My Wishlist <span>(5)</span></h1> */}
                                             <h2>My Wishlist<span> ({wishList.length})</span></h2>
                                         </div>
     
-    
+                                        <div className="search orders">
+                        <input type="text" placeholder="Search" onChange={e => { searchwishlist(e) }}/>
+                        <i className="fa fa-search" aria-hidden="true"></i>
+                    </div></div>
                                         <div className="row no_data_found">
     
                                             {wishList.length == 0 ? <div className="col-lg-12 col-md-12 col-xs-12 text-center">
