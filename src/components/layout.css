@@ -6771,8 +6771,9 @@ span.way {
 }
 
 .search.orders input{
- border:none;
-} 
+  border: none;
+  background: none;
+  overflow: hidden;} 
 
 span.functions {
   display: flex;
@@ -7205,9 +7206,15 @@ table.table.table-striped input[type="number"] {
   padding: 20px;
   border-radius: 10px;
   width: 100%;
-  display: flex;
+  display: block !important;
   align-items: center;
   justify-content: center;
+}
+
+.row.no_data_found .top {
+  border-bottom: 1px solid #e7e7e7;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 .or-left p {

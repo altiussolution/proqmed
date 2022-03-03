@@ -243,7 +243,9 @@ const Wishlist = () => {
                             <div className="App">
                                 <div className="content_wrapper">
                                     <div className="container">
-                                    <div className="top">
+                               
+                                        <div className="row no_data_found">
+                                        <div className="top">
                                         <div className="heading">
                                             {/* <h1>My Wishlist <span>(5)</span></h1> */}
                                             <h2>My Wishlist<span> ({wishList.length})</span></h2>
@@ -253,8 +255,6 @@ const Wishlist = () => {
                         <input type="text" placeholder="Search" onChange={e => { searchwishlist(e) }}/>
                         <i className="fa fa-search" aria-hidden="true"></i>
                     </div></div>
-                                        <div className="row no_data_found">
-    
                                             {wishList.length == 0 ? <div className="col-lg-12 col-md-12 col-xs-12 text-center">
                                                 <img src={empty_cart} alt={"Empty Cart"} />
                                                 <h4>No items in Wishlist</h4>
