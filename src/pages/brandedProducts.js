@@ -229,7 +229,7 @@ const addToList = (type,id) => {
           return <div className="row products_fp">   
               {       
                   productBrand.map((data,index) => (
-                      <div className="item product_item sample" key={`${data.name}_${index}`} dataClass={viewClass}>
+                      <div  className={`item product_item ${viewClass}`} key={`${data.name}_${index}`}>
                         {p && <div className="wishComp">
                                   <ul>
                                     <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
@@ -263,7 +263,7 @@ const addToList = (type,id) => {
                               <div className="price_left">                                  
                                   <div className="product_amt">
                                   {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
-                                      <span className="price">${Math.round(data.price)}</span>
+                                      <span className="price">${Math.round(data.final_price)}</span>
                                       
                                   </div>
                                   <div className="rating_front">
@@ -321,8 +321,8 @@ const addToList = (type,id) => {
                           </div>
                           <div className="tools">
                             <div className="title_view">
-                              <button className="view-list" id="list" data-toggle="tooltip" data-placement="top" title="List" onClick={() => setViewClass('list_view')}><IoList /></button>
-                              <button className="view-grid  active" id="grid" data-toggle="tooltip" data-placement="top" title="Grid" onClick={() => setViewClass('grid_view')}><IoGridOutline /></button>
+                            <button  className={"view-btn list-view"+(viewClass === 'list_view' ? ' active_btn':'')} id="list" data-toggle="tooltip" data-placement="top" title="List" onClick={() => setViewClass('list_view')}><IoList /></button>
+                              <button  className={"view-btn grid-view"+(viewClass === 'grid_view' ? ' active_btn':'')} id="grid" data-toggle="tooltip" data-placement="top" title="Grid" onClick={() => setViewClass('grid_view')}><IoGridOutline /></button>
                             </div>
                           </div>
                         </div>
