@@ -325,7 +325,7 @@ return (
                             
                                 <div className="form-group">
                                  
-                                  <input type="text" className="form-control" id="usr" placeholder="First Name *" name="firstname"  type="text" ref={register({
+                                  <input type="text" className="form-control" id="usr" placeholder="First Name *" name="firstname"  type="text" inputRef={register({
                                         required: true
                                     })}/>
                                      {errors.firstname && errors.firstname.type === 'required' && <span className="error">First Name is required</span>}
@@ -334,14 +334,14 @@ return (
         
                                 <div className="form-group">
                                     
-                                    <input type="text" className="form-control" id="usr" placeholder="Email *" type="text" name="email"  ref={register({
+                                    <input type="text" className="form-control" id="usr" placeholder="Email *" type="text" name="email"  inputRef={register({
                                         required: true
                                     })}/>
                                     {errors.email && errors.email.type === 'required' && <span className="error">Email is required</span>}
                                   </div>
                                   <div className="form-group">
                                     
-                                    <input type="text" className="form-control" id="usr" type="text" name="rolename" placeholder="RoleName *" ref={register({
+                                    <input type="text" className="form-control" id="usr" type="text" name="rolename" placeholder="RoleName *" inputRef={register({
                                         required: true
                                     })}/>
                                     {errors.rolename && errors.rolename.type === 'required' && <span className="error">RoleName is required</span>}
@@ -355,7 +355,7 @@ return (
                                             onRemove={onRemoveNames}
                                             name="permission"
                                             placeholder="Select Permissions "
-                                            ref={register({
+                                            inputRef={register({
                                               required: true
                                           })}
                                             />
@@ -369,7 +369,7 @@ return (
                             
                             <div className="form-group">
                               
-                              <input  className="form-control" id="pwd" placeholder="Last Name *" type="text" name="lastname"  ref={register({
+                              <input  className="form-control" id="pwd" placeholder="Last Name *" type="text" name="lastname"  inputRef={register({
                                         required: true
                                     })}/>
                                    {errors.lastname && errors.lastname.type === 'required' && <span className="error">Last Name is required</span>}  
@@ -379,7 +379,7 @@ return (
         
                               <div className="form-group">
                                     
-                                    <input className="form-control" id="usr" placeholder="Password *" type={passwordShown ? "text" : "password"}  name="password"  ref={register({
+                                    <input className="form-control" id="usr" placeholder="Password *" type={passwordShown ? "text" : "password"}  name="password"  inputRef={register({
                                         required: true
                                     })} />
                         <button className="btn btn eye" type="button" onClick={togglePasswordVisiblity}>{passwordShown ? <AiFillEye />: <AiFillEyeInvisible />} </button>
@@ -400,7 +400,7 @@ return (
                                        showCheckbox={true} 
                                        name="catpermission"
                                        placeholder="Select Category "
-                                       ref={register({
+                                       inputRef={register({
                                         required: true
                                     })}
                                        />
@@ -445,7 +445,7 @@ return (
                             
                                 <div className="form-group">
                                  
-                                  <input type="text" className="form-control" id="usr" placeholder="First Name *" name="firstname"  type="text" ref={register({
+                                  <input type="text" className="form-control" id="usr" placeholder="First Name *" name="firstname"  type="text" inputRef={register({
                                         required: true
                                     })} defaultValue={(quoteForm['subuser_firstname'])}/>
                                      {errors.firstname && errors.firstname.type === 'required' && <span className="error">First Name is required</span>}
@@ -454,19 +454,19 @@ return (
         
                                 <div className="form-group">
                                     
-                                    <input type="text" className="form-control" id="usr" placeholder="Email *" type="text" name="email"  ref={register({
+                                    <input type="text" className="form-control" id="usr" placeholder="Email *" type="text" name="email"  inputRef={register({
                                         required: true
                                     })} defaultValue={(quoteForm['subuser_email'])}/>
                                     {errors.email && errors.email.type === 'required' && <span className="error">Email is required</span>}
                                   </div>
                                   <div className="form-group">
                                     
-                                    <input type="text" className="form-control" id="usr" type="text" name="rolename" placeholder="RoleName *" ref={register({
+                                    <input type="text" className="form-control" id="usr" type="text" name="rolename" placeholder="RoleName *" inputRef={register({
                                         required: true
                                     })} defaultValue={(quoteForm['role_name'])}/>
                                     {errors.rolename && errors.rolename.type === 'required' && <span className="error">RoleName is required</span>}
                                   </div>
-                                 {/* <div className="form-group">
+                                 <div className="form-group">
                                  <Multiselect
                                     options={quoteConversations}
                                     selectedValues={quoteForm['allowed_permissions']}
@@ -475,7 +475,7 @@ return (
                                     onSelect={onSelectNames1} 
                                     onRemove={onRemoveNames1}
                                     placeholder="Select Permissions"
-                                    ref={register({
+                                    inputRef={register({
                                       required: true
                                   })}
                                      />
@@ -483,13 +483,13 @@ return (
                             
                                      
                                     {errors.permission && errors.permission.type === 'required' && <span className="error">Permission is required</span>}
-                                    </div> */}
+                                    </div>
                         </div>
                         <div className="col-lg-6 col-md-12 col-sm-12">
                             
                             <div className="form-group">
                               
-                              <input  className="form-control" id="pwd" placeholder="Last Name" type="text" name="lastname"  ref={register({
+                              <input  className="form-control" id="pwd" placeholder="Last Name" type="text" name="lastname"  inputRef={register({
                                         required: true
                                     })} defaultValue={(quoteForm['subuser_lastname'])}/>
                                    {errors.lastname && errors.lastname.type === 'required' && <span className="error">Last Name is required</span>}  
@@ -506,7 +506,7 @@ return (
                                  
                                     {errors.password && errors.password.type === 'required' && <span className="error">Password is required</span>}
                                     </div> */}
-                                  {/* <div className="form-group">
+                                  <div className="form-group">
                                    
                                      
                                   <Multiselect
@@ -517,12 +517,12 @@ return (
                                     onRemove={onRemoveCats1}
                                     selectedValues={quoteForm['category_permissions']}
                                     placeholder="Select Category"
-                                    ref={register({
+                                    inputRef={register({
                                       required: true
                                   })}
                                      /> 
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
-                                </div> */}
+                                </div>
                                 <div className="form-group form-grp-space">
                                     <label htmlFor="status">Status</label>
                                      <Switch
