@@ -3194,7 +3194,6 @@ ul.totals li span {
 .shipping_address_items {
   flex-wrap: wrap;
   display: flex;
-  align-items: center;
   width: 100%;
 }
 .shipping_address_items .selected_item {
@@ -5529,7 +5528,7 @@ section.main-footer p{
 
 .casualities button.btn.btn.heart {
   background: #fff;
-  font-size: 20px;
+  font-size: 10px;
   border-radius: 50px;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
   margin-top: 20px;
@@ -6318,6 +6317,7 @@ main.contactus_page .container {
 
 .info-type {
   margin-right: 20px;
+  margin-left: 20px;
 }
 
 .tr-header h4 {
@@ -6924,6 +6924,7 @@ nav.nav.nav-tabs {
 
 .MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.MuiTablePagination-toolbar.css-11bfvty-MuiToolbar-root-MuiTablePagination-toolbar {
   align-items: baseline;
+  min-height: unset !important;
 }
 
 .billing-stat .form-check .form-check-label {
@@ -7141,6 +7142,9 @@ p.fo-align.lft {
 
 table.table.table-striped input[type="number"] {
   width: 80px;
+  padding: 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
 }
 
 .main_title.left.crt h1 {
@@ -7470,6 +7474,22 @@ button.btn.btn_brown:hover {
 button.active_btn {
   background: #1c67a8 !important;
   color: #ffffff;
+}
+
+h2.heading.wi {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.address {
+  min-height: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.breadcrumbs_sec {
+  margin-bottom: 20px;
 }
 
 /* San Styles 18022022*/

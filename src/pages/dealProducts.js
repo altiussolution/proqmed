@@ -241,14 +241,12 @@ const renderProducts = () => {
             <div className="container">
               <div className="row">
                 <div className="col-md-12">
-                <h1 className="page-title">
-                    <div>
-                    <span>Deal of the Day</span>
-                  <div className="breadcrumbs_sec" >
+                
+                    <div className="main_title left">
+                    <h1 className="heading">Deal of the Day</h1>
+                
+                  </div>
                   
-                  </div>
-                  </div>
-                  </h1>
                   <div className="category_container">
                     
                       <div className="cat_scroll">
