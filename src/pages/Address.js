@@ -19,6 +19,7 @@ const Address = ({location,data:product}) => {
  const [state, setState] = useState([])
  const [loader, setLoader] = useState(false);
  const [manilam,stateoff] = useState(false);
+ const [txt,text] = useState(false);
  const [profilepic,setProfilepic] = useState({});
  const [region, setRegion] = useState([]);
  const [edit, editdata] = useState([]);
@@ -75,6 +76,7 @@ const assignStats = () => {
         defaultcountry(obj)
         setState(obj['states'])
         stateoff(true)
+        text(false)
     
     }else {
       
@@ -84,9 +86,11 @@ const assignStats = () => {
     if(obj['states']){
         setState(obj['states'])
         stateoff(true)
+        text(false)
     }   else {
         setRegion(arr)
         stateoff(false)
+        text(true)
         // defaultcountry(obj)
     }    
     }
@@ -104,8 +108,10 @@ const onSelectCats1 = (event) => {
         if (event['states']) {
             setState(event['states'])
             stateoff(true)
+            text(false)
         }else {
              stateoff(false)
+             text(true)
         }
         return;
 }
@@ -166,7 +172,7 @@ let updateAddress = {
       "firstname": userAddresses.name,
       "lastname": userAddresses.lname,   
       "telephone": userAddresses.telephone,
-      "countryId": India //IN
+      "countryId": India['value'] //IN
     }
   }
     try {
@@ -358,7 +364,9 @@ return (
                                      />
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div>}
-                                 
+                                   { txt && <div>
+                                                                            <input className="form-control" name="user_state" id="user_state" placeholder="State *" type="text"  />
+                                                                            {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State is required</span>}</div> }
                                   
                               </div>
   
@@ -448,7 +456,9 @@ return (
                                      />
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div> }
-                                
+                                  { txt && <div>
+                                                                            <input className="form-control" name="user_state" id="user_state" placeholder="State *" type="text"  />
+                                                                            {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State is required</span>}</div> }
                                   
                               </div>
   

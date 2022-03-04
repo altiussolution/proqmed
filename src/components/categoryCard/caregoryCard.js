@@ -161,7 +161,9 @@ export default function CategoryCard({ data: product, dataClass }) {
      <div className="thumbnail">
         <div className="wishComp">
           <ul>
-              <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li>
+          {p && <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li> }
+          {outp && <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li> }
+
           </ul>
         </div>
         <div className="product_img">
