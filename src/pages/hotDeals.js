@@ -11,10 +11,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { navigate } from "gatsby";
 import {getWLCount, wishListCount,viewCartItems,getCartCount } from '../utils/apiServices'
-
+import { IoGridOutline } from "react-icons/io5";
+import { IoList } from "react-icons/io5";
 
 const Hotproducts = () => {
- const [dealProducts, setDealProducts] = useState(null);
+ const [dealProducts, setDealProducts] = useState([]);
  const [customerId, setCustomerId] = useState("");
  const [jwt, setJwt] = useState("");
  const [quote_id, setQuoteId] = useState("");
@@ -25,6 +26,8 @@ const Hotproducts = () => {
  const [pcar,percart] = useState(false);
  const [outp,outper] = useState(false);
  const [outpcar,outpercart] = useState(false);
+ const [viewClass, setViewClass] = useState('grid_view');
+
  useEffect(() => {
      setCustomerId(localStorage.customer_id)
      setJwt(localStorage.userToken)
@@ -66,16 +69,29 @@ const Hotproducts = () => {
        }
      }else{
          
-     }     
-     const fetchFeature = async () => {
-         const res = await fetch(
-             `${process.env.GATSBY_CART_URL_STARCARE}category/hotdeals`
-         );
-         const json = await res.json();
-         await setDealProducts(json);
+     }    
+
+    //  const fetchFeature = async () => {
+    //      const res = await fetch(
+    //          `${process.env.GATSBY_CART_URL_STARCARE}category/hotdeals`
+    //      );
+    //      const json = await res.json();
+    //      await setDealProducts(json);
+    //      console.log(json)
           
-     };
-     fetchFeature();
+    //  };
+    //  fetchFeature();
+    const fetchFeature = async () => {
+     const selecturl = "hotdealsnameasc";
+
+     const res = await fetch(
+         `${process.env.GATSBY_CART_URL_STARCARE}${selecturl}`
+     );
+     const json = await res.json();
+     await setDealProducts(json);
+     console.log(json) 
+    }
+    fetchFeature();
  }, []);
  const addToList = (type,id) => {
   if (localStorage.userToken) {
@@ -162,66 +178,27 @@ const addtoCartItems = (sku, id) => {
      navigate("/signin")
  }
 }
-const renderProductss = () => {    
- if (dealProducts) { 
-     return <div>   
-         {       
-             dealProducts.map((data,index) => (
-                 <div className="item" key={`${data}_${index}`}>
-                     <div className="card"> 
-                      <><div className="wishComp">
-                       <ul>
-                        <li><a onClick={() => addToList(2, data.id)}><FaRegHeart /></a></li>
-                       </ul>
-                      </div><div className="image_wrapper">
-                        <div className="actn_btn_holder">
-                         <ul>
-                          <li className="icn"><a onClick={() => addtoCartItems(data.sku, data.id)}><BiShoppingBag /></a></li>
-                          {/* <li>{<Link className="btn" to={getProductURL(data)}
-                           state={data}>View Detail</Link>}</li> */}
-                          <li className="icn"><a onClick={() => addToList(1, data.id)}><IoIosGitCompare /></a></li>
-                         </ul>
-                        </div>
-                        <img src={data.image} />
 
-                       </div>
-                       <p className="product_title">{data.name}</p>
-                       </>   
-                      
-                     
-                                                     
-                         
-                         <div>
-                             <StarRatings
-                                 rating={Math.round(data.ratings_summary)}
-                                 numberOfStars={5}
-                                 name='rating'
-                                 starDimension="15px"
-                                 starSpacing="0px"
-                                 starRatedColor="rgb(255 123 168)"
-                             />
-                         </div>
-                         <div>
-                             <div className="product_amt">
-                                 <span className="price">$ {Math.round(data.price)}</span>
-                                 <span className="new_price">$000</span>
-                             </div>
+const hot = async (event) => {
+  const selecturl = event.target.value;
+  if(event.target.value == ""){
+    event.target.value="productsasc"
+  }
+  const res = await fetch(
+      `${process.env.GATSBY_CART_URL_STARCARE}${selecturl}`
+  );
+  const json = await res.json();
+  await setDealProducts(json);
+  console.log(json)
+   
+};
 
-                         </div>
-                     </div>
-
-                 </div>
-             ))
-         }
-     </div>
- }
-}
 const renderProducts = () => {    
   if (dealProducts) { 
       return <div className="row products_fp">   
           {       
               dealProducts.map((data,index) => (
-                  <div className="item product_item sample" key={`${data.name}_${index}`}>
+                <div  className={`item product_item ${viewClass}`} key={`${data.name}_${index}`}>
                       {p && <div className="wishComp">
                               <ul>
                                 <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
@@ -256,8 +233,8 @@ const renderProducts = () => {
                           <div className="price_left">                                  
                               <div className="product_amt">
                               {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
-                              { data.strike_price == null &&  <span className="price">${Math.round(data.original_price)}</span>}
-                              { data.strike_price != null &&  <span className="price">${Math.round(data.final_price)}</span>}
+                              {/* { data.strike_price == null &&  <span className="price">${Math.round(data.original_price)}</span>} */}
+                              <span className="price">${Math.round(data.final_price)}</span>
                                   
                               </div>
                               <div className="rating_front">
@@ -296,6 +273,8 @@ return (
         <div className="row">
           <div className="col-md-12">
           <div className="main_title left">
+          <div className="row main_title">
+
               <h1>
                 Hot Deals Products
              
@@ -303,6 +282,30 @@ return (
               adasd
             </div> */}
             </h1>
+            <div className="tools_items">
+                          <div className="tools">
+                            <span>
+                              Sort by:
+                    </span>
+                            <div className="option">
+                              <select className="form-control" id="sort_option1" onChange={hot} >
+                                <option value = "hotdealsnameasc">Name Asc</option>
+                                <option value = "hotdealsnamedesc">Name Desc</option>
+                                <option value = "hotdealspriceasc ">Price Asc</option>
+                                <option value = "hotdealspricedesc">Price Desc</option>
+                                <option value = "hotdealscreatedasc">Created Date Asc</option>
+                                <option value = "hotdealscreateddesc">Created Date Desc</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div className="tools">
+                            <div className="title_view">
+                            <button  className={"view-btn list-view"+(viewClass === 'list_view' ? ' active_btn':'')} id="list" data-toggle="tooltip" data-placement="top" title="List" onClick={() => setViewClass('list_view')}><IoList /></button>
+                              <button  className={"view-btn grid-view"+(viewClass === 'grid_view' ? ' active_btn':'')} id="grid" data-toggle="tooltip" data-placement="top" title="Grid" onClick={() => setViewClass('grid_view')}><IoGridOutline /></button>
+                            </div>
+                          </div>
+                        </div>
+            </div>
             </div>
             <div className="category_container">
               

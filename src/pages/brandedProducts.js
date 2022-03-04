@@ -21,7 +21,7 @@ const BrandedProducts = ({pageContext, location }) =>{
     const [quote_id, setQuoteId] = useState("");
     const [qty, setQty] = useState(1);
     const [isButton, setButton] = useState(false);
-    const [viewClass, setViewClass] = useState('sample');
+    const [viewClass, setViewClass] = useState('grid_view');
     const [pcar,percart] = useState(false);
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false); 
@@ -178,7 +178,7 @@ const addToList = (type,id) => {
           'Authorization': `Bearer ${jwt}`
         }
       }).then((res) => {
-        if (res.statusText === "OK" && res.status == 200) {
+        if (res.statusText === "OK" && res.status == 200) { 
           toast.success(message)
           wishListCount()
           setTimeout(()=>{
