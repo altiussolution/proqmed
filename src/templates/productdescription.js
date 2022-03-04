@@ -67,7 +67,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
     //setQuoteId(localStorage.cartId);
-    setPrice(proDescription.items.original_price)
+    setPrice(proDescription.items.final_price)
     const jwt = localStorage.getItem('userToken')
     if(jwt){
       try
@@ -410,7 +410,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     if (event.target.value <= 0) {
       event.target.value = 1;
       setQty(event.target.value)
-      setPrice(proDescription.items.original_price)
+      setPrice(proDescription.items.final_price)
     } else {
       setQty(event.target.value)
       tierAmt.map((item,index) => {
@@ -456,7 +456,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     if (price != undefined) {
       setPrice(price)
     } else {
-      setPrice(proDescription.items.original_price)
+      setPrice(proDescription.items.final_price)
     }
   }
   // const quotePopupOpen = () => {
