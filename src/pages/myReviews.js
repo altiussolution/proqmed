@@ -46,7 +46,7 @@ const Myreviews = () => {
 
 const getReviews = async () => {
  const res = await fetch(
-     `${process.env.GATSBY_CART_URL_STARCARE}customer/reviewslist/customer_id/39`
+     `${process.env.GATSBY_CART_URL_STARCARE}customer/reviewslist/customer_id/${localStorage.customer_id}`
  );
  const json = await res.json();
  if(json=="Reviews not available for this customer"){
