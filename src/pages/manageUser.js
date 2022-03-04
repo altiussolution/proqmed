@@ -466,7 +466,7 @@ return (
                                     })} defaultValue={(quoteForm['role_name'])}/>
                                     {errors.rolename && errors.rolename.type === 'required' && <span className="error">RoleName is required</span>}
                                   </div>
-                                 <div className="form-group">
+                                 {/* <div className="form-group">
                                  <Multiselect
                                     options={quoteConversations}
                                     selectedValues={quoteForm['allowed_permissions']}
@@ -483,7 +483,7 @@ return (
                             
                                      
                                     {errors.permission && errors.permission.type === 'required' && <span className="error">Permission is required</span>}
-                                    </div>
+                                    </div> */}
                         </div>
                         <div className="col-lg-6 col-md-12 col-sm-12">
                             
@@ -506,7 +506,7 @@ return (
                                  
                                     {errors.password && errors.password.type === 'required' && <span className="error">Password is required</span>}
                                     </div> */}
-                                  <div className="form-group">
+                                  {/* <div className="form-group">
                                    
                                      
                                   <Multiselect
@@ -522,7 +522,7 @@ return (
                                   })}
                                      /> 
                                     {errors.catpermission && errors.catpermission.type === 'required' && <span className="error">Category is required</span>}
-                                </div>
+                                </div> */}
                                 <div className="form-group form-grp-space">
                                     <label htmlFor="status">Status</label>
                                      <Switch
