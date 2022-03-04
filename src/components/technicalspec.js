@@ -18,11 +18,14 @@ const Technicalspec = ({ specification, attachment }) => {
   const [price_rating, setPrice_rating] = useState(0);
   const [itemid, setitemid] = useState({})
   const [isLoged, setIsLoged] = useState(false);
+  const [Review, setreview] = useState(false);
+  const [Rev, setpu] = useState(false);
 
 
   useEffect(() => {
     setjwt(localStorage.userToken)
     getReview();
+    Reviewacc();
 console.log(specification)
 setitemid(specification.items)
 if(localStorage.userToken){
@@ -51,8 +54,55 @@ if(localStorage.userToken){
       console.error(err)
     }
   };
+  const Reviewacc = async () => {
+    let data = {
+            
+      "data":{
+          "product_id":specification.items.id,
+          "customer_email":localStorage.email
+      }
+  
+}
+    try {
+      axios({
+        method: 'post',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}productreview/`,
+        headers: {
+          'Authorization': `Bearer ${jwt}`
+        },
+        data: data
 
-  return (
+      }).then((res) => {
+        if (res.statusText === "OK" && res.status == 200) {
+          if(res.data === "Purchased"){
+            setreview(true);
+
+          }else{
+            setpu(true)
+          }
+          console.log(res.data)
+        }
+      }).catch((err) => {
+        console.error(err);
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  };
+ 
+  const addrev =  () => {
+    if(localStorage.userToken){
+      return(<Link to="/signin"><button className="btn_gray btn">
+      Add Review
+  </button></Link>)
+    }else{
+      return(<Link to="/addreview" state={itemid}><button className="btn_gray btn">
+      Add Review
+  </button></Link>     )
+   }
+
+  }
+    return (
     <>
       {specification && specification.items ? (
         <>
@@ -143,9 +193,10 @@ if(localStorage.userToken){
               {!isLoged &&  <Link to="/signin"><button className="btn_gray btn">
                     Add Review
               </button></Link> }
-               {isLoged && <Link to="/addreview" state={itemid}><button className="btn_gray btn">
+               {isLoged && Review && <Link to="/addreview" state={itemid}><button className="btn_gray btn">
                     Add Review
               </button></Link>  }
+              {/* {isLoged && Rev && <p>This product was not purchase.So not to allow add review</p>} */}
                 </div>
               </Tab>
             </Tabs>
