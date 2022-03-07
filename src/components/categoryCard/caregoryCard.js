@@ -161,7 +161,9 @@ export default function CategoryCard({ data: product, dataClass }) {
      <div className="thumbnail">
         <div className="wishComp">
           <ul>
-              <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li>
+          {p && <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li> }
+          {outp && <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li> }
+
           </ul>
         </div>
         <div className="product_img">
@@ -189,8 +191,8 @@ export default function CategoryCard({ data: product, dataClass }) {
           /> : 'No Reviews yet'
         }
          <div className="product_amt">
-         {product['values'].items.strike_price == null  && <span className="price">${Math.round(product['values'].items.original_price)}</span> }
-                    {product['values'].items.strike_price != null  &&  <span className="price">${Math.round(product['values'].items.final_price)}</span>}
+         {/* {product['values'].items.strike_price == null  && <span className="price">${Math.round(product['values'].items.original_price)}</span> } */}
+                    <span className="price">${Math.round(product['values'].items.final_price)}</span>
 
                     {product['values'].items.strike_price != null  &&  <span className="new_price">${Math.round(product['values'].items.strike_price)}</span>}
 

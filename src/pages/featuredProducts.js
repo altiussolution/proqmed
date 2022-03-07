@@ -4,8 +4,11 @@ import { Link } from "gatsby"
 import {getProductURL} from './../utils/url';
 import Layout from "../components/layout";
 import { FaRegHeart } from 'react-icons/fa';
+import { IoGridOutline } from "react-icons/io5";
+import { IoList } from "react-icons/io5";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageLoader from "../components/loaders/pageLoader";
 import axios from "axios";
 import {getWLCount, wishListCount,viewCartItems,getCartCount } from '../utils/apiServices'
 import { navigate } from "gatsby";
@@ -14,7 +17,9 @@ import { navigate } from "gatsby";
 const Featuredproducts = () => {
     const [featureProducts, setFeatureProducts] = useState(null);
     const [customerId, setCustomerId] = useState("");
+    const [loading, setLoading] = useState(true);  
     const [jwt, setJwt] = useState("");
+    const [viewClass, setViewClass] = useState('sample');
     const [p,per] = useState(false);
     const [outp,outper] = useState(false);
     const [pcar,percart] = useState(false);
@@ -54,12 +59,15 @@ const Featuredproducts = () => {
               if(response.statusText === "OK" && response.status == 200)
               {
                 console.log(response.data)
+                setLoading(false)
                   localStorage.setItem('cartId',response.data);
                   setQuoteId(localStorage.cartId)
               }
             }) 
             .catch((error) => {
               console.error(error,'error')
+              setLoading(true)
+
             })
           }catch(err){
             console.error(err);
@@ -164,13 +172,39 @@ const Featuredproducts = () => {
         navigate("/signin")
     }
       }
-
+      const shortBySelected = (event) => {
+        // setLoading(true);
+        const selecturl = event.target.value;
+        if(event.target.value == ""){
+          event.target.value="featurepronameasc"
+        }
+        const selectRes =[];
+        try {
+          axios({
+              method: 'get',
+              url: `${process.env.GATSBY_CART_URL_STARCARE}${selecturl}/${localStorage.customer_id}`,
+          }).then((res) => {
+            console.log(res.data)
+              if (res.statusText === "OK" && res.status == 200) {
+              setFeatureProducts(res.data);
+              // setLoading(false);
+              }
+           
+          }).catch((err) => {
+            // setLoading(false);
+              console.error(err);
+          })
+        } catch (err) {
+          // setLoading(false);
+          console.error(err)
+        }
+      }
     const renderProducts = () => {    
         if (featureProducts) { 
             return <div className="row products_fp">   
                 {       
                     featureProducts.map((data,index) => (
-                        <div className="item product_item sample" key={`${data.name}_${index}`}>
+                        <div  className={`item product_item ${viewClass}`} key={`${data.name}_${index}`}>
                           {p && <div className="wishComp">
                                     <ul>
                                       <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
@@ -204,8 +238,8 @@ const Featuredproducts = () => {
                                 <div className="price_left">                                  
                                     <div className="product_amt">
                                     {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
-                                    { data.strike_price == null &&  <span className="price">${Math.round(data.original_price)}</span>}
-                                     { data.strike_price != null &&  <span className="price">${Math.round(data.final_price)}</span>}
+                                    {/* { data.strike_price == null &&  <span className="price">${Math.round(data.original_price)}</span>} */}
+                                      <span className="price">${Math.round(data.final_price)}</span>
                                         
                                     </div>
                                     <div className="rating_front">
@@ -240,34 +274,50 @@ const Featuredproducts = () => {
     
     return (
         <Layout>
-          <div className="content_wrapper">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-12">
-                <div className="main_title left">
-                    <h1>
-                      Our Featured Products
-                   
-                  {/* <span></span> <div className="breadcrumbs_sec" >
-                    adasd
-                  </div> */}
-                  </h1>
-                  </div>
-                  <div className="category_container">
+            <section className="page_content inner_page">
+                <div className="content_wrapper">
+                    <div className="container">
+                        <div className="row main_title">
+                            <h1>Our <span>Featured Products</span></h1>
+                            <div className="tools_items">
+                          <div className="tools">
+                            <span>
+                              Sort by:
+                    </span>
+                    <div className="option">
+                              <select className="form-control" id="sort_option1" onChange={shortBySelected} >
+                                <option value = "featurepronameasc">Name Asc</option>
+                                <option value = "featurepronamedesc">Name Desc</option>
+                                <option value = "featurepropriceasc">Price Asc</option>
+                                <option value = "featurepropricedesc">Price Desc</option>
+                                <option value = "featureprocreatedasc">Created Date Asc</option>
+                                <option value = "featureprocreateddesc">Created Date Desc</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div className="tools">
+                            <div className="title_view">
+                            <button  className={"view-btn list-view"+(viewClass === 'list_view' ? ' active_btn':'')} id="list" data-toggle="tooltip" data-placement="top" title="List" onClick={() => setViewClass('list_view')}><IoList /></button>
+                              <button  className={"view-btn grid-view"+(viewClass === 'grid_view' ? ' active_btn':'')} id="grid" data-toggle="tooltip" data-placement="top" title="Grid" onClick={() => setViewClass('grid_view')}><IoGridOutline /></button>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                        <div className="category_container">
                     
-                      <div className="cat_scroll">
-                        <div className="container">
-                          
-                  {renderProducts()}
-                  
-                  </div>
-                  </div>
-                  </div>
-
+                    <div className="cat_scroll">
+                      <div className="container">
+                            {renderProducts()}
+                        </div>
+                        </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
+            </section>
+
+            {loading ? (<div>
+                <PageLoader />
+            </div>) : <span></span>}
         </Layout>
     )
 }  
