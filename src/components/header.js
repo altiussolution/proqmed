@@ -183,7 +183,12 @@ const isSticky = (e) => {
       setActiveClass(false);
     }
   };
-
+  const makeBold = (item, keyword) => {
+    var re = new RegExp(keyword, 'g')
+    return (
+        item.replace(re, '<i>'+keyword+ '</i>')
+    )
+}
   const handleClick = async event => {
     setSearch(event.target.value);
     // var searchedPara = document.querySelector('.search-content p');
@@ -261,7 +266,10 @@ const isSticky = (e) => {
                
               <Link to={getProductURL(item)} onClick={() => setActiveClass(false)}>
                   <span className="searchImg_holder"><img src={item.image} className="search-img" /></span>
-                  <p className="srch_txt">{item.name}</p></Link></li>
+                  <div className="text-bold">
+                  <p dangerouslySetInnerHTML={{__html: makeBold(item.name, localStorage.searchString)}}></p>
+                  </div>
+                </Link></li>
             </ul>
           ))
         }
@@ -275,7 +283,10 @@ const isSticky = (e) => {
               item.map((val, index) => (
                 (val.items ? <li key={`${index}_item`}><Link to={getProductURL(val.items)} onClick={() => setActiveClass(false)}>
                   <span className="searchImg_holder"><img src={val.items.image} className="search-img" /></span>
-                  <p className="srch_txt">{val.items.name}</p></Link></li> : '')
+                  <div className="text-bold">
+                  <p dangerouslySetInnerHTML={{__html: makeBold(val.items.name, localStorage.searchString)}}></p>
+                  </div>
+                 </Link></li> : '')
               ))
             }
             </ul>
@@ -528,6 +539,8 @@ const isSticky = (e) => {
               /> :<></>
             }
             </form>
+
+            <div className="to-flx main">
             <div className="bulkorder my_account">
            
               <div className="dropdown">
@@ -577,6 +590,7 @@ const isSticky = (e) => {
                 </div> */}
 
               </div>
+            </div>
             </div>
             <div className={`${activeClass ? "sampleDropDown" : "d-none"}`}>
               {sampleVar()}

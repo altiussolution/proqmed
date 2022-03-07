@@ -415,7 +415,7 @@ const alldel=(id) =>{
                                     </div> <a onClick={() => { alldel() }}> <AiTwotoneDelete /></a>*/}
 
                                             {/* {localStorage.getItem('sampleVal')} */}
-                                            {cartItems?.length === 0 ? (<h1 className="fo-center">No Cart Items</h1>) : showCartItems()}
+                                            {cartItems?.length === 0 ? (<h2 className="fo-center">No Cart Items</h2>) : showCartItems()}
 
                                             </div>
                                         </div>

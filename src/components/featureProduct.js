@@ -37,8 +37,11 @@ const feature_slide = {
   infinite: false,
   responsive: [
     {
-      slidesToShow:1,
       breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
     },
 
   ]

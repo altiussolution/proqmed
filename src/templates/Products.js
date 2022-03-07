@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "gatsby";
 import Layout from "../components/layout";
 import PageLoader from "../components/loaders/pageLoader";
+import { TablePagination } from '@mui/material';
 import FilterProduct from "../components/FilterProduct";
 import CategoryCard from "../components/categoryCard/caregoryCard";
 import { convertToObject } from "../utils/convertToObj";
@@ -52,7 +53,9 @@ const NoProductsFound = ({ error }) => {
 };
 
 const Products = ({ pageContext, location , props }) => {
+  const [page, setPage] = React.useState(0);
   const [permits,setPermit] = useState([]);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [products, setProducts] = useState([]);
   const [productTemp, setProductTemp] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -193,7 +196,7 @@ const Products = ({ pageContext, location , props }) => {
       });
     } else if (products.length) {
       let URL;
-      return products.map(product => {
+      return products.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(product => {
         const data = convertToObject(product.flat());
          cat_url.map(cusUrl=>{
           if(data.items.url_key === cusUrl.url) return URL = cusUrl.url             
@@ -206,23 +209,29 @@ const Products = ({ pageContext, location , props }) => {
       return (
         <div className="mx-auto no_data_found">
           <img src={empty_cart} alt={"Empty Cart"} />
-          <h4>No items found!</h4>
+          <h4>No items found !</h4>
         </div>
       );
 
   };
 
-  const showSelected = (e) => {
-    let index = e.target.value;
-    var selectValue = [];
-    for(var ind=0;ind<index;ind++){
-      if(productTemp[ind] !== undefined){
-      selectValue.push(productTemp[ind])
-      }
-    }
-    // setProducts(productTemp.slice(0, index));
-    setProducts(selectValue);
+  const handleChangePage = (e) => {
+    // let index = e.target.value;
+    // console.log(index)
+    // var selectValue = [];
+    // for(var i=0;i<index;i++){
+    //   if(productTemp[i] !== undefined){
+    //   selectValue.push(productTemp[i])
+    //   }
+    // }
+    setPage(e.target.value);
+    // await setProducts(products.slice(0, index));
+    // await setProducts(selectValue);
   }
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 // const checkUrl =()=>{
 //   if (checkLogin()) {
 //      axios({
@@ -368,12 +377,12 @@ const Products = ({ pageContext, location , props }) => {
                       <div className="card">
                         <div className="tools_items">
                           <div className="tools">
-                            <span>
+                            {/* <span>
                               Show:
-                    </span>
+                    </span> */}
                             <div className="option">
-                              <select className="form-control" id="show_option1"  onChange={showSelected}>
-                              {/* <option>{products.length}</option> */}
+                              {/* <select className="form-control" id="show_option1"  onChange={showSelected}>
+                    
                                 <option value="5" >5</option>
                                 <option value="10">10</option>
                                 <option value="15">15</option>
@@ -384,12 +393,21 @@ const Products = ({ pageContext, location , props }) => {
                                 <option value="40">40</option>
                                 <option value="45">45</option>
                                 <option value="50">50</option>
-                              </select>
+                              </select> */}
+                               <TablePagination
+  component="div"
+  rowsPerPageOptions={[10,20,30,40,50,60]}
+  page={page}
+  count={products.length}
+  onPageChange={handleChangePage}
+  rowsPerPage={rowsPerPage}
+  onRowsPerPageChange={handleChangeRowsPerPage}
+/>
                             </div>
                           </div>
-                          <div className="tools">
+                          {/* <div className="tools">
                             <p className="category-product-count">Showing 01 - 20 of {products.length}</p>
-                          </div>
+                          </div> */}
                         </div>
 
                         

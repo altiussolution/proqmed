@@ -476,6 +476,7 @@ const onSubmitQuoteadd = quoteDetails => {
             
             </div>) :
                 <div className="user-content">
+                    <div className="fo-scroll w-100">
                     <table className="table table-striped">
                         <thead>
                           <tr>
@@ -504,6 +505,7 @@ const onSubmitQuoteadd = quoteDetails => {
                          ))
                         }
                       </table>
+                      </div>
                       <div className="bottom-paginatino">
           <TablePagination
   component="div"

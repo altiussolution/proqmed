@@ -193,7 +193,43 @@ const Wishlist = () => {
             navigate("/signin")
         }
     }
+    const searchwishlist = async (val) => {
+        console.log(val.target.value)
+        if(val.target.value.length>=2){
+            let data = {
+                
+                    "data":{
+                        "keyword":val.target.value,
+                        "customer_id":localStorage.customer_id
+                    }
+                
+            }
+            try {
+                axios({
+                    method: 'post',
+                    url: `${process.env.GATSBY_CART_URL_STARCARE}searchwishlist`,
     
+                    data: data,
+                })
+                    .then(function (response) {
+                       console.log(response)
+                       if(response.data == "No data found"){
+                        setWishList([])
+                    }else {
+                        setWishList(response.data)
+                    }
+                    })
+                    .catch(function (response) {
+                        
+                    });
+        
+            } catch (err) {
+                console.error(`An error occured ${err}`)
+            }
+        }else if(val.target.value.length ===0){
+            getWishList();
+        }
+        }
     if(p==true || nop==true){
         return (
             <>

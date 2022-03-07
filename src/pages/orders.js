@@ -310,7 +310,7 @@ return (
                                 </div>
                 
                 </div>
-                {orders.length == 0 ?   (<h1 className="fo-center">No Item found</h1>):
+                {orders.length == 0 ?   (<h2 className="fo-center">No Item found</h2>):
               <><div className="fo-bg-white or">
                              
 
@@ -330,7 +330,7 @@ return (
                                                         </div>
                                                     </div>
                                                     <div className="col-lg-6 col-md-12 col-sm-12">
-                                                        <div className="or-left">
+                                                        <div className="or-left fl">
                                                             <p>: {items[0].increment_id}</p>
                                                             <p>: {items[0].customer_firstname}</p>
                                                             <p>: $ {parseFloat(items[0].grand_total).toFixed(2)}</p>
