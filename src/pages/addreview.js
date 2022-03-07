@@ -29,6 +29,7 @@ console.log(location.state.id)
       "data":
       {
         "product_id": location.state.id,
+        "product_name": location.state.name,
         "customer_id": localStorage.customer_id,
         "nick_name": reviewDetails.nick_name,
         "review_title": reviewDetails.review_title,
