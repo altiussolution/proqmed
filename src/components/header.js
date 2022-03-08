@@ -539,6 +539,8 @@ const isSticky = (e) => {
               /> :<></>
             }
             </form>
+
+            <div className="to-flx main">
             <div className="bulkorder my_account">
            
               <div className="dropdown">
@@ -588,6 +590,7 @@ const isSticky = (e) => {
                 </div> */}
 
               </div>
+            </div>
             </div>
             <div className={`${activeClass ? "sampleDropDown" : "d-none"}`}>
               {sampleVar()}
