@@ -360,7 +360,7 @@ return (
                                     options={state}
                                     onChange={onSelectStates1}
                                     value={Tamilan}
-                                    placeholder="Select State *"
+                                    placeholder="Select State"
                                      />
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div>}
@@ -383,14 +383,14 @@ return (
                         <input type="checkbox" className="form-check-input" name="shipping" id="shipping" ref={register({
                                                                                 
                                                                             })} onChange={e => { filterData(e,'shipping') }}   defaultChecked={(edit ? edit['default_shipping'] : "")} />
-                        <label className="form-check-label" htmlFor="shipping">Shipping</label>
+                        <label className="form-check-label" htmlFor="shipping">Default Shipping</label>
                       </div>
                       {/* checked={edit ? edit['default_shipping'] : "false"} checked={edit ? edit['default_billing'] : "false"}*/}
                       <div className="form-check">
                         <input type="checkbox" className="form-check-input" name="billing" id="billing" ref={register({
                                                                                
                                                                             })}  onChange={e => { filterData(e,'billing') }}  defaultChecked={(edit ? edit['default_billing'] : "")} />
-                        <label className="form-check-label" htmlFor="billing">Billing</label>
+                        <label className="form-check-label" htmlFor="billing">Default Billing</label>
                       </div>
                       {/* required: true */}
                           </div>
@@ -452,7 +452,7 @@ return (
                                 {manilam &&  <div> <Select
                                     options={state}
                                     onChange={onSelectStates1}
-                                    placeholder="Select State *"
+                                    placeholder="Select State"
                                      />
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div> }
@@ -475,14 +475,14 @@ return (
                         <input type="checkbox" className="form-check-input" id="shipping" name="shipping" ref={register({
                                                                                 
                                                                             })} onChange={e => { filterData1(e,'shipping') }}/>
-                        <label className="form-check-label" htmlFor="shipping">Shipping</label>
+                        <label className="form-check-label" htmlFor="shipping">Default Shipping</label>
                       </div>
   
                       <div className="form-check">
                         <input type="checkbox" className="form-check-input" id="billing" name="billing" ref={register({
                                                                                 
                                                                             })}  onChange={e => { filterData1(e,'billing') }} />
-                        <label className="form-check-label" htmlFor="billing">Billing</label>
+                        <label className="form-check-label" htmlFor="billing">Default Billing</label>
                       </div>
                               
                           </div>

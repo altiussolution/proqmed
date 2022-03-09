@@ -549,7 +549,7 @@ const isSticky = (e) => {
                   <ul>
                     {!isuserlogged && <li><Link className="sign_in" to="/signin">Sign-In</Link>
                    <h6 className="new"> New to ProQmed?  <span><Link to="/signup"> Start here</Link></span></h6>
-                  <Link className="sell" to="/">Sell on ProQmed</Link>
+                  <a className="sell" onClick={() => {window.open("http://15.207.190.73/proqmed", "_blank");}}>Sell on ProQmed</a>
                     </li>}
                     {/* {isuserlogged && <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li> */}
                     {isuserlogged && <div> <li onClick={() => { navigateOnclick('/profile') }}> <span><img src={pr} /></span>My Profile</li>
