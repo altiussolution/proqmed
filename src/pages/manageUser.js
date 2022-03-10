@@ -325,7 +325,7 @@ return (
                             
                                 <div className="form-group">
                                  
-                                  <input type="text" className="form-control" id="usr" placeholder="First Name *" name="firstname"  type="text" inputRef={register({
+                                  <input type="text" className="form-control" id="usr" placeholder="First Name *" name="firstname" ref={register({
                                         required: true
                                     })}/>
                                      {errors.firstname && errors.firstname.type === 'required' && <span className="error">First Name is required</span>}
@@ -334,14 +334,16 @@ return (
         
                                 <div className="form-group">
                                     
-                                    <input type="text" className="form-control" id="usr" placeholder="Email *" type="text" name="email"  inputRef={register({
-                                        required: true
+                                    <input type="text" className="form-control" id="usr" placeholder="Email *"  name="email"  ref={register({
+                                        required: true,
+                                        pattern: /\S+@\S+\.\S+/
                                     })}/>
                                     {errors.email && errors.email.type === 'required' && <span className="error">Email is required</span>}
+                                    {errors.email && errors.email.type === 'pattern' && <span>Valid Email Required</span>}
                                   </div>
                                   <div className="form-group">
                                     
-                                    <input type="text" className="form-control" id="usr" type="text" name="rolename" placeholder="RoleName *" inputRef={register({
+                                    <input type="text" className="form-control" id="usr"  name="rolename" placeholder="RoleName *" ref={register({
                                         required: true
                                     })}/>
                                     {errors.rolename && errors.rolename.type === 'required' && <span className="error">RoleName is required</span>}
@@ -366,7 +368,7 @@ return (
                             
                             <div className="form-group">
                               
-                              <input  className="form-control" id="pwd" placeholder="Last Name *" type="text" name="lastname"  inputRef={register({
+                              <input  className="form-control" id="pwd" placeholder="Last Name *" type="text" name="lastname"  ref={register({
                                         required: true
                                     })}/>
                                    {errors.lastname && errors.lastname.type === 'required' && <span className="error">Last Name is required</span>}  
@@ -376,13 +378,17 @@ return (
         
                               <div className="form-group">
                                     
-                                    <input className="form-control" id="usr" placeholder="Password *" type={passwordShown ? "text" : "password"}  name="password"  inputRef={register({
-                                        required: true
+                                    <input className="form-control" id="usr" placeholder="Password *" type={passwordShown ? "text" : "password"}  name="password"  ref={register({
+                                        required: true,
+                                        minLength : 8 ,
+                                        pattern : /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
                                     })} />
                         <button className="btn btn eye" type="button" onClick={togglePasswordVisiblity}>{passwordShown ? <AiFillEye />: <AiFillEyeInvisible />} </button>
                       
                                     {/*type={passwordShown2 ? "text" : "password"} <i className="fa fa-eye-slash sep" aria-hidden="true" onClick={togglePasswordVisiblity}></i> */}
                                     {errors.password && errors.password.type === 'required' && <span className="error">Password is required</span>}
+                                    {errors.password && errors.password.type === 'minLength' && <span>Password must contain 8 digits</span>}
+                                                    {errors.password && errors.password.type === 'pattern' && <span>Password must contain 8 charactor along with 1 number and alphanumeric</span>}
                                   </div>
 
                                   <div className="form-group">
@@ -439,7 +445,7 @@ return (
                             
                                 <div className="form-group">
                                  
-                                  <input type="text" className="form-control" id="usr" placeholder="First Name *" name="firstname"  type="text" inputRef={register({
+                                  <input type="text" className="form-control" id="usr" placeholder="First Name *" name="firstname" ref={register({
                                         required: true
                                     })} defaultValue={(quoteForm['subuser_firstname'])}/>
                                      {errors.firstname && errors.firstname.type === 'required' && <span className="error">First Name is required</span>}
@@ -448,14 +454,17 @@ return (
         
                                 <div className="form-group">
                                     
-                                    <input type="text" className="form-control" id="usr" placeholder="Email *" type="text" name="email"  inputRef={register({
-                                        required: true
+                                    <input type="text" className="form-control" id="usr" placeholder="Email *"  name="email"  ref={register({
+                                        required: true,
+                                        pattern: /\S+@\S+\.\S+/
                                     })} defaultValue={(quoteForm['subuser_email'])}/>
                                     {errors.email && errors.email.type === 'required' && <span className="error">Email is required</span>}
+                                    {errors.email && errors.email.type === 'pattern' && <span>Valid Email Required</span>}
+
                                   </div>
                                   <div className="form-group">
                                     
-                                    <input type="text" className="form-control" id="usr" type="text" name="rolename" placeholder="RoleName *" inputRef={register({
+                                    <input type="text" className="form-control" id="usr"  name="rolename" placeholder="RoleName *" ref={register({
                                         required: true
                                     })} defaultValue={(quoteForm['role_name'])}/>
                                     {errors.rolename && errors.rolename.type === 'required' && <span className="error">RoleName is required</span>}
@@ -480,7 +489,7 @@ return (
                             
                             <div className="form-group">
                               
-                              <input  className="form-control" id="pwd" placeholder="Last Name" type="text" name="lastname"  inputRef={register({
+                              <input  className="form-control" id="pwd" placeholder="Last Name" type="text" name="lastname"  ref={register({
                                         required: true
                                     })} defaultValue={(quoteForm['subuser_lastname'])}/>
                                    {errors.lastname && errors.lastname.type === 'required' && <span className="error">Last Name is required</span>}  

@@ -51,6 +51,7 @@ const Contact = () => {
         if (!re.test(event.target.value)) {
             event.target.value = ""
         }
+        
     }
 
     return (

@@ -287,11 +287,11 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     //} else {
       const jwt = localStorage.getItem('userToken')
       if (cartItem) {
-        if (qty < min) {
-          return toast.error("Please enter a quantity greater than " + (min - 1))
-        } else if (qty > max) {
-          return toast.error("The Maximum you purchase is" + max)
-        } else {
+        // if (qty < min) {
+        //   return toast.error("Please enter a quantity greater than " + (min - 1))
+        // } else if (qty > max) {
+        //   return toast.error("The Maximum you purchase is" + max)
+        // } else {
           try {
             axios({
               method: 'post',
@@ -314,7 +314,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
           } catch (err) {
             console.error(err)
           }
-        }
+        // }
       }
     }else {
       localStorage.clear()
@@ -783,7 +783,7 @@ if(proDescription.items.config_options){
                       <label>Delivery</label>
                       <div className="input-group">
     
-    <input className="form-control" type="tel" id="pincode" name="postcode" placeholder="Zip/Postal Code " onChange={handleChange1} maxLength="6" className="form-control" required={true}/>
+    <input className="form-control" type="tel" id="pincode" name="postcode" placeholder="Zip/Postal Code " onChange={handleChange1} maxLength="6" required={true}/>
     {errors.postcode && errors.postcode.type === 'required' && <span>Zip/Postal Code is required</span>}
     
     <div className="input-group-addon">

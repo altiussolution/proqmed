@@ -159,13 +159,20 @@ export default function CategoryCard({ data: product, dataClass }) {
     <div className={`item product_item ${dataClass}`}> 
             {product['values'].items.length == 0?<sapn>You don't have Authorization for this category</sapn>:  
      <div className="thumbnail">
-        <div className="wishComp">
+        {p &&  <div className="wishComp">
           <ul>
-          {p && <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li> }
-          {outp && <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li> }
+         <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li> 
+         
 
           </ul>
-        </div>
+        </div> }
+        {outp && <div className="wishComp">
+          <ul>
+          <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li> 
+        
+
+          </ul>
+        </div> }
         <div className="product_img">
         {/* <div className="price_off">Upto 50% off</div> */}
                                
@@ -187,7 +194,6 @@ export default function CategoryCard({ data: product, dataClass }) {
             name='rating'
             starDimension="20px"
             starSpacing="0px"
-            starRatedColor="rgb(255 123 168)"
           /> : 'No Reviews yet'
         }
          <div className="product_amt">
