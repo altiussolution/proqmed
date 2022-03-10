@@ -27,7 +27,7 @@ const Address = ({location,data:product}) => {
  const [add,addAddress] = useState(false);
  const [India,defaultcountry] = useState({});
  const admintoken = "nulqmtn1cyo9ko7ip4zbumjqrlk9k825"
- const [ship,Shippi] = useState(true);
+ const [ship,Shippi] = useState(false);
  const [bill,Billi] = useState(false);
  const [shipadd,Shippiadd] = useState(false);
  const [billadd,Billiadd] = useState(false);
@@ -47,6 +47,8 @@ useEffect(() => {
  }else {
     const ef= {country_id:location.state.data['country_id'],label:location.state.data['region'],value:location.state.data['region_id']}
      editdata(location.state.data)
+     Shippi(location.state.data['default_shipping'])
+     Billi(location.state.data['default_billing'])
      Defaulti(ef)
      editAddress(true)
      console.log(location)
