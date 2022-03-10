@@ -116,7 +116,7 @@ const Invoice = ({location}) => {
             <div class="container1">
                <div class="tab-content">
                 <div id="home" class="tab-pane active">
-                    <div className="fo-scroll main">
+                    
                  <table>
             
                     <thead>
@@ -145,7 +145,7 @@ const Invoice = ({location}) => {
                    
                         
                     </table>
-                    </div>
+                    
                 </div>
             
             

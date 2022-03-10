@@ -1952,10 +1952,27 @@ ul.newsletter .form-control {
 }
 }
 @media only screen and (max-width:600px) {
-  section.main-footer h2 {
-    display: flex;
+  .category_container .cat_scroll .products_fp .product_item{
+    width: 100% !important;
+  }
+
+  .page_content.inner_page .main_title {
     justify-content: center;
 }
+
+  .content_wrapper{
+    padding-top: 0 !important;
+  }
+  
+  section.main-footer h2 {
+    display: flex !important;
+    justify-content: center;
+}
+
+.to-flx.main {
+  width: 90%;
+}
+
 .MuiInputBase-root.MuiInputBase-colorPrimary.css-16c50h-MuiInputBase-root-MuiTablePagination-select {
   margin-right: 0 !important;
 }
@@ -3392,12 +3409,12 @@ figure.itm_list {
 
 .to-flx span {
   border-right: 2px solid #ddd;
-  padding-right: 10px;
+ 
 }
 
 .to-flx span:last-child {
   border-right: none;
-  padding-left: 10px;
+  
 }
 
 .to-flx p {
@@ -7331,7 +7348,7 @@ button.btn.btn-link {
 .fo-center{
   text-align: center;
   font-size: 20px;
-  opacity: 90%;
+  opacity: 70%;
   font-weight: 400;
 }
 
