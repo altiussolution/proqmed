@@ -64,6 +64,7 @@ const SignIn = (props) => {
               localStorage.setItem('customer_id', response.data[0]['customer_id']);
               localStorage.setItem('user_name', response.data[0]['name'])
               createCart(response.data[0]['token']);
+              groupId(response.data[0]['customer_id'])
               getWishList();
               fetchRegion();
               checkUser();
@@ -134,7 +135,32 @@ const SignIn = (props) => {
       }
     }
   }
-
+  const groupId = (id) => {
+    let value = {
+      "data":{
+      "customer_id":id
+      }
+}
+    if (id) {
+      try {
+        axios({
+          method: 'post',
+          url: `${process.env.GATSBY_CART_URL_STARCARE}getcustomergroupid`,
+          data: value
+        })
+          .then((response) => {
+            if (response.statusText === "OK" && response.status === 200) {
+            
+            }
+          })
+          .catch((error) => {
+            
+          })
+      } catch (err) {
+        
+      }
+    }
+  }
   const getWishList = () => {
     try {
         axios({
