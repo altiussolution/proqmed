@@ -27,8 +27,8 @@ const Search = (props,pageContext) => {
       
                 let productList = [];               
                 for(let prod of res.data[0]){
-                  prod[0][1].push(prod[0][0])  
-                  let proProduct = prod[0][1];
+                  prod[0][3].push(prod[0][0])
+                 let proProduct = prod[0][3];
                   productList.push(proProduct);
                 }
                 setSearchProducts("hi")

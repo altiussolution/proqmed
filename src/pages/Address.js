@@ -367,7 +367,7 @@ return (
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div>}
                                    { txt && <div>
-                                                                            <input className="form-control" name="user_state" id="user_state" placeholder="State *" type="text"  />
+                                                                            <input className="form-control" name="user_state" id="user_state" placeholder="State" type="text"  />
                                                                             {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State is required</span>}</div> }
                                   
                               </div>
@@ -459,7 +459,7 @@ return (
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div> }
                                   { txt && <div>
-                                                                            <input className="form-control" name="user_state" id="user_state" placeholder="State *" type="text"  />
+                                                                            <input className="form-control" name="user_state" id="user_state" placeholder="State" type="text"  />
                                                                             {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State is required</span>}</div> }
                                   
                               </div>

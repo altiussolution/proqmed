@@ -49,11 +49,16 @@ const Dealproducts = () => {
              `${process.env.GATSBY_CART_URL_STARCARE}category/dealsofthedays/13`//38
          );
          const json = await res.json();
-         await setDealProducts(json);
+         let arr=[]
          console.log(json)
          {json.map((data,index)=>(
-          setsubproducts(data.sub_category.sub_category_sub)
-        ))}
+          // arr.push(data.sub_category.sub_category_sub)
+          data.sub_category.sub_category_sub.map((value,index)=>(
+            arr.push(value)
+          ))
+          ))}
+          console.log(arr)
+        await setsubproducts(arr)
      };
      fetchFeature();
     
@@ -153,7 +158,9 @@ const renderProducts = () => {
                  <div className="item product_item sample">
                       
                      {/* {data.sub_category.sub_category_sub.map((value,index)=>(   */}
-                      <><div className="card">
+                      <>  
+
+                      <div className="card">
                    {/*   {p && <div className="wishComp">
                        <ul>
                         <li><a onClick={() => addToList(2, data.id)}><FaRegHeart /></a></li>
@@ -173,6 +180,7 @@ const renderProducts = () => {
                           <li className="icn"><a onClick={() => addToList(1, value.id)}><IoIosGitCompare /></a></li>
                          </ul>
                         </div> */}
+                      
                          <Link to={getCategoryURL(data)}><img src={data.image} /></Link>
                         
 
@@ -204,7 +212,7 @@ const renderProducts = () => {
                                   <button className="addtocart"><span class="cart_svg"></span></button>
                                   </div>}
                                 </div>*/}
-                                </div>
+                                </div>  
                        </>   
                        {/* ))}  */}
                      
