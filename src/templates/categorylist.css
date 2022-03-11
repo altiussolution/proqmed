@@ -1205,9 +1205,7 @@ section.breadcrums ul li a::after {
 .cart-btns .other:hover{
   text-decoration: underline;
 }
-.list_view .wishComp, .list_view .actn_btn_holder{
-  display: none!important;
-}
+
 .grid_view .cart-btns{
   display: none;
 } 
@@ -1495,7 +1493,7 @@ padding-left: 100px;
 .category_container .cat_scroll .products_fp .product_item {
   position: relative;
   margin: 0px 10px 10px 0;
-  width: 19%;
+  width: 24%;
   border: 1px solid #ececec!important;
   border-radius: 1rem;
   padding: 20px;
