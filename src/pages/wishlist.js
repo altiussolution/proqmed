@@ -245,7 +245,7 @@ const Wishlist = () => {
                                     <div className="container">
                                
                                         <div className="row no_data_found">
-                                        <div className="top">
+                                        <div className="top fo-f">
                                         <div className="heading">
                                             {/* <h1>My Wishlist <span>(5)</span></h1> */}
                                             <h2>My Wishlist<span> ({wishList.length})</span></h2>

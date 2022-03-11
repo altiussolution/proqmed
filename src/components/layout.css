@@ -396,10 +396,7 @@ border:1px solid #ececec;
   transition: .5s;
   
 }
-.feature_section .card:last-child {
-  margin-right: 0px!important;
-  
-}
+
 .feature_section .card:hover {
    
   box-shadow: rgb(0 0 0 / 10%) 0px 6px 7px -1px, rgb(0 0 0 / 6%) 0px 5px 1px -1px;
@@ -422,29 +419,33 @@ border:1px solid #ececec;
     position: relative;
 }
 
-
+.product_item .card:hover .wishComp {
+  display: block;
+}
 
 .feature_section .card .wishComp{
   position: absolute;
     line-height: 23px;
-    width: 30px;
-    height: 30px;
-    opacity: 0;
+    width: 40px;
+    height: 40px;
+    display: none;
     padding: 2px;
     margin-top: 0;
     transition: all .3s ease-in-out;
     right: 21px;
     z-index: 99;
+    font-size: 20px;
     background: #ff7ba8;
     border-radius: 50%;
   }
 .product_item .wishComp{
   position: absolute;
-    width: 34px;
-    padding: 7px;
+    width: 44px;
     line-height: 0px;
-    height: 37px;
-    opacity: 0;
+    height: 42px;
+    padding-top: 3px;
+    padding-right: 3px;
+    display: none;
     top: 20px;
     z-index: 99;
     background: #ff7ba8;
@@ -456,6 +457,11 @@ border:1px solid #ececec;
     font-size: 20px;
     margin-right: 40px;
   }
+
+  .product_item:hover .wishComp {
+    display: block;
+}
+
 .feature_section .card:hover .wishComp,
 .product_item:hover .wishComp{
   display:block;
@@ -555,7 +561,7 @@ border:1px solid #ececec;
   padding: 30px;
 }
 .popular_section .card .image_wrapper img {
-    width: 100%;
+    width: 70%;
     /* height: 100%; */
     margin: 0 auto;
     /* object-fit: contain;     */
@@ -2136,7 +2142,7 @@ white-space: nowrap;
     flex-direction: column !important;
   }
   header.header-section.is-sticky {
-    display: none !important;
+    position: relative;
   }
 
   .bottom_footer_inner img {
@@ -3411,11 +3417,6 @@ figure.itm_list {
   display: flex;
   align-items: center;
   margin-top: 5px;
-}
-
-.to-flx span {
-  border-right: 2px solid #ddd;
- 
 }
 
 .to-flx span:last-child {
@@ -5536,7 +5537,7 @@ section.main-footer p{
   text-align: left !important;
   font-size: 24px;
   border: none;
-  border-bottom: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
 }
 
 .col-lg-9.col-md-9.col-xs-12.no_data {
@@ -5847,7 +5848,7 @@ header{
 }
 .wishComp svg{
   color: #fff;
-  margin: 4px 5px 0 0;
+  margin: 8px;
 }
 /* .trending_products .section_title{
   margin: 0 0px 10px 0px!important;
@@ -7535,7 +7536,45 @@ h2.heading.wi {
 }
 
 .row.products_fp {
-  padding: 0 13px;
+margin-top: 15px;
+}
+
+.row.main_title {
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+}
+
+.top.fo-f {
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 1px solid #efefef;
+}
+
+.top.fo-f .heading h2 {
+  font-size: 24px;
+}
+
+.card.no-flx {
+  display: unset !important;
+}
+
+.card.no-flx .image_wrapper {
+  height: 280px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.card.no-flx img {
+  width: 70%;
+}
+
+.card.no-flx p.product_title {
+  height: 30px;
+  text-overflow: ellipsis;
 }
 
 /* San Styles 18022022*/
@@ -7579,7 +7618,47 @@ h2.heading.wi {
   display: flex;
 }
 
+.card.no-flx {
+  display: unset;
+}
+
+.item.product_item.no-flx.grid_view {
+  display: unset;
+}
+
+.item.product_item.no-flx.list_view .card.no-flx {
+  display: flex !important;
+}
+
+.item.product_item.no-flx.list_view {
+  padding: 0 20px;
+}
+
+.item.product_item.no-flx.list_view .card.no-flx .image_wrapper {
+  margin-right: 20px;
+  height: auto;
+}
+
+.item.product_item.no-flx.list_view .card.no-flx p.product_title{
+  margin-bottom: 0;
+}
+
 @media only screen and (max-width:600px) {
+  .dod_inner .slick-prev, .dod_inner .slick-next {
+    top: 54px!important;
+}
+
+  .row.products_fp {
+    margin-top: 0px;
+}
+
+.tools span{
+  margin: 0;
+  margin-top: 10px;
+}
+.row.main_title{
+  padding: 20px;
+}
 
   .col-lg-7.col-md-4.col-xs-12.text-center.border_f {
     display: flex;
@@ -7588,7 +7667,7 @@ h2.heading.wi {
 
 .slider_thumb {
   margin-top: 20px;
-  width: 200px !important;
+  /* width: 200px !important; */
 }
 
 .slider_thumb ul li {
@@ -7616,7 +7695,7 @@ h2.heading.wi {
 }
 
 .feature_section .card {
-  margin-right: 10px!important;
+  margin: 10px!important;
 }
 
   .option select#sort_option1 {

@@ -198,7 +198,7 @@ const renderProducts = () => {
       return <div className="row products_fp">   
           {       
               dealProducts.map((data,index) => (
-                <div  className={`item product_item ${viewClass}`} key={`${data.name}_${index}`}>
+                <div  className={`item product_item no-flx ${viewClass}`} key={`${data.name}_${index}`}>
                       {p && <div className="wishComp">
                               <ul>
                                 <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
@@ -210,7 +210,7 @@ const renderProducts = () => {
                               </ul>
                           </div>}
                       
-                      <div className="card">    
+                      <div className="card no-flx ">    
                       
                         
                           <div className="image_wrapper">
@@ -226,10 +226,11 @@ const renderProducts = () => {
                            <img src={data.image} />
                            </Link>
                               
-
+                           
                           </div>                                
+                          
+                          <div className="pdt_detail_holder">
                           <Link to={getProductURL(data)}><p className="product_title">{data.name}</p></Link>
-                          <div className="price_holder">
                           <div className="price_left">                                  
                               <div className="product_amt">
                               {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
