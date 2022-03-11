@@ -80,7 +80,7 @@ const TrendingProducts = () => {
   }
     const fetchTrending = async () => {
       const res = await fetch(
-        `${process.env.GATSBY_CART_URL_STARCARE}admin/trendingproducts` 
+        `${process.env.GATSBY_CART_URL_STARCARE}admin/trendingproducts/${localStorage.customer_id}` 
       );
       const json = await res.json();
       await setTrendingProducts(json);

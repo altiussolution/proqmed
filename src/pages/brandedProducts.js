@@ -83,7 +83,7 @@ const product = ()=>{
     setLoader(true);      
     axios({
         method : "get",
-        url: `${process.env.GATSBY_NODE_URL_STARCARE}data/brandedproducts/${location.state.brand_id}.json`
+        url: `${process.env.GATSBY_CART_URL_STARCARE}admin/brandproducts/${location.state.brand_id}/${localStorage.customer_id}`
         }).then(async (res) => {
             //    await axios.get(
             //    `${process.env.GATSBY_NODE_URL}data/brandedproducts/${location.state.brand_id}.json`
@@ -202,12 +202,12 @@ const addToList = (type,id) => {
     if(event.target.value == ""){
       event.target.value="productsasc"
     }
-    const id = pageContext.id;  
+    const ids = pageContext.id;  
     const selectRes =[];
     try {
       axios({
           method: 'get',
-          url: `${process.env.GATSBY_CART_URL_STARCARE}admin/${selecturl}/${id}`,
+          url: `${process.env.GATSBY_CART_URL_STARCARE}admin/${selecturl}/${location.state.brand_id}/${localStorage.customer_id}`,
       }).then((res) => {
           if (res.statusText === "OK" && res.status == 200) {
             for(let response of res.data[0]){

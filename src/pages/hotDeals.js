@@ -85,7 +85,7 @@ const Hotproducts = () => {
      const selecturl = "hotdealsnameasc";
 
      const res = await fetch(
-         `${process.env.GATSBY_CART_URL_STARCARE}${selecturl}`
+         `${process.env.GATSBY_CART_URL_STARCARE}${selecturl}/${localStorage.customer_id}`
      );
      const json = await res.json();
      await setDealProducts(json);
@@ -185,7 +185,7 @@ const hot = async (event) => {
     event.target.value="productsasc"
   }
   const res = await fetch(
-      `${process.env.GATSBY_CART_URL_STARCARE}${selecturl}`
+      `${process.env.GATSBY_CART_URL_STARCARE}${selecturl}/${localStorage.customer_id}`
   );
   const json = await res.json();
   await setDealProducts(json);

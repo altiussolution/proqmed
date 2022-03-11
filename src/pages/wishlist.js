@@ -289,7 +289,8 @@ const Wishlist = () => {
                                                                     <span>Reviews({item.review_count})</span>
                                                                     </div>
                                                                     <div className="qty_price">
-                                                                        <h6>${parseFloat(item.price).toFixed(2)}</h6>
+                                                                    {item.strike_price != null  &&  <span className="new_price">${Math.round(item.strike_price)}</span>}
+                                                                        <h6>${parseFloat(item.final_price).toFixed(2)}</h6>
                                                                     </div>
     
                                                                     

@@ -79,7 +79,7 @@ const Products = ({ pageContext, location , props }) => {
     try {
       axios({
           method: 'get',
-          url: `${process.env.GATSBY_CART_URL_STARCARE}admin/${selecturl}/${id}`,
+          url: `${process.env.GATSBY_CART_URL_STARCARE}admin/${selecturl}/${id}/${localStorage.customer_id}`,
       }).then((res) => {
           if (res.statusText === "OK" && res.status == 200) {
             for(let response of res.data[0]){
@@ -113,7 +113,7 @@ const Products = ({ pageContext, location , props }) => {
         const response = await axios(
           //`${process.env.GATSBY_NODE_URL_STARCARE}data/products/${id}.json`
           // `${process.env.GATSBY_CART_URL}admin/products/${id}`
-          `${process.env.GATSBY_CART_URL_STARCARE}admin/products/${id}`,
+          `${process.env.GATSBY_CART_URL_STARCARE}admin/products/${id}/${localStorage.customer_id}`,
         );
         if (!ignore) {
 
@@ -255,7 +255,7 @@ const Products = ({ pageContext, location , props }) => {
     try {
       axios({
           method: 'get',
-          url: `${process.env.GATSBY_CART_URL_STARCARE}admin/${selecturl}/${id}`,
+          url: `${process.env.GATSBY_CART_URL_STARCARE}admin/${selecturl}/${id}/${localStorage.customer_id}`,
       }).then((res) => {
           if (res.statusText === "OK" && res.status == 200) {
             for(let response of res.data[0]){

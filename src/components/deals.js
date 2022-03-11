@@ -53,7 +53,7 @@ const Deals = () => {
     };
     const fetchHot = async () => {
       const res = await fetch(
-          `${process.env.GATSBY_CART_URL_STARCARE}category/hotdeals`
+          `${process.env.GATSBY_CART_URL_STARCARE}category/hotdeals/${localStorage.customer_id}`
       );
       const json = await res.json();
       await setHotsofday(json);

@@ -114,7 +114,7 @@ const Product = (props,location)  => {
         setLoading(true);   
         try {  
           const res = await axios.get(
-            `${process.env.GATSBY_CART_URL_STARCARE}admin/productsattributes/${id}`
+            `${process.env.GATSBY_CART_URL_STARCARE}admin/productsattributes/${id}/${localStorage.customer_id}`
             //`${process.env.GATSBY_NODE_URL_STARCARE}data/singleproduct/${id}.json`
           );
           const data = convertToObject(res.data);
@@ -127,7 +127,7 @@ const Product = (props,location)  => {
               setLoading(false);
           })
           await axios.get(
-            `${process.env.GATSBY_CART_URL_STARCARE}compare/sellerproducts/current_product_id/${id}`).then((data)=>{
+            `${process.env.GATSBY_CART_URL_STARCARE}compare/sellerproducts/current_product_id/${id}/${localStorage.customer_id}`).then((data)=>{
               let response_data = data.data
               setothersellers(response_data)
           })  
@@ -168,7 +168,7 @@ const Product = (props,location)  => {
   const relatedproducts = async () =>{
     await axios({
       method : "get",
-      url: `${process.env.GATSBY_API_BASE_URL_STARCARE}relatedprodut/1`//`${process.env.GATSBY_NODE_URL_STARCARE}data/categories/relatedproducts/${id}.json`
+      url: `${process.env.GATSBY_API_BASE_URL_STARCARE}relatedprodut/${id}/${localStorage.customer_id}`//`${process.env.GATSBY_NODE_URL_STARCARE}data/categories/relatedproducts/${id}.json`
       }).then((res) => { 
       const item = res.data
       setProductdata(item);
