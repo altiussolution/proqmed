@@ -26,9 +26,19 @@ const similar_product = {
   infinite: false,
   responsive: [
     {
-      slidesToShow:5,
       breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
     },
+    {
+      breakpoint: 480,
+      settings: {
+          slidesToShow: 1,
+          slidesToScroll: 2
+      }
+    }
 
   ]
 }
