@@ -215,7 +215,20 @@ let updateAddress = {
 
 }
 
-
+const editcheck = userAddresses => {
+    if(manilam == true && Tamilan['value']){
+       onSubmit(userAddresses)
+    }else {
+        toast.error("State is required")
+    }
+}
+const addcheck = userAddresses => {
+    if(manilam == true && Tamilan['value']){
+       onSubmitadd(userAddresses)
+    }else {
+        toast.error("State is required")
+    }
+}
 const onSubmitadd = userAddresses => {
     let updateAddress = {
         "address": { 
@@ -312,7 +325,7 @@ return (
                   </div>
   
                  {editadd && <div class="address-form" {...location}>
-                      <form onSubmit={handleSubmit(onSubmit)}>
+                      <form onSubmit={handleSubmit(editcheck)}>
                       <div class="fo-bg-slice">
                           <h6>Edit Address</h6>
                           <div class="row">
@@ -359,20 +372,21 @@ return (
                                                                             })}  defaultValue={(edit ? edit['city'] : "")}/>
                                                                             {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
                                 {manilam &&  <div> 
-                                    <Controller
+                                    {/* <Controller
                                       control={control} 
                                       rules={{ required: true }} 
-                                      name="user_state"
-                                      render={({}) => (
+                                      name="region"
+                                      render={({}) => ( */}
                                     <Select
                                     options={state}
                                     onChange={onSelectStates1}
                                     value={Tamilan}
                                     placeholder="Select State *"
+                                    isRtl
                                      />
-                                     )}
-                                    />
-                                  {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
+                                     {/* )}
+                                    /> */}
+                                  {errors.region && <span className="error_label">State required</span>}
                                   </div>}
                                    { txt && <div>
                                                                             <input className="form-control" name="user_state" id="user_state" placeholder="State" type="text"  />
@@ -413,7 +427,7 @@ return (
                      
                   </div> }
                   {add && <div class="address-form">
-                      <form onSubmit={handleSubmit(onSubmitadd)}>
+                      <form onSubmit={handleSubmit(addcheck)}>
                       <div class="fo-bg-slice">
                           <h6>Add Address</h6>
                           <div class="row">
@@ -460,19 +474,21 @@ return (
                                                                             })}  defaultValue={(edit ? edit['city'] : "")}/>
                                                                             {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
                                 {manilam &&  <div>
-                                    <Controller
+                                    {/* <Controller
                                     control={control} 
                                     rules={{ required: true }} 
                                     name="user_state"
-                                    render={({}) => (
+                                    render={({}) => ( */}
                                      <Select
                                     options={state}
                                     onChange={onSelectStates1}
+                                    isRtl
                                     placeholder="Select State *"
                                      />
-                                     )}
-                                    />
-                                  {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
+                                     {/* )}
+                                    /> */}
+                                   
+                                  {/* {errors.user_state && <span className="error_label">State required</span>} */}
                                   </div> }
                                   { txt && <div>
                                                                             <input className="form-control" name="user_state" id="user_state" placeholder="State" type="text"  />

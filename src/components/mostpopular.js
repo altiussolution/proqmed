@@ -147,7 +147,7 @@ const Mostpopular = () => {
                     }
                 }).catch((err) => {
                     console.error(err);
-                    toast.error('Failed to add cart')
+                    toast.error(err.response.data.message)
                 })
             } catch (err) {
                 console.error(err)
