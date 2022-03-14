@@ -295,7 +295,7 @@ const isSticky = (e) => {
       </div>
       }
     } else {
-      return <div>No Product Found</div>
+      return <div className="fo-center">No Product Found</div>
     }
 
   }

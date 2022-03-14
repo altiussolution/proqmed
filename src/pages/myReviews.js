@@ -186,7 +186,7 @@ return (
            }
                 </div>
                
-                : "Reviews not available"}
+                : <div className="fo-center">Reviews not available</div>}
 
 <div className="bottom-paginatino">
           <TablePagination

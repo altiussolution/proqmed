@@ -2961,7 +2961,7 @@ margin-top: 20px;
 .sampleDropDown div:nth-child(2) {
   height: 100%;
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     flex-wrap: wrap;
     width: 100%;
     border-left: 1px solid #ccc;
@@ -5571,7 +5571,7 @@ section.main-footer p{
 
 .casualities button.btn.btn.heart {
   background: #fff;
-  font-size: 10px;
+  font-size: 20px;
   border-radius: 50px;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
   margin-top: 20px;
@@ -6803,6 +6803,7 @@ span.way {
     display: flex;
     flex-direction: row-reverse;
     height: 40px;
+    overflow: hidden;
 }
 
 .search.orders input{
@@ -6968,6 +6969,7 @@ nav.nav.nav-tabs {
 .MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.MuiTablePagination-toolbar.css-11bfvty-MuiToolbar-root-MuiTablePagination-toolbar {
   align-items: baseline;
   min-height: unset !important;
+  margin-top: 10px;
 }
 
 .billing-stat .form-check .form-check-label {
@@ -7015,6 +7017,7 @@ nav.nav.nav-tabs {
 
 .buttons-or button.btn.btn-primary {
   background: #ddd;
+  width: 100%;
 }
 
 .review-content {
@@ -7577,6 +7580,16 @@ margin-top: 15px;
   text-overflow: ellipsis;
 }
 
+.order-details .buttons-or {
+  display: flex;
+  flex-direction: column;
+}
+
+.item.product_item.no-flx.list_view {
+  display: block;
+}
+
+
 /* San Styles 18022022*/
 
 .itm_list_holder{
@@ -7628,6 +7641,8 @@ margin-top: 15px;
 
 .item.product_item.no-flx.list_view .card.no-flx {
   display: flex !important;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .item.product_item.no-flx.list_view {
@@ -7637,10 +7652,12 @@ margin-top: 15px;
 .item.product_item.no-flx.list_view .card.no-flx .image_wrapper {
   margin-right: 20px;
   height: auto;
+  width: 20%;
 }
 
 .item.product_item.no-flx.list_view .card.no-flx p.product_title{
-  margin-bottom: 0;
+  margin-bottom: 5px;
+    font-size: 20px;
 }
 
 @media only screen and (max-width:600px) {
