@@ -229,7 +229,7 @@ const addToList = (type,id) => {
           return <div className="row products_fp">   
               {       
                   productBrand.map((data,index) => (
-                      <div  className={`item product_item ${viewClass}`} key={`${data.name}_${index}`}>
+                      <div  className={`item product_item deal ${viewClass}`} key={`${data.name}_${index}`}>
                         {p && <div className="wishComp">
                                   <ul>
                                     <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
@@ -240,10 +240,10 @@ const addToList = (type,id) => {
                                     <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
                                   </ul>
                               </div>}
-                          <div className="card">    
+                          <div className="card deal">    
                           
                             
-                              <div className="image_wrapper">
+                              <div className="image_wrapper   ">
                               {/* <div className="actn_btn_holder">                                  
                                   <ul>
                                     <li className="icn"><BiShoppingBag/></li>
@@ -258,15 +258,14 @@ const addToList = (type,id) => {
                                   
 
                               </div>                                
+                             
+                              <div className="price_holder-deal">
                               <Link to={getProductURL(data)}><p className="product_title">{data.name}</p></Link>
-                              <div className="price_holder">
-                              <div className="price_left">                                  
+                              <div className="price_left deal">                                  
                                   <div className="product_amt">
                                   {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
                                       <span className="price">${Math.round(data.final_price)}</span>
-                                      
-                                  </div>
-                                  <div className="rating_front">
+                                      <div className="rating_front">
                                   <StarRatings
                                       rating={Math.round(data.rating)}
                                       numberOfStars={5}
@@ -277,15 +276,18 @@ const addToList = (type,id) => {
                                       svgIconViewBox="0 0 32 32"
                                       svgIconPath="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798zM16 23.547l-6.983 3.671 1.334-7.776-5.65-5.507 7.808-1.134 3.492-7.075 3.492 7.075 7.807 1.134-5.65 5.507 1.334 7.776-6.983-3.671z"
                                   />
-                                  
+                                 
                                   </div>
-                              </div>
-                                 {pcar && <div className="price_right">                                   
+                                  </div>
+                                 
+                                  {pcar && <div className="price_right">                                   
                                 <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
                                 </div>}
                                 {outpcar && <div className="price_right">                                   
                                 <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
                                 </div>}
+                              </div>
+                                 
                               </div>
                           </div>
 

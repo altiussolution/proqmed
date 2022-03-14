@@ -7589,6 +7589,40 @@ margin-top: 15px;
   display: block;
 }
 
+.item.product_item.list_view .image_wrapper {
+  width: 20%;
+}
+
+.item.product_item.no-flx.grid_view .price_left.fl {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item.product_item.grid_view .price_left.deal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item.product_item.deal.grid_view {
+  display: block;
+}
+
+.item.product_item.deal.grid_view .card.deal .image_wrapper {
+  width: 60%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+.item.product_item.deal.list_view .card.deal {
+  justify-content: flex-start;
+}
+
+.item.product_item.deal.list_view .price_holder-deal p {
+  font-size: 20px;
+}
+
 
 /* San Styles 18022022*/
 
