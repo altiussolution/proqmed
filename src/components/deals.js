@@ -30,7 +30,7 @@ const dealofday = {
       breakpoint: 480,
       settings: {
           slidesToShow: 1,
-          slidesToScroll: 2
+          slidesToScroll:1
       }
     }
 
@@ -62,7 +62,7 @@ const Deals = () => {
     };
     const fetchHot = async () => {
       const res = await fetch(
-          `${process.env.GATSBY_CART_URL_STARCARE}category/hotdeals/${localStorage.customer_id}`
+          `${process.env.GATSBY_CART_URL_STARCARE}category/hotdeals`
       );
       const json = await res.json();
       await setHotsofday(json);
