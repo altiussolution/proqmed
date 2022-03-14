@@ -158,7 +158,7 @@ const TrendingProducts = () => {
         }
     }
     const renderProducts = () => {
-        if (trendingProducts.length!==0) {
+        if (trendingProducts) {
 
           return <div className="row products_fp">   
           {       
