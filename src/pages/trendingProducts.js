@@ -159,6 +159,7 @@ const TrendingProducts = () => {
     }
     
     const renderProducts = () => {
+      if(trendingProducts){
       return <div className="row products_fp">   
       {       
           trendingProducts.map((data,index) => (
@@ -227,8 +228,7 @@ const TrendingProducts = () => {
           ))
       }
   </div> 
-
-          
+      }
   }
       
 
@@ -251,8 +251,8 @@ const TrendingProducts = () => {
                     
                       <div className="cat_scroll">
                         <div className="container">
-                        
-                   {trendingProducts.length === 0 ? (<h2 className="fo-center">No Trending Products</h2>) : renderProducts()}
+                          
+                  {renderProducts()}
                   
                   </div>
                   </div>
