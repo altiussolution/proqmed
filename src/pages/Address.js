@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Link, navigate, useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout";
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,7 +11,7 @@ import account from "./../assets/account.png"
 import logoutt from "./../assets/logout.png"
 import order from "./../assets/order.png"
 const Address = ({location,data:product}) => {
- const { register, handleSubmit, errors } = useForm();
+ const { register, handleSubmit, errors, control } = useForm();
  const [jwt, setJwt] = useState("")
  const [uEmail, setUEmail] = useState();
  const [cusID, setCusid] = useState();
@@ -358,12 +358,20 @@ return (
                                                                                 required: true
                                                                             })}  defaultValue={(edit ? edit['city'] : "")}/>
                                                                             {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
-                                {manilam &&  <div> <Select
+                                {manilam &&  <div> 
+                                    <Controller
+                                      control={control} 
+                                      rules={{ required: true }} 
+                                      name="user_state"
+                                      render={({}) => (
+                                    <Select
                                     options={state}
                                     onChange={onSelectStates1}
                                     value={Tamilan}
-                                    placeholder="Select State"
+                                    placeholder="Select State *"
                                      />
+                                     )}
+                                    />
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div>}
                                    { txt && <div>
@@ -451,11 +459,19 @@ return (
                                                                                 required: true
                                                                             })}  defaultValue={(edit ? edit['city'] : "")}/>
                                                                             {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
-                                {manilam &&  <div> <Select
+                                {manilam &&  <div>
+                                    <Controller
+                                    control={control} 
+                                    rules={{ required: true }} 
+                                    name="user_state"
+                                    render={({}) => (
+                                     <Select
                                     options={state}
                                     onChange={onSelectStates1}
-                                    placeholder="Select State"
+                                    placeholder="Select State *"
                                      />
+                                     )}
+                                    />
                                   {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}
                                   </div> }
                                   { txt && <div>

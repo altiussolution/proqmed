@@ -215,7 +215,7 @@ const Products = ({ pageContext, location , props }) => {
 
   };
 
-  const handleChangePage = (e) => {
+  const handleChangePage = (event, newPage) => {
     // let index = e.target.value;
     // console.log(index)
     // var selectValue = [];
@@ -224,7 +224,8 @@ const Products = ({ pageContext, location , props }) => {
     //   selectValue.push(productTemp[i])
     //   }
     // }
-    setPage(e.target.value);
+    console.log(newPage)
+    setPage(newPage);
     // await setProducts(products.slice(0, index));
     // await setProducts(selectValue);
   }

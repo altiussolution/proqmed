@@ -774,7 +774,9 @@ const CheckOut = ({location}) => {
                                                                 </label>
                                                                     </div>
                                                                 </div>
-                                                                <input type="submit" className="primary btn btn_gray btn-block" />
+                                                                <div className="form_btn">
+                                                <button className="btn btn_gray" type="submit">Submit</button>
+                                                </div>
                                                             </form>
                                                         )}
                                                      

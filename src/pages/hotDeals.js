@@ -182,7 +182,7 @@ const addtoCartItems = (sku, id) => {
 const hot = async (event) => {
   const selecturl = event.target.value;
   if(event.target.value == ""){
-    event.target.value="productsasc"
+    event.target.value="hotdealsnameasc"
   }
   const res = await fetch(
       `${process.env.GATSBY_CART_URL_STARCARE}${selecturl}/${localStorage.customer_id}`
@@ -292,7 +292,7 @@ return (
                               <select className="form-control" id="sort_option1" onChange={hot} >
                                 <option value = "hotdealsnameasc">Name Asc</option>
                                 <option value = "hotdealsnamedesc">Name Desc</option>
-                                <option value = "hotdealspriceasc ">Price Asc</option>
+                                <option value = "hotdealspriceasc">Price Asc</option>
                                 <option value = "hotdealspricedesc">Price Desc</option>
                                 <option value = "hotdealscreatedasc">Created Date Asc</option>
                                 <option value = "hotdealscreateddesc">Created Date Desc</option>

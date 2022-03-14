@@ -14,7 +14,7 @@ import us1 from "./../assets/us1.png"
 import Multiselect from 'multiselect-react-dropdown';
 import noimage from "./../assets/noimage.png"
 
-const Managesub = ({location}) => {
+const Managesub = ({pageContext, location }) => {
 
 // const _isMounted = useRef(false);
  const [clip,categoryda] = useState([]);
@@ -59,6 +59,17 @@ const Managesub = ({location}) => {
 `)
 
  useEffect(() => {
+  if(location.state.subuser_firstname){
+    console.log(location.state.subuser_id)
+    setQuoteForm(location.state)
+    setQuotePopupedit(true)
+    setCatsedit(location.state['category_permissions'])
+    setNamesedit(location.state['allowed_permissions'])
+    statusInedit(location.state['account_status'])
+    console.log(location.state)
+   }else {
+    setQuotePopupadd(true)
+   }
   setJwt(localStorage.userToken);
   setCustomerId(localStorage.customer_id)
   setUsername(localStorage.user_name)
@@ -77,17 +88,7 @@ const Managesub = ({location}) => {
   }).catch((err) => {
     console.error(err);
   })
-  if(location.state['subuser_firstname']){
-  console.log(location.state.subuser_id)
-  setQuoteForm(location.state)
-  setQuotePopupedit(true)
-  setCatsedit(location.state['category_permissions'])
-  setNamesedit(location.state['allowed_permissions'])
-  statusInedit(location.state['account_status'])
-  console.log(location.state)
- }else {
-  setQuotePopupadd(true)
- }
+  
 },[]);
 const rendercategory = () =>{
  const list = [];
