@@ -34,6 +34,7 @@ const Contact = () => {
                 toast.success("Your mail has been sent to admin")
                  // toast.success(response.data)
                   document.getElementById("create-form").reset();
+                  
                 }
               })
               .catch(function (response) {
