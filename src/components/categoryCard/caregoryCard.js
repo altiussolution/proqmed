@@ -141,8 +141,8 @@ export default function CategoryCard({ data: product, dataClass }) {
                   setButton(false);
                 }
               }).catch((err) => {
-                console.error(err);
-                toast.error('Failed to add cart')
+                console.log(err.response.data.message);
+                toast.error(err.response.data.message)
               })
           }catch(err){
             console.error(err)
@@ -159,20 +159,19 @@ export default function CategoryCard({ data: product, dataClass }) {
     <div className={`item product_item ${dataClass}`}> 
             {product['values'].items.length == 0?<sapn>You don't have Authorization for this category</sapn>:  
      <div className="thumbnail">
-        {p &&  <div className="wishComp">
-          <ul>
+        <div className="wishComp">
+        {p &&  <ul>
          <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li> 
          
 
-          </ul>
-        </div> }
-        {outp && <div className="wishComp">
-          <ul>
+          </ul> }
+          {outp &&  <ul>
           <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li> 
         
 
-          </ul>
-        </div> }
+          </ul> }
+        </div> 
+        
         <div className="product_img">
         {/* <div className="price_off">Upto 50% off</div> */}
                                
@@ -213,13 +212,13 @@ export default function CategoryCard({ data: product, dataClass }) {
                                   </div>
                 </div>
                 </div>
-                <div className="cart-btns">
+                {/* <div className="cart-btns">
                 <a className="other" onClick={() => addToList(2)}><FaRegHeart /> </a>
-                  {/* <a className="other" onClick={() => addToList(1)}><IoIosGitCompare/> </a> */}
+                  <a className="other" onClick={() => addToList(1)}><IoIosGitCompare/> </a>
                 
                   
                   
-                </div>
+                </div> */}
 
       </div>
 }

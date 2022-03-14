@@ -66,7 +66,7 @@ const addToCart = (cartItem) => {
           }
         }).catch((err) => {
           console.error(err);
-          alert('Failed to add cart')
+          alert(err.response.data.message)
         })
     }catch(err){
       console.error(err)

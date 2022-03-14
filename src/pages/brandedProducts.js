@@ -306,7 +306,7 @@ const addToList = (type,id) => {
                         <div className="row main_title">
                             <h1>Our <span>Brands</span></h1>
                             <div className="tools_items">
-                          <div className="tools">
+                          {/* <div className="tools">
                             <span>
                               Sort by:
                     </span>
@@ -320,7 +320,7 @@ const addToList = (type,id) => {
                                 <option value = "productsdatedesc">Created Date Desc</option>
                               </select>
                             </div>
-                          </div>
+                          </div> */}
                           <div className="tools">
                             <div className="title_view">
                             <button  className={"view-btn list-view"+(viewClass === 'list_view' ? ' active_btn':'')} id="list" data-toggle="tooltip" data-placement="top" title="List" onClick={() => setViewClass('list_view')}><IoList /></button>

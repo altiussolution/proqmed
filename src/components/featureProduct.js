@@ -195,7 +195,7 @@ const FeatureProduct = () => {
                       setButton(false);
                     }
                   }).catch((err) => {
-                    toast.error('SignIn to add cart')
+                    toast.error(err.response.data.message)
                   })
                 } catch (err) {
                   console.error(err)
@@ -235,7 +235,7 @@ const FeatureProduct = () => {
                       }
                   }).catch((err) => {
                       console.error(err);
-                      toast.error('Failed to add cart')
+                      toast.error(err.response.data.message)
                   })
               } catch (err) {
                   console.error(err)
