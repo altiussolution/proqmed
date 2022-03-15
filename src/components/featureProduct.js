@@ -55,7 +55,7 @@ const feature_slide = {
 }
 
 const FeatureProduct = () => {
-    const [featureProducts, setFeatureProducts] = useState(null);
+    const [featureProducts, setFeatureProducts] = useState("");
     const [customerId, setCustomerId] = useState("");
     const [jwt, setJwt] = useState("");
     const [quote_id, setQuoteId] = useState("");
@@ -115,7 +115,7 @@ const FeatureProduct = () => {
             const res = await fetch(
                 `${process.env.GATSBY_CART_URL_STARCARE}featureproducts/${localStorage.customer_id}`
             );
-            const json = await res.json();
+            const json = await res.json(); 
             await setFeatureProducts(json);
         };
         fetchFeature();
@@ -166,43 +166,6 @@ const FeatureProduct = () => {
     }
       }
 
-      const addtoCartItem = (data) => {
-            const cartItem = {
-                "cartItem": {
-                  "sku": data.sku,
-                  "qty": qty,
-                  "quote_id": quote_id
-                }
-              }
-              setButton(true);
-              const jwt = localStorage.getItem('userToken')
-              if (cartItem) {
-                try {
-                  axios({
-                    method: 'post',
-                    url: `${process.env.GATSBY_API_BASE_URL_STARCARE}carts/mine/items`,
-                    data: cartItem,
-                    headers: {
-                      'Authorization': `Bearer ${jwt}`
-                    }
-                  }).then((res) => {
-                    if (res.statusText === "OK" && res.status == 200) {
-                      viewCartItems();
-                         setTimeout(() => {
-                         setCartCnt(getCartCount())
-                        }, 3000);
-                      toast.success('Succesfully added to cart');
-                      setButton(false);
-                    }
-                  }).catch((err) => {
-                    toast.error(err.response.data.message)
-                  })
-                } catch (err) {
-                  console.error(err)
-                }
-              }
-    }
-
     const addtoCartItems = (sku, id) => {
       if (localStorage.userToken) {
           const cartItem = {
@@ -249,7 +212,7 @@ const FeatureProduct = () => {
   }
  
       const renderProducts = () => {    
-        if (featureProducts) { 
+         if (featureProducts) { 
 
             return  <Slider {...feature_slide}>  
             
