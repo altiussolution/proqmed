@@ -99,9 +99,12 @@ const Contact = () => {
                                             {errors.Message && errors.Message.type  === 'required' && <span className="error_label">Message is required</span>}
                                         </div>
                                        
-                                        <div className="text-center">
+                                        {/* <div className="text-center">
                                             <input className="btn submit_btn btn_gray" type="submit"  />
-                                        </div>
+                                        </div> */}
+                                          <div className="form_btn">
+                                                <button className="btn btn_gray" type="submit">Submit</button>
+                                                </div>
                                     </form>
                                 </div>
                                 <div className="col-lg-3 col-md-4 col-xs-12 right_side">
