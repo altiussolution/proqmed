@@ -2275,8 +2275,8 @@ body .brandedpro_item {
   width: 100%;
 }
 
-body .product_item.list_view .thumbnail .product_img {
-  width: 100%;
+.product_item.list_view .thumbnail .product_img {
+  width: 40% !important;
 }
 body .product_view .product_details h1 {
   font-size: 20px;
@@ -2961,17 +2961,15 @@ margin-top: 20px;
 .sampleDropDown div:nth-child(2) {
   height: 100%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     flex-wrap: wrap;
     width: 100%;
-    border-left: 1px solid #ccc;
-    overflow-y: scroll;
-    /* height: 350px; */
-    padding: 20px;
+    
 }
 .sampleDropDown div:nth-child(2) ul {
   margin-right: 8px;
   width: 32%;
+  border-right: 1px solid #dedede;
 }
 .sampleDropDown div:nth-child(2) ul li a {
   align-items: flex-start;
@@ -2981,8 +2979,8 @@ margin-top: 20px;
 .sampleDropDown div {
   padding: 10px;
   width: 200px;
-  overflow-y: scroll;
-  height: 350px;
+  /* overflow-y: scroll; */
+  
 }
 .sampleDropDown h1{
   font-size: 16px;
@@ -4756,7 +4754,7 @@ body .all_categories_list .itm_list_holder a.itm_list_title {
 }
 .search_clear{
   position: absolute;
-  right: 95px;
+  right: 55px;
   width: 2%;
   top: 3px;
   
@@ -5991,7 +5989,7 @@ button.btn_gray.btn.ml-1{
   padding: 10px;
   margin-top: 10px;
   border: 1px solid #ddd;
-  width: -webkit-fill-available;
+  width: 100%;
   margin-left: 0;
 }
 
@@ -7405,6 +7403,7 @@ button.btn.btn-link {
   margin-right: 15px;
   color: #0f74b6;
   margin-top: 15px;
+  cursor: pointer;
 }
 
 .diff-note a {
@@ -7623,6 +7622,27 @@ margin-top: 15px;
   font-size: 20px;
 }
 
+p.fo-o-stock {
+  color: #ffffff;
+  font-size: 11px;
+  font-style: italic;
+  background: hsl(0deg 86% 63%);
+  font-family: 'Poppins';
+  padding: 7px 20px !important;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+p.In.Stock {
+  color: #ffffff;
+  font-size: 11px;
+  font-style: italic;
+  background: hsl(99deg 73% 45%);
+  font-family: 'Poppins';
+  padding: 7px 20px;
+  border-radius: 5px;
+  font-weight: 600;
+}
 
 /* San Styles 18022022*/
 
@@ -7676,7 +7696,7 @@ margin-top: 15px;
 .item.product_item.no-flx.list_view .card.no-flx {
   display: flex !important;
   justify-content: flex-start;
-  align-items: flex-start;
+  /* align-items: flex-start; */
 }
 
 .item.product_item.no-flx.list_view {
@@ -7695,6 +7715,25 @@ margin-top: 15px;
 }
 
 @media only screen and (max-width:600px) {
+
+  .wishComp{
+    display: block !important;
+  }
+
+  .sampleDropDown div:nth-child(2) {
+    display: block;
+    padding: 0;
+    border: none;
+    overflow: unset;
+}
+
+.sampleDropDown{
+  left: unset !important;
+}
+
+.sampleDropDown div:nth-child(2) ul{
+  width: 100%;
+}
   .dod_inner .slick-prev, .dod_inner .slick-next {
     top: 54px!important;
 }
