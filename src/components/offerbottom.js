@@ -7,7 +7,7 @@ import { getProductURL,getCategoryURL } from "../utils/url";
 import ImageNotFound from "./../assets/not-found.png";
 
 const Offerbottom = () => {
-  const [splash, setSplash] = useState(null);
+  const [splash, setSplash] = useState([]);
     const [loader, setLoader] = useState(ad1);          
 
     useEffect(() => {
@@ -31,8 +31,9 @@ const Renderproduct = () => {
     if (splash) { 
 
         return <>
-        {splash.slice(0 ,2).map((data,index) => (
-        (
+        {      
+        splash.slice(0 ,2).map((data,index) => (
+        
       <div className="col-lg-6 col-md-12 col-xs-12" key={`${data.category_name}_${index}`}>
           {/* <Link to={data.category_url} ><img src={data.category_image} alt={"banner"} /></Link>  */}
           <div className="img-wrapper-as-seen">
@@ -46,7 +47,8 @@ const Renderproduct = () => {
           </div>
           </div>
           
-           )))}
+           ))
+           }
 </>
     }
 }
@@ -66,7 +68,9 @@ return(
 {/*   
   <div className="col-lg-6 col-md-6 col-xs-12"><img src={ad1} alt={"banner"} /></div>
   <div className="col-lg-6 col-md-6 col-xs-12"><img src={ad2} alt={"banner"} /></div> */}
-    {Renderproduct()}
+    { splash.length > 0 ? Renderproduct(): <div className="fo-center">No As Seen On</div>}
+
+    {/* {Renderproduct()} */}
     </div>
   </div>
      </section>
