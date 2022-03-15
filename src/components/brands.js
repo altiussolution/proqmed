@@ -10,7 +10,7 @@ import brand5 from './../assets/brand_05.jpg';
 import brand6 from './../assets/brand_06.jpg';
 
 const Brands = props => { 
-    const [productBrand, setProductBrand] = useState(null);
+    const [productBrand, setProductBrand] = useState([]);
     useEffect(() => {
         const productBrand = async () => {
             await axios({
@@ -30,7 +30,7 @@ console.log(item)
     const Renderproduct = () => {
         if (productBrand) {
             return <>
-                {    productBrand ?
+                {    productBrand.length > 0 ?
                     (productBrand.slice(0, 18).map((data, index) => (
 
                        
@@ -39,7 +39,7 @@ console.log(item)
                             </li>
                        
 
-                    ))) : <div></div>
+                       ))): <div className="fo-center">No Popular Brands</div>
 
                 }
             </>

@@ -203,7 +203,7 @@ const Invoice = ({ location }) => {
                                                     <td>{list.name}</td>
                                                     <td>{list.sku}</td>
                                                     <td>{Math.round(list.quantity)}</td>
-                                                    <td>${parseFloat(list.price).toFixed(2)}</td>
+                                                    <td>${parseFloat(list.price*list.quantity).toFixed(2)}</td>
                                                 </tr>
                                             </tbody>
                                         })

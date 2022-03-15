@@ -160,8 +160,8 @@ const TrendingProducts = () => {
     
     const renderProducts = () => {
       if(trendingProducts){
-      return <div className="row products_fp">   
-      {       
+      return  <div className="row products_fp">  
+      {     trendingProducts.length > 0 ?  
           trendingProducts.map((data,index) => (
               <div className="item product_item sample" key={`${data.name}_${index}`}>
                 {p && <div className="wishComp">
@@ -225,10 +225,11 @@ const TrendingProducts = () => {
                   </div>
 
               </div>
-          ))
+          )) : <div className="fo-center">No Trending Products</div>
       }
+     
   </div> 
-      }
+      } 
   }
       
 

@@ -102,7 +102,7 @@ const renderHots =()=>{
 const renderDeals = ()=>{
   if (dealProducts) { 
     return  <Slider {...dealofday}> 
-{
+{ 
     dealProducts.map((data,index)=>(
   <div className="card" key={`${data.sub_category}_${index}`}>
       <h5 className="title_link"><Link to={getCategoryURL(data.sub_category)}>{data.sub_category.name}</Link></h5>
@@ -110,7 +110,8 @@ const renderDeals = ()=>{
        <p>{data.sub_category.description}</p>
 
       <ul>
-      {data.sub_category.sub_category_sub.slice(0,4).map((value,index)=>(
+      {
+      data.sub_category.sub_category_sub.slice(0,4).map((value,index)=>(
         
  <li key={index}>
  <div className="image_wrapper">
@@ -159,7 +160,8 @@ const renderDeals = ()=>{
   <span><Link to="/dealProducts">+ View all Products</Link></span>
   </h2>
   <div className="dod_inner">
-  {renderDeals()}
+  { dealProducts.length > 0 ? renderDeals(): <div className="fo-center">No Deal of the Day</div>}
+  {/* {renderDeals()} */}
   </div>
   </div>
 </div>

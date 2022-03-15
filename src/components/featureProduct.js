@@ -216,7 +216,7 @@ const FeatureProduct = () => {
 
             return  <Slider {...feature_slide}>  
             
-                {       
+                {   featureProducts.length > 0 ?      
                     featureProducts.map((data,index) => (
                         <div key={`${data.name}_${index}`}>
                             <div className="card">   
@@ -271,7 +271,7 @@ const FeatureProduct = () => {
                             </div>
 
                         </div>
-                    ))
+                    )): <div className="fo-center">No Featured Products</div>
                 }
             
             
