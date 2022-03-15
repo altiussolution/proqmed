@@ -210,6 +210,9 @@ const Emailsubmit = emailss => {
     axios({
         method: 'post',
         url: `${process.env.GATSBY_CART_URL_STARCARE}customer/update_email`,
+        headers : {
+          'Authorization' : `Bearer ${jwt}`
+      },
         data: data,
     })
         .then(function (response) {
