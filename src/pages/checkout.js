@@ -431,7 +431,8 @@ const CheckOut = ({location}) => {
                                 } 
                             })
                         } catch(err)  {
-                            console.error(err)
+                            toast.error(err.response.data.message)
+                            setLoader(false);
                         }
                         // navigate("/paymentSuccess")
                        
@@ -439,11 +440,14 @@ const CheckOut = ({location}) => {
                     }
 
                 }).catch((err) => {
-                    console.error(err)
+                    console.error(err.response.data.message)
+                    toast.error(err.response.data.message)
+                    setLoader(false);
                 })
             }
             catch (err) {
                 console.error(err)
+                setLoader(false);
             }
         }
     }
