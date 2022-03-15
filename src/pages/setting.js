@@ -7,6 +7,7 @@ const Setting = () => {
     //  const [color, setColor] = useColor("hex", "#121212");
 const submitColor = (color)=>{
    console.log(color)
+   
 }
 
     return(
