@@ -585,16 +585,16 @@ if(proDescription.items.config_options){
                   
                     
                   </div>
-                  <div>
+                  <div className="image-wrapper fo-detail">
                     {data.length > 0 &&  <CursorZoom
                 image={{
                     src: data[0].image,
                     width: 400,
-                    height: 300
+                    height: 400
                 }}
                 zoomImage={{
                     src: data[0].image,
-                    width: 600,
+                    width: 500,
                     height: 500
                 }}
                 cursorOffset={{ x: 30, y: -30 }}
@@ -654,7 +654,7 @@ if(proDescription.items.config_options){
                         }
                       </div>
                       <div>
-                        <i>{proDescription.items.is_in_stock == 1 ? "In Stock" :<p className="fo-o-stock">Out Of Stock</p> }</i>
+                        {proDescription.items.is_in_stock == 1 ?  <p className="In Stock"> In Stock </p>:<p className="fo-o-stock">Out Of Stock</p> }
 
                       </div>
                     </div>

@@ -525,7 +525,7 @@ list-style: none;
     -ms-display: flex;
     -o-display: flex;
      display: flex;
-    align-items: center;
+    align-items: baseline;
         /* -webkit-justify-content: space-between;
     -moz-justify-content: space-between;
     -ms-justify-content: space-between;

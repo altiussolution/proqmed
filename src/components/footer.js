@@ -153,6 +153,7 @@ const Footer = () => {
                                 <div className="info-block-text">Moneyback guarantee</div></div>
                             </div>
                         </div> */}
+                        
                           <div className="col-md-4">
                             <div className="banefit_content">
                                 <span className="ic_benefits">
