@@ -170,7 +170,7 @@ const Product = (props,location)  => {
       
       
     }, [id]);
-
+const hierarchy = JSON.parse(sessionStorage.getItem('Hierarchy'));
   const relatedproducts = async () =>{
     await axios({
       method : "get",
@@ -355,32 +355,47 @@ const addToList = (type,id) => {
     }, 3000);
   }
  const breadCrumps = () => {
-   if(props.location.state['crumpy']){
-     return (
-       <div>
-    {props.location.state['crumpy'].hierarchy.map(parent => (
-      <React.Fragment key={parent.id}>
-        <Link
-          className="text-gray-600 hover:text-gray-800"
-          to={getCategoryURL(parent)}
-        >
-          <span dangerouslySetInnerHTML={{ __html: parent.name }} />
-        </Link>
-        &nbsp;&nbsp; <IoChevronForwardOutline /> &nbsp;&nbsp;
-      </React.Fragment>
-    ))}<React.Fragment>
-    <Link
-      className="text-gray-600 hover:text-gray-800"
-      to={getCategoryURL(props.location.state['crumpy'])}
-    >
-      <span dangerouslySetInnerHTML={{ __html: props.location.state['crumpy'].name }} />
-    </Link>
-    &nbsp;&nbsp; <IoChevronForwardOutline /> &nbsp;&nbsp;
-  </React.Fragment>
-    <span dangerouslySetInnerHTML={{ __html: props.location.state['values'].items.name}} />
-    </div>
-     )
-   } 
+  //  if(props.location.state['crumpy']){
+  //    return (
+  //      <div>
+  //   {props.location.state['crumpy'].hierarchy.map(parent => (
+  //     <React.Fragment key={parent.id}>
+  //       <Link
+  //         className="text-gray-600 hover:text-gray-800"
+  //         to={getCategoryURL(parent)}
+  //       >
+  //         <span dangerouslySetInnerHTML={{ __html: parent.name }} />
+  //       </Link>
+  //       &nbsp;&nbsp; <IoChevronForwardOutline /> &nbsp;&nbsp;
+  //     </React.Fragment>
+  //   ))}<React.Fragment>
+  //   <Link
+  //     className="text-gray-600 hover:text-gray-800"
+  //     to={getCategoryURL(props.location.state['crumpy'])}
+  //   >
+  //     <span dangerouslySetInnerHTML={{ __html: props.location.state['crumpy'].name }} />
+  //   </Link>
+  //   &nbsp;&nbsp; <IoChevronForwardOutline /> &nbsp;&nbsp;
+  // </React.Fragment>
+  //   <span dangerouslySetInnerHTML={{ __html: props.location.state['values'].items.name}} />
+  //   </div>
+  //    )
+  //  } 
+  return (
+    <div>
+       {hierarchy ? <>
+       <h3>{hierarchy[Object.keys(hierarchy).length -1].name}</h3>
+       {hierarchy.map(parent => (
+         <React.Fragment key={parent.id}>
+           <Link to={getCategoryURL(parent)} className="text-gray-600 hover:text-gray-800">
+           <span>{parent.name}</span></Link>
+           &nbsp;&nbsp; <IoChevronForwardOutline /> &nbsp;&nbsp;
+         </React.Fragment>
+       ))}
+       {product && product.items && product.items.name && <span>{product.items.name}</span>}
+       </> : <h3></h3>}
+      </div>
+  )
  };
 
   if (notFound) {
@@ -412,7 +427,7 @@ return (
        <div className="container">
        <div className="breadcrumbs_sec" >
        <div className="mt-1 mb-2">
-       {/* {breadCrumps()} */}
+       {breadCrumps()}
     </div>
                   </div>
         <div className="product_view">  
