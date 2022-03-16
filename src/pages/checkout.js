@@ -522,7 +522,7 @@ const CheckOut = ({location}) => {
 
                         <div className="action_sec">
                             <button className="action action_btn btn btn_gray" onClick={() => {deleteAddress(add.entity_id); setaddressEdit(false)}} >Delete</button>
-                            <Link to="/Address" state={{data:add,prevPath:location.pathname}}><button className="action action_btn btn btn_gray ml-1"  >Edit</button></Link>
+                            <Link to="/Address/" state={{data:add,prevPath:location.pathname}}><button className="action action_btn btn btn_gray ml-1"  >Edit</button></Link>
                         </div>
 
                     </div>

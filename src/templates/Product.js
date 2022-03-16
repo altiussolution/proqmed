@@ -73,10 +73,6 @@ const Product = (props,location)  => {
     const [outpcar,outpercart] = useState(false);
     useEffect(() => {
       // console.log(location,"Gokul")
-      console.log(props.location.state)
-   
-        crump(props.location.state['crumpy']?.name)
-      
       setCustomerId(localStorage.customer_id)
       setJwt(localStorage.userToken)
       const jwt = localStorage.getItem('userToken')
@@ -359,7 +355,7 @@ const addToList = (type,id) => {
     }, 3000);
   }
  const breadCrumps = () => {
-   if(crumname){
+   if(props.location.state['crumpy']){
      return (
        <div>
     {props.location.state['crumpy'].hierarchy.map(parent => (
@@ -416,7 +412,7 @@ return (
        <div className="container">
        <div className="breadcrumbs_sec" >
        <div className="mt-1 mb-2">
-       { props.location.state['crumpy'] && breadCrumps()}
+       {/* {breadCrumps()} */}
     </div>
                   </div>
         <div className="product_view">  
