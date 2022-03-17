@@ -221,8 +221,8 @@ const Emailsubmit = emailss => {
             getProfile()
 
         })
-        .catch(function (response) {
-            toast.error('An error occured please contact admin')
+        .catch(function (err) {
+            toast.error(err.response.data.message)
             Emailing(false)
         });
 
@@ -283,8 +283,8 @@ const Numbersubmit = num => {
             Numbering(false)
             getProfile()
         })
-        .catch(function (response) {
-            toast.error('An error occured please contact admin')
+        .catch(function (err) {
+            toast.error(err.response.data.message)
             Numbering(false)
         });
 
