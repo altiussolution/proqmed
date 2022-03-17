@@ -146,7 +146,7 @@ const addQuote = () => {
     if(subusers.length === 5){
         toast.success("You have reached maximum users");
     }else{
-        navigate('/manageUser')
+        navigate('/manageUser/')
     }
     // console.log(clip)
     // setQuotePopupadd(true)
