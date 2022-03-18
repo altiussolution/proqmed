@@ -188,8 +188,8 @@ return (
                
                 : <div className="fo-center">Reviews not available</div>}
 
-<div className="bottom-paginatino">
-          <TablePagination
+ <div className="bottom-paginatino">
+ {reviews.length!=0 &&  <TablePagination
   component="div"
   rowsPerPageOptions={[4, 8, 12, 16, 20, 24]}
   page={page}
@@ -197,8 +197,8 @@ return (
   onPageChange={handleChangePage}
   rowsPerPage={rowsPerPage}
   onRowsPerPageChange={handleChangeRowsPerPage}
-/>
-          </div>
+/> }
+          </div> 
           </div>    
          
     </div>

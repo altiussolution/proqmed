@@ -286,8 +286,8 @@ const Invoice = ({ location }) => {
                             <h6>Shipping Address</h6>
 
 
-                            <a>{items.Customer_address[0].firstname}</a><br></br>
-                            <a>{items.Customer_address[0].street},{items.Customer_address[0].city},{items.Customer_address[0].region}</a>
+                            <a>{items.Customer_address[1].shipping_address[0].firstname}</a><br></br>
+                            <a>{items.Customer_address[1].shipping_address[0].street},{items.Customer_address[1].shipping_address[0].city},{items.Customer_address[1].shipping_address[0].region}</a>
 
 
                         </div>
@@ -297,8 +297,8 @@ const Invoice = ({ location }) => {
                             </div>
                             <div className="fo-btm">
                                 <h6>Billing Address</h6>
-                                <a>{items.Customer_address[0].firstname}</a><br></br>
-                            <a>{items.Customer_address[0].street},{items.Customer_address[0].city},{items.Customer_address[0].region}</a>
+                                <a>{items.Customer_address[0].billing_address[0].firstname}</a><br></br>
+                            <a>{items.Customer_address[0].billing_address[0].street},{items.Customer_address[0].billing_address[0].city},{items.Customer_address[0].billing_address[0].region}</a>
                             </div>
                             <div className="fo-btm">
                                 <h6>Payment Method</h6>
