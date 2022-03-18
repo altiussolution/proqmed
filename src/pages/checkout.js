@@ -165,7 +165,6 @@ const CheckOut = ({location}) => {
 
                 "firstname": userAddresses.firstname.trim(),
                 "lastname": userAddresses.lastname.trim(),
-                "company": userAddresses.company.trim(),
                 "street": [userAddresses.street_1.trim()],
                 "city": userAddresses.user_city.trim(),
                 "region_id": JSON.parse(userAddresses.user_state).value,
@@ -181,7 +180,7 @@ const CheckOut = ({location}) => {
 
                     "firstname": userAddresses.firstname.trim(),
                     "lastname": userAddresses.lastname.trim(),
-                    "company": userAddresses.company.trim(),
+                    // "company": userAddresses.company.trim(),
                     "street": [userAddresses.street_1.trim()],
                     "city": userAddresses.user_city.trim(),
                     "region_id": JSON.parse(userAddresses.user_state).value,
@@ -247,10 +246,10 @@ const CheckOut = ({location}) => {
             delete shippingAddress[selAddIndex]['default_shipping']
             let userAddVal = {
                 "addressInformation": {
-                    "billingAddress": shippingAddress[selAddIndex],
-                    "shippingAddress": shippingAddress[selAddIndex],
-                    "shippingCarrierCode": "flatrateone",
-                    "shippingMethodCode": "flatrate"
+                    "billing_address": shippingAddress[selAddIndex],
+                    "shipping_address": shippingAddress[selAddIndex],
+                    "shipping_carrier_code": "flatrate",
+                    "shipping_method_code": "flatrate"
                     // "shippingCarrierCode": "apptha",
                     // "shippingMethodCode": "apptha"
                 }
@@ -390,14 +389,20 @@ const CheckOut = ({location}) => {
     }
 
     const consfirmShipping = () => {
-
+       
         if (shippingAddress) {
             setLoader(true);
             let payDetails = {
                 "paymentMethod": {
                     "method": 'checkmo'
                 },
-                "billingAddress": shippingAddress[selAddIndex].address
+                // "shippingMethod":
+                // {
+                //   "method_code":"flatrate",
+            
+                //   "carrier_code":"flatrate"
+                //  },
+                "billingAddress": shippingAddress[selAddIndex]
             }
 
             try {

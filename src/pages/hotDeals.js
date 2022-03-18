@@ -222,6 +222,7 @@ const renderProducts = () => {
                                 <li className="icn"><a onClick={() => addToList(1,data.id)}><IoIosGitCompare/></a></li>
                               </ul>                                
                           </div> */}
+                          {data.offer_percentage != 0 && <div className="price_off">Upto {Math.round(data.offer_percentage)}% off</div>}
                            <Link to={getProductURL(data)}>
                            <img src={data.image} />
                            </Link>
