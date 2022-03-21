@@ -187,7 +187,7 @@ export default function Filter({
              
                   <label htmlFor={val} >
                   <span className={val == "Clear" ? "safety_color1" : "" || val == "Dark Copper" ? "safety_color2" : "" || val == "Blue" ? "safety_color3" : "" || val == "Black;Grey" ? "safety_color4" : "" || val == "Silver" ? "safety_color5" : "" || val == "Silver;Black" ? "safety_color6"  : "" || val == "#FFFFFF" ? "safety_color7" : "" || val == "Black" ? "safety_color8" : "" || val == "Black;Orange" ? "safety_color9" : "" || val == "Black;Brown" ? "safety_color10" : "" || val == "Black/Lime" ? "safety_color11" : "" || val == "Black/Red" ? "safety_color12" : "" || val == "Yellow" ? "safety_color13" : "" || val == "White" ? "safety_color14" : "" || val == "Brown" ? "safety_color15" : "" || val == "Grey" ? "safety_color16" : "" || val == "Sky Blue" ? "safety_color17" : "" || val == "Navy" ? "safety_color18" : "" || val == "Yellow (Plug)" ? "safety_color19" : ""}></span>
-                 <span className={key == "Rating" ? "fa fa-star" : "inp_val"}>{key == "Offer Percentage" ? val + "% & more" : key == "Rating" ? val +"& above" : val}</span>
+                 <span className={key == "Rating" ? "fa fa-star" : "inp_val"}>{key == "Offer Percentage" ? val + "% & more" : key == "Rating" ? val +"& above" : key == "Special Price" ? Math.round(val) : val}</span>
                   </label>
                    </div>
               </div>
