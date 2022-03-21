@@ -178,6 +178,7 @@ const Products = ({ pageContext, location , props }) => {
 
   const renderProducts = () => {
     if (filteredProducts.length) {
+      console.log(filteredProducts)
       if (filteredProducts === "empty")
         return (
           <div className="mx-auto no_data_found">

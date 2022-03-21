@@ -143,6 +143,8 @@ export default function Filter({
   }, [filteredProducts]);
 
   const handleCheckBoxChange = (e, key) => {   
+    console.log(e.target.name,e.target.checked)
+    console.log(key)
     dispatch({
       type: e.target.checked ? "ADD" : "REMOVE",
       payload: {
@@ -161,6 +163,7 @@ export default function Filter({
 
   const renderFilters = () => {      
     if (filtersToDisplay) {
+      console.log(filtersToDisplay)
       return Object.keys(filtersToDisplay).map(key => {
         const values = Array.from(filtersToDisplay[key]);
         return (

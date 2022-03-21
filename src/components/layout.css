@@ -61,7 +61,20 @@ a:hover {
 a:hover {
     text-decoration: none!important;
 }
-
+.price_off_cart {
+  width: 57px;
+  height: 57px;
+  padding: 10px;
+  top: -1px;
+  position: static;
+  background: #01aa67;
+  border-radius: 50%;
+  color: #fff;
+  white-space: break-spaces;
+  line-height: 19px;
+  text-align: center;
+  font-size: 11px;
+}
 .section_title {
   font-size: 25px;
     color: #4d4d4d;
