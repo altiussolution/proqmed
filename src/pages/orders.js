@@ -29,7 +29,7 @@ const Orders = () => {
         try{
             axios({
                 method : "get",
-                url: `${process.env.GATSBY_CART_URL_STARCARE}orderlistcustomer/${localStorage.email}`,
+                url: `${process.env.GATSBY_CART_URL_STARCARE}orderlistcustomer/${localStorage.customer_id}`,
             }).then((res) => {
                 if(res.statusText === "OK" && res.status === 200){
                     let orderArray = [];
@@ -344,8 +344,8 @@ return (
                                                         <div className="buttons-or">
                                                             {re && <button type="button" className="btn btn-danger square" onClick={() => reorder(items[0].order_id)}>Reorder</button>}
                                                             {outre && <button className="btn btn-danger" onClick={() => reorder(items[0].order_id)}>Reorder</button>}
-                                                            <Link to="/orderstatus" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{re && <button className="btn btn-primary">View Order</button>}</Link>
-                                                            <Link to="/orderstatus" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{outre && <button className="btn btn-primary">View Order</button>}</Link>
+                                                            <Link to="/orderstatus/" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{re && <button className="btn btn-primary">View Order</button>}</Link>
+                                                            <Link to="/orderstatus/" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{outre && <button className="btn btn-primary">View Order</button>}</Link>
 
                                                             {items[0].status !== 'canceled' && items[0].status !== 'complete' && outre && <button className="btn btn outline" type="button" onClick={() => cancelOrder(items[0].order_id)}>Cancel Order</button>}
 
