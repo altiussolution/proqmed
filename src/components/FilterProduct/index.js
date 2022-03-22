@@ -3,11 +3,11 @@ import { navigate } from "gatsby";
 import queryString from "query-string";
 import Helmet from 'react-helmet';
 import { FaRegHeart } from 'react-icons/fa';
-import MultiRangeSlider from "multi-range-slider-react";
+import MultiRangeSlider from '../PriceSlider/MultiRangeSlider';
 import { Slider } from '@mui/material';
 import { convertToObject } from "../../utils/convertToObj";
 import "./filter.css";
-const arr =[]
+
 const filterReducer = (state, { type, payload }) => {
   let newKey;
   switch (type) {
@@ -71,6 +71,7 @@ const [unchange,unchangeMax] = useState(150);
 
   useEffect(() => {
     // Parse the filter query and set filters if query available
+    let arr = [];
     if (Object.keys(parsedQuery).length) {
       dispatch({
         type: "URL_QUERY",
@@ -204,7 +205,7 @@ const renderPriceFilters = () => {
   return (
     <div><h6>Price</h6>
     <MultiRangeSlider
-			min={0}
+			min={minValue}
 			max={unchange}
 			step={5}
 			ruler={false}
