@@ -33,6 +33,7 @@
     "image-to-base64": "^2.2.0",
     "is-image-url": "^1.1.8",
     "jquery": "^3.5.1",
+    "multi-range-slider-react": "^1.0.7",
     "multiselect-react-dropdown": "^2.0.17",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",

@@ -3,10 +3,11 @@ import { navigate } from "gatsby";
 import queryString from "query-string";
 import Helmet from 'react-helmet';
 import { FaRegHeart } from 'react-icons/fa';
+import MultiRangeSlider from "multi-range-slider-react";
 import { Slider } from '@mui/material';
 import { convertToObject } from "../../utils/convertToObj";
 import "./filter.css";
-
+const arr =[]
 const filterReducer = (state, { type, payload }) => {
   let newKey;
   switch (type) {
@@ -45,6 +46,9 @@ export default function Filter({
   doClear
 }) {
   const [filtersToDisplay, setFiltersToDisplay] = useState({});
+  const [minValue, set_minValue] = useState(25);
+const [maxValue, set_maxValue] = useState(75);
+const [unchange,unchangeMax] = useState(150);
   const [filters, dispatch] = useReducer(filterReducer, {}); // {'Brand':['VERTO','GRAPHITE']}
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [parsing, setParsing] = useState(true);
@@ -82,11 +86,14 @@ export default function Filter({
       // temporary fix by meenu not efficient
     }
     // Create displayFilters from Products listing
-    console.log(products)
+
     products.forEach(el => {
+      arr.push(el[0].items.final_price)
+      
       const product = convertToObject(el.flat());
-      console.log(product)
+      // console.log(product)
       for (let prop in product) {
+        console.log(prop)
         if (prop !== "items") {
           displayFilters[prop] = displayFilters[prop]
             ? displayFilters[prop].add(product[prop])
@@ -96,6 +103,9 @@ export default function Filter({
         }
       }
     }); 
+    set_maxValue(Math.max(...arr)+10)
+    set_minValue(Math.min(...arr))
+    unchangeMax(Math.max(...arr)+10)
     setFiltersToDisplay(displayFilters);
     console.log("oi",displayFilters)
   }, [products]);
@@ -103,6 +113,7 @@ export default function Filter({
   const filter = async () => {
     let tempFilteredProducts;
     tempFilteredProducts = filterOperation(products);
+    console.log(tempFilteredProducts)
     await setFilteredProducts(tempFilteredProducts);
     if (parsing) setParsing(false);
   };
@@ -153,6 +164,35 @@ export default function Filter({
       },
     });
   };
+  const handleInput = (e) => {
+    set_minValue(e.minValue);
+    set_maxValue(e.maxValue);
+    var numbers = [];
+    for (var i = e.minValue; i < e.maxValue; i++) {
+      numbers.push(i);
+    }
+    filterOperationPrice(products,numbers);
+    return numbers;
+  };
+
+  const filterOperationPrice = async(products,numbers) => {
+    const arr = numbers.join().split(',')
+    let arr1 = [];
+    console.log(arr)
+    let data=[]
+    console.log(products)
+    var result = products.filter(function (prod) {
+      return numbers.some(function (o2) {
+          return Math.round(prod[0].items.final_price) === o2; // return the ones with equal id
+     });
+  });
+   console.log(result)
+   result.forEach(el=> {
+     arr1.push(el[0])
+   })
+   await setFilteredProducts(arr1);
+   if (parsing) setParsing(false);
+  }
 
   const checkIfChecked = (val, key) => {
     if (location.search.length) {
@@ -160,7 +200,26 @@ export default function Filter({
     }
     return false;
   };
-
+const renderPriceFilters = () => {
+  return (
+    <div><h6>Price</h6>
+    <MultiRangeSlider
+			min={0}
+			max={unchange}
+			step={5}
+			ruler={false}
+			label={true}
+			preventWheel={false}
+			minValue={minValue}
+			maxValue={maxValue}
+			onInput={(e) => {
+				handleInput(e);
+			}}
+		/>
+    </div>
+  )
+ 
+}
   const renderFilters = () => {      
     if (filtersToDisplay) {
       console.log(filtersToDisplay)
@@ -187,7 +246,7 @@ export default function Filter({
              
                   <label htmlFor={val} >
                   <span className={val == "Clear" ? "safety_color1" : "" || val == "Dark Copper" ? "safety_color2" : "" || val == "Blue" ? "safety_color3" : "" || val == "Black;Grey" ? "safety_color4" : "" || val == "Silver" ? "safety_color5" : "" || val == "Silver;Black" ? "safety_color6"  : "" || val == "#FFFFFF" ? "safety_color7" : "" || val == "Black" ? "safety_color8" : "" || val == "Black;Orange" ? "safety_color9" : "" || val == "Black;Brown" ? "safety_color10" : "" || val == "Black/Lime" ? "safety_color11" : "" || val == "Black/Red" ? "safety_color12" : "" || val == "Yellow" ? "safety_color13" : "" || val == "White" ? "safety_color14" : "" || val == "Brown" ? "safety_color15" : "" || val == "Grey" ? "safety_color16" : "" || val == "Sky Blue" ? "safety_color17" : "" || val == "Navy" ? "safety_color18" : "" || val == "Yellow (Plug)" ? "safety_color19" : ""}></span>
-                 <span className={key == "Rating" ? "fa fa-star" : "inp_val"}>{key == "Offer Percentage" ? val + "% & more" : key == "Rating" ? val +"& above" : key == "Special Price" ? Math.round(val) : val}</span>
+                 <span className={key == "Rating" ? "fa fa-star" : "inp_val"}>{key == "Offer Percentage" ? Math.round(val) + "% & more" : key == "Rating" ? val +"& above" : key == "Special Price" ? Math.round(val) : val}</span>
                   </label>
                    </div>
               </div>
@@ -225,7 +284,9 @@ export default function Filter({
           </div>
         </div>
         
-        <div className="productFilters ">{renderFilters()}</div>
+        <div className="productFilters ">
+          {renderPriceFilters()}
+          {renderFilters()}</div>
       </div>
     </div>
   );

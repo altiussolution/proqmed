@@ -278,7 +278,7 @@ const Cart = () => {
                 // toast.success("Updated sucessfully")
             }
         }).catch((err) => {
-            console.error(err)
+            toast.error(err.response.data.message)
             // toast.error('Failed to update')
         })
     }
