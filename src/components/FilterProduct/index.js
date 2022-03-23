@@ -49,6 +49,7 @@ export default function Filter({
   const [minValue, set_minValue] = useState(25);
 const [maxValue, set_maxValue] = useState(75);
 const [unchange,unchangeMax] = useState(150);
+const [unchangem,unchangeMin] = useState(150);
   const [filters, dispatch] = useReducer(filterReducer, {}); // {'Brand':['VERTO','GRAPHITE']}
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [parsing, setParsing] = useState(true);
@@ -95,7 +96,7 @@ const [unchange,unchangeMax] = useState(150);
       // console.log(product)
       for (let prop in product) {
         console.log(prop)
-        if (prop !== "items") {
+        if (prop !== "items" && prop !=="Special Price") {
           displayFilters[prop] = displayFilters[prop]
             ? displayFilters[prop].add(product[prop])
             : new Set([product[prop]]);
@@ -104,8 +105,9 @@ const [unchange,unchangeMax] = useState(150);
         }
       }
     }); 
-    set_maxValue(Math.max(...arr)+10)
+    set_maxValue(Math.max(...arr))
     set_minValue(Math.min(...arr))
+    unchangeMin(Math.min(...arr))
     unchangeMax(Math.max(...arr)+10)
     setFiltersToDisplay(displayFilters);
     console.log("oi",displayFilters)
@@ -166,10 +168,12 @@ const [unchange,unchangeMax] = useState(150);
     });
   };
   const handleInput = (e) => {
+    console.log(e.minValue);
+    console.log(e.maxValue);
     set_minValue(e.minValue);
     set_maxValue(e.maxValue);
     var numbers = [];
-    for (var i = e.minValue; i < e.maxValue; i++) {
+    for (var i = e.minValue; i <= e.maxValue; i++) {
       numbers.push(i);
     }
     filterOperationPrice(products,numbers);
@@ -205,7 +209,7 @@ const renderPriceFilters = () => {
   return (
     <div><h6>Price</h6>
     <MultiRangeSlider
-			min={minValue}
+			min={unchangem}
 			max={unchange}
 			step={5}
 			ruler={false}
