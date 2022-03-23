@@ -7,7 +7,7 @@ import MultiRangeSlider from '../PriceSlider/MultiRangeSlider';
 import { Slider } from '@mui/material';
 import { convertToObject } from "../../utils/convertToObj";
 import "./filter.css";
-
+const arr = [];
 const filterReducer = (state, { type, payload }) => {
   let newKey;
   switch (type) {
@@ -72,7 +72,7 @@ const [unchangem,unchangeMin] = useState(150);
 
   useEffect(() => {
     // Parse the filter query and set filters if query available
-    let arr = [];
+    
     if (Object.keys(parsedQuery).length) {
       dispatch({
         type: "URL_QUERY",
@@ -198,7 +198,16 @@ const [unchangem,unchangeMin] = useState(150);
    await setFilteredProducts(arr1);
    if (parsing) setParsing(false);
   }
-
+ const allClear = ()=> {
+  dispatch({
+    type: "CLEAR",
+    payload: {},
+  })
+  set_maxValue(Math.max(...arr))
+    set_minValue(Math.min(...arr))
+    unchangeMin(Math.min(...arr))
+    unchangeMax(Math.max(...arr)+10)
+ }
   const checkIfChecked = (val, key) => {
     if (location.search.length) {
       if (parsedQuery[key] && parsedQuery[key].includes(val)) return true;
@@ -275,12 +284,7 @@ const renderPriceFilters = () => {
             FILTERS
           </div>
           <div
-            onClick={() =>
-              dispatch({
-                type: "CLEAR",
-                payload: {},
-              })
-            }
+            onClick={() => allClear()}
             mediummediummedium="true"
             title="Clear Filters"
             className="clear_all_link"
