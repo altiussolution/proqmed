@@ -2,7 +2,7 @@ import React, { useEffect, useState, useReducer } from "react";
 import { navigate } from "gatsby";
 import queryString from "query-string";
 import Helmet from 'react-helmet';
-import { FaRegHeart } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 import MultiRangeSlider from '../PriceSlider/MultiRangeSlider';
 import { Slider } from '@mui/material';
 import { convertToObject } from "../../utils/convertToObj";
@@ -156,7 +156,7 @@ const [unchangem,unchangeMin] = useState(150);
     }
   }, [filteredProducts]);
 
-  const handleCheckBoxChange = (e, key) => {   
+  const handleCheckBoxChange = (e, key) => {  
     console.log(e.target.name,e.target.checked)
     console.log(key)
     dispatch({
@@ -167,6 +167,9 @@ const [unchangem,unchangeMin] = useState(150);
       },
     });
   };
+  const handleCheckBoxRating = ()=> {
+
+  }
   const handleInput = (e) => {
     console.log(e.minValue);
     console.log(e.maxValue);
@@ -215,38 +218,7 @@ const [unchangem,unchangeMin] = useState(150);
     return false;
   };
 
-  const RatingFilters = () => {
- return (
-   <div><h6>Rating</h6>
-         <div
-                className="text-sm opacity-50 flex items-center "
-              >
-                <div>
-                <input
-                type="checkbox"
-                name={val}
-                onChange={e => handleCheckBoxChange(e, key)}
-                className={key+ ' ' + "mx-2"}
-                id={val}
-                checked={checkIfChecked(val, key)}
-              />
-             
-                  <label htmlFor={val} >
-                 <span className={key == "Rating" ? "fa fa-star" : "inp_val"}>{key == "Offer Percentage" ? Math.round(val) + "% & more" : key == "Rating" ? val +"& above" : key == "Special Price" ? Math.round(val) : val}</span>
-                  </label>
-                   </div>
-              </div>
-   </div>
-)
-  }
-
-  const OfferFilters = ()=> {
-  return (
-    <div><h6>Offer Percentage</h6>
-         
-    </div>
-  )
-  }
+ 
 
 const renderPriceFilters = () => {
   return (
@@ -278,10 +250,10 @@ const renderPriceFilters = () => {
             <h6>{key}</h6>
             
             {values.map((val, i) => (
-              <div
+              <div>
+             {val != "" &&  <div
                 key={val + i}
-                className="text-sm opacity-50 flex items-center "
-              >
+                className="text-sm opacity-50 flex items-center">
                 <div>
                 <input
                 type="checkbox"
@@ -290,13 +262,14 @@ const renderPriceFilters = () => {
                 className={key+ ' ' + "mx-2"}
                 id={val}
                 checked={checkIfChecked(val, key)}
-              />
+              /> 
              
                   <label htmlFor={val} >
                   <span className={val == "Clear" ? "safety_color1" : "" || val == "Dark Copper" ? "safety_color2" : "" || val == "Blue" ? "safety_color3" : "" || val == "Black;Grey" ? "safety_color4" : "" || val == "Silver" ? "safety_color5" : "" || val == "Silver;Black" ? "safety_color6"  : "" || val == "#FFFFFF" ? "safety_color7" : "" || val == "Black" ? "safety_color8" : "" || val == "Black;Orange" ? "safety_color9" : "" || val == "Black;Brown" ? "safety_color10" : "" || val == "Black/Lime" ? "safety_color11" : "" || val == "Black/Red" ? "safety_color12" : "" || val == "Yellow" ? "safety_color13" : "" || val == "White" ? "safety_color14" : "" || val == "Brown" ? "safety_color15" : "" || val == "Grey" ? "safety_color16" : "" || val == "Sky Blue" ? "safety_color17" : "" || val == "Navy" ? "safety_color18" : "" || val == "Yellow (Plug)" ? "safety_color19" : ""}></span>
-                 <span className={key == "Rating" ? "fa fa-star" : "inp_val"}>{key == "Offer Percentage" ? Math.round(val) + "% & more" : key == "Rating" ? val +"& above" : key == "Special Price" ? Math.round(val) : val}</span>
+                 <span className={key == "Rating" ? "fa fa-star" : "inp_val"}>{key == "Offer Percentage" ? (val==9 ? Math.round(val) + "% & below" :Math.round(val) + "% & more") : (key == "Rating" && val!="") ? val +"& above" : key == "Special Price" ? Math.round(val) : val}</span>
                   </label>
-                   </div>
+                   </div> 
+              </div> }
               </div>
             ))}
             <div className="clear"></div>
@@ -330,8 +303,6 @@ const renderPriceFilters = () => {
         <div className="productFilters ">
           {renderPriceFilters()}
           {renderFilters()}
-          {/* {RatingFilters()}
-          {OfferFilters()} */}
           </div>
       </div>
     </div>

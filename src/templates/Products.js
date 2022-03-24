@@ -79,8 +79,9 @@ const Products = ({ pageContext, location , props }) => {
     const selecturl = "productsasc"
     const id = pageContext.id;  
     const selectRes =[];
+    const fetchProductsasc = async () => {
     try {
-      axios({
+      await axios({
           method: 'get',
           url: `${process.env.GATSBY_CART_URL_STARCARE}admin/${selecturl}/${id}/${localStorage.customer_id}`,
       }).then((res) => {
@@ -88,9 +89,9 @@ const Products = ({ pageContext, location , props }) => {
             for(let response of res.data[0]){
               selectRes.push(response[0])
             }
-            setProducts(selectRes);
+             setProducts(selectRes);
             console.log(selectRes) 
-            // setLoading(false);
+            setLoading(false);
           }
       }).catch((err) => {
           console.error(err);
@@ -98,6 +99,7 @@ const Products = ({ pageContext, location , props }) => {
     } catch (err) {
       console.error(err)
     }
+  }
     if(!localStorage.permissions){
       outper(true)
       outpercart(true)
@@ -109,16 +111,17 @@ const Products = ({ pageContext, location , props }) => {
       percart(addcar)
      }
   
-    let ignore = false;
+    // let ignore = false;
     // await checkUrl() 
     const fetchProducts = async (id) => {
+      setLoading(true)
       try {
         const response = await axios(
-          //`${process.env.GATSBY_NODE_URL_STARCARE}data/products/${id}.json`
+          // `${process.env.GATSBY_NODE_URL_STARCARE}data/products/${id}.json`,
           // `${process.env.GATSBY_CART_URL}admin/products/${id}`
           `${process.env.GATSBY_CART_URL_STARCARE}admin/products/${id}/${localStorage.customer_id}`,
         );
-        if (!ignore) {
+        // if (!ignore) {
 
           let productList = [];
 
@@ -127,12 +130,13 @@ const Products = ({ pageContext, location , props }) => {
             let proProduct = prod[0][1];
             productList.push(proProduct);
           }
+          console.log(productList)
           if(response.data[0]=[]){
             setLoading(false);
 
           }
           // setProducts(productList);         
-          // setLoading(false);
+          setLoading(false);
           if (checkLogin()) {
             axios({
               method: "get",
@@ -163,14 +167,15 @@ const Products = ({ pageContext, location , props }) => {
             setProducts(productList)
             setLoading(false);
           }
-        }
+        // }
       } catch (err) {
-        if (!ignore) {
+        // if (!ignore) {
           setLoading(false);
           setError(`Something went wrong. ${err}`);
-        }
+        // }
       }
     }
+    fetchProductsasc()
     fetchProducts(pageContext.id);
    
   }, [pageContext.id]);

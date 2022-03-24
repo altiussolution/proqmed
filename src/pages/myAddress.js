@@ -39,7 +39,7 @@ const MyAddress = ({location}) => {
   fetchRegion();
   axios({
    method: 'get',
-   url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/list/${localStorage.email}`,
+   url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/list/${localStorage.customer_id}`,
    headers: {
      'Authorization': `Bearer ${jwt}`
  }
