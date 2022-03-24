@@ -214,6 +214,40 @@ const [unchangem,unchangeMin] = useState(150);
     }
     return false;
   };
+
+  const RatingFilters = () => {
+ return (
+   <div><h6>Rating</h6>
+         <div
+                className="text-sm opacity-50 flex items-center "
+              >
+                <div>
+                <input
+                type="checkbox"
+                name={val}
+                onChange={e => handleCheckBoxChange(e, key)}
+                className={key+ ' ' + "mx-2"}
+                id={val}
+                checked={checkIfChecked(val, key)}
+              />
+             
+                  <label htmlFor={val} >
+                 <span className={key == "Rating" ? "fa fa-star" : "inp_val"}>{key == "Offer Percentage" ? Math.round(val) + "% & more" : key == "Rating" ? val +"& above" : key == "Special Price" ? Math.round(val) : val}</span>
+                  </label>
+                   </div>
+              </div>
+   </div>
+)
+  }
+
+  const OfferFilters = ()=> {
+  return (
+    <div><h6>Offer Percentage</h6>
+         
+    </div>
+  )
+  }
+
 const renderPriceFilters = () => {
   return (
     <div><h6>Price</h6>
@@ -295,7 +329,10 @@ const renderPriceFilters = () => {
         
         <div className="productFilters ">
           {renderPriceFilters()}
-          {renderFilters()}</div>
+          {renderFilters()}
+          {/* {RatingFilters()}
+          {OfferFilters()} */}
+          </div>
       </div>
     </div>
   );
