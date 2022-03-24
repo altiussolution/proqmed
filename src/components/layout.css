@@ -6726,6 +6726,9 @@ tr.fo-border {
 color: #53D34B;
 white-space: nowrap;
 }
+.text-bold p b, strong {
+  color: #1c67a8;
+}
 
 /* Cart Css ends  ////////////////////////////////////////////////////////////////////////////////////////////////////*/
 

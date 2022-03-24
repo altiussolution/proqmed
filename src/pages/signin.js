@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react"
 import { useForm } from "react-hook-form";
+import Layout from "../components/layout";
 import axios from "axios";
 import { navigate, Link } from "gatsby";
 import logo from './../assets/logo.png';
@@ -200,7 +201,7 @@ const wistlistsValue = () => {
 
   return (
      <>
-
+<Layout>
     {loader ?
       (<div className="mx-auto">
           <PageLoader />
@@ -269,9 +270,9 @@ const wistlistsValue = () => {
         draggable
         pauseOnHover
       />
-                
+           </Layout>       
     </>
-                
+              
   )
 }
 

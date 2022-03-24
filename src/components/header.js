@@ -186,7 +186,7 @@ const isSticky = (e) => {
   const makeBold = (item, keyword) => {
     var re = new RegExp(keyword, 'g')
     return (
-        item.replace(re, '<i>'+keyword+ '</i>')
+        item.replace(re, '<b>'+keyword+ '</b>')
     )
 }
   const handleClick = async event => {
@@ -639,7 +639,7 @@ const isSticky = (e) => {
               </ul>
               <ul className="contact_top">
                   <li>For Sales & Support <a href="#">(+91)1234-5670</a></li>
-                  <li><a href="#">support@proqmed.com</a></li>            
+                  <li><a onClick={() => {window.open("https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=support@proqmed.com", "_blank");}}>support@proqmed.com</a></li>            
               </ul>
             </div>
           </div>

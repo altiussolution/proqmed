@@ -505,7 +505,7 @@ const onSubmitQuoteadd = quoteDetails => {
                         }
                       </table>
                       </div>
-                      <div className="bottom-paginatino">
+                      {/* <div className="bottom-paginatino">
           <TablePagination
   component="div"
   rowsPerPageOptions={[4, 8, 12, 16, 20, 24]}
@@ -515,7 +515,7 @@ const onSubmitQuoteadd = quoteDetails => {
   rowsPerPage={rowsPerPage}
   onRowsPerPageChange={handleChangeRowsPerPage}
 />
-          </div>  
+          </div>   */}
                 </div> 
 }
                 
