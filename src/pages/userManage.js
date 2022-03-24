@@ -16,7 +16,6 @@ import logoutt from "./../assets/logout.png"
 import order from "./../assets/order.png"
 import us1 from './../assets/us1.png';
 import noimage from "./../assets/noimage.png"
-
 const UserManage = () => {
 const [page, setPage] = React.useState(0);
 const [rowsPerPage, setRowsPerPage] = React.useState(4);
@@ -147,7 +146,7 @@ const addQuote = () => {
     if(subusers.length === 5){
         toast.success("You have reached maximum users");
     }else{
-        navigate('/manageUser')
+        navigate('/manageUser/')
     }
     // console.log(clip)
     // setQuotePopupadd(true)
@@ -497,7 +496,7 @@ const onSubmitQuoteadd = quoteDetails => {
                             <td>{quote.role_name}</td>
                             <td className="green">{quote.account_status == false ? <p className="fo-ia">In-Active</p> : "Active"}</td>
                             <td>{quote.approval_status}</td>
-                            {quote.subuser_id!=null && <td> <Link to="/manageUser" state={quote}><span><i className="fa fa-pencil-square-o" aria-hidden="true"></i></span></Link> <span onClick={() => removeQuote(quote.subuser_id)}><i className="fa fa-trash-o" aria-hidden="true"></i></span> </td>}
+                            {quote.subuser_id!=null && <td> <Link to="/manageUser/" state={quote}><span><i className="fa fa-pencil-square-o" aria-hidden="true"></i></span></Link> <span onClick={() => removeQuote(quote.subuser_id)}><i className="fa fa-trash-o" aria-hidden="true"></i></span> </td>}
                          </tr>
 
                         
@@ -506,7 +505,7 @@ const onSubmitQuoteadd = quoteDetails => {
                         }
                       </table>
                       </div>
-                      <div className="bottom-paginatino">
+                      {/* <div className="bottom-paginatino">
           <TablePagination
   component="div"
   rowsPerPageOptions={[4, 8, 12, 16, 20, 24]}
@@ -516,7 +515,7 @@ const onSubmitQuoteadd = quoteDetails => {
   rowsPerPage={rowsPerPage}
   onRowsPerPageChange={handleChangeRowsPerPage}
 />
-          </div>  
+          </div>   */}
                 </div> 
 }
                 

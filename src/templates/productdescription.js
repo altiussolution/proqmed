@@ -667,11 +667,11 @@ if(proDescription.items.config_options){
                             )) :
                             <span className="price">${Math.round(normal_price)}</span>
 } */}
-{proDescription.items.strike_price ==null && newprice()}
-{proDescription.items.strike_price !=null && <span  className="price">${Math.round(proDescription.items.final_price)}</span>}
+{/* {proDescription.items.strike_price ==null && newprice()} */}
+ <span  className="price">${Math.round(proDescription.items.final_price)}</span>
 
 
-                       {proDescription.items.strike_price !=null && <span><strike>${Math.round(proDescription.items.strike_price)}</strike></span>}
+                       {proDescription.items.strike_price !=null && <span className="price"><strike>${Math.round(proDescription.items.strike_price)}</strike></span>}
                        {/* <span className="price"><strike>$0</strike></span> */}
 </div>
 

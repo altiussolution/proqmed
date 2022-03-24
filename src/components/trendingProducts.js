@@ -33,7 +33,7 @@ const TrendingProducts = () => {
   const [quote_id, setQuoteId] = useState("");
   const [jwt, setJwt] = useState("");
   const [cartCnt, setCartCnt] = useState(getCartCount())
-    const [trendingProducts, setTrendingProducts] = useState(null);
+    const [trendingProducts, setTrendingProducts] = useState([]);
     const [pcar,percart] = useState(false);
     const [outpcar,outpercart] = useState(false);
     const [permits,setPermit] = useState([]);
@@ -135,9 +135,9 @@ const TrendingProducts = () => {
   const renderProducts = () => {
     if (trendingProducts) {
       return   <Slider {...banner_slide}> 
-      
+
 {/* <div className="col-4 single_trending"> */}
-        {
+        { 
           trendingProducts.map((data, index) => (
             <div key={`${data.name}_${index}`}>
               {/* <div className="" > */}
@@ -245,8 +245,9 @@ const TrendingProducts = () => {
             <div className="row">
             
             <div className="col-lg-12 col slider_row" >
-           
-              {renderProducts()}
+            {trendingProducts.length > 0 ?  renderProducts():(<div className="fo-center">No Trending Products</div>)}
+
+              {/* {renderProducts()} */}
               
              
             </div>

@@ -30,6 +30,7 @@ const BrandedProducts = ({pageContext, location }) =>{
     const [p,per] = useState(false);
     const [permits,setPermit] = useState([]);
     useEffect(() => {
+      console.log(location)
         product()
         setPermit(localStorage.permissions)
         setCustomerId(localStorage.customer_id)

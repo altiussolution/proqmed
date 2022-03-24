@@ -226,7 +226,7 @@ const deleteAddress = (id) => {
                     <div className="header">
                     <h2 className="heading">My Addresses <span>({shippingAddress.length})</span></h2>
                 </div>
-                <Link to="/Address" state={{data:adding,prevPath:location.pathname}}><button className="sample">+ ADD A NEW ADDRESS</button></Link>
+                <Link to="/Address/" state={{data:adding,prevPath:location.pathname}}><button className="sample">+ ADD A NEW ADDRESS</button></Link>
                 </div>
                 <div className="row">
                 <div className="col-lg-4 col-md-12 col-sm-12">                    
@@ -326,7 +326,7 @@ const deleteAddress = (id) => {
                                       
                                     </ul>
                                   </div> */}
-                                  <li><Link to="/Address" state={{data:add,prevPath:location.pathname}} ><a><i className="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></Link></li>
+                                  <li><Link to="/Address/" state={{data:add,prevPath:location.pathname}} ><a><i className="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></Link></li>
                                       <button onClick={() => {deleteAddress(add.entity_id)}}><a ><i className="fa fa-trash-o" aria-hidden="true"></i>
                                         Delete</a></button>
                             </div>

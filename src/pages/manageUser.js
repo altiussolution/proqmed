@@ -14,7 +14,7 @@ import us1 from "./../assets/us1.png"
 import Multiselect from 'multiselect-react-dropdown';
 import noimage from "./../assets/noimage.png"
 
-const Managesub = ({pageContext, location }) => {
+const Managesub = ({location}) => {
 
 // const _isMounted = useRef(false);
  const [clip,categoryda] = useState([]);
@@ -59,7 +59,8 @@ const Managesub = ({pageContext, location }) => {
 `)
 
  useEffect(() => {
-  if(location.state.subuser_firstname){
+   console.log(location)
+  if(location.state.subuser_id){
     console.log(location.state.subuser_id)
     setQuoteForm(location.state)
     setQuotePopupedit(true)

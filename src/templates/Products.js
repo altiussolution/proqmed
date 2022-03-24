@@ -73,6 +73,9 @@ const Products = ({ pageContext, location , props }) => {
 
   useEffect(() => {
     console.log(pageContext)
+    const newHierarchy = JSON.parse(JSON.stringify(pageContext.hierarchy));
+    newHierarchy.push({"id":pageContext.id,"name":pageContext.name});
+    sessionStorage.setItem('Hierarchy',JSON.stringify(newHierarchy));
     const selecturl = "productsasc"
     const id = pageContext.id;  
     const selectRes =[];
@@ -175,6 +178,7 @@ const Products = ({ pageContext, location , props }) => {
 
   const renderProducts = () => {
     if (filteredProducts.length) {
+      console.log(filteredProducts)
       if (filteredProducts === "empty")
         return (
           <div className="mx-auto no_data_found">

@@ -124,7 +124,8 @@ if(localStorage.userToken){
                           <tr key={key}>
                             <th className="border px-4 py-2 font-bold">{key}</th>
                             <td className="border px-4 py-2">
-                              {specification[key] ? specification[key] : " "}
+                              {/* {specification[key] ? specification[key] : " "} */}
+                              {key == "Special Price" && specification[key] ? Math.round(specification[key]) : specification[key]}
                               {/* {specification[key].replace(/;/g, ", ")} */}
                             </td>
                           </tr>

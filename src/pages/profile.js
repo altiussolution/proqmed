@@ -60,7 +60,7 @@ const Profile = () => {
 const pic=() => {
   axios({
     method: 'get',
-    url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/list/${localStorage.email}`,
+    url: `${process.env.GATSBY_CART_URL_STARCARE}profilepic/list/${localStorage.customer_id}`,
     headers: {
       'Authorization': `Bearer ${jwt}`
   }
@@ -96,7 +96,7 @@ const pic=() => {
 
           axios({
             method: 'post',
-            url: `${process.env.GATSBY_CART_URL_STARCARE}customerprofile/${localStorage.email}`,
+            url: `${process.env.GATSBY_CART_URL_STARCARE}customerprofile/${localStorage.customer_id}`,
           }).then((res) => {
             if (res.statusText === "OK" && res.status == 200) {
               console.log(res,"profile")
@@ -202,7 +202,7 @@ const editingEmail = (value) =>{
 const Emailsubmit = emailss => {
   let data = {
     "data": {
-      "customer_email":localStorage.email,
+      "customer_email":profile['email'],
       "new_email":emailss['email'],
     }
   }
@@ -221,8 +221,8 @@ const Emailsubmit = emailss => {
             getProfile()
 
         })
-        .catch(function (response) {
-            toast.error('An error occured please contact admin')
+        .catch(function (err) {
+            toast.error(err.response.data.message)
             Emailing(false)
         });
 
@@ -283,8 +283,8 @@ const Numbersubmit = num => {
             Numbering(false)
             getProfile()
         })
-        .catch(function (response) {
-            toast.error('An error occured please contact admin')
+        .catch(function (err) {
+            toast.error(err.response.data.message)
             Numbering(false)
         });
 

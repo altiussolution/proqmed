@@ -165,7 +165,6 @@ const CheckOut = ({location}) => {
 
                 "firstname": userAddresses.firstname.trim(),
                 "lastname": userAddresses.lastname.trim(),
-                "company": userAddresses.company.trim(),
                 "street": [userAddresses.street_1.trim()],
                 "city": userAddresses.user_city.trim(),
                 "region_id": JSON.parse(userAddresses.user_state).value,
@@ -181,7 +180,7 @@ const CheckOut = ({location}) => {
 
                     "firstname": userAddresses.firstname.trim(),
                     "lastname": userAddresses.lastname.trim(),
-                    "company": userAddresses.company.trim(),
+                    // "company": userAddresses.company.trim(),
                     "street": [userAddresses.street_1.trim()],
                     "city": userAddresses.user_city.trim(),
                     "region_id": JSON.parse(userAddresses.user_state).value,
@@ -247,10 +246,10 @@ const CheckOut = ({location}) => {
             delete shippingAddress[selAddIndex]['default_shipping']
             let userAddVal = {
                 "addressInformation": {
-                    "billingAddress": shippingAddress[selAddIndex],
-                    "shippingAddress": shippingAddress[selAddIndex],
-                    "shippingCarrierCode": "flatrateone",
-                    "shippingMethodCode": "flatrate"
+                    "billing_address": shippingAddress[selAddIndex],
+                    "shipping_address": shippingAddress[selAddIndex],
+                    "shipping_carrier_code": "flatrate",
+                    "shipping_method_code": "flatrate"
                     // "shippingCarrierCode": "apptha",
                     // "shippingMethodCode": "apptha"
                 }
@@ -390,14 +389,20 @@ const CheckOut = ({location}) => {
     }
 
     const consfirmShipping = () => {
-
+       
         if (shippingAddress) {
             setLoader(true);
             let payDetails = {
                 "paymentMethod": {
                     "method": 'checkmo'
                 },
-                "billingAddress": shippingAddress[selAddIndex].address
+                // "shippingMethod":
+                // {
+                //   "method_code":"flatrate",
+            
+                //   "carrier_code":"flatrate"
+                //  },
+                "billingAddress": shippingAddress[selAddIndex]
             }
 
             try {
@@ -431,7 +436,8 @@ const CheckOut = ({location}) => {
                                 } 
                             })
                         } catch(err)  {
-                            console.error(err)
+                            toast.error(err.response.data.message)
+                            setLoader(false);
                         }
                         // navigate("/paymentSuccess")
                        
@@ -439,11 +445,14 @@ const CheckOut = ({location}) => {
                     }
 
                 }).catch((err) => {
-                    console.error(err)
+                    console.error(err.response.data.message)
+                    toast.error(err.response.data.message)
+                    setLoader(false);
                 })
             }
             catch (err) {
                 console.error(err)
+                setLoader(false);
             }
         }
     }
@@ -518,7 +527,7 @@ const CheckOut = ({location}) => {
 
                         <div className="action_sec">
                             <button className="action action_btn btn btn_gray" onClick={() => {deleteAddress(add.entity_id); setaddressEdit(false)}} >Delete</button>
-                            <Link to="/Address" state={{data:add,prevPath:location.pathname}}><button className="action action_btn btn btn_gray ml-1"  >Edit</button></Link>
+                            <Link to="/Address/" state={{data:add,prevPath:location.pathname}}><button className="action action_btn btn btn_gray ml-1"  >Edit</button></Link>
                         </div>
 
                     </div>
