@@ -366,7 +366,7 @@ return (
                                                                             })} defaultValue={(edit ? edit['telephone'] : "")}/>
                                                                             {errors.telephone && errors.telephone.type === 'required' && <span className="error_label">Mobile Number required</span>}
                                                                             {errors.telephone && errors.telephone.type === 'minLength' && <span className="error_label">Enter Valid Mobile Number</span>}</div>
-                                                                            <div>
+                                                                        <div>
                                                                             <input className="form-control" name="user_city" id="user_city" placeholder="City *" type="text" ref={register({
                                                                                 required: true
                                                                             })}  defaultValue={(edit ? edit['city'] : "")}/>
