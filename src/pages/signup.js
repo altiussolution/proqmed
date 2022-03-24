@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { navigate, Link } from "gatsby";
+import Layout from "../components/layout";
 import logo from './../assets/logo.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -76,7 +77,7 @@ const SignUp = () => {
 
   return (
     <>
-
+  <Layout>
       {loader ?
       (<div className="mx-auto">
           <PageLoader />
@@ -188,6 +189,7 @@ const SignUp = () => {
         draggable
         pauseOnHover
       />
+      </Layout>
     </>
   )
 }

@@ -311,7 +311,7 @@ const Cart = () => {
                   return (
                     <tbody>
                     <tr key={cart.product_id}>
-                      <td className="product_img"><img src={cart.image} />{cart.seller_discount != 0 && <p className="price_off_cart">{parseFloat(cart.seller_discount)}"% off"</p>}</td>
+                      <td className="product_img"><img src={cart.image} /></td>
                       <td><p>{cart.product_name}</p></td>
                       <td>${parseFloat(cart.price).toFixed(2)}</td>
                       <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart,index) }}/></td>
