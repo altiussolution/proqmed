@@ -73,22 +73,19 @@ const Forgoted = (props) => {
       (<div className="login_page">
         <div className="wrapper">
           <div className="login_box">
-            <div className="col-lg-6 col-md-6 col-xs-12 left_side">
+            {/* <div className="col-lg-6 col-md-6 col-xs-12 left_side">
               <img src={sign_bg2} alt={"Laptop"} />
-            </div>
+            </div> */}
 
-            <div className="col-lg-6 col-md-6 col-xs-12 right_side">
+            
               <div className="box_content">
-                <div className="logo mb-3">
-                  <Link to="/">
-                    <img src={logo} />
-                  </Link>
-                </div>
+                
 
                 <h1>Forgot Password</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="login_form">
-
-                  <input className="form-control" name="username" placeholder="Email *" type="text" ref={register({
+                <div className="form-host">
+                   <span> Email</span>
+                  <input className="form-control" name="username" placeholder="Enter your email *" type="text" ref={register({
                     required: true,
                     pattern: /\S+@\S+\.\S+/
                   })} />
@@ -97,6 +94,8 @@ const Forgoted = (props) => {
                
 
                   <div className="my-3">
+
+                    </div>
                     <input className="btn btn_gray submit_btn" type="submit" value="Continue" disabled={isButton} />
                   </div>
 
@@ -112,7 +111,7 @@ const Forgoted = (props) => {
               <Link to="/signup" className="ml-2">Start here</Link>
                 </p>
               </div>
-            </div>
+          
           </div>
         </div>
       </div>)

@@ -84,38 +84,55 @@ const SignUp = () => {
       (<div className="login_page">
         <div className="wrapper">
           <div className="login_box">
-            <div className="col-lg-6 col-md-6 col-xs-12 left_side">
+            {/* <div className="col-lg-6 col-md-6 col-xs-12 left_side">
               <img src={sign_bg2} alt={"Laptop"} />
-            </div>
+            </div> */}
 
-            <div className="col-lg-6 col-md-6 col-xs-12 right_side">
+           
               <div className="box_content fo-signup">
-                <div className="logo mb-3">
+                {/* <div className="logo mb-3">
                   <Link to="/">
                     <img src={logo} />
                   </Link>
-                </div>
+                </div> */}
                 <h1>Create Account</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="login_form">
                  {/* pattern: /^(?!\s)(?!.*\s$)[a-zA-Z0-9\s()-]+$/ // pattern for first and last white space restriction*/}
-                  <input className="form-control" name="firstname" placeholder="First name *"  type="text" ref={register({ 
+
+                 <div className="form-host">
+                   <span> First Name</span>
+                  <input className="form-control" name="firstname" placeholder="Enter your First name *"  type="text" ref={register({ 
                     required: true,     
                     pattern:/^(?=.*[a-zA-Z])([a-zA-Z]+)$/               
                        })} />
                   {errors.firstname && errors.firstname.type === 'required' && <span>This field is required</span>}
                   {errors.firstname && errors.firstname.type === 'pattern' && <span>Special characters and Numeric characters are not allowed</span>}
-                  <input className="form-control" name="lastname" placeholder="Last name *" type="text" ref={register({ 
+                  </div>
+
+                  <div className="form-host">
+                   <span> Last Name</span>
+                  <input className="form-control" name="lastname" placeholder="Enter your Last name *" type="text" ref={register({ 
                     required: true,
                     pattern:/^(?=.*[a-zA-Z])([a-zA-Z]+)$/               
                      })} />
                   {errors.lastname && errors.lastname.type === 'required' && <span>This field is required</span>}
                   {errors.lastname && errors.lastname.type === 'pattern' && <span>Special characters and Numeric characters are not allowed</span>}
-                  <input className="form-control" name="email" placeholder="Email *" type="text" ref={register({
+
+                  </div>
+
+                  <div className="form-host">
+                   <span> Email</span>
+                  <input className="form-control" name="email" placeholder="Enter your email *" type="text" ref={register({
                     required: true,
                     pattern: /\S+@\S+\.\S+/
                   })} />
                   {errors.email && errors.email.type === 'required' && <span className="error">Email field is required</span>}
                   {errors.email && errors.email.type === 'pattern' && <span className="error">Valid email required</span>}
+
+                  </div>
+
+                  <div className="form-host">
+                   <span> Password</span>
                   <input className="form-control" name="password" placeholder="Password *" type={passwordShown2 ? "text" : "password"} ref={register({
                     required: true,
                     minLength: 6,
@@ -125,6 +142,11 @@ const SignUp = () => {
                   {errors.password && errors.password.type === 'required' && <span className="error">Password field is required</span>}
                   {errors.password && errors.password.type === 'minLength' && <span className="error">Passwords must contain 6 characters</span>}
                   {errors.password && errors.password.type === 'pattern' && <span className="error">Password must contain 6 charactors along with 1 number and alphanumeric</span>}
+
+                  </div>
+
+                  <div className="form-host">
+                   <span> Confirm Password</span>
                   <input className="form-control" name="conpassword" placeholder="Confirm Password *" type={passwordShown ? "text" : "password"} ref={register({
                     required: true,
                     minLength: 6,
@@ -135,6 +157,8 @@ const SignUp = () => {
                   {errors.conpassword && errors.conpassword.type === 'minLength' && <span className="error">Confirm Password must contain 6 digits</span>}
                   {errors.conpassword && errors.conpassword.type === 'pattern' && <span className="error">Confirm Password must contain 6 charactors along with 1 number and alphanumeric</span>}
                   <div className="my-3">
+
+                    </div>
                     <input className="btn btn_gray submit_btn" type="submit" value="Create"/>
                   </div>
 
@@ -146,7 +170,7 @@ const SignUp = () => {
                 </p>
               </div>
 
-            </div>
+        
           </div>
         </div>
 

@@ -209,32 +209,42 @@ const wistlistsValue = () => {
       (<div className="login_page">
         <div className="wrapper">
           <div className="login_box">
-            <div className="col-lg-6 col-md-6 col-xs-12 left_side">
+            {/* <div className="col-lg-6 col-md-6 col-xs-12 left_side">
               <img src={sign_bg2} alt={"Laptop"} />
-            </div>
+            </div> */}
 
-            <div className="col-lg-6 col-md-6 col-xs-12 right_side">
+            {/* <div className="col-lg-6 col-md-6 col-xs-12 right_side"> */}
               <div className="box_content">
-                <div className="logo mb-3">
+                {/* <div className="logo mb-3">
                   <Link to="/">
                     <img src={logo} />
                   </Link>
-                </div>
+                </div> */}
 
                 <h1>Sign-In</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="login_form">
-
-                  <input className="form-control" name="username" placeholder="Email *" type="text" ref={register({
+                <div className="form-host">
+                <span>Email</span>
+                  <input className="form-control" name="username" placeholder="Enter your qmail *" type="text" ref={register({
                     required: true,
                     pattern: /\S+@\S+\.\S+/
                   })} />
                   {errors.username && errors.username.type === 'required' && <span>Email field is required</span>}
                   {errors.username && errors.username.type === 'pattern' && <span>Valid email required</span>}
-                  <input className="form-control" name="password" placeholder="Password *"  type={passwordShown ? "text" : "password"} ref={register({
+                  </div>
+                 <div className="form-host">
+                   <span>Password</span>
+                  <input className="form-control" name="password" placeholder="Enter your password *"  type={passwordShown ? "text" : "password"} ref={register({
                     required: true,
       
                   })} />
-                  <button className="btn btn heart" type="button" onClick={togglePasswordVisiblity}>{passwordShown ? <AiFillEye />: <AiFillEyeInvisible />} </button>
+                   <button className="btn btn heart" type="button" onClick={togglePasswordVisiblity}>{passwordShown ? <AiFillEye />: <AiFillEyeInvisible />} </button>
+                   </div>
+
+                  <p className="user_link my-4">
+                  <Link to="/forgotForm">Forgot Password?</Link>
+                </p>
+                 
 
                   {errors.password && errors.password.type === 'required' && <span>Password field is required</span>}
 
@@ -244,15 +254,13 @@ const wistlistsValue = () => {
 
                 </form>
 
-                <p className="user_link my-4">
-                  <Link to="/forgotForm">Forgot Password?</Link>
-                </p>
+                
 
                 <p className="user_link">New to ProQmed? 
               <Link to="/signup" className="ml-2">Start here</Link>
                 </p>
               </div>
-            </div>
+            {/* </div> */}
           </div>
         </div>
       </div>)
