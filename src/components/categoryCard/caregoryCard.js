@@ -173,6 +173,9 @@ export default function CategoryCard({ data: product, dataClass }) {
         </div> 
         
         <div className="product_img">
+
+        {product['values'].items.offer_percentage != 0 && <div className="price_off">{Math.round(product['values'].items.offer_percentage)}% off</div>}
+
         {/* <div className="price_off">Upto 50% off</div> */}
                                
          { <Link to={getProductURL(product['values'].items)} state={product}><img className="w-100" src={`${product['values'].items.image}`} alt={product['values'].items.image} /></Link>}

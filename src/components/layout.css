@@ -4700,7 +4700,7 @@ body .all_categories_list .itm_list_holder a.itm_list_title {
     white-space: break-spaces;
     line-height: 19px;
     text-align: center;
-    font-size: 10px;
+    font-size: 12px;
 }
 .productFilters h6{
   margin-bottom: 0;
@@ -7713,7 +7713,7 @@ padding: 20px !important;
 .multi-range-slider {
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 5px -1px, rgb(0 0 0 / 6%) 0px 3px 1px -1px !important;
   padding: 30px !important;
-  border: 0.3px solid #e1e1e1 !important;
+  border: 0.3px solid #e1e1e1 !importants;
 }
 
 .multi-range-slider .bar-inner {
