@@ -264,7 +264,7 @@ const Wishlist = () => {
                                                         wishList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item, index) => (
                                                             <div key={item.sku} className="product_item">
                                                                 <div className="product_img">
-                                                                {item.offer_percentage != 0 && <div className="price_off">{parseFloat(item.offer_percentage)}% off</div>}
+                                                                {item.offer_percentage != 0 && <div className="price_off">{Math.round(item.offer_percentage)}% off</div>}
     
                                                                     <img src={item.image} />
                                                                 </div>
