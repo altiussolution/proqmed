@@ -7612,6 +7612,7 @@ margin-top: 15px;
   display: flex;
   align-items: center;
   margin: auto;
+  justify-content: center;
 }
 
 .item.product_item.deal.list_view .card.deal {
@@ -7642,6 +7643,11 @@ p.In.Stock {
   padding: 7px 20px;
   border-radius: 5px;
   font-weight: 600;
+}
+
+p.product_title {
+  height: 40px;
+  overflow: hidden;
 }
 
 /* San Styles 18022022*/
