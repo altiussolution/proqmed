@@ -191,7 +191,7 @@ export default function CategoryCard({ data: product, dataClass }) {
         {product['values'].items.rating ?
           <StarRatings
             rating={product['values'].items.rating}
-            starRatedColor="blue"
+            starRatedColor="rgb(255 123 168)"
             numberOfStars={5}
             name='rating'
             starDimension="20px"

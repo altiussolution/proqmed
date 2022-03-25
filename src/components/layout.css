@@ -1097,7 +1097,6 @@ p.product_amt {
 
 /* Card Page Styles */
 .main_title h1 {
-  border-bottom: 1px solid #ebebeb;
       color: rgb(56, 56, 56);
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
@@ -6942,6 +6941,7 @@ td.action_sec a.action.action_btn.btn.btn_gray {
   padding: 10px 20px;
   border-radius: 10px;
   margin-top: -10px;
+  color: #1c1c1c;
 }
 
 .edit-address .fo-info .right a {
@@ -7730,6 +7730,58 @@ padding: 20px !important;
   height: 15px !important;
   margin: -4px !important; 
 }
+
+.fo-bg-white .top a:hover {
+  color: #fdfdfd !important;
+}
+
+.row.products_fp.OFP .item.product_item.list_view {
+  display: block;
+}
+
+.row.products_fp.OFP .item.product_item.list_view .card {
+  flex-wrap: unset;
+}
+
+.row.products_fp.OFP .item.product_item.list_view .card .price_holder {
+  margin-left: 10px;
+}
+
+.row.products_fp.OFP .item.product_item.list_view .card .price_holder p.product_title{
+  font-size: 24px;
+}
+
+.row.products_fp.OFP .item.product_item.grid_view .card .price_holder {
+  flex-direction: column !important;
+}
+
+.row.products_fp.OFP .item.product_item.grid_view .card .price_holder .price_right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.css-1hf1o2u-container {
+  direction: unset !important;
+}
+
+.item.product_item.deal.grid_view .price_left.deal.ab .price_right {
+  position: absolute;
+  right: 0;
+}
+
+.Rating.my-3 .fa-star:before {
+  content: "\f005";
+  color: #ff7ba8;
+  font-family: 'FontAwesome';
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+span {
+  font-family: 'Poppins' !important;
+}
+
 
 /* San Styles 18022022*/
 

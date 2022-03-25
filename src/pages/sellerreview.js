@@ -82,7 +82,6 @@ console.log(location.state.id)
                       starDimension="25px"
                       starSpacing="1px"
                       starRatedColor="rgb(255 123 168)"
-                      starRatedColor="rgb(255 123 168)"
                       isSelectable={true}
                       changeRating={e => { changeRating(e) }}
                     />

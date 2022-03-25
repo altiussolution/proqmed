@@ -115,7 +115,6 @@ console.log(location.state.id)
                       starDimension="25px"
                       starSpacing="1px"
                       starRatedColor="rgb(255 123 168)"
-                      starRatedColor="rgb(255 123 168)"
                       isSelectable={true}
                       changeRating={e => { changeQualityRating(e) }}
                     />
@@ -129,7 +128,6 @@ console.log(location.state.id)
                       rating={value_rating}
                       starDimension="25px"
                       starSpacing="1px"
-                      starRatedColor="rgb(255 123 168)"
                       starRatedColor="rgb(255 123 168)"
                       isSelectable={true}
                       ref={register}
@@ -146,7 +144,6 @@ console.log(location.state.id)
                       starDimension="25px"
                       starSpacing="1px"
                       starRatedColor="rgb(255 123 168)"
-                      starRatedColor="rgb(255 123 168)"
                       isSelectable={true}
                       ref={register}
                       changeRating={e => { changePriceRating(e) }}
@@ -161,7 +158,6 @@ console.log(location.state.id)
                       rating={overall_rating}
                       starDimension="25px"
                       starSpacing="1px"
-                      starRatedColor="rgb(255 123 168)"
                       starRatedColor="rgb(255 123 168)"
                       isSelectable={true}
                       ref={register}
