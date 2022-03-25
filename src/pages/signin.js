@@ -64,6 +64,7 @@ const SignIn = (props) => {
               localStorage.setItem('email', response.data[0]['email']);
               localStorage.setItem('customer_id', response.data[0]['customer_id']);
               localStorage.setItem('user_name', response.data[0]['name'])
+              localStorage.setItem('first_name',response.data[0]['first_name'])
               createCart(response.data[0]['token']);
               groupId(response.data[0]['customer_id'])
               getWishList();
@@ -225,7 +226,7 @@ const wistlistsValue = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className="login_form">
                 <div className="form-host">
                 <span>Email</span>
-                  <input className="form-control" name="username" placeholder="Enter your qmail *" type="text" ref={register({
+                  <input className="form-control" name="username" placeholder="Enter your e-mail *" type="text" ref={register({
                     required: true,
                     pattern: /\S+@\S+\.\S+/
                   })} />

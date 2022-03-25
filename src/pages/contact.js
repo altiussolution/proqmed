@@ -111,7 +111,7 @@ const Contact = () => {
                                     <div>
                                         <h3>Connect with us:</h3>
                                         <p>For support or any questions:</p>
-                                        <p>Email us at <a href="mailto:unifisupport@gmail.com">unifisupport@gmail.com</a></p>
+                                        <p>Email us at <a onClick={() => {window.open("https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=support@proqmed.com", "_blank");}}>support@proqmed.com</a></p>
                                         <p>Call us: <a href="tel:9500988362">+91-950-098-8362 </a> </p>
                                     </div>
 

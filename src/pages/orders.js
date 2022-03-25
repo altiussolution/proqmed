@@ -117,7 +117,7 @@ const Orders = () => {
                 }
 
             }).catch((err) => {
-                console.error(err);
+                toast.error(err.response.data.message);
             })
         }
         catch (err) {

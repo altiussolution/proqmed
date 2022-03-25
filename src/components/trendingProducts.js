@@ -15,7 +15,7 @@ const banner_slide = {
   autoplay: false,
   speed: 1000,
   slidesToShow:2,
-  slidesToScroll: 3,
+  slidesToScroll: 2,
   infinite: true,
   responsive: [
     {

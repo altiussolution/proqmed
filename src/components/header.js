@@ -62,8 +62,8 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
     setQuoteId(localStorage.cartId);
     setJwt(localStorage.userToken);
     setEmail(localStorage.email);
-    if(localStorage.getItem('name')){
-    setName(localStorage.getItem('name'))
+    if(localStorage.getItem('first_name')){
+    setName(localStorage.getItem('first_name'))
     }else{
       setName(localStorage.getItem('user_name'))
   

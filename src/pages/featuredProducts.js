@@ -19,7 +19,7 @@ const Featuredproducts = () => {
     const [customerId, setCustomerId] = useState("");
     const [loading, setLoading] = useState(true);  
     const [jwt, setJwt] = useState("");
-    const [viewClass, setViewClass] = useState('sample');
+    const [viewClass, setViewClass] = useState('grid_view');
     const [p,per] = useState(false);
     const [outp,outper] = useState(false);
     const [pcar,percart] = useState(false);
@@ -227,7 +227,7 @@ const Featuredproducts = () => {
                                       <li className="icn"><a onClick={() => addToList(1,data.id)}><IoIosGitCompare/></a></li>
                                     </ul>                                
                                 </div> */}
-                                {data.offer_percentage != 0 && <div className="price_off">Upto {Math.round(data.offer_percentage)}% off</div>}
+                                {data.offer_percentage != 0 && <div className="price_off">{Math.round(data.offer_percentage)}% off</div>}
                                  <Link to={getProductURL(data)}>
                                  <img src={data.image} />
                                  </Link>
