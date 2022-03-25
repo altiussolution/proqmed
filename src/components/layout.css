@@ -1340,8 +1340,12 @@ button.btn.btn_whislist {
 }
 .form_btn {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top: 20px;
+}
+
+.fo-center {
+  justify-content: center;
 }
 
 /* Order page Styles */
@@ -7623,7 +7627,7 @@ margin-top: 15px;
 }
 
 .item.product_item.deal.grid_view .card.deal .image_wrapper {
-  width: 60%;
+  width: 70%;
   height: 200px;
   display: flex;
   align-items: center;
@@ -7711,9 +7715,9 @@ padding: 20px !important;
 }
 
 .multi-range-slider {
-  box-shadow: rgb(0 0 0 / 10%) 0px 4px 5px -1px, rgb(0 0 0 / 6%) 0px 3px 1px -1px !important;
-  padding: 30px !important;
-  border: 0.3px solid #e1e1e1 !importants;
+  box-shadow: none !important;
+  padding: 20px 0px !important;
+  border: none !important;
 }
 
 .multi-range-slider .bar-inner {
@@ -7780,6 +7784,12 @@ padding: 20px !important;
 
 span {
   font-family: 'Poppins' !important;
+}
+
+.form_btn button.btn.btn_gray {
+  margin: 0;
+  padding: 12px 30px;
+  border-radius: 10px;
 }
 
 
@@ -8180,7 +8190,6 @@ ul.mobile-menu li {
   color: #939393;
   font-weight: 400;
 }
-
 
 /* Prgress bar tracking ends//////////////////////////////////////////////////////////////// */
 

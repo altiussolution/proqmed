@@ -106,8 +106,8 @@ const SignUp = () => {
                     required: true,     
                     pattern:/^(?=.*[a-zA-Z])([a-zA-Z]+)$/               
                        })} />
-                  {errors.firstname && errors.firstname.type === 'required' && <span>This field is required</span>}
-                  {errors.firstname && errors.firstname.type === 'pattern' && <span>Special characters and Numeric characters are not allowed</span>}
+                  {errors.firstname && errors.firstname.type === 'required' && <span className="error_label">This field is required</span>}
+                  {errors.firstname && errors.firstname.type === 'pattern' && <span className="error_label">Special characters and Numeric characters are not allowed</span>}
                   </div>
 
                   <div className="form-host">
@@ -116,8 +116,8 @@ const SignUp = () => {
                     required: true,
                     pattern:/^(?=.*[a-zA-Z])([a-zA-Z]+)$/               
                      })} />
-                  {errors.lastname && errors.lastname.type === 'required' && <span>This field is required</span>}
-                  {errors.lastname && errors.lastname.type === 'pattern' && <span>Special characters and Numeric characters are not allowed</span>}
+                  {errors.lastname && errors.lastname.type === 'required' && <span className="error_label" >This field is required</span>}
+                  {errors.lastname && errors.lastname.type === 'pattern' && <span className="error_label">Special characters and Numeric characters are not allowed</span>}
 
                   </div>
 
