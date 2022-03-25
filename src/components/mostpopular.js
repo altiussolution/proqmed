@@ -89,7 +89,7 @@ const Mostpopular = () => {
                       name='rating'
                       starDimension="15px"
                       starSpacing="0px"
-                      starRatedColor="rgb(242 187 22)"
+                      starRatedColor="rgb(255 123 168)"
                     />
                     <h3>{data.name.slice(0,55)}...</h3>
                     <div>

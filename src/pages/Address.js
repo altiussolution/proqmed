@@ -382,7 +382,7 @@ return (
                                     onChange={onSelectStates1}
                                     value={Tamilan}
                                     placeholder="Select State *"
-                                    isRtl
+                                    
                                      />
                                      {/* )}
                                     /> */}

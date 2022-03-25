@@ -280,7 +280,7 @@ const FeatureProduct = () => {
     }
     return (
       
-        <section className="feature_section">
+        <section className="feature_section OFP">
             <div className="container">
             
             <div className="row">

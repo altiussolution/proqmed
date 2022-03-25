@@ -262,7 +262,7 @@ const addToList = (type,id) => {
                              
                               <div className="price_holder-deal">
                               <Link to={getProductURL(data)}><p className="product_title">{data.name}</p></Link>
-                              <div className="price_left deal">                                  
+                              <div className="price_left deal ab">                                  
                                   <div className="product_amt">
                                   {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
                                       <span className="price">${Math.round(data.final_price)}</span>

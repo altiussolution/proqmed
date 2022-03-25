@@ -46,6 +46,7 @@ const Featuredproducts = () => {
         }
         const jwt = localStorage.getItem('userToken')
         if(jwt){
+          setLoading(true)
           try
           {    
             axios({
@@ -66,11 +67,12 @@ const Featuredproducts = () => {
             }) 
             .catch((error) => {
               console.error(error,'error')
-              setLoading(true)
+              setLoading(false)
 
             })
           }catch(err){
             console.error(err);
+            setLoading(false)
             toast.error('something went wrong')
           }
         }else{
@@ -201,7 +203,7 @@ const Featuredproducts = () => {
       }
     const renderProducts = () => {    
         if (featureProducts) { 
-            return <div className="row products_fp">   
+            return <div className="row products_fp OFP">   
                 {       
                     featureProducts.map((data,index) => (
                         <div  className={`item product_item ${viewClass}`} key={`${data.name}_${index}`}>
@@ -234,8 +236,9 @@ const Featuredproducts = () => {
                                     
 
                                 </div>                                
-                                <p className="product_title">{data.name}</p>
+                              
                                 <div className="price_holder">
+                                <p className="product_title">{data.name}</p>
                                 <div className="price_left">                                  
                                     <div className="product_amt">
                                     {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
