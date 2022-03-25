@@ -7770,6 +7770,18 @@ padding: 20px !important;
   right: 0;
 }
 
+.Rating.my-3 .fa-star:before {
+  content: "\f005";
+  color: #ff7ba8;
+  font-family: 'FontAwesome';
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+span {
+  font-family: 'Poppins' !important;
+}
+
 
 /* San Styles 18022022*/
 
