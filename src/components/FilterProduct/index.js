@@ -222,7 +222,7 @@ const [unchangem,unchangeMin] = useState(150);
 
 const renderPriceFilters = () => {
   return (
-    <div><h6>Price</h6>
+    <div className="filtr-price"><h6>Price</h6>
     <MultiRangeSlider
 			min={unchangem}
 			max={unchange}

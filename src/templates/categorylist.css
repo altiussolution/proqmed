@@ -951,8 +951,8 @@ section.breadcrums ul li a::after {
   position: sticky;
   top:10px;
   overflow-y: unset;
-  background: hsl(0deg 0% 98%);
-    padding: 10px 20px;
+  /* background: hsl(0deg 0% 98%); */
+    /* padding: 10px 20px; */
     border-radius: 10px;
   /* height: 100vh; */
 }

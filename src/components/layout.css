@@ -1007,10 +1007,17 @@ section.main-footer ul li a {
 }
 
 h1.page-title span {
-  font-size: 16px;
+  font-size:28px;
   padding-bottom: 10px;
 }
-
+h1.page-title .breadcrumbs_sec span {
+  font-size: 13px;
+  padding-bottom: 10px;
+}
+h1.page-title .tools_items span {
+  font-size: 14px;
+  padding-bottom: 10px;
+}
 .page-title span:after {
   width: 100px;
   height: 1px;
@@ -3074,9 +3081,10 @@ margin-right: 20px;
   margin-right: 10px;
   font-size: 12px;
   text-transform: capitalize;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   padding: 8px 10px;
   cursor: pointer;
+  color: #1c67a8;
 }
 
 /* Shipping Address page */
@@ -3797,7 +3805,7 @@ button:focus, .btn:focus, .middlenavbar a.nav-link:focus, .btn.submit_btn:focus,
 .productFilters .text-sm.items-center {
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   margin-bottom: 0px;
 }
 
@@ -6269,7 +6277,7 @@ height: 246px;
 
 .flex.justify-between.items-center.filter_sidenav {
   padding-bottom: 15px;
-  border-bottom: 1px solid #e7e7e7;
+  /* border-bottom: 1px solid #e7e7e7; */
 }
 
 .compare_section.cart_page.user {
@@ -7711,20 +7719,20 @@ padding: 20px !important;
 }
 
 .multi-range-slider {
-  box-shadow: rgb(0 0 0 / 10%) 0px 4px 5px -1px, rgb(0 0 0 / 6%) 0px 3px 1px -1px !important;
-  padding: 30px !important;
-  border: 0.3px solid #e1e1e1 !importants;
+  box-shadow: none;
+  /* padding: 30px !important; */
+  border: 0px solid #e1e1e1 !important;
 }
 
 .multi-range-slider .bar-inner {
-  background: #d6d6d6 !important;
+  background: #83d8f4 !important;
   border: none !important;
   box-shadow: none !important;
 }
 
 .multi-range-slider .thumb::before {
-  border: none !important;
-  background: #ea67b2 !important;
+  border: 3px solid #83d8f4!important;
+  background: #fff !important;
   box-shadow: none !important;
   width: 15px !important;
   height: 15px !important;
@@ -8185,3 +8193,19 @@ ul.mobile-menu li {
 /* Prgress bar tracking ends//////////////////////////////////////////////////////////////// */
 
 }
+.productFilters .filtr-price,
+.productFilters .Brand,
+.productFilters .Rating,
+.productFilters .Offer {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 15px;
+  
+}
+/* .productFilters .filtr-price h6,
+.productFilters .Brand h6,
+.productFilters .Rating h6,
+.productFilters .Offer h6 {
+  border-bottom: 1px solid #efefef;
+  padding: 0 0 5px;  
+} */

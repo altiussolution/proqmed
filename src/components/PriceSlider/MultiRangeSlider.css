@@ -6,10 +6,10 @@
 .multi-range-slider {
 	display: flex;
 	position: relative;
-	border: solid 1px gray;
+	border: solid 0px gray;
 	border-radius: 10px;
 	padding: 20px 10px;
-	box-shadow: 1px 1px 4px black;
+	box-shadow: none;
 	flex-direction: column;
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none; /* Safari */
@@ -36,9 +36,9 @@
 }
 .multi-range-slider .bar-right {
 	width: 25%;
-	background-color: #f0f0f0;
+	background-color: #e3e3e3;
 	border-radius: 0px 10px 10px 0px;
-	box-shadow: inset 0px 0px 5px black;
+	/* box-shadow: inset 0px 0px 5px black; */
 }
 .multi-range-slider .bar-inner {
 	background-color: lime;
@@ -98,11 +98,12 @@
 	font-size: 75%;
 	text-align: center;
 	line-height: 30px;
-	background-color: blue;
+	background-color: #ff7ba8;
 	border-radius: 50%;
 	color: white;
-	box-shadow: 0px 0px 5px black;
+	box-shadow: 0px 0px 5px #909090;
 	display: none;
+	font-weight: 600;
 }
 .multi-range-slider .thumb:active * {
 	display: block;
