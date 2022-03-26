@@ -230,8 +230,8 @@ const wistlistsValue = () => {
                     required: true,
                     pattern: /\S+@\S+\.\S+/
                   })} />
-                  {errors.username && errors.username.type === 'required' && <span>Email field is required</span>}
-                  {errors.username && errors.username.type === 'pattern' && <span>Valid email required</span>}
+                  {errors.username && errors.username.type === 'required' && <span className="error_label">Email field is required</span>}
+                  {errors.username && errors.username.type === 'pattern' && <span className="error_label">Valid email required</span>}
                   </div>
                  <div className="form-host">
                    <span>Password</span>
@@ -242,13 +242,13 @@ const wistlistsValue = () => {
                    <button className="btn btn heart" type="button" onClick={togglePasswordVisiblity}>{passwordShown ? <AiFillEye />: <AiFillEyeInvisible />} </button>
                    </div>
 
+                 
+                 
+
+                  {errors.password && errors.password.type === 'required' && <span className="error_label">Password field is required</span>}
                   <p className="user_link my-4">
                   <Link to="/forgotForm">Forgot Password?</Link>
                 </p>
-                 
-
-                  {errors.password && errors.password.type === 'required' && <span>Password field is required</span>}
-
                   <div className="my-3">
                     <input className="btn btn_gray submit_btn" type="submit" value="Sign-In" disabled={isButton} />
                   </div>

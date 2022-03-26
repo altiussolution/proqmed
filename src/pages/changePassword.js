@@ -68,9 +68,9 @@ const ChangePassword = () => {
                                                         minLength : 8 ,
                                                         pattern : /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
                                                        })}/> 
-                                                    {errors.currentPassword && errors.currentPassword.type === 'required' && <span>Current Password field is required</span>}
-                                                    {errors.currentPassword && errors.currentPassword.type === 'minLength' && <span>Current  Password must contain 8 digits</span>}
-                                                    {errors.currentPassword && errors.currentPassword.type === 'pattern' && <span>Current  Password must contain 8 charactor along with 1 number and alphanumeric</span>}
+                                                    {errors.currentPassword && errors.currentPassword.type === 'required' && <span className="error_label">Current Password field is required</span>}
+                                                    {errors.currentPassword && errors.currentPassword.type === 'minLength' && <span className="error_label">Current  Password must contain 8 digits</span>}
+                                                    {errors.currentPassword && errors.currentPassword.type === 'pattern' && <span className="error_label">Current  Password must contain 8 charactor along with 1 number and alphanumeric</span>}
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Enter New Password</label>
@@ -80,7 +80,7 @@ const ChangePassword = () => {
                                                         minLength : 8 ,
                                                         pattern : /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
                                                        })}/> 
-                                                    {errors.newPassword && errors.newPassword.type === 'required' && <span>New Password field is required</span>}
+                                                    {errors.newPassword && errors.newPassword.type === 'required' && <span className="throw-error">New Password field is required</span>}
                                                     {errors.newPassword && errors.newPassword.type === 'minLength' && <span>New  Password must contain 8 digits</span>}
                                                     {errors.newPassword && errors.newPassword.type === 'pattern' && <span>New  Password must contain 8 charactor along with 1 number and alphanumeric</span>}
                                                 </div>  
@@ -93,7 +93,7 @@ const ChangePassword = () => {
                                                         minLength : 8 ,
                                                         pattern : /(?=.*\d)(?=.*[a-z])(?!.*\s).*/
                                                        })}/> 
-                                                    {errors.confirmPassword && errors.confirmPassword.type === 'required' && <span>Confirm Password field is required</span>}
+                                                    {errors.confirmPassword && errors.confirmPassword.type === 'required' && <span className="error_label">Confirm Password field is required</span>}
                                                     {errors.confirmPassword && errors.confirmPassword.type === 'minLength' && <span>Confirm  Password must contain 8 digits</span>}
                                                     {errors.confirmPassword && errors.confirmPassword.type === 'pattern' && <span>Confirm  Password must contain 8 charactor along with 1 number and alphanumeric</span>}
                                                 </div> 
