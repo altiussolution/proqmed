@@ -158,7 +158,7 @@ const filtercall = (data) =>{
                 let data = {
                     "data":{
                             "order_status":array,
-                            "email":localStorage.email
+                            "customer_id":localStorage.customer_id
                         }
                     }
                    await filtercall(data);
@@ -168,7 +168,7 @@ const filtercall = (data) =>{
                     let data = {
                         "data":{
                                 "order_status":array,
-                                "email":localStorage.email
+                                "customer_id":localStorage.customer_id
                             }
                         }
                 if(array.length>0){
@@ -186,7 +186,7 @@ const filtercall = (data) =>{
             let data = {
                 "data":{
                         "order_status":array,
-                        "email":localStorage.email
+                        "customer_id":localStorage.customer_id
                     }
                 }
                await filtercall(data);
@@ -196,7 +196,7 @@ const filtercall = (data) =>{
                 let data = {
                     "data":{
                             "order_status":array,
-                            "email":localStorage.email
+                            "customer_id":localStorage.customer_id
                         }
                     }
             if(array.length>0){
@@ -214,7 +214,7 @@ const filtercall = (data) =>{
             let data = {
                 "data":{
                         "order_status":array,
-                        "email":localStorage.email
+                        "customer_id":localStorage.customer_id
                     }
                 }
                await filtercall(data);
@@ -224,7 +224,7 @@ const filtercall = (data) =>{
                 let data = {
                     "data":{
                             "order_status":array,
-                            "email":localStorage.email
+                            "customer_id":localStorage.customer_id
                         }
                     }
             if(array.length>0){
@@ -252,7 +252,7 @@ const filtercall = (data) =>{
                 
                     "data":{
                         "search_keyword":val.target.value,
-                        "email":localStorage.email
+                        "customer_id":localStorage.customer_id
                     }
                 
             }

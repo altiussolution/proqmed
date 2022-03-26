@@ -68,7 +68,7 @@ return(
 {/*   
   <div className="col-lg-6 col-md-6 col-xs-12"><img src={ad1} alt={"banner"} /></div>
   <div className="col-lg-6 col-md-6 col-xs-12"><img src={ad2} alt={"banner"} /></div> */}
-    { splash.length > 0 ? Renderproduct(): <div className="fo-center">No As Seen On</div>}
+    { splash.length > 0 ? Renderproduct(): <div className="fo-center"></div>}
 
     {/* {Renderproduct()} */}
     </div>
