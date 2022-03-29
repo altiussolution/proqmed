@@ -90,8 +90,8 @@ const Forgoted = (props) => {
                     required: true,
                     pattern: /\S+@\S+\.\S+/
                   })} />
-                  {errors.username && errors.username.type === 'required' && <span>Email field is required</span>}
-                  {errors.username && errors.username.type === 'pattern' && <span>Valid email required</span>}
+                  {errors.username && errors.username.type === 'required' && <span className="error_label">Email field is required</span>}
+                  {errors.username && errors.username.type === 'pattern' && <span className="error_label">Valid email required</span>}
                
 
                   <div className="my-3">

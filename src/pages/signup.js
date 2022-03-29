@@ -127,8 +127,8 @@ const SignUp = () => {
                     required: true,
                     pattern: /\S+@\S+\.\S+/
                   })} />
-                  {errors.email && errors.email.type === 'required' && <span className="error">Email field is required</span>}
-                  {errors.email && errors.email.type === 'pattern' && <span className="error">Valid email required</span>}
+                  {errors.email && errors.email.type === 'required' && <span className="error_label">Email field is required</span>}
+                  {errors.email && errors.email.type === 'pattern' && <span className="error_label">Valid email required</span>}
 
                   </div>
 
