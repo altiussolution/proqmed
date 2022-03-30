@@ -634,7 +634,7 @@ const isSticky = (e) => {
                   <li onClick={() => { navigateOnclick1('/mainCategory') }}><a>Shop</a></li> 
                   <li onClick={() => { navigateOnclick1('/aboutUs') }}><a >About</a></li>
                   <li onClick={() => { navigateOnclick1('/contact') }}><a >Contact</a></li>
-                  <li onClick={() => { navigateOnclick1('/tracking') }}><a >Order Tracking</a></li>
+                  <li onClick={() => { navigateOnclick1('/tracking/') }}><a >Order Tracking</a></li>
                   <li onClick={() => { navigateOnclick2('/myAddress') }}><a>My Address</a></li>                 
               </ul>
               <ul className="contact_top">

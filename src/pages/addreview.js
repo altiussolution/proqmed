@@ -87,22 +87,23 @@ console.log(location.state.id)
                 <form onSubmit={handleSubmit(onSubmitReview)} action="" className="header_signin_form">
                   <div className="form-group">
                     <label htmlFor="nick_name">Nick Name<span className="error_label">*</span></label>
-                    <input className="form-control" name="nick_name" placeholder="Nick Name" type="text" ref={register({
+                    <input className="form-control" maxLength={15} name="nick_name" placeholder="Nick Name" type="text" ref={register({
                       required: true
                     })} />
                     {errors.nick_name && errors.nick_name.type === 'required' && <span className="error">Nick Name is required</span>}
                   </div>
                   <div className="form-group">
                     <label htmlFor="review_title">Review Title<span className="error_label">*</span></label>
-                    <input className="form-control" name="review_title" placeholder="Review Title" type="text" ref={register({
+                    <input className="form-control" maxLength={20} name="review_title" placeholder="Review Title" type="text" ref={register({
                       required: true
                     })} />
                     {errors.review_title && errors.review_title.type === 'required' && <span className="error">Review Title is required</span>}
                   </div>
                   <div className="form-group">
                     <label htmlFor="review_details">Review Details<span className="error_label">*</span></label>
-                    <input className="form-control" name="review_details" placeholder="Review Details" type="text" ref={register({
-                      required: true
+                    <input className="form-control" name="review_details" placeholder="Review Details" type="text" maxLength={256} ref={register({
+                      required: true,
+                      max: 10
                     })} />
                     {errors.review_details && errors.review_details.type === 'required' && <span className="error">Review Details is required</span>}
                   </div>

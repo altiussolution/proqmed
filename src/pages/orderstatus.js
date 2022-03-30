@@ -226,7 +226,7 @@ const Invoice = ({ location }) => {
       <orderShipDetails ref={componentRef} />
     </div> */}
                                     {/* <p>Print Shipment</p>  */}
-                                   <Link to="/tracking"  state={{id: idd}}><p>Track this Shipment</p></Link> 
+                                   <Link to="/tracking/"  state={{id: idd}}><p>Track this Shipment</p></Link> 
                                    </div>
                                 </div>
                             
@@ -437,7 +437,7 @@ const Invoice = ({ location }) => {
                                     <div className="fo-flx">
                                         
                                 <p id="demo" className="point" onClick={() => window.print({})}>Print Shipment</p>
-                                      <Link to="/tracking"  state={{id: idd}}><p>Track this Shipment</p></Link> 
+                                      <Link to="/tracking/"  state={{id: idd}}><p>Track this Shipment</p></Link> 
                                       </div>
                                     {orderShipDetails()}
                                 </Tab>

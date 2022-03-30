@@ -274,7 +274,7 @@ const Footer = () => {
                                 
                             </li>
                             <li>
-                                <Link to="/tracking">Track Orders</Link>
+                                <Link to="/tracking/">Track Orders</Link>
                             {/* {!isLoged &&  <Link to="/signin">Track Orders</Link> }
                                 {isLoged && <Link to="/tracking">Track Orders</Link>} */}
                                 

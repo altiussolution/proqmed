@@ -91,9 +91,9 @@ const SignIn = (props) => {
           }
           }
         })
-        .catch(function (response) {
+        .catch(function (err) {
           setLoader(false);
-          toast.error('An error occured please contact admin')
+          toast.error(err.response.data.message)
         });
 
     } catch (err) {

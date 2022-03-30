@@ -4,10 +4,11 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import StarRatings from 'react-star-ratings';
 import { toast } from 'react-toastify';
+import { resetIdCounter } from "react-tabs";
 
 const Sellerreview = ({location} ) => {
   const [jwt, setjwt] = useState();
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, reset } = useForm();
   const [quality_rating, setQuality_rating] = useState(0);
   const [error_rating, setError_rating] = useState(false);
 
@@ -37,10 +38,12 @@ console.log(location.state.id)
       })
         .then(function (response) {
           toast.success(response.data)
+          reset();
+          setQuality_rating(0)
           // navigate('/')  
         })
-        .catch(function (response) {
-          toast.error('An error occured please contact admin')
+        .catch(function (err) {
+          toast.error(err.response.data.message)
         });
 
     } catch (err) {
@@ -67,7 +70,7 @@ console.log(location.state.id)
                 
                   <div className="form-group">
                     <label htmlFor="review_title">Review <span className="error_label">*</span></label>
-                    <input className="form-control" name="review_title" placeholder="Review" type="text" ref={register({
+                    <textarea className="form-control" name="review_title" maxLength={256} placeholder="Review" type="text" ref={register({
                       required: true
                     })} />
                     {errors.review_title && errors.review_title.type === 'required' && <span className="error">Review is required</span>}
@@ -85,10 +88,10 @@ console.log(location.state.id)
                       isSelectable={true}
                       changeRating={e => { changeRating(e) }}
                     />
-                    {quality_rating === 0 && error_rating && <span className="error">Quality Rating is required</span>}
+                    {error_rating && <span className="error">Quality Rating is required</span>}
                   </div>
                 
-                  <button type="submit" className="btn_link theme_btn_blue w-100" onClick={() => { setError_rating(true) }}>Submit</button>
+                 {quality_rating > 0 && <button type="submit" className="btn_link theme_btn_blue w-100" onClick={() => { setError_rating(true) }}>Submit</button>}
                 </form>
         
                 </div>
