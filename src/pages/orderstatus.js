@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "gatsby";
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
+import ImageNotFound from "./../assets/not-found.png";
 import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
 import Orders from './orders'
 import { useReactToPrint } from "react-to-print";
@@ -36,7 +37,6 @@ const Invoice = ({ location }) => {
   
     const OrderStatus = () => {
         setLoader(true);
-
         try {
             axios({
                 method: "get",
@@ -155,7 +155,7 @@ const Invoice = ({ location }) => {
                                         items.product_details.map((list, ind) => {
                                             return <tbody key={`${ind}_table`}>
                                                 <tr>
-                                                    <td><img src={list.image} /></td>
+                                                    <td><img src={list.image} onError={e => (e.target.src = ImageNotFound)} alt={ImageNotFound}/></td>
                                                     <td>{list.name}</td>
                                                     <td>{list.sku}</td>
                                                     <td>{Math.round(list.quantity)}</td>
@@ -200,7 +200,7 @@ const Invoice = ({ location }) => {
                                         items.product_details.map((list, ind) => {
                                             return <tbody key={`${ind}_table`}>
                                                 <tr>
-                                                    <td><img src={list.image} /></td>
+                                                    <td><img src={list.image} onError={e => (e.target.src = ImageNotFound)} alt={ImageNotFound}/></td>
                                                     <td>{list.name}</td>
                                                     <td>{list.sku}</td>
                                                     <td>{Math.round(list.quantity)}</td>
@@ -338,7 +338,7 @@ const Invoice = ({ location }) => {
                                     return (index >= 1 ?
                                         <tbody key={`${index}_table`} >
                                             <tr>
-                                                <td className="product_image"> <img src={list.image} /> </td>
+                                                <td className="product_image"> <img src={list.image} onError={e => (e.target.src = ImageNotFound)} alt={ImageNotFound}/> </td>
                                                 <td className="product_name">{list.peoduct_name} </td>
                                                 <td>{list.sku}</td>
                                                 <td>{Math.round(list.qty)}</td>
