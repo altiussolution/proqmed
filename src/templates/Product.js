@@ -470,7 +470,7 @@ return (
       <td>{quote.seller}</td>
       <td>{quote.product_name}</td>
       <td>{quote.product_sku}</td>
-      <td>${Math.round(quote.price).toFixed(2)}</td>
+      <td> {quote.strike_price != null  && <span className="new_price">${Math.round(quote.strike_price)} </span>} ${Math.round(quote.final_price).toFixed(2)}</td>
       <td>{pcar && <button className="action action_btn btn btn_gray" onClick={() => addtoCartItems(quote.product_sku, quote.id)}> <span className="fa fa-shopping-cart"></span> Add to Cart  </button>}
       {outpcar && <button className="action action_btn btn btn_gray" onClick={() => addtoCartItems(quote.product_sku, quote.id)}> <span className="fa fa-shopping-cart"></span> Add to Cart  </button>}
       </td>

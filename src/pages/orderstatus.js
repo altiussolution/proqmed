@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "gatsby";
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
-import ImageNotFound from "./../assets/not-found.png";
+import ImageNotFound from "./../assets/No_image_available.png.webp";
 import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
 import Orders from './orders'
 import { useReactToPrint } from "react-to-print";

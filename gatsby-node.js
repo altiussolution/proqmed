@@ -1,5 +1,6 @@
 const axios = require("axios");
 const path = require("path");
+const { fileURLToPath } = require("url");
 const { getCategoryURL, getProductURL } = require("./src/utils/url");
 
 let categories,     

@@ -91,7 +91,7 @@ console.log(location.state.id)
                     {error_rating && <span className="error">Quality Rating is required</span>}
                   </div>
                 
-                 {quality_rating > 0 && <button type="submit" className="btn_link theme_btn_blue w-100" onClick={() => { setError_rating(true) }}>Submit</button>}
+                 {quality_rating > 0 && <div className="form_btn"><button type="submit" className="btn btn_gray" onClick={() => { setError_rating(true) }}>Submit</button></div>}
                 </form>
         
                 </div>

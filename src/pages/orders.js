@@ -155,6 +155,7 @@ const filtercall = (data) =>{
         console.log(e.target.checked)
             if(e.target.checked==true){
                 array.push(datas)
+                array.push("processing")
                 let data = {
                     "data":{
                             "order_status":array,
@@ -165,6 +166,8 @@ const filtercall = (data) =>{
                 }else if(e.target.checked==false) {
                     var carIndex = array.indexOf(datas);
                    array.splice(carIndex, 1);
+                   var carIndex1 = array.indexOf("processing");
+                   array.splice(carIndex1, 1);
                     let data = {
                         "data":{
                                 "order_status":array,

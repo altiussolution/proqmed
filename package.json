@@ -89,6 +89,9 @@
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
+  "browser": {
+    "fs": false
+},
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-default#readme",
   "main": "gatsby-browser.js"
 }

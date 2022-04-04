@@ -88,7 +88,7 @@ const [unchangem,unchangeMin] = useState(150);
       // temporary fix by meenu not efficient
     }
     // Create displayFilters from Products listing
-    console.log(products)
+
     products.forEach(el => {
       arr.push(el[0].items.final_price)
       
@@ -115,44 +115,9 @@ const [unchangem,unchangeMin] = useState(150);
 
   const filter = async () => {
     let tempFilteredProducts;
-    var numbers = [];
-    console.log(minValue,maxValue)
-    for (var i = minValue; i <= maxValue; i++) {
-      numbers.push(i);
-    }
-    console.log(products)
-    var result = products.filter(function (prod) {
-      return numbers.some(function (o2) {
-          return Math.round(prod[0].items.final_price) === o2; // return the ones with equal id
-     });
-  });
-    console.log(result)
-    tempFilteredProducts = filterOperation(result);
+    tempFilteredProducts = filterOperation(products);
     console.log(tempFilteredProducts)
-    if(tempFilteredProducts.length!==0){
-      await setFilteredProducts(tempFilteredProducts);
-    }else if(tempFilteredProducts.length==0){
-      let arr1=[]
-      result.forEach(el => {
-        arr1.push(el[0])
-        arr.push(el[0].items.final_price)
-        const product = convertToObject(el.flat());
-        // console.log(product)
-        for (let prop in product) {
-          console.log(prop)
-          if (prop !== "items" && prop !=="Special Price") {
-            displayFilters[prop] = displayFilters[prop]
-              ? displayFilters[prop].add(product[prop])
-              : new Set([product[prop]]);
-              console.log(displayFilters[prop])
-    
-          }
-        }
-      }); 
-      await setFilteredProducts(arr1);
-      await setFiltersToDisplay(displayFilters);
-    }
-    
+    await setFilteredProducts(tempFilteredProducts);
     if (parsing) setParsing(false);
   };
 
@@ -176,6 +141,7 @@ const [unchangem,unchangeMin] = useState(150);
     });
     return tempFilteredProducts;
   };
+
   useEffect(() => {
     const query = queryString.stringify(filters, { arrayFormat: "index" });
     navigate(`${location.pathname}${query.length ? `?filter=${query}` : ""}`);
@@ -193,38 +159,35 @@ const [unchangem,unchangeMin] = useState(150);
   const handleCheckBoxChange = (e, key) => {  
     console.log(e.target.name,e.target.checked)
     console.log(key)
-      dispatch({
-        type: e.target.checked ? "ADD" : "REMOVE",
-        payload: {
-          name: e.target.name,
-          key,
-        },
-      });
-    
-   
+    dispatch({
+      type: e.target.checked ? "ADD" : "REMOVE",
+      payload: {
+        name: e.target.name,
+        key,
+      },
+    });
   };
+  const handleCheckBoxRating = ()=> {
 
+  }
   const handleInput = (e) => {
-    // dispatch({
-    //   type: "CLEAR",
-    //   payload: {},
-    // })
     console.log(e.minValue);
     console.log(e.maxValue);
     set_minValue(e.minValue);
     set_maxValue(e.maxValue);
-    var numbers = [];
+   var numbers = [];
     for (var i = e.minValue; i <= e.maxValue; i++) {
       numbers.push(i);
+      console.log(numbers)
     }
     filterOperationPrice(products,numbers);
     return numbers;
   };
 
   const filterOperationPrice = async(products,numbers) => {
-    
+    const arr = numbers.join().split(',')
     let arr1 = [];
-    console.log(numbers)
+    console.log(arr)
     let data=[]
     console.log(products)
     var result = products.filter(function (prod) {
@@ -233,24 +196,11 @@ const [unchangem,unchangeMin] = useState(150);
      });
   });
    console.log(result)
-   result.forEach(el => {
-    arr1.push(el[0])
-    arr.push(el[0].items.final_price)
-    const product = convertToObject(el.flat());
-    // console.log(product)
-    for (let prop in product) {
-      console.log(prop)
-      if (prop !== "items" && prop !=="Special Price") {
-        displayFilters[prop] = displayFilters[prop]
-          ? displayFilters[prop].add(product[prop])
-          : new Set([product[prop]]);
-          console.log(displayFilters[prop])
-
-      }
-    }
-  }); 
-  await setFilteredProducts(arr1);
-  await setFiltersToDisplay(displayFilters);
+   result.forEach(el=> {
+     arr1.push(el[0])
+     console.log(arr1)
+   })
+   await setFilteredProducts(arr1);
    if (parsing) setParsing(false);
   }
  const allClear = ()=> {
@@ -276,18 +226,18 @@ const renderPriceFilters = () => {
   return (
     <div className="filtr-price"><h6>Price</h6>
     <MultiRangeSlider
-			min={unchangem}
-			max={unchange}
-			step={1}
-			ruler={false}
-			label={true}
-			preventWheel={false}
-			minValue={minValue}
-			maxValue={maxValue}
-			onInput={(e) => {
-				handleInput(e);
-			}}
-		/>
+      min={unchangem}
+      max={unchange}
+      step={5}
+      ruler={false}
+      label={true}
+      preventWheel={false}
+      minValue={minValue}
+      maxValue={maxValue}
+      onInput={(e) => {
+        handleInput(e);
+      }}
+    />
     </div>
   )
  

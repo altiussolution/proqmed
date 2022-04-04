@@ -60,6 +60,7 @@ const SignIn = (props) => {
               if(response.data[0]['allowed_permissions']){
                 localStorage.setItem('permissions',JSON.stringify(response.data[0]['allowed_permissions']));
               }
+              // Files();
               localStorage.setItem('userToken', response.data[0]['token']);
               localStorage.setItem('email', response.data[0]['email']);
               localStorage.setItem('customer_id', response.data[0]['customer_id']);
