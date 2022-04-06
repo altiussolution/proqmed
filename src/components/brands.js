@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import axios from "axios";
 import { Link } from "gatsby";
 import 'react-toastify/dist/ReactToastify.css';
+import {ImageNotFound} from "./../assets/not-found.png";
 import brand1 from './../assets/brand_01.jpg';
 import brand2 from './../assets/brand_02.jpg';
 import brand3 from './../assets/brand_03.jpg';
@@ -35,7 +36,7 @@ console.log(item)
 
                        
                             <li key={index}>
-                                <Link to="/brandedProducts/" state={{ brand_id: data.brand_id }} ><img className="product_img" src={data.image} /></Link>
+                                <Link to="/brandedProducts/" state={{ brand_id: data.brand_id }} ><img className="product_img" src={data.image} onError={e => (e.target.src = ImageNotFound)}/></Link>
                             </li>
                        
 

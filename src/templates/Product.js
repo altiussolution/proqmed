@@ -433,7 +433,7 @@ return (
                   </div>
         <div className="product_view">  
           <div className="row upper-space">
-             <Productdescription proDescription = {product} setcartCount={cartValue.bind(this)} setWishListCnt={wistlistsValue.bind(this)}/>
+             <Productdescription proDescription = {product} routeAss={props} setcartCount={cartValue.bind(this)} setWishListCnt={wistlistsValue.bind(this)}/>
              <div className="technical_sec">
              </div>
            <div className="suma">

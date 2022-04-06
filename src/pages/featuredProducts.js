@@ -95,7 +95,7 @@ const Featuredproducts = () => {
               "cartItem": {
                   "sku": sku,
                   "qty": qty,
-                  "quote_id": quote_id
+                  "quote_id": quote_id,
               }
           }
           setButton(true);

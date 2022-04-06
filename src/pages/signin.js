@@ -201,6 +201,7 @@ const wistlistsValue = () => {
   }, 3000);
 }
 
+
   return (
      <>
 <Layout>
@@ -227,7 +228,7 @@ const wistlistsValue = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className="login_form">
                 <div className="form-host">
                 <span>Email</span>
-                  <input className="form-control" name="username" placeholder="Enter your e-mail *" type="text" ref={register({
+                  <input className="form-control" name="username" placeholder="Enter your email *" type="text" ref={register({
                     required: true,
                     pattern: /\S+@\S+\.\S+/
                   })} />

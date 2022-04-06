@@ -20,7 +20,7 @@ import { Link } from "gatsby"
 
 
 
-const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => {
+const Productdescription = ({ proDescription, routeAss, setcartCount, setWishListCnt}) => {
   const [quote_id, setQuoteId] = useState("");
   const [customerId, setCustomerId] = useState("");
   const [jwt, setJwt] = useState("");
@@ -51,7 +51,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false);
     const [outpcom,outpercomp] = useState(false);
-
+    const [pincode,Pin] = useState("");
   const [data, setData] = useState([
     {
       image: (ImageNotFound),
@@ -63,7 +63,7 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
 
 
   useEffect(() => {
-    console.log(proDescription)
+    console.log(proDescription.items)
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
     //setQuoteId(localStorage.cartId);
@@ -328,26 +328,30 @@ const Productdescription = ({ proDescription, setcartCount, setWishListCnt}) => 
     if (!re.test(event.target.value)) {
       event.target.value = ""
     }
+    Pin(event.target.value)
   }
 
   const pinCodeChecker = pinCode => {
     console.log(pinCode)
     let data;
-    try {
-      axios.get(
-        `${process.env.GATSBY_CART_URL_STARCARE}admin/pincodecheck/${proDescription.items.id}`
-      ).then(async (res) => {
-        await res.data.map((pin) => {
-          if (pinCode == pin.pincode) {
-            data = pin.pincode
-          }
-        })
-        await verifycode(pinCode, data)
-      })
+      try {
+        axios({
+            method: "get",
+            url: `${process.env.GATSBY_CART_URL_STARCARE}admin/pincodecheck/${proDescription.items.id}/${pincode}`,
+            headers: {
+                'Authorization': `Bearer ${jwt}`
+            },
+        }).then((response) => {
+           toast.success(response.response.data.message)
 
-    } catch (err) {
-      console.error(err);
+        }).catch((err) => {
+            toast.error(err.response.data.message)
+        })
     }
+    catch (err) {
+        console.error(err)
+    }
+    
 
   }
 
@@ -641,7 +645,7 @@ if(proDescription.items.config_options){
 
                       <div className="prd_note">
                         <p>
-                          <span className="bold">Brand:</span> <a href="/filterBrands">{proDescription.Brand}</a>
+                          <span className="bold">Brand:</span> <Link to="/brandedProducts/" state={{brand_id:proDescription.items.brand_id}}>{proDescription.Brand}</Link>
                           {/* <Link to="/brandedProducts/" state={{ brand_id: data.brand_id }} ><img className="product_img" src={data.image} /></Link> */}
 
                         </p>
@@ -768,7 +772,7 @@ if(proDescription.items.config_options){
                       <p>{proDescription.items.overview}</p>
                       {/* <a>Read More</a> */}
 
-                     {proDescription.items.seller_name !=null && <p> <span className="bold">Seller : </span><Link to="/sellerreview" state={{ seller_id: proDescription.items.seller_id }} ><span>{proDescription.items.seller_name}</span></Link></p>}
+                     {proDescription.items.seller_name !=null && <p> <span className="bold">Seller : </span><Link to="/sellerreview/" state={{seller_id:proDescription.items.seller_id,slug:routeAss.slug}}><span>{proDescription.items.seller_name}</span></Link></p>}
                           {/*  */}
 
 

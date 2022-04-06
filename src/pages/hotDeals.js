@@ -7,6 +7,7 @@ import { FaRegHeart } from 'react-icons/fa';
 import { BiShoppingBag } from "react-icons/bi";
 import { IoIosGitCompare } from "react-icons/io";
 import { ToastContainer, toast } from 'react-toastify';
+import ImageNotFound from "./../assets/not-found.png"
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { navigate } from "gatsby";
@@ -224,7 +225,7 @@ const renderProducts = () => {
                           </div> */}
                           {data.offer_percentage != 0 && <div className="price_off">{Math.round(data.offer_percentage)}% off</div>}
                            <Link to={getProductURL(data)}>
-                           <img src={data.image} />
+                           <img src={data.image} onError={e => (e.target.src = ImageNotFound)}/>
                            </Link>
                               
                            

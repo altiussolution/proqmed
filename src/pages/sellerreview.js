@@ -5,16 +5,17 @@ import { useForm } from "react-hook-form";
 import StarRatings from 'react-star-ratings';
 import { toast } from 'react-toastify';
 import { resetIdCounter } from "react-tabs";
+import { navigate } from "gatsby";
 
 const Sellerreview = ({location} ) => {
   const [jwt, setjwt] = useState();
   const { register, handleSubmit, errors, reset } = useForm();
   const [quality_rating, setQuality_rating] = useState(0);
   const [error_rating, setError_rating] = useState(false);
-
+  const slug = location.state.slug
   useEffect(() => {
     setjwt(localStorage.userToken)
-console.log(location.state.id)
+    console.log(location)
   }, []);
 
 
@@ -40,10 +41,11 @@ console.log(location.state.id)
           toast.success(response.data)
           reset();
           setQuality_rating(0)
-          // navigate('/')  
+          navigate(`/products/${slug}/`)
         })
         .catch(function (err) {
           toast.error(err.response.data.message)
+          navigate(`/products/${slug}/`)
         });
 
     } catch (err) {
@@ -88,7 +90,7 @@ console.log(location.state.id)
                       isSelectable={true}
                       changeRating={e => { changeRating(e) }}
                     />
-                    {error_rating && <span className="error">Quality Rating is required</span>}
+                    {/* {error_rating && <span className="error">Quality Rating is required</span>} */}
                   </div>
                 
                  {quality_rating > 0 && <div className="form_btn"><button type="submit" className="btn btn_gray" onClick={() => { setError_rating(true) }}>Submit</button></div>}

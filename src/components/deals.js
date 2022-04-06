@@ -151,7 +151,7 @@ const renderDeals = ()=>{
               <Link to="/hotDeals"><button type="button" className="btn_proceed"></button></Link>
               </div>
               <div className="img-gradient">
-              <Link to="/hotDeals"><img src={maskgirl}></img></Link>
+              <Link to="/hotDeals"><img src={maskgirl} ></img></Link>
               </div>
             </div>
           </div>
