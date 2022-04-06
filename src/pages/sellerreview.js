@@ -11,8 +11,7 @@ const Sellerreview = ({location} ) => {
   const [jwt, setjwt] = useState();
   const { register, handleSubmit, errors, reset } = useForm();
   const [quality_rating, setQuality_rating] = useState(0);
-  const [error_rating, setError_rating] = useState(false);
-  const slug = location.state.slug
+  const [error_rating, setError_rating] = useState(false); 
   useEffect(() => {
     setjwt(localStorage.userToken)
     console.log(location)
@@ -41,11 +40,11 @@ const Sellerreview = ({location} ) => {
           toast.success(response.data)
           reset();
           setQuality_rating(0)
-          navigate(`/products/${slug}/`)
+          navigate(`/products/${location.state.slug}/`)
         })
         .catch(function (err) {
           toast.error(err.response.data.message)
-          navigate(`/products/${slug}/`)
+          navigate(`/products/${location.state.slug}/`)
         });
 
     } catch (err) {
