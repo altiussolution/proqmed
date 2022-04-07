@@ -179,7 +179,7 @@ export default function CategoryCard({ data: product, dataClass }) {
 
         {/* <div className="price_off">Upto 50% off</div> */}
                                
-         { <Link to={getProductURL(product['values'].items)} state={product}><img className="w-100" src={`${product['values'].items.image}`} onError={e => (e.target.src = ImageNotFound)}/></Link>}
+         { <Link to={getProductURL(product['values'].items)} state={product}><img className="w-100" src={product['values'].items.image} onError={e => (e.target.src = ImageNotFound)}/></Link>}
         </div>
         <div className="desc_holder">
         <div className="caption">
