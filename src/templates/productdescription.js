@@ -603,7 +603,7 @@ if(proDescription.items.config_options){
                     height: 500
                 }}
                 cursorOffset={{ x: 30, y: -30 }}
-            /> : <img src={altImage}/> }
+            /> : <img src="https://drive.google.com/file/d/1Eb_2DWIoXr5wAOp2ywMziPmc5S4UFb_D/view?usp=sharing"/> }
                   </div>
                 </div>
                 <div className="col-lg-5 col-md-8 col-xs-12 pr-5 product_details">

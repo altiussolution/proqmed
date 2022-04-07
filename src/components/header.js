@@ -265,7 +265,7 @@ const isSticky = (e) => {
               <li key={`${index}_item`}>
                
               <Link to={getProductURL(item)} onClick={() => setActiveClass(false)}>
-                  <span className="searchImg_holder"><img src={item.image} className="search-img" /></span>
+                  <span className="searchImg_holder"><img src={item.image} className="search-img" onError={e => (e.target.src = "https://drive.google.com/file/d/1Eb_2DWIoXr5wAOp2ywMziPmc5S4UFb_D/view?usp=sharing")} /></span>
                   <div className="text-bold">
                   <p dangerouslySetInnerHTML={{__html: makeBold(item.name, localStorage.searchString)}}></p>
                   </div>
