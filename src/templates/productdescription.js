@@ -583,7 +583,7 @@ if(proDescription.items.config_options){
                   <div className="slider_thumb">
                       <ul>
                       { proDescription.items.all_images.map((val, index) => (
-                           <li key={index}><a onClick={() => changeImage(val)}><img src={val} onError={e => (e.target.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png")}/></a></li>
+                           <li key={index}><a onClick={() => changeImage(val)}><img src={val} /></a></li>
                           ))
                       }
                     </ul>
@@ -603,7 +603,7 @@ if(proDescription.items.config_options){
                     height: 500
                 }}
                 cursorOffset={{ x: 30, y: -30 }}
-            /> : <img src="https://drive.google.com/file/d/1Eb_2DWIoXr5wAOp2ywMziPmc5S4UFb_D/view?usp=sharing"/> }
+            /> : <img src="https://drive.google.com/uc?export=view&id=1Eb_2DWIoXr5wAOp2ywMziPmc5S4UFb_D"/> }
                   </div>
                 </div>
                 <div className="col-lg-5 col-md-8 col-xs-12 pr-5 product_details">
