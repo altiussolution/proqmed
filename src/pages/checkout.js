@@ -239,44 +239,67 @@ const CheckOut = ({location}) => {
             toast.error('select address')
             return;
         }
-        if (shippingAddress) {
-
-            delete shippingAddress[selAddIndex]['entity_id']
-            delete shippingAddress[selAddIndex]['default_billing']
-            delete shippingAddress[selAddIndex]['default_shipping']
-            let userAddVal = {
-                "addressInformation": {
-                    "billing_address": shippingAddress[selAddIndex],
-                    "shipping_address": shippingAddress[selAddIndex],
-                    "shipping_carrier_code": "flatrate",
-                    "shipping_method_code": "flatrate"
-                    // "shippingCarrierCode": "apptha",
-                    // "shippingMethodCode": "apptha"
-                }
-            }
-
-            try {
-                axios({
-                    method: "post",
-                    url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine/shipping-information`,
-                    headers: {
-                        'Authorization': `Bearer ${jwt}`
-                    },
-                    data: userAddVal
-                }).then((response) => {
-                    if (response.statusText === "OK" && response.status == 200) {
-                        setCheckout([response.data]);
-                        setKey('profile')// open tab
-                    }
-
-                }).catch((err) => {
-                    console.error(err)
-                })
-            }
-            catch (err) {
-                console.error(err)
+        let data = {
+            "data":{
+                "customer_id":localStorage.customer_id,
+                "post_code": shippingAddress[selAddIndex]['postcode']
             }
         }
+        try {
+            axios({
+                method: "post",
+                url: `${process.env.GATSBY_CART_URL_STARCARE}checkout/productpincodecheck`,
+                headers: {
+                    'Authorization': `Bearer ${jwt}`
+                },
+                data: data
+            }).then((response) => {
+                if (shippingAddress) {
+
+                    delete shippingAddress[selAddIndex]['entity_id']
+                    delete shippingAddress[selAddIndex]['default_billing']
+                    delete shippingAddress[selAddIndex]['default_shipping']
+                    let userAddVal = {
+                        "addressInformation": {
+                            "billing_address": shippingAddress[selAddIndex],
+                            "shipping_address": shippingAddress[selAddIndex],
+                            "shipping_carrier_code": "flatrate",
+                            "shipping_method_code": "flatrate"
+                            // "shippingCarrierCode": "apptha",
+                            // "shippingMethodCode": "apptha"
+                        }
+                    }
+        
+                    try {
+                        axios({
+                            method: "post",
+                            url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine/shipping-information`,
+                            headers: {
+                                'Authorization': `Bearer ${jwt}`
+                            },
+                            data: userAddVal
+                        }).then((response) => {
+                            if (response.statusText === "OK" && response.status == 200) {
+                                setCheckout([response.data]);
+                                setKey('profile')// open tab
+                            }
+        
+                        }).catch((err) => {
+                            console.error(err)
+                        })
+                    }
+                    catch (err) {
+                        console.error(err)
+                    }
+                }
+            }).catch((err) => {
+                toast.error(err.response.data.message)
+            })
+        }
+        catch (err) {
+            console.error(err)
+        }
+       
 
     }
 

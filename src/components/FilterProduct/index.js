@@ -112,29 +112,51 @@ const [unchangem,unchangeMin] = useState(150);
   }, [products]);
 
   const filter = async () => {
-    let tempFilteredProducts;
-    var numbers = [];
-    for (var i = minValue; i <= maxValue; i++) {
-      numbers.push(i);
-    }
-  
-      var result = products.filter(function (prod) {
-        return numbers.some(function (o2) {
-            return Math.round(prod[0].items.final_price) === o2; // return the ones with equal id
-       });
-    });
+    const query = queryString.stringify(filters, { arrayFormat: "index" });
+    if(query=="" && minValue!=25 && maxValue!=75){
+      console.log("gokul")
+      var numbers = [];
+      for (var i = minValue; i <= maxValue; i++) {
+        numbers.push(i);
+      }
     
+        var result = products.filter(function (prod) {
+          return numbers.some(function (o2) {
+              return Math.round(prod[0].items.final_price) === o2; // return the ones with equal id
+         });
+      });
+      let arr1=[];
+      result.forEach(el => {
+        arr1.push(el[0])
+      })
+      await setFilteredProducts(arr1)
+      await setFilterCheckBox(products)
+    }else {
+      let tempFilteredProducts;
+      var numbers = [];
+      for (var i = minValue; i <= maxValue; i++) {
+        numbers.push(i);
+      }
+    
+        var result = products.filter(function (prod) {
+          return numbers.some(function (o2) {
+              return Math.round(prod[0].items.final_price) === o2; // return the ones with equal id
+         });
+      });
+      
+     
+      tempFilteredProducts = filterOperation(result);
+      if(tempFilteredProducts.length!==0){
+        await setFilteredProducts(tempFilteredProducts);
+        await setFilterCheckBox(tempFilteredProducts)
+      }else{
+        setFilteredProducts([])
+        setFilterCheckBox(products)
+      }
+      
+      if (parsing) setParsing(false);
+    }
    
-    tempFilteredProducts = filterOperation(result);
-    if(tempFilteredProducts.length!==0){
-      await setFilteredProducts(tempFilteredProducts);
-      await setFilterCheckBox(tempFilteredProducts)
-    }else{
-      setFilteredProducts([])
-      setFilterCheckBox(products)
-    }
-    
-    if (parsing) setParsing(false);
   };
 
   const filterOperation = products => {

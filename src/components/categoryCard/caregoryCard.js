@@ -6,7 +6,7 @@ import StarRatings from 'react-star-ratings';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ImageNotFound } from "../../assets/not-found.png";
+import { ImageNotFound } from "../../assets/not-found.png"
 import { FaRegHeart } from 'react-icons/fa';
 import { IoIosGitCompare } from "react-icons/io";
 import {getWLCount, wishListCount ,viewCartItems,getCartCount} from './../../utils/apiServices'
@@ -179,7 +179,7 @@ export default function CategoryCard({ data: product, dataClass }) {
 
         {/* <div className="price_off">Upto 50% off</div> */}
                                
-         { <Link to={getProductURL(product['values'].items)} state={product}><img className="w-100" src={product['values'].items.image} onError={e => (e.target.src = ImageNotFound)}/></Link>}
+          <Link to={getProductURL(product['values'].items)} state={product}><img src={product['values'].items.image} onError={e => (e.target.src = ImageNotFound)}/></Link>
         </div>
         <div className="desc_holder">
         <div className="caption">
