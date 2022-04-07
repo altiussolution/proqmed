@@ -91,21 +91,22 @@ const Featuredproducts = () => {
     }, []);
     const addtoCartItems = (sku, id) => {
       if (localStorage.userToken) {
-          const cartItem = {
-              "cartItem": {
+          const data = {
+              "data": {
                   "sku": sku,
                   "qty": qty,
                   "quote_id": quote_id,
+                  "product_id": id
               }
           }
           setButton(true);
           const jwt = localStorage.userToken
-          if (cartItem) {
+          if (data) {
               try {
                   axios({
                       method: 'post',
-                      url: `${process.env.GATSBY_API_BASE_URL_STARCARE}carts/mine/items`,
-                      data: cartItem,
+                      url: `${process.env.GATSBY_CART_URL_STARCARE}addtocart/add_cart`,
+                      data: data,
                       headers: {
                           'Authorization': `Bearer ${jwt}`
                       }
