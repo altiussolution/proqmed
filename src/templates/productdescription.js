@@ -13,6 +13,7 @@ import Modal from 'react-bootstrap/Modal';
 import { getCategoryURL } from "./../utils/url";
 import { useForm } from "react-hook-form";
 import CursorZoom from 'react-cursor-zoom';
+import { altImage } from "../assets/not-found.png";
 import ImageNotFound from "./../assets/car-dealer-loader.gif";
 import SliderImage from 'react-zoom-slider';
 import { Link } from "gatsby"
@@ -342,7 +343,7 @@ const Productdescription = ({ proDescription, routeAss, setcartCount, setWishLis
                 'Authorization': `Bearer ${jwt}`
             },
         }).then((response) => {
-           toast.success(response.response.data.message)
+           toast.success(response)
 
         }).catch((err) => {
             toast.error(err.response.data.message)
@@ -582,7 +583,7 @@ if(proDescription.items.config_options){
                   <div className="slider_thumb">
                       <ul>
                       { proDescription.items.all_images.map((val, index) => (
-                           <li key={index}><a onClick={() => changeImage(val)}><img src={val}/></a></li>
+                           <li key={index}><a onClick={() => changeImage(val)}><img src={val} /></a></li>
                           ))
                       }
                     </ul>
@@ -590,7 +591,7 @@ if(proDescription.items.config_options){
                     
                   </div>
                   <div className="image-wrapper fo-detail">
-                    {data.length > 0 &&  <CursorZoom
+                    {proDescription.items.all_images[0] ? <CursorZoom
                 image={{
                     src: data[0].image,
                     width: 400,
@@ -602,7 +603,7 @@ if(proDescription.items.config_options){
                     height: 500
                 }}
                 cursorOffset={{ x: 30, y: -30 }}
-            />}
+            /> : <img src="https://drive.google.com/uc?export=view&id=1Eb_2DWIoXr5wAOp2ywMziPmc5S4UFb_D"/> }
                   </div>
                 </div>
                 <div className="col-lg-5 col-md-8 col-xs-12 pr-5 product_details">
