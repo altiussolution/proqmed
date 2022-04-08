@@ -244,7 +244,7 @@ const addToList = (type,id) => {
                           <div className="card deal">    
                           
                             
-                              <div className="image_wrapper   ">
+                              <div className="image_wrapper br  ">
                               {/* <div className="actn_btn_holder">                                  
                                   <ul>
                                     <li className="icn"><BiShoppingBag/></li>

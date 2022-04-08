@@ -81,12 +81,12 @@ const Resett = ({location}) => {
       (<div className="login_page">
         <div className="wrapper">
           <div className="login_box">
-            <div className="col-lg-6 col-md-6 col-xs-12 left_side">
+            {/* <div className="col-lg-6 col-md-6 col-xs-12 left_side">
               <img src={sign_bg} alt={"Laptop"} /> 
-            </div>
+            </div> */}
 
-            <div className="col-lg-6 col-md-6 col-xs-12 right_side">
-              <div className="box_content">
+            <div className="col-lg-6 col-md-6 col-xs-12 right_side noflx">
+              <div className="box_content same">
                 <div className="logo mb-3">
                   <Link to="/">
                     <img src={logo} />
