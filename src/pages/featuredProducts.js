@@ -220,7 +220,7 @@ const Featuredproducts = () => {
                             <div className="card">    
                             
                               
-                                <div className="image_wrapper">
+                                <div className="image_wrapper fp">
                                 {/* <div className="actn_btn_holder">                                  
                                     <ul>
                                       <li className="icn"><BiShoppingBag/></li>
