@@ -263,10 +263,13 @@ const FeatureProduct = () => {
                                 </div>
                                   {pcar && <div className="price_right">                                   
                                   <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span className="cart_svg"></span></button>
+  
                                   </div>}
                                   {outpcar && <div className="price_right">                                   
                                   <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span className="cart_svg"></span></button>
+                                  
                                   </div>}
+                                  
                                 </div>
                             </div>
 

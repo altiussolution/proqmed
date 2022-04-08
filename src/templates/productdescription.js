@@ -343,7 +343,7 @@ const Productdescription = ({ proDescription, routeAss, setcartCount, setWishLis
                 'Authorization': `Bearer ${jwt}`
             },
         }).then((response) => {
-           toast.success(response)
+           toast.success("Product Available")
 
         }).catch((err) => {
             toast.error(err.response.data.message)

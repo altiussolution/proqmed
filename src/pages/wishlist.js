@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
 import axios from "axios";
 import PageLoader from '../components/loaders/pageLoader';
+import { getProductURL } from './../utils/url';
+import { Link } from "gatsby";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { wishListCount, addToCart, viewCartItems, getCartCount, getWLCount } from '../utils/apiServices';
@@ -266,10 +268,10 @@ const Wishlist = () => {
                                                                 <div className="product_img">
                                                                 {item.offer_percentage != 0 && <div className="price_off">{Math.round(item.offer_percentage)}% off</div>}
     
-                                                                    <img src={item.image} />
+                                                                <Link to={getProductURL(item)}>   <img src={item.image} /> </Link>
                                                                 </div>
                                                                 <div className="product_desc">
-                                                                    <h3>{item.name}</h3>
+                                                                <Link to={getProductURL(item)}> <h3>{item.name}</h3> </Link>
                                                                     <div className="rating_front">
                                         <StarRatings
                                             rating={Math.round(item.review_count)}

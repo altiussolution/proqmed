@@ -3,6 +3,7 @@ import Layout from '../components/layout';
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "gatsby";
+import { getProductURL } from './../utils/url';
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import ImageNotFound from "./../assets/No_image_available.png.webp";

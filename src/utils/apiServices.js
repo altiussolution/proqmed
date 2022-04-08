@@ -113,7 +113,7 @@ const viewCartItems = () => {
         if(res.statusText === "OK" && res.status === 200){
             for(let i=0;i<res.data.length;i++){
               const resp = await fetch(
-                `${process.env.GATSBY_CART_URL_STARCARE}cart/productstatus/product_id/${res.data[i].product_id}`
+                `${process.env.GATSBY_CART_URL_STARCARE}cart/productstatus/product_id/${res.data[i].id}`
             );
             resi.push(await resp.json());
             }

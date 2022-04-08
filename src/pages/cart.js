@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
 import { navigate } from "gatsby";
 import { deleteCart } from "./../utils/apiServices";
+import { getProductURL } from './../utils/url';
+import { Link } from "gatsby";
 import PageLoader from "../components/loaders/pageLoader";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
@@ -57,10 +59,10 @@ const Cart = () => {
                       console.log(res.data)
                       for(let i=0;i<res.data.length;i++){
                         const resp = await fetch(
-                          `${process.env.GATSBY_CART_URL_STARCARE}cart/productstatus/product_id/${res.data[i].product_id}`
+                          `${process.env.GATSBY_CART_URL_STARCARE}cart/productstatus/product_id/${res.data[i].id}`
                       );  
                       const qtyyy = await fetch(
-                        `${process.env.GATSBY_CART_URL_STARCARE}admin/tierprice/${res.data[i].product_id}`
+                        `${process.env.GATSBY_CART_URL_STARCARE}admin/tierprice/${res.data[i].id}`
                     );           
                       cq.push(await qtyyy.json());       
                       resi.push(await resp.json());
@@ -311,8 +313,8 @@ const Cart = () => {
                   return (
                     <tbody>
                     <tr key={cart.product_id}>
-                      <td className="product_img"><img src={cart.image} /></td>
-                      <td><p>{cart.product_name}</p></td>
+                      <td className="product_img"><Link to={getProductURL(cart)}> <img src={cart.image} /></Link></td>
+                      <td><Link to={getProductURL(cart)}><p>{cart.name}</p></Link></td>
                       <td>${parseFloat(cart.price).toFixed(2)}</td>
                       <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart,index) }}/></td>
                         <td><p className="green">{cart.status[index]}</p></td>

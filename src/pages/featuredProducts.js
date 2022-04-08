@@ -239,7 +239,7 @@ const Featuredproducts = () => {
                                 </div>                                
                               
                                 <div className="price_holder">
-                                <p className="product_title">{data.name}</p>
+                                <Link to={getProductURL(data)}>  <p className="product_title">{data.name}</p></Link>
                                 <div className="price_left">                                  
                                     <div className="product_amt">
                                     {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
@@ -263,9 +263,11 @@ const Featuredproducts = () => {
                                 </div>
                                    {pcar && <div className="price_right">                                   
                                   <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
+                                  { <Link  to={getProductURL(data)} state={data} className="btn outline-1">View Detail</Link> }
                                   </div>}
                                   {outpcar && <div className="price_right">                                   
                                   <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
+                                  { <Link  to={getProductURL(data)} state={data} className="btn outline-1">View Detail</Link> }
                                   </div>}
                                 </div>
                             </div>

@@ -117,6 +117,13 @@ const Products = ({ pageContext, location , props }) => {
     const fetchProducts = async (id) => {
       setLoading(true)
       try {
+        const resp = await axios(
+          `${process.env.GATSBY_NODE_URL_STARCARE}getproducts/${id}/${localStorage.customer_id}`,
+        );
+      } catch (er){
+
+      }
+      try {
         const response = await axios(
           // `${process.env.GATSBY_NODE_URL_STARCARE}data/products/${id}.json`,
           // `${process.env.GATSBY_CART_URL}admin/products/${id}`
