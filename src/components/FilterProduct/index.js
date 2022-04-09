@@ -114,7 +114,8 @@ const [unchangem,unchangeMin] = useState(150);
   const filter = async () => {
     const query = queryString.stringify(filters, { arrayFormat: "index" });
     if(query=="" && minValue!=25 && maxValue!=75){
-      console.log("gokul")
+      setChecked(false)
+      console.log("gokul",minValue,maxValue)
       var numbers = [];
       for (var i = minValue; i <= maxValue; i++) {
         numbers.push(i);
@@ -205,7 +206,7 @@ const [unchangem,unchangeMin] = useState(150);
      if(e.target.checked){
        setChecked(true)
      }else {
-      setChecked(false)
+      
      }
 
   };
@@ -227,12 +228,9 @@ const [unchangem,unchangeMin] = useState(150);
   };
 
   const filterOperationPrice = async(products,numbers) => {
-    
+    console.log(numbers)
+    console.log(filterCheckBox,checked)
     let arr1 = [];
-    
-    let data=[]
-    console.log(checked)
-    console.log(filterCheckBox)
    if(checked){
      var res = filterCheckBox.filter(function (prod){
       return numbers.some(function (o2) {     
@@ -241,7 +239,13 @@ const [unchangem,unchangeMin] = useState(150);
       
  });
      })
-    await setFilteredProducts(res);
+     if(res.length){
+      await setFilteredProducts(res);
+     }else {
+      handleFilterChange("empty");
+     }
+    
+    if (parsing) setParsing(false);
    } else {
     var result = filterCheckBox.filter(function (prod) {
       return numbers.some(function (o2) {     
@@ -251,25 +255,18 @@ const [unchangem,unchangeMin] = useState(150);
      });
   });
   // console.log(numbers,"numbers output")
-
+  console.log(result)
    result.forEach(el => {
     arr1.push(el[0])
-    arr.push(el[0].items.final_price)
-    const product = convertToObject(el.flat());
-    // console.log(product)
-    for (let prop in product) {
-      if (prop !== "items" && prop !=="Special Price") {
-        displayFilters[prop] = displayFilters[prop]
-          ? displayFilters[prop].add(product[prop])
-          : new Set([product[prop]]);
-         
-
-      }
-    }
   }); 
-  await setFilteredProducts(arr1);
+  if(arr1.length){
+    await setFilteredProducts(arr1);
+  } else {
+    handleFilterChange("empty");
+  }
+  
   //await setFiltersToDisplay(displayFilters);
-   if (parsing) setParsing(false);
+  //  if (parsing) setParsing(false);
    }
    
   }
@@ -301,7 +298,7 @@ const renderPriceFilters = () => {
 			step={1}
 			ruler={false}
 			label={true}
-			preventWheel={false}
+			preventWheel={true}
 			minValue={minValue}
 			maxValue={maxValue}
 			onInput={(e) => {
