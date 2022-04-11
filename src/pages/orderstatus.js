@@ -171,20 +171,20 @@ const Invoice = ({ location }) => {
                                 <table className="table table-striped summary">
                 <div class="table_below det">
                 {
-                    invoices.map((item, index) => {
+                    orders.map((item, index) => {
                         return (index == 0 ?
                             <div>
                                 <tr key={index}>
-                                    <th>Subtotal</th> <td>{Math.round(item.Subtotal)}</td>
+                                    <th>Subtotal</th> <td>{Math.round(item.sub_total)}</td>
                                 </tr>
                                 <tr>
-                                    <th>TaxAmount</th><td>{Math.round(item.Tax_Amount)}</td>
+                                    <th>TaxAmount</th><td>{Math.round(item.tax_total)}</td>
                                 </tr>
                                 <tr>
-                                    <th>Shipping &amp; Handling</th><td>${Math.round(item.Shipping_Amount)}</td>
+                                    <th>Shipping &amp; Handling</th><td>${Math.round(item.shipping_total)}</td>
                                 </tr>
                                 <tr>
-                                    <th>Grand Total</th><td>${Math.round(item.Grand_Total)}</td>
+                                    <th>Grand Total</th><td>${Math.round(item.order_total)}</td>
                                 </tr>
                             </div> : <span></span>)
                     })
