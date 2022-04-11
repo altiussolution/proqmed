@@ -163,7 +163,7 @@ const TrendingProducts = () => {
     
     const renderProducts = () => {
       if(trendingProducts){
-      return  <div className="row products_fp">  
+      return  <div className="row products_fp tp">  
       {     trendingProducts.length > 0 ?  
           trendingProducts.map((data,index) => (
               <div className={`item product_item ${viewClass}`} key={`${data.name}_${index}`}>
@@ -177,7 +177,7 @@ const TrendingProducts = () => {
                             <li><a onClick={() => addToList(2,data.id)}><FaRegHeart /></a></li>
                           </ul>
                       </div>}
-                  <div className="card">    
+                  <div className="card tp">    
                   
                     
                       <div className="image_wrapper">
@@ -196,8 +196,11 @@ const TrendingProducts = () => {
                           
 
                       </div>                                
-                      <Link to={getProductURL(data)}> <p className="product_title">{data.name}</p></Link>
+                      
                       <div className="price_holder">
+                      <Link to={getProductURL(data)}> <p className="product_title">{data.name}</p></Link>
+
+                      <div className="fo-fpflx">
                       <div className="price_left">                                  
                           <div className="product_amt">
                           {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
@@ -219,6 +222,10 @@ const TrendingProducts = () => {
                           
                           </div>
                       </div>
+
+                      
+
+                      
                          {pcar && <div className="price_right">                                   
                         <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
                         { <Link  to={getProductURL(data)} state={data} className="btn outline-1">View Detail</Link> }
@@ -227,6 +234,8 @@ const TrendingProducts = () => {
                         <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
                         { <Link  to={getProductURL(data)} state={data} className="btn outline-1">View Detail</Link> }
                         </div>}
+
+                        </div>
                       </div>
                   </div>
 
