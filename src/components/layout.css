@@ -1525,7 +1525,19 @@ a.save_link:hover, a.close_link:hover {
 /* Responsive styles */
 
 
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px){
+  .row.products_fp.tp {
+    justify-content: space-between;
+}
+
+.category_container .cat_scroll .products_fp.tp .product_item {
+    width: 31.9% !important;
+}
+}
+
+
 @media only screen and (max-width:1024px) {
+
   .content-wrap table.table {
     margin-left: 20px !important;
   }
@@ -7946,6 +7958,10 @@ body .login_page .right_side .box_content.same{
 }
 
 @media only screen and (max-width:600px) {
+
+  main.whishlist_page {
+    margin-top:15px; 
+    }
 
   .top.fo-f {
     flex-direction: column;
