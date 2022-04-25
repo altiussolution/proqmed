@@ -92,15 +92,15 @@ const [unchangem,unchangeMin] = useState(150);
     }
     // Create displayFilters from Products listing
     products.forEach(el => {
-      arr.push(el[0].items.prices[groupId]['final_price'])
+      arr.push(el[0].items.prices[localStorage.group]['final_price'])
       
       const product = convertToObject(el.flat());
       // console.log(product)
       for (let prop in product) {
         if (prop !== "items" && prop !=="Special Price") {
           displayFilters[prop] = displayFilters[prop]
-            ? displayFilters[prop].add(prop=="Offer Percentage" ? product[prop][groupId]:product[prop])
-            : new Set([prop=="Offer Percentage" ? product[prop][groupId]:product[prop]]);
+            ? displayFilters[prop].add(prop=="Offer Percentage" ? product[prop][localStorage.group]:product[prop])
+            : new Set([prop=="Offer Percentage" ? product[prop][localStorage.group]:product[prop]]);
 
         }
       }
@@ -124,7 +124,7 @@ const [unchangem,unchangeMin] = useState(150);
     
         var result = products.filter(function (prod) {
           return numbers.some(function (o2) {
-              return Math.round(prod[0].items.prices[groupId]['final_price']) === o2; // return the ones with equal id
+              return Math.round(prod[0].items.prices[localStorage.group]['final_price']) === o2; // return the ones with equal id
          });
       });
       let arr1=[];
@@ -142,7 +142,7 @@ const [unchangem,unchangeMin] = useState(150);
     
         var result = products.filter(function (prod) {
           return numbers.some(function (o2) {
-              return Math.round(prod[0].items.prices[groupId]['final_price']) === o2; // return the ones with equal id
+              return Math.round(prod[0].items.prices[localStorage.group]['final_price']) === o2; // return the ones with equal id
          });
       });
       
@@ -168,14 +168,14 @@ const [unchangem,unchangeMin] = useState(150);
       products.forEach(el => {
         if (index === 0) {
           const product = convertToObject(el.flat());
-          if (product[prop] && filters[prop].includes(prop=="Offer Percentage" ? product[prop][groupId]:product[prop])) {
+          if (product[prop] && filters[prop].includes(prop=="Offer Percentage" ? product[prop][localStorage.group]:product[prop])) {
             tempFilteredProducts = tempFilteredProducts
               .filter(item => item.items.id !== product.items.id)
               .concat(product);
           }
         } else {
           tempFilteredProducts = tempFilteredProducts.filter(product => {
-            return product[prop] && filters[prop].includes(prop=="Offer Percentage" ? product[prop][groupId]:product[prop]);
+            return product[prop] && filters[prop].includes(prop=="Offer Percentage" ? product[prop][localStorage.group]:product[prop]);
           });
         }  
       });
@@ -236,7 +236,7 @@ const [unchangem,unchangeMin] = useState(150);
    if(checked){
      var res = filterCheckBox.filter(function (prod){
       return numbers.some(function (o2) {     
-        return Math.round(prod.items.prices[groupId]['final_price']) === o2; // return the ones with equal id
+        return Math.round(prod.items.prices[localStorage.group]['final_price']) === o2; // return the ones with equal id
       
       
  });
@@ -251,7 +251,7 @@ const [unchangem,unchangeMin] = useState(150);
    } else {
     var result = filterCheckBox.filter(function (prod) {
       return numbers.some(function (o2) {     
-            return Math.round(prod[0].items.prices[groupId]['final_price']) === o2; // return the ones with equal id
+            return Math.round(prod[0].items.prices[localStorage.group]['final_price']) === o2; // return the ones with equal id
           
           
      });
