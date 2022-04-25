@@ -291,10 +291,10 @@ return (
   <div class="container padd">
       <div class="row">
           <div class="col-lg-4 col-md-12 col-sm-12">
-              <div class="profile-sec">
+              <div className="profile-sec">
               <div className="fo-deflx">
               {profilepic.logo ? <img src={profilepic.logo}/>: <div><img src={noimage}/></div>}                  </div>
-                  <div class="name">
+                  <div className="name">
                       <span>Hello</span>
                       <p>{username}</p> 
                   </div>
@@ -302,8 +302,8 @@ return (
   
               <div class="profile-sec details">
                 
-                  <h4><Link to="/orders"><a><span><img src={order}/></span>MY ORDERS</a> </Link></h4>
-                <h4><span><img src={account}/></span><Link to="/profile"><a> ACCOUNT SETTINGS</a></Link></h4>
+                  <h4><Link to="/orders"><span><img src={order}/></span>MY ORDERS </Link></h4>
+                <h4><span><img src={account}/></span><Link to="/profile"> ACCOUNT SETTINGS</Link></h4>
                 <ul>
                     <li><Link to="/profile">Profile Information</Link></li>
                     <li><Link to="/myAddress">Manage Addresses</Link></li>

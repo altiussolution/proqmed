@@ -84,14 +84,15 @@ const Products = ({ pageContext, location , props }) => {
     try {
       await axios({
           method: 'get',
-          url: `${process.env.GATSBY_CART_URL_STARCARE}admin/${selecturl}/${id}/${localStorage.customer_id}`,
+          // url: `${process.env.GATSBY_CART_URL_STARCARE}admin/products/${id}`,
+          url: `${process.env.GATSBY_NODE_URL_STARCARE}data/products/${id}.json`
       }).then((res) => {
           if (res.statusText === "OK" && res.status == 200) {
-            for(let response of res.data[0]){
-              selectRes.push(response[0])
-            }
-             setProducts(selectRes);
-            console.log(selectRes) 
+            // for(let response of res.data[0]){
+            //   selectRes.push(response[0])
+            // }
+            console.log(res.data)
+             setProducts(res.data);
             setLoading(false);
           }
       }).catch((err) => {
@@ -116,18 +117,18 @@ const Products = ({ pageContext, location , props }) => {
     // await checkUrl() 
     const fetchProducts = async (id) => {
       setLoading(true)
-      try {
-        const resp = await axios(
-          `${process.env.GATSBY_NODE_URL_STARCARE}getproducts/${id}/${localStorage.customer_id}`,
-        );
-      } catch (er){
+      // try {
+      //   const resp = await axios(
+      //     `${process.env.GATSBY_NODE_URL_STARCARE}getproducts/${id}`,
+      //   );
+      // } catch (er){
 
-      }
+      // }
       try {
         const response = await axios(
           // `${process.env.GATSBY_NODE_URL_STARCARE}data/products/${id}.json`,
           // `${process.env.GATSBY_CART_URL}admin/products/${id}`
-          `${process.env.GATSBY_CART_URL_STARCARE}admin/products/${id}/${localStorage.customer_id}`,
+          `${process.env.GATSBY_CART_URL_STARCARE}admin/products/${id}`,
         );
         // if (!ignore) {
 
@@ -143,38 +144,39 @@ const Products = ({ pageContext, location , props }) => {
             setLoading(false);
 
           }
-          // setProducts(productList);         
+          console.log(productList)
+              
           setLoading(false);
-          if (checkLogin()) {
-            axios({
-              method: "get",
-              url: `${process.env.GATSBY_CART_URL_STARCARE}admin/compulsorylogincustomer/${localStorage.customer_id}`,
-            }).then((res) => {
-              setcategoryUrl(res.data)
-              productList.map(product => {
-                const data = convertToObject(product.flat());
-                let URL;
-                 res.data.map(cusUrl=>{
-                  if(data.items.url_key === cusUrl.url) return URL = cusUrl.url             
-                 })
-                 if(data.items.url_key !== URL){
-                  setProductTemp(productList)
-                  setProducts(productList)
-                  setLoading(false);
-                 } else {
-                  setProductTemp([])
-                  setProducts([])
-                  setLoading(false);
-                 }  
-                });
-            }).catch((err) => {
-              console.error(err);
-            });
-          } else {
-            setProductTemp(productList)
-            setProducts(productList)
-            setLoading(false);
-          }
+          // if (checkLogin()) {
+          //   axios({
+          //     method: "get",
+          //     url: `${process.env.GATSBY_CART_URL_STARCARE}admin/compulsorylogincustomer/${localStorage.customer_id}`,
+          //   }).then((res) => {
+          //     setcategoryUrl(res.data)
+          //     productList.map(product => {
+          //       const data = convertToObject(product.flat());
+          //       let URL;
+          //        res.data.map(cusUrl=>{
+          //         if(data.items.url_key === cusUrl.url) return URL = cusUrl.url             
+          //        })
+          //        if(data.items.url_key !== URL){
+          //         setProductTemp(productList)
+          //         setProducts(productList)
+          //         setLoading(false);
+          //        } else {
+          //         setProductTemp([])
+          //         setProducts([])
+          //         setLoading(false);
+          //        }  
+          //       });
+          //   }).catch((err) => {
+          //     console.error(err);
+          //   });
+          // } else {
+          //   setProductTemp(productList)
+          //   setProducts(productList)
+          //   setLoading(false);
+          // }
         // }
       } catch (err) {
         // if (!ignore) {

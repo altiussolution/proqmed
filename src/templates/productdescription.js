@@ -53,6 +53,7 @@ const Productdescription = ({ proDescription, routeAss, setcartCount, setWishLis
     const [outpcar,outpercart] = useState(false);
     const [outpcom,outpercomp] = useState(false);
     const [pincode,Pin] = useState("");
+    const grpId = localStorage.group;
   const [data, setData] = useState([
     {
       image: (ImageNotFound),
@@ -673,10 +674,10 @@ if(proDescription.items.config_options){
                             <span className="price">${Math.round(normal_price)}</span>
 } */}
 {/* {proDescription.items.strike_price ==null && newprice()} */}
- <span  className="price">${Math.round(proDescription.items.final_price)}</span>
+ <span  className="price">${Math.round(proDescription.items.prices[grpId]['final_price'])}</span>
 
 
-                       {proDescription.items.strike_price !=null && <span className="price"><strike>${Math.round(proDescription.items.strike_price)}</strike></span>}
+                       {proDescription.items.prices[grpId]['strike_price'] !=null && <span className="price"><strike>${Math.round(proDescription.items.prices[grpId]['strike_price'])}</strike></span>}
                        {/* <span className="price"><strike>$0</strike></span> */}
 </div>
 

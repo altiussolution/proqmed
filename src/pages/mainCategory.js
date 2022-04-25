@@ -2,6 +2,7 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import React, { useRef, useState, useEffect } from "react";
 import Layout from "../components/layout";
 import { getCategoryURL } from "../utils/url";
+import axios from "axios";
 import "./../templates/categorylist.css";
 import ImageNotFound from "./../assets/not-found.png"
 
@@ -11,6 +12,7 @@ import FeatureProduct from "../components/featureProduct";
 
 const MainCategory = () => {
   const [perm,catperm] = useState();
+  const [categories,setCats] = useState([]);
   const data = useStaticQuery(graphql`
     {
       allCategory {
@@ -33,34 +35,40 @@ const MainCategory = () => {
 console.log(mainCategory)
 useEffect(() => {
   catperm(localStorage.category_permissions)
+  axios.get( 
+    `http://15.207.190.73/proqmed/rest/V1/altius/categories?rootCategoryId=13`
+  ).then(async (response) => {
+    
+    setCats(response.data.children_data)
+    
+  })
 }, []);
   const renderCategories = () => {
-    
-    let mainCategory3 = mainCategory;
+    let mainCategory3 = categories;
     let catFromLocal = perm
     if(catFromLocal){
       var allowedCat = catFromLocal.split(',').map(function(item) {
         return parseInt(item, 10);
       });
-      mainCategory3 = mainCategory.filter((o) => allowedCat.includes(+o.node.id));
+      mainCategory3 = categories.filter((o) => allowedCat.includes(+o.id));
     return <div id="products" className="row list-group catgoryPage">
       {
         mainCategory3.map((el, index) => (
-          <Link to={getCategoryURL(el.node)}
+          <Link to={getCategoryURL(el)}
             key={index} className="item product_item">
             <div className="thumbnail">
               <div className="product_img">
-                <img className="img-fluid" src={`${el.node.image}`} onError={e => (e.target.src = ImageNotFound)}  />
+                <img className="img-fluid" src={`${el.image}`} onError={e => (e.target.src = ImageNotFound)}  />
               </div>
               <div className="caption">
                 <p className="product_text">
-                  {el.node.name}
+                  {el.name}
                 </p>
               </div>
             </div>
             <ul className="sub_categoriesList">
               {
-                el.node.grand_child.map((e, index) => (
+                el.children_data.map((e, index) => (
                   <li key={e.name}><Link className="sub_categoriesItem" to={getCategoryURL(e)}>{e.name}</Link></li>
                 ))
               }
@@ -72,22 +80,22 @@ useEffect(() => {
     }else {
       return <div id="products" className="row list-group catgoryPage">
       {
-        mainCategory.map((el, index) => (
-          <Link to={getCategoryURL(el.node)}
+        categories.map((el, index) => (
+          <Link to={getCategoryURL(el)}
             key={index} className="item product_item">
             <div className="thumbnail">
               <div className="product_img">
-                <img className="img-fluid" src={`${el.node.image}`} onError={e => (e.target.src = ImageNotFound)}  />
+                <img className="img-fluid" src={`${el.image}`} onError={e => (e.target.src = ImageNotFound)}  />
               </div>
               <div className="caption">
                 <p className="product_text">
-                  {el.node.name}
+                  {el.name}
                 </p>
               </div>
             </div>
             <ul className="sub_categoriesList">
               {
-                el.node.grand_child.map((e, index) => (
+                el.children_data.map((e, index) => (
                   <li key={e.name}><Link className="sub_categoriesItem" to={getCategoryURL(e)}>{e.name}</Link></li>
                 ))
               }

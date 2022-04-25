@@ -62,6 +62,7 @@ const SignIn = (props) => {
               }
               // Files();
               localStorage.setItem('userToken', response.data[0]['token']);
+              localStorage.setItem('group', response.data[0]['customer_group']);
               localStorage.setItem('email', response.data[0]['email']);
               localStorage.setItem('customer_id', response.data[0]['customer_id']);
               localStorage.setItem('user_name', response.data[0]['name'])

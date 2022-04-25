@@ -311,8 +311,8 @@ const Cart = () => {
                 </thead>
                 {cartItems.map((cart, index)  => {
                   return (
-                    <tbody>
-                    <tr key={cart.product_id}>
+                    <tbody key={index}>
+                    <tr>
                       <td className="product_img"><Link to={getProductURL(cart)}> <img src={cart.image} /></Link></td>
                       <td><Link to={getProductURL(cart)}><p>{cart.name}</p></Link></td>
                       <td>${parseFloat(cart.price).toFixed(2)}</td>

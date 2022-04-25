@@ -262,11 +262,11 @@ const Featuredproducts = () => {
                                     </div>
                                 </div>
                                    {pcar && <div className="price_right">                                   
-                                  <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
+                                  <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span className="cart_svg"></span></button>
                                   { <Link  to={getProductURL(data)} state={data} className="btn outline-1">View Detail</Link> }
                                   </div>}
                                   {outpcar && <div className="price_right">                                   
-                                  <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span class="cart_svg"></span></button>
+                                  <button className="addtocart" onClick={() => addtoCartItems(data.sku, data.id)}><span className="cart_svg"></span></button>
                                   { <Link  to={getProductURL(data)} state={data} className="btn outline-1">View Detail</Link> }
                                   </div>}
                                 </div>

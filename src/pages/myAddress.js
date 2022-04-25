@@ -208,8 +208,8 @@ const deleteAddress = (id) => {
             </div>
 
             <div className="profile-sec details">
-            <h4><Link to="/orders"><a><span><img src={order}/></span>MY ORDERS</a> </Link></h4>
-            <h4><Link to="/profile"><a><span><img src={account}/></span> ACCOUNT SETTINGS</a></Link></h4>
+            <h4><Link to="/orders"><span><img src={order}/></span>MY ORDERS </Link></h4>
+            <h4><Link to="/profile"><span><img src={account}/></span> ACCOUNT SETTINGS</Link></h4>
                 <ul>
                     <li><Link to="/profile">Profile Information</Link></li>
                     <li className="fo-active-bg"><Link to="/myAddress">Manage Addresses</Link></li>
@@ -326,7 +326,7 @@ const deleteAddress = (id) => {
                                       
                                     </ul>
                                   </div> */}
-                                  <li><Link to="/Address/" state={{data:add,prevPath:location.pathname}} ><a><i className="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></Link></li>
+                                  <li><Link to="/Address/" state={{data:add,prevPath:location.pathname}} ><i className="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</Link></li>
                                       <button onClick={() => {deleteAddress(add.entity_id)}}><a ><i className="fa fa-trash-o" aria-hidden="true"></i>
                                         Delete</a></button>
                             </div>

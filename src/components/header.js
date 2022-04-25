@@ -55,6 +55,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
   const [orderno,Orderstats] = useState(false)
   const [order,Orderstat] = useState(false)
   const [addCartBtn, setCartBtn] = useState(false)
+  const [categories, setCats] = useState([]);
 
   useEffect(() => {
     setIsLogged(checkLogin());
@@ -78,7 +79,13 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
       Orderstats(orderhis)
       
     }
-    
+    axios.get( 
+      `http://15.207.190.73/proqmed/rest/V1/altius/categories?rootCategoryId=13`
+    ).then(async (response) => {
+      
+      setCats(response.data.children_data)
+      
+    })
     window.addEventListener('scroll', isSticky);
     return () => {
         window.removeEventListener('scroll', isSticky);
@@ -428,18 +435,17 @@ const isSticky = (e) => {
   }
 
   const renderCategories = (type) => {
-
-    const elements_in_each_row = Math.round(allCategory.length / 3);
+    const elements_in_each_row = Math.round(categories.length / 3);
     const list = [];
     const topSelected = [];
-    let result = allCategory;
+    let result = categories;
     if(jwt){
       let catFromLocal = localStorage.category_permissions
       if(catFromLocal){
         var allowedCat = catFromLocal.split(',').map(function(item) {
           return parseInt(item, 10);
         });
-        result = allCategory.filter((o) => allowedCat.includes(+o.node.id));
+        result = categories.filter((o) => allowedCat.includes(+o.id));
       }
     }
     for (let i = 0; i < result.length; i += elements_in_each_row) {
@@ -456,10 +462,10 @@ const isSticky = (e) => {
           {
             list.map((el, index) => (
               el.map(item => (
-                <figure key={item.node.id} className="itm_list">
-                  <Link to={getCategoryURL(item.node)} className="itm_list_title">{item.node.name}</Link>
+                <figure key={item.id} className="itm_list">
+                  <Link to={getCategoryURL(item)} className="itm_list_title">{item.name}</Link>
                   {
-                    item.node.grand_child.map(grand_child => (
+                    item.children_data.map(grand_child => (
                       <span key={grand_child.id} ><Link to={getCategoryURL(grand_child)} >{grand_child.name}</Link></span>
                     ))
                   }
@@ -477,8 +483,8 @@ const isSticky = (e) => {
         {
           topSelected.map((el, index) => (
             el.map(item => (
-              <Link to={getCategoryURL(item.node)} key={item.node.id}
-                activeClassName="active" >{item.node.name}</Link>
+              <Link to={getCategoryURL(item.node)} key={item.id}
+                activeClassName="active" >{item.name}</Link>
             ))
           ))
         }

@@ -120,8 +120,8 @@ const Product = (props,location)  => {
         setLoading(true);   
         try {  
           const res = await axios.get(
-            `${process.env.GATSBY_CART_URL_STARCARE}admin/productsattributes/${id}/${localStorage.customer_id}`
-            //`${process.env.GATSBY_NODE_URL_STARCARE}data/singleproduct/${id}.json`
+            // `${process.env.GATSBY_CART_URL_STARCARE}admin/productsattributes/${id}/${localStorage.customer_id}`
+            `${process.env.GATSBY_NODE_URL_STARCARE}data/singleproduct/${id}.json`
           );
           const data = convertToObject(res.data);
           console.log(data)
@@ -449,7 +449,7 @@ return (
                     
                     </h2>
 <div className="fo-scroll">
-                    <table class="table table-borderless">
+                    <table className="table table-borderless">
   <thead>
     <tr>
       <th>Product Image</th>
@@ -462,7 +462,7 @@ return (
   </thead>
   {
   sellerprod.map((quote, index) => (
-  <tbody>
+  <tbody key={index}>
     <tr>
       <td> 
         <div className="image-sec">

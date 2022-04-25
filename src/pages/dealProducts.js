@@ -155,7 +155,7 @@ const renderProducts = () => {
      return <div className="row products_fp">   
          {       
              sub.map((data,index) => (
-                 <div className="item product_item sample">
+                 <div className="item product_item sample" key={index}>
                       
                      {/* {data.sub_category.sub_category_sub.map((value,index)=>(   */}
                       <>  

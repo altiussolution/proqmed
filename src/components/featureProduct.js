@@ -68,6 +68,7 @@ const FeatureProduct = () => {
     const [outpcar,outpercart] = useState(false);
     const [permits,setPermit] = useState();
     useEffect(() => {
+      let isMounted = true;   
         setCustomerId(localStorage.customer_id)
         setJwt(localStorage.userToken)
         if(!localStorage.permissions){
@@ -119,6 +120,7 @@ const FeatureProduct = () => {
             await setFeatureProducts(json);
         };
         fetchFeature();
+        return () => { isMounted = false };
     }, []);
     
          

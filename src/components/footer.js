@@ -25,7 +25,7 @@ const Footer = () => {
     const [email,setemail] = useState();
     const [isLoged, setIsLoged] = useState(false);
     const [jwt, setJwt] = useState("")
-
+    const [categories,setCats] = useState([]);
     const data = useStaticQuery(graphql`
     {
       allCategory {
@@ -49,6 +49,13 @@ const Footer = () => {
     }
     `)
     useEffect(() =>{
+      axios.get( 
+        `http://15.207.190.73/proqmed/rest/V1/altius/categories?rootCategoryId=13`
+      ).then(async (response) => {
+        
+        setCats(response.data.children_data)
+        
+      })
         setJwt(localStorage.userToken);
 
         if(localStorage.userToken){
@@ -84,7 +91,8 @@ const Footer = () => {
         }
     }
     const rendercategory = () =>{
-        let allCategory = data.allCategory.edges;
+     
+        let allCategory = categories;
         const elements_in_each_row = Math.round(allCategory.length / 3);
         const list = [];
         const topSelected = [];
@@ -95,7 +103,7 @@ const Footer = () => {
         var allowedCat = catFromLocal.split(',').map(function(item) {
           return parseInt(item, 10);
         });
-        result = allCategory.filter((o) => allowedCat.includes(+o.node.id));
+        result = allCategory.filter((o) => allowedCat.includes(+o.id));
       }
     }
     for (let i = 0; i < result.length; i += elements_in_each_row) {
@@ -116,8 +124,8 @@ const Footer = () => {
           {     
             list.map((el, index) => (    
               el.map(item => (       
-                <li key={item.node.id}>   
-                  <Link to={getCategoryURL(item.node)}>{item.node.name}</Link>
+                <li key={item.id}>   
+                  <Link to={getCategoryURL(item)}>{item.name}</Link>
                   
                 </li>  
               ))

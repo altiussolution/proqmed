@@ -166,31 +166,25 @@ const Invoice = ({ location }) => {
                                         })
                                     }
                                 </table>
-                                <div >
-                                
+                                <div>
+                                <div className="table_below det">
                                 <table className="table table-striped summary">
-                <div class="table_below det">
-                {
-                    orders.map((item, index) => {
-                        return (index == 0 ?
-                            <div>
-                                <tr key={index}>
-                                    <th>Subtotal</th> <td>{Math.round(item.sub_total)}</td>
+                                <tbody>
+                                <tr>
+                                    <th>Subtotal</th><td>{Math.round(items.sub_total)}</td>
                                 </tr>
                                 <tr>
-                                    <th>TaxAmount</th><td>{Math.round(item.tax_total)}</td>
+                                    <th>TaxAmount</th><td>{Math.round(items.tax_total)}</td>
                                 </tr>
                                 <tr>
-                                    <th>Shipping &amp; Handling</th><td>${Math.round(item.shipping_total)}</td>
+                                    <th>Shipping &amp; Handling</th><td>${Math.round(items.shipping_total)}</td>
                                 </tr>
                                 <tr>
-                                    <th>Grand Total</th><td>${Math.round(item.order_total)}</td>
+                                    <th>Grand Total</th><td>${Math.round(items.order_total)}</td>
                                 </tr>
-                            </div> : <span></span>)
-                    })
-                }
-                </div>
+                                </tbody>
             </table>
+            </div>
                                 </div>
                             
                         </div>
@@ -234,7 +228,7 @@ const Invoice = ({ location }) => {
                                         })
                                     }
                                 </table>
-                                <div >
+                                <div>
         {/* <ReactToPrint
      trigger={() => { return <p>Print Shipment</p> ; }}     
       content={() => componentRef.current}
@@ -384,15 +378,14 @@ const Invoice = ({ location }) => {
        
     }
     const InvoiceTotal = () => {
-        return <div>
+        return <div className="table_below det">
             <table className="table table-striped summary">
-                <div class="table_below det">
                 {
                     invoices.map((item, index) => {
                         return (index == 0 ?
-                            <div>
-                                <tr key={index}>
-                                    <th>Subtotal</th> <td>{Math.round(item.Subtotal)}</td>
+                            <tbody key={index}>
+                                <tr>
+                                    <th>Subtotal</th><td>{Math.round(item.Subtotal)}</td>
                                 </tr>
                                 <tr>
                                     <th>TaxAmount</th><td>{Math.round(item.Tax_Amount)}</td>
@@ -403,10 +396,9 @@ const Invoice = ({ location }) => {
                                 <tr>
                                     <th>Grand Total</th><td>${Math.round(item.Grand_Total)}</td>
                                 </tr>
-                            </div> : <span></span>)
+                            </tbody> : <tbody></tbody>)
                     })
                 }
-                </div>
             </table>
         </div>
     }

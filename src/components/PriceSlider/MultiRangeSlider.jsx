@@ -233,7 +233,9 @@ const MultiRangeSlider = React.forwardRef((props, ref) => {
 		set_barMax(_barMax);
 		triggerInput(_minValue, _maxValue);
 	};
+     const hello = () => {
 
+	 }
 	const triggerInput = (minValue, maxValue) => {
 		let retObj = { min, max, minValue, maxValue };
 		props.onInput && props.onInput(retObj);
@@ -259,7 +261,7 @@ const MultiRangeSlider = React.forwardRef((props, ref) => {
 		<div className={baseClassName} onWheel={onMouseWheel} ref={ref}>
 			<div className='bar' ref={refThis}>
 				<div className='bar-left' style={{ width: barMin + '%' }} onClick={onBarLeftClick}></div>
-				<input className='input-type-range input-type-range-min' type='range' min={min} max={max} step={step} value={minValue} onInput={onInputMinChange} />
+				<input className='input-type-range input-type-range-min' type='range' min={min} max={max} onChange={hello} step={step} value={minValue} onInput={onInputMinChange} />
 				<div className='thumb thumb-left' onMouseDown={onLeftThumbMousedown} onTouchStart={onLeftThumbMousedown}>
 					<div className='min-value'>{minValue}</div>
 				</div>
@@ -267,7 +269,7 @@ const MultiRangeSlider = React.forwardRef((props, ref) => {
 					<div className='bar-inner-left' onClick={onInnerBarLeftClick}></div>
 					<div className='bar-inner-right' onClick={onInnerBarRightClick}></div>
 				</div>
-				<input className='input-type-range input-type-range-max' type='range' min={min} max={max} step={step} value={maxValue} onInput={onInputMaxChange} />
+				<input className='input-type-range input-type-range-max' type='range' min={min} max={max} step={step} onChange={hello} value={maxValue} onInput={onInputMaxChange} />
 				<div className='thumb thumb-right' onMouseDown={onRightThumbMousedown} onTouchStart={onRightThumbMousedown}>
 					<div className='max-value'>{maxValue}</div>
 				</div>

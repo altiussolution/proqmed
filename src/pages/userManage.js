@@ -18,7 +18,7 @@ import us1 from './../assets/us1.png';
 import noimage from "./../assets/noimage.png"
 const UserManage = () => {
 const [page, setPage] = React.useState(0);
-const [rowsPerPage, setRowsPerPage] = React.useState(4);
+const [rowsPerPage, setRowsPerPage] = React.useState(5);
  const [field, setField] = useState([]);
  const [quoteedit, setQuotePopupedit] = useState(false);
  const [quoteadd, setQuotePopupadd] = useState(false);
@@ -318,7 +318,7 @@ const onSubmitQuoteadd = quoteDetails => {
             "firstname": quoteDetails['firstname'],
             "lastname": quoteDetails['lastname'],
             "email": quoteDetails['email'],
-            "parent_customer_id": 39,
+            "parent_customer_id": localStorage.customer_id,
             "password": quoteDetails['password'],
             "allowedpermissions": names,
             "categorypermissions": catie,

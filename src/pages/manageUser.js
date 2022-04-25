@@ -35,6 +35,7 @@ const Managesub = ({location}) => {
  const [catieedit, setCatsedit] = useState([]);
  const [profilepic,setProfilepic] = useState({});
  const [jwt, setJwt] = useState("")
+ const [categories,setCategory] = useState([]);
  const data = useStaticQuery(graphql`
  {
    allCategory {
@@ -60,6 +61,23 @@ const Managesub = ({location}) => {
 
  useEffect(() => {
    console.log(location)
+   axios.get( 
+    `http://15.207.190.73/proqmed/rest/V1/altius/categories?rootCategoryId=13`
+  ).then(async (response) => {
+    const list = [];
+ const lis = [];
+ const lott = [];
+ let allCategory =  response.data.children_data;
+   list.push(allCategory);
+ list.map((el,index)=>(
+      lis.push(el)
+))
+for(let i=0 ;i < lis[0].length;i++){
+ lott.push(lis[0][i])
+}
+console.log(lott)
+categoryda(lott)
+  })
   if(location.state.subuser_id){
     console.log(location.state.subuser_id)
     setQuoteForm(location.state)
@@ -74,7 +92,6 @@ const Managesub = ({location}) => {
   setJwt(localStorage.userToken);
   setCustomerId(localStorage.customer_id)
   setUsername(localStorage.user_name)
-  rendercategory();
   getConversation();
   axios({
     method: 'get',
@@ -91,20 +108,7 @@ const Managesub = ({location}) => {
   })
   
 },[]);
-const rendercategory = () =>{
- const list = [];
- const lis = [];
- const lott = [];
- let allCategory = data.allCategory.edges;
-   list.push(allCategory);
- list.map((el,index)=>(
-      lis.push(el)
-))
-for(let i=0 ;i < lis[0].length;i++){
- lott.push(lis[0][i].node)
-}
-categoryda(lott)
-}
+
 
 const getConversation = (id) => {
  try {

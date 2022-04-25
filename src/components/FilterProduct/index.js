@@ -56,6 +56,7 @@ const [unchangem,unchangeMin] = useState(150);
   const displayFilters = {};
   const [filterCheckBox, setFilterCheckBox] = useState(products);
   const [checked, setChecked] = useState(false);
+  const groupId = localStorage.group
   const parsedQuery = queryString.parse(location.search.slice(8), {
     arrayFormat: "index",
   });  
@@ -91,15 +92,15 @@ const [unchangem,unchangeMin] = useState(150);
     }
     // Create displayFilters from Products listing
     products.forEach(el => {
-      arr.push(el[0].items.final_price)
+      arr.push(el[0].items.prices[groupId]['final_price'])
       
       const product = convertToObject(el.flat());
       // console.log(product)
       for (let prop in product) {
         if (prop !== "items" && prop !=="Special Price") {
           displayFilters[prop] = displayFilters[prop]
-            ? displayFilters[prop].add(product[prop])
-            : new Set([product[prop]]);
+            ? displayFilters[prop].add(prop=="Offer Percentage" ? product[prop][groupId]:product[prop])
+            : new Set([prop=="Offer Percentage" ? product[prop][groupId]:product[prop]]);
 
         }
       }
@@ -123,7 +124,7 @@ const [unchangem,unchangeMin] = useState(150);
     
         var result = products.filter(function (prod) {
           return numbers.some(function (o2) {
-              return Math.round(prod[0].items.final_price) === o2; // return the ones with equal id
+              return Math.round(prod[0].items.prices[groupId]['final_price']) === o2; // return the ones with equal id
          });
       });
       let arr1=[];
@@ -141,7 +142,7 @@ const [unchangem,unchangeMin] = useState(150);
     
         var result = products.filter(function (prod) {
           return numbers.some(function (o2) {
-              return Math.round(prod[0].items.final_price) === o2; // return the ones with equal id
+              return Math.round(prod[0].items.prices[groupId]['final_price']) === o2; // return the ones with equal id
          });
       });
       
@@ -163,17 +164,18 @@ const [unchangem,unchangeMin] = useState(150);
   const filterOperation = products => {
     let tempFilteredProducts = [];
     Object.keys(filters).forEach((prop, index) => {
+      console.log(prop)
       products.forEach(el => {
         if (index === 0) {
           const product = convertToObject(el.flat());
-          if (product[prop] && filters[prop].includes(product[prop])) {
+          if (product[prop] && filters[prop].includes(prop=="Offer Percentage" ? product[prop][groupId]:product[prop])) {
             tempFilteredProducts = tempFilteredProducts
               .filter(item => item.items.id !== product.items.id)
               .concat(product);
           }
         } else {
           tempFilteredProducts = tempFilteredProducts.filter(product => {
-            return product[prop] && filters[prop].includes(product[prop]);
+            return product[prop] && filters[prop].includes(prop=="Offer Percentage" ? product[prop][groupId]:product[prop]);
           });
         }  
       });
@@ -234,7 +236,7 @@ const [unchangem,unchangeMin] = useState(150);
    if(checked){
      var res = filterCheckBox.filter(function (prod){
       return numbers.some(function (o2) {     
-        return Math.round(prod.items.final_price) === o2; // return the ones with equal id
+        return Math.round(prod.items.prices[groupId]['final_price']) === o2; // return the ones with equal id
       
       
  });
@@ -249,7 +251,7 @@ const [unchangem,unchangeMin] = useState(150);
    } else {
     var result = filterCheckBox.filter(function (prod) {
       return numbers.some(function (o2) {     
-            return Math.round(prod[0].items.final_price) === o2; // return the ones with equal id
+            return Math.round(prod[0].items.prices[groupId]['final_price']) === o2; // return the ones with equal id
           
           
      });
@@ -311,6 +313,7 @@ const renderPriceFilters = () => {
 }
   const renderFilters = () => {      
     if (filtersToDisplay) {
+      console.log(filtersToDisplay)
       return Object.keys(filtersToDisplay).map(key => {
         const values = Array.from(filtersToDisplay[key]);
         return (
@@ -318,7 +321,7 @@ const renderPriceFilters = () => {
             <h6>{key}</h6>
             
             {values.map((val, i) => (
-              <div>
+              <div key={i}>
              {val != "" &&  <div
                 key={val + i}
                 className="text-sm opacity-50 flex items-center">
