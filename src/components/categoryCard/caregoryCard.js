@@ -176,7 +176,7 @@ export default function CategoryCard({ data: product, dataClass }) {
         
         <div className="product_img">
 
-        {product['values'].items.prices[groupId]['offer_percentage'] != 0 && <div className="price_off">{Math.round(product['values'].items.prices[groupId]['offer_percentage'])}% off</div>}
+        {product['values'].items.prices[localStorage.group ? groupId :0]['offer_percentage'] != 0 && <div className="price_off">{Math.round(product['values'].items.prices[localStorage.group ? groupId :0]['offer_percentage'])}% off</div>}
 
         {/* <div className="price_off">Upto 50% off</div> */}
                                
@@ -215,9 +215,9 @@ export default function CategoryCard({ data: product, dataClass }) {
         
          <div className="product_amt">
          {/* {product['values'].items.strike_price == null  && <span className="price">${Math.round(product['values'].items.original_price)}</span> } */}
-                    <span className="price">${Math.round(product['values'].items.prices[groupId]['final_price'])}</span>
+                    <span className="price">${Math.round(product['values'].items.prices[localStorage.group ? groupId :0]['final_price'])}</span>
 
-                    {product['values'].items.prices[groupId]['strike_price'] != null  &&  <span className="new_price">${Math.round(product['values'].items.prices[groupId]['strike_price'])}</span>}
+                    {product['values'].items.prices[localStorage.group ? groupId :0]['strike_price'] != null  &&  <span className="new_price">${Math.round(product['values'].items.prices[localStorage.group ? groupId :0]['strike_price'])}</span>}
 
                 </div>
                 </div>
