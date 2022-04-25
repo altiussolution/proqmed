@@ -56,7 +56,7 @@ const [unchangem,unchangeMin] = useState(150);
   const displayFilters = {};
   const [filterCheckBox, setFilterCheckBox] = useState(products);
   const [checked, setChecked] = useState(false);
-  const groupId = localStorage.group
+  const [groupId,grpI] = useState("");
   const parsedQuery = queryString.parse(location.search.slice(8), {
     arrayFormat: "index",
   });  
@@ -75,7 +75,7 @@ const [unchangem,unchangeMin] = useState(150);
 
   useEffect(() => {
     // Parse the filter query and set filters if query available
-    
+    grpI(localStorage.group)
     if (Object.keys(parsedQuery).length) {
       dispatch({
         type: "URL_QUERY",

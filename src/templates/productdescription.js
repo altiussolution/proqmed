@@ -53,7 +53,7 @@ const Productdescription = ({ proDescription, routeAss, setcartCount, setWishLis
     const [outpcar,outpercart] = useState(false);
     const [outpcom,outpercomp] = useState(false);
     const [pincode,Pin] = useState("");
-    const grpId = localStorage.group;
+    const [grpId,grpI] = useState("");
   const [data, setData] = useState([
     {
       image: (ImageNotFound),
@@ -66,6 +66,7 @@ const Productdescription = ({ proDescription, routeAss, setcartCount, setWishLis
 
   useEffect(() => {
     console.log(proDescription.items)
+    grpI(localStorage.group)
     setCustomerId(localStorage.customer_id)
     setJwt(localStorage.userToken);
     //setQuoteId(localStorage.cartId);

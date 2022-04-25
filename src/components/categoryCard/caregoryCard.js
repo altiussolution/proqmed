@@ -25,7 +25,7 @@ export default function CategoryCard({ data: product, dataClass }) {
   const [outp,outper] = useState(false);
   const [outpcar,outpercart] = useState(false);
   const [permits,setPermits] = useState([]);
-  const groupId = localStorage.group
+  const [groupId,grpI] = useState(localStorage.group);
   useEffect(() => {
     console.log(product)
     setCustomerId(localStorage.customer_id)
