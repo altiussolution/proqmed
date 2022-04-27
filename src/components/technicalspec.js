@@ -9,7 +9,7 @@ import StarRatings from 'react-star-ratings';
 import { toast } from 'react-toastify';
 import { Link } from "gatsby"
 
-const Technicalspec = ({ specification, attachment }) => {
+const Technicalspec = ({ specification, routeAss, attachment }) => {
   const [productReview, setProductReview] = useState([]);
   const [jwt, setjwt] = useState();
   const [overall_rating, setOverall_rating] = useState(0);
@@ -96,7 +96,7 @@ if(localStorage.userToken){
       Add Review
   </button></Link>)
     }else{
-      return(<Link to="/addreview" state={itemid}><button className="btn_gray btn">
+      return(<Link to="/addreview" state={{datas:itemid,slug:routeAss.slug}}><button className="btn_gray btn">
       Add Review
   </button></Link>     )
    }

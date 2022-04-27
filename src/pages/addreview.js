@@ -4,6 +4,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import StarRatings from 'react-star-ratings';
 import { toast } from 'react-toastify';
+import { navigate } from "gatsby";
 
 const Addreview = ({location} ) => {
   const [jwt, setjwt] = useState();
@@ -16,7 +17,7 @@ const Addreview = ({location} ) => {
 
   useEffect(() => {
     setjwt(localStorage.userToken)
-console.log(location.state.id)
+console.log(location.state.datas.id)
   }, []);
 
 
@@ -28,8 +29,8 @@ console.log(location.state.id)
     let reviewData = { 
       "data":
       {
-        "product_id": location.state.id,
-        "product_name": location.state.name,
+        "product_id": location.state.datas.id,
+        "product_name": location.state.datas.name,
         "customer_id": localStorage.customer_id,
         "nick_name": reviewDetails.nick_name,
         "review_title": reviewDetails.review_title,
@@ -49,6 +50,7 @@ console.log(location.state.id)
       })
         .then(function (response) {
           toast.success(response.data)
+          navigate(`/products/${location.state.slug}/`)
           // navigate('/')  
         })
         .catch(function (response) {

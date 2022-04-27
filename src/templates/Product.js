@@ -440,7 +440,7 @@ return (
              </div>
            </div>
            <div className="full-desc-tabs">
-           <Technicalspec specification = {product} attachment={attach_data}/>
+           <Technicalspec specification = {product} routeAss={props} attachment={attach_data}/>
            </div>
 {sellerprod.length != 0 ?
            <div className="More-Sellers">

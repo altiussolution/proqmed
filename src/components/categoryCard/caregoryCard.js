@@ -161,19 +161,19 @@ export default function CategoryCard({ data: product, dataClass }) {
     <div className={`item product_item ${dataClass}`}> 
             {product['values'].items.length == 0?<sapn>You don't have Authorization for this category</sapn>:  
      <div className="thumbnail">
-        <div className="wishComp">
-        {p &&  <ul>
+         {p &&  <div className="wishComp">
+        <ul>
          <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li> 
          
 
-          </ul> }
-          {outp &&  <ul>
+          </ul> 
+         
+        </div> }
+        {outp &&   <div className="wishComp"> <ul>
           <li data-toggle="tooltip" title="Wishlist"><a onClick={() => addToList(2)}><FaRegHeart /></a></li> 
         
 
-          </ul> }
-        </div> 
-        
+          </ul> </div>  }
         <div className="product_img">
 
         {product['values'].items.prices[localStorage.group ? groupId :0]['offer_percentage'] != 0 && <div className="price_off">{Math.round(product['values'].items.prices[localStorage.group ? groupId :0]['offer_percentage'])}% off</div>}

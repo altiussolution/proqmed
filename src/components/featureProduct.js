@@ -6,7 +6,7 @@ import { FaRegHeart } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-import {getWLCount, wishListCount,viewCartItems,getCartCount } from '../utils/apiServices'
+import {getWLCount, wishListCount,viewCartItems,getCartCount,cartTotal } from '../utils/apiServices'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -188,15 +188,17 @@ const FeatureProduct = () => {
                       headers: {
                           'Authorization': `Bearer ${jwt}`
                       }
-                  }).then((res) => {
+                  }).then(async(res) => {
+                    await viewCartItems();
                       if (res.statusText === "OK" && res.status == 200) {
-                          viewCartItems();
+                        
+                        await setCartCnt(getCartCount())
                           // removeProduct(id, 'cart')
-                          toast.success('Succesfully added to cart');
-                          setTimeout(() => {
-                              setCartCnt(getCartCount())
-                          }, 3000);
-                          setButton(false);
+                          await toast.success('Succesfully added to cart');
+                          // setTimeout(() => {
+                           
+                          // }, 1000);
+                          await setButton(false);
                       }
                   }).catch((err) => {
                       console.error(err);

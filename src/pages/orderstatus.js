@@ -357,7 +357,7 @@ const Invoice = ({ location }) => {
                                         <tbody key={`${index}_table`} >
                                             <tr>
                                                 <td className="product_image"> <img src={list.image} onError={e => (e.target.src = ImageNotFound)} alt={ImageNotFound}/> </td>
-                                                <td className="product_name">{list.peoduct_name} </td>
+                                                <td className="product_name">{list.product_name} </td>
                                                 <td>{list.sku}</td>
                                                 <td>{Math.round(list.qty)}</td>
                                                 <td>$ {parseFloat(list.price).toFixed(2)}</td>

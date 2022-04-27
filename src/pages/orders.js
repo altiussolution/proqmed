@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 import axios from "axios";
 import groupArray  from "group-array"
 import { toast } from 'react-toastify';
+import PageLoader from "../components/loaders/pageLoader";
 import 'react-toastify/dist/ReactToastify.css';   
 import { Link } from "gatsby";
 import { TablePagination } from '@mui/material';
@@ -12,6 +13,7 @@ const Orders = () => {
     const [page, setPage] = React.useState(0); 
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [orders, setOrders] = useState([]);
+    const [loader, setLoader] = useState(false);
     const [jwt,setJwt] = useState("")
     const [p,per] = useState(false);
     const [re,reodr]= useState(false);
@@ -26,6 +28,7 @@ const Orders = () => {
     }, [])
 
     const setOrderDetails = () => {
+        setLoader(true)
         try{
             axios({
                 method : "get",
@@ -40,6 +43,7 @@ const Orders = () => {
                     }
                     console.log(orderArray)
                     setOrders(orderArray);
+                    setLoader(false)
                     if(!localStorage.permissions){
                         outper(true)
                         outreodr(true)
@@ -63,10 +67,12 @@ const Orders = () => {
                 
             }).catch((err) => {  
                 console.error(err);
+                setLoader(false)
             })
         }
         catch(err){
             console.error(err)
+            setLoader(false)
         }    
     }
     const handleChangePage = (event, newPage) => {
@@ -347,11 +353,11 @@ return (
                                                         <div className="buttons-or">
                                                             {re && <button type="button" className="btn btn-danger square" onClick={() => reorder(items[0].order_id)}>Reorder</button>}
                                                             {outre && <button className="btn btn-danger" onClick={() => reorder(items[0].order_id)}>Reorder</button>}
-                                                            <Link to="/orderstatus/" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{re && <button className="btn btn-primary">View Order</button>}</Link>
-                                                            <Link to="/orderstatus/" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{outre && <button className="btn btn-primary">View Order</button>}</Link>
-
-                                                            {items[0].status !== 'canceled' && items[0].status !== 'complete' && outre && <button className="btn btn outline" type="button" onClick={() => cancelOrder(items[0].order_id)}>Cancel Order</button>}
-
+                                                           {items[0].status !== 'canceled' && items[0].status !== 'complete' && outre && <button className="btn btn-primary" onClick={() => cancelOrder(items[0].order_id)}>Cancel Order</button>}
+                                                            {/* <Link to="/orderstatus/" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{outre && <button className="btn btn-primary">View Order</button>}</Link> */}
+                                                            
+                                                            <Link to="/orderstatus/" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{re && <button className="btn btn outline" type="button" >View Order</button>}</Link>
+                                                            <Link to="/orderstatus/" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}> {outre && <button className="btn btn outline" type="button">View Order</button>}</Link>
                                                             {attach_data && <a><i className="fa fa-sticky-note" aria-hidden="true" onClick={handleClick}></i>Invoice
                                                                 <div>
                                                                     {attach_data ?
@@ -475,7 +481,9 @@ return (
   
 </div>
 </div>
-
+{loader ? (<div>
+                <PageLoader />
+            </div>) : <span></span>}
 
             </Layout>
         </>

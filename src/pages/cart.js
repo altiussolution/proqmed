@@ -43,6 +43,7 @@ const Cart = () => {
 
     }, []);
     const listCarts = () => {
+      setLoader(true)
             let resi=[]
             let stocks=[]
             let cq=[]
@@ -108,7 +109,7 @@ const Cart = () => {
                       const data = JSON.stringify(res.data)
                       localStorage.setItem('cartData' , JSON.stringify(res.data))
                       setCartItems(JSON.parse(data))
-                  
+                      setLoader(false)
                 }).catch((err) =>{
                   alert('error occured')
                   console.error(err)
