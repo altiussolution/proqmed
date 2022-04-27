@@ -194,7 +194,7 @@ if(localStorage.userToken){
               {!isLoged &&  <Link to="/signin"><button className="btn_gray btn">
                     Add Review
               </button></Link> }
-               {isLoged && Review && <Link to="/addreview" state={itemid}><button className="btn_gray btn">
+               {isLoged && Review && <Link to="/addreview" state={{datas:itemid,slug:routeAss.slug}}><button className="btn_gray btn">
                     Add Review
               </button></Link>  }
               {/* {isLoged && Rev && <p>This product was not purchase.So not to allow add review</p>} */}

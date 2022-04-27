@@ -17,7 +17,7 @@ const Addreview = ({location} ) => {
 
   useEffect(() => {
     setjwt(localStorage.userToken)
-console.log(location.state.datas.id)
+console.log(location.state)
   }, []);
 
 
@@ -49,12 +49,17 @@ console.log(location.state.datas.id)
         data: reviewData,
       })
         .then(function (response) {
-          toast.success(response.data)
+          setTimeout(()=>{
+            toast.success(response.data)
+          },2000)
           navigate(`/products/${location.state.slug}/`)
           // navigate('/')  
         })
         .catch(function (response) {
-          toast.error('An error occured please contact admin')
+          setTimeout(()=>{
+            toast.error('An error occured please contact admin')
+          
+          },2000)
         });
 
     } catch (err) {
