@@ -343,7 +343,7 @@ const Products = ({ pageContext, location , props }) => {
                               Sort by:
                     </span>
                             <div className="option">
-                              <select className="form-control" id="sort_option1" onChange={shortBySelected} >
+                              <select className="form-control" id="sort_option1">
                                 <option value = "productsasc">Name Asc</option>
                                 <option value = "productsdesc">Name Desc</option>
                                 <option value = "productspriceasc">Price Asc</option>

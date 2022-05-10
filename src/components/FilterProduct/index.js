@@ -91,8 +91,12 @@ const [unchangem,unchangeMin] = useState(150);
       // temporary fix by meenu not efficient
     }
     // Create displayFilters from Products listing
-    products.forEach(el => {
-      arr.push(el[0].items.prices[localStorage.group ? localStorage.group :0]['final_price'])
+    console.log(products)
+    products.forEach(el => {  
+     
+        arr.push(el[0].items.prices[localStorage.group ? localStorage.group :0]['final_price'])
+      
+      
       
       const product = convertToObject(el.flat());
       // console.log(product)

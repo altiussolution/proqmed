@@ -688,8 +688,7 @@ if(proDescription.items.config_options){
                           <tr>
                             <th>#</th>
                             <th>QTY</th>
-                            <th>Price per QTY</th>
-                            <th>Tier price</th>
+                            <th>Tier price(Price Per QTY)</th>
                             <th>Discount %</th>
                           </tr>
                         </thead>
@@ -702,13 +701,8 @@ if(proDescription.items.config_options){
                                   <input type="radio" checked={qty == item.Tier_quantity} value="item.Tier_quantity" name="item.Tier_quantity" onChange={() => { onChangeValue(item) }} />
                                 </td>
                                 <td>
-                                  <span>{index > 0 ? +tierAmt[index-1].Tier_quantity + +1: 1}-{item.Tier_quantity}</span>
+                                  <span>{item.Tier_quantity}</span>
                                 </td> 
-                                <td>
-                                  <span className="whish-list-price">
-                                    $ {Math.round(parseFloat(item.Tier_price).toFixed(2)/item.Tier_quantity)}
-                                  </span>
-                                </td>
                                 <td>
                                   <span className="whish-list-price">
                                     $ {parseFloat(item.Tier_price).toFixed(2)}

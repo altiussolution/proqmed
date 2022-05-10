@@ -62,10 +62,7 @@ const Cart = () => {
                         const resp = await fetch(
                           `${process.env.GATSBY_CART_URL_STARCARE}cart/productstatus/product_id/${res.data[i].id}`
                       );  
-                      const qtyyy = await fetch(
-                        `${process.env.GATSBY_CART_URL_STARCARE}admin/tierprice/${res.data[i].id}`
-                    );           
-                      cq.push(await qtyyy.json());       
+                        
                       resi.push(await resp.json());
                       }  
                       // for(let i=0;i<cq.length;i++){
@@ -82,30 +79,8 @@ const Cart = () => {
                       console.log(res.data)
                       console.log(cq)
                       let trumpcard=[];
-                      for(let i=0;i<cq.length;i++){
+                     
                        
-                          trumpcard.push(cq[i])
-                          console.log(trumpcard)
-                        
-                         }
-                         for(let j=0;j<trumpcard.length;j++){
-                           console.log(res.data[j])
-                           console.log(trumpcard[j])
-                          trumpcard[j].map((item,index) => {
-                            if(index==0){
-                              item.from_qty=1
-                              item.to_qty=item.Tier_quantity
-                            }else {
-                              item.from_qty=+trumpcard[j][index-1].Tier_quantity + +1
-                              item.to_qty=item.Tier_quantity
-                            }
-                            if ((res.data[j].qty >= item.from_qty && res.data[j].qty <= item.to_qty) || res.data[j].qty>item.to_qty) {
-                              console.log(item)
-                              res.data[j].price =item.Tier_price/item.Tier_quantity 
-                            } 
-                    
-                          })
-                        }
                       const data = JSON.stringify(res.data)
                       localStorage.setItem('cartData' , JSON.stringify(res.data))
                       setCartItems(JSON.parse(data))

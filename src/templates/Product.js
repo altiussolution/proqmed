@@ -120,7 +120,7 @@ const Product = (props,location)  => {
         setLoading(true);   
         try {  
           const res = await axios.get(
-            // `${process.env.GATSBY_CART_URL_STARCARE}admin/productsattributes/${id}/${localStorage.customer_id}`
+            // `${process.env.GATSBY_CART_URL_STARCARE}admin/productsattributes/${id}`
             `${process.env.GATSBY_NODE_URL_STARCARE}data/singleproduct/${id}.json`
           );
           const data = convertToObject(res.data);

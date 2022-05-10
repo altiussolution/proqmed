@@ -25,12 +25,18 @@ const Search = (props,pageContext) => {
                   `${process.env.GATSBY_NODE_URL_STARCARE}search/${searchTerm}`
                 );
       
-                let productList = [];               
+                let productList = [];   
+                let prodis = [];
+                console.log(res.data[0])            
                 for(let prod of res.data[0]){
                   prod[0][3].push(prod[0][0])
                  let proProduct = prod[0][3];
                   productList.push(proProduct);
                 }
+                for(let prod of res.data[0]){
+                  prodis.push(prod[0])
+                }
+
                 setSearchProducts("hi")
                 let result = [];
 
@@ -54,7 +60,8 @@ const Search = (props,pageContext) => {
                     // return await result;
                
                   }else {
-                    await setProducts(productList);
+                  
+                    await setProducts(prodis);
                   }
                 }
                 
@@ -75,8 +82,8 @@ const Search = (props,pageContext) => {
 
 
     const renderSearchCard = () => {
-      //  if(products.length !== 0)
        if(products.length !== 0){
+         console.log(products)
             return products.map(product => {
               const data = convertToObject(product.flat());
               // return <div key={data.items.id}>{data.items.name}</div>
