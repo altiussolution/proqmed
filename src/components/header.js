@@ -476,10 +476,10 @@ const isSticky = (e) => {
             list.map((el, index) => (
               el.map(item => (
                 <figure key={item.id} className="itm_list">
-                  <Link to={getCategoryURL(item)} className="itm_list_title">{item.name}</Link>
+                  <Link to={getCategoryURL(item)} state={item} className="itm_list_title">{item.name}</Link>
                   {
                     item.children_data.map(grand_child => (
-                      <span key={grand_child.id} ><Link to={getCategoryURL(grand_child)} >{grand_child.name}</Link></span>
+                      <span key={grand_child.id} ><Link to={getCategoryURL(grand_child)} state={grand_child}>{grand_child.name}</Link></span>
                     ))
                   }
   

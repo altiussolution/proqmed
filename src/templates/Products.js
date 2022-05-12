@@ -73,19 +73,19 @@ const Products = ({ pageContext, location , props }) => {
   // const [cName, setClassName] = useState('grid_view');
 
   useEffect(() => {
+    console.log(location)
     console.log(pageContext)
     const newHierarchy = JSON.parse(JSON.stringify(pageContext.hierarchy));
-    newHierarchy.push({"id":pageContext.id,"name":pageContext.name});
+    newHierarchy.push({"id":location.state.id,"name":location.state.name});
     sessionStorage.setItem('Hierarchy',JSON.stringify(newHierarchy));
     const selecturl = "productsasc"
-    const id = pageContext.id;  
     const selectRes =[];
     const fetchProductsasc = async () => {
     try {
       await axios({
           method: 'get',
           // url: `${process.env.GATSBY_CART_URL_STARCARE}admin/products/${id}`,
-          url: `${process.env.GATSBY_NODE_URL_STARCARE}data/products/${id}.json`
+          url: `${process.env.GATSBY_NODE_URL_STARCARE}data/products/${location.state.id}.json`
       }).then((res) => {
           if (res.statusText === "OK" && res.status == 200) {
             // for(let response of res.data[0]){
@@ -186,9 +186,9 @@ const Products = ({ pageContext, location , props }) => {
       }
     }
     fetchProductsasc()
-    fetchProducts(pageContext.id);
+    //fetchProducts(pageContext.id);
    
-  }, [pageContext.id]);
+  }, []);
 
 
   const renderProducts = () => {
@@ -332,7 +332,7 @@ const Products = ({ pageContext, location , props }) => {
                   <div className="col-lg-9 col-md-8 col-xs-12 ">
                   <h1 className="page-title">
                     <div>
-                    <span>{pageContext.name} </span>
+                    <span>{location.state.name} </span>
                   <div className="breadcrumbs_sec" >
                     <Hamburger pageContext={pageContext} />
                   </div>
