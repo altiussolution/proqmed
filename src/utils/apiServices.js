@@ -10,11 +10,13 @@ const searchServices = async (value) => {
           );
 
           let productList = [];
+          let prodis = [];
            console.log(res.data[0])
           for(let prod of res.data[0]){
             prod[0][3].push(prod[0][0])
             let proProduct = prod[0][3];
             productList.push(proProduct);
+            prodis.push(prod[0])
           }
           
           let result = [];
@@ -37,7 +39,7 @@ const searchServices = async (value) => {
               return await result;
             }
           }
-          return await productList;
+          return await prodis;
       
       } 
       catch (err) {

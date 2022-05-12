@@ -185,11 +185,13 @@ const isSticky = (e) => {
   const onSubmit = event => {
     event.preventDefault();
     if (search.trim().length) {
-      navigate(`/search?keyword=${search}`);
+      navigate('/search/',{state:{id:search}});
+      // {routehtml(search)}
       setSearch("");
       setActiveClass(false);
     }
   };
+
   const makeBold = (item, keyword) => {
     var re = new RegExp(keyword, 'g')
     return (
@@ -262,12 +264,14 @@ const isSticky = (e) => {
   }
 
   const searchList = () => {
-
+    console.log(searchResponse)
     if (searchResponse.length !== 0) {
       if(allowedCat.length !== 0){
+        const list = searchResponse.filter((elem, index, self) => self.findIndex(
+          (t) => {return (t.id === elem.id && t.name === elem.name)}) === index)
         return <div>
         {
-          searchResponse.map((item, index) => (
+          list.map((item, index) => (
             <ul>
               <li key={`${index}_item`}>
                
@@ -282,11 +286,20 @@ const isSticky = (e) => {
         }
       </div>
       }else{
-
+        var resArr = [];
+        searchResponse.filter(function(item){
+          var i = resArr.findIndex(x => (x[0].items.id == item[0].items.id));
+          if(i <= -1){
+                resArr.push(item);
+          }
+          return null;
+        });
+        console.log(resArr)
         return <div>
         {
-          searchResponse.map((item, index) => (
+          resArr.map((item, index) => (
             <ul key={index}>{
+              
               item.map((val, index) => (
                 (val.items ? <li key={`${index}_item`}><Link to={getProductURL(val.items)} onClick={() => setActiveClass(false)}>
                   <span className="searchImg_holder"><img src={val.items.image} className="search-img" /></span>

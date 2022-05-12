@@ -6396,10 +6396,14 @@ main.contactus_page .container {
   font-weight: 500;
   color: #891c05;
 }
-
+.cursor-zoom-magnifier-container {
+  z-index: 1 !important;
+}
 .info-type {
   margin-right: 20px;
   margin-left: 20px;
+  position: absolute;
+  right: 30px;
 }
 
 .tr-header h4 {

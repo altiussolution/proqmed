@@ -539,11 +539,10 @@ const CheckOut = ({location}) => {
                 shippingAddress.map((add, index) => (
                     <div key={`${index}_add`} className={`selected_item ${index == selAddIndex && 'activeAdd'}`} onClick={() => setIndex(index)}>
                         <div className="address">
-                            <span>{add.firstname}</span> <span>{add.lastname}</span><br></br>
-                            <span>{add.company}</span><br></br>
-                            {add.street.join()}
-                            <span>{add.city}</span><br></br>
-                            <span>{add.region}</span><br></br>
+                            <span>{add.firstname}</span><span>{add.lastname},</span><br></br>
+                            <span>{add.street.join()},</span><br></br>
+                            <span>{add.city}-{add.postcode},</span><br></br>
+                            <span>{add.region},</span><br></br>
                             <a href={`tel:${add.telephone}`}>{add.telephone}</a>
                         </div>
                         {/* <button className="action action_btn btn btn_gray" onClick={() => setIndex(index)}>Ship Here</button> */}

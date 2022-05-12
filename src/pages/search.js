@@ -14,15 +14,17 @@ const Search = (props,pageContext) => {
     const [loading, setLoading] = useState(true);  
     const [error, setError] = useState(null); 
     const [searchProducts, setSearchProducts] = useState([]);
-    const searchTerm = props.location.search.replace("?keyword=", "");
 
     useEffect(() => {
+      if(props.location.state.id){
+        localStorage.setItem('searchEd',props.location.state.id)
+}
         setLoading(true);
         let ignore = false;  
         const fetchSearch = async () => {
             try{   
                 const res = await axios(
-                  `${process.env.GATSBY_NODE_URL_STARCARE}search/${searchTerm}`
+                  `${process.env.GATSBY_NODE_URL_STARCARE}search/${localStorage.searchEd}`
                 );
       
                 let productList = [];   
@@ -32,14 +34,11 @@ const Search = (props,pageContext) => {
                   prod[0][3].push(prod[0][0])
                  let proProduct = prod[0][3];
                   productList.push(proProduct);
-                }
-                for(let prod of res.data[0]){
                   prodis.push(prod[0])
+
                 }
-
-                setSearchProducts("hi")
                 let result = [];
-
+                console.log(prodis)
                 Object.entries(productList).forEach(([key, value]) => {
                   Object.entries(value).forEach(([i, j]) => {
                     let items = j.items;
@@ -59,10 +58,14 @@ const Search = (props,pageContext) => {
                     await setProducts(result);
                     // return await result;
                
-                  }else {
-                  
-                    await setProducts(prodis);
                   }
+                  await setProducts(prodis);
+                  // else {
+                  
+                  //   await setProducts(prodis);
+                  // }
+                } else {
+                  await setProducts(prodis);
                 }
                 
                 setLoading(false);
@@ -78,43 +81,61 @@ const Search = (props,pageContext) => {
         return () => {  
             ignore = true;
           };
-      }, [searchTerm]);   
+      }, []);   
 
-
+      var resArr = [];
     const renderSearchCard = () => {
-       if(products.length !== 0){
-         console.log(products)
-            return products.map(product => {
+      if(searchProducts.length)  {
+        if (searchProducts == "empty")
+          return (
+            <div className="mx-auto">
+              {/* <NoProducts /> */}
+              <h2 className="text-2xl text-center mt-4">No Items Found!</h2>
+              <p className="text-center">Try clearing all filters</p>
+            </div>
+          );
+        else
+        var resSeas =[]
+        searchProducts.filter(function(item){
+          var i = resSeas.findIndex(x => (x.items.id == item.items.id));
+          if(i <= -1){
+            resSeas.push(item);
+          }
+          return null;
+        });
+        console.log(resSeas)
+          return resSeas.map(data => (
+            // <div key={data.items.id}>{data.items.name}</div>
+            <CategoryCard data={{values:data,crumpy:pageContext}} key={data.items.id} />
+          ));
+      
+     
+          }
+       else if(products.length !== 0){
+       
+products.filter(function(item){
+  var i = resArr.findIndex(x => (x[0].items.id == item[0].items.id));
+  if(i <= -1){
+        resArr.push(item);
+  }
+  return null;
+});
+console.log(resArr)
+            return resArr.map(product => {
               const data = convertToObject(product.flat());
               // return <div key={data.items.id}>{data.items.name}</div>
               return <CategoryCard data={{values:data,crumpy:pageContext}} key={data.items.id} />;
             }); }
-            else {
-            return (
-              <div className="mx-auto">
-                {/* <NoProducts /> */}
-                {/* is no product */}
-                <h2 className="text-2xl text-center mt-4">No items found!</h2>
-              </div>
-            );
-            }
-        // else if(searchProducts.length === 0)  {
-        //   if (searchProducts == "empty")
-        //     return (
-        //       <div className="mx-auto">
-        //         {/* <NoProducts /> */}
-        //         <h2 className="text-2xl text-center mt-4">No Items Found!</h2>
-        //         <p className="text-center">Try clearing all filters</p>
-        //       </div>
-        //     );
-        //   else
-        //     return searchProducts.map(data => (
-        //       // <div key={data.items.id}>{data.items.name}</div>
-        //       <CategoryCard data={{values:data,crumpy:pageContext}} key={data.items.id} />
-        //     ));
-        
-       
-        //     }
+         
+         else {
+              return (
+                <div className="mx-auto">
+                  {/* <NoProducts /> */}
+                  {/* is no product */}
+                  <h2 className="text-2xl text-center mt-4">No items found!</h2>
+                </div>
+              );
+              }
             
       };
     
