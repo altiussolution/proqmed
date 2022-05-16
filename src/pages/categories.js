@@ -8,7 +8,7 @@ const CategoriesPage = props => {
     
       <div className="summa">
        
-          <Products path="/categories/:slug" />
+          {/* <Products path="/categories/:slug/" /> */}
         
       </div>
   );

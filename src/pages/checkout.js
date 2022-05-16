@@ -254,44 +254,61 @@ const CheckOut = ({location}) => {
                 },
                 data: data
             }).then((response) => {
-                if (shippingAddress) {
+                if(response.data.length){
+                    // toast.error(err.response.data.message)
+                    // toast.error(<div>{response.data.map(function(item,index) {
+                    //     <><div>{index+1}{item}</div><br /></>
+                    //   })}</div>
+                    // )
+                    toast.error(`${response.data} are not avaibale for this selected address pincode`)
+                    // toast.error(<div>{response.data[0]}<br />{response.data[1]}</div>, { position: toast.POSITION.UPPER_RIGHT });
+                    // toast.error(
+                    //     response.data.map(async (val, index) => {
+                    //         return <div><span>{index+1}{val}</span></div>
+                    //      })   
+                    // )
+                    
+                } else {
+                    if (shippingAddress) {
 
-                    delete shippingAddress[selAddIndex]['entity_id']
-                    delete shippingAddress[selAddIndex]['default_billing']
-                    delete shippingAddress[selAddIndex]['default_shipping']
-                    let userAddVal = {
-                        "addressInformation": {
-                            "billing_address": shippingAddress[selAddIndex],
-                            "shipping_address": shippingAddress[selAddIndex],
-                            "shipping_carrier_code": "flatrate",
-                            "shipping_method_code": "flatrate"
-                            // "shippingCarrierCode": "apptha",
-                            // "shippingMethodCode": "apptha"
+                        delete shippingAddress[selAddIndex]['entity_id']
+                        delete shippingAddress[selAddIndex]['default_billing']
+                        delete shippingAddress[selAddIndex]['default_shipping']
+                        let userAddVal = {
+                            "addressInformation": {
+                                "billing_address": shippingAddress[selAddIndex],
+                                "shipping_address": shippingAddress[selAddIndex],
+                                "shipping_carrier_code": "flatrate",
+                                "shipping_method_code": "flatrate"
+                                // "shippingCarrierCode": "apptha",
+                                // "shippingMethodCode": "apptha"
+                            }
+                        }
+            
+                        try {
+                            axios({
+                                method: "post",
+                                url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine/shipping-information`,
+                                headers: {
+                                    'Authorization': `Bearer ${jwt}`
+                                },
+                                data: userAddVal
+                            }).then((response) => {
+                                if (response.statusText === "OK" && response.status == 200) {
+                                    setCheckout([response.data]);
+                                    setKey('profile')// open tab
+                                }
+            
+                            }).catch((err) => {
+                                console.error(err)
+                            })
+                        }
+                        catch (err) {
+                            console.error(err)
                         }
                     }
-        
-                    try {
-                        axios({
-                            method: "post",
-                            url: `${process.env.GATSBY_CART_URL_STARCARE}carts/mine/shipping-information`,
-                            headers: {
-                                'Authorization': `Bearer ${jwt}`
-                            },
-                            data: userAddVal
-                        }).then((response) => {
-                            if (response.statusText === "OK" && response.status == 200) {
-                                setCheckout([response.data]);
-                                setKey('profile')// open tab
-                            }
-        
-                        }).catch((err) => {
-                            console.error(err)
-                        })
-                    }
-                    catch (err) {
-                        console.error(err)
-                    }
                 }
+               
             }).catch((err) => {
                 toast.error(err.response.data.message)
             })
@@ -302,7 +319,17 @@ const CheckOut = ({location}) => {
        
 
     }
-
+//    const toastrender = () => {
+//     return (
+//         <>
+//           Hello World.
+//           <br />
+//           This is awesome.
+//           <br />
+//           Be Happy
+//         </>
+//       );
+//    }
     const onPaymentSubmit = () => {
 
         if (selAddIndex == null) {

@@ -151,6 +151,9 @@ const getCartCount = (value) =>{
       return 0
     }
   }
+else {
+  return 0;
+}
 }
 
 
@@ -169,6 +172,8 @@ const cartTotal = () => {
     }else{
       return 0;
     }
+  }else {
+    return 0;
   }
 }    
 

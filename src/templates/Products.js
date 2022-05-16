@@ -73,19 +73,19 @@ const Products = ({ pageContext, location , props }) => {
   // const [cName, setClassName] = useState('grid_view');
 
   useEffect(() => {
-    console.log(location)
     console.log(pageContext)
     const newHierarchy = JSON.parse(JSON.stringify(pageContext.hierarchy));
-    newHierarchy.push({"id":location.state.id,"name":location.state.name});
+    newHierarchy.push({"id":pageContext.id,"name":pageContext.name});
     sessionStorage.setItem('Hierarchy',JSON.stringify(newHierarchy));
     const selecturl = "productsasc"
+    const id = pageContext.id;  
     const selectRes =[];
     const fetchProductsasc = async () => {
     try {
       await axios({
           method: 'get',
           // url: `${process.env.GATSBY_CART_URL_STARCARE}admin/products/${id}`,
-          url: `${process.env.GATSBY_NODE_URL_STARCARE}data/products/${location.state.id}.json`
+          url: `${process.env.GATSBY_NODE_URL_STARCARE}data/products/${id}.json`
       }).then((res) => {
           if (res.statusText === "OK" && res.status == 200) {
             // for(let response of res.data[0]){
@@ -186,9 +186,9 @@ const Products = ({ pageContext, location , props }) => {
       }
     }
     fetchProductsasc()
-    //fetchProducts(pageContext.id);
+    // fetchProducts(pageContext.id);
    
-  }, []);
+  }, [pageContext.id]);
 
 
   const renderProducts = () => {
@@ -265,7 +265,7 @@ const Products = ({ pageContext, location , props }) => {
 //    } 
 // }
   const shortBySelected = (event) => {
-    // setLoading(true);
+    setLoading(true);
     const selecturl = event.target.value;
     if(event.target.value == ""){
       event.target.value="productsasc"
@@ -275,21 +275,24 @@ const Products = ({ pageContext, location , props }) => {
     try {
       axios({
           method: 'get',
-          url: `${process.env.GATSBY_CART_URL_STARCARE}admin/${selecturl}/${id}/${localStorage.customer_id}`,
+          url: `${process.env.GATSBY_CART_URL_STARCARE}admin/${selecturl}/${id}`,
       }).then((res) => {
           if (res.statusText === "OK" && res.status == 200) {
-            for(let response of res.data[0]){
-              selectRes.push(response[0])
-            }
-            setProducts(selectRes);
+            console.log(res.data[0])
+            // for(let response of res.data[0]){
+            //   selectRes.push(response[0])
+            // }
+            setProducts(res.data);
             console.log(selectRes)
-            // setLoading(false);
+            setLoading(false);
           }
       }).catch((err) => {
           console.error(err);
+          setLoading(false);
       })
     } catch (err) {
       console.error(err)
+      setLoading(false);
     }
 
   }
@@ -332,7 +335,7 @@ const Products = ({ pageContext, location , props }) => {
                   <div className="col-lg-9 col-md-8 col-xs-12 ">
                   <h1 className="page-title">
                     <div>
-                    <span>{location.state.name} </span>
+                    <span>{pageContext.name} </span>
                   <div className="breadcrumbs_sec" >
                     <Hamburger pageContext={pageContext} />
                   </div>
@@ -343,7 +346,7 @@ const Products = ({ pageContext, location , props }) => {
                               Sort by:
                     </span>
                             <div className="option">
-                              <select className="form-control" id="sort_option1">
+                              <select className="form-control" id="sort_option1"  onChange={shortBySelected}>
                                 <option value = "productsasc">Name Asc</option>
                                 <option value = "productsdesc">Name Desc</option>
                                 <option value = "productspriceasc">Price Asc</option>

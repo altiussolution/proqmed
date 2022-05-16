@@ -5,7 +5,7 @@ import logo from './../assets/logo.png';
 import Cart from './../components/cart/cart';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { checkLogin, logout, checkUser } from "./../services/headerServices";
-import { searchServices, getCartCount, viewCartItems } from "./../utils/apiServices";
+import { searchServices, getCartCount, viewCartItems, cartTotal } from "./../utils/apiServices";
 import axios from "axios";
 import { getProductURL, getCategoryURL } from "./../utils/url";
 import img1 from './../assets/profile_img.png';
@@ -442,6 +442,7 @@ const isSticky = (e) => {
   const logout = () => {
     setIsLogged(false)
     localStorage.clear();
+    setCartCnt(getCartCount());
     setValue({})
     navigate('/')  
 
