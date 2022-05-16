@@ -7,9 +7,9 @@ const CategoriesPage = props => {
   return (
     
       <div className="summa">
-       
-          {/* <Products path="/categories/:slug/" /> */}
-        
+       <Router>
+          <Products path="/categories/:slug/" />
+          </Router>
       </div>
   );
 };
