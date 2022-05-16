@@ -254,13 +254,13 @@ const CheckOut = ({location}) => {
                 },
                 data: data
             }).then((response) => {
-                if(response.data.length){
+               
                     // toast.error(err.response.data.message)
                     // toast.error(<div>{response.data.map(function(item,index) {
                     //     <><div>{index+1}{item}</div><br /></>
                     //   })}</div>
                     // )
-                    toast.error(`${response.data} are not avaibale for this selected address pincode`)
+                    // toast.error(`${response.data} are not avaibale for this selected address pincode`)
                     // toast.error(<div>{response.data[0]}<br />{response.data[1]}</div>, { position: toast.POSITION.UPPER_RIGHT });
                     // toast.error(
                     //     response.data.map(async (val, index) => {
@@ -268,7 +268,7 @@ const CheckOut = ({location}) => {
                     //      })   
                     // )
                     
-                } else {
+              
                     if (shippingAddress) {
 
                         delete shippingAddress[selAddIndex]['entity_id']
@@ -307,7 +307,7 @@ const CheckOut = ({location}) => {
                             console.error(err)
                         }
                     }
-                }
+                
                
             }).catch((err) => {
                 toast.error(err.response.data.message)
