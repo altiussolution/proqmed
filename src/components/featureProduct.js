@@ -188,17 +188,15 @@ const FeatureProduct = () => {
                       headers: {
                           'Authorization': `Bearer ${jwt}`
                       }
-                  }).then(async(res) => {
-                    await viewCartItems();
+                  }).then((res) => {
+                    
                       if (res.statusText === "OK" && res.status == 200) {
-                        
-                        await setCartCnt(getCartCount())
-                          // removeProduct(id, 'cart')
-                          await toast.success('Succesfully added to cart');
-                          // setTimeout(() => {
-                           
-                          // }, 1000);
-                          await setButton(false);
+                        viewCartItems();
+                        setTimeout(()=>{
+                          setCartCnt(getCartCount() )
+                        }, 3000);
+                         toast.success('Succesfully added to cart');
+                          setButton(false);
                       }
                   }).catch((err) => {
                       console.error(err);

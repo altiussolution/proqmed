@@ -125,7 +125,7 @@ const Footer = () => {
             list.map((el, index) => (    
               el.map(item => (       
                 <li key={item.id}>   
-                  <Link to={getCategoryURL(item)}>{item.name}</Link>
+                 {item.product_count > 0 && <Link to={getCategoryURL(item)}>{item.name}</Link>} 
                   
                 </li>  
               ))
