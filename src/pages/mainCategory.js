@@ -54,14 +54,14 @@ useEffect(() => {
     return <div id="products" className="row list-group catgoryPage">
       {
         mainCategory3.map((el, index) => (
-         <> {el.product_count > 0 && <div className="item product_item"> {el.product_count > 0 && <Link to={getCategoryURL(el)}
+         <> {el.product_count != 0 && <div className="item product_item"> {el.product_count != 0 && <Link to={getCategoryURL(el)}
             key={index} >
             <div className="thumbnail">
               <div className="product_img">
-              {el.product_count > 0 &&   <img className="img-fluid" src={`${el.image}`} onError={e => (e.target.src = ImageNotFound)}  /> }
+              {el.product_count != 0 &&   <img className="img-fluid" src={`${el.image}`} onError={e => (e.target.src = ImageNotFound)}  /> }
               </div>
               <div className="caption">
-              {el.product_count > 0 && <p className="product_text">
+              {el.product_count != 0 && <p className="product_text">
                 {el.name}
                 </p>}
               </div>
@@ -69,7 +69,7 @@ useEffect(() => {
             <ul className="sub_categoriesList">
               {
                 el.children_data.map((e, index) => (
-                  <li key={e.name}>{e.product_count > 0 &&  <Link className="sub_categoriesItem" to={getCategoryURL(e)}>{e.name}</Link>}</li> 
+                  <li key={e.name}>{e.product_count != 0 &&  <Link className="sub_categoriesItem" to={getCategoryURL(e)}>{e.name}</Link>}</li> 
                 ))
               }
             </ul>
@@ -81,14 +81,14 @@ useEffect(() => {
       return <div id="products" className="row list-group catgoryPage">
       {
         categories.map((el, index) => (
-          <> {el.product_count > 0 &&  <div className="item product_item">  {el.product_count > 0 && <Link to={getCategoryURL(el)}
+          <> {el.product_count != 0 &&  <div className="item product_item">  {el.product_count != 0 && <Link to={getCategoryURL(el)}
             key={index}>
             <div className="thumbnail">
               <div className="product_img">
-              {el.product_count > 0 &&   <img className="img-fluid" src={`${el.image}`} onError={e => (e.target.src = ImageNotFound)}  /> }
+              {el.product_count != 0 &&   <img className="img-fluid" src={`${el.image}`} onError={e => (e.target.src = ImageNotFound)}  /> }
               </div>
               <div className="caption">
-              {el.product_count > 0 &&  <p className="product_text">
+              {el.product_count != 0 &&  <p className="product_text">
                   {el.name}
                 </p> }
               </div>
@@ -96,7 +96,7 @@ useEffect(() => {
             <ul className="sub_categoriesList">
               {
                 el.children_data.map((e, index) => (
-                  <li key={e.name}>{e.product_count > 0 && <Link className="sub_categoriesItem" to={getCategoryURL(e)}>{e.name}</Link>}</li>
+                  <li key={e.name}>{e.product_count != 0 && <Link className="sub_categoriesItem" to={getCategoryURL(e)}>{e.name}</Link>}</li>
                 ))
               }
             </ul>

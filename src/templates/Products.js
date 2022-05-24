@@ -71,13 +71,12 @@ const Products = ({ pageContext, location , props }) => {
   const [outp,outper] = useState(false);
   const [outpcar,outpercart] = useState(false);
   // const [cName, setClassName] = useState('grid_view');
-
+  const [temp,setTemp] = useState("productsasc");
   useEffect(() => {
     console.log(pageContext)
     const newHierarchy = JSON.parse(JSON.stringify(pageContext.hierarchy));
     newHierarchy.push({"id":pageContext.id,"name":pageContext.name});
     sessionStorage.setItem('Hierarchy',JSON.stringify(newHierarchy));
-    const selecturl = "productsasc"
     const id = pageContext.id;  
     const selectRes =[];
     const fetchProductsasc = async () => {
@@ -266,6 +265,7 @@ const Products = ({ pageContext, location , props }) => {
 // }
   const shortBySelected = (event) => {
     setLoading(true);
+    setTemp(event.target.value);
     const selecturl = event.target.value;
     if(event.target.value == ""){
       event.target.value="productsasc"
@@ -346,7 +346,7 @@ const Products = ({ pageContext, location , props }) => {
                               Sort by:
                     </span>
                             <div className="option">
-                              <select className="form-control" id="sort_option1"  onChange={shortBySelected}>
+                              <select className="form-control" defaultValue={temp} onChange={shortBySelected}>
                                 <option value = "productsasc">Name Asc</option>
                                 <option value = "productsdesc">Name Desc</option>
                                 <option value = "productspriceasc">Price Asc</option>
