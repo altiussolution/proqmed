@@ -60,7 +60,7 @@ exports.createPages = ({ actions: { createPage } }) => {
 };
 
 const createSubCategory = (data, createPage, hierarchy) => {
-  if (data.product_count > 0 && data.children_data.length && data.level === 2)
+  if (data.product_count > 0 && data.children_data.length && data.level === 2 && data.node_data)
     return;
   createPage({
     path: getCategoryURL(data),
