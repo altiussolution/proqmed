@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useEffect } from "react";
 import { Link } from "gatsby"
 import Layout from "../components/layout";
 import { getCategoryURL } from "../utils/url";
@@ -11,13 +11,18 @@ import FeatureProduct from "../components/featureProduct";
 export default function Category(props) {
 
   const { pageContext } = props;
+  // const { State } = props.location;
+
+  useEffect(() => {
+    console.log(props)
+  }, [pageContext]);
 
   const renderCategories = () => {
 
     return <div id="products" className="row list-group">
       {
         pageContext.children_data.map(({ id, name, children_data, image, product_count }, index) => (
-          <div key={index} className="item product_item">
+         <>{product_count !=0 && <div key={index} className="item product_item">
             <Link key={id} to={getCategoryURL({ id, name })} state={pageContext}>
               <div className="thumbnail">
                 <div className="product_img">
@@ -41,7 +46,7 @@ export default function Category(props) {
                 </div>
               </div>
             </Link>
-          </div>
+          </div> } </>
         ))
       }
     </div>
@@ -55,10 +60,10 @@ export default function Category(props) {
           <div className="container">
             <div className="">
               <h1 className="page-title"><span>{pageContext.name}</span>
-                <div className="mt-2 mb-2 mx-2">
+                {/* <div className="mt-2 mb-2 mx-2">
                   <p>
                     {pageContext.hierarchy.map(parent => (
-                      <React.Fragment key={parent.id}>
+                      <>{parent.product_count > 0 && <React.Fragment key={parent.id}>
                         <Link
                           className="text-gray-600 hover:text-gray-800"
                           to={getCategoryURL(parent)}
@@ -66,11 +71,11 @@ export default function Category(props) {
                           <span>{parent.name}</span>
                         </Link>
 
-                      </React.Fragment>
+                      </React.Fragment>}</>
                     ))}
                     <span>{pageContext.hierarchy.length > 0 && pageContext.name}</span>
                   </p>
-                </div>
+                </div> */}
               </h1>
             </div>
             <div className="row catgoryPage">
