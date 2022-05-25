@@ -192,7 +192,9 @@ const FeatureProduct = () => {
                     
                       if (res.statusText === "OK" && res.status == 200) {
                         viewCartItems();
-                        setCartCnt(getCartCount(localStorage.userToken) )
+                        setTimeout(()=>{
+                        setCartCnt(getCartCount() )
+                        },2000)
                          toast.success('Succesfully added to cart');
                           setButton(false);
                       }
