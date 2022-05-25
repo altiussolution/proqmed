@@ -41,7 +41,7 @@ let categories,
             },
           };
           subCategories.push(child_data);
-          if (child_data.product_count > 1) createNode(categoryNode);
+          if (child_data.product_count > 0) createNode(categoryNode);
           resolve();
           
         }
