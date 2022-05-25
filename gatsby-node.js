@@ -41,7 +41,7 @@ let categories,
             },
           };
           subCategories.push(child_data);
-          if (child_data.product_count > 0) createNode(categoryNode);
+          if (child_data.product_count) createNode(categoryNode);
           resolve();
           
         }
@@ -60,7 +60,7 @@ exports.createPages = ({ actions: { createPage } }) => {
 };
 
 const createSubCategory = (data, createPage, hierarchy) => {
-  if (data.product_count > 0 && data.children_data.length && data.level === 2 && data.node_data)
+  if (data.product_count  && data.children_data.length && data.level === 2 && data.node_data)
     return;
   createPage({
     path: getCategoryURL(data),

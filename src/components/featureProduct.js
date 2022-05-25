@@ -62,6 +62,7 @@ const FeatureProduct = () => {
     const [qty, setQty] = useState(1);
     const [isButton, setButton] = useState(false);
     const [cartCnt, setCartCnt] = useState(getCartCount())
+    const [cartCount, setcartCount] = useState(null);
     const [p,per] = useState(false);
     const [pcar,percart] = useState(false);
     const [outp,outper] = useState(false);
@@ -167,7 +168,11 @@ const FeatureProduct = () => {
         navigate("/signin")
     }
       }
-
+      const cartValue = () => {
+        setTimeout(() => {
+          setcartCount(getCartCount());
+        }, 3000);
+      }
     const addtoCartItems = (sku, id) => {
       if (localStorage.userToken) {
           const cartItem = {
@@ -189,13 +194,10 @@ const FeatureProduct = () => {
                           'Authorization': `Bearer ${jwt}`
                       }
                   }).then((res) => {
-                    
-                      if (res.statusText === "OK" && res.status == 200) {
+                     if (res.statusText === "OK" && res.status == 200) {
                         viewCartItems();
-                        setTimeout(()=>{
-                        setCartCnt(getCartCount() )
-                        },2000)
                          toast.success('Succesfully added to cart');
+                         cartValue();
                           setButton(false);
                       }
                   }).catch((err) => {

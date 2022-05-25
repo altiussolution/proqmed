@@ -27,7 +27,7 @@ const Featuredproducts = () => {
     const [outpcar,outpercart] = useState(false);
     const [qty, setQty] = useState(1);
     const [quote_id, setQuoteId] = useState("");
-    const [cartCnt, setCartCnt] = useState(getCartCount())
+    const [cartCnt, setCartCnt] = useState(null);
     const [isButton, setButton] = useState(false);
 
 
