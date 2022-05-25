@@ -21,8 +21,8 @@ export default function Category(props) {
 
     return <div id="products" className="row list-group">
       {
-        pageContext.children_data.map(({ id, name, children_data, image, product_count }, index) => (
-         <>{product_count !=0 && <div key={index} className="item product_item">
+        pageContext.children_data.map(({ id, name, children_data, image, product_count, node_data }, index) => (
+         <>{product_count !=0 && node_data == true && <div key={index} className="item product_item">
             <Link key={id} to={getCategoryURL({ id, name })} state={pageContext}>
               <div className="thumbnail">
                 <div className="product_img">

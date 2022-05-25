@@ -477,10 +477,10 @@ const isSticky = (e) => {
             list.map((el, index) => (
               el.map(item => (
                 <figure className="itm_list">
-                  <>{item.product_count !== 0 && <Link to={getCategoryURL(item)} key={item.id} state={item} className="itm_list_title">{item.name}</Link>}</>
+                  <>{item.product_count !== 0 && item.node_data == true && <Link to={getCategoryURL(item)} key={item.id} state={item} className="itm_list_title">{item.name}</Link>}</>
                   {
                     item.children_data.map(grand_child => (
-                     <>{grand_child.product_count !== 0 && <span key={grand_child.id} ><Link to={getCategoryURL(grand_child)} state={grand_child}>{grand_child.name}</Link></span> }</> 
+                     <>{grand_child.product_count !== 0 && grand_child.node_data == true && <span key={grand_child.id} ><Link to={getCategoryURL(grand_child)} state={grand_child}>{grand_child.name}</Link></span> }</> 
                     ))
                   }
   

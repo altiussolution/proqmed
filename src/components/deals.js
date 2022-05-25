@@ -104,8 +104,8 @@ const renderDeals = ()=>{
     return  <Slider {...dealofday}> 
 { 
     dealProducts.map((data,index)=>(
-  <div className="card" key={`${data.sub_category}_${index}`}>
-      <h5 className="title_link">{data.sub_category.product_count > 0 && <Link to={getCategoryURL(data.sub_category)}>{data.sub_category.name}</Link>}</h5>
+  <>{data.sub_category.product_count > 0 && data.sub_category.node_data == true && <div className="card" key={`${data.sub_category}_${index}`}>
+      <h5 className="title_link"><Link to={getCategoryURL(data.sub_category)}>{data.sub_category.name}</Link></h5>
       {/*<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>*/}
        <p>{data.sub_category.description}</p>
 
@@ -115,17 +115,17 @@ const renderDeals = ()=>{
         
  <li key={index}>
  <div className="image_wrapper">
- {value.product_count > 0 &&    <Link to={getCategoryURL(value)}><img src={value.image} 
+ {value.product_count > 0 &&  value.node_data ==true &&  <Link to={getCategoryURL(value)}><img src={value.image} 
     onError={e => (e.target.src = ImageNotFound)}/></Link>}
         </div><div className="description_list">
-        {value.product_count > 0 &&   <Link to={getCategoryURL(value)}>{value.name}</Link>}
+        {value.product_count > 0 &&  value.node_data ==true &&   <Link to={getCategoryURL(value)}>{value.name}</Link>}
           </div>
           </li>
           
 ))}
  </ul>
 
-</div>
+</div>}</>
 
     ))
 
