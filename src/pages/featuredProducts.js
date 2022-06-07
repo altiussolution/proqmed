@@ -6,7 +6,7 @@ import Layout from "../components/layout";
 import { FaRegHeart } from 'react-icons/fa';
 import { IoGridOutline } from "react-icons/io5";
 import { IoList } from "react-icons/io5";
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PageLoader from "../components/loaders/pageLoader";
 import axios from "axios";
@@ -27,7 +27,7 @@ const Featuredproducts = () => {
     const [outpcar,outpercart] = useState(false);
     const [qty, setQty] = useState(1);
     const [quote_id, setQuoteId] = useState("");
-    const [cartCnt, setCartCnt] = useState(null);
+    const [cartCount, setcartCount] = useState(getCartCount());
     const [isButton, setButton] = useState(false);
 
 
@@ -89,7 +89,13 @@ const Featuredproducts = () => {
         };
         fetchFeature();
     }, []);
+    const cartValue = () => {
+      setTimeout(() => {
+        setcartCount(getCartCount());
+      }, 3000);
+    }
     const addtoCartItems = (sku, id) => {
+      setLoading(true)
       if (localStorage.userToken) {
           const data = {
               "data": {
@@ -98,8 +104,7 @@ const Featuredproducts = () => {
                   "quote_id": quote_id,
                   "product_id": id
               }
-          }
-          setButton(true);
+            }
           const jwt = localStorage.userToken
           if (data) {
               try {
@@ -113,19 +118,21 @@ const Featuredproducts = () => {
                   }).then((res) => {
                       if (res.statusText === "OK" && res.status == 200) {
                           viewCartItems();
-                          // removeProduct(id, 'cart')
+                          // setcartCount(getCartCount());
+                          cartValue();
                           toast.success('Succesfully added to cart');
-                          setTimeout(() => {
-                              setCartCnt(getCartCount())
-                          }, 3000);
-                          setButton(false);
+                          setLoading(false)
                       }
                   }).catch((err) => {
                       console.error(err);
                       toast.error(err.response.data.message)
+                      setLoading(false)
+
                   })
               } catch (err) {
                   console.error(err)
+                  setLoading(false)
+
               }
           }
       }
@@ -280,7 +287,7 @@ const Featuredproducts = () => {
     }
     
     return (
-        <Layout>
+        <Layout cartCount={cartCount}>
             <section className="page_content inner_page">
                 <div className="content_wrapper">
                     <div className="container">
@@ -321,7 +328,17 @@ const Featuredproducts = () => {
                     </div>
                 </div>
             </section>
-
+                      <ToastContainer
+                      position="bottom-right"
+                      autoClose={5000}
+                      hideProgressBar={false}
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss
+                      draggable
+                      pauseOnHover
+                    />
             {loading ? (<div>
                 <PageLoader />
             </div>) : <span></span>}

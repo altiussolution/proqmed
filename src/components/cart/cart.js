@@ -10,7 +10,7 @@ const CartCount = (data) => {
   const [isLoged, setIsLoged] = useState(undefined);
  
   useEffect(() =>{
-
+     console.log(data)
     if(localStorage.userToken){
       setIsLoged(localStorage.userToken);
     }
