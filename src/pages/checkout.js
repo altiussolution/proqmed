@@ -118,6 +118,16 @@ const CheckOut = ({location}) => {
     const checkOutData = () => {
         if (checkOutDetails.length != 0) {
             let checkItem = checkOutDetails[0]['totals']
+            let vatCode = checkItem['total_segments'][1]['code'];
+
+            let vatTax = '';
+            if (vatCode == 'vattax') {
+                 vatTax = checkItem['total_segments'][1]['value'];
+            }
+            else
+            {
+                 vatTax = 0;
+            }
             return <ul className="totals">
                 <li>
                     <p>Cart Subtotal</p>
@@ -134,6 +144,11 @@ const CheckOut = ({location}) => {
                 <li>
                     <p>Tax</p>
                     <span>${checkItem.tax_amount}</span>
+                </li>
+
+                <li>
+                    <p>Vat Tax</p>
+                    <span>${vatTax}</span>
                 </li>
 
                 <li>

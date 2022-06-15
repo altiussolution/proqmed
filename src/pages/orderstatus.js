@@ -177,6 +177,9 @@ const Invoice = ({ location }) => {
                                     <th>TaxAmount</th><td>{Math.round(items.tax_total)}</td>
                                 </tr>
                                 <tr>
+                                    <th>Vat Tax</th><td>{Math.round(items.vat_tax)}</td>
+                                </tr>
+                                <tr>
                                     <th>Shipping &amp; Handling</th><td>${Math.round(items.shipping_total)}</td>
                                 </tr>
                                 <tr>
