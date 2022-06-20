@@ -25,6 +25,8 @@ const TrendingProducts = () => {
     const [quote_id, setQuoteId] = useState("");
     const [cartCnt, setCartCnt] = useState(getCartCount())
     const [isButton, setButton] = useState(false);
+    const [currency,setCurrency]=useState();
+
     useEffect(() => {
       setCustomerId(localStorage.customer_id)
         setJwt(localStorage.userToken)
@@ -72,7 +74,13 @@ const TrendingProducts = () => {
         //   console.error('here string')
         const json = await res.json();
         await setTrendingProducts(json);
+        const curr = await fetch(
+          `${process.env.GATSBY_CART_URL_STARCARE}getcurrentcurrency`
+      );
+      const jsonp = await curr.json(); 
+      await setCurrency(jsonp);
       };
+
       fetchTrending();
     }, []);
     const addToList = (type,id) => {
@@ -203,9 +211,9 @@ const TrendingProducts = () => {
                       <div className="fo-fpflx">
                       <div className="price_left">                                  
                           <div className="product_amt">
-                          {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
+                          {data.strike_price != null  && <span className="new_price">{currency}{Math.round(data.strike_price)}</span>}
                           {/* { data.strike_price == null &&  <span className="price">${Math.round(data.original_price)}</span>} */}
-                          <span className="price">${Math.round(data.final_price)}</span>
+                          <span className="price">{currency}{Math.round(data.final_price)}</span>
                               
                           </div>
                           <div className="rating_front">

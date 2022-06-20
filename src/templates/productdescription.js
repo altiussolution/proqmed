@@ -52,6 +52,7 @@ const Productdescription = ({ proDescription, routeAss, setcartCount, setWishLis
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false);
     const [outpcom,outpercomp] = useState(false);
+    const [currency,setCurrency]=useState();
     const [pincode,Pin] = useState("");
     const [grpId,grpI] = useState("");
   const [data, setData] = useState([
@@ -72,6 +73,13 @@ const Productdescription = ({ proDescription, routeAss, setcartCount, setWishLis
     //setQuoteId(localStorage.cartId);
     setPrice(proDescription.items.final_price)
     const jwt = localStorage.getItem('userToken')
+    const fetchFeature = async () => {
+    const curr = await fetch(
+      `${process.env.GATSBY_CART_URL_STARCARE}getcurrentcurrency`
+  );
+  const jsonp = await curr.json(); 
+  await setCurrency(jsonp);
+    }
     if(jwt){
       try
       {    
@@ -245,7 +253,7 @@ const Productdescription = ({ proDescription, routeAss, setcartCount, setWishLis
       setMin(Math.round(data.data[0].min_sale_qty));
       setMax(Math.round(data.data[0].max_sale_qty));
     })
-
+    fetchFeature();
   }, []);
 
   const changeSize = (changeSizeValue, index2) => {
@@ -668,17 +676,17 @@ if(proDescription.items.config_options){
 
 <div className="price-name-strike">
                    
-                          {/* {proDescription.items.config_options ?
-                          change_price.map((val, index) => (
+                          {proDescription.items.config_options ?
+                          proDescription.items.config_options.map((val, index) => (
                               <span className="price" key={index}>${Math.round(val.price)}</span>
                             )) :
                             <span className="price">${Math.round(normal_price)}</span>
-} */}
+}
 {/* {proDescription.items.strike_price ==null && newprice()} */}
- <span  className="price">${Math.round(proDescription.items.prices[localStorage.group ? localStorage.group : 0]['final_price'])}</span>
+ <span  className="price">{currency}{Math.round(proDescription.items.prices[localStorage.group ? localStorage.group : 0]['final_price'])}</span>
 
 
-                       {proDescription.items.prices[localStorage.group ? localStorage.group : 0]['strike_price'] !=null && <span className="price"><strike>${Math.round(proDescription.items.prices[localStorage.group ? localStorage.group : 0]['strike_price'])}</strike></span>}
+                       {proDescription.items.prices[localStorage.group ? localStorage.group : 0]['strike_price'] !=null && <span className="price"><strike>{currency}{Math.round(proDescription.items.prices[localStorage.group ? localStorage.group : 0]['strike_price'])}</strike></span>}
                        {/* <span className="price"><strike>$0</strike></span> */}
 </div>
 
@@ -705,7 +713,7 @@ if(proDescription.items.config_options){
                                 </td> 
                                 <td>
                                   <span className="whish-list-price">
-                                    $ {parseFloat(item.Tier_price).toFixed(2)}
+                                    {currency} {parseFloat(item.Tier_price).toFixed(2)}
                                   </span>
                                 </td>
                                 <td className="product_name">

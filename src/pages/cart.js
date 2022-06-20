@@ -18,6 +18,8 @@ const Cart = () => {
     const [jwt, setjwt] = useState();
     const [customerId, setCustomerId] = useState("");
     const [tierAmt, setTierProduct] = useState([]);
+    const [currency,setCurrency]=useState();
+
     //const [normal_price, setPrice] = useState("")
    // const [qty, setQty] = useState(1);
 
@@ -97,7 +99,11 @@ const Cart = () => {
       }
 
     const fetchCheckTotal = async () => {
-       
+      const curr = await fetch(
+        `${process.env.GATSBY_CART_URL_STARCARE}getcurrentcurrency`
+    );
+    const jsonp = await curr.json(); 
+    await setCurrency(jsonp);
         const jwt = localStorage.getItem('userToken')
         try {
             axios({
@@ -291,10 +297,10 @@ const Cart = () => {
                     <tr>
                       <td className="product_img"><Link to={getProductURL(cart)}> <img src={cart.image} /></Link></td>
                       <td><Link to={getProductURL(cart)}><p>{cart.name}</p></Link></td>
-                      <td>${parseFloat(cart.price).toFixed(2)}</td>
+                      <td>{currency}{parseFloat(cart.price).toFixed(2)}</td>
                       <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart,index) }}/></td>
                         <td><p className="green">{cart.status[index]}</p></td>
-                        <td><p>$ {Math.round(cart.qty*cart.price)}</p></td>
+                        <td><p>{currency} {Math.round(cart.qty*cart.price)}</p></td>
                        
                             <td> <div className="casualities">
                                 <a onClick={() => { resetCart(cart.item_id) }}> <AiTwotoneDelete /></a>
@@ -320,7 +326,7 @@ const Cart = () => {
                 {
                     checkOut.map((item, index) => ( 
                         <tr key={index}>
-                            <th>{item.title}</th>
+                            <th>{item.code == "vattax" ? "Vat Tax" : item.title}</th>
                              <td>{item.value}</td>
                         </tr>
                          ))

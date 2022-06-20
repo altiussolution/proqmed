@@ -20,15 +20,20 @@ const Orders = () => {
     const [outp,outper] = useState(false);
     const [outre,outreodr]= useState(false);
     const [attach_data, setattachment] = useState(null);
-    
+    const [currency,setCurrency]=useState();
     useEffect(() => {
         setJwt(localStorage.userToken);
       
         setOrderDetails()
     }, [])
 
-    const setOrderDetails = () => {
+    const setOrderDetails = async () => {
         setLoader(true)
+        const curr = await fetch(
+            `${process.env.GATSBY_CART_URL_STARCARE}getcurrentcurrency`
+        );
+        const jsonp = await curr.json(); 
+        await setCurrency(jsonp);
         try{
             axios({
                 method : "get",
@@ -342,7 +347,7 @@ return (
                                                         <div className="or-left fl">
                                                             <p>: {items[0].increment_id}</p>
                                                             <p>: {items[0].customer_firstname}</p>
-                                                            <p>: $ {parseFloat(items[0].grand_total).toFixed(2)}</p>
+                                                            <p>: {currency} {parseFloat(items[0].grand_total).toFixed(2)}</p>
                                                             <p>: {items[0].status}</p>
                                                             <p>: {items[0].payment_method}</p>
                                                             {/* <span className="functions"><p><i className="fa fa-calendar-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleDateString()}</p><p><i className="fa fa-clock-o" aria-hidden="true"></i>{new Date(orders.created_at).toLocaleTimeString('en-US')}</p></span> */}

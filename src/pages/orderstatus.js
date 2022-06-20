@@ -22,6 +22,7 @@ const Invoice = ({ location }) => {
     const [idd,setid] = useState(false);
     const [nop,noper] = useState(false);
     const [permits,setPermit] = useState([]);
+    const [currency,setCurrency]=useState();
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current
@@ -36,8 +37,13 @@ const Invoice = ({ location }) => {
         setid(location.state.increment_id)
     }, [])
   
-    const OrderStatus = () => {
+    const OrderStatus = async () => {
         setLoader(true);
+        const curr = await fetch(
+            `${process.env.GATSBY_CART_URL_STARCARE}getcurrentcurrency`
+        );
+        const jsonp = await curr.json(); 
+        await setCurrency(jsonp);
         try {
             axios({
                 method: "get",
@@ -160,7 +166,7 @@ const Invoice = ({ location }) => {
                                                     <td>{list.name}</td>
                                                     <td>{list.sku}</td>
                                                     <td>{Math.round(list.quantity)}</td>
-                                                    <td>${parseFloat(list.price).toFixed(2)}</td>
+                                                    <td>{currency}{parseFloat(list.price).toFixed(2)}</td>
                                                 </tr>
                                             </tbody>
                                         })
@@ -177,10 +183,10 @@ const Invoice = ({ location }) => {
                                     <th>TaxAmount</th><td>{Math.round(items.tax_total)}</td>
                                 </tr>
                                 <tr>
-                                    <th>Shipping &amp; Handling</th><td>${Math.round(items.shipping_total)}</td>
+                                    <th>Shipping &amp; Handling</th><td>{currency}{Math.round(items.shipping_total)}</td>
                                 </tr>
                                 <tr>
-                                    <th>Grand Total</th><td>${Math.round(items.order_total)}</td>
+                                    <th>Grand Total</th><td>{currency}{Math.round(items.order_total)}</td>
                                 </tr>
                                 </tbody>
             </table>
@@ -222,7 +228,7 @@ const Invoice = ({ location }) => {
                                                     <td>{list.name}</td>
                                                     <td>{list.sku}</td>
                                                     <td>{Math.round(list.quantity)}</td>
-                                                    <td>${parseFloat(list.price*list.quantity).toFixed(2)}</td>
+                                                    <td>{currency}{parseFloat(list.price*list.quantity).toFixed(2)}</td>
                                                 </tr>
                                             </tbody>
                                         })
@@ -360,7 +366,7 @@ const Invoice = ({ location }) => {
                                                 <td className="product_name">{list.product_name} </td>
                                                 <td>{list.sku}</td>
                                                 <td>{Math.round(list.qty)}</td>
-                                                <td>$ {parseFloat(list.price).toFixed(2)}</td>
+                                                <td>{currency} {parseFloat(list.price).toFixed(2)}</td>
                                             </tr>
                                         </tbody>
                                         : <span></span>)
@@ -391,10 +397,10 @@ const Invoice = ({ location }) => {
                                     <th>TaxAmount</th><td>{Math.round(item.Tax_Amount)}</td>
                                 </tr>
                                 <tr>
-                                    <th>Shipping &amp; Handling</th><td>${Math.round(item.Shipping_Amount)}</td>
+                                    <th>Shipping &amp; Handling</th><td>{currency}{Math.round(item.Shipping_Amount)}</td>
                                 </tr>
                                 <tr>
-                                    <th>Grand Total</th><td>${Math.round(item.Grand_Total)}</td>
+                                    <th>Grand Total</th><td>{currency}{Math.round(item.Grand_Total)}</td>
                                 </tr>
                             </tbody> : <tbody></tbody>)
                     })

@@ -103,8 +103,8 @@ const [unchangem,unchangeMin] = useState(150);
       for (let prop in product) {
         if (prop !== "items" && prop !=="Special Price") {
           displayFilters[prop] = displayFilters[prop]
-            ? displayFilters[prop].add(prop=="Offer Percentage" ? product[prop][localStorage.group ? localStorage.group :0]:product[prop])
-            : new Set([prop=="Offer Percentage" ? product[prop][localStorage.group ? localStorage.group :0]:product[prop]]);
+            ? displayFilters[prop].add(prop=="Today's Deal" ? product[prop][localStorage.group ? localStorage.group :0]:product[prop])
+            : new Set([prop=="Today's Deal" ? product[prop][localStorage.group ? localStorage.group :0]:product[prop]]);
 
         }
       }
@@ -172,14 +172,14 @@ const [unchangem,unchangeMin] = useState(150);
       products.forEach(el => {
         if (index === 0) {
           const product = convertToObject(el.flat());
-          if (product[prop] && filters[prop].includes(prop=="Offer Percentage" ? product[prop][localStorage.group ? localStorage.group :0]:product[prop])) {
+          if (product[prop] && filters[prop].includes(prop=="Today's Deal" ? product[prop][localStorage.group ? localStorage.group :0]:product[prop])) {
             tempFilteredProducts = tempFilteredProducts
               .filter(item => item.items.id !== product.items.id)
               .concat(product);
           }
         } else {
           tempFilteredProducts = tempFilteredProducts.filter(product => {
-            return product[prop] && filters[prop].includes(prop=="Offer Percentage" ? product[prop][localStorage.group ? localStorage.group :0]:product[prop]);
+            return product[prop] && filters[prop].includes(prop=="Today's Deal" ? product[prop][localStorage.group ? localStorage.group :0]:product[prop]);
           });
         }  
       });
@@ -341,8 +341,8 @@ const renderPriceFilters = () => {
              
                   <label htmlFor={val} >
                   <span className={val == "Clear" ? "safety_color1" : "" || val == "Dark Copper" ? "safety_color2" : "" || val == "Blue" ? "safety_color3" : "" || val == "Black;Grey" ? "safety_color4" : "" || val == "Silver" ? "safety_color5" : "" || val == "Silver;Black" ? "safety_color6"  : "" || val == "#FFFFFF" ? "safety_color7" : "" || val == "Black" ? "safety_color8" : "" || val == "Black;Orange" ? "safety_color9" : "" || val == "Black;Brown" ? "safety_color10" : "" || val == "Black/Lime" ? "safety_color11" : "" || val == "Black/Red" ? "safety_color12" : "" || val == "Yellow" ? "safety_color13" : "" || val == "White" ? "safety_color14" : "" || val == "Brown" ? "safety_color15" : "" || val == "Grey" ? "safety_color16" : "" || val == "Sky Blue" ? "safety_color17" : "" || val == "Navy" ? "safety_color18" : "" || val == "Yellow (Plug)" ? "safety_color19" : ""}></span>
-                  <span >{key == "Offer Percentage" ? (val==9 ? Math.round(val) :Math.round(val) ) : (key == "Rating" && val!="") ? val  : key == "Special Price" ? Math.round(val) : val}
-                 <span className={key == "Rating" ? "fa fa-star" : "inp_val"}>{key == "Offer Percentage" ? (val==9 ? "% & below" :"% & more") : (key == "Rating" && val!="") ? "& above" : ""}</span>
+                  <span >{key == "Today's Deal" ? (val==9 ? Math.round(val) :Math.round(val) ) : (key == "Rating" && val!="") ? val  : key == "Special Price" ? Math.round(val) : val}
+                 <span className={key == "Rating" ? "fa fa-star" : "inp_val"}>{key == "Today's Deal" ? (val==9 ? "% & below" :"% & more") : (key == "Rating" && val!="") ? "& above" : ""}</span>
 
                  </span>
                   </label>

@@ -185,7 +185,7 @@ const Footer = () => {
                             <span className="ic_benefits">
                                     <i className="support"></i>
                                 </span>
-                                <div className="info-block-content"><div className="info-block-title">24/7 Support</div>
+                                <div className="info-block-content"><div className="info-block-title">Chat</div>
                                 <div className="info-block-text">Live Support</div></div>
                             </div>
                         </div>
@@ -197,7 +197,8 @@ const Footer = () => {
                 <div className="row newsletter_holder">
                 <div className="col-lg-6  col-md-12 col-sm-12">
                 <h2>Get Our Updates Always Fast</h2>
-                <p>10% off your next order when you sign up + be the first to know about new products and special offers.</p>
+                <p>sign up to be the first to know
+about our new products and offers</p>
 
                     </div>
                     <div className="col-lg-6 col-md-12 col-sm-12">

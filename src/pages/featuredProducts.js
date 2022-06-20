@@ -29,6 +29,7 @@ const Featuredproducts = () => {
     const [quote_id, setQuoteId] = useState("");
     const [cartCount, setcartCount] = useState(getCartCount());
     const [isButton, setButton] = useState(false);
+    const [currency,setCurrency]=useState();
 
 
     useEffect(() => {
@@ -85,7 +86,11 @@ const Featuredproducts = () => {
             const json = await res.json();
             console.log(json)
             await setFeatureProducts(json);
-             
+            const curr = await fetch(
+              `${process.env.GATSBY_CART_URL_STARCARE}getcurrentcurrency`
+          );
+          const jsonp = await curr.json(); 
+          await setCurrency(jsonp);
         };
         fetchFeature();
     }, []);
@@ -249,9 +254,9 @@ const Featuredproducts = () => {
                                 <Link to={getProductURL(data)}>  <p className="product_title">{data.name}</p></Link>
                                 <div className="price_left">                                  
                                     <div className="product_amt">
-                                    {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
+                                    {data.strike_price != null  && <span className="new_price">{currency}{Math.round(data.strike_price)}</span>}
                                     {/* { data.strike_price == null &&  <span className="price">${Math.round(data.original_price)}</span>} */}
-                                      <span className="price">${Math.round(data.final_price)}</span>
+                                      <span className="price">{currency}{Math.round(data.final_price)}</span>
                                         
                                     </div>
                                     <div className="rating_front">

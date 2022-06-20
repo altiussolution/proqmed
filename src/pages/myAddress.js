@@ -173,7 +173,7 @@ const deleteAddress = (id) => {
                      <address>
                          <span>{add.firstname}</span> <span>{add.lastname}</span><br></br>
                          <span>{add.company}</span><br></br>
-                         {add.street.join()}
+                         {add.street1}
                          <span>{add.city}</span><br></br>
                          <span>{add.region}</span><br></br>
                          <a href={`tel:${add.telephone}`}>{add.telephone}</a>
@@ -312,8 +312,8 @@ const deleteAddress = (id) => {
              shippingAddress.map((add, index) => ( 
                         <div className="fo-info" key={`${index}_add`}>
                             <div className="left">
-                                <p>{add.firstname}{add.lastname} <span>{add.telephone}</span></p>
-                                <h6>{add.company},{add.street.join()},{add.city}.</h6>
+                                <p>{add.firstname} {add.lastname} <span>{add.telephone}</span></p>
+                                <h6>{add.street1},{add.street2},{add.city}.</h6>
                             </div>
                             <div className="right">
                                 {/* <div className="dropdown address">

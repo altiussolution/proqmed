@@ -29,6 +29,8 @@ const BrandedProducts = ({pageContext, location }) =>{
     const [customerId, setCustomerId] = useState("");
     const [p,per] = useState(false);
     const [permits,setPermit] = useState([]);
+    const [currency,setCurrency]=useState();
+
     useEffect(() => {
       console.log(location)
         product()
@@ -80,7 +82,7 @@ const BrandedProducts = ({pageContext, location }) =>{
     },[]);
 
 
-const product = ()=>{
+const product = async ()=>{
     setLoader(true);      
     axios({
         method : "get",
@@ -101,6 +103,11 @@ const product = ()=>{
             // )
              
                })
+               const curr = await fetch(
+                `${process.env.GATSBY_CART_URL_STARCARE}getcurrentcurrency`
+            );
+            const jsonp = await curr.json(); 
+            await setCurrency(jsonp);
 }
 const cartValue = () => {
     setTimeout(() => {
@@ -265,8 +272,8 @@ const addToList = (type,id) => {
                               <Link to={getProductURL(data)}><p className="product_title">{data.name}</p></Link>
                               <div className="price_left deal ab">                                  
                                   <div className="product_amt">
-                                  {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
-                                      <span className="price">${Math.round(data.final_price)}</span>
+                                  {data.strike_price != null  && <span className="new_price">{currency}{Math.round(data.strike_price)}</span>}
+                                      <span className="price">{currency}{Math.round(data.final_price)}</span>
                                       <div className="rating_front">
                                   <StarRatings
                                       rating={Math.round(data.rating)}

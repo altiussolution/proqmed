@@ -28,6 +28,7 @@ const Hotproducts = () => {
  const [outp,outper] = useState(false);
  const [outpcar,outpercart] = useState(false);
  const [viewClass, setViewClass] = useState('grid_view');
+ const [currency,setCurrency]=useState();
 
  useEffect(() => {
      setCustomerId(localStorage.customer_id)
@@ -90,7 +91,12 @@ const Hotproducts = () => {
      );
      const json = await res.json();
      await setDealProducts(json);
-     console.log(json) 
+     const curr = await fetch(
+      `${process.env.GATSBY_CART_URL_STARCARE}getcurrentcurrency`
+  );
+  const jsonp = await curr.json(); 
+  await setCurrency(jsonp);
+
     }
     fetchFeature();
  }, []);
@@ -235,9 +241,9 @@ const renderProducts = () => {
                           <Link to={getProductURL(data)}><p className="product_title">{data.name}</p></Link>
                           <div className="price_left fl">                                  
                               <div className="product_amt">
-                              {data.strike_price != null  && <span className="new_price">${Math.round(data.strike_price)}</span>}
+                              {data.strike_price != null  && <span className="new_price">{currency}{Math.round(data.strike_price)}</span>}
                               {/* { data.strike_price == null &&  <span className="price">${Math.round(data.original_price)}</span>} */}
-                              <span className="price">${Math.round(data.final_price)}</span>
+                              <span className="price">{currency}{Math.round(data.final_price)}</span>
                               <div className="rating_front">
                               <StarRatings
                                   rating={Math.round(data.ratings_summary)}
