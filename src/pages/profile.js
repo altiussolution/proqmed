@@ -6,6 +6,7 @@ import { navigate, Link} from "gatsby"
 import Table from 'react-bootstrap/Table';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
+import Select from 'react-select';
 import { logout } from "./../services/headerServices";
 import account from "./../assets/account.png"
 import logoutt from "./../assets/logout.png"
@@ -31,25 +32,28 @@ const Profile = () => {
     const [aftimg,afterimage]= useState(false);
     const [up,upimage]= useState(true);
     const [cfile,setcfile]= useState(false);
-
-  const [profilepic,setProfilepic] = useState({});
+    const [profilepic,setProfilepic] = useState({});
   const [showname,Naming]= useState(false);
   const [showmail,Emailing]= useState(false);
   const [showgender,Gendering]= useState(false);
   const [shownumber,Numbering]= useState(false);
+  const [landnumber,Lannumbering]= useState(false);
   const [value, setValue] = useState();
  // const [showQuote, setShowQuote] = useState(true);
   const [quote, setQuotePopup] = useState(false);
   //const handleCloseQuote = () => setShowQuote(false);
  // const handleShowQuote = () => setShowQuote(true);
  const [loader, setLoader] = useState(true);
-
+ const [codes, setCodes] = useState([]);
   const [permits,setPermit] = useState([]);
+  const [Tamilan,Defaulti] = useState({});
     useEffect(() => {
 
       setPermit(localStorage.permissions);
         setIsLogged(checkLogin());
         setJwt(localStorage.userToken);
+        const ef = {code: '44'}
+        Defaulti(ef)
         setEmail(localStorage.email);
         setName(localStorage.getItem('user_name'))
         name()
@@ -75,7 +79,13 @@ const pic=() => {
   })
 
 }
-      const name=() => {
+      const name=async() => {
+        const curr = await fetch(
+          `${process.env.GATSBY_CART_URL_STARCARE}getcountrycodes`
+      );
+      const jsonp = await curr.json(); 
+      console.log(jsonp)
+      await setCodes(jsonp)
           axios({
             method: 'get',
             url: `${process.env.GATSBY_CART_URL_STARCARE}getusername/customer_id/${localStorage.customer_id}`,
@@ -198,7 +208,9 @@ const Namesubmit = Nameval =>{
 const editingEmail = (value) =>{
   Emailing(true)
 }
-
+const onSelectStates1 = (states) => {
+Defaulti(states)
+}
 const Emailsubmit = emailss => {
   let data = {
     "data": {
@@ -265,10 +277,15 @@ const editingNumber = (value) =>{
   Numbering(true)
 
 }
+const editinglanNumber = (value) =>{
+  Lannumbering(true)
+
+}
 const Numbersubmit = num => {
   let data = {
     "data": {
       "customer_email":localStorage.email,
+      "country_code":44,
       "telephone":num['number'],
     }
   }
@@ -293,6 +310,36 @@ const Numbersubmit = num => {
     Numbering(false)
 }
 }
+
+const LanNumbersubmit = num => {
+  let data = {
+    "data": {
+      "customer_email":localStorage.email,
+      "landline":num['lannumber'],
+    }
+  }
+  try {
+    axios({
+        method: 'post',
+        url: `${process.env.GATSBY_CART_URL_STARCARE}customer/update_landline`,
+        data: data,
+    })
+        .then(function (response) {
+            toast.success('Mobile Number Updated Successfully')
+            Lannumbering(false)
+            getProfile()
+        })
+        .catch(function (err) {
+            toast.error(err.response.data.message)
+            Lannumbering(false)
+        });
+
+} catch (err) {
+    console.error(`An error occured ${err}`)
+    Lannumbering(false)
+}
+}
+
       const uploadImage = async (e) => {
         upimage(false)
         const file = e.target.files[0];
@@ -375,6 +422,9 @@ const closeName = () =>{
 }
 const closeNumber = () =>{
   Numbering(false)
+}
+const closelanNumber = () =>{
+  Lannumbering(false)
 }
 const closeEmail = () =>{
   Emailing(false)
@@ -560,15 +610,40 @@ const choosefile =() =>{
                             
                         </div>
                         {!shownumber &&  <div className="form-content">
+                            <input type="text" value="+44" disabled/>
                             <input type="text" value={jwt && profile.contact_number || ''} disabled/>
                          </div>}
                         {shownumber &&  <form onSubmit={handleSubmit(Numbersubmit)}><div className="form-content">
                             <input type="text" placeholder="Mobile Number *" name="number" maxLength="10" ref={register({
                               required: true})} defaultValue={(profile ? profile['contact_number'] : "")} />
                             {errors.number && errors.number.type === 'required' && <span className="error_label">Mobile Number is required</span>} 
-
+                            {/* <Select
+                                    options={codes}
+                                    onChange={onSelectStates1}
+                                    code={Tamilan}
+                                    placeholder="Select code *"
+                                    
+                                     /> */}
                             <button type="submit" className="btn btn-danger square">SAVE</button>
                      <button type="button" class="btn btn" onClick={closeNumber}><AiOutlineClose /></button>
+
+                        </div></form>}
+                        <div className="head-label">
+                            <h4>Landline Number</h4>
+                          {p && <div>{!landnumber && <span  onClick={editinglanNumber}><i className="fa fa-pencil" aria-hidden="true"></i>Edit</span>}</div> } 
+                          {outp && <div> {!landnumber && <span  onClick={editinglanNumber}><i className="fa fa-pencil" aria-hidden="true"></i>Edit</span>}</div>} 
+                            
+                        </div>
+                        {!landnumber && <div className="form-content">
+                            <input type="text" value={jwt && profile.landline_number || ''} disabled/>
+                         </div>}
+                         {landnumber &&  <form onSubmit={handleSubmit(LanNumbersubmit)}><div className="form-content">
+                            <input type="text" placeholder="Landline Number *" name="lannumber" maxLength="10" ref={register({
+                              required: true})} defaultValue={(profile ? profile['landline_number'] : "")} />
+                            {errors.lannumber && errors.lannumber.type === 'required' && <span className="error_label">Landline Number is required</span>} 
+
+                            <button type="submit" className="btn btn-danger square">SAVE</button>
+                     <button type="button" class="btn btn" onClick={closelanNumber}><AiOutlineClose /></button>
 
                         </div></form>}
                     </div>

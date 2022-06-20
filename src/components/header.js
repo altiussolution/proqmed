@@ -264,7 +264,7 @@ const isSticky = (e) => {
   }
 
   const searchList = () => {
-    console.log(searchResponse)
+    console.log(cartCount)
     if (searchResponse.length !== 0) {
       if(allowedCat.length !== 0){
         const list = searchResponse.filter((elem, index, self) => self.findIndex(

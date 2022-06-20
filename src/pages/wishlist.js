@@ -28,7 +28,8 @@ const Wishlist = () => {
     const [nop,noper] = useState(false);
     const [jwt, setJwt] = useState("");
     const [permits,setPermit] = useState();
-
+    const [currency,setCurrency]=useState();
+   const [qtydata, setQtydata] = useState();
     useEffect(() => {
         getWishList()
       //setQuoteId(localStorage.cartId)
@@ -78,8 +79,13 @@ const Wishlist = () => {
         setWishListCnt(getWLCount());
     }
 
-    const getWishList = () => {
-        setLoader(true);
+    const getWishList = async () => {
+      setLoader(true);
+        const curr = await fetch(
+            `${process.env.GATSBY_CART_URL_STARCARE}getcurrentcurrency`
+        );
+        const jsonp = await curr.json(); 
+        await setCurrency(jsonp);
         console.log(permits)
       
         try {
@@ -150,45 +156,96 @@ const Wishlist = () => {
             console.error(err)
         }
     }
-
+    const handleChange = (event,sku,index) => {
+        if (event.target.value <= 0) {
+            event.target.value = 1;
+        }
+         let data = {
+            sku:sku,
+            index:index,
+            qty:event.target.value
+         }
+         setQtydata(data)
+    }
     const addtoCartItem = (sku, id) => {
         if (localStorage.userToken) {
-            const cartItem = {
-                "cartItem": {
-                    "sku": sku,
-                    "qty": qty,
-                    "quote_id": quote_id
+            if(qtydata.sku == sku){
+                const cartItem = {
+                    "cartItem": {
+                        "sku": sku,
+                        "qty": qtydata.qty,
+                        "quote_id": quote_id
+                    }
+                }
+                setButton(true);
+                const jwt = localStorage.userToken
+                if (cartItem) {
+                    try {
+                        axios({
+                            method: 'post',
+                            url: `${process.env.GATSBY_API_BASE_URL_STARCARE}carts/mine/items`,
+                            data: cartItem,
+                            headers: {
+                                'Authorization': `Bearer ${jwt}`
+                            }
+                        }).then((res) => {
+                            if (res.statusText === "OK" && res.status == 200) {
+                                viewCartItems();
+                                // removeProduct(id, 'cart')
+                                toast.success('Succesfully added to cart');
+                                setTimeout(() => {
+                                    setCartCnt(getCartCount())
+                                }, 3000);
+                                setButton(false);
+                            }
+                        }).catch((err) => {
+                            console.error(err);
+                            toast.error(err.response.data.message)
+                        })
+                    } catch (err) {
+                        console.error(err)
+                    }
+                }
+            }else {
+                const cartItem = {
+                    "cartItem": {
+                        "sku": sku,
+                        "qty": qty,
+                        "quote_id": quote_id
+                    }
+                }
+                setButton(true);
+                const jwt = localStorage.userToken
+                if (cartItem) {
+                    try {
+                        axios({
+                            method: 'post',
+                            url: `${process.env.GATSBY_API_BASE_URL_STARCARE}carts/mine/items`,
+                            data: cartItem,
+                            headers: {
+                                'Authorization': `Bearer ${jwt}`
+                            }
+                        }).then((res) => {
+                            if (res.statusText === "OK" && res.status == 200) {
+                                viewCartItems();
+                                // removeProduct(id, 'cart')
+                                toast.success('Succesfully added to cart');
+                                setTimeout(() => {
+                                    setCartCnt(getCartCount())
+                                }, 3000);
+                                setButton(false);
+                            }
+                        }).catch((err) => {
+                            console.error(err);
+                            toast.error(err.response.data.message)
+                        })
+                    } catch (err) {
+                        console.error(err)
+                    }
                 }
             }
-            setButton(true);
-            const jwt = localStorage.userToken
-            if (cartItem) {
-                try {
-                    axios({
-                        method: 'post',
-                        url: `${process.env.GATSBY_API_BASE_URL_STARCARE}carts/mine/items`,
-                        data: cartItem,
-                        headers: {
-                            'Authorization': `Bearer ${jwt}`
-                        }
-                    }).then((res) => {
-                        if (res.statusText === "OK" && res.status == 200) {
-                            viewCartItems();
-                            // removeProduct(id, 'cart')
-                            toast.success('Succesfully added to cart');
-                            setTimeout(() => {
-                                setCartCnt(getCartCount())
-                            }, 3000);
-                            setButton(false);
-                        }
-                    }).catch((err) => {
-                        console.error(err);
-                        toast.error(err.response.data.message)
-                    })
-                } catch (err) {
-                    console.error(err)
-                }
-            }
+            
+          
         }
         else {
             localStorage.clear()
@@ -291,13 +348,13 @@ const Wishlist = () => {
                                                                     <span>Reviews({item.review_count})</span>
                                                                     </div>
                                                                     <div className="qty_price">
-                                                                    {item.strike_price != null  &&  <span className="new_price">${Math.round(item.strike_price)}</span>}
-                                                                        <h6>${parseFloat(item.final_price).toFixed(2)}</h6>
+                                                                    {item.strike_price != null  &&  <span className="new_price">{currency}{Math.round(item.strike_price)}</span>}
+                                                                        <h6>{currency}{parseFloat(item.final_price).toFixed(2)}</h6>
                                                                     </div>
     
                                                                     
                                                                 </div>
-                                   
+                                                                <input type="number" name="qty" defaultValue="1" onChange={e => { handleChange(e,item.sku,index) }}/>
                                                                 <div className="user_actions">
                                                                         <p>Item added {item.created_at}</p>
                                                                     {/* <button className="btn_gray btn" onClick={() => navigate('/checkout')} >Buy Now</button> */}

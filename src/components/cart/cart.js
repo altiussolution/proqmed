@@ -8,13 +8,21 @@ import {cartTotal, getCartCount,getWLCount} from '../../utils/apiServices'; //wi
 const CartCount = (data) => {  
 
   const [isLoged, setIsLoged] = useState(undefined);
+  const [currency,setCurrency]=useState();
  
   useEffect(() =>{
-
+     console.log(data)
     if(localStorage.userToken){
       setIsLoged(localStorage.userToken);
     }
-
+    const fetchFeature = async () => {
+      const curr = await fetch(
+        `${process.env.GATSBY_CART_URL_STARCARE}getcurrentcurrency`
+    );
+    const jsonp = await curr.json(); 
+    await setCurrency(jsonp);
+    }
+    fetchFeature();
   }, []) 
 
 
@@ -41,8 +49,8 @@ return (
              }
              <div className="cart_text">
               <span>My Cart</span>
-                {isLoged &&  <div>${parseFloat(cartTotal()).toFixed(2)}</div>  }      
-                {!isLoged &&  <div>$0.00</div>}       
+                {isLoged &&  <div>{currency}{parseFloat(cartTotal()).toFixed(2)}</div>  }      
+                {!isLoged &&  <div>{currency}0.00</div>}       
                 </div>
 
             

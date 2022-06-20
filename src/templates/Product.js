@@ -71,11 +71,14 @@ const Product = (props,location)  => {
     const [pcar,percart] = useState(false);
     const [outp,outper] = useState(false);
     const [outpcar,outpercart] = useState(false);
+    const [currency,setCurrency]=useState();
     useEffect(() => {
       // console.log(location,"Gokul")
       setCustomerId(localStorage.customer_id)
       setJwt(localStorage.userToken)
       const jwt = localStorage.getItem('userToken')
+   
+      
       if(jwt){
         try
         {    
@@ -118,6 +121,11 @@ const Product = (props,location)  => {
        }
       const fetchData = async () => {
         setLoading(true);   
+        const curr = await fetch(
+          `${process.env.GATSBY_CART_URL_STARCARE}getcurrentcurrency`
+      );
+      const jsonp = await curr.json(); 
+      await setCurrency(jsonp);
         try {  
           const res = await axios.get(
             // `${process.env.GATSBY_CART_URL_STARCARE}admin/productsattributes/${id}`
@@ -304,9 +312,9 @@ const addToList = (type,id) => {
                        <div className="price_holder">
                        <div className="price_left">                                  
                            <div className="product_amt">
-                           {data.strike_price != null  &&  <span className="new_price">${Math.round(data.strike_price)}</span>}
+                           {data.strike_price != null  &&  <span className="new_price">{currency}{Math.round(data.strike_price)}</span>}
                            {/* { data.strike_price == null &&  <span className="price">${Math.round(data.original_price)}</span>} */}
-                           <span className="price">${Math.round(data.final_price)}</span>
+                           <span className="price">{currency}{Math.round(data.final_price)}</span>
                                
                            </div>
                            <div className="rating_front">
@@ -470,7 +478,7 @@ return (
       <td>{quote.seller}</td>
       <td>{quote.product_name}</td>
       <td>{quote.product_sku}</td>
-      <td> {quote.strike_price != null  && <span className="new_price">${Math.round(quote.strike_price)} </span>} ${Math.round(quote.final_price).toFixed(2)}</td>
+      <td> {quote.strike_price != null  && <span className="new_price">{currency}{Math.round(quote.strike_price)} </span>} {currency}{Math.round(quote.final_price).toFixed(2)}</td>
       <td>{pcar && <button className="action action_btn btn btn_gray" onClick={() => addtoCartItems(quote.product_sku, quote.id)}> <span className="fa fa-shopping-cart"></span> Add to Cart  </button>}
       {outpcar && <button className="action action_btn btn btn_gray" onClick={() => addtoCartItems(quote.product_sku, quote.id)}> <span className="fa fa-shopping-cart"></span> Add to Cart  </button>}
       </td>

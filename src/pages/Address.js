@@ -32,8 +32,7 @@ const Address = ({location,data:product}) => {
  const [shipadd,Shippiadd] = useState(false);
  const [billadd,Billiadd] = useState(false);
 const [Tamilan,Defaulti] = useState({});
-const [checkbox,Cbox] = useState(); 
-const [checkbox2,Cbox2] = useState();
+const [stateaddval,setStateval] = useState();
 useEffect(() => {
  setJwt(localStorage.userToken);
  setUsername(localStorage.user_name)
@@ -69,10 +68,14 @@ useEffect(() => {
 assignStats();
 }, []);
 
+const getstateadd = (event) => {
+    setStateval(event.target.value)
+}
 const assignStats = () => {
     let arr = JSON.parse(localStorage.Regions)
+    console.log(arr)
     if(location.state.data['city'] =="add"){
-        let obj = arr.find(o => o.value === 'IN');
+        let obj = arr.find(o => o.value === 'GB');
         setRegion(arr)
         console.log('gokul',obj)
         defaultcountry(obj)
@@ -164,11 +167,11 @@ let updateAddress = {
       "defaultShipping": ship,
       "defaultBilling" : bill,
        "region": {
-          "region_id": Tamilan['value'], //563
-          "region": Tamilan['label'],     //TamilNadu
+          "region_id": Tamilan['value'] ? Tamilan['value'] : stateaddval, //563
+          "region": Tamilan['label'] ? Tamilan['label'] : 0,     //TamilNadu
            //12
       },
-      "street": [userAddresses.street_1.trim()],
+      "street": [userAddresses.street_1,userAddresses.street_2],
       "postcode": userAddresses.postcode,
       "city": userAddresses.user_city,
       "firstname": userAddresses.name,
@@ -216,17 +219,24 @@ let updateAddress = {
 }
 
 const editcheck = userAddresses => {
-    if(manilam == true && Tamilan['value']){
-       onSubmit(userAddresses)
+    if(txt){
+        onSubmit(userAddresses)
     }else {
-        toast.error("State is required")
+        if(Tamilan['value']){
+            onSubmit(userAddresses)
+        }else { toast.error("State is required")}
+        
     }
+    
 }
 const addcheck = userAddresses => {
-    if(manilam == true && Tamilan['value']){
-       onSubmitadd(userAddresses)
+    if(txt){
+        onSubmitadd(userAddresses)
     }else {
-        toast.error("State is required")
+        if(Tamilan['value']){
+            onSubmitadd(userAddresses)
+        }else { toast.error("State is required")}
+        
     }
 }
 const onSubmitadd = userAddresses => {
@@ -236,10 +246,10 @@ const onSubmitadd = userAddresses => {
           "defaultShipping": shipadd,
           "defaultBilling" : billadd,
            "region": {
-              "region": Tamilan['label'],     //TamilNadu
-              "region_id": Tamilan['value']   //12
+              "region": Tamilan['label'] ? Tamilan['label'] : stateaddval,     //TamilNadu
+              "region_id": Tamilan['value'] ? Tamilan['value'] : 0   //12
           },
-          "street": [userAddresses.street_1.trim()],
+          "street": [userAddresses.street_1,userAddresses.street_2],
           "postcode": userAddresses.postcode,
           "city": userAddresses.user_city,
           "firstname": userAddresses.name,
@@ -389,16 +399,22 @@ return (
                                   {errors.region && <span className="error_label">State required</span>}
                                   </div>}
                                    { txt && <div>
-                                                                            <input className="form-control" name="user_state" id="user_state" placeholder="State" type="text"  />
-                                                                            {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State is required</span>}</div> }
+                                                                            <input className="form-control" name="user_state" id="user_state" placeholder="State" type="text" onChange={getstateadd}  defaultValue={(edit ? edit['region'] : "")}/>
+                                                                            {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}</div> }
                                   
                               </div>
   
                               <div class="col-lg-12 col-md-12 col-sm-12">
-                              <input className="form-control" name="street_1" id="street_1" placeholder="Address " type="text" ref={register({
+                              <input className="form-control" name="street_1" id="street_1" placeholder="Address Line 1" type="text" ref={register({
                                                                                 required: true
-                                                                            })} defaultValue={(edit ? edit['street'] : "")}/>
-                                                                            {errors.street_1 && errors.street_1.type === 'required' && <span className="error_label">Address required</span>}
+                                                                            })} defaultValue={(edit ? edit['street1'] : "")}/>
+                                                                            {errors.street_1 && errors.street_1.type === 'required' && <span className="error_label">Address Line 1 required</span>}
+                              </div>
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                              <input className="form-control" name="street_2" id="street_2" placeholder="Address Line 2" type="text" ref={register({
+                                                                                required: true
+                                                                            })} defaultValue={(edit ? edit['street2'] : "")}/>
+                                                                            {errors.street_2 && errors.street_2.type === 'required' && <span className="error_label">Address Line 2 required</span>}
                               </div>
                           </div>
                           <h6> Address Type </h6>
@@ -491,16 +507,22 @@ return (
                                   {/* {errors.user_state && <span className="error_label">State required</span>} */}
                                   </div> }
                                   { txt && <div>
-                                                                            <input className="form-control" name="user_state" id="user_state" placeholder="State" type="text"  />
-                                                                            {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State is required</span>}</div> }
+                                                                            <input className="form-control" name="user_state" id="user_state" placeholder="State" type="text"  onChange={getstateadd} defaultValue={(edit ? edit['city'] : "")}/>
+                                                                            {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}</div> }
                                   
                               </div>
   
                               <div class="col-lg-12 col-md-12 col-sm-12">
-                              <input className="form-control" name="street_1" id="street_1" placeholder="Address *" type="text" ref={register({
+                              <input className="form-control" name="street_1" id="street_1" placeholder="Address Line 1*" type="text" ref={register({
                                                                                 required: true
-                                                                            })} defaultValue={(edit ? edit['street'] : "")}/>
-                                                                            {errors.street_1 && errors.street_1.type === 'required' && <span className="error_label">Address required</span>}
+                                                                            })} defaultValue={(edit ? edit['street1'] : "")}/>
+                                                                            {errors.street_1 && errors.street_1.type === 'required' && <span className="error_label">Address Line 1 required</span>}
+                              </div>
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                              <input className="form-control" name="street_2" id="street_2" placeholder="Address Line 2*" type="text" ref={register({
+                                                                                required: true
+                                                                            })} defaultValue={(edit ? edit['street2'] : "")}/>
+                                                                            {errors.street_2 && errors.street_2.type === 'required' && <span className="error_label">Address Line 2 required</span>}
                               </div>
                           </div>
                           <h6> Address Type </h6>
