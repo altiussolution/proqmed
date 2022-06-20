@@ -127,7 +127,7 @@ useEffect(() => {
             
           </section>
           
-          <section className="add-banner upper-space">
+          {/* <section className="add-banner upper-space">
           <div className="container">
               <div className="categoryDesc">
                 <h3>CategoryName</h3>
@@ -136,7 +136,7 @@ useEffect(() => {
               </p>
               </div>
             </div>
-          </section>
+          </section> */}
         </div>
 
         <FeatureProduct />

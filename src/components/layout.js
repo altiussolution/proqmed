@@ -38,7 +38,7 @@ const Layout = ({ children, cartCount }) => {
 
   return ( 
     <>  
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`}  allCategory = {data.allCategory.edges} />
+      <Header siteTitle={data.site.siteMetadata?.title || `Title`}  allCategory = {data.allCategory.edges} cartCount = {cartCount}/>
   <main>{children}</main>
   <Footer />
     </>

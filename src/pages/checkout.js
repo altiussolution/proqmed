@@ -20,6 +20,7 @@ const CheckOut = ({location}) => {
     const handleClose = () => setShow(false);
     const [checkOutDetails, setCheckout] = useState([]);
     const [shippingAddress, setShippingAddress] = useState([])
+    const [billingAddress, setBillingAddress] = useState([])
     const [jwt, setJwt] = useState("")
     const [selAddIndex, setIndex] = useState(0)
     const [paymentType, setPaymentType] = useState(null)
@@ -70,6 +71,7 @@ const CheckOut = ({location}) => {
                     response.data.map(async (val, index) => {
                         await shipAdd.push(val.address);
                         await setShippingAddress(shipAdd);
+                        await setBillingAddress(shipAdd);
                         setLoader(false);
                     })                   
                     setShow(false)
@@ -249,7 +251,7 @@ const CheckOut = ({location}) => {
     }
     }
 
-    const confirmShippingAddress = () => {
+    const confirmShippingAddress = async () => {
         if (selAddIndex == null) {
             toast.error('select address')
             return;
@@ -283,12 +285,11 @@ const CheckOut = ({location}) => {
                     //      })   
                     // )
                     
-              
+                    
                     if (shippingAddress) {
-
                         delete shippingAddress[selAddIndex]['entity_id']
                         delete shippingAddress[selAddIndex]['default_billing']
-                        delete shippingAddress[selAddIndex]['default_shipping']
+                        shippingAddress[selAddIndex]['default_shipping'] = true
                         let userAddVal = {
                             "addressInformation": {
                                 "billing_address": shippingAddress[selAddIndex],
