@@ -79,9 +79,9 @@ const assignStats = () => {
         setRegion(arr)
         console.log('gokul',obj)
         defaultcountry(obj)
-        // setState(obj['states'])
-        stateoff(false)
-        text(true)
+        setState(obj['states'])
+        stateoff(true)
+        text(false)
     
     }else {
       
