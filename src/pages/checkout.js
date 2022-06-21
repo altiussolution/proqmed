@@ -583,7 +583,7 @@ const CheckOut = ({location}) => {
                     <div key={`${index}_add`} className={`selected_item ${index == selAddIndex && 'activeAdd'}`} onClick={() => setIndex(index)}>
                         <div className="address">
                             <span>{add.firstname}</span><span>{add.lastname},</span><br></br>
-                            <span>{add.street.join()},</span><br></br>
+                            <span>{add.street1},{add.street2}</span><br></br>
                             <span>{add.city}-{add.postcode},</span><br></br>
                             <span>{add.region},</span><br></br>
                             <a href={`tel:${add.telephone}`}>{add.telephone}</a>
