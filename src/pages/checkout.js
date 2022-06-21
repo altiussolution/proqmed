@@ -252,6 +252,7 @@ const CheckOut = ({location}) => {
     }
 
     const confirmShippingAddress = async () => {
+        shippingAddress[selAddIndex]['street'] = [shippingAddress[selAddIndex]['street1'],shippingAddress[selAddIndex]['street2']]
         if (selAddIndex == null) {
             toast.error('select address')
             return;
@@ -289,7 +290,9 @@ const CheckOut = ({location}) => {
                     if (shippingAddress) {
                         delete shippingAddress[selAddIndex]['entity_id']
                         delete shippingAddress[selAddIndex]['default_billing']
-                        shippingAddress[selAddIndex]['default_shipping'] = true
+                        delete shippingAddress[selAddIndex]['default_shipping']
+                        delete shippingAddress[selAddIndex]['street1']
+                        delete shippingAddress[selAddIndex]['street2']
                         let userAddVal = {
                             "addressInformation": {
                                 "billing_address": shippingAddress[selAddIndex],

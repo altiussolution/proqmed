@@ -7,6 +7,7 @@ import { Link } from "gatsby";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { wishListCount, addToCart, viewCartItems, getCartCount, getWLCount } from '../utils/apiServices';
+import ImageNotFound from "./../assets/not-found.png"
 import empty_cart from './../assets/empty.png';
 import { navigate } from "gatsby";
 import { checkLogin } from "./../services/headerServices";
@@ -315,7 +316,7 @@ const Wishlist = () => {
                         <i className="fa fa-search" aria-hidden="true"></i>
                     </div></div>
                                             {wishList.length == 0 ? <div className="col-lg-12 col-md-12 col-xs-12 text-center">
-                                                <img src={empty_cart} alt={"Empty Cart"} />
+                                                <img src={empty_cart} alt={"Empty Cart"} onError={e => (e.target.src = ImageNotFound)}/>
                                                 <h4>No items in Wishlist</h4>
                                             </div> :
                                                 <div className="col-lg-12 col-md-12 col-xs-12">

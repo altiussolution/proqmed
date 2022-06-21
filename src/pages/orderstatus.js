@@ -177,10 +177,13 @@ const Invoice = ({ location }) => {
                                 <table className="table table-striped summary">
                                 <tbody>
                                 <tr>
-                                    <th>Subtotal</th><td>{Math.round(items.sub_total)}</td>
+                                    <th>Subtotal</th><td>{currency}{Math.round(items.sub_total)}</td>
                                 </tr>
                                 <tr>
-                                    <th>TaxAmount</th><td>{Math.round(items.tax_total)}</td>
+                                    <th>TaxAmount</th><td>{currency}{Math.round(items.tax_total)}</td>
+                                </tr>
+                                <tr>
+                                    <th>Vat Tax</th><td>{currency}{Math.round(items.vat_tax)}</td>
                                 </tr>
                                 <tr>
                                     <th>Shipping &amp; Handling</th><td>{currency}{Math.round(items.shipping_total)}</td>
@@ -391,13 +394,16 @@ const Invoice = ({ location }) => {
                         return (index == 0 ?
                             <tbody key={index}>
                                 <tr>
-                                    <th>Subtotal</th><td>{Math.round(item.Subtotal)}</td>
+                                    <th>Subtotal</th><td>{currency}{Math.round(item.Subtotal)}</td>
                                 </tr>
                                 <tr>
-                                    <th>TaxAmount</th><td>{Math.round(item.Tax_Amount)}</td>
+                                    <th>TaxAmount</th><td>{currency}{Math.round(item.Tax_Amount)}</td>
                                 </tr>
                                 <tr>
                                     <th>Shipping &amp; Handling</th><td>{currency}{Math.round(item.Shipping_Amount)}</td>
+                                </tr>
+                                <tr>
+                                    <th>Vat Tax</th><td>{currency}{Math.round(item.vat_tax ? item.vat_tax : 0)}</td>
                                 </tr>
                                 <tr>
                                     <th>Grand Total</th><td>{currency}{Math.round(item.Grand_Total)}</td>

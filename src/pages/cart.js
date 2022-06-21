@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/layout";
 import { navigate } from "gatsby";
 import { deleteCart } from "./../utils/apiServices";
+import ImageNotFound from "./../assets/not-found.png"
 import { getProductURL } from './../utils/url';
 import { Link } from "gatsby";
 import PageLoader from "../components/loaders/pageLoader";
@@ -295,7 +296,7 @@ const Cart = () => {
                   return (
                     <tbody key={index}>
                     <tr>
-                      <td className="product_img"><Link to={getProductURL(cart)}> <img src={cart.image} /></Link></td>
+                      <td className="product_img"><Link to={getProductURL(cart)}> <img src={cart.image} onError={e => (e.target.src = ImageNotFound)}/></Link></td>
                       <td><Link to={getProductURL(cart)}><p>{cart.name}</p></Link></td>
                       <td>{currency}{parseFloat(cart.price).toFixed(2)}</td>
                       <td><input type="number" name="qty" defaultValue={cart.qty} onChange={e => { handleChange(e, cart,index) }}/></td>

@@ -676,12 +676,12 @@ if(proDescription.items.config_options){
 
 <div className="price-name-strike">
                    
-                          {proDescription.items.config_options ?
+                          {/* {proDescription.items.config_options ?
                           proDescription.items.config_options.map((val, index) => (
                               <span className="price" key={index}>${Math.round(val.price)}</span>
                             )) :
                             <span className="price">${Math.round(normal_price)}</span>
-}
+} */}
 {/* {proDescription.items.strike_price ==null && newprice()} */}
  <span  className="price">{currency}{Math.round(proDescription.items.prices[localStorage.group ? localStorage.group : 0]['final_price'])}</span>
 
