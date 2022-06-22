@@ -376,7 +376,7 @@ const Productdescription = ({ proDescription, routeAss, setcartCount, setWishLis
         return toast.error("products are not available")
       }
     } else {
-      return toast.error("Please Enter Pincode")
+      return toast.error("Please Enter Zip Code")
     }
   }
 
