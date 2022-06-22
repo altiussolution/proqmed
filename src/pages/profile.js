@@ -610,7 +610,7 @@ const choosefile =() =>{
                             
                         </div>
                         {!shownumber &&  <div className="form-content">
-                            <input type="text" value="+44" disabled/>
+                            <input className="fo-width" type="text" value="+44" disabled/>
                             <input type="text" value={jwt && profile.contact_number || ''} disabled/>
                          </div>}
                         {shownumber &&  <form onSubmit={handleSubmit(Numbersubmit)}><div className="form-content">

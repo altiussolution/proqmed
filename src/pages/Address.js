@@ -345,30 +345,8 @@ return (
                                                                                 required: true
                                                                             })} defaultValue={(edit ? edit['firstname'] : "")}/>
                                          {errors.name && errors.name.type === 'required' && <span className="error_label">First Name is required</span>}</div>   
-                                         <div>
-                                  <input type="text" className="form-control" placeholder="Last Name *" name="lname" id="lname" ref={register({
-                                                                                required: true
-                                                                            })} defaultValue={(edit ? edit['lastname'] : "")}/>
-                                         {errors.lname && errors.lname.type === 'required' && <span className="error_label">Last Name is required</span>}</div>       
-                                         <div>                            
-                                  <input type="text" className="form-control" placeholder="Pincode *" name="postcode" id="postcode" onChange={handleChange} ref={register({
-                                                                                required: true,
-                                                                            })} 
-                                                                            maxLength="6" defaultValue={(edit ? edit['postcode'] : "")}/>
-                                               {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Pincode required</span>}
-                                                                            {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Pincode</span>}                              
-                                                                            </div>  
 
-                                 <div> <Select
-                                    options={region}
-                                    onChange={onSelectCats1}
-                                    value={India}
-                                    placeholder="Select Country *"
-                                     /></div> 
-                              </div>
-  
-                              <div class="col-lg-6 col-md-12 col-sm-12">
-                                  <div>
+                                         <div>
                                   <input className="form-control" name="telephone" id="telephone" placeholder="Mobile Number *" type="text" onChange={handleChange} 
                                                                             maxLength="10"
                                                                             ref={register({
@@ -376,12 +354,55 @@ return (
                                                                             })} defaultValue={(edit ? edit['telephone'] : "")}/>
                                                                             {errors.telephone && errors.telephone.type === 'required' && <span className="error_label">Mobile Number required</span>}
                                                                             {errors.telephone && errors.telephone.type === 'minLength' && <span className="error_label">Enter Valid Mobile Number</span>}</div>
-                                                                        <div>
+
+                                         
+
+                                 
+                              </div>
+  
+                              <div class="col-lg-6 col-md-12 col-sm-12">
+                              <div>
+                                  <input type="text" className="form-control" placeholder="Last Name *" name="lname" id="lname" ref={register({
+                                                                                required: true
+                                                                            })} defaultValue={(edit ? edit['lastname'] : "")}/>
+                                         {errors.lname && errors.lname.type === 'required' && <span className="error_label">Last Name is required</span>}</div> 
+                                         
+                                 
+                                                                        
+                                
+                                  
+                              </div>
+  
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                              <input className="form-control" name="street_1" id="street_1" placeholder="Address Line 1" type="text" ref={register({
+                                                                                required: true
+                                                                            })} defaultValue={(edit ? edit['street1'] : "")}/>
+                                                                            {errors.street_1 && errors.street_1.type === 'required' && <span className="error_label">Address Line 1 required</span>}
+                              </div>
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                              <input className="form-control" name="street_2" id="street_2" placeholder="Address Line 2" type="text" ref={register({
+                                                                                required: true
+                                                                            })} defaultValue={(edit ? edit['street2'] : "")}/>
+                                                                            {errors.street_2 && errors.street_2.type === 'required' && <span className="error_label">Address Line 2 required</span>}
+                              </div>
+
+                              <div class="col-lg-6 col-md-12 col-sm-12">
+                              <div>
                                                                             <input className="form-control" name="user_city" id="user_city" placeholder="City *" type="text" ref={register({
                                                                                 required: true
                                                                             })}  defaultValue={(edit ? edit['city'] : "")}/>
                                                                             {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
-                                {manilam &&  <div> 
+
+                                                                            <div className="city-width"> <Select
+                                    options={region}
+                                    onChange={onSelectCats1}
+                                    value={India}
+                                    placeholder="Select Country *"
+                                     /></div> 
+                              </div>
+
+                              <div class="col-lg-6 col-md-12 col-sm-12 fo">
+                              {manilam &&  <div className="city-width"> 
                                     {/* <Controller
                                       control={control} 
                                       rules={{ required: true }} 
@@ -401,21 +422,18 @@ return (
                                    { txt && <div>
                                                                             <input className="form-control" name="user_state" id="user_state" placeholder="State" type="text" onChange={getstateadd}  defaultValue={(edit ? edit['region'] : "")}/>
                                                                             {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}</div> }
-                                  
+
+                                                                            <div>                            
+                                  <input type="text" className="form-control" placeholder="Pincode *" name="postcode" id="postcode" onChange={handleChange} ref={register({
+                                                                                required: true,
+                                                                            })} 
+                                                                            maxLength="6" defaultValue={(edit ? edit['postcode'] : "")}/>
+                                               {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Pincode required</span>}
+                                                                            {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Pincode</span>}                              
+                                                                            </div> 
                               </div>
-  
-                              <div class="col-lg-12 col-md-12 col-sm-12">
-                              <input className="form-control" name="street_1" id="street_1" placeholder="Address Line 1" type="text" ref={register({
-                                                                                required: true
-                                                                            })} defaultValue={(edit ? edit['street1'] : "")}/>
-                                                                            {errors.street_1 && errors.street_1.type === 'required' && <span className="error_label">Address Line 1 required</span>}
-                              </div>
-                              <div class="col-lg-12 col-md-12 col-sm-12">
-                              <input className="form-control" name="street_2" id="street_2" placeholder="Address Line 2" type="text" ref={register({
-                                                                                required: true
-                                                                            })} defaultValue={(edit ? edit['street2'] : "")}/>
-                                                                            {errors.street_2 && errors.street_2.type === 'required' && <span className="error_label">Address Line 2 required</span>}
-                              </div>
+
+
                           </div>
                           <h6> Address Type </h6>
                           <div class="billing-stat">
@@ -453,43 +471,70 @@ return (
                                                                                 required: true
                                                                             })} defaultValue={(edit ? edit['firstname'] : "")}/>
                                          {errors.name && errors.name.type === 'required' && <span className="error_label">First Name is required</span>}</div>   
-                                         <div>
-                                  <input type="text" className="form-control" placeholder="Last Name *" name="lname" id="lname" ref={register({
-                                                                                required: true
-                                                                            })} defaultValue={(edit ? edit['lastname'] : "")}/>
-                                         {errors.lname && errors.lname.type === 'required' && <span className="error_label">Last Name is required</span>}</div>       
-                                         <div>                            
-                                  <input type="text" className="form-control" placeholder="Pincode *" name="postcode" id="postcode" onChange={handleChange} ref={register({
-                                                                                required: true,
-                                                                            })} 
-                                                                            maxLength="6" defaultValue={(edit ? edit['postcode'] : "")}/>
-                                               {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Pincode required</span>}
-                                                                            {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Pincode</span>}                              
-                                                                            </div>  
-                                                                         
-                                 <div> <Select
-                                    options={region}
-                                    onChange={onSelectCats1}
-                                    value={India}
-                                    placeholder="Select Country *"
-                                     /></div> 
-                              </div>
-  
-                              <div class="col-lg-6 col-md-12 col-sm-12">
-                                  <div>
-                                  <input className="form-control" name="telephone" id="telephone" placeholder="Mobile Number *" type="text" onChange={handleChange} 
+                                               
+                                         <div>  
+                                         <input className="form-control" name="telephone" id="telephone" placeholder="Mobile Number *" type="text" onChange={handleChange} 
                                                                             maxLength="10"
                                                                             ref={register({
                                                                                 required: true,
                                                                             })} defaultValue={(edit ? edit['telephone'] : "")}/>
                                                                             {errors.telephone && errors.telephone.type === 'required' && <span className="error_label">Mobile Number required</span>}
-                                                                            {errors.telephone && errors.telephone.type === 'minLength' && <span className="error_label">Enter Valid Mobile Number</span>}</div>
-                                                                            <div>
+                                                                            {errors.telephone && errors.telephone.type === 'minLength' && <span className="error_label">Enter Valid Mobile Number</span>}</div>  
+                                          
+                                                                         
+                                 
+                              </div>
+  
+                              <div class="col-lg-6 col-md-12 col-sm-12">
+
+                              <div>
+                                  <input type="text" className="form-control" placeholder="Last Name *" name="lname" id="lname" ref={register({
+                                                                                required: true
+                                                                            })} defaultValue={(edit ? edit['lastname'] : "")}/>
+                                         {errors.lname && errors.lname.type === 'required' && <span className="error_label">Last Name is required</span>}</div> 
+
+                                  
+                                                                            
+                                
+                                  
+                              </div>
+  
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                              <input className="form-control" name="street_1" id="street_1" placeholder="Address Line 1*" type="text" ref={register({
+                                                                                required: true
+                                                                            })} defaultValue={(edit ? edit['street1'] : "")}/>
+                                                                            {errors.street_1 && errors.street_1.type === 'required' && <span className="error_label">Address Line 1 required</span>}
+                              </div>
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                              <input className="form-control" name="street_2" id="street_2" placeholder="Address Line 2*" type="text" ref={register({
+                                                                                required: true
+                                                                            })} defaultValue={(edit ? edit['street2'] : "")}/>
+                                                                            {errors.street_2 && errors.street_2.type === 'required' && <span className="error_label">Address Line 2 required</span>}
+                              </div>
+
+                              <div class="col-lg-6 col-md-12 col-sm-12">
+                              <div>
                                                                             <input className="form-control" name="user_city" id="user_city" placeholder="City *" type="text" ref={register({
                                                                                 required: true
                                                                             })}  defaultValue={(edit ? edit['city'] : "")}/>
                                                                             {errors.user_city && errors.user_city.type === 'required' && <span className="error_label">City is required</span>}</div> 
-                                {manilam &&  <div>
+                                                                            
+                                                                            
+                                                                            <div className="city-width"> <Select
+                                    options={region}
+                                    onChange={onSelectCats1}
+                                    value={India}
+                                    placeholder="Select Country *"
+                                     /></div> 
+
+                                                                            
+
+                                                                            
+                              </div>
+
+                              <div class="col-lg-6 col-md-12 col-sm-12 fo">
+
+                              {manilam &&  <div className="city-width">
                                     {/* <Controller
                                     control={control} 
                                     rules={{ required: true }} 
@@ -509,20 +554,18 @@ return (
                                   { txt && <div>
                                                                             <input className="form-control" name="user_state" id="user_state" placeholder="State" type="text"  onChange={getstateadd} defaultValue={(edit ? edit['city'] : "")}/>
                                                                             {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}</div> }
+                              
+
+<div>
                                   
-                              </div>
-  
-                              <div class="col-lg-12 col-md-12 col-sm-12">
-                              <input className="form-control" name="street_1" id="street_1" placeholder="Address Line 1*" type="text" ref={register({
-                                                                                required: true
-                                                                            })} defaultValue={(edit ? edit['street1'] : "")}/>
-                                                                            {errors.street_1 && errors.street_1.type === 'required' && <span className="error_label">Address Line 1 required</span>}
-                              </div>
-                              <div class="col-lg-12 col-md-12 col-sm-12">
-                              <input className="form-control" name="street_2" id="street_2" placeholder="Address Line 2*" type="text" ref={register({
-                                                                                required: true
-                                                                            })} defaultValue={(edit ? edit['street2'] : "")}/>
-                                                                            {errors.street_2 && errors.street_2.type === 'required' && <span className="error_label">Address Line 2 required</span>}
+
+                                  <input type="text" className="form-control" placeholder="Pincode *" name="postcode" id="postcode" onChange={handleChange} ref={register({
+                                                                                required: true,
+                                                                            })} 
+                                                                            maxLength="6" defaultValue={(edit ? edit['postcode'] : "")}/>
+                                               {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Pincode required</span>}
+                                                                            {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Pincode</span>}                              
+                                                                            </div> 
                               </div>
                           </div>
                           <h6> Address Type </h6>

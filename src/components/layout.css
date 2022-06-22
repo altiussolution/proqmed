@@ -3462,11 +3462,37 @@ figure.itm_list {
   border-right: none;
   
 }
-
+.qty-sec input[type="number"] {
+  width: 100%;
+  height: 43px;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #e9e9e9;
+}
+.qty-sec {
+  width: 100%;
+  margin-bottom: 10px;
+}
 .to-flx p {
-  padding-left: 10px;
+  padding: 0 10px;
   border-right: 2px solid #ddd;
   margin: 0;
+}
+.to-flx.whi span{
+  padding: 0 10px;
+}
+.to-flx.whi span:first-child {
+  padding-left: 0;
+}
+.to-flx.whi p:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+.to-flx.whi p {
+  border-left: 2px solid #dddddd;
+}
+.to-flx.whi p {
+  border-left: 2px solid #dddddd;
 }
 
 .map_sec {
@@ -8339,9 +8365,21 @@ ul.mobile-menu li {
 .More-Sellers .fo-scroll {
   width: 100%;
 }
-
+input.fo-width {
+  width: 70px !important;
+}
 .fa-shopping-cart:before {
   content: "\f07a";
   font-family: 'FontAwesome';
   margin-right: 10px;
+}
+
+.city-width .css-1s2u09g-control {
+  height: 55px;
+}
+.city-width .css-6j8wv5-Input {
+  height: 45px;
+}
+.col-lg-6.col-md-12.col-sm-12.fo {
+  margin-top: 12px;
 }

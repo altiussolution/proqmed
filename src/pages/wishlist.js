@@ -343,10 +343,11 @@ const Wishlist = () => {
                                         />
                                         
                                         </div>
-                                                                    <div className="to-flx">
+                                                                    <div className="to-flx whi">
                                                                     <span>{item.created_at}</span>
-                                                                    <p>SKU: <span>{item.sku}</span></p>
+                                                                    <p className="to-flx">SKU: <p>{item.sku}</p></p>
                                                                     <span>Reviews({item.review_count})</span>
+                                                                    <p>Item added {item.created_at}</p>
                                                                     </div>
                                                                     <div className="qty_price">
                                                                     {item.strike_price != null  &&  <span className="new_price">{currency}{Math.round(item.strike_price)}</span>}
@@ -355,9 +356,11 @@ const Wishlist = () => {
     
                                                                     
                                                                 </div>
-                                                                <input type="number" name="qty" defaultValue="1" onChange={e => { handleChange(e,item.sku,index) }}/>
+                                                                
                                                                 <div className="user_actions">
-                                                                        <p>Item added {item.created_at}</p>
+                                                                    <div className="qty-sec">
+                                                                <input type="number" name="qty" defaultValue="1" onChange={e => { handleChange(e,item.sku,index) }}/>
+                                                                </div>
                                                                     {/* <button className="btn_gray btn" onClick={() => navigate('/checkout')} >Buy Now</button> */}
                                                                     <button className="btn_gray btn" onClick={() => addtoCartItem(item.sku, item.id)}>Add to cart</button>
                                                                     <button className="btn btn_outline" type="button" onClick={() => removeWishList(item.id, 'remove')}>Delete</button>
