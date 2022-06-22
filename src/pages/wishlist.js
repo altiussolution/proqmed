@@ -345,7 +345,7 @@ const Wishlist = () => {
                                         </div>
                                                                     <div className="to-flx whi">
                                                                     <span>{item.created_at}</span>
-                                                                    <p className="to-flx">SKU: <p>{item.sku}</p></p>
+                                                                    <p className="to-flx">SKU :&nbsp;<span>{item.sku}</span></p>
                                                                     <span>Reviews({item.review_count})</span>
                                                                     <p>Item added {item.created_at}</p>
                                                                     </div>
