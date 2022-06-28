@@ -5,13 +5,12 @@ import { Navbar,Nav } from 'react-bootstrap';
 import {Link} from 'gatsby'
 import {cartTotal, getCartCount,getWLCount} from '../../utils/apiServices'; //wishListCount
      
-const CartCount = (data) => {  
+const CartCount = () => {  
 
   const [isLoged, setIsLoged] = useState(undefined);
   const [currency,setCurrency]=useState();
  
   useEffect(() =>{
-     console.log(data)
     if(localStorage.userToken){
       setIsLoged(localStorage.userToken);
     }

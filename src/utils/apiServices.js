@@ -90,7 +90,6 @@ const deleteCart = (id) => {
           viewCartItems();
         }
       }).catch((err) =>{
-        alert('error occured')
         console.error(err)
       })   
     
@@ -125,14 +124,12 @@ const viewCartItems = () => {
             res.data.forEach(object => {
               object.status = stocks;
             });
-            console.log(res.data)
             localStorage.setItem('cartData' , JSON.stringify(res.data))
         }
 
         return res;
         
       }).catch((err) =>{
-        alert('error occured')
         console.error(err)
       })
     

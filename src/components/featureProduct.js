@@ -177,6 +177,7 @@ const FeatureProduct = () => {
       const cartValue = () => {
         setTimeout(() => {
           setcartCount(getCartCount());
+          window.location.reload(false);
         }, 3000);
       }
     const addtoCartItems = (sku, id) => {
@@ -204,7 +205,6 @@ const FeatureProduct = () => {
                         viewCartItems();
                          toast.success('Succesfully added to cart');
                          cartValue();
-                         window.location.reload(false);
                           setButton(false);
                       }
                   }).catch((err) => {

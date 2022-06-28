@@ -97,6 +97,7 @@ const Featuredproducts = () => {
     const cartValue = () => {
       setTimeout(() => {
         setcartCount(getCartCount());
+        window.location.reload(false);
       }, 3000);
     }
     const addtoCartItems = (sku, id) => {
@@ -126,7 +127,6 @@ const Featuredproducts = () => {
                           // setcartCount(getCartCount());
                           cartValue();
                           toast.success('Succesfully added to cart');
-                          window.location.reload(false);
                           setLoading(false)
                       }
                   }).catch((err) => {
