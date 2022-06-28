@@ -21,6 +21,8 @@ const Invoice = ({ location }) => {
     const [p,per] = useState(false);
     const [idd,setid] = useState(false);
     const [nop,noper] = useState(false);
+    const [nore,noreo] = useState(false);
+    const [re,reo] = useState(false);
     const [permits,setPermit] = useState([]);
     const [currency,setCurrency]=useState();
     const componentRef = useRef();
@@ -52,12 +54,16 @@ const Invoice = ({ location }) => {
                 if (res.statusText === "OK" && res.status == 200) {
                     console.log(res.data)
                     setOrders(res.data);
-                    if(permits.length!=0){
-                        let viewwis=permits.includes("Can View Invoice")
-                        per(viewwis)
-                    }
-                    else if(permits.length==0){
+                    if(!localStorage.permissions){
                         noper(true)
+                        noreo(true)
+                    }
+                    else {
+                        let hi = JSON.parse(localStorage.permissions)
+                        let viewwis=hi.includes("Can View Invoice")
+                        let reorder = hi.includes("Can View Individual Orders Or Reorder")
+                        per(viewwis)
+                        reo(reorder)
                     }
                     setLoader(false);
                 }
@@ -144,7 +150,8 @@ const Invoice = ({ location }) => {
                         <div key={index} className="card orderstatus">
 
                             <div className="fo-flx">
-                            <p onClick={() => reorder(items.order_id)}>Reorder</p>
+                            {re && <p onClick={() => reorder(items.order_id)}>Reorder</p>}
+                {nore && <p onClick={() => reorder(invoices[1].order_id)}>Reorder</p>}
                             <p onClick={() => window.print({})}>Print Order</p>
                             </div>
                                 <table className="table">
@@ -346,7 +353,8 @@ const Invoice = ({ location }) => {
                 return <div className="order_product_wrapper"> 
 
                 <div className="fo-flx">
-                <p onClick={() => reorder(invoices[1].order_id)}>Reorder</p>
+                {re && <p onClick={() => reorder(invoices[1].order_id)}>Reorder</p>}
+                {nore && <p onClick={() => reorder(invoices[1].order_id)}>Reorder</p>}
                 <p onClick={() => window.print(attach_data)}>Print Order</p>
                 </div>
                         <table className="table">

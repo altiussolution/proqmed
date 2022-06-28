@@ -276,6 +276,12 @@ const onSubmitQuoteadd = quoteDetails => {
  }
 };
 
+const logout = () => {
+  localStorage.clear();
+  navigate('/')  
+
+}
+
 const togglePasswordVisiblity = () => {
  setPasswordShown(passwordShown ? false : true);
 };
@@ -309,8 +315,8 @@ return (
                     <li><Link to="/myReviews">My reviews</Link></li>
 
                 </ul>
-                <h4><a href="#"> <span><img src={us1}/></span>USER MANAGEMENT</a></h4>
-                <h4><a href="#"><span><img src={logoutt}/></span>LOGOUT</a></h4>
+                <h4><Link to="/userManage"> <span><img src={us1}/></span>USER MANAGEMENT</Link></h4>
+                <h4><a onClick={() => { logout() }}><span><img src={logoutt}/></span>LOGOUT</a></h4>
             </div>
         </div>
 

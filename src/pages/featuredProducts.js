@@ -77,7 +77,7 @@ const Featuredproducts = () => {
             toast.error('something went wrong')
           }
         }else{
-            
+          setLoading(false)
         }
         const fetchFeature = async () => {
             const res = await fetch(
@@ -126,6 +126,7 @@ const Featuredproducts = () => {
                           // setcartCount(getCartCount());
                           cartValue();
                           toast.success('Succesfully added to cart');
+                          window.location.reload(false);
                           setLoading(false)
                       }
                   }).catch((err) => {

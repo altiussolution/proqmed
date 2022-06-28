@@ -204,6 +204,7 @@ const FeatureProduct = () => {
                         viewCartItems();
                          toast.success('Succesfully added to cart');
                          cartValue();
+                         window.location.reload(false);
                           setButton(false);
                       }
                   }).catch((err) => {
