@@ -256,7 +256,9 @@ const Cart = () => {
             data: updateItem
         }).then((response) => {
             if (response.statusText === "OK" && response.status === 200) {
+              // setTimeout(()=>{
                 fetchCheckTotal()
+              // },5000)
                 listCarts()
                 // viewCartItems1()
                 

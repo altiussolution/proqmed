@@ -45,9 +45,10 @@ if(localStorage.userToken){
         }
       }).then((res) => {
         if (res.statusText === "OK" && res.status == 200) {
-          if(res.data[0]="No Review and Rating"){
+          if(res.data[0] == "No Review and Rating"){
             setProductReview([]);
-          }else {setProductReview(res.data);}
+          }else {
+            setProductReview(res.data);}
           
         }
       }).catch((err) => {
