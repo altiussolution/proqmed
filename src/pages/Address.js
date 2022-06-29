@@ -424,12 +424,12 @@ return (
                                                                             {errors.user_state && errors.user_state.type === 'required' && <span className="error_label">State required</span>}</div> }
 
                                                                             <div>                            
-                                  <input type="text" className="form-control" placeholder="Pincode *" name="postcode" id="postcode" onChange={handleChange} ref={register({
+                                  <input type="text" className="form-control" placeholder="Zip Code *" name="postcode" id="postcode" onChange={handleChange} ref={register({
                                                                                 required: true,
                                                                             })} 
                                                                             maxLength="6" defaultValue={(edit ? edit['postcode'] : "")}/>
-                                               {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Pincode required</span>}
-                                                                            {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Pincode</span>}                              
+                                               {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Zip Code required</span>}
+                                                                            {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Zip Code</span>}                              
                                                                             </div> 
                               </div>
 
@@ -559,12 +559,12 @@ return (
 <div>
                                   
 
-                                  <input type="text" className="form-control" placeholder="Pincode *" name="postcode" id="postcode" onChange={handleChange} ref={register({
+                                  <input type="text" className="form-control" placeholder="Zip Code *" name="postcode" id="postcode" onChange={handleChange} ref={register({
                                                                                 required: true,
                                                                             })} 
                                                                             maxLength="6" defaultValue={(edit ? edit['postcode'] : "")}/>
-                                               {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Pincode required</span>}
-                                                                            {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Pincode</span>}                              
+                                               {errors.postcode && errors.postcode.type === 'required' && <span className="error_label">Zip Code required</span>}
+                                                                            {errors.postcode && errors.postcode.type === 'minLength' && <span className="error_label">Enter valid Zip Code</span>}                              
                                                                             </div> 
                               </div>
                           </div>

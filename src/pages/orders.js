@@ -19,6 +19,8 @@ const Orders = () => {
     const [re,reodr]= useState(false);
     const [outp,outper] = useState(false);
     const [outre,outreodr]= useState(false);
+    const [outin,outinv] = useState(false);
+    const [inv,Invc]= useState(false);
     const [attach_data, setattachment] = useState(null);
     const [currency,setCurrency]=useState();
     useEffect(() => {
@@ -52,6 +54,7 @@ const Orders = () => {
                     if(!localStorage.permissions){
                         outper(true)
                         outreodr(true)
+                        Invc(true)
                       }else {
                         let hi = JSON.parse(localStorage.permissions)
                         let orderhis=hi.includes("Can View Order History")
@@ -66,7 +69,7 @@ const Orders = () => {
                             }
                         per(orderhis)
                         reodr(reorder)
-                        reodr(invoice)
+                        outinv(invoice)
                       }
                 }
                 
@@ -358,10 +361,10 @@ return (
                                                         <div className="buttons-or">
                                                             {re && <button type="button" className="btn btn-danger square" onClick={() => reorder(items[0].order_id)}>Reorder</button>}
                                                             {outre && <button className="btn btn-danger" onClick={() => reorder(items[0].order_id)}>Reorder</button>}
-                                                           {items[0].status !== 'canceled' && items[0].status !== 'complete' && outre && <button className="btn btn-primary" onClick={() => cancelOrder(items[0].order_id)}>Cancel Order</button>}
+                                                           {items[0].status !== 'canceled' && items[0].status !== 'complete' && outre && items[0].status !== 'processing' &&<button className="btn btn-primary" onClick={() => cancelOrder(items[0].order_id)}>Cancel Order</button>}
                                                             {/* <Link to="/orderstatus/" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{outre && <button className="btn btn-primary">View Order</button>}</Link> */}
                                                             
-                                                            <Link to="/orderstatus/" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{re && <button className="btn btn outline" type="button" >View Order</button>}</Link>
+                                                            <Link to="/orderstatus/" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}>{outin && <button className="btn btn outline" type="button" >View Order</button>}</Link>
                                                             <Link to="/orderstatus/" state={{ order_id: items[0].order_id,increment_id:items[0].increment_id }}> {outre && <button className="btn btn outline" type="button">View Order</button>}</Link>
                                                             {attach_data && <a><i className="fa fa-sticky-note" aria-hidden="true" onClick={handleClick}></i>Invoice
                                                                 <div>

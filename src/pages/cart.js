@@ -149,7 +149,7 @@ const Cart = () => {
     const handleChange = async (event,data) => {
         axios({
             method: "get",
-            url: `${process.env.GATSBY_CART_URL_STARCARE}admin/tierprice/${data.product_id}`,
+            url: `${process.env.GATSBY_CART_URL_STARCARE}admin/tierprice/${data.id}`,
             //${proDescription.items.id}
           }).then((res) => {
             setTierProduct(res.data)
@@ -256,7 +256,9 @@ const Cart = () => {
             data: updateItem
         }).then((response) => {
             if (response.statusText === "OK" && response.status === 200) {
+              // setTimeout(()=>{
                 fetchCheckTotal()
+              // },5000)
                 listCarts()
                 // viewCartItems1()
                 
@@ -306,7 +308,7 @@ const Cart = () => {
                             <td> <div className="casualities">
                                 <a onClick={() => { resetCart(cart.item_id) }}> <AiTwotoneDelete /></a>
                                 {/* <button className="btn btn heart" type="button" onClick={() => { updateCarts(cart) }}><AiOutlineCloudUpload /></button> */}
-                                <button className="btn btn heart" type="button" onClick={() => addToList(2,cart.product_id)}><AiTwotoneHeart /></button>
+                                <button className="btn btn heart" type="button" onClick={() => addToList(2,cart.id)}><AiTwotoneHeart /></button>
                             </div></td>
                     </tr>
                     </tbody>

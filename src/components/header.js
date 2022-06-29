@@ -27,7 +27,7 @@ import rev from './../assets/rev.png';
 import wi from './../assets/wi.png';
 import us from './../assets/us.png';
 import lo from './../assets/lo.png';
-const Header = ({ siteTitle, cartCount, allCategory }) => {
+const Header = ({ siteTitle, allCategory }) => {
 
   const [isuserlogged, setIsLogged] = useState(false);
   const [iswhatuser, setisUser] = useState(false);
@@ -47,7 +47,7 @@ const Header = ({ siteTitle, cartCount, allCategory }) => {
   const handleShow = () => setShow(true);
   const [mobileShow, setMobileShow] = useState(false);
   const [value, setValue] = useState();
-  const [cartCnt, setCartCnt] = useState(cartCount)
+  const [cartCnt, setCartCnt] = useState(getCartCount());
   const [state, setpic] = useState("");
   const [profilepic,setProfilepic] = useState({});
   const [min, setMin] = useState("");
@@ -264,7 +264,6 @@ const isSticky = (e) => {
   }
 
   const searchList = () => {
-    console.log(cartCount)
     if (searchResponse.length !== 0) {
       if(allowedCat.length !== 0){
         const list = searchResponse.filter((elem, index, self) => self.findIndex(
@@ -596,7 +595,7 @@ const isSticky = (e) => {
               <div >
                 
               
-                <Link to="/cart" className="btn dropbtn carttop"><Cart cartCount={cartCount} /></Link>
+                <Link to="/cart" className="btn dropbtn carttop"><Cart cartCount={cartCnt} /></Link>
                 {/* <div className="dropdown-content">
                   <ul>
                    <li onClick={() => { navigateOnclick('/cart') }}>My Cart</li>

@@ -12,7 +12,7 @@ import Footer from "./footer" ;
 import "./layout.css";
 
 
-const Layout = ({ children, cartCount }) => {
+const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
   {
     allCategory {
@@ -38,7 +38,7 @@ const Layout = ({ children, cartCount }) => {
 
   return ( 
     <>  
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`}  allCategory = {data.allCategory.edges} cartCount = {cartCount}/>
+      <Header siteTitle={data.site.siteMetadata?.title || `Title`}  allCategory = {data.allCategory.edges}/>
   <main>{children}</main>
   <Footer />
     </>

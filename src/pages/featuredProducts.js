@@ -77,7 +77,7 @@ const Featuredproducts = () => {
             toast.error('something went wrong')
           }
         }else{
-            
+          setLoading(false)
         }
         const fetchFeature = async () => {
             const res = await fetch(
@@ -97,6 +97,7 @@ const Featuredproducts = () => {
     const cartValue = () => {
       setTimeout(() => {
         setcartCount(getCartCount());
+        window.location.reload(false);
       }, 3000);
     }
     const addtoCartItems = (sku, id) => {

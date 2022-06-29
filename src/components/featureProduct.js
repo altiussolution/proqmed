@@ -177,6 +177,7 @@ const FeatureProduct = () => {
       const cartValue = () => {
         setTimeout(() => {
           setcartCount(getCartCount());
+          window.location.reload(false);
         }, 3000);
       }
     const addtoCartItems = (sku, id) => {

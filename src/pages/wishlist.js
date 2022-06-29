@@ -27,6 +27,8 @@ const Wishlist = () => {
     const [permit,permission] = useState([]);
     const [p,per] = useState(false);
     const [nop,noper] = useState(false);
+    const [cart,setCart] = useState(false);
+    const [nocart,remCart] = useState(false);
     const [jwt, setJwt] = useState("");
     const [permits,setPermit] = useState();
     const [currency,setCurrency]=useState();
@@ -37,10 +39,13 @@ const Wishlist = () => {
         setJwt(localStorage.userToken)
        if(!localStorage.permissions){
         noper(true) 
+        setCart(true)
        } else {
         let hi = JSON.parse(localStorage.permissions)
         let addwis=hi.includes("Can View Wishlist")
+        let addcar=hi.includes("Can Add To Cart")
         per(addwis)
+        remCart(addcar)
        }
         const jwt = localStorage.getItem('userToken')
         if(jwt){
@@ -170,44 +175,85 @@ const Wishlist = () => {
     }
     const addtoCartItem = (sku, id) => {
         if (localStorage.userToken) {
-            if(qtydata.sku == sku){
-                const cartItem = {
-                    "cartItem": {
-                        "sku": sku,
-                        "qty": qtydata.qty,
-                        "quote_id": quote_id
+            if(qtydata){
+                if(qtydata.sku == sku){
+                    const cartItem = {
+                        "cartItem": {
+                            "sku": sku,
+                            "qty": qtydata.qty,
+                            "quote_id": quote_id
+                        }
+                    }
+                    setButton(true);
+                    const jwt = localStorage.userToken
+                    if (cartItem) {
+                        try {
+                            axios({
+                                method: 'post',
+                                url: `${process.env.GATSBY_API_BASE_URL_STARCARE}carts/mine/items`,
+                                data: cartItem,
+                                headers: {
+                                    'Authorization': `Bearer ${jwt}`
+                                }
+                            }).then((res) => {
+                                if (res.statusText === "OK" && res.status == 200) {
+                                    viewCartItems();
+                                    // removeProduct(id, 'cart')
+                                    toast.success('Succesfully added to cart');
+                                    setTimeout(() => {
+                                        setCartCnt(getCartCount())
+                                    }, 3000);
+                                    window.location.reload(false);
+                                    setButton(false);
+                                }
+                            }).catch((err) => {
+                                console.error(err);
+                                toast.error(err.response.data.message)
+                            })
+                        } catch (err) {
+                            console.error(err)
+                        }
+                    }
+                }else {
+                    const cartItem = {
+                        "cartItem": {
+                            "sku": sku,
+                            "qty": qty,
+                            "quote_id": quote_id
+                        }
+                    }
+                    setButton(true);
+                    const jwt = localStorage.userToken
+                    if (cartItem) {
+                        try {
+                            axios({
+                                method: 'post',
+                                url: `${process.env.GATSBY_API_BASE_URL_STARCARE}carts/mine/items`,
+                                data: cartItem,
+                                headers: {
+                                    'Authorization': `Bearer ${jwt}`
+                                }
+                            }).then((res) => {
+                                if (res.statusText === "OK" && res.status == 200) {
+                                    viewCartItems();
+                                    // removeProduct(id, 'cart')
+                                    toast.success('Succesfully added to cart');
+                                    setTimeout(() => {
+                                        setCartCnt(getCartCount())
+                                    }, 3000);
+                  window.location.reload(false);
+                                    setButton(false);
+                                }
+                            }).catch((err) => {
+                                console.error(err);
+                                toast.error(err.response.data.message)
+                            })
+                        } catch (err) {
+                            console.error(err)
+                        }
                     }
                 }
-                setButton(true);
-                const jwt = localStorage.userToken
-                if (cartItem) {
-                    try {
-                        axios({
-                            method: 'post',
-                            url: `${process.env.GATSBY_API_BASE_URL_STARCARE}carts/mine/items`,
-                            data: cartItem,
-                            headers: {
-                                'Authorization': `Bearer ${jwt}`
-                            }
-                        }).then((res) => {
-                            if (res.statusText === "OK" && res.status == 200) {
-                                viewCartItems();
-                                // removeProduct(id, 'cart')
-                                toast.success('Succesfully added to cart');
-                                setTimeout(() => {
-                                    setCartCnt(getCartCount())
-                                }, 3000);
-                                setButton(false);
-                            }
-                        }).catch((err) => {
-                            console.error(err);
-                            toast.error(err.response.data.message)
-                        })
-                    } catch (err) {
-                        console.error(err)
-                    }
-                }
-            }else {
+            } else {
                 const cartItem = {
                     "cartItem": {
                         "sku": sku,
@@ -234,6 +280,8 @@ const Wishlist = () => {
                                 setTimeout(() => {
                                     setCartCnt(getCartCount())
                                 }, 3000);
+                  window.location.reload(false);
+
                                 setButton(false);
                             }
                         }).catch((err) => {
@@ -245,6 +293,7 @@ const Wishlist = () => {
                     }
                 }
             }
+         
             
           
         }
@@ -345,7 +394,7 @@ const Wishlist = () => {
                                         </div>
                                                                     <div className="to-flx whi">
                                                                     <span>{item.created_at}</span>
-                                                                    <p className="to-flx">SKU: <p>{item.sku}</p></p>
+                                                                    <p className="to-flx">SKU :&nbsp;<span>{item.sku}</span></p>
                                                                     <span>Reviews({item.review_count})</span>
                                                                     <p>Item added {item.created_at}</p>
                                                                     </div>
@@ -362,7 +411,8 @@ const Wishlist = () => {
                                                                 <input type="number" name="qty" defaultValue="1" onChange={e => { handleChange(e,item.sku,index) }}/>
                                                                 </div>
                                                                     {/* <button className="btn_gray btn" onClick={() => navigate('/checkout')} >Buy Now</button> */}
-                                                                    <button className="btn_gray btn" onClick={() => addtoCartItem(item.sku, item.id)}>Add to cart</button>
+                                                                    {cart && <button className="btn_gray btn" onClick={() => addtoCartItem(item.sku, item.id)}>Add to cart</button>}
+                                                                    {nocart && <button className="btn_gray btn" onClick={() => addtoCartItem(item.sku, item.id)}>Add to cart</button>}
                                                                     <button className="btn btn_outline" type="button" onClick={() => removeWishList(item.id, 'remove')}>Delete</button>
                                                                 </div>
                                                                 

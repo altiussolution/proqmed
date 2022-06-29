@@ -12,14 +12,14 @@ import { IoIosGitCompare } from "react-icons/io";
 import {getWLCount, wishListCount ,viewCartItems,getCartCount} from './../../utils/apiServices'
 import { navigate } from "gatsby";
 
-export default function CategoryCard({ data: product, dataClass }) {
+export default function CategoryCard({ data: product, dataClass}) {
   
   const [customerId, setCustomerId] = useState("");
   const [jwt, setJwt] = useState("");
   const [isButton,setButton] = useState(false);
   const [quote_id, setQuoteId] = useState("");
   const [qty, setQty] = useState(1);
-  const [cartCnt, setCartCnt] = useState(getCartCount())
+  const [cartCnt, setCartCnt] = useState(getCartCount());
   const [p,per] = useState(false);
   const [pcar,percart] = useState(false);
   const [outp,outper] = useState(false);
@@ -81,7 +81,7 @@ export default function CategoryCard({ data: product, dataClass }) {
     percart(addcar)
   }
   fetchFeature();
-  },[])
+  },[cartCnt])
 
   const addToList = (type) => {
     if (localStorage.userToken) {
@@ -150,6 +150,7 @@ export default function CategoryCard({ data: product, dataClass }) {
                   setTimeout(() => {
                     setCartCnt(getCartCount())
                 }, 3000);
+                  window.location.reload(false);
                   setButton(false);
                 }
               }).catch((err) => {
@@ -253,7 +254,7 @@ export default function CategoryCard({ data: product, dataClass }) {
 
       <ToastContainer
         position="bottom-right"
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
