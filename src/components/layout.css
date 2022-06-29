@@ -1523,9 +1523,16 @@ a.save_link:hover, a.close_link:hover {
 
 
 /* Responsive styles */
-
+@media screen and (min-device-width: 600px) and (max-device-width: 1024px){
+  header.header-section.is-sticky {
+    position: relative;
+}
+}
 
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px){
+  header.header-section.is-sticky {
+    position: relative;
+}
   .row.products_fp.tp {
     justify-content: space-between;
 }
