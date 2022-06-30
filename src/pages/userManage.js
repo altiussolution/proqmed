@@ -251,7 +251,7 @@ if(val.target.value.length>=2){
         
             "data":{
                 "search_keyword":val.target.value,
-                "parent_customer_id":"39"
+                "parent_customer_id":localStorage.customer_id
             }
         
     }
@@ -438,7 +438,7 @@ const onSubmitQuoteadd = quoteDetails => {
                 <ul>
                     <li><Link to="/profile">Profile Information</Link></li>
                     <li><Link to="/myAddress">Manage Addresses</Link></li>
-                    <li><Link to="/myReviews">My reviews</Link></li>
+                    <li><Link to="/myReviews">My Reviews</Link></li>
 
                 </ul>
                 <h4><Link to="/userManage"><span><img src={us1} /></span> USER MANAGEMENT</Link></h4>

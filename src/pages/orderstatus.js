@@ -151,7 +151,7 @@ const Invoice = ({ location }) => {
 
                             <div className="fo-flx">
                             {re && <p onClick={() => reorder(items.order_id)}>Reorder</p>}
-                {nore && <p onClick={() => reorder(invoices[1].order_id)}>Reorder</p>}
+                {nore && <p onClick={() => reorder(items.order_id)}>Reorder</p>}
                             <p onClick={() => window.print({})}>Print Order</p>
                             </div>
                                 <table className="table">
@@ -355,7 +355,7 @@ const Invoice = ({ location }) => {
                 <div className="fo-flx">
                 {re && <p onClick={() => reorder(invoices[1].order_id)}>Reorder</p>}
                 {nore && <p onClick={() => reorder(invoices[1].order_id)}>Reorder</p>}
-                <p onClick={() => window.print(attach_data)}>Print Order</p>
+                <p onClick={() => window.print(attach_data)}>Print Invoice</p>
                 </div>
                         <table className="table">
                             <thead>
