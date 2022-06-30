@@ -329,7 +329,7 @@ const Cart = () => {
                 {
                     checkOut.map((item, index) => ( 
                         <tr key={index}>
-                            {item.code != "tax" && <><th>{item.code == "shipping" ? (item.value!=0 ? item.title : item.title) : (item.code == "vattax") ? "Vat Tax" : item.title}</th>
+                            {item.code != "tax" && <><th>{item.code == "shipping" ? (item.value!=0 ? item.title : '') : (item.code == "vattax") ? "Vat Tax" : item.title}</th>
                             <td>{item.code == "shipping" ? (item.value!=0 && item.value) : item.value}</td></>}
                         </tr>
                          ))
