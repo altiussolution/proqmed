@@ -8417,4 +8417,44 @@ section.add-banner.upper-space .img-wrapper-as-seen {
 .col-lg-7.col-md-4.col-xs-12.text-center.border_f .slider_thumb {
   width: 30% !important;
 }
+.profile-sec{
+  justify-content: center;
+}
+.form-content {
+  display: flex !important;
+}
+.my-profile .form-content input{
+  margin-bottom: 0;
+}
+div#products {
+  justify-content: center;
+}
+.item.product_item.grid_view {
+  justify-content: center;
+}
+.af-tr-banner {
+  height: 100%;
+  margin-top: 10px !important;
+}
+.af-tr-banner button.btn.btn.update{
+  margin-top: 0;
+}
+.popular_section .card{
+  display: block;
+}
+.row.product_list {
+  justify-content: center;
+}
+.row.products_fp {
+  padding: 20px;
+}
+.content_wrapper{
+  padding-top: 0;
+}
+.category_container .cat_scroll .products_fp .product_item {
+  width: 30%;
+}
+.phone_footer{
+  display: none;
+}
 }
