@@ -186,9 +186,9 @@ const Invoice = ({ location }) => {
                                 <tr>
                                     <th>Subtotal</th><td>{currency}{Math.round(items.sub_total)}</td>
                                 </tr>
-                                <tr>
+                                {/* <tr>
                                     <th>TaxAmount</th><td>{currency}{Math.round(items.tax_total)}</td>
-                                </tr>
+                                </tr> */}
                                 <tr>
                                     <th>Vat Tax</th><td>{currency}{Math.round(items.vat_tax)}</td>
                                 </tr>
@@ -404,9 +404,9 @@ const Invoice = ({ location }) => {
                                 <tr>
                                     <th>Subtotal</th><td>{currency}{Math.round(item.Subtotal)}</td>
                                 </tr>
-                                <tr>
+                                {/* <tr>
                                     <th>TaxAmount</th><td>{currency}{Math.round(item.Tax_Amount)}</td>
-                                </tr>
+                                </tr> */}
                                 <tr>
                                     <th>Shipping &amp; Handling</th><td>{currency}{Math.round(item.Shipping_Amount)}</td>
                                 </tr>

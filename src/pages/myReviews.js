@@ -166,7 +166,7 @@ return (
                         <div className="star">                   
                           {/* <p > <span><i className="fa fa-star" aria-hidden="true"></i></span>{quote.review_percentage}</p>  */}
                            <StarRatings
-                               rating={Math.round(quote.review_percentage)}
+                               rating={Math.round(quote.review_percentage/20)}
                                numberOfStars={5}
                                name='rating'
                                starDimension="20px"

@@ -178,7 +178,7 @@ if(localStorage.userToken){
                             <td className="detail_size"><span>{reviews.detail}</span></td>
                             <td>
                               <StarRatings
-                                rating={Math.random(reviews.review_percentage/20)}
+                                rating={Math.round(reviews.review_percentage/20)}
                                 numberOfStars={5}
                                 name='rating'
                                 starDimension="15px"
