@@ -541,7 +541,7 @@ const isSticky = (e) => {
               <input
                 className="search"
                 type="text"
-                placeholder="Search By Products"
+                placeholder="Search"
                 value={search}
                 onChange={handleClick}
               />

@@ -1505,22 +1505,13 @@ a.save_link {
 a.save_link:hover, a.close_link:hover {
   color: #0162A2;
 }
-.mobile_header svg {
+/* .mobile_header svg {
   fill: #fff;
   color: #fff;
-}
+} */
 .feature_show_img img {
   width: 100%;
 }
-
-
-
-
-
-
-
-
-
 
 /* Responsive styles */
 @media screen and (min-device-width: 600px) and (max-device-width: 1024px){
@@ -7996,7 +7987,7 @@ body .login_page .right_side .box_content.same{
     font-size: 20px;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:768px) {
 
   main.whishlist_page {
     margin-top:15px; 
@@ -8393,4 +8384,37 @@ input.fo-width {
 
 .address-form .css-ackcql, .address-form .css-1d8n9bt {
   height: 44px;
+}
+.side_sec h6 {
+  display: none;
+}
+
+@media screen and (min-device-width: 670px) and (max-device-width: 768px) {
+  .mobile_header svg{
+    fill: #c43939 !important;
+    color: #000 !important;
+  }
+  .menu_botm{
+    justify-content: center;
+  }
+  .menu_top{
+    flex-wrap: unset;
+    align-items: baseline;
+  }
+  .sidenav {
+    text-align: left;
+    width: 70%;
+}
+section.add-banner.upper-space .img-wrapper-as-seen {
+  margin-bottom: 50px !important;
+}
+.about_ftr p{
+  width: 100%;
+}
+.product_view .product_details {
+  padding: 15px;
+}
+.col-lg-7.col-md-4.col-xs-12.text-center.border_f .slider_thumb {
+  width: 30% !important;
+}
 }

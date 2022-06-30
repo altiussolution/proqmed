@@ -44,6 +44,13 @@ const feature_slide = {
       },
     },
     {
+      breakpoint: 760,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+    {
       breakpoint: 480,
       settings: {
           slidesToShow: 1,
