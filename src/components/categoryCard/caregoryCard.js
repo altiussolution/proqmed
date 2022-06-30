@@ -149,8 +149,8 @@ export default function CategoryCard({ data: product, dataClass}) {
                   toast.success('succesfully added to cart');
                   setTimeout(() => {
                     setCartCnt(getCartCount())
+                    window.location.reload(false);
                 }, 3000);
-                  window.location.reload(false);
                   setButton(false);
                 }
               }).catch((err) => {

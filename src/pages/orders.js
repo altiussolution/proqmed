@@ -92,7 +92,14 @@ const Orders = () => {
         setPage(0);
       };
     const cancelOrder = (order_id) => {
+       
         if (window.confirm("Do you want to cancel order?")) {
+        afterOk(order_id)
+    }
+    }
+
+    const afterOk = (order_id)=> {
+        setLoader(true)
         try{  
             axios({
                 method : "post",
@@ -102,19 +109,22 @@ const Orders = () => {
                 },
             }).then((res) => {
                 if(res.statusText === "OK" && res.status === 200){
+                    setLoader(false)
                     toast.success(res.data);
                    setOrderDetails();    
                 }
                 
             }).catch((err) => {  
                 console.error(err);
+                setLoader(false)
             })
         }
         catch(err){
             console.error(err)
+            setLoader(false)
         }
     }
-    }
+
 
     const reorder = (id) => {
         try {
