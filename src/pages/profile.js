@@ -471,7 +471,7 @@ const choosefile =() =>{
                 <ul>
                 <li className="fo-active-bg"><Link to="/profile">Profile Information</Link></li>
                     <li><Link to="/myAddress">Manage Addresses</Link></li>
-                    <li><Link to="/myReviews">My reviews</Link></li>
+                    <li><Link to="/myReviews">My Reviews</Link></li>
                 </ul>
               {isuserlogged && <h4><span><img src={logoutt}/></span><a onClick={() => { logout() }}>LOGOUT</a></h4>}
             </div>
