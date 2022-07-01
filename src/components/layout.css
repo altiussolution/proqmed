@@ -1991,6 +1991,13 @@ ul.newsletter .form-control {
 }
 }
 @media only screen and (max-width:600px) {
+  .fo-bg-white .top .right button.btn.btn-danger {
+    display: flex;
+    margin: 10px auto;
+}
+span.error {
+  position: absolute;
+}
   .category_container .cat_scroll .products_fp .product_item{
     width: 100% !important;
   }
@@ -4291,7 +4298,7 @@ ul.sub_menus a:before {
 }
 .bulkorder .dropbtn span{
   display: block;
-  font-size: 12px;
+  font-size: 10px;
 }
 .all_categories_list .dropdown-content a {
   margin: 0;
@@ -7994,6 +8001,15 @@ body .login_page .right_side .box_content.same{
 }
 
 @media only screen and (max-width:768px) {
+  .fo-bg-white .top .right{
+    display: block;
+  }
+  .container-fluid.grey .row {
+    padding: 10px;
+}
+  .order_product_wrapper {
+    overflow: auto;
+}
   .progressbar li::before {
     margin-right: 10px;
 }
@@ -8006,7 +8022,7 @@ ul.progressbar li span{
     flex-direction: unset;
 }
   .whishlist_page .to-flx {
-    display: block;
+    display: block !important;
 }
 .to-flx.whi p {
   border-left: none;
