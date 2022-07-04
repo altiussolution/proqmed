@@ -133,7 +133,7 @@ const Sidebar = () => {
           {rendercategory()}
         </div>
 
-        <div className="my_accounts">
+        {/* <div className="my_accounts">
           <div className="sidebar_links">
             <p>My Accounts</p>
           </div>
@@ -156,7 +156,7 @@ const Sidebar = () => {
               <Link to='/changePassword'>Change Password</Link>
             </li>
           </ul>
-        </div>
+        </div> */}
 
         <a href="javascript:void(0)" className="closebtn">×</a>
         {/* <a href="javascript:void(0)">&times;</a> */}
