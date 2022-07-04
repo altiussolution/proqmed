@@ -2662,6 +2662,9 @@ section.category_section .image_wrappertab {
                     .col-lg-8.padding_se .dod_inner .slick-prev, .dod_inner .slick-next{
                       top: 24px !important;
                     }
+                    .col-lg-8.padding_se .dod_inner button.slick-arrow.slick-next{
+                      top: 24px !important;
+                    }
                     .item.product_item.grid_view {
                       margin-bottom: 10px !important;
                   }
