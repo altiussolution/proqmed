@@ -224,7 +224,7 @@ const deleteAddress = (id) => {
             <div className="fo-bg-white">
                 <div className="top">
                     <div className="header">
-                    <h2 className="heading">My Addresses <span>({shippingAddress.length})</span></h2>
+                    <h2 className="heading sd">My Addresses <span>({shippingAddress.length})</span></h2>
                 </div>
                 <Link to="/Address/" state={{data:adding,prevPath:location.pathname}}>+ ADD A NEW ADDRESS</Link>
                 </div>
